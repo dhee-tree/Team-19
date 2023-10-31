@@ -1,7 +1,7 @@
 # Team Members:
 
 ## 1. Name: Ighomena Odebala
-## 2. Name: Lewis Neiland
+## 2. Name: Lewis Neiland N
 ## 3. Name: Zaakir Mohammad
 ## 4. Name: Ismaeel Noor 
 ## 5. Name: Ndumiso Mbangeleli
