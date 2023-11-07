@@ -18,7 +18,7 @@ return new class extends Migration
              * Image Path. 
              * We should list the file path of a profile image, so that we can retrieve them.
              */
-            $table->string('profile_picture', 255);
+            //$table->string('profile_picture', 255);
 
             $table->string('first_name', 60);
             $table->string('last_name', 60);
@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('phone_number', 15);
             $table->boolean('admin')->default(false);
             $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }
