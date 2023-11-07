@@ -18,7 +18,7 @@ The default file [create_users_table](./migrations/2014_10_12_000000_create_user
 ### Adding Test Data
 The file [DatabaseSeeder](./seeders/DatabaseSeeder.php) currently populates tables `users` and `products` with 10 rows of dummy data, so that elements can be tested before real data is added.
 
-Test data is defined by[factories](./factories/). See (https://laravel.com/docs/10.x/eloquent-factories).
+Test data is defined by [factories](./factories/). See (https://laravel.com/docs/10.x/eloquent-factories).
 
 1. Open the [WoodLess](../../WoodLess/) folder in terminal 
 2. Run `php artisan db:seed` to add (more) data to the database, or `php artisan migrate:refresh --seed` to both clear all tables and add fresh new data.
