@@ -22,8 +22,8 @@ return new class extends Migration
 
             $table->string('first_name', 60);
             $table->string('last_name', 60);
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('email', 255)->unique();
+            $table->string('password', 255);
             $table->string('phone_number', 15);
             $table->boolean('admin')->default(false);
             $table->rememberToken();
