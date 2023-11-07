@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('contact', 30);
             $table->string('importance_level', 30);
             $table->boolean('status');
+            $table->timestamps();
         });
 
         // Add foregin key constraint
