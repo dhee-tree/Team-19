@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->json('items')->nullable();
             $table->integer('total_cost');
+            $table->timestamps();
         });
 
         // Add foregin key constraint
