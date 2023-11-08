@@ -33,11 +33,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'admin',
+        'is_admin',
     ];
 
     protected $guarded =[
-        'admin'
+        'is_admin'
     ];
 
     /**
