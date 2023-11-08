@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('email', 255)->unique();
             $table->string('password', 255);
             $table->string('phone_number', 15);
-            $table->boolean('admin')->default(false);
+            $table->boolean('is_admin')->default(false)->invisible();
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
