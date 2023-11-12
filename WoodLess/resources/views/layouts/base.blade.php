@@ -21,6 +21,8 @@
         <div class="container">
             <nav>
                 <!-- Navbar goes here -->
+                <a href="{{ url('/') }}">Home</a>
+                <hr>
             </nav>
 
             <main>
