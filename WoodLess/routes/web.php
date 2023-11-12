@@ -22,3 +22,5 @@ Route::view('/about', 'about');
 Route::view('/categories', 'categories');
 
 Route::view('/contact', 'contact');
+
+Route::view('/products-view', 'product-display');
