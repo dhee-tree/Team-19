@@ -20,3 +20,5 @@ Route::get('/', function () {
 Route::view('/about', 'about');
 
 Route::view('/categories', 'categories');
+
+Route::view('/contact', 'contact');
