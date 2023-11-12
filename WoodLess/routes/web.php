@@ -24,3 +24,5 @@ Route::view('/categories', 'categories');
 Route::view('/contact', 'contact');
 
 Route::view('/products-view', 'product-display');
+
+Route::view('/products', 'product-list');
