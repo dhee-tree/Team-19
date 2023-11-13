@@ -22,7 +22,7 @@ class ProductFactory extends Factory
         return [
             'title' => fake()->colorName(),
             'description' => fake()->paragraph(5),
-            'attributes' => json_encode(["0" => fake()->word(), "1" => fake()->word()]),
+            'attributes' => json_encode(["colour" => fake()->colorName().','.fake()->colorName().','.fake()->colorName(), "size" => 'S,M,L']),
             'tags' => fake()->word() . ',' . fake()-> word(),
             'categories' => fake()->word() . ',' . fake()-> word(),
             'cost' => fake()->numberBetween(10, 500) + (fake()->numberBetween(0, 99)/100),
