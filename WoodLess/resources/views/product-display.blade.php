@@ -15,11 +15,13 @@
         <div class="row" id="about">
             <div class="col-12">
                 <h1>{{$product->title}}</h1>
-                <p>
-                    @foreach ($tags as $tag)
-                        {{$tag}}
-                    @endforeach
-                </p>
+                <div class="row">
+                    <p>
+                        @foreach ($tags as $tag)
+                            {{$tag}}
+                        @endforeach
+                    </p>
+                </div>
                 <h3>£{{$product->cost}}</h3>
 
                 <form action="/" enctype="multipart/form-data">
@@ -29,7 +31,7 @@
                             <input type="submit" name="submit" disabled value="Out of Stock">
                         @else
                             @foreach ($attributes as $attribute => $values)
-                                <label for="attribute">{{ucfirst($attribute).':'}}</label>
+                                <label for="attribute-{{$attribute}}">{{ucfirst($attribute).':'}}</label>
                                 <select name="attribute-{{$attribute}}" id="attribute-{{$attribute}}">
                                     @foreach (explode(',', $values) as $value)
                                         <option value="{{$value}}">{{$value}}</option>
