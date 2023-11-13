@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,7 @@ Route::view('/categories', 'categories');
 
 Route::view('/contact', 'contact');
 
-Route::view('/products-view', 'product-display');
+//Show single product
+Route::get('/product-view/{product}', [ProductController::class,'show']);
 
 Route::view('/products', 'product-list');
