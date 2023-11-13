@@ -15,15 +15,41 @@
         <div class="row" id="about">
             <div class="col-12">
                 <h1>{{$product->title}}</h1>
-                @foreach ($tags as $tag)
-                    <p>{{$tag}}</p>
-                @endforeach
-                
+                <p>
+                    @foreach ($tags as $tag)
+                        {{$tag}}
+                    @endforeach
+                </p>
                 <h3>£{{$product->cost}}</h3>
+
+                <form action="/" enctype="multipart/form-data">
+                    @csrf
+                    <div class="container">
+                        @if ($product->amount == 0)
+                            <input type="submit" name="submit" disabled value="Out of Stock">
+                        @else
+                            @foreach ($attributes as $attribute => $values)
+                                <label for="attribute">{{ucfirst($attribute).':'}}</label>
+                                <select name="attribute-{{$attribute}}" id="attribute-{{$attribute}}">
+                                    @foreach (explode(',', $values) as $value)
+                                        <option value="{{$value}}">{{$value}}</option>
+                                    @endforeach
+                                </select>   
+                            @endforeach
                 
-                @foreach ($attributes as $attribute => $values)
-                    <p>{{'Attribute: '. $attribute . ' Value: '.$values}}</p>
-                @endforeach
+                            <br>
+
+                            <label for="quantity">Qty:</label>
+                            <select name="quantity" id="quantity">
+                                @for ($i = 1; $i < $product->amount; $i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                @endfor
+                            </select>
+                            
+                            <input type="submit" name="submit" value="Add To Basket">
+                        @endif
+                    </div>
+                </form>
             </div>
         </div>
 
