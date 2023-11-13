@@ -23,7 +23,7 @@ return new class extends Migration
             //$table->string('images', 255);
 
             $table->json('attributes')->nullable();
-            $table->json('tags')->nullable();
+            $table->string('tags')->nullable();
             $table->string('categories', 255);
             $table->integer('cost');
             $table->integer('discount')->nullable();
