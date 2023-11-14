@@ -6,6 +6,7 @@
         <div class="row">
             <div class="col-12">
                 <h1>Contact Us</h1>
+                <p>Editted</p>
             </div>
         </div>
     </div>
