@@ -10,7 +10,8 @@ use Illuminate\Support\Str;
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
 class UserFactory extends Factory
-{
+{   
+    //Creates Dummy Data; used for models(?)
     protected static ?string $password;
 
     /**
@@ -21,11 +22,13 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
+            'phone_number' => fake()->numerify("###########"),
             'remember_token' => Str::random(10),
+            'email_verified_at' => now(),
         ];
     }
 
