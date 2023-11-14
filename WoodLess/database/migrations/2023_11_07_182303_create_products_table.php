@@ -23,9 +23,9 @@ return new class extends Migration
             //$table->string('images', 255);
 
             $table->json('attributes')->nullable();
-            $table->json('tags')->nullable();
+            $table->string('tags')->nullable();
             $table->string('categories', 255);
-            $table->integer('cost');
+            $table->decimal('cost', 8, 2)->default(0);
             $table->integer('discount')->nullable();
             $table->integer('amount')->default(0);
             $table->timestamps();
