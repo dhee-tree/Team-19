@@ -7,75 +7,122 @@
 @endphp
 
 @section('content')
-    <div class="container" id="product">
-        <div class="row" id="gallery">
-
+    <div class="row mb-1 pt-2" id="product-main">
+        <div class="col-md-6 mb-2" id="gallery">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://www.wolflair.com/wp-content/uploads/2017/01/placeholder.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
         </div>
 
-        <div class="row" id="about">
-            <div class="col-12">
-                <h1>{{$product->title}}</h1>
-                <div class="row">
-                    <p>
-                        @foreach ($tags as $tag)
-                            {{$tag}}
-                        @endforeach
-                    </p>
+        <div class="col-md-6" id="product-information">
+            <div class="row" id="product-title">
+                <div class="col-1">
+                    <h1 class="mb-0 ms-0">{{$product->title}}</h1>
                 </div>
-                <h3>£{{$product->cost}}</h3>
+            </div>
+            <div class="w-100"></div>
+            <div class="d-flex flex-row" id="product-tags">
+                @foreach ($tags as $tag)
+                    <div class="me-2">
+                        <span>
+                            {{$tag}}
+                        </span>  
+                    </div>
+                @endforeach
+            </div>
 
-                <form action="/" enctype="multipart/form-data">
-                    @csrf
-                    <div class="container">
-                        @if ($product->amount == 0)
-                            <input type="submit" name="submit" disabled value="Out of Stock">
-                        @else
-                            @foreach ($attributes as $attribute => $values)
-                                <label for="attribute-{{$attribute}}">{{ucfirst($attribute).':'}}</label>
-                                <select name="attribute-{{$attribute}}" id="attribute-{{$attribute}}">
-                                    @foreach (explode(',', $values) as $value)
-                                        <option value="{{$value}}">{{$value}}</option>
-                                    @endforeach
-                                </select>   
-                            @endforeach
-                
-                            <br>
+            <div class="row" id="price">
+                <div class="col">
+                    <h3>£{{$product->cost}}</h3>              
+                </div>
+            </div>
 
+            <form action="{{url()->current()}}" enctype="multipart/form-data">
+                @csrf
+                @if ($product->amount != 0)
+                    <div class="d-flex flex-row mb-2" id="attributes">
+                        @foreach ($attributes as $attribute => $values)
+                        <div class="me-2" id="attribute">
+                            <label for="attribute-{{$attribute}}">{{ucfirst($attribute).':'}}</label>
+                            <select name="attribute-{{$attribute}}" id="attribute-{{$attribute}}">
+                                @foreach (explode(',', $values) as $value)
+                                    <option value="{{$value}}">{{$value}}</option>
+                                @endforeach
+                            </select>   
+                        </div>
+                        @endforeach
+                    </div>
+
+                    <div class="d-flex flex-row mb-2" id="submit">
+                        <div class="me-2">
                             <label for="quantity">Qty:</label>
                             <select name="quantity" id="quantity">
-                                @for ($i = 1; $i < $product->amount; $i++)
-                                    <option value="{{$i}}">{{$i}}</option>
+                                @for ($i = 0; $i < $product->amount; $i++)
+                                    <option value="{{$i+1}}">{{$i+1}}</option>
                                 @endfor
                             </select>
-                            
+                        </div>
+                        <div class="me-2">
                             <input type="submit" name="submit" value="Add To Basket">
-                        @endif
+                        </div>
                     </div>
-                </form>
+                @else
+                    <div class="d-flex flex-row mb-2" id="submit">
+                        <div class="me-2">
+                            <input type="submit" name="submit" disabled value="Out of Stock">
+                        </div>
+                    </div>
+                @endif
+            </form>
+
+            <div class="row mt-0" id="about">
+                <div class="col">
+                    <h4 class="mb-0 mt-1">About Product</h4>
+                </div>
+                <div class="w-100"></div>
+                <div class="col m-0">
+                    <p>{{$product->description}}</p>
+                </div>
             </div>
         </div>
+    </div>
 
-        <div class="row" id="description">
-            <h2>About Product</h2>
-            <p>{{$product->description}}</p>
+    <div class="row" id="similar-products">
+
+    </div>
+
+    <div class="row" id="create-review">
+        <div class="col">
+            <h3>Add a Review</h3>
         </div>
+
+        <form action="">
+
+        </form>
     </div>
 
-    <div class="container" id="similar-products">
-
-    </div>
-
-    <div class="container" id="create-review">
-        <div class="row">
-            <div class="col-12">
-                <h1>Add a Review</h1>
-            </div>
-        </div>
-    </div>
-
-    <div class="container" id="reviews">
-        <div class="col-12">
-            <h1>Reviews</h1>
+    <div class="row" id="reviews">
+        <div class="col">
+            <h3>Reviews</h3>
         </div>
     </div>
 @endsection
+
