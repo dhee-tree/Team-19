@@ -6,8 +6,8 @@
 @endphp
 
 @section('content')
-    <div class="row m-0 px-1 pb-2 pt-3 bg-black" id="product-main">
-        <div class="col-md-6 mb-2" id="gallery">
+    <div class="row m-0 px-1 pb-2 pt-3" id="product-main">
+        <div class="col-md-6 mb-3" id="gallery">
             <div id="productGallery" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
@@ -63,7 +63,9 @@
                 </div>
             </div>
 
-            <form action="{{url()->current()}}" enctype="multipart/form-data">
+            <hr class="mt-1">
+
+            <form class="row" action="{{url()->current()}}" enctype="multipart/form-data">
                 @csrf
                 @if ($product->amount != 0)
                     <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
@@ -108,7 +110,7 @@
                 @else
                     <div class="d-flex flex-row mb-0 align-items-center" id="submit">
                         <div class="">
-                            <input class="btn btn-dark py-0" type="submit" name="submit" disabled value="Out of Stock">
+                            <input class="btn btn-dark py-1" type="submit" name="submit" disabled value="Out of Stock">
                         </div>
                     </div>
                 @endif
