@@ -4,28 +4,28 @@
 @php
     $attributes = json_decode($product->attributes, true);
     $tags = explode(',', $product->tags);
+    $productImages = explode(',',$product->images);
 @endphp
 
 @section('content')
     <div class="row mb-1 pt-2" id="product-main">
         <div class="col-md-6 mb-2" id="gallery">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div id="productGallery" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" class="d-block w-100" alt="...">
+                    <img src="{{asset('images/'.array_shift($productImages))}}" class="d-block w-100" alt="image-1">
                   </div>
-                  <div class="carousel-item">
-                    <img src="https://www.wolflair.com/wp-content/uploads/2017/01/placeholder.jpg" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" class="d-block w-100" alt="...">
-                  </div>
+                  @foreach ($productImages as $image)
+                    <div class="carousel-item">
+                        <img src="{{asset('images/'.$image)}}" class="d-block w-100" alt="...">
+                    </div>
+                  @endforeach
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#productGallery" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#productGallery" data-bs-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
