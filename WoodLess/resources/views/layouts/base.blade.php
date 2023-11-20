@@ -21,6 +21,9 @@
         <!-- bootstrap 5.3 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+        <!-- Font Awesome JS -->
+        <script src="https://kit.fontawesome.com/c5cd4f3e40.js" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         @yield('style')
 
