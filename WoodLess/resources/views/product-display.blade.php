@@ -3,7 +3,7 @@
 
 @php
     $attributes = json_decode($product->attributes, true);
-    $tags = explode(',', $product->tags);
+    $categories = explode(',', $product->categories);
     $productImages = explode(',',$product->images);
 @endphp
 
@@ -39,11 +39,11 @@
                 </div>
             </div>
             <div class="w-100"></div>
-            <div class="d-flex flex-row" id="product-tags">
-                @foreach ($tags as $tag)
-                    <div class="me-2">
-                        <span>
-                            {{$tag}}
+            <div class="d-flex flex-row" id="product-categories">
+                @foreach ($categories as $category)
+                    <div class="me-2" id="category">
+                        <span class="lead">
+                            {{$category}}@if($category != $categories[count($categories)-1]),@endif
                         </span>  
                     </div>
                 @endforeach
@@ -58,16 +58,30 @@
             <form action="{{url()->current()}}" enctype="multipart/form-data">
                 @csrf
                 @if ($product->amount != 0)
-                    <div class="d-flex flex-row mb-2" id="attributes">
+                    <div class="d-flex flex-row mb-2 ms-1" id="attributes">
                         @foreach ($attributes as $attribute => $values)
-                        <div class="me-2" id="attribute">
-                            <label for="attribute-{{$attribute}}">{{ucfirst($attribute).':'}}</label>
-                            <select name="attribute-{{$attribute}}" id="attribute-{{$attribute}}">
+                            @if ($attribute == 'colour')
+                                @php
+                                $i=1;
+                                @endphp
+
                                 @foreach (explode(',', $values) as $value)
-                                    <option value="{{$value}}">{{$value}}</option>
+                                    <div class="form-check form-check-inline me-2 m-0">
+                                        <input style="box-shadow:none; transform:scale(1.5); background-color:{{$value}};border-color:color-mix(in srgb, {{$value}} 70%, black);" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio{{$i}}" value="{{$value}}">
+                                        <label class="form-check-label" for="inlineRadio{{$i}}"></label>
+                                    </div>
                                 @endforeach
-                            </select>   
-                        </div>
+
+                            @else
+                                <div class="me-2" id="attribute">
+                                    <label for="attribute-{{$attribute}}">{{ucfirst($attribute).':'}}</label>
+                                    <select name="attribute-{{$attribute}}" id="attribute-{{$attribute}}">
+                                        @foreach (explode(',', $values) as $value)
+                                            <option value="{{$value}}">{{$value}}</option>
+                                        @endforeach
+                                    </select>   
+                                </div>
+                            @endif
                         @endforeach
                     </div>
 
