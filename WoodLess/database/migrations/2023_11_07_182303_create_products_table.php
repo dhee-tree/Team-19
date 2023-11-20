@@ -16,11 +16,7 @@ return new class extends Migration
             $table->string('title', 255);
             $table->longText('description');
 
-            /**
-             * Image Path. 
-             * We should list the file path of images a product should use, so that we can retrieve them later.
-             */
-            //$table->string('images', 255);
+            $table->string('images', 255)->default('images/no-image.png');
 
             $table->json('attributes')->nullable();
             $table->string('tags')->nullable();
