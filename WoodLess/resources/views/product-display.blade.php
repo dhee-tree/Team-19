@@ -41,42 +41,52 @@
 
             <div class="col d-none d-md-block d-lg-none" id="gallery-select-md">
                 <hr>
-                <div id="productGallerySelect" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div id="productGallerySelect-md" class="carousel carousel-dark slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @php
                             $pageLimit = 3;
-                            $isActive = "active";
+                            $pages = 0;
                         @endphp
                         
-                        <!-- First carousel page
+                        <!-- First carousel page -->
                         <div class="carousel-item active">
-                            <div>
+                            <div class="btn-group d-flex justify-content-between align-items-center" role="group">
                                 <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
                                     <img class="" width="105" src="{{asset('images/'.$firstImage)}}" alt="">
                                 </button>
+
+                                @if ($productImages)
+                                    @for ($i = 1; $i < $pageLimit; $i++)
+                                        <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{++$count}}" aria-current="true" aria-label="Slide {{$count}}">
+                                            <img class="" width="105" src="{{asset('images/'.$productImages[($count)])}}" alt="">
+                                        </button>
+                                    @endfor
+                                @endif
                             </div>
                         </div>
-                        !-->
 
                         <!-- All other pages -->
-                        @for ($i = 0; $i < ceil(count($productImages)/$pageLimit); $i++)
-                            <div class="carousel-item {{$isActive}}">
-                                <div class="btn-group d-flex justify-content-center" role="group">
-                                    <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$i}}" aria-current="true" aria-label="Slide 1">
-                                        {{$i}}<img class="" width="105" src="{{asset('images/'.$firstImage)}}" alt="">
-                                    </button>
+                        @while ($count < count($productImages))
+                            <div class="carousel-item">
+                                <div class="btn-group d-flex justify-content-between align-items-center" role="group">
+                                    @for ($i = 1; $i < $pageLimit; $i++)
+                                        @if ($count < count($productImages))
+                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{++$count}}" aria-current="true" aria-label="Slide {{$count}}">
+                                                <img class="" width="105" src="{{asset('images/'.$productImages[($count)-1])}}" alt="">
+                                            </button>
+                                        @endif  
+                                    @endfor
                                 </div>
                             </div>
-                            {{$i}}
-                        @endfor
+                        @endwhile
                     </div>
 
-                    <button class="carousel-control-prev" type="button" data-bs-target="#productGallerySelect" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Previous</span>
                     </button>
 
-                    <button class="carousel-control-next" type="button" data-bs-target="#productGallerySelect" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="next">
                       <span class="carousel-control-next-icon" aria-hidden="true"></span>
                       <span class="visually-hidden">Next</span>
                     </button>
@@ -164,10 +174,83 @@
 
             <hr>
 
-            <div class="row mt-0" id="about-product">
+            <div class="row my-0" id="about-product">
                 <div class="w-100"></div>
                 <div class="col m-0">
                     <p>{{$product->description}}</p>
+                </div>
+            </div>
+
+            <hr class="mt-1 d-none d-xl-block">
+
+            <div class="row mt-0" id="gallery-select-lg">
+                <div class="row d-none d-xxl-block w-100 mb-1">
+                    <div class="col">
+                        <h3>Gallery</h3>
+                    </div>
+                </div>
+    
+                <div class="col d-none d-xl-block">
+                    <div id="productGallerySelect-lg" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @php
+                                $pageLimit = 6;
+                                $count = 0;
+                            @endphp
+                            
+                            <!-- First carousel page -->
+                            <div class="carousel-item active">
+                                <div class="btn-group d-flex justify-content-between align-items-center" role="group">
+                                    <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
+                                        <img class="" width="125" src="{{asset('images/'.$firstImage)}}" alt="">
+                                    </button>
+    
+                                    @if ($productImages)
+                                        @for ($i = 1; $i < $pageLimit && $i < count($productImages); $i++)
+                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{++$count}}" aria-current="true" aria-label="Slide {{$count}}">
+                                                <img class="" width="125" src="{{asset('images/'.$productImages[($count-1)])}}" alt="">
+                                            </button>
+                                        @endfor
+                                    @endif
+                                </div>
+                            </div>
+    
+                            <!-- All other pages -->
+                            @while ($count < count($productImages))
+                                <div class="carousel-item">
+                                    <div class="btn-group d-flex justify-content-between align-items-center" role="group">
+                                        @for ($i = 1; $i < $pageLimit; $i++)
+                                            @if ($count < count($productImages))
+                                                <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{++$count}}" aria-current="true" aria-label="Slide {{$count}}">
+                                                    <img class="" width="125" src="{{asset('images/'.$productImages[($count)-1])}}" alt="">
+                                                </button>
+                                            @endif  
+                                        @endfor
+                                    </div>
+                                </div>
+                            @endwhile
+                        </div>
+                        
+                        
+                        <button class="carousel-control-prev" type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        
+    
+                        <button class="carousel-control-next" type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                        
+                        <!--
+                        <div class="carousel-indicators p-0 m-0">
+                            <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        </div>
+                        -->
+                    </div>
                 </div>
             </div>
         </div>
