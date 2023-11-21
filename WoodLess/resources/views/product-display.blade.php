@@ -2,22 +2,29 @@
 @section('title', 'WoodLess - '. $product->title)
 
 @php
+    /*
+        These variables are declared in ProductController and are used here.
+
+        $attributes - The product's attributes decoded from JSON
+        $categories - The product's categories stored in a String array
+        $productImages - The file path of each image used for the product, stored in a String array
+    */
     $firstImage = array_shift($productImages);
 @endphp
 
 @section('content')
     <div class="row m-0 px-1 pb-2 pt-3" id="product-main">
         <div class="col-md-6 mb-3" id="gallery">
-            <div id="productGallery" class="carousel slide" data-bs-ride="carousel">
+            <div id="productGallery" class="carousel carousel-dark slide lightbox" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
                     <!-- First image in gallery -->
-                    <a href="{{asset('images/'.$firstImage)}}"><img src="{{asset('images/'.$firstImage)}}" class="d-block w-100" alt="first-product-image"></a>
+                    <img src="{{asset('images/'.$firstImage)}}" class="d-block w-100" alt="first-product-image">
                   </div>
                   <!-- All other images -->
                   @foreach ($productImages as $image)
                     <div class="carousel-item">
-                        <a href="{{asset('images/'.$image)}}"><img src="{{asset('images/'.$image)}}" class="d-block w-100" alt="product-image"></a>
+                        <img src="{{asset('images/'.$image)}}" class="d-block w-100" alt="product-image">
                     </div>
                   @endforeach
                 </div>
@@ -31,9 +38,45 @@
                 </button>
             </div>
 
-            <div class="row mt-0 d-none d-md-block d-lg-none" id="">
-                <div class="col">
-                    <button type="button" data-bs-target="#productGallery" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <div class="col d-none d-md-block d-lg-none" id="gallery-select-md">
+                <hr>
+                <div id="productGallerySelect" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @php
+                            $pageLimit = 3;
+                            $slideNumber = 0;
+                        @endphp
+                        
+                        <!-- First carousel page -->
+                        <div class="carousel-item active">
+                            <div>
+                                <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$slideNumber++}}" aria-current="true" aria-label="Slide 1">
+                                    <img class="" width="105" src="{{asset('images/'.$firstImage)}}" alt="">
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- All other pages -->
+                        @for ($i; $i < count )
+                            <div class="carousel-item">
+                                <div class="btn-group d-flex justify-content-center" role="group">
+                                    <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$slideNumber++}}" aria-current="true" aria-label="Slide 1">
+                                        <img class="" width="105" src="{{asset('images/'.$image)}}" alt="">
+                                    </button>
+                                </div>
+                            </div>
+                        @endfor
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productGallerySelect" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#productGallerySelect" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
         </div>
