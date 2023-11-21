@@ -12,7 +12,7 @@
                 <h1>Contact Us</h1>
                 <h3>We would love to hear from you!</h2>
             </div>
-        </div>
+        </div>s
 
         <div class="row contact-main">
             <div class="col-md-6">
