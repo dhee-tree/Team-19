@@ -13,6 +13,7 @@ class Product extends Model
         'description',
         'attributes',
         'tags',
+        'images',
         'categories',
         'cost',
         'discount',
