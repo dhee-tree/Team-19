@@ -1,9 +1,10 @@
 @extends('layouts.base')
 @section('title', 'WoodLess - Home')
 @section('style')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}"> @endsection @section('content')
+<link rel="stylesheet" href="{{ asset('css/home.css') }}"> 
+@endsection 
 
-
+@section('content')
 <div class="container">
 
     <section id="LogoSlogan">
