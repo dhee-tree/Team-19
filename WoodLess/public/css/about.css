@@ -1,0 +1,17 @@
+.buttons{
+    
+    text-align: center;
+   
+}
+    
+    
+    
+   
+
+
+.aboutbutton,.Faqbutton,.ourcommitmentsbutton,.meetteambutton{
+    display: inline-block;
+    margin-right: 20px;
+   margin-left: 20px
+
+}
