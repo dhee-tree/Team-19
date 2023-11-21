@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title', 255);
             $table->longText('description');
 
-            $table->string('images', 255)->default('no-image.svg');
+            $table->string('images', 255)->default('no-image.svg,no-image.svg,no-image.svg,no-image.svg,no-image.svg');
 
             $table->json('attributes')->nullable();
             $table->string('tags')->nullable();
