@@ -9,7 +9,6 @@
         $categories - The product's categories stored in a String array
         $productImages - The file path of each image used for the product, stored in a String array
     */
-    $firstImage = array_shift($productImages);
 @endphp
 
 @section('content')
@@ -17,18 +16,14 @@
         <div class="col-md-6 mb-3" id="gallery">
             <div id="productGallery" class="carousel carousel-dark slide lightbox" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <!-- First image in gallery -->
-                    <img src="{{asset('images/'.$firstImage)}}" class="d-block w-100" alt="first-product-image">
-                  </div>
-                  
-                  <!-- All other images -->
-                  @foreach ($productImages as $image)
-                    <div class="carousel-item">
-                        <img src="{{asset('images/'.$image)}}" class="d-block w-100" alt="product-image">
-                    </div>
-                  @endforeach
+                    @php $count = 0; @endphp                  
+                    @foreach ($productImages as $image)
+                        <div class="carousel-item @if($count++ == 0) active @endif">
+                            <img src="{{asset('images/'.$image)}}" class="d-block w-100" alt="product-image">
+                        </div>
+                    @endforeach
                 </div>
+                
                 <button class="carousel-control-prev" type="button" data-bs-target="#productGallery" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
@@ -46,34 +41,15 @@
                         @php
                             $count = 0;
                             $pageLimit = 3;
-                            $pages = 0;
                         @endphp
-                        
-                        <!-- First carousel page -->
-                        <div class="carousel-item active">
-                            <div class="btn-group d-flex justify-content-between align-items-center" role="group">
-                                <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
-                                    <img class="" width="100" src="{{asset('images/'.$firstImage)}}" alt="">
-                                </button>
 
-                                @if ($productImages)
-                                    @for ($i = 1; $i < $pageLimit; $i++)
-                                        <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{++$count}}" aria-current="true" aria-label="Slide {{$count}}">
-                                            <img class="" width="100" src="{{asset('images/'.$productImages[($count)])}}" alt="">
-                                        </button>
-                                    @endfor
-                                @endif
-                            </div>
-                        </div>
-
-                        <!-- All other pages -->
                         @while ($count < count($productImages))
-                            <div class="carousel-item">
+                            <div class="carousel-item @if ($count == 0) active @endif">
                                 <div class="btn-group d-flex justify-content-between align-items-center" role="group">
-                                    @for ($i = 1; $i < $pageLimit; $i++)
+                                    @for ($ii = 0; $ii < $pageLimit; $ii++)
                                         @if ($count < count($productImages))
-                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{++$count}}" aria-current="true" aria-label="Slide {{$count}}">
-                                                <img class="" width="100" src="{{asset('images/'.$productImages[($count)-1])}}" alt="">
+                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
+                                                <img class="" width="100" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
                                             </button>
                                         @endif  
                                     @endfor
@@ -124,18 +100,16 @@
 
             <form class="row" action="" enctype="multipart/form-data">
                 @csrf
-                @if ($product->amount != 0)
+                @if ($product->amount > 0)
                     <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
                         @foreach ($attributes as $attribute => $values)
                             @if ($attribute == 'colour')
-                                @php
-                                $i=1;
-                                @endphp
+                                @php $i=1; @endphp
 
                                 @foreach (explode(',', $values) as $value)
                                     <div class="form-check form-check-inline me-2 m-0" id="attribute-color">
                                         <input style="box-shadow: black; transform:scale(1.5); background-color:{{$value}};border-color:color-mix(in srgb, {{$value}} 70%, black);" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio{{$i}}" value="{{$value}}">
-                                        <label class="form-check-label" for="inlineRadio{{$i}}"></label>
+                                        <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
                                     </div>
                                 @endforeach
 
@@ -187,7 +161,7 @@
             <div class="row mt-0" id="gallery-select-lg">
                 <div class="row d-none d-xxl-block w-100 mb-1">
                     <div class="col">
-                        <h3>Gallery</h3>
+                        <h3 class="">Gallery <span class="fs-4">({{$count}})</span></h3>
                     </div>
                 </div>
     
@@ -195,35 +169,17 @@
                     <div id="productGallerySelect-lg" class="carousel carousel-dark slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             @php
-                                $pageLimit = 6;
-                                $count = 0;
+                            $count = 0;
+                            $pageLimit = 4;
                             @endphp
-                            
-                            <!-- First carousel page -->
-                            <div class="carousel-item active">
-                                <div class="btn-group d-flex justify-content-between align-items-center" role="group">
-                                    <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
-                                        <img class="" width="125" src="{{asset('images/'.$firstImage)}}" alt="">
-                                    </button>
-    
-                                    @if ($productImages)
-                                        @for ($i = 1; $i < $pageLimit && $i < count($productImages); $i++)
-                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{++$count}}" aria-current="true" aria-label="Slide {{$count}}">
-                                                <img class="" width="125" src="{{asset('images/'.$productImages[($count-1)])}}" alt="">
-                                            </button>
-                                        @endfor
-                                    @endif
-                                </div>
-                            </div>
-    
-                            <!-- All other pages -->
+
                             @while ($count < count($productImages))
-                                <div class="carousel-item">
+                                <div class="carousel-item @if ($count == 0) active @endif">
                                     <div class="btn-group d-flex justify-content-between align-items-center" role="group">
-                                        @for ($i = 1; $i < $pageLimit; $i++)
+                                        @for ($ii = 0; $ii < $pageLimit; $ii++)
                                             @if ($count < count($productImages))
-                                                <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{++$count}}" aria-current="true" aria-label="Slide {{$count}}">
-                                                    <img class="" width="125" src="{{asset('images/'.$productImages[($count)-1])}}" alt="">
+                                                <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
+                                                    <img class="" width="125" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
                                                 </button>
                                             @endif  
                                         @endfor
