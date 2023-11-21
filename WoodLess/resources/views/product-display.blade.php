@@ -44,6 +44,7 @@
                 <div id="productGallerySelect-md" class="carousel carousel-dark slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         @php
+                            $count = 0;
                             $pageLimit = 3;
                             $pages = 0;
                         @endphp
@@ -52,13 +53,13 @@
                         <div class="carousel-item active">
                             <div class="btn-group d-flex justify-content-between align-items-center" role="group">
                                 <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
-                                    <img class="" width="105" src="{{asset('images/'.$firstImage)}}" alt="">
+                                    <img class="" width="100" src="{{asset('images/'.$firstImage)}}" alt="">
                                 </button>
 
                                 @if ($productImages)
                                     @for ($i = 1; $i < $pageLimit; $i++)
                                         <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{++$count}}" aria-current="true" aria-label="Slide {{$count}}">
-                                            <img class="" width="105" src="{{asset('images/'.$productImages[($count)])}}" alt="">
+                                            <img class="" width="100" src="{{asset('images/'.$productImages[($count)])}}" alt="">
                                         </button>
                                     @endfor
                                 @endif
@@ -72,7 +73,7 @@
                                     @for ($i = 1; $i < $pageLimit; $i++)
                                         @if ($count < count($productImages))
                                             <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{++$count}}" aria-current="true" aria-label="Slide {{$count}}">
-                                                <img class="" width="105" src="{{asset('images/'.$productImages[($count)-1])}}" alt="">
+                                                <img class="" width="100" src="{{asset('images/'.$productImages[($count)-1])}}" alt="">
                                             </button>
                                         @endif  
                                     @endfor
