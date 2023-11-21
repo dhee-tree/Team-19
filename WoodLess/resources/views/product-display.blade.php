@@ -21,6 +21,7 @@
                     <!-- First image in gallery -->
                     <img src="{{asset('images/'.$firstImage)}}" class="d-block w-100" alt="first-product-image">
                   </div>
+                  
                   <!-- All other images -->
                   @foreach ($productImages as $image)
                     <div class="carousel-item">
@@ -44,27 +45,29 @@
                     <div class="carousel-inner">
                         @php
                             $pageLimit = 3;
-                            $slideNumber = 0;
+                            $isActive = "active";
                         @endphp
                         
-                        <!-- First carousel page -->
+                        <!-- First carousel page
                         <div class="carousel-item active">
                             <div>
-                                <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$slideNumber++}}" aria-current="true" aria-label="Slide 1">
+                                <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1">
                                     <img class="" width="105" src="{{asset('images/'.$firstImage)}}" alt="">
                                 </button>
                             </div>
                         </div>
+                        !-->
 
                         <!-- All other pages -->
-                        @for ($i; $i < count )
-                            <div class="carousel-item">
+                        @for ($i = 0; $i < ceil(count($productImages)/$pageLimit); $i++)
+                            <div class="carousel-item {{$isActive}}">
                                 <div class="btn-group d-flex justify-content-center" role="group">
-                                    <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$slideNumber++}}" aria-current="true" aria-label="Slide 1">
-                                        <img class="" width="105" src="{{asset('images/'.$image)}}" alt="">
+                                    <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$i}}" aria-current="true" aria-label="Slide 1">
+                                        {{$i}}<img class="" width="105" src="{{asset('images/'.$firstImage)}}" alt="">
                                     </button>
                                 </div>
                             </div>
+                            {{$i}}
                         @endfor
                     </div>
 
@@ -108,7 +111,7 @@
 
             <hr class="mt-1">
 
-            <form class="row" action="{{url()->current()}}" enctype="multipart/form-data">
+            <form class="row" action="" enctype="multipart/form-data">
                 @csrf
                 @if ($product->amount != 0)
                     <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
