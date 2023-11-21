@@ -3,7 +3,9 @@
 @section('title', 'WoodLess - About Us')
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/about.css') }}">
-<script  rel= "jssheet" src="{{ asset('js/about.js') }}"></script>
+<link rel="stylesheet" href="https://startbootstrap.com/styles.19e555e2fc527962.css">
+
+
 
 
 @section('content')
@@ -75,17 +77,78 @@ Curabitur euismod finibus diam id posuere. Sed ut commodo turpis. Maecenas susci
                  vulputate. Nullam vel justo ac neque vestibulum pulvinar.
 </div>        
 <div id="meettheteamtext">
-                <h1>Meet the Team</h1>
+                <!--<h1>Meet the Team</h1>-->
                 
-                Pellentesque fermentum dapibus justo eu fermentum. Praesent hendrerit dolor vitae nisl auctor, sit amet tincidunt leo euismod. Sed at libero ac velit cursus venenatis. Fusce vitae magna nec velit tristique varius. Etiam vel urna eget justo faucibus fermentum. Suspendisse at dictum arcu.
-                 Curabitur dapibus quam vel dapibus euismod. Integer sit amet varius felis. Nunc vel velit at mauris efficitur consectetur. Curabitur dapibus urna vel eros tempor, ac luctus ligula commodo.eriam quod eaque numquam nulla voluptates aut iste ea officia amet reprehenderit perspiciatis labore modi.
-                 
-                Pellentesque fermentum dapibus justo eu fermentum. Praesent hendrerit dolor vitae nisl auctor, sit amet tincidunt leo euismod. Sed at libero ac velit cursus venenatis. Fusce vitae magna nec velit tristique varius. Etiam vel urna eget justo faucibus fermentum. Suspendisse at dictum arcu.
-                 Curabitur dapibus quam vel dapibus euismod. Integer sit amet varius felis. Nunc vel velit at mauris efficitur consectetur. Curabitur dapibus urna vel eros tempor, ac luctus ligula commodo.eriam quod eaque numquam nulla voluptates aut iste ea officia amet reprehenderit perspiciatis labore modi.
-                 
-                Pellentesque fermentum dapibus justo eu fermentum. Praesent hendrerit dolor vitae nisl auctor, sit amet tincidunt leo euismod. Sed at libero ac velit cursus venenatis. Fusce vitae magna nec velit tristique varius. Etiam vel urna eget justo faucibus fermentum. Suspendisse at dictum arcu.
-                 Curabitur dapibus quam vel dapibus euismod. Integer sit amet varius felis. Nunc vel velit at mauris efficitur consectetur. Curabitur dapibus urna vel eros tempor, ac luctus ligula commodo.eriam quod eaque numquam nulla voluptates aut iste ea officia amet reprehenderit perspiciatis labore modi.
-</div>             
+                <!-- Portfolio Section-->
+        <section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <h1 class="page-section-heading text-center text-uppercase text-secondary mb-0">Meet the Team</h1>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Grid Items-->
+                <div class="row justify-content-center">
+                    <!-- Portfolio Item 1-->
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio/cabin.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 2-->
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio/cake.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 3-->
+                    <div class="col-md-6 col-lg-4 mb-5">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal3">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio/circus.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 4-->
+                    <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal4">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio/game.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 5-->
+                    <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio/safe.png" alt="..." />
+                        </div>
+                    </div>
+                    <!-- Portfolio Item 6-->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal6">
+                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
+                            </div>
+                            <img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
                 
                    
@@ -98,4 +161,8 @@ Curabitur euismod finibus diam id posuere. Sed ut commodo turpis. Maecenas susci
 
 
 
+@endsection
+
+@section('js')
+<script  rel= "jssheet" src="{{ asset('js/about.js') }}"></script>
 @endsection
