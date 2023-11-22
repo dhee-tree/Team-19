@@ -97,15 +97,17 @@
                 @endforeach
             </div>
 
-            <div class="row" id="price">
+            <div class="d-flex flex-row justify-content-between" id="price">
                 <div class="">
-                    @if ($product->discount)
-                        <h3>
+                    <h3>
+                        @if ($product->discount)
+                            <span class="text-decoration-line-through fw-lighter">£{{$product->cost}}</span>
                             £{{round(($product->cost)-($product->cost) * ($product->discount/100),2)}}
-                            <span class="badge p-1 m-0 bg-danger">{{$product->discount}}% Off</span></h3>     
-                    @else  
-                        <h3>£{{$product->cost}}</h3>
-                    @endif           
+                            <span class="badge p-1 ms-2 mt-1 position-absolute bg-danger fs-6">{{$product->discount}}% Off</span> 
+                        @else  
+                            £{{$product->cost}}
+                        @endif   
+                    </h3>        
                 </div>
             </div>
 
@@ -121,7 +123,7 @@
 
                                 @foreach (explode(',', $values) as $value)
                                     <div class="form-check form-check-inline me-2 m-0" id="attribute-color">
-                                        <input style="background-color:{{$value}};border-color:color-mix(in srgb, {{$value}} 70%, black);" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio{{$i}}" value="{{$value}}">
+                                        <input style="color:{{$value}};" class="form-check-input" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
                                         <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
                                     </div>
                                 @endforeach
