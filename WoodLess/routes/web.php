@@ -24,7 +24,7 @@ Route::view('/categories', 'categories');
 
 Route::view('/contact', 'contact');
 
-//Show single product
+//Display single product
 Route::get('/product/{product}', [ProductController::class,'show']);
 
 Route::view('/products', 'product-list');
