@@ -1,5 +1,8 @@
 @extends('layouts.base')
 @section('title', 'WoodLess - '. $product->title)
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/product-display.css') }}">
+@endsection
 
 @php
     /*
@@ -14,7 +17,7 @@
 @section('content')
     <div class="row m-0 px-1 pb-2 pt-3" id="product-main">
         <div class="col-md-6 mb-3" id="gallery">
-            <div id="productGallery" class="carousel carousel-dark slide lightbox" data-bs-ride="carousel">
+            <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     @php $count = 0; @endphp                  
                     @foreach ($productImages as $image)
@@ -25,18 +28,18 @@
                 </div>
                 
                 <button class="carousel-control-prev" type="button" data-bs-target="#productGallery" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
+                    <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
+                    <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#productGallery" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
+                    <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
+                    <span class="visually-hidden">Next</span>
                 </button>
             </div>
 
             <div class="col d-none d-md-block d-lg-none" id="gallery-select-md">
                 <hr>
-                <div id="productGallerySelect-md" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <div id="productGallerySelect-md" class="carousel carousel-dark slide" data-bs-interval="false">
                     <div class="carousel-inner">
                         @php
                             $count = 0;
@@ -45,12 +48,16 @@
 
                         @while ($count < count($productImages))
                             <div class="carousel-item @if ($count == 0) active @endif">
-                                <div class="btn-group d-flex justify-content-between align-items-center" role="group">
+                                <div class="d-flex justify-content-center" role="group">
                                     @for ($ii = 0; $ii < $pageLimit; $ii++)
                                         @if ($count < count($productImages))
                                             <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
                                                 <img class="" width="100" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
                                             </button>
+                                            
+                                        @else
+                                            <div class="">
+                                            </div>
                                         @endif  
                                     @endfor
                                 </div>
@@ -58,14 +65,14 @@
                         @endwhile
                     </div>
 
-                    <button class="carousel-control-prev" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
+                    <button class="carousel-control-prev mx-1" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="prev">
+                        <i class="fa-solid fa-arrow-left-long fa-xl" style="color: #000000;"></i>
+                        <span class="visually-hidden">Previous</span>
                     </button>
 
-                    <button class="carousel-control-next" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
+                    <button class="carousel-control-next mx-1" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="next">
+                        <i class="fa-solid fa-arrow-right-long fa-xl" style="color: #000000;"></i>
+                        <span class="visually-hidden">Next</span>
                     </button>
                 </div>
             </div>
@@ -91,8 +98,14 @@
             </div>
 
             <div class="row" id="price">
-                <div class="col">
-                    <h3>£{{$product->cost}}</h3>              
+                <div class="">
+                    @if ($product->discount)
+                        <h3>
+                            £{{round(($product->cost)-($product->cost) * ($product->discount/100),2)}}
+                            <span class="badge p-1 m-0 bg-danger">{{$product->discount}}% Off</span></h3>     
+                    @else  
+                        <h3>£{{$product->cost}}</h3>
+                    @endif           
                 </div>
             </div>
 
@@ -108,7 +121,7 @@
 
                                 @foreach (explode(',', $values) as $value)
                                     <div class="form-check form-check-inline me-2 m-0" id="attribute-color">
-                                        <input style="box-shadow: black; transform:scale(1.5); background-color:{{$value}};border-color:color-mix(in srgb, {{$value}} 70%, black);" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio{{$i}}" value="{{$value}}">
+                                        <input style="background-color:{{$value}};border-color:color-mix(in srgb, {{$value}} 70%, black);" class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio{{$i}}" value="{{$value}}">
                                         <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
                                     </div>
                                 @endforeach
@@ -135,7 +148,9 @@
                             </select>
                         </div>
                         <div class="py-0 mb-0 flex-fill">
-                            <input class="btn btn-dark btn py-1 w-100" type="submit" name="submit" value="Add To Basket">
+                            <button class="btn btn-dark btn py-1 w-100" type="submit" name="submit" value="Add To Basket">
+                                <i class="fa-solid fa-basket-shopping fa-xs" style="color: #ffffff;"></i> Add to Basket
+                            </button>
                         </div>
                     </div>
                 @else
@@ -152,7 +167,7 @@
             <div class="row my-0" id="about-product">
                 <div class="w-100"></div>
                 <div class="col m-0">
-                    <p>{{$product->description}}</p>
+                    <p class="">{{$product->description}}</p>
                 </div>
             </div>
 
@@ -166,7 +181,7 @@
                 </div>
     
                 <div class="col d-none d-xl-block">
-                    <div id="productGallerySelect-lg" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div id="productGallerySelect-lg" class="carousel carousel-dark slide" data-bs-interval="false">
                         <div class="carousel-inner">
                             @php
                             $count = 0;
@@ -175,7 +190,7 @@
 
                             @while ($count < count($productImages))
                                 <div class="carousel-item @if ($count == 0) active @endif">
-                                    <div class="btn-group d-flex justify-content-between align-items-center" role="group">
+                                    <div class="d-flex justify-content-between" role="group">
                                         @for ($ii = 0; $ii < $pageLimit; $ii++)
                                             @if ($count < count($productImages))
                                                 <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
@@ -190,14 +205,14 @@
                         
                         
                         <button class="carousel-control-prev" type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
+                            <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
+                            <span class="visually-hidden">Previous</span>
                         </button>
                         
     
                         <button class="carousel-control-next" type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
+                            <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
+                            <span class="visually-hidden">Next</span>
                         </button>
                         
                         <!--
