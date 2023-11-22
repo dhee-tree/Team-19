@@ -1,4 +1,7 @@
 #attribute-color > input{
     transform:scale(1.5);
-    box-shadow: black;
+    accent-color: currentColor;
+    cursor: pointer;
+    background-color: currentColor;
+    border-color:color-mix(in srgb, currentColor 70%, black);
 }
