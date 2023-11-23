@@ -97,13 +97,13 @@
                 @endforeach
             </div>
 
-            <div class="d-flex flex-row justify-content-between" id="price">
+            <div class="d-flex flex-row justify-content-between" id="product-price">
                 <div class="">
                     <h3>
                         @if ($product->discount)
-                            <span class="text-decoration-line-through fw-lighter">£{{$product->cost}}</span>
+                            <del>£{{$product->cost}}</del>
                             £{{round(($product->cost)-($product->cost) * ($product->discount/100),2)}}
-                            <span class="badge p-1 ms-2 mt-1 position-absolute bg-danger fs-6">{{$product->discount}}% Off</span> 
+                            <span class="product-badge badge py-1 px-2 ms-1 position-absolute">{{$product->discount}}% Off</span> 
                         @else  
                             £{{$product->cost}}
                         @endif   
@@ -122,8 +122,8 @@
                                 @php $i=1; @endphp
 
                                 @foreach (explode(',', $values) as $value)
-                                    <div class="form-check form-check-inline me-2 m-0" id="attribute-color">
-                                        <input style="color:{{$value}};" class="form-check-input" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
+                                    <div class="form-check form-check-inline me-2 m-0">
+                                        <input style="color:{{$value}};" class="form-check-input attribute-color" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
                                         <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
                                     </div>
                                 @endforeach
@@ -234,7 +234,7 @@
 
     </div>
 
-    <div class="row" id="create-review">
+    <div class="row d-none" id="create-review">
         <div class="col">
             <h3>Add a Review</h3>
         </div>
