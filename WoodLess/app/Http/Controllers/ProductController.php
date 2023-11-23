@@ -14,7 +14,7 @@ class ProductController extends Controller
         return view('product-display', [
             'product' => $product,
             'attributes' => json_decode($product->attributes, true),
-            'categories' => explode(',', $product->categories),
+            'categories' => $product->categories()->get(),
             'productImages' => explode(',',$product->images),
             'reviews' => $product->reviews()->simplePaginate(5),
         ]);
