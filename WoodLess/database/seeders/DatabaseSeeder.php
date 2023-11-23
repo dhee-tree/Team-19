@@ -16,6 +16,13 @@ class DatabaseSeeder extends Seeder
         \App\Models\Product::factory(10)->create();
         \App\Models\Review::factory(500)->create();
 
+        //INSERT WEBSITE CATEGORIES HERE
+        \App\Models\Category::insert([
+            ['category' => 'Home'],
+            ['category' => 'Kitchen'],
+            //Etc...
+        ]);
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
