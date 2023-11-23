@@ -6,14 +6,17 @@
 
 @php
     if ($product->id == 1){
+        //Test code to give a product a category ('1' being the first category the the category table)
         //$product->categories()->attach(1);
     }
     /*
         These variables are declared in ProductController and are used here.
 
+        $product - A row from the 'products' table, Eloquent model (?)
         $attributes - The product's attributes decoded from JSON
-        $categories - The product's categories stored in a String array
+        $categories - The product's categories stored in the pivot table 'categories_product'
         $productImages - The file path of each image used for the product, stored in a String array
+        $reviews - Rows from the 'reviews' table that match this product's id, stored in an Eloquent model (?) array, currently paginated by 5
     */
 @endphp
 
