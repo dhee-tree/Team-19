@@ -103,7 +103,7 @@
                         @if ($product->discount)
                             <del>£{{$product->cost}}</del>
                             £{{round(($product->cost)-($product->cost) * ($product->discount/100),2)}}
-                            <span class="product-badge badge py-1 px-2 ms-1 position-absolute">{{$product->discount}}% Off</span> 
+                            <span class="product-badge badge py-1 px-2 ms-1 ">{{$product->discount}}% Off</span> 
                         @else  
                             £{{$product->cost}}
                         @endif   
@@ -123,7 +123,7 @@
 
                                 @foreach (explode(',', $values) as $value)
                                     <div class="form-check form-check-inline me-2 m-0">
-                                        <input style="color:{{$value}};" class="form-check-input attribute-color" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
+                                        <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
                                         <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
                                     </div>
                                 @endforeach
@@ -141,24 +141,24 @@
                         @endforeach
                     </div>
 
-                    <div class="d-flex my-1 align-items-center" id="submit">
+                    <div class="d-flex my-1 align-items-center" id="product-submit">
                         <div class="me-2">
-                            <select class="form-select py-1" name="quantity" id="quantity">
+                            <select class="form-select py-1" name="quantity">
                                 @for ($i = 0; $i < $product->amount; $i++)
                                     <option value="{{$i+1}}">{{$i+1}}</option>
                                 @endfor
                             </select>
                         </div>
                         <div class="py-0 mb-0 flex-fill">
-                            <button class="btn btn-dark btn py-1 w-100" type="submit" name="submit" value="Add To Basket">
+                            <button class="btn btn-dark btn py-1 w-100 submit" type="submit" name="product-submit" value="Add To Basket">
                                 <i class="fa-solid fa-basket-shopping fa-xs" style="color: #ffffff;"></i> Add to Basket
                             </button>
                         </div>
                     </div>
                 @else
-                    <div class="d-flex flex-row mb-0 align-items-center" id="submit">
+                    <div class="d-flex flex-row mb-0 align-items-center submit" id="product-submit">
                         <div class="">
-                            <input class="btn btn-dark py-1" type="submit" name="submit" disabled value="Out of Stock">
+                            <button class="btn btn-dark py-1" type="submit" name="product-submit" disabled>Out of Stock</button>
                         </div>
                     </div>
                 @endif
