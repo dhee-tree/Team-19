@@ -245,7 +245,7 @@
     </div>
 
     @if (count($reviews) > 0)
-    <div class="row" id="reviews">
+    <div class="row m-0 px-1" id="reviews">
         <div class="row">
             <div class="col">
                 <h2>Reviews</h2>
@@ -253,12 +253,20 @@
         </div>
 
         @foreach ($reviews as $review)
+        @php
+            $user = $review->user;
+        @endphp
         <div class="row">
-            <div class="col">
-                <h3>{{$review->title}}</h3>
+            <div class="col mb-2">
+                <h4>User: {{$user->first_name}} {{$user->last_name}}</h4>
+                <h4>Ttile: {{$review->title}}</h4>
+                <p>{{$review->description}}</p>
             </div>
         </div>
         @endforeach
+        <div class="">
+            {{ $reviews->onEachSide(5)->links() }}
+        </div>
     </div>
     @endif
 
