@@ -21,10 +21,18 @@ class Product extends Model
     ];
 
     /**
-     * Get the reviews associated with the product.
+     * Returns the reviews associated with the product.
      */
     public function reviews()
     {
         return $this->hasMany('App\Models\Review');
+    }
+
+    /**
+     * Returns the categories that belong to the user.
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 }
