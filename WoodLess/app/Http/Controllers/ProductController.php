@@ -16,7 +16,7 @@ class ProductController extends Controller
             'attributes' => json_decode($product->attributes, true),
             'categories' => explode(',', $product->categories),
             'productImages' => explode(',',$product->images),
-            'reviews' => $product->reviews()->get(),
+            'reviews' => $product->reviews()->simplePaginate(5),
         ]);
     }
 }
