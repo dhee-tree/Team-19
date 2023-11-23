@@ -20,7 +20,6 @@ return new class extends Migration
 
             $table->json('attributes')->nullable();
             $table->string('tags')->nullable();
-            $table->string('categories', 255);
             $table->decimal('cost', 8, 2)->default(0);
             $table->integer('discount')->nullable();
             $table->integer('amount')->default(0);
