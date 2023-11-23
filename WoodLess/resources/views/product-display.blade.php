@@ -156,7 +156,7 @@
                         </div>
                     </div>
                 @else
-                    <div class="d-flex flex-row mb-0 align-items-center submit" id="product-submit">
+                    <div class="d-flex flex-row mb-0 align-items-center" id="product-submit">
                         <div class="">
                             <button class="btn btn-dark py-1" type="submit" name="product-submit" disabled>Out of Stock</button>
                         </div>
@@ -244,13 +244,23 @@
         </form>
     </div>
 
+    @if (count($reviews) > 0)
     <div class="row" id="reviews">
-        <div class="col">
-            <h3>Reviews</h3>
-            @foreach ($reviews as $review)
-                {{$review->title}}
-            @endforeach
+        <div class="row">
+            <div class="col">
+                <h2>Reviews</h2>
+            </div>
         </div>
+
+        @foreach ($reviews as $review)
+        <div class="row">
+            <div class="col">
+                <h3>{{$review->title}}</h3>
+            </div>
+        </div>
+        @endforeach
     </div>
+    @endif
+
 @endsection
 
