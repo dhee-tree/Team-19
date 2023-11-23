@@ -247,6 +247,9 @@
     <div class="row" id="reviews">
         <div class="col">
             <h3>Reviews</h3>
+            @foreach ($reviews as $review)
+                {{$review->title}}
+            @endforeach
         </div>
     </div>
 @endsection
