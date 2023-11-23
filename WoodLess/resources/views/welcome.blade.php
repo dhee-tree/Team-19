@@ -83,12 +83,7 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="card-group">
-                            <div class="card">
-                                <img src="https://rusticreddoor.com/cdn/shop/products/cherry-wood-dining-chair-ladder-back.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Chairs</h5>
-                                </div>
-                            </div>
+                           
                             <div class="card">
                                 <img src="https://kate.lv/wp-content/uploads/2022/08/29/hauge-boconcept-izvelkamie-edamistabas-galdi-11.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -128,8 +123,6 @@
 
                     </div>
                     <div class="carousel-item">
-
-
                         <div class="card-group">
                             <div class="card">
                                 <img src="https://www.houseofoak.co.uk/media/catalog/category/chatsworth-bedroom-lifestyle-square.jpg" class="card-img-top" alt="...">
