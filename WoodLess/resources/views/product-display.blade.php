@@ -5,6 +5,9 @@
 @endsection
 
 @php
+    if ($product->id == 1){
+        //$product->categories()->attach(1);
+    }
     /*
         These variables are declared in ProductController and are used here.
 
@@ -267,6 +270,9 @@
         <div class="">
             {{ $reviews->onEachSide(5)->links() }}
         </div>
+        @foreach ($product->categories as $category)
+
+        @endforeach
     </div>
     @endif
 
