@@ -1,3 +1,9 @@
+.product-badge{
+    background-color: #39352f;
+    font-size: 55%;
+    position: absolute;
+}
+
 .attribute-color, .attribute-color:checked{
     transform:scale(1.5);
     accent-color: currentColor;
@@ -10,7 +16,6 @@
     background: color-mix(in srgb, currentColor 70%, black);
 }
 
-.product-badge{
-    background-color: #39352f;
-    font-size: 55%;
+.submit{
+    background-color: #1d1912;
 }
