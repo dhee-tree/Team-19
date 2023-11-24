@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Review;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -25,11 +26,11 @@ class Product extends Model
      */
     public function reviews()
     {
-        return $this->hasMany('App\Models\Review');
+        return $this->hasMany(Review::class);
     }
 
     /**
-     * Returns the categories that belong to the user.
+     * Returns the categories associated with the product.
      */
     public function categories()
     {
