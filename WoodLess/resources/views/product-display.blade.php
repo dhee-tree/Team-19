@@ -97,7 +97,7 @@
                 @foreach ($categories as $category)
                     <div class="me-2" id="category">
                         <span class="lead">
-                            {{$category}}@if($category != $categories[count($categories)-1]),@endif
+                            {{$category->category}}@if($category != $categories[count($categories)-1]),@endif
                         </span>  
                     </div>
                 @endforeach
