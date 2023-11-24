@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     /**
-     * Retrives a Single Product.
+     * Retrieve a single product.
      */
     public function show(Product $product){
         return view('product-display', [
