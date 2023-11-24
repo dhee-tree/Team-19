@@ -13,7 +13,8 @@
 }
 
 .attribute-color:checked{
-    background: color-mix(in srgb, currentColor 70%, black);
+    opacity: 40%;
+    background: currentColor;
 }
 
 .submit{
