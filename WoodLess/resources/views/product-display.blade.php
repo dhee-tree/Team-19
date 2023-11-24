@@ -108,7 +108,7 @@
                     <h3>
                         @if ($product->discount)
                             <del>£{{$product->cost}}</del>
-                            £{{round(($product->cost)-($product->cost) * ($product->discount/100),2)}}
+                            £{{sprintf("%0.2f",round(($product->cost)-($product->cost) * ($product->discount/100),2))}}
                             <span class="product-badge badge py-1 px-2 ms-1 ">{{$product->discount}}% Off</span> 
                         @else  
                             £{{$product->cost}}
@@ -124,26 +124,29 @@
                 @if ($product->amount > 0)
                     <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
                         @foreach ($attributes as $attribute => $values)
-                            @if ($attribute == 'colour')
-                                @php $i=1; @endphp
+                            @switch($attribute)
+                                @case('colour')
+                                    @php $i=1; @endphp
+                                    @foreach (explode(',', $values) as $value)
+                                        <div class="form-check form-check-inline me-2 m-0">
+                                            <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
+                                            <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
+                                        </div>
+                                    @endforeach
+                                    @break
 
-                                @foreach (explode(',', $values) as $value)
-                                    <div class="form-check form-check-inline me-2 m-0">
-                                        <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
-                                        <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
+                                @default
+                                    <div class="me-2" id="attribute">
+                                        <select class="form-select py-0" name="attribute-{{$attribute}}" id="attribute-default">
+                                            <label for="attribute-{{$attribute}}" selected>{{ucfirst($attribute)}}</option>
+                                            @foreach (explode(',', $values) as $value)
+                                                <option value="{{$value}}">{{$value}}</option>
+                                            @endforeach
+                                        </select>   
                                     </div>
-                                @endforeach
-
-                            @else
-                                <div class="me-2" id="attribute">
-                                    <select class="form-select py-0" name="attribute-{{$attribute}}" id="attribute-default">
-                                        <label for="attribute-{{$attribute}}" selected>{{ucfirst($attribute)}}</option>
-                                        @foreach (explode(',', $values) as $value)
-                                            <option value="{{$value}}">{{$value}}</option>
-                                        @endforeach
-                                    </select>   
-                                </div>
-                            @endif
+                                @break
+                            @endswitch
+  
                         @endforeach
                     </div>
 
@@ -182,12 +185,12 @@
             <hr class="mt-1 d-none d-xl-block">
 
             <div class="row mt-0" id="gallery-select-lg">
-                <div class="row d-none d-xxl-block w-100 mb-1">
+                <div class="row d-none d-xxl-block mb-1">
                     <div class="col">
                         <h3 class="">Gallery <span class="fs-4">({{$count}})</span></h3>
                     </div>
                 </div>
-    
+                
                 <div class="col d-none d-xl-block">
                     <div id="productGallerySelect-lg" class="carousel carousel-dark slide" data-bs-interval="false">
                         <div class="carousel-inner">
