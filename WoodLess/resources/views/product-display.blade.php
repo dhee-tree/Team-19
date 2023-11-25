@@ -195,15 +195,9 @@
                     </div>
                 </div>
 
-                <hr class="mt-1 d-none d-xl-block">
+                <hr class="mt-0 d-none d-xl-block">
 
-                <div class="row mt-0" id="gallery-select-lg">
-                    <div class="row d-none d-xxl-block mb-1">
-                        <div class="col">
-                            <h3 class="">Gallery <span class="fs-4">({{$count}})</span></h3>
-                        </div>
-                    </div>
-                    
+                <div class="row" id="gallery-select-lg">
                     <div class="col d-none d-xl-block">
                         <div id="productGallerySelect-lg" class="carousel carousel-dark slide" data-bs-interval="false">
                             <div class="carousel-inner">
@@ -249,6 +243,8 @@
                         </div>
                     </div>
                 </div>
+
+                <hr class="mt-3 mb-0 d-none d-xl-block">
             </div>
         </div>
 
