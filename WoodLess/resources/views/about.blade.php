@@ -29,7 +29,7 @@
 </div>
 </div >
 <div id="aboutustext">
-<h1 class="page-section-heading text-center text-uppercase ">About Us</h1>
+<h1 class="page-section-heading text-center text-uppercase ">About WoodLess</h1>
                 <h2>Our Story</h2>
 WoodLess was founded by a group of dedicated students in a university classroom who shared a common vision: to transform the furniture industry through sustainable practices. Our journey began with a commitment to crafting furniture using 100% recyclable materials, setting the stage for a company rooted in environmental responsibility.
 
