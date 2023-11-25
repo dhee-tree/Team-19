@@ -21,6 +21,14 @@
 @endphp
 
 @section('content')
+    @isset($message)
+    <div class="row m-0">
+        <div class="col">
+            <p>{{$message}}</p>
+        </div>
+    </div>
+    @endisset
+
     <div class="row m-0 px-1 pb-2 pt-3" id="product-main">
         <div class="col-md-6 mb-3" id="gallery">
             <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
@@ -277,18 +285,20 @@
                         <hr>
                         <p class="card-text">{{$review->description}}</p>
                     </div>
-                    <div class="card-footer row">
-                        <div class="col">
-                            <p class="card-text"><small class="text-body-secondary">Created: {{$review->created_at}}</small></p>
-                        </div>
-                        <div class="col">
-                            <form method="POST" action="/review/{{$review->id}}">
-                                @csrf
-                                @method('DELETE')
-                                <button class="">
-                                    <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
-                                </button>
-                            </form>
+                    <div class="card-footer">
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="">
+                                <p class="card-text"><small class="text-body-secondary">{{$review->created_at->diffInDays()}} Days Ago</small></p>
+                            </div>
+                            <div class="">
+                                <form method="POST" action="/review/{{$review->id}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn p-0">
+                                        <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
