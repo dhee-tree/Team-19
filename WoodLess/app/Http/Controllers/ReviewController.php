@@ -10,6 +10,6 @@ class ReviewController extends Controller
     //Delete single review
     public function destroy(Review $review){
         $review->delete();
-        return redirect(url()->previous())->with('message', 'Review deleted successfully.');
+        return back()->with('message', 'Review deleted successfully.');
     }
 }
