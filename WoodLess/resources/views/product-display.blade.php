@@ -249,8 +249,7 @@
         </div>
     </div>
 
-    <div class="row" id="similar-products">
-
+    <div class="row d-none" id="similar-products">
     </div>
 
     <div class="row d-none" id="create-review">
@@ -264,10 +263,10 @@
     </div>
 
     @if (count($reviews) > 0)
-    <div class="row px-3" id="reviews">
+    <div class="row mx-1 p-0 bg-dark" id="reviews">
         <div class="row">
             <div class="col">
-                <h2>Reviews <span class="fs-4"></h2>
+                <h2>Reviews</h2>
             </div>
         </div>
 
@@ -277,7 +276,7 @@
         @endphp
         <div class="row">
             <div class="col">
-                <div class="card mb-3 p-0">
+                <div class="card mb-3 p-0 mx-0">
                     <div class="card-body">
                         <h5 class="card-title">{{$user->first_name}} {{$user->last_name}}</h5>
                         <h6 class="card-subtitle">
