@@ -34,7 +34,7 @@
         <hr class="mt-0">
         @endif
 
-        <div class="row m-0 mt-2 px-1 pt-3" id="product-main">
+        <div class="row m-0 mt-3 px-1 pt-3" id="product-main">
             <div class="col-md-6 mb-3" id="gallery">
                 <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -71,7 +71,7 @@
                                         @for ($ii = 0; $ii < $pageLimit; $ii++)
                                             @if ($count < count($productImages))
                                                 <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
-                                                    <img class="" width="100" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
+                                                    <img onmouseover="click()" class="" width="100" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
                                                 </button>
                                                 
                                             @else
@@ -212,7 +212,7 @@
                                             @for ($ii = 0; $ii < $pageLimit; $ii++)
                                                 @if ($count < count($productImages))
                                                     <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
-                                                        <img class="" width="125" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
+                                                        <img onmouseover="click()" class="" width="125" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
                                                     </button>
                                                 @endif  
                                             @endfor
