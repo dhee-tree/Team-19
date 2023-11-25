@@ -21,13 +21,15 @@
 @endphp
 
 @section('content')
-    @isset($message)
-    <div class="row m-0">
+    @if(session('message'))
+    <div class="row m-0 px-1">
         <div class="col">
-            <p>{{$message}}</p>
+            <p><i class="fa-solid fa-xs fa-check" style="color: #ffffff;"></i> {{session('message')}}</p>
         </div>
     </div>
-    @endisset
+
+    <hr class="mt-0">
+    @endif
 
     <div class="row m-0 px-1 pb-2 pt-3" id="product-main">
         <div class="col-md-6 mb-3" id="gallery">
