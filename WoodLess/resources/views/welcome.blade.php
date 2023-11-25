@@ -1,18 +1,9 @@
 @extends('layouts.base')
 @section('title', 'WoodLess - Home')
 @section('style')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}"> 
-@endsection 
-
-@php
-    /*
-        Declared variables in categories controller
-
-        $attributes - The product's attributes decoded from JSON
-        $categories - The product's categories stored in a String array
-        $productImages - The file path of each image used for the product, stored in a String array
-    */
-@endphp
+<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<link rel="stylesheet" href="{{ asset('css/category-card.css') }}">
+@endsection
 
 @section('content')
 <div class="container">
@@ -83,12 +74,17 @@
 
     <section id="categories">
         <div class="container"> <!-- Carousel hot sellers -->
+            <h1>
+
+                Categories
+
+            </h1>
             <!-- TODO ADD CODE TO INCLUDE EACH CATAGORY, EACH CARD  AND AHVE A CAROSUEL FEATURE -->
             <div id="categoriesCarousel" class="carousel carousel-dark slide" data-bs-ride="false">
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <div class="card-group">                
+                        <div class="card-group">
                             <div class="card">
                                 <img src="https://cb2.scene7.com/is/image/CB2/DondraQueenBedSHS21_1x1/$web_pdp_main_carousel_md$/210203123041/dondra-teak-queen-bed.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
