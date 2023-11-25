@@ -257,7 +257,7 @@
     <div class="row m-0 px-1" id="reviews">
         <div class="row">
             <div class="col">
-                <h2>Reviews</h2>
+                <h2>Reviews <span class="fs-4">({{$reviews->total()}})</span></h2>
             </div>
         </div>
 
@@ -273,8 +273,10 @@
             </div>
         </div>
         @endforeach
-        <div class="">
-            {{ $reviews->onEachSide(5)->links() }}
+        <div class="row">
+            <div class="col">
+                <button class="btn">e</button>
+            </div>
         </div>
         @foreach ($product->categories as $category)
 
