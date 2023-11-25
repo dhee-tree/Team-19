@@ -254,10 +254,10 @@
     </div>
 
     @if (count($reviews) > 0)
-    <div class="row m-0 px-1" id="reviews">
+    <div class="row px-3" id="reviews">
         <div class="row">
             <div class="col">
-                <h2>Reviews <span class="fs-4">({{$reviews->total()}})</span></h2>
+                <h2>Reviews <span class="fs-4"></h2>
             </div>
         </div>
 
@@ -266,21 +266,41 @@
             $user = $review->user;
         @endphp
         <div class="row">
-            <div class="col mb-2">
-                <h4>User: {{$user->first_name}} {{$user->last_name}}</h4>
-                <h4>Ttile: {{$review->title}}</h4>
-                <p>{{$review->description}}</p>
+            <div class="col">
+                <div class="card mb-3 p-0">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$user->first_name}} {{$user->last_name}}</h5>
+                        <h6 class="card-subtitle">
+                            <i class="fa-solid fa-star" style="color: #000000;"></i> 
+                            {{$review->rating}}/5
+                        </h6>
+                        <hr>
+                        <p class="card-text">{{$review->description}}</p>
+                    </div>
+                    <div class="card-footer row">
+                        <div class="col">
+                            <p class="card-text"><small class="text-body-secondary">Created: {{$review->created_at}}</small></p>
+                        </div>
+                        <div class="col">
+                            <form method="POST" action="/review/{{$review->id}}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="">
+                                    <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         @endforeach
+        
         <div class="row">
             <div class="col">
-                <button class="btn">e</button>
+                {{$reviews->fragment('reviews')->links()}}
             </div>
         </div>
-        @foreach ($product->categories as $category)
-
-        @endforeach
     </div>
     @endif
 
