@@ -31,7 +31,7 @@
     <hr class="mt-0">
     @endif
 
-    <div class="row m-0 px-1 pb-2 pt-3" id="product-main">
+    <div class="row m-0 px-1 pt-3 bg-dark" id="product-main">
         <div class="col-md-6 mb-3" id="gallery">
             <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
                 <div class="carousel-inner">
@@ -249,8 +249,7 @@
         </div>
     </div>
 
-    <div class="row" id="similar-products">
-
+    <div class="row d-none" id="similar-products">
     </div>
 
     <div class="row d-none" id="create-review">
@@ -263,11 +262,13 @@
         </form>
     </div>
 
+    <hr>
+
     @if (count($reviews) > 0)
-    <div class="row px-3" id="reviews">
+    <div class="row m-0 px-1 py-2 bg-dark" id="reviews">
         <div class="row">
             <div class="col">
-                <h2>Reviews <span class="fs-4"></h2>
+                <h2>Reviews</h2>
             </div>
         </div>
 
@@ -275,43 +276,38 @@
         @php
             $user = $review->user;
         @endphp
-        <div class="row">
-            <div class="col">
-                <div class="card mb-3 p-0">
-                    <div class="card-body">
-                        <h5 class="card-title">{{$user->first_name}} {{$user->last_name}}</h5>
-                        <h6 class="card-subtitle">
-                            <i class="fa-solid fa-star" style="color: #000000;"></i> 
-                            {{$review->rating}}/5
-                        </h6>
-                        <hr>
-                        <p class="card-text">{{$review->description}}</p>
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex flex-row justify-content-between">
-                            <div class="">
-                                <p class="card-text"><small class="text-body-secondary">{{$review->created_at->diffInDays()}} Days Ago</small></p>
-                            </div>
-                            <div class="">
-                                <form method="POST" action="/review/{{$review->id}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn p-0">
-                                        <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
-                                    </button>
-                                </form>
-                            </div>
+        <div class="">
+            <div class="card mb-3 p-0 mx-0">
+                <div class="card-body">
+                    <h5 class="card-title">{{$user->first_name}} {{$user->last_name}}</h5>
+                    <h6 class="card-subtitle">
+                        <i class="fa-solid fa-star" style="color: #000000;"></i> 
+                        {{$review->rating}}/5
+                    </h6>
+                    <hr>
+                    <p class="card-text">{{$review->description}}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="">
+                            <p class="card-text"><small class="text-body-secondary">{{$review->created_at->diffInDays()}} Days Ago</small></p>
+                        </div>
+                        <div class="">
+                            <form method="POST" action="/review/{{$review->id}}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn p-0">
+                                    <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         @endforeach
-        
-        <div class="row">
-            <div class="col">
-                {{$reviews->fragment('reviews')->links()}}
-            </div>
+        <div class="col">
+            {{$reviews->fragment('reviews')->links()}}
         </div>
     </div>
     @endif
