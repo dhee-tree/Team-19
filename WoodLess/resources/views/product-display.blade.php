@@ -98,11 +98,20 @@
             </div>
 
             <div class="col-md-6" id="product-information">
-                <div class="row" id="product-title">
-                    <div class="col-1">
+                <div class="d-flex flex-row justify-content-between" id="product-title">
+                    <div class="">
                         <h1 class="mb-0 ms-0 p-0">
                             <b>{{$product->title}}</b>
                         </h1>
+                    </div>
+
+                    <div class="">
+                        <h4>
+                            <i class="fa-regular fa-star"></i>
+                            <a href="#reviews" class="link-light link-offset-1 link-underline-opacity-25 link-underline-opacity-100-hover">
+                                {{round($product->reviews()->avg('rating'), 2)}}/5
+                            </a>
+                        </h4>
                     </div>
                 </div>
                 <div class="w-100"></div>
