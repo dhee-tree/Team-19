@@ -37,13 +37,14 @@
         <div class="row m-0 mt-3 px-1 pt-3" id="product-main">
             <div class="col-md-6 mb-3" id="gallery">
                 <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        @php $count = 0; @endphp                  
-                        @foreach ($productImages as $image)
-                            <div class="carousel-item @if($count++ == 0) active @endif">
-                                <img src="{{asset('images/'.$image)}}" class="d-block w-100" alt="product-image">
-                            </div>
-                        @endforeach
+                    <div class="carousel-inner">                  
+                        <div class="carousel-inner">
+                            @foreach ($productImages as $image)
+                                <div class="carousel-item @if($loop->first) active @endif">
+                                    <img src="{{ asset('images/' . $image) }}" class="d-block w-100" alt="product-image">
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     
                     <button class="carousel-control-prev" type="button" data-bs-target="#productGallery" data-bs-slide="prev">
@@ -61,27 +62,20 @@
                     <div id="productGallerySelect-md" class="carousel carousel-dark slide" data-bs-interval="false">
                         <div class="carousel-inner">
                             @php
-                                $count = 0;
-                                $pageLimit = 3;
+                            $pageLimit = 3;
                             @endphp
-
-                            @while ($count < count($productImages))
-                                <div class="carousel-item @if ($count == 0) active @endif">
+                            
+                            @for ($i = 0; $i < count($productImages); $i += $pageLimit)
+                                <div class="carousel-item @if ($i == 0) active @endif">
                                     <div class="d-flex justify-content-center" role="group">
-                                        @for ($ii = 0; $ii < $pageLimit; $ii++)
-                                            @if ($count < count($productImages))
-                                                <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
-                                                    <img onmouseover="click()" class="" width="100" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
-                                                </button>
-                                                
-                                            @else
-                                                <div class="">
-                                                </div>
-                                            @endif  
+                                        @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($productImages); $ii++)
+                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
+                                                <img onmouseover="click()" class="" width="100" src="{{asset('images/'.$productImages[$ii])}}" alt="">
+                                            </button>
                                         @endfor
                                     </div>
                                 </div>
-                            @endwhile
+                            @endfor
                         </div>
 
                         <button class="carousel-control-prev mx-1" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="prev">
@@ -99,13 +93,13 @@
 
             <div class="col-md-6" id="product-information">
                 <div class="d-flex flex-row justify-content-between" id="product-title">
-                    <div class="">
+                    <div class="flex-shrink-1">
                         <h1 class="mb-0 ms-0 p-0">
                             <b>{{$product->title}}</b>
                         </h1>
                     </div>
 
-                    <div class="">
+                    <div class="align-items-end">
                         <h4>
                             <i class="fa-regular fa-star"></i>
                             <a href="#reviews" class="link-light link-offset-1 link-underline-opacity-25 link-underline-opacity-100-hover">
@@ -211,23 +205,20 @@
                         <div id="productGallerySelect-lg" class="carousel carousel-dark slide" data-bs-interval="false">
                             <div class="carousel-inner">
                                 @php
-                                $count = 0;
                                 $pageLimit = 4;
                                 @endphp
-
-                                @while ($count < count($productImages))
-                                    <div class="carousel-item @if ($count == 0) active @endif">
-                                        <div class="d-flex justify-content-between" role="group">
-                                            @for ($ii = 0; $ii < $pageLimit; $ii++)
-                                                @if ($count < count($productImages))
-                                                    <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
-                                                        <img onmouseover="click()" class="" width="125" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
-                                                    </button>
-                                                @endif  
-                                            @endfor
-                                        </div>
+                                
+                                @for ($i = 0; $i < count($productImages); $i += $pageLimit)
+                                <div class="carousel-item @if ($i == 0) active @endif">
+                                    <div class="d-flex justify-content-between" role="group">
+                                        @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($productImages); $ii++)
+                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
+                                                <img onmouseover="click()" class="" width="125" src="{{asset('images/'.$productImages[$ii])}}" alt="">
+                                            </button>
+                                        @endfor
                                     </div>
-                                @endwhile
+                                </div>
+                            @endfor
                             </div>
                             
                             
