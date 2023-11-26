@@ -21,296 +21,295 @@
 @endphp
 
 @section('content')
-    @if(session('message'))
-    <div class="row m-0 px-1">
-        <div class="col">
-            <p><i class="fa-solid fa-xs fa-check" style="color: #ffffff;"></i> {{session('message')}}</p>
-        </div>
-    </div>
+    <div class="container">
+        @if(session('message'))
+        <hr>
 
-    <hr class="mt-0">
-    @endif
-
-    <div class="row m-0 px-1 pt-3 bg-dark" id="product-main">
-        <div class="col-md-6 mb-3" id="gallery">
-            <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    @php $count = 0; @endphp                  
-                    @foreach ($productImages as $image)
-                        <div class="carousel-item @if($count++ == 0) active @endif">
-                            <img src="{{asset('images/'.$image)}}" class="d-block w-100" alt="product-image">
-                        </div>
-                    @endforeach
-                </div>
-                
-                <button class="carousel-control-prev" type="button" data-bs-target="#productGallery" data-bs-slide="prev">
-                    <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#productGallery" data-bs-slide="next">
-                    <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
-                    <span class="visually-hidden">Next</span>
-                </button>
+        <div class="row m-0 px-0">
+            <div class="col">
+                <p><i class="fa-solid fa-xs fa-check" style="color: #ffffff;"></i> {{session('message')}}</p>
             </div>
+        </div>
 
-            <div class="col d-none d-md-block d-lg-none" id="gallery-select-md">
-                <hr>
-                <div id="productGallerySelect-md" class="carousel carousel-dark slide" data-bs-interval="false">
+        <hr class="mt-0">
+        @endif
+
+        <div class="row m-0 mt-2 px-1 pt-3" id="product-main">
+            <div class="col-md-6 mb-3" id="gallery">
+                <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        @php
-                            $count = 0;
-                            $pageLimit = 3;
-                        @endphp
-
-                        @while ($count < count($productImages))
-                            <div class="carousel-item @if ($count == 0) active @endif">
-                                <div class="d-flex justify-content-center" role="group">
-                                    @for ($ii = 0; $ii < $pageLimit; $ii++)
-                                        @if ($count < count($productImages))
-                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
-                                                <img class="" width="100" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
-                                            </button>
-                                            
-                                        @else
-                                            <div class="">
-                                            </div>
-                                        @endif  
-                                    @endfor
-                                </div>
+                        @php $count = 0; @endphp                  
+                        @foreach ($productImages as $image)
+                            <div class="carousel-item @if($count++ == 0) active @endif">
+                                <img src="{{asset('images/'.$image)}}" class="d-block w-100" alt="product-image">
                             </div>
-                        @endwhile
+                        @endforeach
                     </div>
-
-                    <button class="carousel-control-prev mx-1" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="prev">
-                        <i class="fa-solid fa-arrow-left-long fa-xl" style="color: #000000;"></i>
+                    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productGallery" data-bs-slide="prev">
+                        <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
                         <span class="visually-hidden">Previous</span>
                     </button>
-
-                    <button class="carousel-control-next mx-1" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="next">
-                        <i class="fa-solid fa-arrow-right-long fa-xl" style="color: #000000;"></i>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productGallery" data-bs-slide="next">
+                        <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-md-6" id="product-information">
-            <div class="row" id="product-title">
-                <div class="col-1">
-                    <h1 class="mb-0 ms-0 p-0">
-                        <b>{{$product->title}}</b>
-                    </h1>
-                </div>
-            </div>
-            <div class="w-100"></div>
-            <div class="d-flex flex-row" id="product-categories">
-                @foreach ($categories as $category)
-                    <div class="me-2" id="category">
-                        <span class="lead">
-                            {{$category->category}}@if($category != $categories[count($categories)-1]),@endif
-                        </span>  
-                    </div>
-                @endforeach
-            </div>
-
-            <div class="d-flex flex-row justify-content-between" id="product-price">
-                <div class="">
-                    <h3>
-                        @if ($product->discount)
-                            <del>£{{$product->cost}}</del>
-                            £{{sprintf("%0.2f",round(($product->cost)-($product->cost) * ($product->discount/100),2))}}
-                            <span class="product-badge badge py-1 px-2 ms-1 ">{{$product->discount}}% Off</span> 
-                        @else  
-                            £{{$product->cost}}
-                        @endif   
-                    </h3>        
-                </div>
-            </div>
-
-            <hr class="mt-1">
-
-            <form class="row" action="" enctype="multipart/form-data">
-                @csrf
-                @if ($product->amount > 0)
-                    <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
-                        @foreach ($attributes as $attribute => $values)
-                            @switch($attribute)
-                                @case('colour')
-                                    @php $i=1; @endphp
-                                    @foreach (explode(',', $values) as $value)
-                                        <div class="form-check form-check-inline me-2 m-0">
-                                            <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
-                                            <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
-                                        </div>
-                                    @endforeach
-                                    @break
-
-                                @default
-                                    <div class="me-2" id="attribute">
-                                        <select class="form-select py-0" name="attribute-{{$attribute}}" id="attribute-default">
-                                            <label for="attribute-{{$attribute}}" selected>{{ucfirst($attribute)}}</option>
-                                            @foreach (explode(',', $values) as $value)
-                                                <option value="{{$value}}">{{$value}}</option>
-                                            @endforeach
-                                        </select>   
-                                    </div>
-                                @break
-                            @endswitch
-  
-                        @endforeach
-                    </div>
-
-                    <div class="d-flex my-1 align-items-center" id="product-submit">
-                        <div class="me-2">
-                            <select class="form-select py-1" name="quantity">
-                                @for ($i = 0; $i < $product->amount; $i++)
-                                    <option value="{{$i+1}}">{{$i+1}}</option>
-                                @endfor
-                            </select>
-                        </div>
-                        <div class="py-0 mb-0 flex-fill">
-                            <button class="btn btn-dark btn py-1 w-100 submit" type="submit" name="product-submit" value="Add To Basket">
-                                <i class="fa-solid fa-basket-shopping fa-xs" style="color: #ffffff;"></i> Add to Basket
-                            </button>
-                        </div>
-                    </div>
-                @else
-                    <div class="d-flex flex-row mb-0 align-items-center" id="product-submit">
-                        <div class="">
-                            <button class="btn btn-dark py-1" type="submit" name="product-submit" disabled>Out of Stock</button>
-                        </div>
-                    </div>
-                @endif
-            </form>
-
-            <hr>
-
-            <div class="row my-0" id="about-product">
-                <div class="w-100"></div>
-                <div class="col m-0">
-                    <p class="">{{$product->description}}</p>
-                </div>
-            </div>
-
-            <hr class="mt-1 d-none d-xl-block">
-
-            <div class="row mt-0" id="gallery-select-lg">
-                <div class="row d-none d-xxl-block mb-1">
-                    <div class="col">
-                        <h3 class="">Gallery <span class="fs-4">({{$count}})</span></h3>
-                    </div>
-                </div>
-                
-                <div class="col d-none d-xl-block">
-                    <div id="productGallerySelect-lg" class="carousel carousel-dark slide" data-bs-interval="false">
+                <div class="col d-none d-md-block d-lg-none" id="gallery-select-md">
+                    <hr>
+                    <div id="productGallerySelect-md" class="carousel carousel-dark slide" data-bs-interval="false">
                         <div class="carousel-inner">
                             @php
-                            $count = 0;
-                            $pageLimit = 4;
+                                $count = 0;
+                                $pageLimit = 3;
                             @endphp
 
                             @while ($count < count($productImages))
                                 <div class="carousel-item @if ($count == 0) active @endif">
-                                    <div class="d-flex justify-content-between" role="group">
+                                    <div class="d-flex justify-content-center" role="group">
                                         @for ($ii = 0; $ii < $pageLimit; $ii++)
                                             @if ($count < count($productImages))
                                                 <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
-                                                    <img class="" width="125" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
+                                                    <img class="" width="100" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
                                                 </button>
+                                                
+                                            @else
+                                                <div class="">
+                                                </div>
                                             @endif  
                                         @endfor
                                     </div>
                                 </div>
                             @endwhile
                         </div>
-                        
-                        
-                        <button class="carousel-control-prev" type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide="prev">
-                            <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
+
+                        <button class="carousel-control-prev mx-1" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="prev">
+                            <i class="fa-solid fa-arrow-left-long fa-xl" style="color: #000000;"></i>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        
-    
-                        <button class="carousel-control-next" type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide="next">
-                            <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
+
+                        <button class="carousel-control-next mx-1" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="next">
+                            <i class="fa-solid fa-arrow-right-long fa-xl" style="color: #000000;"></i>
                             <span class="visually-hidden">Next</span>
                         </button>
-                        
-                        <!--
-                        <div class="carousel-indicators p-0 m-0">
-                            <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        -->
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row d-none" id="similar-products">
-    </div>
-
-    <div class="row d-none" id="create-review">
-        <div class="col">
-            <h3>Add a Review</h3>
-        </div>
-
-        <form action="">
-
-        </form>
-    </div>
-
-    <hr>
-
-    @if (count($reviews) > 0)
-    <div class="row m-0 px-1 py-2 bg-dark" id="reviews">
-        <div class="row">
-            <div class="col">
-                <h2>Reviews</h2>
-            </div>
-        </div>
-
-        @foreach ($reviews as $review)
-        @php
-            $user = $review->user;
-        @endphp
-        <div class="">
-            <div class="card mb-3 p-0 mx-0">
-                <div class="card-body">
-                    <h5 class="card-title">{{$user->first_name}} {{$user->last_name}}</h5>
-                    <h6 class="card-subtitle">
-                        <i class="fa-solid fa-star" style="color: #000000;"></i> 
-                        {{$review->rating}}/5
-                    </h6>
-                    <hr>
-                    <p class="card-text">{{$review->description}}</p>
+            <div class="col-md-6" id="product-information">
+                <div class="row" id="product-title">
+                    <div class="col-1">
+                        <h1 class="mb-0 ms-0 p-0">
+                            <b>{{$product->title}}</b>
+                        </h1>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <div class="d-flex flex-row justify-content-between">
-                        <div class="">
-                            <p class="card-text"><small class="text-body-secondary">{{$review->created_at->diffInDays()}} Days Ago</small></p>
+                <div class="w-100"></div>
+                <div class="d-flex flex-row" id="product-categories">
+                    @foreach ($categories as $category)
+                        <div class="me-2" id="category">
+                            <span class="lead">
+                                {{$category->category}}@if($category != $categories[count($categories)-1]),@endif
+                            </span>  
                         </div>
-                        <div class="">
-                            <form method="POST" action="/review/{{$review->id}}">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn p-0">
-                                    <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
+                    @endforeach
+                </div>
+
+                <div class="d-flex flex-row justify-content-between" id="product-price">
+                    <div class="">
+                        <h3>
+                            @if ($product->discount)
+                                <del>£{{$product->cost}}</del>
+                                £{{sprintf("%0.2f",round(($product->cost)-($product->cost) * ($product->discount/100),2))}}
+                                <span class="product-badge badge py-1 px-2 ms-1 ">{{$product->discount}}% Off</span> 
+                            @else  
+                                £{{$product->cost}}
+                            @endif   
+                        </h3>        
+                    </div>
+                </div>
+
+                <hr class="mt-1">
+
+                <form class="row" action="" enctype="multipart/form-data">
+                    @csrf
+                    @if ($product->amount > 0)
+                        <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
+                            @foreach ($attributes as $attribute => $values)
+                                @switch($attribute)
+                                    @case('colour')
+                                        @php $i=1; @endphp
+                                        @foreach (explode(',', $values) as $value)
+                                            <div class="form-check form-check-inline me-2 m-0">
+                                                <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
+                                                <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
+                                            </div>
+                                        @endforeach
+                                        @break
+
+                                    @default
+                                        <div class="me-2" id="attribute">
+                                            <select class="form-select py-0" name="attribute-{{$attribute}}" id="attribute-default">
+                                                <label for="attribute-{{$attribute}}" selected>{{ucfirst($attribute)}}</option>
+                                                @foreach (explode(',', $values) as $value)
+                                                    <option value="{{$value}}">{{$value}}</option>
+                                                @endforeach
+                                            </select>   
+                                        </div>
+                                    @break
+                                @endswitch
+    
+                            @endforeach
+                        </div>
+
+                        <div class="d-flex my-1 align-items-center" id="product-submit">
+                            <div class="me-2">
+                                <select class="form-select py-1" name="quantity">
+                                    @for ($i = 0; $i < $product->amount; $i++)
+                                        <option value="{{$i+1}}">{{$i+1}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                            <div class="py-0 mb-0 flex-fill">
+                                <button class="btn btn-dark btn py-1 w-100 submit" type="submit" name="product-submit" value="Add To Basket">
+                                    <i class="fa-solid fa-basket-shopping fa-xs" style="color: #ffffff;"></i> Add to Basket
                                 </button>
-                            </form>
+                            </div>
+                        </div>
+                    @else
+                        <div class="d-flex flex-row mb-0 align-items-center" id="product-submit">
+                            <div class="">
+                                <button class="btn btn-dark py-1" type="submit" name="product-submit" disabled>Out of Stock</button>
+                            </div>
+                        </div>
+                    @endif
+                </form>
+
+                <hr>
+
+                <div class="row my-0" id="about-product">
+                    <div class="w-100"></div>
+                    <div class="col m-0">
+                        <p class="">{{$product->description}}</p>
+                    </div>
+                </div>
+
+                <hr class="mt-0 d-none d-xl-block">
+
+                <div class="row" id="gallery-select-lg">
+                    <div class="col d-none d-xl-block">
+                        <div id="productGallerySelect-lg" class="carousel carousel-dark slide" data-bs-interval="false">
+                            <div class="carousel-inner">
+                                @php
+                                $count = 0;
+                                $pageLimit = 4;
+                                @endphp
+
+                                @while ($count < count($productImages))
+                                    <div class="carousel-item @if ($count == 0) active @endif">
+                                        <div class="d-flex justify-content-between" role="group">
+                                            @for ($ii = 0; $ii < $pageLimit; $ii++)
+                                                @if ($count < count($productImages))
+                                                    <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
+                                                        <img class="" width="125" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
+                                                    </button>
+                                                @endif  
+                                            @endfor
+                                        </div>
+                                    </div>
+                                @endwhile
+                            </div>
+                            
+                            
+                            <button class="carousel-control-prev" type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide="prev">
+                                <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            
+        
+                            <button class="carousel-control-next" type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide="next">
+                                <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                            
+                            <!--
+                            <div class="carousel-indicators p-0 m-0">
+                                <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="mt-3 mb-0 d-none d-xl-block">
+            </div>
+        </div>
+
+        <div class="row d-none" id="similar-products">
+        </div>
+
+        <div class="row d-none" id="create-review">
+            <div class="col">
+                <h3>Add a Review</h3>
+            </div>
+
+            <form action="">
+
+            </form>
+        </div>
+
+        <hr>
+
+        @if (count($reviews) > 0)
+        <div class="row m-0 px-1 py-2" id="reviews">
+            <div class="row">
+                <div class="col">
+                    <h2>Reviews</h2>
+                </div>
+            </div>
+
+            @foreach ($reviews as $review)
+            @php
+                $user = $review->user;
+            @endphp
+            <div class="">
+                <div class="card mb-3 p-0 mx-0">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$user->first_name}} {{$user->last_name}}</h5>
+                        <h6 class="card-subtitle">
+                            <i class="fa-solid fa-star" style="color: #000000;"></i> 
+                            {{$review->rating}}/5
+                        </h6>
+                        <hr>
+                        <p class="card-text">{{$review->description}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="">
+                                <p class="card-text"><small class="text-body-secondary">{{$review->created_at->diffInDays()}} Days Ago</small></p>
+                            </div>
+                            <div class="">
+                                <form method="POST" action="/review/{{$review->id}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn p-0">
+                                        <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @endforeach
+            <div class="col">
+                {{$reviews->fragment('reviews')->links()}}
+            </div>
         </div>
-        @endforeach
-        <div class="col">
-            {{$reviews->fragment('reviews')->links()}}
-        </div>
+        @endif
     </div>
-    @endif
-
 @endsection
 
