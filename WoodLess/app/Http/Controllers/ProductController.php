@@ -15,7 +15,7 @@ class ProductController extends Controller
             'product' => $product,
             'attributes' => json_decode($product->attributes, true),
             'categories' => $product->categories()->get(),
-            'productImages' => explode(',',$product->images),
+            'productImages' => $product->images(),
             
             'reviews' => $product->reviews()->orderBy(
                 request('sort') ?? 'created_at', 
