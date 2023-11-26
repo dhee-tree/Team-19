@@ -22,6 +22,14 @@ class Product extends Model
     ];
 
     /**
+     * Returns the image paths associated with the product as an array.
+     */
+
+    public function images(){
+        return explode(',',$this->images);
+    }
+
+    /**
      * Returns the reviews associated with the product.
      */
     public function reviews()
