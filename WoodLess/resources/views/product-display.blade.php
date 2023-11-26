@@ -23,7 +23,7 @@
 @section('content')
     <div class="container">
         @if(session('message'))
-        <hr>
+        <hr class="mt-4">
 
         <div class="row m-0 px-0">
             <div class="col">
@@ -274,18 +274,21 @@
 
         @if (count($reviews) > 0)
         <div class="row m-0 px-1 py-2" id="reviews">
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="">
-                    <h2>Reviews</h2>
+                    <h2 class="p-0 m-0">Reviews</h2>
                 </div>
 
-                <div class="">
-                    <p>
-                        Sort By: 
-                        <a href="{{request()->fullUrlWithQuery(['sort'=>'created_at', 'order'=>'asc'])}}#reviews">Recent</a>
-                        <a href="{{request()->fullUrlWithQuery(['sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (High to Low)</a>
-                        <a href="{{request()->fullUrlWithQuery(['sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (Low to High)</a>
-                    </p>
+                <div class="dropstart">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['sort'=>'created_at', 'order'=>'asc'])}}#reviews">Most Recent</a></li>
+                        <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (High to Low)</a></li>
+                        <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (Low to High)</a></li>
+
+                    </ul>
                 </div>
             </div>
 
@@ -293,15 +296,27 @@
             @php
                 $user = $review->user;
             @endphp
-            <div class="">
-                <div class="card mb-3 p-0 mx-0">
+            <div class="container">
+                <div class="row card mb-3 p-0 mx-0">
                     <div class="card-body">
-                        <h5 class="card-title">{{$user->first_name}} {{$user->last_name}}</h5>
-                        <h6 class="card-subtitle">
-                            <i class="fa-solid fa-star" style="color: #000000;"></i> 
-                            {{$review->rating}}/5
-                        </h6>
+                        <div class="d-flex flex-row">
+                            <div class="">
+                                <img src="{{asset('images/'.$user->image)}}" width="60" alt="">
+                            </div>
+
+                            <div class="vr mx-2"></div>
+
+                            <div class="">
+                                <h5 class="card-title">{{$user->first_name}} {{$user->last_name}}</h5>
+                                <h6 class="card-subtitle">
+                                    <i class="fa-solid fa-star" style="color: #000000;"></i> 
+                                    {{$review->rating}}/5
+                                </h6>
+                            </div>
+                        </div>
+                        
                         <hr>
+
                         <p class="card-text">{{$review->description}}</p>
                     </div>
                     <div class="card-footer">
