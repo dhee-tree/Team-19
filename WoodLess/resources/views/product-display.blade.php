@@ -270,13 +270,22 @@
             </form>
         </div>
 
-        <hr>
+        <hr class="mb-1">
 
         @if (count($reviews) > 0)
         <div class="row m-0 px-1 py-2" id="reviews">
-            <div class="row">
-                <div class="col">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="">
                     <h2>Reviews</h2>
+                </div>
+
+                <div class="">
+                    <p>
+                        Sort By: 
+                        <a href="{{request()->fullUrlWithQuery(['sort'=>'created_at', 'order'=>'asc'])}}#reviews">Recent</a>
+                        <a href="{{request()->fullUrlWithQuery(['sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (High to Low)</a>
+                        <a href="{{request()->fullUrlWithQuery(['sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (Low to High)</a>
+                    </p>
                 </div>
             </div>
 
