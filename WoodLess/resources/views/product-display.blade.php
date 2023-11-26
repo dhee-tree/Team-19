@@ -7,7 +7,7 @@
 @php
     if ($product->id == 1){
         //Test code to give a product a category ('1' being the first category the the category table)
-        //$product->categories()->attach(1);
+        //$product->categories()->attach(2);
     }
     /*
         These variables are declared in ProductController and are used here.
@@ -97,10 +97,19 @@
                         <h1 class="mb-0 ms-0 p-0">
                             <b>{{$product->title}}</b>
                         </h1>
+                        <div class="d-flex flex-row">
+                            @foreach ($categories as $category)
+                            <div class="me-2" id="category">
+                                <span class="lead">
+                                    {{$category->category}}@if($category != $categories[count($categories)-1]),@endif
+                                </span>  
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
 
-                    <div class="align-items-end">
-                        <h4>
+                    <div class="align-self-start w-25">
+                        <h4 class="text-end p-0 ms-2 m-0">
                             <i class="fa-regular fa-star"></i>
                             <a href="#reviews" class="link-light link-offset-1 link-underline-opacity-25 link-underline-opacity-100-hover">
                                 {{round($product->reviews()->avg('rating'), 2)}}/5
@@ -108,16 +117,8 @@
                         </h4>
                     </div>
                 </div>
+
                 <div class="w-100"></div>
-                <div class="d-flex flex-row" id="product-categories">
-                    @foreach ($categories as $category)
-                        <div class="me-2" id="category">
-                            <span class="lead">
-                                {{$category->category}}@if($category != $categories[count($categories)-1]),@endif
-                            </span>  
-                        </div>
-                    @endforeach
-                </div>
 
                 <div class="d-flex flex-row justify-content-between" id="product-price">
                     <div class="">
