@@ -25,4 +25,12 @@ class Review extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the product associated with the review.
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

@@ -14,17 +14,12 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
 
-            /**
-             * Image Path. 
-             * We should list the file path of a profile image, so that we can retrieve them.
-             */
-            //$table->string('profile_picture', 255);
-
             $table->string('first_name', 60);
             $table->string('last_name', 60);
             $table->string('email', 255)->unique();
             $table->string('password', 255);
             $table->string('phone_number', 15);
+            $table->string('image', 255)->default('no-image.svg');
             $table->boolean('is_admin')->default(false)->invisible();
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
