@@ -34,7 +34,7 @@
     <div class="">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid" style="max-width: 100vw;">
-                <a class="navbar-brand" href="#">WoodLess</a>
+                <a class="navbar-brand" href="{{ url('/') }}">WoodLess</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,16 +44,16 @@
                             <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/categories">Categories</a>
+                            <a class="nav-link active" aria-current="page" href="{{ url('categories') }}">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/products">Products</a>
+                            <a class="nav-link active" aria-current="page" href="{{ url('products') }}">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/contact">Contact us</a>
+                            <a class="nav-link active" aria-current="page" href="{{ url('contact') }}">Contact us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/about">About us</a>
+                            <a class="nav-link active" aria-current="page" href="{{ url('about') }}">About us</a>
                         </li>
                     </ul>
                     <li class="d-flex">
