@@ -37,8 +37,8 @@
             <div class="row justify-content-md-center">
                 <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
                     <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Hot Sellers</h2>
-                    <p class="display-5 mb-4 mb-md-5 text-center">See our top products</p>
-                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark">
+                    <p class="display-5 mb-2 mb-md-3 text-center">Take a look at our top products</p>
+                    <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
                 </div>
             </div>
         </div>
@@ -95,15 +95,14 @@
             <div class="row justify-content-md-center">
                 <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
                     <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Categories</h2>
-                    <p class="display-5 mb-4 mb-md-5 text-center">Browse our wares</p>
-                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark">
+                    <p class="display-5 mb-2 mb-md-3 text-center">Come browse our wares</p>
+                    <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
                 </div>
             </div>
         </div>
-
         <div class="container"> <!-- Carousel hot sellers -->
             <!-- TODO ADD CODE THAT SENDS TO THE FILTER PAGE WITH THE CATEGORY PICKED FILTER. -->
-            <div class="container px-4 px-lg-5 mt-5">
+            <div class="container px-4 px-lg-4 mt-2">
                 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-3 justify-content-center">
                     <div class="col mb-5">
                         <div class="card category-card h-100">
@@ -260,8 +259,8 @@
             <div class="row justify-content-md-center">
                 <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
                     <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Happy Customers</h2>
-                    <p class="display-5 mb-4 mb-md-5 text-center">We deliver what we promise</p>
-                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark">
+                    <p class="display-5 mb-2 mb-md-3 text-center">We deliver what we promise</p>
+                    <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
                 </div>
             </div>
         </div>
@@ -317,7 +316,8 @@
                                 <figcaption>
                                     <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0">
                                     </div>
-                                    <blockquote class="bsb-blockquote-icon mb-4">Woodless's minimalist design with sleek,
+                                    <blockquote class="bsb-blockquote-icon mb-4">Woodless's minimalist design with
+                                        sleek,
                                         durable pieces made from recycled ocean plastic. Furnishing my space responsibly
                                         has never been easier, thanks to this company's commitment to reducing plastic
                                         waste.</blockquote>
