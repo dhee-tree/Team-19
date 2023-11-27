@@ -44,16 +44,16 @@
                             <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="categories">Categories</a>
+                            <a class="nav-link active" aria-current="page" href="/categories">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="products">Products</a>
+                            <a class="nav-link active" aria-current="page" href="/products">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="contact">Contact us</a>
+                            <a class="nav-link active" aria-current="page" href="/contact">Contact us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="about">About us</a>
+                            <a class="nav-link active" aria-current="page" href="/about">About us</a>
                         </li>
                     </ul>
                     <li class="d-flex">
