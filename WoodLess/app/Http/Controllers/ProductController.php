@@ -11,16 +11,21 @@ class ProductController extends Controller
      * Retrieve a single product.
      */
     public function show(Product $product){
+
+        $product->loadMissing('categories', 'reviews');
+
+        $reviews = $product->reviews()->orderBy(
+            request('sort') ?? 'created_at',
+            request('order') ?? 'asc'
+        )->paginate(5)->withQueryString();
+
         return view('product-display', [
             'product' => $product,
             'attributes' => json_decode($product->attributes, true),
             'categories' => $product->categories()->get(),
-            'productImages' => $product->images(),
+            'productImages' => explode(',', $product->images),
             
-            'reviews' => $product->reviews()->orderBy(
-                request('sort') ?? 'created_at', 
-                request('order') ?? 'asc'
-            )->paginate(5)->withQueryString(),
+            'reviews' => $reviews,
         ]);
     }
 }
