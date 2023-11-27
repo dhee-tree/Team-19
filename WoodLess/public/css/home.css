@@ -1,20 +1,26 @@
+.logo {
+  text-align: center;
+  min-width: 50%;
+}
+
+.logo img {
+  display: block;
+  margin: 0 auto;
+}
+
 .carousel {
   width: auto;
   max-height: auto;
   overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
 }
 
 .carousel-item img {
   margin-left: auto;
   margin-right: auto;
   min-width: 100%;
-  max-height: 300px;
+  max-height: 500px;
 }
-
-section{
-  margin: 2.5rem;
-}
-
 
 /* 
 Media to change the carosel height for smaller screen sizes
@@ -35,13 +41,6 @@ Media to change the carosel height for smaller screen sizes
   }
 }
 
-/*
-Card styles
-*/
-.card{
-  flex: 0 0 100%;
-}
-
-.card-title {
-   text-align: center;
+.card {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
 }

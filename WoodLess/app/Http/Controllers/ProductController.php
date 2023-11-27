@@ -7,13 +7,25 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    //Single Product. Retrieves product from database using id and loads page
+    /**
+     * Retrieve a single product.
+     */
     public function show(Product $product){
+
+        $product->loadMissing('categories', 'reviews');
+
+        $reviews = $product->reviews()->orderBy(
+            request('sort') ?? 'created_at',
+            request('order') ?? 'asc'
+        )->paginate(5)->withQueryString();
+
         return view('product-display', [
             'product' => $product,
             'attributes' => json_decode($product->attributes, true),
-            'categories' => explode(',', $product->categories),
-            'productImages' => explode(',',$product->images)
+            'categories' => $product->categories()->get(),
+            'productImages' => explode(',', $product->images),
+            
+            'reviews' => $reviews,
         ]);
     }
 }

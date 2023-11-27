@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->tinyInteger('rating');
             $table->string('title');
-            $table->string('description');
+            $table->longText('description');
             $table->json('attributes')->nullable();
             $table->timestamps();
         });
@@ -25,9 +25,6 @@ return new class extends Migration
             
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
 
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
