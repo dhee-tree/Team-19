@@ -108,10 +108,10 @@
                     <div class="col">
                         <h5 class="fw-bold"></h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-instagram fa-xl"></i></a></li>
-                            <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-x-twitter fa-xl"></i></a></li>
-                            <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-square-facebook fa-xl"></i></a></li>
-                            <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-whatsapp fa-xl"></i></a></li>
+                            <li class="nav-item mb-3 ps-5"><a href="https://www.instagram.com" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-instagram fa-xl"></i></a></li>
+                            <li class="nav-item mb-3 ps-5"><a href="https://www.twitter.com" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-x-twitter fa-xl"></i></a></li>
+                            <li class="nav-item mb-3 ps-5"><a href="https://www.facebook.com" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-square-facebook fa-xl"></i></a></li>
+                            <li class="nav-item mb-3 ps-5"><a href="https://www.whatsapp.com" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-whatsapp fa-xl"></i></a></li>
                         </ul>
                     </div>
                 </div>
