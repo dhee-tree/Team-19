@@ -15,7 +15,7 @@
         </div>
 
         <div class="row contact-main">
-            <div class="col-md-6">
+            <div class="col-md-6 contact-text-container">
                 <div class="contact-icons">
                     <i class="fa-regular fa-envelope"></i> <span>email@address.com</span>
                 </div>

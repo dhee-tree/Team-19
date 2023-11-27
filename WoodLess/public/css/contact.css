@@ -3,6 +3,12 @@
     flex-wrap: wrap;
 }
 
+.contact-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .contact-icons {
     margin: 20px;
 }
