@@ -41,19 +41,19 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
+                            <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="categories">Categories</a>
+                            <a class="nav-link {{ Request::is('categories') ? 'active' : '' }}" href="{{ url('/categories') }}">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="products">Products</a>
+                            <a class="nav-link {{ Request::is('products') ? 'active' : '' }}" href="{{ url('/products') }}">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="contact">Contact us</a>
+                            <a class="nav-link {{ Request::is('contact') ? 'active' : '' }}" href="{{ url('/contact') }}">Contact us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="about">About us</a>
+                            <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="{{ url('/about') }}">About us</a>
                         </li>
                     </ul>
                     <li class="d-flex">
