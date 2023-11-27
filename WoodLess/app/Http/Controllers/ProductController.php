@@ -12,7 +12,7 @@ class ProductController extends Controller
      */
     public function show(Product $product){
 
-        $product->load('categories', 'reviews');
+        $product->loadMissing('categories', 'reviews');
 
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
