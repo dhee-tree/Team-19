@@ -21,6 +21,6 @@ The file [DatabaseSeeder](./seeders/DatabaseSeeder.php) currently populates tabl
 Test data is defined by [factories](./factories/). See (https://laravel.com/docs/10.x/eloquent-factories).
 
 1. Open the [WoodLess](../../WoodLess/) folder in terminal 
-2. Run `php artisan db:seed` to add (more) data to the database, or `php artisan migrate:refresh --seed` to both clear all tables and add fresh new data.
-3. Run `php artisan db:wipe` when column data is changed, constraints are added, etc... 
+2. Run `php artisan db:seed` to add (more) data to the database, or `php artisan migrate:refresh --seed` to both drop all table rows and add fresh new data.
+3. If changes you made to the database are causing issues, run `php artisan db:wipe` to drop everything and repeat steps above.
 
