@@ -22,8 +22,8 @@
     <!-- bootstrap 5.3 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-        <!-- Font Awesome JS -->
-        <script src="https://kit.fontawesome.com/c5cd4f3e40.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome JS -->
+    <script src="https://kit.fontawesome.com/c5cd4f3e40.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     @yield('style')
@@ -32,9 +32,9 @@
 
 <body class="antialiased">
     <div class="">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid" style="max-width: 100vw;">
-                <a class="navbar-brand" href="#">WoodLess</a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" style="margin-left:4px" href="#">WoodLess</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,25 +44,24 @@
                             <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="categories">Categories</a>
+                            <a class="nav-link" aria-current="page" href="categories">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="products">Products</a>
+                            <a class="nav-link" aria-current="page" href="products">Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="contact">Contact us</a>
+                            <a class="nav-link" aria-current="page" href="contact">Contact us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="about">About us</a>
+                            <a class="nav-link" aria-current="page" href="about">About us</a>
                         </li>
                     </ul>
                     <li class="d-flex">
-                        <a href="#"><i class="fa-solid fa-basket-shopping fa-xl" style="color: #000000;"></i></a>
+                        <a class="nav-link" href="#"><i class="fa-solid fa-basket-shopping fa-xl" style="margin-right:20px;"></i></a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#"><i class="fa-solid fa-user fa-xl" style="color: #000000;"></i></a>
+                    <li class="d-flex">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user fa-xl" style="margin-right:10px;"></i></a>
                     </li>
-                    </ul>
                 </div>
             </div>
         </nav>
@@ -71,16 +70,15 @@
             @yield('content')
         </main>
 
-        <footer>
-            <div class="container">
-                <footer class="row row-cols-5 py-5 my-5 border-top">
+
+        <footer class="border-top bg-dark">
+            <div class="container-fluid">
+                <div class="row row-cols-5 py-5">
                     <div class="col">
                         <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
-                            <svg class="bi me-2" width="40" height="32">
-                                <use xlink:href="#Bootstrap"></use>
-                            </svg>
+                            <img src="{{ asset('images/logo_plain.svg') }}" class="bi me-2" width="400" height="100">
                         </a>
-                        <p class="text-muted">© 2023</p>
+                        <p class="ps-4" style="color: #a9a9a9;">© 2023</p>
                     </div>
 
                     <div class="col">
@@ -88,41 +86,43 @@
                     </div>
 
                     <div class="col">
-                        <h5>Site Map</h5>
+                        <h5 class="fw-bold">Site Map</h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="/Team-19/WoodLess/public/" class="nav-link p-0 text-muted">Home</a></li>
-                            <li class="nav-item mb-2"><a href="products" class="nav-link p-0 text-muted">Products</a></li>
-                            <li class="nav-item mb-2"><a href="basket" class="nav-link p-0 text-muted">Basket</a></li>
-                            <li class="nav-item mb-2"><a href="team" class="nav-link p-0 text-muted">Meet the Team</a></li>
+                            <li class="nav-item mb-2"><a href="{{ url('/') }}" class="nav-link p-0" style="color: #ffffff;">Home</a></li>
+                            <li class="nav-item mb-2"><a href="products" class="nav-link p-0" style="color: #ffffff;">Products</a></li>
+                            <li class="nav-item mb-2"><a href="basket" class="nav-link p-0" style="color: #ffffff;">Basket</a></li>
+                            <li class="nav-item mb-2"><a href="team" class="nav-link p-0" style="color: #ffffff;">Meet the Team</a></li>
                         </ul>
                     </div>
 
                     <div class="col">
                         <h5>‎</h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="contact" class="nav-link p-0 text-muted">Contact Us</a></li>
-                            <li class="nav-item mb-2"><a href="about" class="nav-link p-0 text-muted">About Us</a></li>
-                            <li class="nav-item mb-2"><a href="register" class="nav-link p-0 text-muted">Register</a></li>
-                            <li class="nav-item mb-2"><a href="login" class="nav-link p-0 text-muted">Login</a></li>
+                            <li class="nav-item mb-2"><a href="contact" class="nav-link p-0" style="color: #ffffff;">Contact Us</a></li>
+                            <li class="nav-item mb-2"><a href="about" class="nav-link p-0" style="color: #ffffff;">About Us</a></li>
+                            <li class="nav-item mb-2"><a href="register" class="nav-link p-0" style="color: #ffffff;">Register</a></li>
+                            <li class="nav-item mb-2"><a href="login" class="nav-link p-0" style="color: #ffffff;">Login</a></li>
                         </ul>
                     </div>
 
                     <div class="col">
-                        <h5>Our Socials</h5>
+                        <h5 class="fw-bold"></h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><i class="fa-brands fa-instagram fa-xl"></i></a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><i class="fa-brands fa-x-twitter fa-xl"></i></a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><i class="fa-brands fa-square-facebook fa-xl"></i></a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted"><i class="fa-brands fa-linkedin fa-xl"></i></a></li>
+                            <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-instagram fa-xl"></i></a></li>
+                            <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-x-twitter fa-xl"></i></a></li>
+                            <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-square-facebook fa-xl"></i></a></li>
+                            <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-whatsapp fa-xl"></i></a></li>
                         </ul>
                     </div>
-                </footer>
+                </div>
             </div>
+        </footer>
 
-            <!-- bootstrap 5.3 -->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <!-- bootstrap 5.3 -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-            @yield('js')
+        @yield('js')
+    </div>
 </body>
 
 </html>

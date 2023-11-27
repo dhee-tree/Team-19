@@ -7,7 +7,7 @@
 @php
     if ($product->id == 1){
         //Test code to give a product a category ('1' being the first category the the category table)
-        //$product->categories()->attach(1);
+        //$product->categories()->attach(2);
     }
     /*
         These variables are declared in ProductController and are used here.
@@ -23,7 +23,7 @@
 @section('content')
     <div class="container">
         @if(session('message'))
-        <hr>
+        <hr class="mt-4">
 
         <div class="row m-0 px-0">
             <div class="col">
@@ -34,16 +34,17 @@
         <hr class="mt-0">
         @endif
 
-        <div class="row m-0 mt-2 px-1 pt-3" id="product-main">
+        <div class="row m-0 mt-3 px-1 pt-3" id="product-main">
             <div class="col-md-6 mb-3" id="gallery">
                 <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        @php $count = 0; @endphp                  
-                        @foreach ($productImages as $image)
-                            <div class="carousel-item @if($count++ == 0) active @endif">
-                                <img src="{{asset('images/'.$image)}}" class="d-block w-100" alt="product-image">
-                            </div>
-                        @endforeach
+                    <div class="carousel-inner">                  
+                        <div class="carousel-inner">
+                            @foreach ($productImages as $image)
+                                <div class="carousel-item @if($loop->first) active @endif">
+                                    <img src="{{ asset('images/' . $image) }}" class="d-block w-100" alt="product-image">
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     
                     <button class="carousel-control-prev" type="button" data-bs-target="#productGallery" data-bs-slide="prev">
@@ -61,27 +62,20 @@
                     <div id="productGallerySelect-md" class="carousel carousel-dark slide" data-bs-interval="false">
                         <div class="carousel-inner">
                             @php
-                                $count = 0;
-                                $pageLimit = 3;
+                            $pageLimit = 3;
                             @endphp
-
-                            @while ($count < count($productImages))
-                                <div class="carousel-item @if ($count == 0) active @endif">
+                            
+                            @for ($i = 0; $i < count($productImages); $i += $pageLimit)
+                                <div class="carousel-item @if ($i == 0) active @endif">
                                     <div class="d-flex justify-content-center" role="group">
-                                        @for ($ii = 0; $ii < $pageLimit; $ii++)
-                                            @if ($count < count($productImages))
-                                                <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
-                                                    <img class="" width="100" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
-                                                </button>
-                                                
-                                            @else
-                                                <div class="">
-                                                </div>
-                                            @endif  
+                                        @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($productImages); $ii++)
+                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
+                                                <img onmouseover="click()" class="" width="100" src="{{asset('images/'.$productImages[$ii])}}" alt="">
+                                            </button>
                                         @endfor
                                     </div>
                                 </div>
-                            @endwhile
+                            @endfor
                         </div>
 
                         <button class="carousel-control-prev mx-1" type="button" data-bs-target="#productGallerySelect-md" data-bs-slide="prev">
@@ -98,23 +92,33 @@
             </div>
 
             <div class="col-md-6" id="product-information">
-                <div class="row" id="product-title">
-                    <div class="col-1">
+                <div class="d-flex flex-row justify-content-between" id="product-title">
+                    <div class="flex-shrink-1">
                         <h1 class="mb-0 ms-0 p-0">
                             <b>{{$product->title}}</b>
                         </h1>
+                        <div class="d-flex flex-row">
+                            @foreach ($categories as $category)
+                            <div class="me-2" id="category">
+                                <span class="lead">
+                                    {{$category->category}}@if($category != $categories[count($categories)-1]),@endif
+                                </span>  
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="align-self-start w-25">
+                        <h4 class="text-end p-0 ms-2 m-0">
+                            <i class="fa-regular fa-star"></i>
+                            <a href="#reviews" class="link-light link-offset-1 link-underline-opacity-25 link-underline-opacity-100-hover">
+                                {{round($product->reviews()->avg('rating'), 2)}}/5
+                            </a>
+                        </h4>
                     </div>
                 </div>
+
                 <div class="w-100"></div>
-                <div class="d-flex flex-row" id="product-categories">
-                    @foreach ($categories as $category)
-                        <div class="me-2" id="category">
-                            <span class="lead">
-                                {{$category->category}}@if($category != $categories[count($categories)-1]),@endif
-                            </span>  
-                        </div>
-                    @endforeach
-                </div>
 
                 <div class="d-flex flex-row justify-content-between" id="product-price">
                     <div class="">
@@ -202,23 +206,20 @@
                         <div id="productGallerySelect-lg" class="carousel carousel-dark slide" data-bs-interval="false">
                             <div class="carousel-inner">
                                 @php
-                                $count = 0;
                                 $pageLimit = 4;
                                 @endphp
-
-                                @while ($count < count($productImages))
-                                    <div class="carousel-item @if ($count == 0) active @endif">
-                                        <div class="d-flex justify-content-between" role="group">
-                                            @for ($ii = 0; $ii < $pageLimit; $ii++)
-                                                @if ($count < count($productImages))
-                                                    <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$count}}" aria-current="true" aria-label="Slide {{$count+1}}">
-                                                        <img class="" width="125" src="{{asset('images/'.$productImages[($count++)])}}" alt="">
-                                                    </button>
-                                                @endif  
-                                            @endfor
-                                        </div>
+                                
+                                @for ($i = 0; $i < count($productImages); $i += $pageLimit)
+                                <div class="carousel-item @if ($i == 0) active @endif">
+                                    <div class="d-flex justify-content-between" role="group">
+                                        @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($productImages); $ii++)
+                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
+                                                <img onmouseover="click()" class="" width="125" src="{{asset('images/'.$productImages[$ii])}}" alt="">
+                                            </button>
+                                        @endfor
                                     </div>
-                                @endwhile
+                                </div>
+                            @endfor
                             </div>
                             
                             
@@ -261,13 +262,25 @@
             </form>
         </div>
 
-        <hr>
+        <hr class="mb-1">
 
         @if (count($reviews) > 0)
         <div class="row m-0 px-1 py-2" id="reviews">
-            <div class="row">
-                <div class="col">
-                    <h2>Reviews</h2>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="">
+                    <h2 class="p-0 m-0">Reviews</h2>
+                </div>
+
+                <div class="dropstart">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['sort'=>'created_at', 'order'=>'asc'])}}#reviews">Most Recent</a></li>
+                        <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (High to Low)</a></li>
+                        <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (Low to High)</a></li>
+
+                    </ul>
                 </div>
             </div>
 
@@ -275,15 +288,27 @@
             @php
                 $user = $review->user;
             @endphp
-            <div class="">
-                <div class="card mb-3 p-0 mx-0">
+            <div class="container">
+                <div class="row card mb-3 p-0 mx-0">
                     <div class="card-body">
-                        <h5 class="card-title">{{$user->first_name}} {{$user->last_name}}</h5>
-                        <h6 class="card-subtitle">
-                            <i class="fa-solid fa-star" style="color: #000000;"></i> 
-                            {{$review->rating}}/5
-                        </h6>
+                        <div class="d-flex flex-row">
+                            <div class="">
+                                <img src="{{asset('images/'.$user->image)}}" width="60" alt="">
+                            </div>
+
+                            <div class="vr mx-2"></div>
+
+                            <div class="">
+                                <h5 class="card-title">{{$user->first_name}} {{$user->last_name}}</h5>
+                                <h6 class="card-subtitle">
+                                    <i class="fa-solid fa-star" style="color: #000000;"></i> 
+                                    {{$review->rating}}/5
+                                </h6>
+                            </div>
+                        </div>
+                        
                         <hr>
+
                         <p class="card-text">{{$review->description}}</p>
                     </div>
                     <div class="card-footer">

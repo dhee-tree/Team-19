@@ -1,0 +1,18 @@
+/*
+Simple external stylesheet to style the category cards, will be used in multiple sites so was made external.
+*/
+.card {
+  margin-right: 10px;
+  transition: .5s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+@media(max-width: 990px) {
+  .card {
+    margin: 20px;
+  }
+}
