@@ -111,7 +111,7 @@
                     <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-instagram fa-xl"></i></a></li>
                     <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-x-twitter fa-xl"></i></a></li>
                     <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-square-facebook fa-xl"></i></a></li>
-                    <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-linkedin fa-xl"></i></a></li>
+                    <li class="nav-item mb-3 ps-5"><a href="#" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-whatsapp fa-xl"></i></a></li>
                 </ul>
             </div>
         </footer>
