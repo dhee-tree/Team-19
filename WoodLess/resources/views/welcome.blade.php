@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="container"> <!-- Carousel hot sellers -->
+        <div class="container-fluid justify-content-center"> <!-- Carousel hot sellers -->
             <div id="carouselHotSellers" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators"> <button type="button" data-bs-target="#carouselHotSellers"
                         data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
