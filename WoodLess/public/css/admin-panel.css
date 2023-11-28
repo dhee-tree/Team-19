@@ -64,15 +64,9 @@ li{
     margin-left: 0;
 }
 
-.sidebar-header{
-    color:antiquewhite;
-    font-size: .75rem;
-    padding: 1.5rem 1.5rem .375rem;
-}
-
 a.sidebar-link{
     padding: .625rem 1.625rem;
-    color: bisque;
+    color:antiquewhite;
     position: relative;
     display: block;
     font-size: 0.875rem;
@@ -94,4 +88,13 @@ a.sidebar-link{
 .sidebar-link[data-bs-toggle="collapse"].collapsed::after{
     transform: rotate(45deg);
     transition: all .2s ease-out;
+}
+
+.avatar{
+    height: 40px;
+    width: 40px;
+}
+
+.navbar-expand .navbar-nav {
+    margin-left: auto;
 }
