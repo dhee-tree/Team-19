@@ -69,13 +69,13 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
 <div id="meettheteamtext">
                 
                 
-                <!-- Portfolio Section-->
+                
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
-                <!-- Portfolio Section Heading-->
+               
                 <h1 class="page-section-heading text-center text-uppercase ">Meet the Team</h1>
 
-                <!-- Portfolio Grid Items-->
+              
                 <div class="row justify-content-center">
                     <!-- IGGY 1-->
                     <div class="col-md-6 col-lg-4 mb-5">
@@ -164,7 +164,7 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
 
 
 
-        <!-- Portfolio Modals-->
+       
         <!-- Iggy 1 Text-->
         <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
             <div class="modal-dialog modal-xl">
@@ -174,7 +174,7 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
+                                    <!--  Title-->
                                     <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Iggy</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
@@ -182,9 +182,9 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                                         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                         <div class="divider-custom-line"></div>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
+                                    <!--  - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
+                                    <!--  - Text-->
                                     <p class="mb-4">Iggy is one of the founders at Woodless and is currently working as a Front end developer</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
@@ -206,7 +206,7 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
+                                    <!--  Title-->
                                     <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Hamid</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
@@ -214,9 +214,9 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                                         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                         <div class="divider-custom-line"></div>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
+                                    <!-- - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cake.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
+                                    <!--  - Text-->
                                     <p class="mb-4">Hamid is a founder at Woodless and is currently working as a fullstack developer</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
@@ -238,17 +238,17 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
+                                    <!-- - Title-->
                                     <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Ismaeel</h2>
-                                    <!-- Icon Divider-->
+                                    <!-- Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
                                         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                         <div class="divider-custom-line"></div>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
+                                    <!--  - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/circus.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
+                                    <!--  - Text-->
                                     <p class="mb-4">Ismaeel is another founder at Woodless and is currently working as a backend developer</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
@@ -270,7 +270,7 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
+                                    <!--  - Title-->
                                     <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Lewis</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
@@ -278,9 +278,9 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                                         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                         <div class="divider-custom-line"></div>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
+                                    <!--  - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
+                                    <!--  - Text-->
                                     <p class="mb-4">Lewis is another founder at WoodLess and is currently working as a fullstack developer</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
@@ -302,17 +302,17 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
+                                    <!--  - Title-->
                                     <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Umer</h2>
-                                    <!-- Icon Divider-->
+                                    <!-- Divider-->
                                     <div class="divider-custom">
                                         <div class="divider-custom-line"></div>
                                         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                         <div class="divider-custom-line"></div>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
+                                    <!--  - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
+                                    <!--  - Text-->
                                     <p class="mb-4">Umer is another founder at Woodless and is currently working as a back end developer</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
@@ -334,7 +334,7 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
+                                    <!--  - Title-->
                                     <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Zaakir </h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
@@ -342,9 +342,9 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                                         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                         <div class="divider-custom-line"></div>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
+                                    <!--  - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
+                                    <!--  - Text-->
                                     <p class="mb-4">Zaakir is a founder at woodless and is currently working as a front end developer</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
@@ -366,7 +366,7 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
+                                    <!--  - Title-->
                                     <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Matteo</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
@@ -374,9 +374,9 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                                         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                         <div class="divider-custom-line"></div>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
+                                    <!--  - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
+                                    <!--  - Text-->
                                     <p class="mb-4">Matteo is a founder at woodless and is currently working as a fullstack developer</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
@@ -398,7 +398,7 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
+                                    <!--  - Title-->
                                     <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Ndumiso</h2>
                                     <!-- Icon Divider-->
                                     <div class="divider-custom">
@@ -406,9 +406,9 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                                         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                         <div class="divider-custom-line"></div>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
+                                    <!--  - Image-->
                                     <img class="img-fluid rounded mb-5" src="assets/img/portfolio/submarine.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
+                                    <!--  - Text-->
                                     <p class="mb-4">Ndumiso is another founder at woodless and is currently working as a front end developer</p>
                                     <button class="btn btn-primary" data-bs-dismiss="modal">
                                         <i class="fas fa-xmark fa-fw"></i>
