@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('baskets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->primary('user_id');
             $table->integer('total_cost')->default(0);
             $table->timestamps();
         });
