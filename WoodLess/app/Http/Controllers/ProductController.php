@@ -23,7 +23,7 @@ class ProductController extends Controller
         )->paginate(5)->withQueryString()->fragment('reviews');
 
         if ($request->ajax()) {
-            return [ReviewController::class, 'show']; 
+            return view('reviews.load', ['reviews' => $reviews])->render();  
         }
 
         return view('product-display', [
