@@ -21,10 +21,11 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse" aria-expanded="false">
-                            Pages
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#users" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fa-solid fa-user pe-2"></i>
+                            Users
                         </a>
-                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <ul id="users" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
                                 <a href="" class="sidebar-link">Page 1</a>
                             </li>
@@ -34,10 +35,11 @@
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse" aria-expanded="false">
-                            Posts
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#factories" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fa-solid fa-city pe-2"></i>
+                            Factories
                         </a>
-                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <ul id="factories" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
                                 <a href="" class="sidebar-link">Post 1</a>
                             </li>
@@ -46,14 +48,40 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" data-bs-toggle="collapse" aria-expanded="false">
+                            <i class="fa-solid fa-sliders pe-2"></i>
+                            Auth
+                        </a>
+                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Login</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Register</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">Forgot Password</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </aside>
         <div class="main">
-            <nav class="navbar">
-                <button class="btn">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <button class="btn" id="sidebar-toggle" type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                <div class="navbar-collapse navbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                <img src="" class="avatar img-fluid" alt="Profile photo">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         </div>
     </div>
