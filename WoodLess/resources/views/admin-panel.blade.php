@@ -15,9 +15,6 @@
                     <a href="#">Admin Panel</a>
                 </div>
                 <ul class="sidebar-nav">
-                    <li class="sidebar-header">
-                        Admin Menu
-                    </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
                             Dashboard
