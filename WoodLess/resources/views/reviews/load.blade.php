@@ -20,6 +20,7 @@
     @php
         $user = $review->user;
     @endphp
+    
     <div class="container">
         <div class="row card mb-3 p-0 mx-0">
             <div class="card-body">
