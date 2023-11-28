@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +24,13 @@ Route::view('/about', 'about');
 
 Route::view('/categories', 'categories');
 
-Route::view('/contact', 'contact');
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact');
+Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
 
-//Show single product
-Route::get('/products-view/{product}', [ProductController::class,'show']);
+//Display single product
+Route::get('/product/{product}', [ProductController::class,'show']);
+
+//Delete single review
+Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
 Route::view('/products', 'product-list');
