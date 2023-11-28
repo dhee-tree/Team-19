@@ -28,11 +28,12 @@
             </div>
 
             <div class="col-md-6">
+                @if (session()->has('success'))
+                    <div class="sent-success">
+                        <i class="fa-regular fa-circle-check fa-fade"></i> <span>{{ session('success') }}</span>
+                    </div>
+                @endif
                 <div class="contact-card">
-                    @if (session()->has('success'))
-                        <div class="text-sm font-medium ml-3">Success!.</div>
-                        <div class="text-sm tracking-wide text-gray-500 dark:text-white mt-4 sm:mt-0 sm:ml-4"> {{ session('success') }}</div>
-                    @endif
                     <form action="{{ route('contact.send') }}" method="post">
                         @csrf
                         <label for="name" class="form-label">Name: </label>
