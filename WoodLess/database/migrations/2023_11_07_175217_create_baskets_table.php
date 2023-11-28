@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('baskets', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->primary('user_id');
             $table->integer('total_cost')->default(0);
             $table->timestamps();
