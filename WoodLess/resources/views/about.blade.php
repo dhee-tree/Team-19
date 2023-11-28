@@ -14,10 +14,11 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class ="Buttons">
+                <div class = buttoncontainer>
+                
                 <div class ="aboutbutton">
                     <h7 id = "about"> About WoodLess </h7> 
-</div >
+
                      <div class ="Faqbutton">
                     <h7 id = "faq"> FAQ </h7> 
 </div>
@@ -25,9 +26,11 @@
                     <h7 id = "ourcommitments">Commitments & Values</h7>
 </div>
 <div class ="meetteambutton">
+</div>
                     <h7 id = "meetteam"> Meet The Team </h7> 
 </div>
 </div >
+<div class = "text">
 <div id="aboutustext">
 <h1 class="page-section-heading text-center text-uppercase ">About WoodLess</h1>
                 <h2>Our Story</h2>
@@ -37,7 +40,8 @@ WoodLess was founded by a group of dedicated students in a university classroom 
 At WoodLess, our mission is to merge functionality and sustainability seamlessly. We strive to create high-quality furniture pieces that not only enhance your living spaces but also contribute to a more eco-friendly future.
                 
                 
-</div>        
+
+</div>      
 <div id="FAQtext">
 <h1 class="page-section-heading text-center text-uppercase ">FAQ</h1>
                <h2> What materials do you use?</h2>
@@ -63,7 +67,7 @@ Our team of skilled artisans merges traditional craftsmanship with modern design
 WoodLess is more than a furniture company; we are stewards of the environment. Our goal is to inspire others to adopt sustainable practices and join us on the journey towards a greener, healthier planet.
 </div>        
 <div id="meettheteamtext">
-                <!--<h1>Meet the Team</h1>-->
+                
                 
                 <!-- Portfolio Section-->
         <section class="page-section portfolio" id="portfolio">
@@ -148,6 +152,7 @@ WoodLess is more than a furniture company; we are stewards of the environment. O
                     </div>
                 </div>
             </div>
+</div>
         </section>
 
                 
