@@ -3,6 +3,12 @@
     flex-wrap: wrap;
 }
 
+.contact-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .contact-icons {
     margin: 20px;
 }
@@ -24,4 +30,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.sent-success {
+    background-color: green;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 20px;
+    margin-bottom: 10px;
 }

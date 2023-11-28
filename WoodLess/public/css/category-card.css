@@ -1,18 +1,38 @@
 /*
 Simple external stylesheet to style the category cards, will be used in multiple sites so was made external.
 */
-.card {
+.category-card {
   margin-right: 10px;
   transition: .5s;
 }
 
-.card:hover {
+.category-card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
 }
 
 @media(max-width: 990px) {
-  .card {
+  .category-card {
     margin: 20px;
+  }
+}
+
+.category-card .btn {
+  background-color: #39352f;
+  color: white;
+  width: auto;
+  transition: background 0.5s linear 0.1s;
+}
+
+.category-card .btn:hover {
+  background-color: #1d1912;
+}
+
+@media(max-width: 990px) {
+  .category-card .btn {
+    min-width: 100%;
+    max-height: 50%;
+    font-size: 0.75rem;
+    font-weight: bolder;
   }
 }

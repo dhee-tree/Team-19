@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,7 +24,8 @@ Route::view('/about', 'about');
 
 Route::view('/categories', 'categories');
 
-Route::view('/contact', 'contact');
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact');
+Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
 
 //Display single product
 Route::get('/product/{product}', [ProductController::class,'show']);
