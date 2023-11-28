@@ -12,15 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('baskets', function (Blueprint $table) {
-            $table->id();
-            $table->json('items')->nullable();
-            $table->integer('total_cost');
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->primary('user_id');
+            $table->integer('total_cost')->default(0);
             $table->timestamps();
         });
 
         // Add foregin key constraint
         Schema::table('baskets', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
