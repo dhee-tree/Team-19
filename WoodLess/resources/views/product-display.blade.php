@@ -147,7 +147,7 @@
 
                 <hr class="mt-1">
 
-                <form class="row" action="" enctype="multipart/form-data">
+                <form class="row" method="POST" action="/product/{{$product->id}}" enctype="multipart/form-data">
                     @csrf
                     @if ($product->amount > 0)
                         <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
@@ -161,12 +161,15 @@
                                                 <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
                                             </div>
                                         @endforeach
+                                        @error('attribute-color')
+                                            <label class="form-check-label me-2" for="inlineRadio{{$i}}">Please select a colour.</label>
+                                        @enderror
                                         @break
 
                                     @default
                                         <div class="me-2" id="attribute">
-                                            <select class="form-select py-0" name="attribute-{{$attribute}}" id="attribute-default">
-                                                <label for="attribute-{{$attribute}}" selected>{{ucfirst($attribute)}}</option>
+                                            <select class="form-select py-0" name="attribute" id="attribute-default">
+                                                <label for="attribute" selected>{{ucfirst($attribute)}}</option>
                                                 @foreach (explode(',', $values) as $value)
                                                     <option value="{{$value}}">{{$value}}</option>
                                                 @endforeach
@@ -174,17 +177,19 @@
                                         </div>
                                     @break
                                 @endswitch
-    
                             @endforeach
                         </div>
 
                         <div class="d-flex my-1 align-items-center" id="product-submit">
                             <div class="me-2">
-                                <select class="form-select py-1" name="quantity">
+                                <select class="form-select py-1" name="product-quantity">
                                     @for ($i = 0; $i < $product->amount; $i++)
                                         <option value="{{$i+1}}">{{$i+1}}</option>
                                     @endfor
                                 </select>
+                                @error('product-quantity')
+                                <p class="">{{$message}}</p>
+                                @enderror
                             </div>
                             <div class="py-0 mb-0 flex-fill">
                                 <button class="btn btn-dark btn py-1 w-100 product-submit" type="submit" name="product-submit" value="Add To Basket">
