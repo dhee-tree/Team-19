@@ -57,4 +57,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
+
+    /**
+     * Get the basket associated with the user.
+     */
+    public function basket()
+    {
+        return $this->hasOne(Basket::class);
+    }
 }
