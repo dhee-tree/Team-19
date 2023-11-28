@@ -16,8 +16,6 @@ class Basket extends Model
         'total_cost',
     ];
 
-    protected $primaryKey = 'user_id';
-
     /**
      * Returns the products that belong to the basket.
      */
