@@ -17,7 +17,7 @@ class ProductController extends Controller
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
             request('order') ?? 'asc'
-        )->paginate(5)->withQueryString();
+        )->paginate(5)->withQueryString()->fragment('reviews');
 
         return view('product-display', [
             'product' => $product,
