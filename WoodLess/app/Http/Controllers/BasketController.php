@@ -16,6 +16,13 @@ class BasketController extends Controller
             'attribute-color' => 'required',
         ]);
 
+        //Attach(product id, [amount of items, attributes])
+
+        /*$user->basket->products()->attach(1,[
+            'amount' => 10,
+            //'attributes' => //JSON Here
+        ]);*/
+
         return back()->with('message', 'Item added to basket.');
     }
 }
