@@ -1,50 +1,64 @@
 @extends('layouts.base')
-@section('title', 'WoodLess - Admin Panel')
+@section('title', 'WoodLess - Admin')
+
+@section('style')
+    <link rel="stylesheet" href="{{ asset('css/admin-panel.css')}}">
+@endsection
 
 @section('content')
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/admin-panel.css') }}" >
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Heading</div>
-                    <a href="" class="nav-link">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Dashboard
-                    </a>
-                    <a href="#" class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Users
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <a href="#" class="nav-link collapsed" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Warehouse
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        <!-- User details -->
-                    </div>
+<body>
+    <div class="wrapper">
+        <aside id="sidebar">
+            <!-- Content for sidebar -->
+            <div class="h-100">
+                <div class="sidebar-logo">
+                    <a href="#">Admin Panel</a>
                 </div>
-                <div id="layoutSidenav_content">
-                    <main>
-                        <div class="container-fluid px-4">
-                            <h1 class="mt-4">Header</h1>
-                            <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item">Dash</li>
-                                <li class="breadcrumb-item active">User</li>
-                            </ol>
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <p class="mb-0">
-
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </main>
-                </div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header">
+                        Admin Menu
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse" aria-expanded="false">
+                            Pages
+                        </a>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="" class="sidebar-link">Page 1</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="" class="sidebar-link">Page 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse" aria-expanded="false">
+                            Posts
+                        </a>
+                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="" class="sidebar-link">Post 1</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="" class="sidebar-link">Post 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <div class="main">
+            <nav class="navbar">
+                <button class="btn">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </nav>
         </div>
     </div>
+</body>
+@endsection
