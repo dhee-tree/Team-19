@@ -5,11 +5,6 @@
     <link rel="stylesheet" href="{{ asset('css/product-display.css') }}">
 @endsection
 
-@section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="{{asset('js/reviews/loader.js')}}"></script>
-@endsection
-
 @php
     if ($product->id == 1){
         //Test code to give a product a category ('1' being the first category the the category table)
@@ -147,49 +142,53 @@
 
                 <hr class="mt-1">
 
-                <form class="row" method="POST" action="/product/{{$product->id}}" enctype="multipart/form-data">
+                <form class="row" method="POST" action="/basket/{{$product->id}}" enctype="multipart/form-data">
                     @csrf
                     @if ($product->amount > 0)
                         <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
+                            @php
+                            $count=0;
+                            @endphp
                             @foreach ($attributes as $attribute => $values)
                                 @switch($attribute)
                                     @case('colour')
+                                        <input type="hidden" name="attribute-colours" value="0">
                                         @php $i=1; @endphp
                                         @foreach (explode(',', $values) as $value)
                                             <div class="form-check form-check-inline me-2 m-0">
-                                                <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
+                                                <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-colours" id="inlineRadio{{$i}}" value='{{$attribute}}:{{$value}}'>
                                                 <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
                                             </div>
                                         @endforeach
-                                        @error('attribute-color')
+                                        @error('attribute-colours')
                                             <label class="form-check-label me-2" for="inlineRadio{{$i}}">Please select a colour.</label>
                                         @enderror
                                         @break
 
                                     @default
                                         <div class="me-2" id="attribute">
-                                            <select class="form-select py-0" name="attribute" id="attribute-default">
-                                                <label for="attribute" selected>{{ucfirst($attribute)}}</option>
+                                            <select class="form-select py-0" name="attributes[{{$count}}]" id="attribute">
+                                                <label for="attributes[{{$count}}]" selected>{{ucfirst($attribute)}}</option>
                                                 @foreach (explode(',', $values) as $value)
-                                                    <option value="{{$value}}">{{$value}}</option>
+                                                    <option value='{{$attribute}}:{{$value}}'>{{$value}}</option>
                                                 @endforeach
                                             </select>   
                                         </div>
                                     @break
                                 @endswitch
+                                @php
+                                    $count++
+                                @endphp
                             @endforeach
                         </div>
 
                         <div class="d-flex my-1 align-items-center" id="product-submit">
                             <div class="me-2">
-                                <select class="form-select py-1" name="product-quantity">
+                                <select class="form-select py-1" name="amount">
                                     @for ($i = 0; $i < $product->amount; $i++)
                                         <option value="{{$i+1}}">{{$i+1}}</option>
                                     @endfor
                                 </select>
-                                @error('product-quantity')
-                                <p class="">{{$message}}</p>
-                                @enderror
                             </div>
                             <div class="py-0 mb-0 flex-fill">
                                 <button class="btn btn-dark btn py-1 w-100 product-submit" type="submit" name="product-submit" value="Add To Basket">
