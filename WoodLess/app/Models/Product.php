@@ -34,7 +34,7 @@ class Product extends Model
      */
     public function baskets()
     {
-        return $this->belongsToMany(Basket::class)->withPivot('amount','attributes');
+        return $this->belongsToMany(Basket::class)->withPivot('amount','attributes')->withTimestamps();
     }
 
     /**
