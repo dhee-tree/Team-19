@@ -18,12 +18,13 @@ class BasketController extends Controller
 
         //Currently stores in first basket in db.
         $basket = User::where("id", 1)->first()->basket;
+        $basket->loadMissing('products');
 
         $attributes = [];
 
         $rules = [
-            'attributes' => 'required',
             'amount' => 'required',
+            'attributes' => 'required',
         ];
 
         if($request->has('attribute-colours')){
@@ -41,11 +42,25 @@ class BasketController extends Controller
             $attributes[$pairs[0]] = $pairs[1];
         };
 
-        //Currently no checks/methods to update amount, or check for duplicates.
-        $basket->products()->attach($product->id,[
+        $data = [
             'amount' => $request['amount'],
             'attributes' => json_encode($attributes),
-        ]);
+        ];
+
+        foreach($basket->products as $basketItem){
+            $itemId = $basketItem->pivot->product_id;
+            $itemAmount = $basketItem->pivot->amount;
+            $itemAttributes = $basketItem->pivot->attributes;
+
+            if($itemAttributes == $data['attributes']){
+                $basket->products()->updateExistingPivot($itemId, [
+                    'amount' => $itemAmount + $data['amount'],
+                ]);
+                return back()->with('message', 'Item(s) added to basket.');
+            }
+        };
+        
+        $basket->products()->attach($product, $data);
 
         return back()->with('message', 'Item(s) added to basket.');
     }
