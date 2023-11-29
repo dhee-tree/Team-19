@@ -17,53 +17,35 @@
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
+                            <i class="fa-solid fa-house pe-2"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#users" data-bs-toggle="collapse" aria-expanded="false">
+                        <a href="#" class="sidebar-link">
+                            <i class="fa-solid fa-list pe-2"></i>
+                            Listings
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#customers" data-bs-toggle="collapse" aria-expanded="false">
                             <i class="fa-solid fa-user pe-2"></i>
-                            Users
+                            Customers
                         </a>
-                        <ul id="users" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <ul id="customers" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="" class="sidebar-link">Page 1</a>
+                                <a href="" class="sidebar-link">User display</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="" class="sidebar-link">Page 2</a>
+                                <a href="" class="sidebar-link">Support tickets</a>
                             </li>
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#factories" data-bs-toggle="collapse" aria-expanded="false">
-                            <i class="fa-solid fa-city pe-2"></i>
-                            Factories
+                        <a href="#" class="sidebar-link">
+                            <i class="fa-regular fa-clipboard-list pe-2"></i>
+                            Order & Payments
                         </a>
-                        <ul id="factories" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="" class="sidebar-link">Post 1</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="" class="sidebar-link">Post 2</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#auth" data-bs-toggle="collapse" aria-expanded="false">
-                            <i class="fa-solid fa-sliders pe-2"></i>
-                            Auth
-                        </a>
-                        <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Login</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Register</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Forgot Password</a>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </div>
@@ -76,13 +58,25 @@
                 <div class="navbar-collapse navbar">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
-                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                <img src="" class="avatar img-fluid" alt="Profile photo">
-                            </a>
+                            <!--<a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+                                 <img src="" class="avatar img-fluid" alt="Profile photo">
+                            </a> -->
                         </li>
+                        <form roles="search" class="d-flex">
+                            <input type="search" class="form-control me-2" placeholder="Search" aria-label="Search">
+                            <buttton class="btn btn-outline-success" type=submit>Search</buttton>
+                        </form>
                     </ul>
                 </div>
             </nav>
+            <div class="container p-3">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">A first link item</a>
+                    <a href="#" class="list-group-item list-group-item-action">A second link item</a>
+                    <a href="#" class="list-group-item list-group-item-action">A third link item</a>
+                    <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
