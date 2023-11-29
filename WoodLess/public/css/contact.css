@@ -16,8 +16,8 @@
 .contact-card {
     height: 100%;
     border-radius: 20px;
-    background: #ffffff;
-    color: #000;
+    background: #655D52;
+    color: #ffffff;
     padding: 34px;
 }
 
@@ -30,6 +30,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.contact-btn:hover {
+    background: #ffffff;
+    color: #655D52;
 }
 
 .sent-success {
