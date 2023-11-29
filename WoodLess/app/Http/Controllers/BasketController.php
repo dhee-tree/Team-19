@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
 class BasketController extends Controller
 {
     /**
-     * Store Product in a basket.
+     * Store a product in a basket.
      */
     function store(Request $request, Product $product){
 
@@ -41,6 +41,7 @@ class BasketController extends Controller
             $attributes[$pairs[0]] = $pairs[1];
         };
 
+        //Currently no checks/methods to update amount, or check for duplicates.
         $basket->products()->attach($product->id,[
             'amount' => $request['amount'],
             'attributes' => json_encode($attributes),
