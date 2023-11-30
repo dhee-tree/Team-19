@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -33,15 +32,16 @@ class DatabaseSeeder extends Seeder
         //Creates 500 Random Reviews.
         \App\Models\Review::factory(500)->create();
 
+        //Give user a basket.
+        foreach ($users as $user) {
+            if(!($user->basket)){
+                $user->basket()->create();
+            }
+        }
+
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
-        for ($i = 1; $i < $users->count()+1; $i++) {
-            \App\Models\Basket::create([
-                'user_id'=> $i,
-            ]);
-        }
     }
 }

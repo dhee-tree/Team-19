@@ -18,6 +18,7 @@
         $categories - The product's categories stored in the pivot table 'categories_product'
         $productImages - The file path of each image used for the product, stored in a String array
         $reviews - Rows from the 'reviews' table that match this product's id, stored in an Eloquent model (?) array, currently paginated by 5
+        $finalCost - Gets the final price, taking into account discount
     */
 @endphp
 
@@ -122,9 +123,9 @@
                 <div class="d-flex flex-row justify-content-between" id="product-price">
                     <div class="">
                         <h3>
-                            @if ($product->discount)
+                            @if ($product->discount > 0)
                             <div class="col m-0 p-0">
-                                £{{sprintf("%0.2f",round(($product->cost)-($product->cost) * ($product->discount/100),2))}}
+                                £{{$finalCost}}
                                 <span class="product-badge badge py-1 px-2 ms-2">{{$product->discount}}% Off</span> 
                             </div>
                             
@@ -146,6 +147,7 @@
                     @csrf
                     @if ($product->amount > 0)
                         <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
+                            <input type="hidden" name="finalCost" value="{{$finalCost}}">
                             @php
                             $count=0;
                             @endphp

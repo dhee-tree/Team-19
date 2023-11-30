@@ -32,6 +32,7 @@ class ProductController extends Controller
             'categories' => $product->categories()->get(),
             'productImages' => explode(',', $product->images),
             'reviews' => $reviews,
+            'finalCost' => sprintf("%0.2f",round(($product->cost)-(($product->cost) * ($product->discount/100)),2)),
         ])->render();
     }
 }
