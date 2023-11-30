@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\User;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use App\Models\BasketProduct;
 
 class BasketController extends Controller
 {
@@ -48,13 +48,11 @@ class BasketController extends Controller
         ];
 
         foreach($basket->products as $basketItem){
-            $itemId = $basketItem->pivot->product_id;
-            $itemAmount = $basketItem->pivot->amount;
-            $itemAttributes = $basketItem->pivot->attributes;
-
-            if($itemAttributes == $data['attributes']){
-                $basket->products()->updateExistingPivot($itemId, [
-                    'amount' => $itemAmount + $data['amount'],
+            $basketItem = $basketItem->pivot;
+            
+            if($basketItem->attributes == $data['attributes']){
+                $basketItem->update([
+                    'amount' => $basketItem->amount + $data['amount'],
                 ]);
                 return back()->with('message', 'Item(s) added to basket.');
             }

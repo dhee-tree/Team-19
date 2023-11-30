@@ -21,7 +21,7 @@ class Basket extends Model
      */
     public function products()
     {
-        return $this->belongsToMany(Product::class,'basket_product','basket_id')->withPivot('amount','attributes')->withTimestamps();
+        return $this->belongsToMany(Product::class,'basket_product','basket_id')->withPivot('id','amount','attributes')->withTimestamps();
     }
 
     /**
