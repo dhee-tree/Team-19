@@ -40,3 +40,5 @@ Route::post('/basket/{product}', [BasketController::class,'store']);
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
 Route::view('/products', 'product-list');
+
+Route::view('/admin-panel', 'admin-panel');
