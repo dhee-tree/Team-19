@@ -64,4 +64,11 @@ class BasketController extends Controller
 
         return back()->with('message', 'Item(s) added to basket.');
     }
+
+    // Show the basket of the authenticated user.
+    function showBasket(){
+        // $basket = auth()->user()->basket;
+
+        return view('basket');
+    }
 }

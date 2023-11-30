@@ -31,6 +31,8 @@ Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.
 //Display single product
 Route::get('/product/{product}', [ProductController::class,'show']);
 
+// Basket URLS
+Route::get('/basket', [BasketController::class,'showBasket']);
 //Store product in basket
 Route::post('/basket/{product}', [BasketController::class,'store']);
 
