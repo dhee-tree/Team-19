@@ -57,7 +57,7 @@
                         </li>
                     </ul>
                     <li class="d-flex">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-basket-shopping fa-xl" style="margin-right:20px;"></i></a>
+                        <a class="nav-link" href="{{ url('basket') }}"><i class="fa-solid fa-basket-shopping fa-xl" style="margin-right:20px;"></i></a>
                     </li>
                     <li class="d-flex">
                         <a class="nav-link" href="#"><i class="fa-solid fa-user fa-xl" style="margin-right:10px;"></i></a>
@@ -90,7 +90,7 @@
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="{{ url('/') }}" class="nav-link p-0" style="color: #ffffff;">Home</a></li>
                             <li class="nav-item mb-2"><a href="products" class="nav-link p-0" style="color: #ffffff;">Products</a></li>
-                            <li class="nav-item mb-2"><a href="basket" class="nav-link p-0" style="color: #ffffff;">Basket</a></li>
+                            <li class="nav-item mb-2"><a href="{{ url('basket') }}" class="nav-link p-0" style="color: #ffffff;">Basket</a></li>
                             <li class="nav-item mb-2"><a href="team" class="nav-link p-0" style="color: #ffffff;">Meet the Team</a></li>
                         </ul>
                     </div>
