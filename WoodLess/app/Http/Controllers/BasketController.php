@@ -23,31 +23,31 @@ class BasketController extends Controller
         $attributes = [];
 
         $rules = [
-            'amount' => 'required',
-            'attributes' => 'required',
+            'amount' => 'required|numeric|not_in:0',
+            'attributes' => 'required|array',
         ];
 
         if($request->has('attribute-colours')){
             $rules['attribute-colours'] = 'required|not_in:0';
             $request->validate($rules);
 
-            $pairs = explode(':', $request['attribute-colours']);
+            $pairs = explode(':', $request->input('attribute-colours'));
             $attributes[$pairs[0]] = $pairs[1];
         };
 
         $request->validate($rules);
 
-        foreach($request['attributes'] as $attribute){
+        foreach($request->input('attributes') as $attribute){
             $pairs = explode(':', $attribute);
             $attributes[$pairs[0]] = $pairs[1];
         };
 
         $data = [
-            'amount' => $request['amount'],
+            'amount' => $request->input('amount'),
             'attributes' => json_encode($attributes),
         ];
 
-        foreach($basket->products as $basketItem){
+        foreach($basket->products->where('id', $product->id) as $basketItem){
             $basketItem = $basketItem->pivot;
             
             if($basketItem->attributes == $data['attributes']){
