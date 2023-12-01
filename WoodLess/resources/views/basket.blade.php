@@ -66,8 +66,9 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ url('/basket/' . $product->id) }}" method="POST">
+                                            <form action="{{ route('basket.destroy', $product->id) }}" method="POST">
                                                 @csrf
+                                                @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Remove</button>
                                             </form>
                                         </td>
