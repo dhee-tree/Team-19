@@ -5,11 +5,6 @@
     <link rel="stylesheet" href="{{ asset('css/product-display.css') }}">
 @endsection
 
-@section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="{{asset('js/reviews/loader.js')}}"></script>
-@endsection
-
 @php
     if ($product->id == 1){
         //Test code to give a product a category ('1' being the first category the the category table)
@@ -23,23 +18,13 @@
         $categories - The product's categories stored in the pivot table 'categories_product'
         $productImages - The file path of each image used for the product, stored in a String array
         $reviews - Rows from the 'reviews' table that match this product's id, stored in an Eloquent model (?) array, currently paginated by 5
+        $finalCost - Gets the final price, taking into account discount
     */
 @endphp
 
 @section('content')
     <div class="container">
-        @if(session('message'))
-        <hr class="mt-4">
-
-        <div class="row m-0 px-0">
-            <div class="col">
-                <p><i class="fa-solid fa-xs fa-check"></i> {{session('message')}}</p>
-            </div>
-        </div>
-
-        <hr class="mt-0">
-        @endif
-
+        @include('layouts.alert')
         <div class="row m-0 mt-3 px-1 pt-3" id="product-main">
             <div class="col-md-6 mb-3" id="gallery">
                 <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
@@ -127,9 +112,9 @@
                 <div class="d-flex flex-row justify-content-between" id="product-price">
                     <div class="">
                         <h3>
-                            @if ($product->discount)
+                            @if ($product->discount > 0)
                             <div class="col m-0 p-0">
-                                £{{sprintf("%0.2f",round(($product->cost)-($product->cost) * ($product->discount/100),2))}}
+                                £{{$finalCost}}
                                 <span class="product-badge badge py-1 px-2 ms-2">{{$product->discount}}% Off</span> 
                             </div>
                             
@@ -147,40 +132,50 @@
 
                 <hr class="mt-1">
 
-                <form class="row" action="" enctype="multipart/form-data">
+                <form class="row" method="POST" action="/basket/{{$product->id}}" enctype="multipart/form-data">
                     @csrf
                     @if ($product->amount > 0)
                         <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
+                            <input type="hidden" name="finalCost" value="{{$finalCost}}">
+                            @php
+                            $count=0;
+                            @endphp
                             @foreach ($attributes as $attribute => $values)
                                 @switch($attribute)
                                     @case('colour')
+                                        <input type="hidden" name="attribute-colours" value="0">
                                         @php $i=1; @endphp
                                         @foreach (explode(',', $values) as $value)
                                             <div class="form-check form-check-inline me-2 m-0">
-                                                <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-color" id="inlineRadio{{$i}}" value="{{$value}}">
+                                                <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-colours" id="inlineRadio{{$i}}" value='{{$attribute}}:{{$value}}'>
                                                 <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
                                             </div>
                                         @endforeach
+                                        @error('attribute-colours')
+                                            <label class="form-check-label me-2" for="inlineRadio{{$i}}">Please select a colour.</label>
+                                        @enderror
                                         @break
 
                                     @default
                                         <div class="me-2" id="attribute">
-                                            <select class="form-select py-0" name="attribute-{{$attribute}}" id="attribute-default">
-                                                <label for="attribute-{{$attribute}}" selected>{{ucfirst($attribute)}}</option>
+                                            <select class="form-select py-0" name="attributes[{{$count}}]" id="attribute">
+                                                <label for="attributes[{{$count}}]" selected>{{ucfirst($attribute)}}</option>
                                                 @foreach (explode(',', $values) as $value)
-                                                    <option value="{{$value}}">{{$value}}</option>
+                                                    <option value='{{$attribute}}:{{$value}}'>{{$value}}</option>
                                                 @endforeach
                                             </select>   
                                         </div>
                                     @break
                                 @endswitch
-    
+                                @php
+                                    $count++
+                                @endphp
                             @endforeach
                         </div>
 
                         <div class="d-flex my-1 align-items-center" id="product-submit">
                             <div class="me-2">
-                                <select class="form-select py-1" name="quantity">
+                                <select class="form-select py-1" name="amount">
                                     @for ($i = 0; $i < $product->amount; $i++)
                                         <option value="{{$i+1}}">{{$i+1}}</option>
                                     @endfor
@@ -275,9 +270,7 @@
 
         <hr class="mb-1">
 
-        @if (count($reviews) > 0)
-            @include('reviews.load')
-        @endif
+        @include('reviews.load')
     </div>
 @endsection
 

@@ -11,21 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('basket_product', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('rating');
-            $table->longText('description');
+            $table->unsignedBigInteger('basket_id');
+            $table->unsignedBigInteger('product_id');
+            //$table->primary(['basket_id', 'product_id']);
+            $table->integer('amount')->default(1);
             $table->json('attributes')->nullable();
             $table->timestamps();
         });
 
         // Add foregin key constraint
-        Schema::table('reviews', function (Blueprint $table) {
-            
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('product_id');
+        Schema::table('basket_product', function (Blueprint $table) {
+            $table->foreign('basket_id')->references('user_id')->on('baskets')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
@@ -35,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        //
     }
 };
