@@ -9,11 +9,53 @@
                 Sort
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['sort'=>'created_at', 'order'=>'asc'])}}#reviews">Most Recent</a></li>
+                <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['sort'=>'created_at', 'order'=>'desc'])}}#reviews">Most Recent</a></li>
                 <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (High to Low)</a></li>
                 <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (Low to High)</a></li>
             </ul>
         </div>
+    </div>
+
+    <div class="container">
+        <form method="POST" action="/review/{{$product->id}}" class="row card mb-3 p-0 mx-0">
+            @csrf
+            <div class="card-body">
+                <div class="d-flex flex-row">
+                    <div class="">
+                        <img src="{{asset('images/no-image.svg')}}" width="60" alt="">
+                    </div>
+
+                    <div class="vr mx-2"></div>
+
+                    <div class="">
+                        <h6 class="card-title">{{'first'}} {{'last'}}</h6>
+                        <h6 class="card-subtitle d-flex flex-row">
+                            <i class="fa-solid fa-star" style="color: #000000;"> </i> 
+                            <select class="form-select form-select-sm" name="rating" aria-label="Default select example">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option selected value="5">5</option>
+                            </select>
+                        </h6>
+                    </div>
+                </div>
+                
+                <hr>
+
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="card-footer">
+                <div class="d-flex flex-row justify-content-end">
+                    <div class="">
+                        <button type="submit" class="btn p-0">
+                            <small><i class="fa-solid fa-small fa-check"></i> Submit</small>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
     @foreach ($reviews as $review)
@@ -47,7 +89,12 @@
             <div class="card-footer">
                 <div class="d-flex flex-row justify-content-between">
                     <div class="">
-                        <p class="card-text"><small class="text-body-secondary">{{$review->created_at->diffInDays()}} Days Ago</small></p>
+                        <p class="card-text"><small class="text-body-secondary">
+                            {{$review->created_at->diffInDays()}} Days Ago 
+                            @if($review->created_at != $review->updated_at)
+                            , Edited 
+                            @endif
+                        </small></p>
                     </div>
                     <div class="">
                         <form method="POST" action="/review/{{$review->id}}">
