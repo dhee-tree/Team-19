@@ -15,10 +15,10 @@ class BasketController extends Controller
      */
     function store(Request $request, Product $product){
 
-        //$user = auth()->user()->basket;
+        //$basket = auth()->user()->basket;
 
         //Currently stores in first basket in db.
-        $basket = User::where("id", 1)->first()->basket;
+        $basket = Basket::where('user_id', 1)->first();
         $basket->loadMissing('products');
 
         $attributes = [];
@@ -75,14 +75,9 @@ class BasketController extends Controller
     }
 
     // Delete a product from the basket.
-    function destroy(Product $product){
-        $basket = Basket::where('user_id', 1)->first();
+    function destroy(Request $request, Basket $basket){
         $basket->loadMissing('products');
-
-        foreach($basket->products->where('id', $product->id) as $basketItem){
-            $basketItem = $basketItem->pivot;
-            $basketItem->delete();
-        };
+        $basket->products()->wherePivot('id', $request->input('id'))->first()->pivot->delete();
 
         return back()->with('message', 'Item removed from basket.');
     }

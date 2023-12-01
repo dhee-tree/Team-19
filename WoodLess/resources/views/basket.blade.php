@@ -66,9 +66,10 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('basket.destroy', $product->id) }}" method="POST">
+                                            <form action="{{ route('basket.destroy', $basket) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
+                                                <input type="hidden" name="id" value="{{ $product->pivot->id }}">
                                                 <button type="submit" class="btn btn-danger">Remove</button>
                                             </form>
                                         </td>
