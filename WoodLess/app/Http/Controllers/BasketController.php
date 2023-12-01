@@ -55,13 +55,19 @@ class BasketController extends Controller
                 $basketItem->update([
                     'amount' => $basketItem->amount + $data['amount'],
                 ]);
-                return back()->with('message', 'Item(s) added to basket.');
+                return back()->with([
+                    'status' => 'success',
+                    'message' => 'Item(s) added to basket.'
+                ]);
             }
         };
         
         $basket->products()->attach($product, $data);
 
-        return back()->with('message', 'Item(s) added to basket.');
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Item(s) added to basket.'
+        ]);
     }
 
     // Show the basket of the authenticated user.
