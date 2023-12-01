@@ -270,9 +270,7 @@
 
         <hr class="mb-1">
 
-        @if (count($reviews) > 0)
-            @include('reviews.load')
-        @endif
+        @include('reviews.load')
     </div>
 @endsection
 
