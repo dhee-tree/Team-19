@@ -1,0 +1,7 @@
+.colour-square {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    display: inline-block;
+    margin-right: 5px;
+}

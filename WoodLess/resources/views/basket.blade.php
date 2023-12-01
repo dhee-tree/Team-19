@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title', 'WoodLess - Contact Us')
+@section('title', 'WoodLess - Your basket')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/basket.css') }}">
@@ -9,7 +9,85 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Your Basket</h1>
+                <h1>{{ $basket->user->first_name }}'s Basket</h1>
+                <hr>
+                @if(session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
+                <h2>You have {{ $basket->products->count() }} items in your basket</h2>
+
+                <div class="table-responsive"> 
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Amount</th>
+                                <th>Price</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($basket->products as $product)
+                                <tr>
+                                    <td>
+                                        <img src="{{ asset('images/products/' . $product->images) }}" alt="product image" class="img-fluid">
+                                        <h5>{{ $product->title }}</h5>
+                                        <p>{{ $product->description }}</p>
+                                        @foreach(json_decode($product->pivot->attributes) as $key => $value)
+                                            @if ($key == "colour") 
+                                                <div class="colour-square" style="background-color: {{ $value }};"></div>
+                                            @elseif ($key == "size")
+                                                <p>{{ $key }}: {{ $value }}</p>
+                                            @endif
+                                            
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @if($product->discount > 0)
+                                            <p><s>£{{ $product->cost }}</s></p>
+                                            <?php $discountPrice = round($product->cost - ($product->cost * ($product->discount / 100)), 2) ?>
+                                            <p>£{{ $discountPrice }}</p>
+                                        @else
+                                            <p>£{{ $product->cost }}</p>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <p>Quantity: {{ $product->pivot->amount }}</p>
+                                        <p>Total: £{{ $product->pivot->amount * $discountPrice }}</p>
+                                        <form action="/basket/{{ $product->id }}" method="POST">
+                                            @csrf
+                                            <input type="number" name="amount" value="{{ $product->pivot->amount }}" min="1" max="10">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form action="{{ url('/basket/' . $product->id) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger">Remove</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                <tr>
+                                    <td>
+                                        <h2>Total cost: </h2>
+                                    </td>
+                                    <td colspan="3">
+                                        <p>£{{ $basket->products->sum(function($product){
+                                            if($product->discount > 0){
+                                                return round($product->cost - ($product->cost * ($product->discount / 100)), 2) * $product->pivot->amount;
+                                            }else{
+                                                return $product->cost * $product->pivot->amount;
+                                            }
+                                        }) }}</p>
+                                        
+                                    </td>
+                                </tr>
+                    </table>
+                </div>
+
             </div>  
         </div>  
     </div>  
