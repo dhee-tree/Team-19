@@ -32,9 +32,11 @@ Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.
 Route::get('/product/{product}', [ProductController::class,'show']);
 
 // Basket URLS
-Route::get('/basket', [BasketController::class,'showBasket']);
+Route::get('/basket', [BasketController::class,'show']);
 //Store product in basket
 Route::post('/basket/{product}', [BasketController::class,'store']);
+// Delete product from basket
+Route::delete('/basket/{product}', [BasketController::class,'destroy'])->name('basket.destroy');
 
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);

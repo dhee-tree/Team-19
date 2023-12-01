@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\BasketProduct;
+use App\Models\Basket;
 
 class BasketController extends Controller
 {
@@ -64,9 +65,25 @@ class BasketController extends Controller
     }
 
     // Show the basket of the authenticated user.
-    function showBasket(){
-        // $basket = auth()->user()->basket;
+    function show(){
+        $basket = Basket::where('user_id', 1)->first();
+        $basket->loadMissing('products');
 
-        return view('basket');
+        return view('basket', [
+            'basket' => $basket,
+        ]);
+    }
+
+    // Delete a product from the basket.
+    function destroy(Product $product){
+        $basket = Basket::where('user_id', 1)->first();
+        $basket->loadMissing('products');
+
+        foreach($basket->products->where('id', $product->id) as $basketItem){
+            $basketItem = $basketItem->pivot;
+            $basketItem->delete();
+        };
+
+        return back()->with('message', 'Item removed from basket.');
     }
 }
