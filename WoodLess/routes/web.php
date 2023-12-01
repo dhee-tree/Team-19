@@ -38,6 +38,8 @@ Route::post('/basket/{product}', [BasketController::class,'store']);
 // Delete product from basket
 Route::delete('/basket/{product}', [BasketController::class,'destroy'])->name('basket.destroy');
 
+//Store single review
+Route::post('/review/{product}', [ReviewController::class,'store']);
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
