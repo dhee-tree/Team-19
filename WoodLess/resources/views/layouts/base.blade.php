@@ -34,7 +34,7 @@
     <div class="">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
             <div class="container-fluid">
-                <a class="navbar-brand" style="margin-left:4px" href="#">WoodLess</a>
+                <a class="navbar-brand" style="margin-left:4px" href="#"><img class="logo" src="{{ asset('images\logo.png') }}" alt="Woodless Logo" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -57,7 +57,7 @@
                         </li>
                     </ul>
                     <li class="d-flex">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-basket-shopping fa-xl" style="margin-right:20px;"></i></a>
+                        <a class="nav-link" href="{{ url('basket') }}"><i class="fa-solid fa-basket-shopping fa-xl" style="margin-right:20px;"></i></a>
                     </li>
                     <li class="d-flex">
                         <a class="nav-link" href="#"><i class="fa-solid fa-user fa-xl" style="margin-right:10px;"></i></a>
@@ -90,7 +90,7 @@
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="{{ url('/') }}" class="nav-link p-0" style="color: #ffffff;">Home</a></li>
                             <li class="nav-item mb-2"><a href="products" class="nav-link p-0" style="color: #ffffff;">Products</a></li>
-                            <li class="nav-item mb-2"><a href="basket" class="nav-link p-0" style="color: #ffffff;">Basket</a></li>
+                            <li class="nav-item mb-2"><a href="{{ url('basket') }}" class="nav-link p-0" style="color: #ffffff;">Basket</a></li>
                             <li class="nav-item mb-2"><a href="team" class="nav-link p-0" style="color: #ffffff;">Meet the Team</a></li>
                         </ul>
                     </div>

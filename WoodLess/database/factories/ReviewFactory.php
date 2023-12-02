@@ -20,7 +20,6 @@ class ReviewFactory extends Factory
     {   
         $sizes = ['S', 'M', 'L'];
         return [
-            'title' => fake()->colorName(),
             'rating' => fake()->numberBetween(1,5),
             'description' => fake()->paragraph(5),
             'attributes' => json_encode(["colour" => fake()->colorName(), "size" => $sizes[rand(0, count($sizes) -1)]]),
