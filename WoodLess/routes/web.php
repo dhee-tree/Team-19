@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ContactController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,18 @@ Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.
 //Display single product
 Route::get('/product/{product}', [ProductController::class,'show']);
 
+// Basket URLS
+Route::get('/basket', [BasketController::class,'show']);
+//Store product in basket
+Route::post('/basket/{product}', [BasketController::class,'store']);
+// Delete product from basket
+Route::delete('/basket/{product}', [BasketController::class,'destroy'])->name('basket.destroy');
+
+//Store single review
+Route::post('/review/{product}', [ReviewController::class,'store']);
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
 Route::view('/products', 'product-list');
+
+Route::view('/admin-panel', 'admin-panel');
