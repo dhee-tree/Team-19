@@ -36,7 +36,7 @@
                                 @foreach($basket->products as $product)
                                     <tr>
                                         <td>
-                                            <img src="{{ asset('images/products/' . $product->images) }}" alt="product image" class="img-fluid">
+                                            <img src="{{ 'images/'.explode(',', $product->images)[0] }}" alt="product image" class="img-fluid">
                                             <h5>{{ $product->title }}</h5>
                                             <p>{{ $product->description }}</p>
                                             @foreach(json_decode($product->pivot->attributes) as $key => $value)
