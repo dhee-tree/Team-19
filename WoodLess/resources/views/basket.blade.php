@@ -36,7 +36,7 @@
                                 @foreach($basket->products as $product)
                                     <tr>
                                         <td>
-                                            <img src="{{ asset('images/products/' . $product->images) }}" alt="product image" class="img-fluid">
+                                            <img src="{{ 'images/'.explode(',', $product->images)[0] }}" alt="product image" class="img-fluid">
                                             <h5>{{ $product->title }}</h5>
                                             <p>{{ $product->description }}</p>
                                             @foreach(json_decode($product->pivot->attributes) as $key => $value)
@@ -66,9 +66,10 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <form action="{{ route('basket.destroy', $product->id) }}" method="POST">
+                                            <form action="{{ route('basket.destroy', $basket) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
+                                                <input type="hidden" name="id" value="{{ $product->pivot->id }}">
                                                 <button type="submit" class="btn btn-danger">Remove</button>
                                             </form>
                                         </td>
