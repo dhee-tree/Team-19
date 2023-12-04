@@ -1,12 +1,16 @@
 @extends('layouts.base')
 @section('title', 'WoodLess - User Panel')
 
+@section('style')
+<link rel="stylesheet" href="{{ asset('css/user-panel.css')}}">
+@endsection
+
 @section('content')
 <body>
     <!-- Code for sidebar -->
     <div class="wrapper">
         <aside id="sidebar">
-            <div class="sidebar">
+            <div class="sidebar-list">
                 <div class="heading">
                     <div>Hi, Welcome back to your account.
                     </div>
