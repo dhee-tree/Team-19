@@ -36,7 +36,7 @@ Route::get('/basket', [BasketController::class,'show']);
 //Store product in basket
 Route::post('/basket/{product}', [BasketController::class,'store']);
 // Delete product from basket
-Route::delete('/basket/{product}', [BasketController::class,'destroy'])->name('basket.destroy');
+Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('basket.destroy');
 
 //Store single review
 Route::post('/review/{product}', [ReviewController::class,'store']);
