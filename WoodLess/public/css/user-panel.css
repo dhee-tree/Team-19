@@ -78,45 +78,49 @@
 
 /* Carrousel */
 #CustomersAlsoBought {
-    background-color: #f8f9fa; /* Light grey background to match the wireframe */
+    background-color: #f8f9fa; 
     width: 80%;
     margin: auto;
 }
 
+.py-5 {
+    padding-top: 1rem!important;
+}
+
 #CustomersAlsoBought .container-fluid {
-    padding: 0; /* Remove default padding */
+    padding: 0; 
 }
 
 #CustomersAlsoBought .carousel {
-    padding: 0; /* Remove padding around the carousel */
+    padding: 0;
 }
 
 #CustomersAlsoBought .carousel-inner {
     position: relative;
-    width: 90%; /* Make the carousel occupy less width */
-    margin: auto; /* Center the carousel */
+    width: 90%; 
+    margin: auto; 
 }
 
 #CustomersAlsoBought .carousel-item {
-    transition: transform 0.2s ease-in-out; /* Smooth transition for sliding */
+    transition: transform 0.2s ease-in-out; 
 }
 
 #CustomersAlsoBought .carousel-item img {
-    width: 100%; /* Ensures the image takes the full width of the carousel-item */
-    height: auto; /* Keeps the image aspect ratio */
-    object-fit: cover; /* Ensures the images cover the area without stretching */
+    width: 100%; 
+    height: auto; 
+    object-fit: cover; 
 }
 
 #CustomersAlsoBought .carousel-control-prev,
 #CustomersAlsoBought .carousel-control-next {
-    width: 4%; /* Further reduce hit area for carousel controls */
+    width: 4%; 
 }
 
 #CustomersAlsoBought .carousel-indicators button {
     width: 10px;
     height: 10px;
-    border-radius: 100%; /* Makes the indicators circular */
-    background-color: #333; /* Dark color for indicators */
+    border-radius: 100%; 
+    background-color: #333; 
 }
 
 
@@ -127,25 +131,25 @@
     }
 
     #sidebar {
-        width: 100%; /* Sidebar takes full width on smaller screens */
-        height: auto; /* Adjust height automatically */
-        min-height: 0; /* Override min-height */
+        width: 100%; 
+        height: auto; 
+        min-height: 0; 
     }
 
     #CustomersAlsoBought {
-        order: 3; /* Ensure the carousel is placed after the banner */
+        order: 3; 
     }
 
     #CustomersAlsoBought .carousel-inner {
-        width: 100%; /* Carousel takes full width on smaller screens */
+        width: 100%; 
     }
     
     #CustomersAlsoBought .carousel-control-prev,
     #CustomersAlsoBought .carousel-control-next {
-        width: 10%; /* Larger hit area for carousel controls on mobile */
+        width: 10%; 
     }
 
     .banner {
-        order: 2; /* Ensure the banner is placed after the sidebar */
+        order: 2; 
     }
 }

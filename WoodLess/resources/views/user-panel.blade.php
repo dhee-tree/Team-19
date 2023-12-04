@@ -55,8 +55,6 @@
             </div>
         </aside>
 
-
-
         <!-- Main content -->
         <div class="main content">
             <!-- Code for banner -->
