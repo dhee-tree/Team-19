@@ -1,7 +1,10 @@
 .wrapper {
     display: flex;
+    min-height: 100vh;
 }
 
+
+/* Sidebar */
 #sidebar {
     width: 250px;
     background: #343a40;
@@ -9,18 +12,19 @@
     min-height: 100vh;
 }
 
-.sidebar-list{
+.heading {
     padding: 20px;
+    margin-top: 2vh;
 }
 
-.heading {
+.sidebar {
     list-style-type: none;
-    padding: 0;
-    margin: 0;
+    padding: 10px;
 }
 
 .sidebar-item {
     border-bottom: ipx solid #495057;
+    padding: 10px 0;
 }
 
 .sidebar-link {
@@ -46,13 +50,102 @@
     background-color: #495057;
 }
 
+
+/* Banner */
+.banner {
+    background-color: #e9ecef; 
+    color: #333; 
+    padding: 2rem;
+    margin: 0rem; 
+    text-align: center; 
+}
+
+.banner h1 {
+    margin: 0; 
+    padding: 0.5rem 0; 
+    font-size: 1.5rem; 
+    font-weight: bold; 
+    color: inherit; 
+}
+
+.banner p {
+    margin: 0; 
+    padding: 0.25rem 0; 
+    font-size: 1rem; 
+    color: inherit; 
+}
+
+
+/* Carrousel */
+#CustomersAlsoBought {
+    background-color: #f8f9fa; /* Light grey background to match the wireframe */
+    width: 80%;
+    margin: auto;
+}
+
+#CustomersAlsoBought .container-fluid {
+    padding: 0; /* Remove default padding */
+}
+
+#CustomersAlsoBought .carousel {
+    padding: 0; /* Remove padding around the carousel */
+}
+
+#CustomersAlsoBought .carousel-inner {
+    position: relative;
+    width: 90%; /* Make the carousel occupy less width */
+    margin: auto; /* Center the carousel */
+}
+
+#CustomersAlsoBought .carousel-item {
+    transition: transform 0.2s ease-in-out; /* Smooth transition for sliding */
+}
+
+#CustomersAlsoBought .carousel-item img {
+    width: 100%; /* Ensures the image takes the full width of the carousel-item */
+    height: auto; /* Keeps the image aspect ratio */
+    object-fit: cover; /* Ensures the images cover the area without stretching */
+}
+
+#CustomersAlsoBought .carousel-control-prev,
+#CustomersAlsoBought .carousel-control-next {
+    width: 4%; /* Further reduce hit area for carousel controls */
+}
+
+#CustomersAlsoBought .carousel-indicators button {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%; /* Makes the indicators circular */
+    background-color: #333; /* Dark color for indicators */
+}
+
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    #sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-    .wrapper{
+    .wrapper {
         flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%; /* Sidebar takes full width on smaller screens */
+        height: auto; /* Adjust height automatically */
+        min-height: 0; /* Override min-height */
+    }
+
+    #CustomersAlsoBought {
+        order: 3; /* Ensure the carousel is placed after the banner */
+    }
+
+    #CustomersAlsoBought .carousel-inner {
+        width: 100%; /* Carousel takes full width on smaller screens */
+    }
+    
+    #CustomersAlsoBought .carousel-control-prev,
+    #CustomersAlsoBought .carousel-control-next {
+        width: 10%; /* Larger hit area for carousel controls on mobile */
+    }
+
+    .banner {
+        order: 2; /* Ensure the banner is placed after the sidebar */
     }
 }
