@@ -19,7 +19,7 @@ class ProductController extends Controller
         
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
-            request('order') ?? 'asc'
+            request('order') ?? 'desc'
         )->paginate(5)->withQueryString()->fragment('reviews');
 
         if ($request->ajax()) {

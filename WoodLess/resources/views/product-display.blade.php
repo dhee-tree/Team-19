@@ -24,18 +24,7 @@
 
 @section('content')
     <div class="container">
-        @if(session('message'))
-        <hr class="mt-4">
-
-        <div class="row m-0 px-0">
-            <div class="col">
-                <p><i class="fa-solid fa-xs fa-check"></i> {{session('message')}}</p>
-            </div>
-        </div>
-
-        <hr class="mt-0">
-        @endif
-
+        @include('layouts.alert')
         <div class="row m-0 mt-3 px-1 pt-3" id="product-main">
             <div class="col-md-6 mb-3" id="gallery">
                 <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
@@ -281,9 +270,7 @@
 
         <hr class="mb-1">
 
-        @if (count($reviews) > 0)
-            @include('reviews.load')
-        @endif
+        @include('reviews.load')
     </div>
 @endsection
 
