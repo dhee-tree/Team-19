@@ -5,6 +5,7 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,9 @@ Route::get('/basket', [BasketController::class,'show']);
 Route::post('/basket/{product}', [BasketController::class,'store']);
 // Delete product from basket
 Route::delete('/basket/{product}', [BasketController::class,'destroy'])->name('basket.destroy');
+
+// Checkout URLS
+Route::get('/checkout', [CheckoutController::class,'show']);
 
 //Store single review
 Route::post('/review/{product}', [ReviewController::class,'store']);
