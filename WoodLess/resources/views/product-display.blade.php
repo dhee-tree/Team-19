@@ -260,6 +260,11 @@
                 <div class="">
                     <h4 class="p-0 m-0">Similar Products</h4>
                 </div>
+
+                @foreach ($similarProducts as $similarProduct)
+                    <p>{{$similarProduct->title}}</p>
+                @endforeach
+
             </div>
         </div>
 
