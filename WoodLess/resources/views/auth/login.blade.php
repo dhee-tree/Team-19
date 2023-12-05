@@ -1,6 +1,6 @@
 @extends('layouts.base')
 
-@section('title', 'WoodLess - About Us')
+@section('title', 'WoodLess - Login')
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/about.css') }}">
