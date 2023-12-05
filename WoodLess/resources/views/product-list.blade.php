@@ -25,7 +25,7 @@
             <div class="container-fluid">
                 <h1>Products</h1>
                 <div class="row">
-                    <div class="col min-vh-100 py-3">
+                    <div class="colpy-3">
                         <!-- toggler -->
                         <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
                             <i class="fa-solid fa-arrow-right fs-3" data-bs-toggle="offcanvas"
