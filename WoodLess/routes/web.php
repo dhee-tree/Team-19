@@ -46,3 +46,7 @@ Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 Route::view('/products', 'product-list');
 
 Route::view('/admin-panel', 'admin-panel');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
