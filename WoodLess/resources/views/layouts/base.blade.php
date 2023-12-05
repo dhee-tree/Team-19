@@ -60,7 +60,7 @@
                         <a class="nav-link" href="{{ url('basket') }}"><i class="fa-solid fa-basket-shopping fa-xl" style="color:#e8e8e8; margin-right:20px;"></i></a>
                     </li>
                     <li class="d-flex">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
+                        <a class="nav-link" href="{{ url('login') }}"><i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
                     </li>
                 </div>
             </div>

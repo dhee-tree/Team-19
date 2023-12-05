@@ -1,4 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.base')
+
+@section('title', 'WoodLess - About Us')
+
+@section('style')
+<link rel="stylesheet" href="{{ asset('css/about.css') }}">
+@endsection
 
 @section('content')
 <div class="container">
