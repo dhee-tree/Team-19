@@ -30,6 +30,14 @@ class Product extends Model
     }
 
     /**
+     * Returns the baskets that belong to the product.
+     */
+    public function baskets()
+    {
+        return $this->belongsToMany(Basket::class)->withPivot('id','amount','attributes')->withTimestamps();
+    }
+
+    /**
      * Returns the categories associated with the product.
      */
     public function categories()
