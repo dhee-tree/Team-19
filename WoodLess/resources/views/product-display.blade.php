@@ -91,7 +91,7 @@
                         <div class="d-flex flex-row">
                             <div class="" id="product-categories">
                                 @foreach ($categories as $category)
-                                    <a class="category-button btn btn-dark px-1 py-0" role="button" href="">{{$category->category}}</a>
+                                    <a class="category-button btn btn-dark px-1 py-0" role="button" href="/categories/{{lcfirst($category->category)}}">{{$category->category}}</a>
                                 @endforeach  
                             </div>
                         </div>
@@ -254,18 +254,13 @@
                 <hr class="mt-3 mb-0 d-none d-xl-block">
             </div>
         </div>
-
-        <div class="row d-none" id="similar-products">
-        </div>
-
-        <div class="row d-none" id="create-review">
+        
+        <div class="row px-3" id="similar-products">
             <div class="col">
-                <h3>Add a Review</h3>
+                <div class="">
+                    <h4 class="p-0 m-0">Similar Products</h4>
+                </div>
             </div>
-
-            <form action="">
-
-            </form>
         </div>
 
         <hr class="mb-1">
