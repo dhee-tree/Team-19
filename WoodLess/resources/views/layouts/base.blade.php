@@ -60,7 +60,18 @@
                         <a class="nav-link" href="{{ url('basket') }}"><i class="fa-solid fa-basket-shopping fa-xl" style="color:#e8e8e8; margin-right:20px;"></i></a>
                     </li>
                     <li class="d-flex">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
+                        @guest
+                            <a class="nav-link" href="{{ url('login') }}"><i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
+                        @else
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                <i class="fa-solid fa-arrow-right-from-bracket fa-xl" style="color:#e8e8e8; margin-right:10px;"></i>
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
+                                @csrf
+                            </form>
+                        @endguest
                     </li>
                 </div>
             </div>
