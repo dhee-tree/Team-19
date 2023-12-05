@@ -2,11 +2,21 @@
 @section('title', 'WoodLess - Products')
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/item-filter.css') }}">
+<link rel="stylesheet" href="{{ asset('css/product-list-page.css') }}">
 @endsection
 
 @section('content')
 
 <div class="container-fluid">
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Products</h2>
+                <p class="display-5 mb-2 mb-md-3 text-center">Please take your time and enjoy!</p>
+                <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-3">
 
