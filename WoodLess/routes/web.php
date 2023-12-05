@@ -43,7 +43,7 @@ Route::post('/review/{product}', [ReviewController::class,'store']);
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
-Route::view('/products', 'product-list');
+Route::get('/products', [ProductController::class,'index']);
 
 Route::view('/admin-panel', 'admin-panel');
 

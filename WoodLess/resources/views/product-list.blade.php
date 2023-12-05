@@ -6,7 +6,6 @@
 @endsection
 
 @section('content')
-
 <div class="container-fluid">
     <div class="container-fluid">
         <div class="row justify-content-md-center">
@@ -26,7 +25,8 @@
 
                 <div class="row">
                     <div class="container px-4 px-lg-5 mt-5">
-                        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+                            @foreach ($products as $product)
                             <div class="col mb-5">
                                 <div class="card h-100">
                                     <!-- Sale badge-->
@@ -39,18 +39,22 @@
                                     <div class="card-body p-4">
                                         <div class="text-center">
                                             <!-- Product name-->
-                                            <h5 class="fw-bolder">Fancy Product</h5>
+                                            <h5 class="fw-bolder">{{ $product->title }}</h5>
                                             <!-- Product price-->
-                                            $40.00 - $80.00
+                                            £{{ $product->cost }}
                                         </div>
                                     </div>
                                     <!-- Product actions-->
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View
-                                                options</a></div>
+                                        <div class="row text-center">
+                                            <div class="col"><a class="btn btn-outline-dark" href="/product/{{ $product->id }}">View Product</a></div>
+                                            
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
