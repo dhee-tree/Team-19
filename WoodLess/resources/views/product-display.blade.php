@@ -262,9 +262,9 @@
                 </div>
 
                 @foreach ($similarProducts as $similarProduct)
-                    <p>{{$similarProduct->title}}</p>eee
+                    <p>{{$similarProduct->title}}</p>
                 @endforeach
-                
+
             </div>
         </div>
 
