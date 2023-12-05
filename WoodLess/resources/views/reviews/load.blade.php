@@ -123,29 +123,3 @@
           </nav>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        $('#pageSelector').on('click', '.pagination a', function (e) {
-            e.preventDefault();
-            let url = $(this).attr('href');
-
-            $.ajax({
-                url: url,
-                type: 'GET',
-                success: function (response) {
-                    let newContent = $(response).find('#reviews').html();
-                    let newPagination = $(response).find('#pageSelector').html();
-
-                    $('#reviews').html(newContent);
-                    $('#pageSelector').html(newPagination);
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        });
-    });
-</script>

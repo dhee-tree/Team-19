@@ -265,7 +265,7 @@
 
         <hr class="mb-1">
 
-        @include('reviews.load', ['product' => $product])
+        @include('reviews.load')
     </div>
 @endsection
 
