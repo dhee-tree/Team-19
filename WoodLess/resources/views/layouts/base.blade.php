@@ -57,10 +57,10 @@
                         </li>
                     </ul>
                     <li class="d-flex">
-                        <a class="nav-link" href="{{ url('basket') }}"><i class="fa-solid fa-basket-shopping fa-xl" style="margin-right:20px;"></i></a>
+                        <a class="nav-link" href="{{ url('basket') }}"><i class="fa-solid fa-basket-shopping fa-xl" style="color:#e8e8e8; margin-right:20px;"></i></a>
                     </li>
                     <li class="d-flex">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-user fa-xl" style="margin-right:10px;"></i></a>
+                        <a class="nav-link" href="#"><i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
                     </li>
                 </div>
             </div>
@@ -69,7 +69,6 @@
         <main>
             @yield('content')
         </main>
-
 
         <footer class="border-top bg-dark">
             <div class="container-fluid">
@@ -80,13 +79,10 @@
                         </a>
                         <p class="ps-4" style="color: #a9a9a9;">© 2023</p>
                     </div>
-
                     <div class="col">
-
                     </div>
-
                     <div class="col">
-                        <h5 class="fw-bold">Site Map</h5>
+                        <h5 class="fw-bold" style="color: #e8e8e8">Site Map</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="{{ url('/') }}" class="nav-link p-0" style="color: #ffffff;">Home</a></li>
                             <li class="nav-item mb-2"><a href="products" class="nav-link p-0" style="color: #ffffff;">Products</a></li>
