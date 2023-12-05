@@ -34,4 +34,10 @@ class ProductController extends Controller
             'finalCost' => sprintf("%0.2f",round(($product->cost)-(($product->cost) * ($product->discount/100)),2)),
         ])->render();
     }
-}
+    public function index(){
+        $products= Product::all();
+        return view('product-list', ['products' => $products]);
+    }
+    }
+
+
