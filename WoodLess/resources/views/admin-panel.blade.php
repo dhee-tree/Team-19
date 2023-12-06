@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{asset('views/orders-admin.blade.php')}}" class="sidebar-link">
                             <i class="fa-solid fa-list pe-2"></i>
                             Orders
                         </a>
@@ -53,6 +53,9 @@
         <div class="main">
             <div class="container">
                 <div class="row">
+                    <div class="section-header">
+                        <span><h2>Recent Orders</h2></span>
+                    </div>
                     <div class="card">
                         <div class="table-responsive">
                             <table class="table align-items-center mb-0">
@@ -71,6 +74,33 @@
                                             <p class="text-xs mb-0">910928302</p>
                                         </td>
                                         <td><p class="text-xs mb-0">Product name</p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="section-header">
+                        <span><h2>Support tickets</h2></span>
+                    </div>
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Ticket number</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Message</th>
+                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
+                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Username</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="text-xs mb-0">00042</p>
+                                        </td>
+                                        <td><p class="text-xs mb-0">Sign-in issue</p></td>
                                     </tr>
                                 </tbody>
                             </table>
