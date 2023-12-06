@@ -13,7 +13,7 @@
                     <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                         <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
                         <li class="icon mx-3"><span class="fa-regular fa-heart"></span></li>
-                        <li class="icon"><span class="fa-solid fa-cart-shopping"></span></li>
+                        <li class="icon"><span class="fa-solid fa-basket-shopping"></span></li>
                     </ul>
                 </div>
                 <div class="title pt-4 pb-1">Product name</div>
@@ -25,7 +25,7 @@
                     <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                         <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
                         <li class="icon mx-3"><span class="fa-regular fa-heart"></span></li>
-                        <li class="icon"><span class="fa-solid fa-cart-shopping"></span></li>
+                        <li class="icon"><span class="fa-solid fa-basket-shopping"></span></li>
                     </ul>
                 </div>
                 <div class="title pt-4 pb-1">Product name</div>
@@ -37,7 +37,7 @@
                     <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                         <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
                         <li class="icon mx-3"><span class="fa-regular fa-heart"></span></li>
-                        <li class="icon"><span class="fa-solid fa-cart-shopping"></span></li>
+                        <li class="icon"><span class="fa-solid fa-basket-shopping"></span></li>
                     </ul>
                 </div>
                 <div class="title pt-4 pb-1">Product name</div>
@@ -49,7 +49,7 @@
                     <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
                         <li class="icon"><span class="fas fa-expand-arrows-alt"></span></li>
                         <li class="icon mx-3"><span class="fa-regular fa-heart"></span></li>
-                        <li class="icon"><span class="fa-solid fa-cart-shopping"></span></li>
+                        <li class="icon"><span class="fa-solid fa-basket-shopping"></span></li>
                     </ul>
                 </div>
                 <div class="title pt-4 pb-1">Product name</div>
