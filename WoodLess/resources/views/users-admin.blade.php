@@ -71,12 +71,12 @@
                             <table class="table datatable-table align-items-center mb-0">
                                 <thead class="datatable">
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Order Number</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Product</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Time</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Estimated Delivery</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">User</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Warehouse</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">First Name</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Last Name</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Email</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Phone Number</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Role</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="datatable-body">
