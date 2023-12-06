@@ -64,7 +64,7 @@
             <div class="container">
                 <div class="card mb-4">
                     <div class="card-header pb-0 font-weight-bolder">
-                        <h6>Orders</h6>
+                        <h6>Users</h6>
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="datatable table-responsive datatable-inner ps">
