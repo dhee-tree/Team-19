@@ -61,16 +61,9 @@
                     </li>
                     <li class="d-flex">
                         @guest
-                            <a class="nav-link" href="{{ url('login') }}"><i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
+                            <a class="nav-link" href="{{ url('login') }}"><i class="fa-solid fa-unlock fa-flip-horizontal fa-2xl" style="color: #e8e8e8;"></i></a>
                         @else
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                                <i class="fa-solid fa-arrow-right-from-bracket fa-xl" style="color:#e8e8e8; margin-right:10px;"></i>
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
-                                @csrf
-                            </form>
+                            <a class="nav-link" href="{{ url('user-panel') }}"> <i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
                         @endguest
                     </li>
                 </div>
