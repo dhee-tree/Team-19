@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{asset('views/orders-admin.blade.php')}}" class="sidebar-link">
+                        <a href="{{url('/admin-panel/orders')}}" class="sidebar-link">
                             <i class="fa-solid fa-list pe-2"></i>
                             Orders
                         </a>
@@ -34,15 +34,15 @@
                         </a>
                         <ul id="customers" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="" class="sidebar-link">User display</a>
+                                <a href="{{url('/admin-panel/users')}}" class="sidebar-link">User display</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="" class="sidebar-link">Support tickets</a>
+                                <a href="{{url('/admin-panel/tickets')}}" class="sidebar-link">Support tickets</a>
                             </li>
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{url('/admin-panel/inventory')}}" class="sidebar-link">
                             <i class="fa-regular fa-store pe-2"></i>
                             Inventory
                         </a>
