@@ -35,10 +35,14 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-regular fa-clipboard-list pe-2"></i>
-                            Sign Out
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            <i class="fa-solid fa-arrow-right-from-bracket" style="color:#e8e8e8; margin-right:10px;"></i> Logout
                         </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </div>
