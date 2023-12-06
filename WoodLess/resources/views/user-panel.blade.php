@@ -9,6 +9,7 @@
 <body>
     <!-- Code for sidebar -->
     <div class="wrapper">
+
         <aside id="sidebar">
             <div class="sidebar-list">
                 <div class="heading">
@@ -30,25 +31,13 @@
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
                             <i class="fa-regular fa-clipboard-list pe-2"></i>
-                            My Points
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-regular fa-clipboard-list pe-2"></i>
-                            Contact Us
+                            Tickets
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link">
                             <i class="fa-regular fa-clipboard-list pe-2"></i>
                             Sign Out
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-regular fa-clipboard-list pe-2"></i>
-                            Invite A Friend
                         </a>
                     </li>
                 </ul>
@@ -109,6 +98,29 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Recent purchase -->
+            <section id ="RecentPurchase" class="recent-purchase-section">
+                <div class="container">
+                    <h2 class="recent-purchase-heading">Your Recent purchase</h2>
+                    <div class="purchase-card">
+                        <div class="purchase-image-container">
+                            <img src="/images/PictureToBeAdded.png" alt="IMAGE-1" class="purchase-image">
+                            <img src="/images/PictureToBeAdded.png" alt="IMAGE-2" class="purchase-image">
+                            <img src="/images/PictureToBeAdded.png" alt="IMAGE-3" class="purchase-image">
+                        </div>
+                        <div class="purchase-details">
+                            <h3 class="purchase-title">Product Name</h3>
+                            <p class="purchase-description">Product description</p>
+                            <span class="purchase date">Purchase date</span>
+                        </div>
+                    </div>
+                    <div class="view-more-container">
+                        <a href="#" class="view-more-button">View More</a>
+                    </div>
+                </div>
+            </section>
+
 
 
         </div>
