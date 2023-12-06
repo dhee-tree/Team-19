@@ -13,7 +13,7 @@
         <aside id="sidebar">
             <div class="sidebar-list">
                 <div class="heading">
-                    Hi, Welcome back to your account.
+                    <p>Hi, {{ $user->first_name }}. Welcome back to your account.</p>
                 </div>
                 <ul class="sidebar">
                     <li class="sidebar-item">

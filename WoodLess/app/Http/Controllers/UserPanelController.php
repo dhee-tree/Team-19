@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 class UserPanelController extends Controller
 {
     function show(){
-        return view('user-panel');
-    }    
+        $user = auth()->user();
+        return view('user-panel', [
+            'user' => $user,
+        ]);
+    }
 }
