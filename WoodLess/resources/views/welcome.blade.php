@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="container"> <!-- Carousel hot sellers -->
+        <div class="container-fluid justify-content-center"> <!-- Carousel hot sellers -->
             <div id="carouselHotSellers" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators"> <button type="button" data-bs-target="#carouselHotSellers"
                         data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">
@@ -152,102 +152,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col mb-5">
-                        <div class="card category-card h-100">
-                            <!-- Category image-->
-                            <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
-                                height="100%" width="100%" alt="..." />
-                            <!-- Category details-->
-                            <div class="card-img-overlay d-flex flex-column align-items-center">
-
-                                <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card category-card h-100">
-                            <!-- Category image-->
-                            <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
-                                height="100%" width="100%" alt="..." />
-                            <!-- Category details-->
-                            <div class="card-img-overlay d-flex flex-column align-items-center">
-
-                                <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card category-card h-100">
-                            <!-- Category image-->
-                            <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
-                                height="100%" width="100%" alt="..." />
-                            <!-- Category details-->
-                            <div class="card-img-overlay d-flex flex-column align-items-center">
-
-                                <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card category-card h-100">
-                            <!-- Category image-->
-                            <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
-                                height="100%" width="100%" alt="..." />
-                            <!-- Category details-->
-                            <div class="card-img-overlay d-flex flex-column align-items-center">
-
-                                <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card category-card h-100">
-                            <!-- Category image-->
-                            <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
-                                height="100%" width="100%" alt="..." />
-                            <!-- Category details-->
-                            <div class="card-img-overlay d-flex flex-column align-items-center">
-
-                                <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card category-card h-100">
-                            <!-- Category image-->
-                            <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
-                                height="100%" width="100%" alt="..." />
-                            <!-- Category details-->
-                            <div class="card-img-overlay d-flex flex-column align-items-center">
-
-                                <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
     </section>

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,7 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {   
         
-        \App\Models\User::factory(100)->create();
+        $users =\App\Models\User::factory(100)->create();
         $products =\App\Models\Product::factory(10)->create();
 
         //ADD CATEGORIES HERE. INCREMENT COUNT BY NO. OF CATEGORIES.
@@ -30,6 +31,13 @@ class DatabaseSeeder extends Seeder
         
         //Creates 500 Random Reviews.
         \App\Models\Review::factory(500)->create();
+
+        //Give user a basket.
+        foreach ($users as $user) {
+            if(!($user->basket)){
+                $user->basket()->create();
+            }
+        }
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

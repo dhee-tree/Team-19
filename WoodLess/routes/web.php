@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ReviewController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BasketController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,14 +26,28 @@ Route::view('/about', 'about');
 
 Route::view('/categories', 'categories');
 
-Route::view('/contact', 'contact');
+Route::get('/contact', [ContactController::class, 'showForm'])->name('contact');
+Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
 
 //Display single product
 Route::get('/product/{product}', [ProductController::class,'show']);
 
+// Basket URLS
+Route::get('/basket', [BasketController::class,'show']);
+//Store product in basket
+Route::post('/basket/{product}', [BasketController::class,'store']);
+// Delete product from basket
+Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('basket.destroy');
+
+//Store single review
+Route::post('/review/{product}', [ReviewController::class,'store']);
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
-Route::view('/products', 'product-list');
+Route::get('/products', [ProductController::class,'index']);
 
 Route::view('/admin-panel', 'admin-panel');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
