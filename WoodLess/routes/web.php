@@ -59,4 +59,4 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel');
+Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
