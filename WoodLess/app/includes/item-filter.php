@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card" style="width: 18rem;">
+    <div class="card filter" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Filter</h5>
             <div class="accordion" id="FilterAccordian">
