@@ -231,3 +231,9 @@
 .view-more-button:hover {
     background-color: #0056b3; 
 }
+
+
+.password-change-button {
+    text-align: center;
+    margin: 10px;
+}

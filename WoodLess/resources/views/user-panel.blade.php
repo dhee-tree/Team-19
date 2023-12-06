@@ -8,6 +8,11 @@
 @section('content')
 <body>
     <!-- Code for sidebar -->
+    @if (session()->has('success'))
+        <div class="alert alert-success">
+            <i class="fa-regular fa-circle-check fa-fade"></i> <span>{{ session('success') }}</span>
+        </div>
+    @endif
     <div class="wrapper">
 
         <aside id="sidebar">
@@ -35,7 +40,13 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        <a href="{{ route('password.change.form') }}" class="sidebar-link">
+                            <i class="fa-solid fa-lock" style="color: #e8e8e8;"></i>
+                            Change Password
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ route('logout') }}" class="sidebar-link"
                             onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                             <i class="fa-solid fa-arrow-right-from-bracket" style="color:#e8e8e8; margin-right:10px;"></i> Logout
