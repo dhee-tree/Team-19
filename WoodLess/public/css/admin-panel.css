@@ -98,3 +98,14 @@ a.sidebar-link{
 .navbar-expand .navbar-nav {
     margin-left: auto;
 }
+
+/*layout for tables*/
+.table {
+    background: whitesmoke;
+    margin-bottom: 0;
+    padding: 2;
+}
+
+thead {
+    font-weight: bolder;
+}
