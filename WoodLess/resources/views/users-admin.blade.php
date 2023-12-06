@@ -50,6 +50,46 @@
                 </ul>
             </div>
         </aside>
+        <div class="main">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <div class="navbar-collapse navbar">
+                    <ul class="navbar-nav">
+                        <form roles="search" class="d-flex">
+                            <input type="search" class="form-control me-2" placeholder="Search" aria-label="Search">
+                            <buttton class="btn btn-outline-success" type=submit>Search</buttton>
+                        </form>
+                    </ul>
+                </div>
+            </nav>
+            <div class="container">
+                <div class="card mb-4">
+                    <div class="card-header pb-0 font-weight-bolder">
+                        <h6>Orders</h6>
+                    </div>
+                    <div class="card-body px-0 pt-0 pb-2">
+                        <div class="datatable table-responsive datatable-inner ps">
+                            <table class="table datatable-table align-items-center mb-0">
+                                <thead class="datatable">
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Order Number</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Product</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Time</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Estimated Delivery</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">User</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Warehouse</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="datatable-body">
+                                    <tr scope="row">
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 @endsection
