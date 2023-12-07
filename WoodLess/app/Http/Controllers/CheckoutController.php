@@ -13,9 +13,22 @@ use App\Models\Basket;
 class CheckoutController extends Controller
 {
     function show(){
-        $basket = Basket::where('user_id', 1)->first();
+        $basket = auth()->user()->basket;
         // $basket->loadMissing('products');
         return view('checkout', [
-            'basket' => $basket,]);
+            'basket' => $basket,
+            // 'address' => auth()->user()->address,
+        ]);
+    }
+
+    function proccessOrder(){
+        $basket = auth()->user()->basket;
+        $basket->loadMissing('products');
+        $basket->products->each(function($product){
+            $product->stock -= $product->pivot->amount;
+            $product->save();
+        });
+        $basket->products()->detach();
+        return redirect()->route('home');
     }
 }
