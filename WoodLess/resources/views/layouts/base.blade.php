@@ -60,7 +60,11 @@
                         <a class="nav-link" href="{{ url('basket') }}"><i class="fa-solid fa-basket-shopping fa-xl" style="color:#e8e8e8; margin-right:20px;"></i></a>
                     </li>
                     <li class="d-flex">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
+                        @guest
+                            <a class="nav-link" href="{{ url('login') }}"><i class="fa-solid fa-unlock fa-flip-horizontal fa-2xl" style="color: #e8e8e8;"></i></a>
+                        @else
+                            <a class="nav-link" href="{{ url('user-panel') }}"> <i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
+                        @endguest
                     </li>
                 </div>
             </div>
