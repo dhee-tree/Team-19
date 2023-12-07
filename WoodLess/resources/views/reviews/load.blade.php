@@ -16,19 +16,23 @@
         </div>
     </div>
 
+    @auth
     <div class="container">
+        @php
+            $user = Auth()->user()
+        @endphp
         <form method="POST" action="/review/{{$product->id}}" class="row card mb-3 p-0 mx-0">
             @csrf
             <div class="card-body">
                 <div class="d-flex flex-row">
                     <div class="">
-                        <img src="{{asset('images/no-image.svg')}}" width="60" alt="">
+                        <img src="{{asset('images/'.$user->image)}}" width="60" alt="">
                     </div>
 
                     <div class="vr mx-2"></div>
 
                     <div class="">
-                        <h6 class="card-title">{{'first'}} {{'last'}}</h6>
+                        <h6 class="card-title">{{$user->first_name}} {{$user->last_name}}</h6>
                         <h6 class="card-subtitle d-flex flex-row">
                             <i class="fa-solid fa-star" style="color: #000000;"> </i> 
                             <select class="form-select form-select-sm" name="rating" aria-label="Default select example">
@@ -44,7 +48,7 @@
                 
                 <hr>
 
-                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea minlength="10" class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="card-footer">
                 <div class="d-flex flex-row justify-content-end">
@@ -57,6 +61,7 @@
             </div>
         </form>
     </div>
+    @endauth
 
     @foreach ($reviews as $review)
     @php
@@ -96,6 +101,8 @@
                             @endif
                         </small></p>
                     </div>
+                    @auth
+                    @if ($user == auth()->user() || auth()->user()->is_admin)
                     <div class="">
                         <form method="POST" action="/review/{{$review->id}}">
                             @csrf
@@ -105,6 +112,8 @@
                             </button>
                         </form>
                     </div>
+                    @endif
+                    @endauth
                 </div>
             </div>
         </div>

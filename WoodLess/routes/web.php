@@ -37,12 +37,12 @@ Route::get('/product/{product}', [ProductController::class,'show']);
 // Basket URLS
 Route::get('/basket', [BasketController::class,'show'])->middleware('auth');
 //Store product in basket
-Route::post('/basket/{product}', [BasketController::class,'store']);
+Route::post('/basket/{product}', [BasketController::class,'store'])->middleware('auth');
 // Delete product from basket
 Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('basket.destroy');
 
 //Store single review
-Route::post('/review/{product}', [ReviewController::class,'store']);
+Route::post('/review/{product}', [ReviewController::class,'store'])->middleware('auth');
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
