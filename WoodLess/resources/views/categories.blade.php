@@ -20,21 +20,18 @@
                 </div>
             </div>
         </div>
-        <div class="container"> <!-- Carousel hot sellers -->
-            <!-- TODO ADD CODE THAT SENDS TO THE FILTER PAGE WITH THE CATEGORY PICKED FILTER. -->
+        <div class="container"> 
             <div class="container px-4 px-lg-4 mt-2">
                 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-3 justify-content-center">
                     <div class="col mb-5">
                         <div class="card category-card h-100">
                             <!-- Category image-->
                             <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
+                                src="/images/Kitchen.png"
                                 height="100%" width="100%" alt="..." />
                             <!-- Category details-->
                             <div class="card-img-overlay d-flex flex-column align-items-center">
-
                                 <!-- Category actions-->
-
                                 <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
                                     Category</a>
                             </div>
@@ -44,15 +41,12 @@
                         <div class="card category-card h-100">
                             <!-- Category image-->
                             <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
+                                src="/images/Dining-room.png"
                                 height="100%" width="100%" alt="..." />
                             <!-- Category details-->
                             <div class="card-img-overlay d-flex flex-column align-items-center">
-
                                 <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
+                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Dining Room</a>
                             </div>
                         </div>
                     </div>
@@ -60,15 +54,12 @@
                         <div class="card category-card h-100">
                             <!-- Category image-->
                             <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
+                                src="/images/Bedroom.png"
                                 height="100%" width="100%" alt="..." />
                             <!-- Category details-->
                             <div class="card-img-overlay d-flex flex-column align-items-center">
-
                                 <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
+                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Bedroom</a>
                             </div>
                         </div>
                     </div>
@@ -76,15 +67,12 @@
                         <div class="card category-card h-100">
                             <!-- Category image-->
                             <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
+                                src="/images/Bathroom.png"
                                 height="100%" width="100%" alt="..." />
                             <!-- Category details-->
                             <div class="card-img-overlay d-flex flex-column align-items-center">
-
                                 <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
+                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Bathroom</a>
                             </div>
                         </div>
                     </div>
@@ -92,15 +80,12 @@
                         <div class="card category-card h-100">
                             <!-- Category image-->
                             <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
+                                src="/images/Office.png"
                                 height="100%" width="100%" alt="..." />
                             <!-- Category details-->
                             <div class="card-img-overlay d-flex flex-column align-items-center">
-
                                 <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
+                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Office</a>
                             </div>
                         </div>
                     </div>
@@ -108,15 +93,12 @@
                         <div class="card category-card h-100">
                             <!-- Category image-->
                             <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
+                                src="/images/Garden.png"
                                 height="100%" width="100%" alt="..." />
                             <!-- Category details-->
                             <div class="card-img-overlay d-flex flex-column align-items-center">
-
                                 <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
+                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Garden</a>
                             </div>
                         </div>
                     </div>  

@@ -3,6 +3,13 @@
     min-height: 100vh;
 }
 
+main{
+    padding-top: 0 !important;
+}
+
+footer {
+    margin-top: 0 !important;
+}
 
 /* Sidebar */
 #sidebar {
@@ -10,6 +17,7 @@
     background: #343a40;
     color: #fff;
     min-height: 100vh;
+    padding-right: 50px;
 }
 
 .heading {
@@ -79,7 +87,7 @@
 /* Carrousel */
 #CustomersAlsoBought {
     background-color: #f8f9fa; 
-    width: 80%;
+    width: 70%;
     margin: auto;
 }
 
@@ -121,37 +129,6 @@
     height: 10px;
     border-radius: 100%; 
     background-color: #333; 
-}
-
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .wrapper {
-        flex-direction: column;
-    }
-
-    #sidebar {
-        width: 100%; 
-        height: auto; 
-        min-height: 0; 
-    }
-
-    #CustomersAlsoBought {
-        order: 3; 
-    }
-
-    #CustomersAlsoBought .carousel-inner {
-        width: 100%; 
-    }
-    
-    #CustomersAlsoBought .carousel-control-prev,
-    #CustomersAlsoBought .carousel-control-next {
-        width: 10%; 
-    }
-
-    .banner {
-        order: 2; 
-    }
 }
 
 
@@ -230,4 +207,74 @@
 
 .view-more-button:hover {
     background-color: #0056b3; 
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%; 
+        height: auto; 
+        min-height: 0; 
+    }
+
+    #CustomersAlsoBought {
+        order: 3; 
+    }
+
+    #CustomersAlsoBought .carousel-inner {
+        width: 100%; 
+    }
+    
+    #CustomersAlsoBought .carousel-control-prev,
+    #CustomersAlsoBought .carousel-control-next {
+        width: 10%; 
+    }
+
+    .banner {
+        order: 2; 
+    }
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%; 
+        height: auto; 
+        min-height: 0; 
+    }
+
+    #CustomersAlsoBought {
+        order: 3; 
+    }
+
+    #CustomersAlsoBought .carousel-inner {
+        width: 100%; 
+    }
+    
+    #CustomersAlsoBought .carousel-control-prev,
+    #CustomersAlsoBought .carousel-control-next {
+        width: 10%; 
+    }
+
+    .banner {
+        order: 2; 
+    }
+}
+
+
+
+
+.password-change-button {
+    text-align: center;
+    margin: 10px;
 }
