@@ -15,10 +15,8 @@ class BasketController extends Controller
      */
     function store(Request $request, Product $product){
 
-        //$basket = auth()->user()->basket;
-
         //Currently stores in first basket in db.
-        $basket = Basket::where('user_id', 1)->first();
+        $basket = auth()->user()->basket;
         $basket->loadMissing('products');
 
         $attributes = [];
@@ -71,8 +69,9 @@ class BasketController extends Controller
     }
 
     // Show the basket of the authenticated user.
-    function show(){
-        $basket = Basket::where('user_id', 1)->first();
+    function show()
+    {
+        $basket = auth()->user()->basket;
         $basket->loadMissing('products');
 
         return view('basket', [

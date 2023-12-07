@@ -4,10 +4,22 @@ body{
     font-family: 'Poppins', sans-serif;   
     background-color:white;
     color:black;
+    
 }
 footer{
     margin-top:2rem;
 }
 main{
+    padding-top:2rem;
     min-height: 100vh;
+}
+
+.btn{
+    background: #655D52;
+    color:white;
+}
+
+.btn:hover{
+    background: white;
+    color:black;
 }
