@@ -17,6 +17,7 @@ footer {
     background: #343a40;
     color: #fff;
     min-height: 100vh;
+    padding-right: 50px;
 }
 
 .heading {
@@ -86,7 +87,7 @@ footer {
 /* Carrousel */
 #CustomersAlsoBought {
     background-color: #f8f9fa; 
-    width: 80%;
+    width: 70%;
     margin: auto;
 }
 
