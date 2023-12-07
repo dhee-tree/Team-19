@@ -42,49 +42,41 @@ class ProductController extends Controller
     //quries all the products
     public function getAll()
     {
-        $products = Product::all();
+        $products = Product::latest()->get();
         return view('product-list', ['products' => $products]);
     }
 
-
-    public function attributes($attribute)
-    {
-
-
-        return json_decode($attribute, true);
-    }
-
     //Gets products then filters for them
-    public function filter(Request $request)
+    public function filter()
     {
 
+        //return view('product-list', ['products' => $products]);
 
         //Get search paramaters
-        $filters = collect($request->query());
-        //break them apart into filters or auto sets to null if no cateogry was passed
-        $categories = $filters['categories'] ?? null;
+        $filters = collect(request()->query());
+        //break them apart from filters array or auto sets to null if no cateogry was passed
+        $categories = $filters['category'] ?? null;
         $finish = $filters['finish'] ?? null;
         $size = $filters['size'] ?? null;
         $rating = $filters['rating'] ?? null;
-        $minPrice = $filters['price'] ?? null;
-        $maxPrice = $filters['price'] ?? null;
         $color = $filters['color'] ?? null;
+        $minCost = $filters['minCost'] ?? 0;
+        $maxCost = $filters['maxCost'] ?? 500000000;
 
+        //compiles all the data recieved and puts them in arrays if needed
+        $data = [
+            'category' => json_decode($categories),
+            'finish' => json_decode($finish),
+            'size' => json_decode($size),
+            'color' => json_decode($color),
+            'rating' => (float)$rating,
+            'minCost' => (float)$minCost,
+            'maxCost' => (float)$maxCost
+        ];
 
-        $products = Product::whereJsonContains('attributes->categories', $categories)
-            ->whereJsonContains('attributes->finish', $finish)
-            ->whereJsonContains('attributes->size', $size)
-            ->whereJsonContains('attributes->rating', $rating)
-            ->whereJsonContains('attributes->color', $color)
-            ->where('price', '>', $minPrice)
-            ->where('price', '<', $maxPrice)
-            ->get();
-
-
-
-        $filteredProducts = "";
-        //return view('product-list', ['products' => $filteredProducts]);
-
-        dd($products);
+        //gets the products with filtered criteria
+        $products = Product::latest()->filter($data)->get();
+        //displays filtered products
+        return view('product-list', ['products' => $products]);
     }
 }

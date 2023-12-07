@@ -124,7 +124,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#FilterAccordian-collapsePrice" aria-expanded="false"
                             aria-controls="FilterAccordian-collapsePrice">
-                            Price
+                            Cost
                         </button>
                     </h2>
                     <div id="FilterAccordian-collapsePrice" class="accordion-collapse collapse"
@@ -132,11 +132,11 @@
                         <div class="accordion-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="minimumPrice" class="form-label">Minimum Price</label>
+                                    <label for="minimumPrice" class="form-label">Minimum Cost</label>
                                     <input type="range" class="form-range" id="minimumPrice">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="maximumPrice" class="form-label">Maximum Price</label>
+                                    <label for="maximumPrice" class="form-label">Maximum Cost</label>
                                     <input type="range" class="form-range" id="maximumPrice">
                                 </div>
                             </form>
