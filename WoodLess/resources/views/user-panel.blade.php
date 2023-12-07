@@ -6,7 +6,6 @@
 @endsection
 
 @section('content')
-<body>
     <!-- Code for sidebar -->
     <div class="wrapper">
 
@@ -124,4 +123,5 @@
 
 
         </div>
+    </div>
 @endsection
