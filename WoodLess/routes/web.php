@@ -35,7 +35,7 @@ Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.
 Route::get('/product/{product}', [ProductController::class,'show']);
 
 // Basket URLS
-Route::get('/basket', [BasketController::class,'show']);
+Route::get('/basket', [BasketController::class,'show'])->middleware('auth');
 //Store product in basket
 Route::post('/basket/{product}', [BasketController::class,'store']);
 // Delete product from basket
