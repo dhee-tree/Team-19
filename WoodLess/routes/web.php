@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BasketController;
@@ -44,9 +45,12 @@ Route::post('/review/{product}', [ReviewController::class,'store']);
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
-Route::get('/products', [ProductController::class,'index']);
+Route::get('/products', [ProductController::class,'getAll']);
 
 Route::view('/admin-panel', 'admin-panel');
+
+//Searches the filter
+Route::get('/products/filter', [ProductController::class,'filter']);
 
 Auth::routes();
 

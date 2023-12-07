@@ -100,20 +100,44 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="FilterAccordian-headingColor">
+                    <h2 class="accordion-header" id="FilterAccordian-headingSize">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#FilterAccordian-collapseColor" aria-expanded="false"
-                            aria-controls="FilterAccordian-collapseColor">
+                            data-bs-target="#FilterAccordian-collapseSize" aria-expanded="false"
+                            aria-controls="FilterAccordian-collapseSize">
                             Size
                         </button>
                     </h2>
-                    <div id="FilterAccordian-collapseColor" class="accordion-collapse collapse"
-                        aria-labelledby="FilterAccordian-headingColor">
+                    <div id="FilterAccordian-collapseSize" class="accordion-collapse collapse"
+                        aria-labelledby="FilterAccordian-headingSize">
                         <div class="accordion-body">
                             <form>
                                 <div class="mb-3">
-                                    <label for="customRange1" class="form-label">Example range</label>
-                                    <input type="range" class="form-range" id="customRange1">
+                                    <label for="width" class="form-label">Width</label>
+                                    <input type="range" class="form-range" id="width">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="FilterAccordian-headingPrice">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#FilterAccordian-collapsePrice" aria-expanded="false"
+                            aria-controls="FilterAccordian-collapsePrice">
+                            Price
+                        </button>
+                    </h2>
+                    <div id="FilterAccordian-collapsePrice" class="accordion-collapse collapse"
+                        aria-labelledby="FilterAccordian-headingPrice">
+                        <div class="accordion-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="minimumPrice" class="form-label">Minimum Price</label>
+                                    <input type="range" class="form-range" id="minimumPrice">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="maximumPrice" class="form-label">Maximum Price</label>
+                                    <input type="range" class="form-range" id="maximumPrice">
                                 </div>
                             </form>
                         </div>
