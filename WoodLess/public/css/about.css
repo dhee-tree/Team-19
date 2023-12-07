@@ -1,15 +1,24 @@
-.buttons{
-    
-    text-align: center;
-   
+.buttoncontainer {
+  width: 100%;
+  text-align: center;
 }
-    
-.aboutbutton,.Faqbutton,.ourcommitmentsbutton,.meetteambutton{
+
+.buttoncontainer h7:active {
+  background-color: rgb(115, 113, 113); 
+}
+
+.text h1{
+margin-top: 20px;
+}
+    .aboutbutton,.Faqbutton,.ourcommitmentsbutton,.meetteambutton{
+   
     display: inline-block;
     margin-right: 20px;
-   margin-left: 20px
-
+   margin-left: 20px;
+   margin-top: 20px;
+   cursor: pointer;
 }
+
 
 .portfolio .portfolio-item {
     cursor: pointer;
