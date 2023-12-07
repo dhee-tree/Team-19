@@ -239,3 +239,42 @@ footer {
         order: 2; 
     }
 }
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%; 
+        height: auto; 
+        min-height: 0; 
+    }
+
+    #CustomersAlsoBought {
+        order: 3; 
+    }
+
+    #CustomersAlsoBought .carousel-inner {
+        width: 100%; 
+    }
+    
+    #CustomersAlsoBought .carousel-control-prev,
+    #CustomersAlsoBought .carousel-control-next {
+        width: 10%; 
+    }
+
+    .banner {
+        order: 2; 
+    }
+}
+
+
+
+
+.password-change-button {
+    text-align: center;
+    margin: 10px;
+}
