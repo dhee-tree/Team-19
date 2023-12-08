@@ -27,7 +27,7 @@ class ProductController extends Controller
 
         return view('product-display', [
             'product' => $product,
-            'attributes' => json_decode($product->attributes, true),
+            'attributes' => ["5" => 2, "3" => 2],
             'categories' => $product->categories()->get(),
             'productImages' => explode(',', $product->images),
             'reviews' => $reviews,
@@ -35,12 +35,8 @@ class ProductController extends Controller
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
         ])->render();
     }
-    public function index()
-    {
-    }
-
     //quries all the products
-    public function getAll()
+    public function index()
     {
         $products = Product::latest()->get();
         return view('product-list', ['products' => $products]);
@@ -55,21 +51,17 @@ class ProductController extends Controller
         //Get search paramaters
         $filters = collect(request()->query());
         //break them apart from filters array or auto sets to null if no cateogry was passed
-        $categories = $filters['category'] ?? null;
         $finish = $filters['finish'] ?? null;
         $size = $filters['size'] ?? null;
-        $rating = $filters['rating'] ?? null;
         $color = $filters['color'] ?? null;
         $minCost = $filters['minCost'] ?? 0;
         $maxCost = $filters['maxCost'] ?? 500000000;
 
         //compiles all the data recieved and puts them in arrays if needed
         $data = [
-            'category' => json_decode($categories),
             'finish' => json_decode($finish),
             'size' => json_decode($size),
             'color' => json_decode($color),
-            'rating' => (float)$rating,
             'minCost' => (float)$minCost,
             'maxCost' => (float)$maxCost
         ];
