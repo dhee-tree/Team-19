@@ -46,7 +46,7 @@
             <div class="col-md-12" id="payment-option">
                 <h3>Payment:</h3>
                 <h4>Total cost: £{{ $basket->totalCost() }}</h4>
-                <form action="" method="post">
+                <form action="{{ route('checkout.store') }}" method="post">
                     @csrf
                     <div class="payment-option">
                         <label for="paypal">PayPal</label>
