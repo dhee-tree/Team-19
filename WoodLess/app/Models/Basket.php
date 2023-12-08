@@ -31,4 +31,22 @@ class Basket extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Returns the total cost of the basket.
+     */
+    public function totalCost()
+    {
+        $totalCost = 0;
+
+        foreach($this->products as $product){
+            if($product->discount > 0){
+                $totalCost += round($product->cost - ($product->cost * ($product->discount / 100)), 2) * $product->pivot->amount;
+            }else{
+                $totalCost += $product->cost * $product->pivot->amount;
+            }
+        }
+
+        return $totalCost;
+    }
 }
