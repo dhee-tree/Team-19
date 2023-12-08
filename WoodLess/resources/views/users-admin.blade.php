@@ -51,27 +51,41 @@
             </div>
         </aside>
         <div class="main">
-            <nav class="navbar navbar-expand px-3 border-bottom">
-                <div class="navbar-collapse navbar">
-                    <ul class="navbar-nav">
-                        <form roles="search" class="d-flex">
-                            <input type="search" class="form-control me-2" placeholder="Search" aria-label="Search">
-                            <buttton class="btn btn-outline-success" type=submit>Search</buttton>
-                        </form>
-                    </ul>
-                </div>
-            </nav>
             <div class="container">
-                <div class="card mb-4">
-                    <div class="card-header pb-0 font-weight-bolder">
-                        <h6>Users</h6>
+                <div class="content">
+                    <h1 class="page-title">Users</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="user_length">
+                            <label>
+                                Show
+                                <select name="user_length" id="user_length" aria-controls="example" class="form-select form-select-sm">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                                 entries
+                            </label>
+                        </div>
                     </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_filter" id="user_filter">
+                            <label>
+                                Search:
+                                <input type="search" class="form-control form-control-sm" placeholder aria-controls="search">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="datatable table-responsive datatable-inner ps">
                             <table class="table datatable-table align-items-center mb-0">
                                 <thead class="datatable">
                                     <tr>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">First Name</th>
+                                        <th class="sorting sorting_asc text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">First Name</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Last Name</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Email</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Phone Number</th>
