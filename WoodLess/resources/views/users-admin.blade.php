@@ -85,7 +85,7 @@
                             <table class="table datatable-table align-items-center mb-0">
                                 <thead class="datatable">
                                     <tr>
-                                        <th class="sorting sorting_asc text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">First Name</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">First Name</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Last Name</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Email</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Phone Number</th>
