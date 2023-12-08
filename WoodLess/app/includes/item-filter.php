@@ -14,7 +14,7 @@
                     <div id="FilterAccordian-collapseCategories" class="accordion-collapse collapse show"
                         aria-labelledby="FilterAccordian-headingCategories">
                         <div class="accordion-body">
-                            <form>
+                            <form id="categories" action="/form-endpoint" method="get">
                                 <div class="mb-3">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="Tables">
