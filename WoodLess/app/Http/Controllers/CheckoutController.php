@@ -8,6 +8,8 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\BasketProduct;
 use App\Models\Basket;
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Mail;
 
 
 class CheckoutController extends Controller
@@ -23,6 +25,13 @@ class CheckoutController extends Controller
         return view('checkout', [
             'basket' => $basket,
             // 'address' => auth()->user()->address,
+        ]);
+    }
+
+    function store(Request $request){
+        $basket = auth()->user()->basket;
+        return view('order-confirmation', [
+            'basket' => $basket,
         ]);
     }
 

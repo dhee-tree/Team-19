@@ -45,6 +45,7 @@ Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('ba
 
 // Checkout URLS
 Route::get('/checkout', [CheckoutController::class,'show']);
+Route::post('/checkout', [CheckoutController::class,'store'])->name('checkout.store')->middleware('auth');
 
 //Store single review
 Route::post('/review/{product}', [ReviewController::class,'store'])->middleware('auth');
