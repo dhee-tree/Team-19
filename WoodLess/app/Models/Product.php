@@ -50,7 +50,7 @@ class Product extends Model
     //filters the product
     public function scopeFilter($query, array $filters)
     {
-        //ddd($this->reviews);
+        dd($this->categories);
         //Category
         if($filters['category'] ?? false){
             $query->whereJsonContains('attributes->category', $filters['category']);
