@@ -14,13 +14,17 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {   
         
-        $users =\App\Models\User::factory(100)->create();
-        $products =\App\Models\Product::factory(10)->create();
+        $users =\App\Models\User::factory(50)->create();
+        $products =\App\Models\Product::factory(20)->create();
 
         //ADD CATEGORIES HERE. INCREMENT COUNT BY NO. OF CATEGORIES.
-        $categories = \App\Models\Category::factory()->count(2)->sequence(
-            ['category' => 'Home'],
+        $categories = \App\Models\Category::factory()->count(6)->sequence(
             ['category' => 'Kitchen'],
+            ['category' => 'Dining'],
+            ['category' => 'Bedroom'],
+            ['category' => 'Bathroom'],
+            ['category'=> 'Office'],
+            ['category'=> 'Garden'],
             //etc...
         )->create();
         

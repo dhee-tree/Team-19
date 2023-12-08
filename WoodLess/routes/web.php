@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BasketController;
@@ -38,7 +39,7 @@ Route::get('/product/{product}', [ProductController::class,'show']);
 // Basket URLS
 Route::get('/basket', [BasketController::class,'show'])->middleware('auth');
 //Store product in basket
-Route::post('/basket/{product}', [BasketController::class,'store']);
+Route::post('/basket/{product}', [BasketController::class,'store'])->middleware('auth');
 // Delete product from basket
 Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('basket.destroy');
 
@@ -46,13 +47,16 @@ Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('ba
 Route::get('/checkout', [CheckoutController::class,'show']);
 
 //Store single review
-Route::post('/review/{product}', [ReviewController::class,'store']);
+Route::post('/review/{product}', [ReviewController::class,'store'])->middleware('auth');
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
-Route::get('/products', [ProductController::class,'index']);
+Route::get('/products', [ProductController::class,'getAll']);
 
 Route::view('/admin-panel', 'admin-panel');
+
+//Searches the filter
+Route::get('/products/filter', [ProductController::class,'filter']);
 
 Auth::routes();
 
