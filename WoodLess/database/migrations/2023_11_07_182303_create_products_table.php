@@ -16,16 +16,11 @@ return new class extends Migration
             $table->string('title', 255);
             $table->longText('description');
 
-            /**
-             * Image Path. 
-             * We should list the file path of images a product should use, so that we can retrieve them later.
-             */
-            //$table->string('images', 255);
+            $table->string('images', 255)->default('no-image.svg');
 
             $table->json('attributes')->nullable();
-            $table->json('tags')->nullable();
-            $table->string('categories', 255);
-            $table->integer('cost');
+            $table->string('tags')->nullable();
+            $table->decimal('cost', 8, 2)->default(0);
             $table->integer('discount')->nullable();
             $table->integer('amount')->default(0);
             $table->timestamps();
