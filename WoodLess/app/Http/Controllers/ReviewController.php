@@ -19,7 +19,7 @@ class ReviewController extends Controller
         $request->validate([
             'user_id' => 'unique',
             'rating' => 'required|min:1',
-            'description' => 'required'
+            'description' => 'required|min:25'
         ]);
 
         $product->reviews()->create([
