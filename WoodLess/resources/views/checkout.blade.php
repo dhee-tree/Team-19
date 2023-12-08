@@ -9,23 +9,43 @@
     <div class="container">
         <div class="row">
             <h2>Checkout</h2>
-            <div class="col-md-12">
+            <div class="col-md-4">
                 <h3>Items in this order: </h3>
-                <hr>
                 @foreach($basket->products as $product)
-                    {{ $product->title }}
-                    {{ $product->pivot->amount }}
-                    {{ $product->pivot->attributes }}
-                    <hr>
+                    <div class="checkout-card">
+                        <div class="checkout-item">
+                            {{ $product->pivot->amount }} x
+                            <a class="" href="/product/{{ $product->id }}">{{ $product->title }}</a>
+                            @foreach(json_decode($product->pivot->attributes) as $key => $value)
+                                @if ($key == "colour") 
+                                    <span class="colour-square" style="background-color: {{ $value }};"></span>
+                        </div>
+                        <div class="checkout-item">
+                                @elseif ($key == "size")
+                                    <p>Size: {{ $value }}</p>
+                                @endif
+                                
+                            @endforeach
+                        </div>
+                        <div class="checkout-item">
+                            @if($product->discount > 0)
+                                <?php $discountPrice = round($product->cost - ($product->cost * ($product->discount / 100)), 2) ?>
+                                <p>£{{ $discountPrice }}</p>
+                            @else
+                                <p>£{{ $product->cost }}</p>
+                            @endif
+                        </div>
+                    </div>
                 @endforeach
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <h3>Delivery address:</h3>
             </div>
 
-            <div class="col-md-12">
-                <h3>Payment method:</h3>
+            <div class="col-md-12" id="payment-option">
+                <h3>Payment:</h3>
+                <h4>Total cost: £{{ $basket->totalCost() }}</h4>
                 <form action="" method="post">
                     @csrf
                     <div class="payment-option">
@@ -39,10 +59,13 @@
                     </div>
 
                     <div id="payment-choice">
-                        @include('layouts.payment-choice')
+                        <div id="payment-card">
+                            @include('layouts.payment-choice')
+                            <h6 class="mt-2 p-10">By clicking Place Order you agree that we charge you £{{ $basket->totalCost() }} on your selected payment method.</h6>
+                            <button type="submit" class="btn btn-success">Place Order</button>
+                        </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
 
                 </form>
             </div>
