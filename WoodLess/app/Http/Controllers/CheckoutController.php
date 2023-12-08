@@ -30,6 +30,7 @@ class CheckoutController extends Controller
 
     function store(Request $request){
         $basket = auth()->user()->basket;
+        Mail::to(env('MAIL_FROM_ADDRESS'))->send(new OrderConfirmation($basket));
         return view('order-confirmation', [
             'basket' => $basket,
         ]);
