@@ -80,13 +80,7 @@
                                             <h2>Total cost: </h2>
                                         </td>
                                         <td colspan="2">
-                                            <p>£{{ $basket->products->sum(function($product){
-                                                if($product->discount > 0){
-                                                    return round($product->cost - ($product->cost * ($product->discount / 100)), 2) * $product->pivot->amount;
-                                                }else{
-                                                    return $product->cost * $product->pivot->amount;
-                                                }
-                                            }) }}</p>
+                                            <p>{{ $basket->totalCost() }}</p>
                                             
                                         </td>
                                         <td>

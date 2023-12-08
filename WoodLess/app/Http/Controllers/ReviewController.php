@@ -14,7 +14,7 @@ class ReviewController extends Controller
     public function store(Request $request, Product $product){
         //$user = auth()->user();
         $product->loadMissing('reviews');
-        $user = User::where("id", 3)->first();
+        $user = auth()->user();
 
         $request->validate([
             'user_id' => 'unique',
