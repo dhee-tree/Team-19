@@ -9,6 +9,8 @@
 <script src="{{ asset('js/filter.js') }}"></script>
 @endsection
 
+
+
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
@@ -22,7 +24,7 @@
     <div class="row">
         <div class="col-md-3">
 
-            <?php include(app_path().'/includes/item-filter.php'); ?>
+            <?php include(app_path().'/includes/item-filter.blade.php'); ?>
         </div>
         <div class="col-md-9">
             <div class="container-fluid">

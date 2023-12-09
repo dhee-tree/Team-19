@@ -62,10 +62,12 @@ class Product extends Model
         }
         //ratings
         if ($filters['ratings'] ?? false) {
-            $rating = $filters['ratings'];
+            $ratings = (array)$filters['ratings'];
 
-            $query->whereHas('reviews', function ($reviewQuery) use ($rating) {
-                $reviewQuery->havingRaw('coalesce(avg(rating), 0) >= ?', [$rating]);
+            $query->whereHas('reviews', function ($reviewQuery) use ($ratings) {
+                foreach ($ratings as $rating) {
+                    $reviewQuery->orHavingRaw('coalesce(avg(rating), 0) >= ?', [$rating]);
+                }
             });
         }
         //Color

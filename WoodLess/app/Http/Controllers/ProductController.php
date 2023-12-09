@@ -40,10 +40,16 @@ class ProductController extends Controller
     {
         //Get search paramaters
         $filters = collect(request()->query());
+
+        //get categories    
+
         //break them apart from filters array or auto sets to null if no cateogry was passed
         $finish = $filters['finish'] ?? null;
-        $categories = $filters['categories'] ?? null;
-        $ratings = $filters['ratings'] ?? null;
+        // Get an array of values for the 'category' key
+        // Extract values for the 'category' key and put them into an array
+        $categories = $filters['categories'] ?? [];
+        //dd($categories);
+        $ratings = $filters['ratings'] ?? [];
         $color = $filters['color'] ?? null;
         $minCost = $filters['minCost'] ?? 0;
         $maxCost = $filters['maxCost'] ?? 500000000;
