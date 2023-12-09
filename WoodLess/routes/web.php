@@ -47,12 +47,10 @@ Route::post('/review/{product}', [ReviewController::class,'store'])->middleware(
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
+//showcases products
 Route::get('/products', [ProductController::class,'index']);
 
 Route::view('/admin-panel', 'admin-panel');
-
-//Searches the filter
-Route::get('/products/filter', [ProductController::class,'filter']);
 
 Auth::routes();
 
