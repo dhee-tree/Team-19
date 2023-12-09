@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="{{ asset('css/product-list-page.css') }}">
 @endsection
 
+@section('js')
+<script src="{{ asset('js/filter.js') }}"></script>
+@endsection
+
 @section('content')
 <div class="container-fluid">
     <div class="container-fluid">
