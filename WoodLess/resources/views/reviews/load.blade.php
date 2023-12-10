@@ -174,6 +174,7 @@
         </div>
     </div>
     @endforeach
+    @if ($reviews->hasPages())
     <div class="col" id="pageSelector">
         <nav aria-label="...">
             <ul class="pagination">
@@ -186,4 +187,5 @@
             </ul>
           </nav>
     </div>
+    @endif
 </div>
