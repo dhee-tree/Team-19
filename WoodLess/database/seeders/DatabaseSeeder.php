@@ -22,8 +22,8 @@ class DatabaseSeeder extends Seeder
             ['category' => 'Kitchen','images'=>'/images/Kitchen.png'],              
             ['category' => 'Dining','images'=>'/images/Dining-room.png'],
             ['category' => 'Bedroom','images'=>'/images/Bedroom.png'],
-            ['category' => 'Bathroom','images'=>'/images/Bathrrom.png'],
-            ['category'=> 'Office','images'=>'/images/Bathroom.png'],
+            ['category' => 'Bathroom','images'=>'/images/Bathroom.png'],
+            ['category'=> 'Office','images'=>'/images/Office.png'],
             ['category'=> 'Garden','images'=>'/images/Garden.png'],
             //etc...
         )->create();
