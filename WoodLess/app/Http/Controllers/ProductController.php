@@ -18,7 +18,7 @@ class ProductController extends Controller
 
         $product->loadMissing('categories', 'reviews');
 
-        $similarProducts = Product::all()->where('id', 6)->take(6);
+        $similarProducts = Product::latest()->take((6 % Product::count()))->get();
 
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
@@ -35,6 +35,7 @@ class ProductController extends Controller
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
         ])->render();
+
     }
     //Queries the products, and returns if we searched for something or not.
     public function index()

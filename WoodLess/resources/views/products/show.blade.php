@@ -225,7 +225,7 @@
                                         @endfor
                                     </div>
                                 </div>
-                            @endfor
+                                @endfor
                             </div>
                             
                             
@@ -254,16 +254,63 @@
                 <hr class="mt-3 mb-0 d-none d-xl-block">
             </div>
         </div>
-        
+            
+        <hr>
+
         <div class="row px-3" id="similar-products">
             <div class="col">
                 <div class="">
-                    <h4 class="p-0 m-0">Similar Products</h4>
+                    <h4 class="p-0 m-0 mb-2">Similar Products</h4>
                 </div>
 
-                @foreach ($similarProducts as $similarProduct)
-                    <p>{{$similarProduct->title}}</p>
-                @endforeach
+                <div id="productCarousel" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">                  
+                        @php
+                        $pageLimit = 4;
+                        @endphp
+                        
+                        @for ($i = 0; $i < count($similarProducts); $i += $pageLimit)
+                        <div class="carousel-item @if ($i == 0) active @endif">
+                            <div class="card-group">
+                                @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($similarProducts); $ii++)
+                                <div class="card">
+                                    <!-- Sale badge-->
+                                    <div class="badge bg-dark text-white position-absolute"
+                                        style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                    <!-- Product image-->
+                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                                        alt="..." />
+                                    <!-- Product details-->
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <!-- Product name-->
+                                            <h5 class="fw-bolder">{{ $similarProducts[$ii]->title }}</h5>
+                                            <!-- Product price-->
+                                            £{{ $product->cost }}
+                                        </div>
+                                    </div>
+                                    <!-- Product actions-->
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="row text-center">
+                                            <div class="col"><a class="btn btn-outline-dark" href="/product/{{ $similarProducts[$ii]->id }}">View Product</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endfor
+                            </div>
+                        </div>
+                        @endfor
+                    </div>
+                    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                        <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                        <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
 
             </div>
         </div>
