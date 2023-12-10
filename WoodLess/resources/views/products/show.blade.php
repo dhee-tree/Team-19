@@ -19,6 +19,7 @@
         $productImages - The file path of each image used for the product, stored in a String array
         $reviews - Rows from the 'reviews' table that match this product's id, stored in an Eloquent model (?) array, currently paginated by 5
         $finalCost - Gets the final price, taking into account discount
+        $similarProducts - Array of 6 products that share similar values to the product
     */
 @endphp
 
@@ -254,10 +255,9 @@
                 <hr class="mt-3 mb-0 d-none d-xl-block">
             </div>
         </div>
-            
-        <hr>
 
-        <div class="row px-3" id="similar-products">
+        <div class="row px-3 d-none" id="similar-products">
+            <hr>
             <div class="col">
                 <div class="">
                     <h4 class="p-0 m-0 mb-2">Similar Products</h4>
@@ -271,32 +271,34 @@
                         
                         @for ($i = 0; $i < count($similarProducts); $i += $pageLimit)
                         <div class="carousel-item @if ($i == 0) active @endif">
-                            <div class="card-group">
-                                @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($similarProducts); $ii++)
-                                <div class="card">
-                                    <!-- Sale badge-->
-                                    <div class="badge bg-dark text-white position-absolute"
-                                        style="top: 0.5rem; right: 0.5rem">Sale</div>
-                                    <!-- Product image-->
-                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                                        alt="..." />
-                                    <!-- Product details-->
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <!-- Product name-->
-                                            <h5 class="fw-bolder">{{ $similarProducts[$ii]->title }}</h5>
-                                            <!-- Product price-->
-                                            £{{ $product->cost }}
+                            <div class="flex-row">
+                                <div class="card-group">
+                                    @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($similarProducts); $ii++)
+                                    <div class="card">
+                                        <!-- Sale badge-->
+                                        <div class="badge bg-dark text-white position-absolute"
+                                            style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                        <!-- Product image-->
+                                        <img width="10" class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                                            alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">{{ $similarProducts[$ii]->title }}</h5>
+                                                <!-- Product price-->
+                                                £{{ $similarProducts[$ii]->cost }}
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="row text-center">
+                                                <div class="col"><a class="btn btn-outline-dark" href="/product/{{ $similarProducts[$ii]->id }}">View Product</a></div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <!-- Product actions-->
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="row text-center">
-                                            <div class="col"><a class="btn btn-outline-dark" href="/product/{{ $similarProducts[$ii]->id }}">View Product</a></div>
-                                        </div>
-                                    </div>
+                                    @endfor
                                 </div>
-                                @endfor
                             </div>
                         </div>
                         @endfor
