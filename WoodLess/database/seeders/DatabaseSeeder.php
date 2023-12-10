@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
 
         //ADD CATEGORIES HERE. INCREMENT COUNT BY NO. OF CATEGORIES.
         $categories = \App\Models\Category::factory()->count(6)->sequence(
-            ['category' => 'Kitchen'],
-            ['category' => 'Dining'],
-            ['category' => 'Bedroom'],
-            ['category' => 'Bathroom'],
-            ['category'=> 'Office'],
-            ['category'=> 'Garden'],
+            ['category' => 'Kitchen','images'=>'/images/Kitchen.png'],              
+            ['category' => 'Dining','images'=>'/images/Dining-room.png'],
+            ['category' => 'Bedroom','images'=>'/images/Bedroom.png'],
+            ['category' => 'Bathroom','images'=>'/images/Bathrrom.png'],
+            ['category'=> 'Office','images'=>'/images/Bathroom.png'],
+            ['category'=> 'Garden','images'=>'/images/Garden.png'],
             //etc...
         )->create();
         
