@@ -27,11 +27,14 @@
                             <div class="col mb-5">
                                 <div class="card h-100">
                                     <!-- Sale badge-->
+                                    @if ($product->discount > 0)
                                     <div class="badge bg-dark text-white position-absolute"
-                                        style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                        style="top: 0.5rem; right: 0.5rem">Sale {{$product->discount}}% Off</div>
+
+                                    @endif 
                                     <!-- Product image-->
-                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                                        alt="..." />
+                                    <img class="card-img-top" src="{{ asset('images/' . explode(',', $product->images)[0]) }}"
+                                        alt="..." width="450" height="350"/>
                                     <!-- Product details-->
                                     <div class="card-body p-4">
                                         <div class="text-center">
