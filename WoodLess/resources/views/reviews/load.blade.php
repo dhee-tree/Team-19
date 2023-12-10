@@ -157,7 +157,7 @@
                         </small></p>
                     </div>
                     @auth
-                    @if ($user == auth()->user() || auth()->user()->is_admin)
+                    @if ($user == auth()->user() || auth()->user()->isAdmin())
                     <div class="">
                         <form method="POST" action="/review/{{$review->id}}">
                             @csrf
