@@ -61,7 +61,7 @@
                                     <div class="d-flex justify-content-center" role="group">
                                         @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($productImages); $ii++)
                                             <button class="btn p-0 mx-1" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
-                                                <img onmouseover="click()" class="" width="100" src="{{asset('images/'.$productImages[$ii])}}" alt="">
+                                                <img onmouseover="" class="" width="100" src="{{asset('images/'.$productImages[$ii])}}" alt="">
                                             </button>
                                         @endfor
                                     </div>
@@ -220,7 +220,7 @@
                                     <div class="d-flex justify-content-between" role="group">
                                         @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($productImages); $ii++)
                                             <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
-                                                <img onmouseover="click()" class="" width="125" src="{{asset('images/'.$productImages[$ii])}}" alt="">
+                                                <img onmouseover="" class="" width="125" src="{{asset('images/'.$productImages[$ii])}}" alt="">
                                             </button>
                                         @endfor
                                     </div>
