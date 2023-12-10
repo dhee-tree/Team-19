@@ -10,6 +10,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserPanelController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CategoryController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +25,6 @@ use App\Http\Controllers\CheckoutController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::view('/about', 'about');
 
@@ -52,14 +52,11 @@ Route::post('/review/{product}', [ReviewController::class,'store'])->middleware(
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 
-Route::get('/products', [ProductController::class,'getAll']);
+//showcases products
+Route::get('/products', [ProductController::class,'index']);
 
 Route::view('/admin-panel', 'admin-panel');
 
-//Searches the filter
-Route::get('/products/filter', [ProductController::class,'filter']);
-
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -70,8 +67,13 @@ Route::view('/admin-panel/users', 'users-admin');
 Route::view('/admin-panel/inventory', 'inventory');
 
 
-Auth::routes();
 
+// Display categories
+
+Route::get('/categories', [CategoryController::class, 'getCategories']);
+//Display three random categories on home page
+Auth::routes();
+Route::get('/', [CategoryController::class, 'getThreeRandomCategories']);
 // User panel links
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
 

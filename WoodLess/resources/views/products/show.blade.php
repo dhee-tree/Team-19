@@ -19,6 +19,7 @@
         $productImages - The file path of each image used for the product, stored in a String array
         $reviews - Rows from the 'reviews' table that match this product's id, stored in an Eloquent model (?) array, currently paginated by 5
         $finalCost - Gets the final price, taking into account discount
+        $similarProducts - Array of 6 products that share similar values to the product
     */
 @endphp
 
@@ -61,7 +62,7 @@
                                     <div class="d-flex justify-content-center" role="group">
                                         @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($productImages); $ii++)
                                             <button class="btn p-0 mx-1" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
-                                                <img onmouseover="click()" class="" width="100" src="{{asset('images/'.$productImages[$ii])}}" alt="">
+                                                <img onmouseover="" class="" width="100" src="{{asset('images/'.$productImages[$ii])}}" alt="">
                                             </button>
                                         @endfor
                                     </div>
@@ -91,7 +92,7 @@
                         <div class="d-flex flex-row">
                             <div class="" id="product-categories">
                                 @foreach ($categories as $category)
-                                    <a class="category-button btn btn-dark px-1 py-0" role="button" href="/categories/{{lcfirst($category->category)}}">{{$category->category}}</a>
+                                    <a class="category-button btn btn-dark px-1 py-0" role="button" href="/products?categories%5B%5D={{ucfirst($category->category)}}">{{$category->category}}</a>
                                 @endforeach  
                             </div>
                         </div>
@@ -220,12 +221,12 @@
                                     <div class="d-flex justify-content-between" role="group">
                                         @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($productImages); $ii++)
                                             <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
-                                                <img onmouseover="click()" class="" width="125" src="{{asset('images/'.$productImages[$ii])}}" alt="">
+                                                <img onmouseover="" class="" width="125" src="{{asset('images/'.$productImages[$ii])}}" alt="">
                                             </button>
                                         @endfor
                                     </div>
                                 </div>
-                            @endfor
+                                @endfor
                             </div>
                             
                             
@@ -254,16 +255,64 @@
                 <hr class="mt-3 mb-0 d-none d-xl-block">
             </div>
         </div>
-        
-        <div class="row px-3" id="similar-products">
+
+        <div class="row px-3 d-none" id="similar-products">
+            <hr>
             <div class="col">
                 <div class="">
-                    <h4 class="p-0 m-0">Similar Products</h4>
+                    <h4 class="p-0 m-0 mb-2">Similar Products</h4>
                 </div>
 
-                @foreach ($similarProducts as $similarProduct)
-                    <p>{{$similarProduct->title}}</p>
-                @endforeach
+                <div id="productCarousel" class="carousel carousel-dark slide .carousel-fade" data-bs-interval="false">
+                    <div class="carousel-inner">                  
+                        @php
+                        $pageLimit = 4;
+                        @endphp
+                        
+                        @for ($i = 0; $i < count($similarProducts); $i += $pageLimit)
+                        <div class="carousel-item @if ($i == 0) active @endif">
+                            <div class="flex-row">
+                                <div class="card-group">
+                                    @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($similarProducts); $ii++)
+                                    <div class="card">
+                                        <!-- Sale badge-->
+                                        <div class="badge bg-dark text-white position-absolute"
+                                            style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                        <!-- Product image-->
+                                        <img width="10" class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                                            alt="..." />
+                                        <!-- Product details-->
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <!-- Product name-->
+                                                <h5 class="fw-bolder">{{ $similarProducts[$ii]->title }}</h5>
+                                                <!-- Product price-->
+                                                £{{ $similarProducts[$ii]->cost }}
+                                            </div>
+                                        </div>
+                                        <!-- Product actions-->
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="row text-center">
+                                                <div class="col"><a class="btn btn-outline-dark" href="/product/{{ $similarProducts[$ii]->id }}">View Product</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endfor
+                                </div>
+                            </div>
+                        </div>
+                        @endfor
+                    </div>
+                    
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                        <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                        <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
 
             </div>
         </div>

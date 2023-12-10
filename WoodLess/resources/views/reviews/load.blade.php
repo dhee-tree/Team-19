@@ -157,7 +157,7 @@
                         </small></p>
                     </div>
                     @auth
-                    @if ($user == auth()->user() || auth()->user()->is_admin)
+                    @if ($user == auth()->user() || auth()->user()->isAdmin())
                     <div class="">
                         <form method="POST" action="/review/{{$review->id}}">
                             @csrf
@@ -174,6 +174,7 @@
         </div>
     </div>
     @endforeach
+    @if ($reviews->hasPages())
     <div class="col" id="pageSelector">
         <nav aria-label="...">
             <ul class="pagination">
@@ -186,4 +187,5 @@
             </ul>
           </nav>
     </div>
+    @endif
 </div>
