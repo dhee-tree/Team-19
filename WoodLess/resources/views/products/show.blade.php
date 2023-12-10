@@ -91,7 +91,7 @@
                         <div class="d-flex flex-row">
                             <div class="" id="product-categories">
                                 @foreach ($categories as $category)
-                                    <a class="category-button btn btn-dark px-1 py-0" role="button" href="/categories/{{lcfirst($category->category)}}">{{$category->category}}</a>
+                                    <a class="category-button btn btn-dark px-1 py-0" role="button" href="/products?categories%5B%5D={{ucfirst($category->category)}}">{{$category->category}}</a>
                                 @endforeach  
                             </div>
                         </div>

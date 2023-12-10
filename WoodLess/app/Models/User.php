@@ -65,4 +65,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Basket::class);
     }
+
+    
+    public function isAdmin(){
+        return $this->makeVisible('is_admin')->is_admin;
+    }
 }

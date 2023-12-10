@@ -25,7 +25,7 @@ class ProductController extends Controller
             request('order') ?? 'desc'
         )->paginate(5)->withQueryString()->fragment('reviews');
 
-        return view('product-display', [
+        return view('products.show', [
             'product' => $product,
             //'attributes' => ["5" => 2, "3" => 2] (???),
             'attributes' => json_decode($product->attributes, true),
