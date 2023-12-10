@@ -29,12 +29,12 @@ class DatabaseSeeder extends Seeder
         )->create();
 
         $products = \App\Models\Product::factory()->count(12)->sequence(
-            ['title' =>'','description'=>'','images'=>'/images/products/(1).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
-            ['category' => 'Dining','images'=>'/images/Dining-room.png'],
-            ['category' => 'Bedroom','images'=>'/images/Bedroom.png'],
-            ['category' => 'Bathroom','images'=>'/images/Bathroom.png'],
-            ['category'=> 'Office','images'=>'/images/Office.png'],
-            ['category'=> 'Garden','images'=>'/images/Garden.png'],
+            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
             //etc...
         )->create();
 
