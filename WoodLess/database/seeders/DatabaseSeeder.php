@@ -27,6 +27,17 @@ class DatabaseSeeder extends Seeder
             ['category'=> 'Garden','images'=>'/images/Garden.png'],
             //etc...
         )->create();
+
+        $products = \App\Models\Product::factory()->count(12)->sequence(
+            ['title' =>'','description'=>'','images'=>'/images/products/(1).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['category' => 'Dining','images'=>'/images/Dining-room.png'],
+            ['category' => 'Bedroom','images'=>'/images/Bedroom.png'],
+            ['category' => 'Bathroom','images'=>'/images/Bathroom.png'],
+            ['category'=> 'Office','images'=>'/images/Office.png'],
+            ['category'=> 'Garden','images'=>'/images/Garden.png'],
+            //etc...
+        )->create();
+
         
         /*
         //Gives a product a random category.
