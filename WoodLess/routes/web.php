@@ -25,9 +25,6 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::view('/about', 'about');
 
@@ -64,10 +61,9 @@ Route::view('/admin-panel', 'admin-panel');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Auth::routes();
+
 // Display categories
 
-Auth::routes();
 Route::get('/categories', [CategoryController::class, 'getCategories']);
 //Display three random categories on home page
 Auth::routes();
