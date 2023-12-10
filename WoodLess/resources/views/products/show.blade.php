@@ -263,7 +263,7 @@
                     <h4 class="p-0 m-0 mb-2">Similar Products</h4>
                 </div>
 
-                <div id="productCarousel" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
+                <div id="productCarousel" class="carousel carousel-dark slide .carousel-fade" data-bs-interval="false">
                     <div class="carousel-inner">                  
                         @php
                         $pageLimit = 4;
