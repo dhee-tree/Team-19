@@ -29,12 +29,12 @@ class DatabaseSeeder extends Seeder
         )->create();
 
         $products = \App\Models\Product::factory()->count(12)->sequence(
-            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
-            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
-            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
-            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
-            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
-            ['title' =>'','description'=>'','images'=>'/images/products/(1).png,/images/products/(2).png,/images/products/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/1/(1).png,/images/products/1/(2).png,/images/products/1/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/1/(1).png,/images/products/1/(2).png,/images/products/1/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/1/(1).png,/images/products/1/(2).png,/images/products/1/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/1/(1).png,/images/products/1/(2).png,/images/products/1/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/1/(1).png,/images/products/1/(2).png,/images/products/1/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
+            ['title' =>'','description'=>'','images'=>'/images/products/1/(1).png,/images/products/1/(2).png,/images/products/1/(3).png','attributes'=>'','tags'=>'','cost'=>'','discount'=>'','amount'=>''],              
             //etc...
         )->create();
 
