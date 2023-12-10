@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {   
         
         $users =\App\Models\User::factory(50)->create();
-        $products =\App\Models\Product::factory(20)->create();
+        //$products =\App\Models\Product::factory(20)->create();
 
         //ADD CATEGORIES HERE. INCREMENT COUNT BY NO. OF CATEGORIES.
         $categories = \App\Models\Category::factory()->count(6)->sequence(
@@ -28,10 +28,12 @@ class DatabaseSeeder extends Seeder
             //etc...
         )->create();
         
+        /*
         //Gives a product a random category.
         foreach ($products as $product){
             $product->categories()->attach(rand(1, $categories->count()));
         }
+        */
         
         //Creates 500 Random Reviews.
         \App\Models\Review::factory(500)->create();
