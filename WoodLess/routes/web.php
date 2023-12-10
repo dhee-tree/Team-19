@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 use Illuminate\Http\Request;
+=======
+use App\Http\Controllers\CategoryController;
+>>>>>>> categories-page
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BasketController;
@@ -58,6 +62,7 @@ Route::get('/products', [ProductController::class,'index']);
 Route::view('/admin-panel', 'admin-panel');
 
 Auth::routes();
+Route::get('/categories', [CategoryController::class, 'getCategories']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
