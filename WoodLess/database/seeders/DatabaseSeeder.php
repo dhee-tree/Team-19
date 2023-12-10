@@ -45,12 +45,12 @@ class DatabaseSeeder extends Seeder
         )->create();
 
         
-        /*
+        
         //Gives a product a random category.
         foreach ($products as $product){
             $product->categories()->attach(rand(1, $categories->count()));
         }
-        */
+        
         
         //Creates 500 Random Reviews.
         \App\Models\Review::factory(500)->create();
