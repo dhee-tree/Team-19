@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BasketController;
@@ -11,6 +10,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserPanelController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CategoryController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +69,9 @@ Auth::routes();
 
 Auth::routes();
 Route::get('/categories', [CategoryController::class, 'getCategories']);
+//Display three random categories on home page
+Auth::routes();
+Route::get('/', [CategoryController::class, 'getThreeRandomCategories']);
 // User panel links
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
 

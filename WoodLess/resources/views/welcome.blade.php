@@ -104,53 +104,25 @@
             <!-- TODO ADD CODE THAT SENDS TO THE FILTER PAGE WITH THE CATEGORY PICKED FILTER. -->
             <div class="container px-4 px-lg-4 mt-2">
                 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                @foreach($categories->shuffle()->take(3) as $category)
                     <div class="col mb-5">
                         <div class="card category-card h-100">
                             <!-- Category image-->
                             <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
+                                src="{{ asset($category->images) }}"
                                 height="100%" width="100%" alt="..." />
                             <!-- Category details-->
                             <div class="card-img-overlay d-flex flex-column align-items-center">
 
                                 <!-- Category actions-->
 
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
+                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">{{ $category->category }}
+                                    </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col mb-5">
-                        <div class="card category-card h-100">
-                            <!-- Category image-->
-                            <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
-                                height="100%" width="100%" alt="..." />
-                            <!-- Category details-->
-                            <div class="card-img-overlay d-flex flex-column align-items-center">
-
-                                <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card category-card h-100">
-                            <!-- Category image-->
-                            <img class="card-img"
-                                src="https://i0.wp.com/kitchenmakeovers.co.uk/wp-content/uploads/2022/03/Jayline-Supermatt-Indigo-Blue-scaled-1.jpg"
-                                height="100%" width="100%" alt="..." />
-                            <!-- Category details-->
-                            <div class="card-img-overlay d-flex flex-column align-items-center">
-
-                                <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="#">Kitchen
-                                    Category</a>
-                            </div>
-                        </div>
+                    @endforeach
+                    
                     </div>
                     
                 </div>
