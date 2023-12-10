@@ -45,7 +45,7 @@
                                         <input class="form-check-input" type="checkbox" id="Bedroom"
                                             name="categories[]" value="Bedroom" <?php if (in_array('Bedroom', request('categories', []))) {
                                                 echo 'checked';
-                                            }?>>
+                                            } ?>>
                                         <label class="form-check-label" for="Bedroom">
                                             Bedroom
                                         </label>
@@ -56,7 +56,7 @@
                                         <input class="form-check-input" type="checkbox" id="Bathroom"
                                             name="categories[]" value="Bathroom" <?php if (in_array('Bathroom', request('categories', []))) {
                                                 echo 'checked';
-                                            }?>>
+                                            } ?>>
                                         <label class="form-check-label" for="Bathroom">
                                             Bathroom
                                         </label>
@@ -67,7 +67,7 @@
                                         <input class="form-check-input" type="checkbox" id="Office"
                                             name="categories[]" value="Office" <?php if (in_array('Office', request('categories', []))) {
                                                 echo 'checked';
-                                            }?>>
+                                            } ?>>
                                         <label class="form-check-label" for="Office">
                                             Office
                                         </label>
@@ -78,7 +78,7 @@
                                         <input class="form-check-input" type="checkbox" id="Garden"
                                             name="categories[]" value="Garden" <?php if (in_array('Garden', request('categories', []))) {
                                                 echo 'checked';
-                                            }?>>
+                                            } ?>>
                                         <label class="form-check-label" for="Garden">
                                             Garden
                                         </label>
@@ -87,6 +87,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="FilterAccordian-headingFinish">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -171,6 +172,7 @@
                             </div>
                         </div>
                     </div>
+                -->
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="FilterAccordian-headingRating">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -185,9 +187,10 @@
 
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="5" name="ratings[]" value="5" <?php if (in_array('5', request('ratings', []))) {
-                                            echo 'checked';
-                                        }?>>
+                                        <input class="form-check-input" type="checkbox" id="5"
+                                            name="ratings[]" value="5" <?php if (in_array('5', request('ratings', []))) {
+                                                echo 'checked';
+                                            } ?>>
                                         <label class="form-check-label text-warning" for="5">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -199,9 +202,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="4" name="ratings[]" value="4" <?php if (in_array('4', request('ratings', []))) {
-                                            echo 'checked';
-                                        }?>>
+                                        <input class="form-check-input" type="checkbox" id="4"
+                                            name="ratings[]" value="4" <?php if (in_array('4', request('ratings', []))) {
+                                                echo 'checked';
+                                            } ?>>
                                         <label class="form-check-label text-warning" for="4">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -212,9 +216,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="3" name="ratings[]" value="3" <?php if (in_array('3', request('ratings', []))) {
-                                            echo 'checked';
-                                        }?>>
+                                        <input class="form-check-input" type="checkbox" id="3"
+                                            name="ratings[]" value="3" <?php if (in_array('3', request('ratings', []))) {
+                                                echo 'checked';
+                                            } ?>>
                                         <label class="form-check-label text-warning" for="3">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -224,9 +229,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="2" name="ratings[]" value="2" <?php if (in_array('2', request('ratings', []))) {
-                                            echo 'checked';
-                                        }?>>
+                                        <input class="form-check-input" type="checkbox" id="2"
+                                            name="ratings[]" value="2" <?php if (in_array('2', request('ratings', []))) {
+                                                echo 'checked';
+                                            } ?>>
                                         <label class="form-check-label text-warning" for="2">
                                             <i class="fa-solid fa-star"></i>
                                             <i class="fa-solid fa-star"></i>
@@ -235,9 +241,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="1" name="ratings[]" value="1" <?php if (in_array('1', request('ratings', []))) {
-                                            echo 'checked';
-                                        }?>>
+                                        <input class="form-check-input" type="checkbox" id="1"
+                                            name="ratings[]" value="1" <?php if (in_array('1', request('ratings', []))) {
+                                                echo 'checked';
+                                            } ?>>
                                         <label class="form-check-label text-warning" for="1">
                                             <i class="fa-solid fa-star"></i>
                                         </label>
@@ -245,9 +252,10 @@
                                 </div>
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="0" name="ratings[]" value="0" <?php if (in_array('0', request('ratings', []))) {
-                                            echo 'checked';
-                                        }?>>
+                                        <input class="form-check-input" type="checkbox" id="0"
+                                            name="ratings[]" value="0" <?php if (in_array('0', request('ratings', []))) {
+                                                echo 'checked';
+                                            } ?>>
                                         <label class="form-check-label" for="0">
                                             No Reviews
                                         </label>
@@ -258,12 +266,15 @@
                         </div>
                     </div>
                 </div>
+                <!--
                 <div class="input-group input-group-sm mb-3" style="margin-top:1.5rem">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Color</span>
                     <input type="text" class="form-control" aria-label="Color input"
                         aria-describedby="inputGroup-sizing-sm">
                 </div>
+                     -->
                 <button type="submit" class="btn btn-primary" style="margin-top:1.5rem">Submit</button>
+
             </div>
         </form>
     </div>
