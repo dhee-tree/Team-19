@@ -41,6 +41,79 @@
 
             <div class="col-md-8">
                 <h3>Delivery address:</h3>
+                <div id="deliveryForm">
+                    <form method="post">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="address_line1" class="form-label">Address Line 1</label>
+                            <input type="text" class="form-control" id="address_line1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address_line2" class="form-label">Address Line 2</label>
+                            <input type="text" class="form-control" id="address_line2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="postcode" class="form-label">Post Code</label>
+                            <input type="text" class="form-control" id="postcode" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" class="form-control" id="country" required>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="confirmDeliveryAddress()">Confirm Delivery Address</button>
+                    </form>
+                </div>
+
+                <div id="confirmedAddressMessage">
+                    <span id="addressToDeliver" class="text-success">Delivery address confirmed!</span> <a href="#" id="changeDeliveryAddress" onClick="changeAddress('delivery')">Change Delivery Address</a>
+                </div>
+
+                <h2 class="mt-3">Billing Address</h2>
+                <div id="deliveryConfirmation" class="mt-3 d-none">
+                    <div class="form-check">
+                        <label for="sameAsDelivery">Same as Delivery Address</label>
+                        <input class="form-check-input" type="checkbox" id="sameAsDelivery"> 
+                    </div>
+                </div>
+                <div id="billingForm" class="mt-3">
+                    <form method="post">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="billing-address_line1" class="form-label">Address Line 1</label>
+                            <input type="text" class="form-control" id="billing-address_line1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="billing-address_line2" class="form-label">Address Line 2</label>
+                            <input type="text" class="form-control" id="billing-address_line2">
+                        </div>
+                        <div class="mb-3">
+                            <label for="billing-city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="billing-city" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="billing-postcode" class="form-label">Post Code</label>
+                            <input type="text" class="form-control" id="billing-postcode" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="billing-country" class="form-label">Country</label>
+                            <input type="text" class="form-control" id="billing-country" required>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="confirmBillingAddress()">Confirm Billing Address</button>
+                    </form>
+                </div>
+
+                <div id="billingConfirmation" class="mt-3 d-none">
+                    <span class="text-success">Billing address added successfully!</span> <a href="#" id="changeBillingAddress" onClick="changeAddress('billing')">Change Billing Address</a>
+                </div>
+
+                <div id="deliveryDetails" class="mt-3">
+                    <h3>Delivery Details:</h3>
+                    <p id="deliveryAddress"></p>
+                </div>
             </div>
 
             <div class="col-md-12" id="payment-option">
