@@ -33,7 +33,7 @@
                             <!-- Category details-->
                             <div class="card-img-overlay d-flex flex-column align-items-center">
                                 <!-- Category actions-->
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="">{{ $category->category }}
+                                <a class="btn mt-auto stretched-link shadow border border-info" href="/products?categories%5B%5D={{ucfirst($category->category)}}">{{ $category->category }}
                                     </a>
                             </div>
                         </div>
