@@ -60,6 +60,12 @@ Route::view('/admin-panel', 'admin-panel');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//admin panel pages
+Route::view('/admin-panel/orders', 'orders-admin');
+Route::view('/admin-panel/tickets', 'tickets-admin');
+Route::view('/admin-panel/users', 'users-admin');
+Route::view('/admin-panel/inventory', 'inventory');
+
 
 
 // Display categories
