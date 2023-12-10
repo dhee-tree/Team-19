@@ -1,10 +1,7 @@
 <?php
 
-<<<<<<< HEAD
 use Illuminate\Http\Request;
-=======
 use App\Http\Controllers\CategoryController;
->>>>>>> categories-page
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BasketController;
