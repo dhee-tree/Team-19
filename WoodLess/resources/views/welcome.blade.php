@@ -37,12 +37,6 @@
                 </div>
             </div>
 
-<<<<<<< HEAD
-                                <!-- Category actions-->
-
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="/products?categories%5B%5D={{ucfirst($category->category)}}">{{ $category->category }}
-                                    </a>
-=======
             <div class="container-fluid justify-content-center"> <!-- Carousel hot sellers -->
                 <div id="carouselHotSellers" class="carousel carousel-dark slide" data-bs-ride="carousel">
                     <div class="carousel-indicators"> <button type="button" data-bs-target="#carouselHotSellers"
@@ -73,7 +67,6 @@
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>Third slide label</h5>
                                 <p>Some representative placeholder content for the third slide.</p>
->>>>>>> homepage
                             </div>
                         </div>
                     </div>
