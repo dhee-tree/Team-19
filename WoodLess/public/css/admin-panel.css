@@ -98,3 +98,43 @@ a.sidebar-link{
 .navbar-expand .navbar-nav {
     margin-left: auto;
 }
+
+/*layout for tables*/
+div.dataTables_length select {
+    width: auto;
+    display: inline-block;
+}
+
+.form-select-sm {
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+    padding-left: .5rem;
+    font-size: .875rem;
+}
+
+div.dataTables_filter input {
+    margin-left: .5em;
+    display: inline-block;
+    width: auto;
+}
+
+.form-control-sm {
+    min-height: min-content;
+    padding: .25rem .5rem;
+    font-size: .875rem;
+}
+
+table.dataTable {
+    clear: both;
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+    max-width: none !important;
+    border-collapse: separate !important;
+    border-spacing: 0;
+}
+
+table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>th.sorting_asc {
+    cursor: pointer;
+    position: relative;
+    padding-right: 26px;
+}

@@ -22,9 +22,9 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{url('/admin-panel/orders')}}" class="sidebar-link">
                             <i class="fa-solid fa-list pe-2"></i>
-                            Listings
+                            Orders
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -34,47 +34,78 @@
                         </a>
                         <ul id="customers" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="" class="sidebar-link">User display</a>
+                                <a href="{{url('/admin-panel/users')}}" class="sidebar-link">User display</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="" class="sidebar-link">Support tickets</a>
+                                <a href="{{url('/admin-panel/tickets')}}" class="sidebar-link">Support tickets</a>
                             </li>
                         </ul>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-regular fa-clipboard-list pe-2"></i>
-                            Order & Payments
+                        <a href="{{url('/admin-panel/inventory')}}" class="sidebar-link">
+                            <i class="fa-regular fa-store pe-2"></i>
+                            Inventory
                         </a>
                     </li>
                 </ul>
             </div>
         </aside>
         <div class="main">
-            <nav class="navbar navbar-expand px-3 border-bottom">
-                <button class="btn" id="sidebar-toggle" type="button">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse navbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-                            <!--<a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
-                                 <img src="" class="avatar img-fluid" alt="Profile photo">
-                            </a> -->
-                        </li>
-                        <form roles="search" class="d-flex">
-                            <input type="search" class="form-control me-2" placeholder="Search" aria-label="Search">
-                            <buttton class="btn btn-outline-success" type=submit>Search</buttton>
-                        </form>
-                    </ul>
+            <div class="container">
+                <div class="row">
+                    <div class="section-header">
+                        <span><h2>Recent Orders</h2></span>
+                    </div>
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Order number</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Item</th>
+                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
+                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Shipping address</th>
+                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Username</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="text-xs mb-0">910928302</p>
+                                        </td>
+                                        <td><p class="text-xs mb-0">Product name</p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </nav>
-            <div class="container p-3">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">A first link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                    <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+                <div class="row">
+                    <div class="section-header">
+                        <span><h2>Support tickets</h2></span>
+                    </div>
+                    <div class="card">
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Ticket number</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Message</th>
+                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
+                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Username</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p class="text-xs mb-0">00042</p>
+                                        </td>
+                                        <td><p class="text-xs mb-0">Sign-in issue</p></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
