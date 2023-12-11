@@ -71,9 +71,9 @@ Route::view('/admin-panel/inventory', 'inventory');
 // Display categories
 
 Route::get('/categories', [CategoryController::class, 'getCategories']);
-//Display three random categories on home page
+//Display three random categories and products on home page
 Auth::routes();
-Route::get('/', [CategoryController::class, 'getThreeRandomCategories']);
+Route::get('/', [ProductController::class, 'getThreeRandom']);
 // User panel links
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
 

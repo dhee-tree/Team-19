@@ -12,9 +12,5 @@ class CategoryController extends Controller
         $categories = Category::all();
         return view('categories', ['categories' => $categories]);
     }   
-    //gets three random categories for home page
-    public function getThreeRandomCategories(){
-        $categories = Category::all();
-        return view('welcome', ['categories' => $categories]);
-    }     
+   
 }

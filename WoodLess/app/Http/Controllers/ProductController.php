@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\CategoryController;
 
 class ProductController extends Controller
 {
@@ -69,5 +72,16 @@ class ProductController extends Controller
 
         $products = Product::latest()->filter($data)->get();
         return view('product-list', ['products' => $products]);
+    }
+    //gets three random categories and products  for home page
+    public function getThreeRandom()
+    {
+        $products = Product::all();
+        $categories = Category::all(); 
+    
+        return view('welcome', [
+            'products' => $products,
+            'categories' => $categories,  
+        ]);
     }
 }

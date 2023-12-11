@@ -48,28 +48,20 @@
                             aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner">
+                    @foreach ($products->shuffle()->take(3) as $key => $product)
                         <div class="carousel-item active">
-                            <img src="https://placehold.co/1800x675" class="d-block w-100" alt="...">
+                        <img src="{{ asset('images/' . explode(',', $product->images)[0]) }}" class="d-block w-100" alt="...">
                             <div class="carousel-caption d-none d-md-block">
-                                <h5>First slide label</h5>
-                                <p>Some representative placeholder content for the first slide.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://placehold.co/1800x675" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Second slide label</h5>
-                                <p>Some representative placeholder content for the second slide.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="https://placehold.co/1800x675" class="d-block w-100" alt="...">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Third slide label</h5>
-                                <p>Some representative placeholder content for the third slide.</p>
-                            </div>
-                        </div>
-                    </div>
+                            <h5>{{ $product->title }}</h5>
+                <p>{{ $product->description }}</p>
+                <div class="row text-center mt-3">
+                    <div class="col"><a class="btn btn-outline-dark" href="/product/{{ $product->id }}">View Product</a></div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+</<div>
+                            
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselHotSellers"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -95,33 +87,27 @@
                 </div>
             </div>
             <div class="container"> <!-- Carousel hot sellers -->
-                <!-- TODO ADD CODE THAT SENDS TO THE FILTER PAGE WITH THE CATEGORY PICKED FILTER. -->
-                <div class="container px-4 px-lg-4 mt-2">
-                    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-3 justify-content-center">
-                        @foreach ($categories->shuffle()->take(3) as $category)
-                            <div class="col mb-5">
-                                <div class="card category-card h-100">
-                                    <!-- Category image-->
-                                    <img class="card-img" src="{{ asset($category->images) }}" height="100%" width="100%"
-                                        alt="..." />
-                                    <!-- Category details-->
-                                    <div class="card-img-overlay d-flex flex-column align-items-center">
-
-                                        <!-- Category actions-->
-
-                                        <a class="btn mt-auto stretched-link shadow border border-info"
-                                            href="/products?categories%5B%5D={{ucfirst($category->category)}}">{{ $category->category }}
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
+    <!-- TODO ADD CODE THAT SENDS TO THE FILTER PAGE WITH THE CATEGORY PICKED FILTER. -->
+    <div class="container px-4 px-lg-4 mt-2">
+        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-3 justify-content-center">
+            @foreach ($categories->shuffle()->take(3) as $category)
+                <div class="col mb-5">
+                    <div class="card category-card h-100">
+                        <!-- Category image-->
+                        <img class="card-img" src="{{ asset($category->images) }}" height="100%" width="100%" alt="..." />
+                        <!-- Category details-->
+                        <div class="card-img-overlay d-flex flex-column align-items-center">
+                            <!-- Category actions-->
+                            <a class="btn mt-auto stretched-link shadow border border-info"
+                                href="/products?categories%5B%5D={{ucfirst($category->category)}}">{{ $category->category }}</a>
+                        </div>
                     </div>
-
                 </div>
-            </div>
-        </section>
+            @endforeach
+        </div>
+    </div>
+</div>
+
 
 
         <!-- Testimonial 3 - Bootstrap Brain Component -->
