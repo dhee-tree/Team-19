@@ -40,8 +40,25 @@ class DatabaseSeeder extends Seeder
             ['title' =>'Tarn','description'=>'Transform your bedroom into a haven of sustainability with the Tarn bedframe. Crafted from recycled plastics, this bedframe seamlessly blends comfort and environmental consciousness, ensuring restful nights with a clear conscience.','images'=>'products/9/(1).png,products/9/(2).png,products/9/(3).png'],              
             ['title' =>'Gill','description'=>"Elevate your children's space with the Gill bunk bed, a whimsical and eco-friendly sleep solution. Constructed from recycled materials, it combines playful design with the assurance of a sustainable future.",'images'=>'products/10/(1).png,products/10/(2).png,products/10/(3).png'],              
             ['title' =>'Gulf','description'=>'Organize in style with the Gulf storage drawers, an eco-chic storage solution. Made from upcycled plastics, its multiple drawers offer ample space while adding a touch of sustainable elegance to your living space.','images'=>'products/11/(1).png,products/11/(2).png,products/11/(3).png'],              
-            ['title' =>'Reservoir','description'=>'Redefine bedroom storage with the Reservoir dresser. Crafted from recycled materials, its sleek design and spacious drawers provide a perfect blend of functionality and eco-conscious sophistication.','images'=>'products/12/(1).png,products/12/(2).png,products/12/(3).png'],          
-            //etc...
+            ['title' =>'Reservoir','description'=>'Redefine bedroom storage with the Reservoir dresser. Crafted from recycled materials, its sleek design and spacious drawers provide a perfect blend of functionality and eco-conscious sophistication.','images'=>'products/12/(1).png,products/12/(2).png,products/12/(3).png'],
+            ['title' =>'Aqua Sofa','description'=>'Enhance your living space with this versatile and functional furniture.','images'=>'products/13/(1).png,products/13/(2).png,products/13/(3).png'],
+            ['title' =>'Cerulean Chair','description'=>'Create a haven of peace with this chic and elegant furniture item.','images'=>'products/14/(1).png,products/14/(2).png,products/14/(3).png'],
+            ['title' =>'Tranquil Desk','description'=>'Experience ultimate relaxation with this stylish and ergonomic furniture.','images'=>'products/15/(1).png,products/15/(2).png,products/15/(3).png'],
+            ['title' =>'River Lounge','description'=>'Feel the rush of nature with this nature-inspired and comfortable furniture.','images'=>'products/16/(1).png,products/16/(2).png,products/16/(3).png'],
+            ['title' =>'Aqua Bed','description'=>'Designed for both style and substance, this furniture piece is a perfect addition to modern living spaces.','images'=>'products/17/(1).png,products/17/(2).png,products/17/(3).png'],
+            ['title' =>'Serenity Couch','description'=>'Embrace sustainable comfort with this eco-conscious furniture piece.','images'=>'products/18/(1).png,products/18/(2).png,products/18/(3).png'],
+            ['title' =>'Breeze Table','description'=>'Blend elegance with modern aesthetics using this carefully designed furniture.','images'=>'products/19/(1).png,products/19/(2).png,products/19/(3).png'],
+            ['title' =>'Ocean Sofa','description'=>'Transform your space into a sanctuary of tranquility with this beautifully crafted piece.','images'=>'products/20/(1).png,products/20/(2).png,products/20/(3).png'],
+            ['title' =>'Serenity Ottoman','description'=>'Enhance your living space with this versatile and functional furniture.','images'=>'products/21/(1).png,products/21/(2).png,products/21/(3).png'],
+            ['title' =>'Cerulean Bed','description'=>'Create a haven of peace with this chic and elegant furniture item.','images'=>'products/22/(1).png,products/22/(2).png,products/22/(3).png'],
+            ['title' =>'Tranquil Desk','description'=>'Experience ultimate relaxation with this stylish and ergonomic furniture.','images'=>'products/23/(1).png,products/23/(2).png,products/23/(3).png'],
+            ['title' =>'River Cupboard','description'=>'Feel the rush of nature with this nature-inspired and beautiful furniture.','images'=>'products/24/(1).png,products/24/(2).png,products/24/(3).png'],
+            ['title' =>'Aqua Chair','description'=>'Designed for both style and substance, this furniture piece is a perfect addition to modern living spaces.','images'=>'products/25/(1).png,products/25/(2).png,products/25/(3).png'],
+            ['title' =>'Serenity Ottoman','description'=>'Embrace sustainable comfort with this eco-conscious furniture piece.','images'=>'products/26/(1).png,products/26/(2).png,products/26/(3).png'],
+            ['title' =>'Breeze Lounge','description'=>'Blend elegance with modern aesthetics using this carefully designed furniture.','images'=>'products/27/(1).png,products/27/(2).png,products/27/(3).png'],
+            ['title' =>'Ocean Table','description'=>'Transform your space into a sanctuary of tranquility with this beautifully crafted piece.','images'=>'products/28/(1).png,products/28/(2).png,products/28/(3).png'],
+            ['title' =>'Rivulet Sofa','description'=>'Enhance your living space with this versatile and functional furniture.','images'=>'products/29/(1).png,products/29/(2).png,products/29/(3).png'],
+            ['title' =>'Cerulean Chair','description'=>'Create a haven of peace with this chic and elegant furniture item.','images'=>'products/30/(1).png,products/30/(2).png,products/30/(3).png']
         )->create();
 
         
