@@ -28,7 +28,7 @@
         @include('layouts.alert')
         <div class="row m-0 mt-3 px-1 pt-3" id="product-main">
             <div class="col-md-6 mb-3" id="gallery">
-                <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
+                <div id="productGallery" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">                  
                         <div class="carousel-inner">
                             @foreach ($productImages as $image)
