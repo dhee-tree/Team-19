@@ -16,7 +16,7 @@
                 </div>
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{url('admin-panel')}}" class="sidebar-link">
                             <i class="fa-solid fa-house pe-2"></i>
                             Dashboard
                         </a>
