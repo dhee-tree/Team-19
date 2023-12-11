@@ -89,7 +89,8 @@
                             <table class="table align-items-center mb-0">
                                 <thead>
                                     <tr>
-                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Ticket number</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Ticket ID</th>
+                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Ticket title</th>
                                         <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Message</th>
                                         <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
                                         <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Username</th>
