@@ -61,7 +61,7 @@
                     </li>
                     <li class="d-flex">
                         @guest
-                            <a class="nav-link" href="{{ url('login') }}"><i class="fa-solid fa-unlock fa-flip-horizontal fa-xl" style="color: #e8e8e8;"></i></a>
+                            <a class="nav-link" href="{{ url('login') }}"><i class="fa-solid fa-unlock fa-flip-horizontal fa-xl" style="color: #e8e8e8; margin-right:10px;"></i></a>
                         @else
                             <a class="nav-link" href="{{ url('user-panel') }}"> <i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
                         @endguest
