@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             //etc...
         )->create();
 
-        $products = \App\Models\Product::factory()->count(12)->sequence(
+        $products = \App\Models\Product::factory()->count(30)->sequence(
             ['title' =>'Rivulet','description'=>'Embrace sustainable comfort with the Rivulet chair, crafted from recycled plastics. Its sleek design and ergonomic features make it an eco-conscious choice for modern living spaces.','images'=>'products/1/(1).png,products/1/(2).png,products/1/(3).png'],              
             ['title' =>'Lagoon','description'=>'Experience the perfect blend of style and sustainability with the Lagoon chair. Created using innovative plastic recycling, these chairs redefine eco-friendly seating, combining elegance with environmental responsibility.','images'=>'products/2/(1).png,products/2/(2).png,products/2/(3).png'],              
             ['title' =>'Seep','description'=>'Infuse your space with eco-chic vibes using the Seep table, crafted from upcycled plastics, these tables boast durability and contemporary design, making them the ideal choice for socially conscious interiors.','images'=>'products/3/(1).png,products/3/(2).png,products/3/(3).png'],              
