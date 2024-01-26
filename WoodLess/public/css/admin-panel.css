@@ -1,8 +1,4 @@
 
-*,::after,::before{
-    box-sizing: border-box;
-}
-
 body{
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
@@ -11,93 +7,7 @@ body{
     position: relative;
 }
 
-a{
-    cursor: pointer;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-}
 
-li{
-    list-style: none;
-}
-/* Layout for admin dashboard skeleton */
-.wrapper{
-    align-items: stretch;
-    display: flex;
-    width: 100%;
-}
-
-#sidebar{
-    max-width: 264px;
-    min-width: 264px;
-    background: var(--bs-dark);
-    transition: all 0.35s ease-in-out;
-}
-
-.main{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    min-width: 0;
-    overflow: hidden;
-    transition: all 0.35s ease-in-out;
-    width: 100%;
-    background: var(--bs-dark-bg-subtle);
-}
-
-/* Sidebar Elements Style */
-.sidebar-logo{
-    padding: 1.15rem;
-}
-
-.sidebar-logo a {
-    color:aliceblue;
-    font-size: 1.15rem;
-    font-weight: 600;
-}
-
-.sidebar-nav{
-    flex-grow: 1;
-    list-style: none;
-    margin-bottom: 0;
-    padding-left: 0;
-    margin-left: 0;
-}
-
-a.sidebar-link{
-    padding: .625rem 1.625rem;
-    color:antiquewhite;
-    position: relative;
-    display: block;
-    font-size: 0.875rem;
-}
-
-.sidebar-link[data-bs-toggle="collapse"]::after{
-    border: solid;
-    border-width: 0 .075rem .075rem 0;
-    content: "";
-    display: inline-block;
-    padding: 2px;
-    position: absolute;
-    right: 1.5rem;
-    top: 1.4rem;
-    transform: rotate(-135deg);
-    transition: all .2s ease-out;
-}
-
-.sidebar-link[data-bs-toggle="collapse"].collapsed::after{
-    transform: rotate(45deg);
-    transition: all .2s ease-out;
-}
-
-.avatar{
-    height: 40px;
-    width: 40px;
-}
-
-.navbar-expand .navbar-nav {
-    margin-left: auto;
-}
 
 /*layout for tables*/
 div.dataTables_length select {
