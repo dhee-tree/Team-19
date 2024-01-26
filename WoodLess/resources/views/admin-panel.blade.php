@@ -7,6 +7,14 @@
 
 @section('content')
 <body class="main_body">
+    <nav class="sidebar">
+        <div class="sidebar_logo">
+
+        </div>
+        <div class="sidebar_menu">
+
+        </div>
+    </nav>
     <aside id="sidebar">
         <!-- Content for sidebar -->
         <div class="h-100">
