@@ -9,7 +9,7 @@
 <body class="main_body">
     <nav class="sidebar">
         <div class="sidebar_logo">
-
+            <a href="#">Admin Panel</a>
         </div>
         <div class="sidebar_menu">
 
