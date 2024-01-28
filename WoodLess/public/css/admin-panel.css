@@ -7,7 +7,14 @@ body{
     position: relative;
 }
 
-
+.sidebar {
+    height: 100vh;
+    left: 0;
+    top: 0;
+    padding-bottom: 50px;
+    position: fixed;
+    width: 270px;
+}
 
 /*layout for tables*/
 div.dataTables_length select {
