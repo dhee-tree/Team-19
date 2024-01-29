@@ -8,12 +8,21 @@
 @section('content')
 <body class="main_body">
     <nav class="sidebar">
-        <div class="sidebar_logo">
+        <div class="sidebar_logo d-flex justify-content-between">
             <a href="#">Admin Panel</a>
         </div>
-        <div class="sidebar_menu">
-
-        </div>
+        <ul id="sidebar_menu">
+            <li class>
+                <a href="#" aria-expanded="false">
+                    <div class="nav_icon">
+                        <i class="fa-solid fa-house pe-2"></i>
+                    </div>
+                    <div class="nav_title">
+                        <span>Dashboard</span>
+                    </div>
+                </a>
+            </li>
+        </ul>
     </nav>
     <aside id="sidebar">
         <!-- Content for sidebar -->
