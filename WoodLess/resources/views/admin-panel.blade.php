@@ -2,6 +2,7 @@
 @section('title', 'WoodLess - Admin')
 
 @section('style')
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
     <link rel="stylesheet" href="{{ asset('css/admin-panel.css')}}">
 @endsection
 
