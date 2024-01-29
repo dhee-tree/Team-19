@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <!-- sidebar -->
-        <div class="sidebar">
+        <div class="sidebar bg-dark">
             <a href="#" class="logo">
                 <div class="logo-name"><span>Admin</span>Panel</div>
             </a>
