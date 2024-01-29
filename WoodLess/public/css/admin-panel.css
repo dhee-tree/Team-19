@@ -1,5 +1,4 @@
-/* main things */
-
+/* main things
 body{
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
@@ -12,7 +11,7 @@ div {
     display: block;
 }
 
-/* sidebar styling */
+
 .sidebar {
     height: 100vh;
     left: 0;
@@ -28,7 +27,7 @@ ul, ol {
     padding: 0;
 }
 
-/*layout for tables*/
+
 div.dataTables_length select {
     width: auto;
     display: inline-block;
@@ -66,4 +65,45 @@ table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>th.sorting_asc {
     cursor: pointer;
     position: relative;
     padding-right: 26px;
+}
+*/
+
+/* new CSS layout */
+
+/* intial variables */
+:root {
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: 0;
+    border: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    font-size: 0.88rem;
+    user-select: none;
+    overflow-x: hidden;
+}
+
+a{
+    color: gray;
 }
