@@ -1,3 +1,4 @@
+/* main things */
 
 body{
     font-family: 'Poppins', sans-serif;
@@ -7,6 +8,11 @@ body{
     position: relative;
 }
 
+div {
+    display: block;
+}
+
+/* sidebar styling */
 .sidebar {
     height: 100vh;
     left: 0;
