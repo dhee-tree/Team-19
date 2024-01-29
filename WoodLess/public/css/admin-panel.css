@@ -19,7 +19,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 .fa-solid{
@@ -50,10 +49,8 @@ body{
 }
 
 .sidebar{
-    position: fixed;
-    top: 0;
+    position: absolute;
     left: 0;
-    background: var(--light);
     width: 230px;
     height: 100%;
     z-index: 2000;
