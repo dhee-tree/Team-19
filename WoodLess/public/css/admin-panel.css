@@ -83,6 +83,12 @@ table.dataTable thead>tr>th.sorting, table.dataTable thead>tr>th.sorting_asc {
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
 
+    --color-earth: #655d52;
+    --color-dark-earth: #39352f;
+    --color-plant: #b3bdbd;
+    --color-deep-dark: #1d1912;
+    --color-water: #d0dadb;
+
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
     --border-radius-2: 1.2rem;
@@ -175,6 +181,26 @@ b{
 
 .warning{
     color: var(--color-warning);
+}
+
+.earth{
+    color: var(--color-earth);
+}
+
+.dark-earth{
+    color: var(--color-dark-earth);
+}
+
+.plant{
+    color: var(--color-plant);
+}
+
+.deep-dark{
+    color: var(--color-deep-dark);
+}
+
+.water{
+    color: var(--color-water);
 }
 
 .container{
