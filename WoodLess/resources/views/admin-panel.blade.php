@@ -116,52 +116,26 @@
         </div>
     </div> -->
 
-    <div class="container">
-        <aside>
-            <div class="toggle">
-                <div class="logo">
-                    <!-- WoodLess logo -->
-                    <img src="" alt="">
-                    <h2>Wood<span class="danger">Less</span></h2>
-                </div>
-                <div class="close" id="close-btn">
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
-            </div>
-            <div class="sidebar">
-                <a href="#">
-                    <i class="fa-solid fa-house">
-
-                    </i>
-                    <h3>Dashboard</h3>
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <div class="logo-name"><span>Admin</span>Panel</div>
+        </a>
+        <ul class="side-menu">
+            <li><a href="#"><i class="fa-solid fa-house"></i></i>Dashboard</a></li>
+            <li><a href="#"><i class="fa-solid fa-warehouse"></i></i>Shop</a></li>
+            <li class="active"><a href="#"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
+            <li><a href="#"><i class="fa-regular fa-message"></i>Tickets</a></li>
+            <li><a href="#"><i class="fa-solid fa-user"></i>Users</a></li>
+            <li><a href="#"><i class="fa-solid fa-gear"></i>Settings</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#" class="logout">
+                    <i class='bx bx-log-out-circle'></i>
+                    Logout
                 </a>
-                <a href="#">
-                    <i class="fa-solid fa-user">
-
-                    </i>
-                    <h3>Users</h3>
-                </a>
-                <a href="#">
-                    <i class="fa-regular fa-envelope">
-
-                    </i>
-                    <h3>Tickets</h3>
-                    <span class="message-count">23 <!-- number of unresolved --></span>
-                </a>
-                <a href="#">
-                    <i class="fa-solid fa-truck">
-
-                    </i>
-                    <h3>Orders</h3>
-                </a>
-                <a href="#">
-                    <i class="fa-solid fa-warehouse">
-
-                    </i>
-                    <h3>Inventory</h3>
-                </a>
-            </div>
-        </aside>
+            </li>
+        </ul>
     </div>
 </body>
 @endsection
