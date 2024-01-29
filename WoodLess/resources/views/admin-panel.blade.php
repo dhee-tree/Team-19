@@ -6,8 +6,8 @@
 @endsection
 
 @section('content')
-<body class="main_body">
-    <nav class="sidebar">
+<body>
+    <!--<nav class="sidebar">
         <div class="sidebar_logo d-flex justify-content-between">
             <a href="#">Admin Panel</a>
         </div>
@@ -113,6 +113,54 @@
                 </div>
             </div>
         </div>
+    </div> -->
+
+    <div class="container">
+        <aside>
+            <div class="toggle">
+                <div class="logo">
+                    <!-- WoodLess logo -->
+                    <img src="" alt="">
+                    <h2>Wood<span class="danger">Less</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <div class="sidebar">
+                <a href="#">
+                    <i class="fa-solid fa-house">
+                        dashboard
+                    </i>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-user">
+                        users
+                    </i>
+                    <h3>Users</h3>
+                </a>
+                <a href="#">
+                    <i class="fa-regular fa-envelope">
+                        tickets
+                    </i>
+                    <h3>Tickets</h3>
+                    <span class="message-count">23 <!-- number of unresolved --></span>
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-truck">
+                        orders
+                    </i>
+                    <h3>Orders</h3>
+                </a>
+                <a href="#">
+                    <i class="fa-solid fa-warehouse">
+                        inventory
+                    </i>
+                    <h3>Inventory</h3>
+                </a>
+            </div>
+        </aside>
     </div>
 </body> -->
 @endsection
