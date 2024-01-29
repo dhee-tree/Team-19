@@ -22,50 +22,38 @@
                     </div>
                 </a>
             </li>
+            <li class>
+                <a href="{{url('/admin-panel/orders')}}" aria-expanded="false">
+                    <div class="nav_icon">
+                        <i class="fa-solid fa-list pe-2"></i>
+                    </div>
+                    <div class="nav_title">
+                        <span>Orders</span>
+                    </div>
+                </a>
+            </li>
+            <li class>
+                <a href="#" aria-expanded="false">
+                    <div class="nav_icon">
+                        <i class="fa-solid fa-user pe-2"></i>
+                    </div>
+                    <div class="nav_title">
+                        <span>Users</span>
+                    </div>
+                </a>
+            </li>
+            <li class>
+                <a href="#" aria-expanded="false">
+                    <div class="nav_icon">
+                        <i class="fa-regular fa-store pe-2"></i>
+                    </div>
+                    <div class="nav_title">
+                        <span>Inventory</span>
+                    </div>
+                </a>
+            </li>
         </ul>
     </nav>
-    <aside id="sidebar">
-        <!-- Content for sidebar -->
-        <div class="h-100">
-            <div class="sidebar-logo">
-                <a href="#">Admin Panel</a>
-            </div>
-            <ul class="sidebar-nav">
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="fa-solid fa-house pe-2"></i>
-                        Dashboard
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="{{url('/admin-panel/orders')}}" class="sidebar-link">
-                        <i class="fa-solid fa-list pe-2"></i>
-                        Orders
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed" data-bs-target="#customers" data-bs-toggle="collapse" aria-expanded="false">
-                        <i class="fa-solid fa-user pe-2"></i>
-                        Customers
-                    </a>
-                    <ul id="customers" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="{{url('/admin-panel/users')}}" class="sidebar-link">User display</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="{{url('/admin-panel/tickets')}}" class="sidebar-link">Support tickets</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="{{url('/admin-panel/inventory')}}" class="sidebar-link">
-                        <i class="fa-regular fa-store pe-2"></i>
-                        Inventory
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </aside>-->
     <div class="main">
         <div class="container">
             <div class="row">
