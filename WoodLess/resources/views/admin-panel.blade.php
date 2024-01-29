@@ -131,7 +131,7 @@
         <ul class="side-menu">
             <li>
                 <a href="#" class="logout">
-                    <i class='bx bx-log-out-circle'></i>
+                    <i class="fa-solid fa-right-from-bracket"></i>
                     Logout
                 </a>
             </li>
