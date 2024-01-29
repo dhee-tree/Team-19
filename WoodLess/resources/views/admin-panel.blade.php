@@ -116,6 +116,7 @@
         </div>
     </div> -->
 
+    <!-- sidebar -->
     <div class="sidebar">
         <a href="#" class="logo">
             <div class="logo-name"><span>Admin</span>Panel</div>
@@ -124,7 +125,7 @@
             <li><a href="#"><i class="fa-solid fa-house"></i></i>Dashboard</a></li>
             <li><a href="#"><i class="fa-solid fa-warehouse"></i></i>Shop</a></li>
             <li class="active"><a href="#"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
-            <li><a href="#"><i class="fa-regular fa-message"></i>Tickets</a></li>
+            <li><a href="#"><i class="fa-solid fa-message"></i>Tickets</a></li>
             <li><a href="#"><i class="fa-solid fa-user"></i>Users</a></li>
             <li><a href="#"><i class="fa-solid fa-gear"></i>Settings</a></li>
         </ul>
@@ -137,5 +138,10 @@
             </li>
         </ul>
     </div>
+    <!-- end of sidebar -->
+
+    <!-- main content -->
+
+    <!-- end of content -->
 </body>
 @endsection
