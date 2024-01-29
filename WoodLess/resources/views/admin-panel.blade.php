@@ -115,33 +115,34 @@
             </div>
         </div>
     </div> -->
+    <div class="container">
+        <!-- sidebar -->
+        <div class="sidebar">
+            <a href="#" class="logo">
+                <div class="logo-name"><span>Admin</span>Panel</div>
+            </a>
+            <ul class="side-menu">
+                <li><a href="#"><i class="fa-solid fa-house"></i></i>Dashboard</a></li>
+                <li><a href="#"><i class="fa-solid fa-warehouse"></i></i>Shop</a></li>
+                <li class="active"><a href="#"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
+                <li><a href="#"><i class="fa-solid fa-message"></i>Tickets</a></li>
+                <li><a href="#"><i class="fa-solid fa-user"></i>Users</a></li>
+                <li><a href="#"><i class="fa-solid fa-gear"></i>Settings</a></li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="#" class="logout">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- end of sidebar -->
 
-    <!-- sidebar -->
-    <div class="sidebar">
-        <a href="#" class="logo">
-            <div class="logo-name"><span>Admin</span>Panel</div>
-        </a>
-        <ul class="side-menu">
-            <li><a href="#"><i class="fa-solid fa-house"></i></i>Dashboard</a></li>
-            <li><a href="#"><i class="fa-solid fa-warehouse"></i></i>Shop</a></li>
-            <li class="active"><a href="#"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
-            <li><a href="#"><i class="fa-solid fa-message"></i>Tickets</a></li>
-            <li><a href="#"><i class="fa-solid fa-user"></i>Users</a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i>Settings</a></li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="#" class="logout">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    Logout
-                </a>
-            </li>
-        </ul>
+        <!-- main content -->
+
+        <!-- end of content -->
     </div>
-    <!-- end of sidebar -->
-
-    <!-- main content -->
-
-    <!-- end of content -->
 </body>
 @endsection
