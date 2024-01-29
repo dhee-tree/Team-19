@@ -122,10 +122,12 @@ body{
     font-size: 0.88rem;
     user-select: none;
     overflow-x: hidden;
+    color: var(--color-dark);
+    background-color: var(--color-background);
 }
 
 a{
-    color: gray;
+    color: var(--color-dark);
 }
 
 h1{
@@ -148,9 +150,37 @@ small{
 }
 
 p{
-    color: ;
+    color: var(--color-dark-variant);
 }
 
 b{
+    color: var(--color-dark);
+}
 
+.text-muted{
+    color: var(--color-info-dark);
+}
+
+.primary{
+    color: var(--color-primary);
+}
+
+.danger{
+    color: var(--color-danger);
+}
+
+.success{
+    color: var(--color-success);
+}
+
+.warning{
+    color: var(--color-warning);
+}
+
+.container{
+    display: grid;
+    width: 96%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 12rem auto 23rem;
 }
