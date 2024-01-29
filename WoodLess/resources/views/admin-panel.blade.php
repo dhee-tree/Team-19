@@ -131,37 +131,37 @@
             <div class="sidebar">
                 <a href="#">
                     <i class="fa-solid fa-house">
-                        dashboard
+
                     </i>
                     <h3>Dashboard</h3>
                 </a>
                 <a href="#">
                     <i class="fa-solid fa-user">
-                        users
+
                     </i>
                     <h3>Users</h3>
                 </a>
                 <a href="#">
                     <i class="fa-regular fa-envelope">
-                        tickets
+
                     </i>
                     <h3>Tickets</h3>
                     <span class="message-count">23 <!-- number of unresolved --></span>
                 </a>
                 <a href="#">
                     <i class="fa-solid fa-truck">
-                        orders
+
                     </i>
                     <h3>Orders</h3>
                 </a>
                 <a href="#">
                     <i class="fa-solid fa-warehouse">
-                        inventory
+
                     </i>
                     <h3>Inventory</h3>
                 </a>
             </div>
         </aside>
     </div>
-</body> -->
+</body>
 @endsection
