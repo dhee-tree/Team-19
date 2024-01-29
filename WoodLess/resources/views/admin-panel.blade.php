@@ -141,7 +141,21 @@
         <!-- end of sidebar -->
 
         <!-- main content -->
-
+        <div class="content">
+            <nav>
+                <i class="fa-solid fa-bars"></i>
+                <form action="#">
+                    <div class="form-input">
+                        <input type="search" placeholder="Search...">
+                        <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                    </div>
+                </form>
+                <a href="#" class="notif">
+                    <i class="fa-solid fa-bell"></i>
+                    <span class="count">12</span>
+                </a>
+            </nav>
+        </div>
         <!-- end of content -->
     </div>
 </body>
