@@ -15,7 +15,7 @@ return new class extends Migration
             $table->unsignedBigInteger('warehouse_id');
             $table->unsignedBigInteger('product_id');
             $table->primary(['warehouse_id','product_id']);
-            $table->integer('amount');
+            $table->integer('amount')->default(0);
             $table->timestamps();
         });
 
