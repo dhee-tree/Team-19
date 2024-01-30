@@ -183,7 +183,7 @@
                                 </select>
                             </div>
                             <div class="py-0 mb-0 flex-fill">
-                                <button class="btn btn-dark btn py-1 w-100 product-submit" type="submit" name="product-submit" value="Add To Basket">
+                                <button onclick="this.disabled = true; this.form.submit()" class="btn btn-dark btn py-1 w-100 product-submit" type="submit" name="product-submit" value="Add To Basket">
                                     <i class="fa-solid fa-basket-shopping fa-xs" style="color: #ffffff;"></i> Add to Basket
                                 </button>
                             </div>
