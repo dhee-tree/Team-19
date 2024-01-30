@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {   
         
+        $warehouses = \App\Models\Warehouse::factory(3)->create();
+
         $users =\App\Models\User::factory(50)->create();
         //$products =\App\Models\Product::factory(20)->create();
 
@@ -66,6 +68,13 @@ class DatabaseSeeder extends Seeder
         //Gives a product a random category.
         foreach ($products as $product){
             $product->categories()->attach(rand(1, $categories->count()));
+        }
+
+        //Adds products to warehouses
+        foreach ($products as $product){
+            for($i = 0; $i < $warehouses->count(); $i++){
+                $product->warehouses()->attach($i+1, ['amount' => 100]);
+            }
         }
         
         
