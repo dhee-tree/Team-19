@@ -30,7 +30,7 @@ class ProductController extends Controller
 
         return view('products.show', [
             'product' => $product,
-            //'attributes' => ["5" => 2, "3" => 2] (???),
+            'amount'=> $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
             'categories' => $product->categories()->get(),
             'productImages' => explode(',', $product->images),
