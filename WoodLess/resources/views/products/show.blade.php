@@ -6,10 +6,7 @@
 @endsection
 
 @php
-    if ($product->id == 1){
-        //Test code to give a product a category ('1' being the first category the the category table)
-        //$product->categories()->attach(2);
-    }
+    //dd($product->stockAmount(1))
     /*
         These variables are declared in ProductController and are used here.
 
@@ -135,7 +132,7 @@
 
                 <form class="row" method="POST" action="/basket/{{$product->id}}" enctype="multipart/form-data">
                     @csrf
-                    @if ($product->amount > 0)
+                    @if ($amount > 0)
                         <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
                             <input type="hidden" name="finalCost" value="{{$finalCost}}">
                             @php
@@ -177,7 +174,7 @@
                         <div class="d-flex my-1 align-items-center" id="product-submit">
                             <div class="me-2">
                                 <select class="form-select py-1" name="amount">
-                                    @for ($i = 0; $i < $product->amount; $i++)
+                                    @for ($i = 0; $i < 3; $i++)
                                         <option value="{{$i+1}}">{{$i+1}}</option>
                                     @endfor
                                 </select>
