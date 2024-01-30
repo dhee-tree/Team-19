@@ -41,6 +41,31 @@ class Product extends Model
     }
 
     /**
+     * Returns the warehouses associated with the product.
+     */
+    public function warehouses()
+    {
+        return $this->belongsToMany(Warehouse::class)->withPivot('amount')->withTimestamps();
+    }
+
+    /**
+     * Returns the stock amount for the product.
+     * @param int|null $warehouse (Optional) Specify a warehouse using id
+     */
+    public function stockAmount(int $warehouse = null){
+
+        $this->loadMissing('warehouses');
+
+        if(is_null($warehouse)){
+            return $this->warehouses()->sum('amount');
+        }
+
+        else{
+            return $this->warehouses()->wherePivot('warehouse_id', $warehouse)->sum('amount');
+        }
+    }
+
+    /**
      * Returns the categories associated with the product.
      */
     public function categories()
