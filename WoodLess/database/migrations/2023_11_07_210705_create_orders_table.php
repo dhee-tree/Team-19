@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('status_id');
             $table->timestamps();
         });
 
@@ -22,6 +23,7 @@ return new class extends Migration
         Schema::table('orders', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
+            $table->foreign('status_id')->references('id')->on('order_status')->onDelete('cascade');
         });
     }
 
