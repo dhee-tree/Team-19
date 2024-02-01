@@ -29,5 +29,4 @@ class Order extends Model
         return $this->belongsToMany(Product::class, 'order_product_warehouse')->withPivot('amount','warehouse_id','attributes');
     }
 
-    
 }
