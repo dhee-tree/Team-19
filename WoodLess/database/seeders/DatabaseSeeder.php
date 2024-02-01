@@ -30,6 +30,14 @@ class DatabaseSeeder extends Seeder
             //etc...
         )->create();
 
+        //ADD ORDER STATUSES HERE. INCREMENT COUNT BY NO. OF STATUSES.
+        $categories = \App\Models\OrderStatus::factory()->count(3)->sequence(
+            ['status' => 'Processing'],              
+            ['status' => 'Transit'],
+            ['status' => 'Complete'],
+            //etc...
+        )->create();
+
         $products = \App\Models\Product::factory()->count(30)->sequence(
             ['title' =>'Rivulet','description'=>'Embrace sustainable comfort with the Rivulet chair, crafted from recycled plastics. Its sleek design and ergonomic features make it an eco-conscious choice for modern living spaces.','images'=>'products/1/(1).png,products/1/(2).png,products/1/(3).png'],              
             ['title' =>'Lagoon','description'=>'Experience the perfect blend of style and sustainability with the Lagoon chair. Created using innovative plastic recycling, these chairs redefine eco-friendly seating, combining elegance with environmental responsibility.','images'=>'products/2/(1).png,products/2/(2).png,products/2/(3).png'],              
