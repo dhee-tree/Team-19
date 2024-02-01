@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        // Add foregin key constraint
         Schema::table('product_warehouse', function (Blueprint $table) {
             $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
