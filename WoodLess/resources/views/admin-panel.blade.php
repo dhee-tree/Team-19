@@ -14,9 +14,9 @@
             <div class="logo-name"><span>Admin</span>Panel</div>
         </a>
         <ul class="side-menu">
-            <li><a href="#"><i class="fa-solid fa-house"></i></i>Dashboard</a></li>
+            <li class="active"><a href="#"><i class="fa-solid fa-house"></i></i>Dashboard</a></li>
             <li><a href="{{url('/admin-panel/inventory')}}"><i class="fa-solid fa-warehouse"></i></i>Inventory</a></li>
-            <li class="active"><a href="{{url('/admin-panel/orders')}}"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
+            <li><a href="{{url('/admin-panel/orders')}}"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
             <li><a href="{{url('/admin-panel/tickets')}}"><i class="fa-solid fa-message"></i>Tickets</a></li>
             <li><a href="{{url('/admin-panel/users')}}"><i class="fa-solid fa-user"></i>Users</a></li>
             <li><a href="#"><i class="fa-solid fa-gear"></i>Settings</a></li>
