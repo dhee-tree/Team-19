@@ -76,16 +76,17 @@ class DatabaseSeeder extends Seeder
                 $product->warehouses()->attach($i+1, ['amount' => 100]);
             }
         }
-        
-        
+
         //Creates 500 Random Reviews.
         \App\Models\Review::factory(500)->create();
 
-        //Give user a basket.
+        //Give user a basket and address.
         foreach ($users as $user) {
             if(!($user->basket)){
                 $user->basket()->create();
             }
+
+            \App\Models\Address::factory()->create(['user_id' => $user->id]);
         }
 
         // \App\Models\User::factory()->create([
