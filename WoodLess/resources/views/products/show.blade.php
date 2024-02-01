@@ -6,6 +6,7 @@
 @endsection
 
 @php
+    //dd(Auth()->user()->orders()->first()->products()->first()->pivot->amount)
     //dd($product->stockAmount(1))
     /*
         These variables are declared in ProductController and are used here.
@@ -15,6 +16,7 @@
         $categories - The product's categories stored in the pivot table 'categories_product'
         $productImages - The file path of each image used for the product, stored in a String array
         $reviews - Rows from the 'reviews' table that match this product's id, stored in an Eloquent model (?) array, currently paginated by 5
+        $amount - Sum of available product stock
         $finalCost - Gets the final price, taking into account discount
         $similarProducts - Array of 6 products that share similar values to the product
     */
