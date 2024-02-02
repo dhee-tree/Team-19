@@ -42,7 +42,7 @@ class OrderController extends Controller
             $order->products()->attach($product->id, [
                 'amount' => $product->pivot->amount,
                 'attributes' => $product->pivot->attributes,
-                'warehouse_id' => 1, // Needs to be changed to the warehouse id associated with the product.
+                'warehouse_id' => $product->warehouses->first()->id,
             ]);
         }
 
