@@ -8,6 +8,8 @@ use App\Models\OrderStatus;
 use App\Models\Address;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
+use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -46,6 +48,8 @@ class OrderController extends Controller
 
         $basket->products()->detach();
 
+        // Send an email to the user with the order confirmation.
+        Mail::to($user->email)->send(new OrderConfirmation($basket));
         return view('order-confirmation', [
             'basket' => $basket,
         ]);
