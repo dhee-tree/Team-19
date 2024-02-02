@@ -13,6 +13,7 @@ class Order extends Model
         'user_id',
         'warehouse_id',
         'address_id',
+        'status_id',
     ];
 
     /**
