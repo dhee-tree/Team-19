@@ -27,7 +27,7 @@ class Order extends Model
      * Returns the products associated with the order and relevant order information.
      */
     public function products(){
-        return $this->belongsToMany(Product::class, 'order_product_warehouse')->withPivot('amount','warehouse_id','attributes');
+        return $this->belongsToMany(Product::class, 'order_product_warehouse')->withPivot('amount','warehouse_id','attributes')->withTimestamps();
     }
 
     /**
