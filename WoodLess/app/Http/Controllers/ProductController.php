@@ -18,10 +18,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-
         $product->loadMissing('categories', 'reviews');
 
-        $similarProducts = Product::latest()->take((6 % Product::count()))->get();
+        $similarProducts = $product->categories()->first()->products()->take(8)->get();
 
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
