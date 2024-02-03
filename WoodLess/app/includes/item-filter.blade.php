@@ -103,7 +103,7 @@
                 <label for="minimumPrice" class="form-label">Minimum Price</label>
                 <div class="input-group">
                 <span class="input-group-text">£</span>
-                <input type="text" class="form-control" id="minimumPrice" name="min_price"
+                <input type="text" class="form-control" id="minCost" name="minCost"
                 placeholder="enter price" value="<?php echo htmlspecialchars(request('min_price')); ?>">
             </div>
             </div>
@@ -111,7 +111,7 @@
                 <label for="maximumPrice" class="form-label">Maximum Price</label>
                 <div class="input-group">
                 <span class="input-group-text">£</span>
-                <input type="text" class="form-control" id="maximumPrice" name="max_price"
+                <input type="text" class="form-control" id="maxCost" name="maxCost"
                 placeholder = "enter price" value="<?php echo htmlspecialchars(request('max_price')); ?>">
             </div>
         </div>
