@@ -101,16 +101,22 @@
         <div class="accordion-body">
             <div class="mb-3">
                 <label for="minimumPrice" class="form-label">Minimum Price</label>
-                <input type="number" class="form-control" id="minimumPrice" name="min_price"
-                    value="<?php echo htmlspecialchars(request('min_price')); ?>">
+                <div class="input-group">
+                <span class="input-group-text">£</span>
+                <input type="text" class="form-control" id="minimumPrice" name="min_price"
+                placeholder="enter price" value="<?php echo htmlspecialchars(request('min_price')); ?>">
+            </div>
             </div>
             <div class="mb-3">
                 <label for="maximumPrice" class="form-label">Maximum Price</label>
-                <input type="number" class="form-control" id="maximumPrice" name="max_price"
-                    value="<?php echo htmlspecialchars(request('max_price')); ?>">
+                <div class="input-group">
+                <span class="input-group-text">£</span>
+                <input type="text" class="form-control" id="maximumPrice" name="max_price"
+                placeholder = "enter price" value="<?php echo htmlspecialchars(request('max_price')); ?>">
             </div>
         </div>
     </div>
+</div>
 </div>
                                         
                     <!--
