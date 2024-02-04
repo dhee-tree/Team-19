@@ -121,7 +121,8 @@
                                                     scope="col">{{ $product->truncateDescription(5) }}... <a
                                                         class="fa-solid fa-up-right-from-square"></a></td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col">{{ $product->id }}</td>
+                                                    scope="col">{{ $product->stockAmount() }}... <a
+                                                    class="fa-solid fa-up-right-from-square"></a></td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     scope="col">{{ $product->categoriesNames() }}... <a
                                                         class="fa-solid fa-up-right-from-square"></a></td>
