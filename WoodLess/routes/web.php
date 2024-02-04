@@ -66,6 +66,7 @@ Route::view('/admin-panel/orders', 'orders-admin');
 Route::view('/admin-panel/tickets', 'tickets-admin');
 Route::view('/admin-panel/users', 'users-admin');
 Route::get('/admin-panel/inventory', [AdminController::class,'inventory']);
+Route::get('/components/expand', [AdminController::class,'show'])->name('modal.show');
 
 
 

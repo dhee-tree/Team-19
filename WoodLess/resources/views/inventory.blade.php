@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}">
 @endsection
 
+@php
+    // Convert the $products array into a JSON string
+    $productsJson = json_encode($products);
+@endphp
+
+
 @section('content')
 
     <body>
@@ -122,14 +128,17 @@
                                                         class="fa-solid fa-up-right-from-square"></a></td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     scope="col">{{ $product->stockAmount() }}... <a
-                                                    class="fa-solid fa-up-right-from-square"></a></td>
-                                                <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col">{{ $product->categoriesNames() }}... <a
                                                         class="fa-solid fa-up-right-from-square"></a></td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col"><button type="button" class="btn btn-secondary">Edit</button></td>
+                                                    scope="col">{{ $product->categoriesNames() }}... <a
+                                                        class="fa-solid fa-up-right-from-square"
+                                                        onclick="openModal({{ $product->id }})"></a></td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col"><button type="button" class="btn btn-danger">Delete</button></td>
+                                                    scope="col"><button type="button"
+                                                        class="btn btn-secondary">Edit</button></td>
+                                                <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                    scope="col"><button type="button"
+                                                        class="btn btn-danger">Delete</button></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -140,5 +149,26 @@
                 </div>
             </div>
         </div>
+
+
     </body>
+@endsection
+
+@section('js')
+
+    <!-- JavaScript to handle modal opening -->
+    <script>
+        function openModal(productId) {
+            $.get('/components/expand', function(data) {
+                $('body').append(data);
+                var modal = $('#productModal');
+                modal.modal('show'); // Show the modal after content is appended
+
+                // Remove the modal from the DOM when it's closed
+                modal.on('hidden.bs.modal', function() {
+                    modal.remove();
+                });
+            });
+        }
+    </script>
 @endsection
