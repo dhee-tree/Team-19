@@ -1,4 +1,4 @@
-<!-- modal.blade.php -->
+<!-- Is responsible for expanding the fields for the item in the inventory managment system -->
 
 <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

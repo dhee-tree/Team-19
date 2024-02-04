@@ -159,7 +159,7 @@
     <!-- JavaScript to handle modal opening -->
     <script>
         function openModal(productId) {
-            $.get('/components/expand', function(data) {
+            $.get('/info/' + productId, function(data) {
                 $('body').append(data);
                 var modal = $('#productModal');
                 modal.modal('show'); // Show the modal after content is appended
