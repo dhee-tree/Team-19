@@ -132,14 +132,14 @@
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     scope="col">{{ $product->categories->first()->category }}...</td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col"><button type="button" class="btn btn-primary openInfoModalButton"
+                                                    scope="col"><button type="button" class="btn btn-primary openModalButton"
                                                         onclick="openInfoModal({{ $product->id }})"
-                                                        id="openInfoModalButton"><i
+                                                        id="openModalButton"><i
                                                             class="fa-solid fa-up-right-from-square"></i></button></td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col"><button type="button" class="btn btn-secondary openEditModalButton"
+                                                    scope="col"><button type="button" class="btn btn-secondary openModalButton"
                                                         onclick="openEditModal({{ $product->id }})"
-                                                        id="openEditModalButton">Edit</button>
+                                                        id="openModalButton">Edit</button>
                                                 </td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     scope="col"><button type="button"
@@ -165,7 +165,7 @@
     <script>
         function openInfoModal(productId) {
             // Disable all buttons with the specified class to disable multiple spam
-            var buttons = document.querySelectorAll(".openInfoModalButton");
+            var buttons = document.querySelectorAll(".openModalButton");
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].disabled = true;
             }
@@ -178,7 +178,7 @@
                 // Remove the modal from the DOM when it's closed
                 modal.on('hidden.bs.modal', function() {
                     // Re-enable all buttons with the specified class when the modal is closed
-                    var buttons = document.querySelectorAll(".openInfoModalButton");
+                    var buttons = document.querySelectorAll(".openModalButton");
                     for (var i = 0; i < buttons.length; i++) {
                         buttons[i].disabled = false;
                     }
@@ -194,7 +194,7 @@
         function openEditModal(productId) {
 
             // Disable all buttons with the specified class to disable multiple spam
-            var buttons = document.getElementsByClassName("openEditModalButton");
+            var buttons = document.getElementsByClassName("openModalButton");
             for (var i = 0; i < buttons.length; i++) {
                 buttons[i].disabled = true;
             }
@@ -207,7 +207,7 @@
                 // Remove the modal from the DOM when it's closed
                 modal.on('hidden.bs.modal', function() {
                     // Re-enable all buttons with the specified class when the modal is closed
-                    var buttons = document.getElementsByClassName("openEditModalButton");
+                    var buttons = document.getElementsByClassName("openModalButton");
                     for (var i = 0; i < buttons.length; i++) {
                         buttons[i].disabled = false;
                     }
