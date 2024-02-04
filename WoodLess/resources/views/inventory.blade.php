@@ -94,11 +94,37 @@
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Description</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Quantity</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Categories</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Edit</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody class="datatable-body">
                                     <tr scope="row">
-
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">5</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Product title</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">This is a test description... <a class="fa-solid fa-up-right-from-square"></a></td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Quantity</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Dining, Kitchen, Chair, Egg...  <a class="fa-solid fa-up-right-from-square"></a></td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Quantity</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Categories</td>
+                                    </tr>
+                                    <tr scope="row">
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">5</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Product title</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">This is a test description... <a class="fa-solid fa-up-right-from-square"></a></td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Quantity</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Dining, Kitchen, Chair, Egg...  <a class="fa-solid fa-up-right-from-square"></a></td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Quantity</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Categories</td>
+                                    </tr>
+                                    <tr scope="row">
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">5</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Product title</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">This is a test description... <a class="fa-solid fa-up-right-from-square"></a></td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Quantity</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Dining, Kitchen, Chair, Egg...  <a class="fa-solid fa-up-right-from-square"></a></td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Quantity</td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">Categories</td>
                                     </tr>
                                 </tbody>
                             </table>

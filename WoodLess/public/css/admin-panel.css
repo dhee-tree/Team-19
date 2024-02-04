@@ -124,6 +124,12 @@ div.dataTables_filter input {
     font-size: .875rem;
 }
 
+table
+{
+    table-layout: fixed;
+    width: 100px;
+}
+
 table.dataTable {
     clear: both;
     margin-top: 6px !important;

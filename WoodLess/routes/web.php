@@ -64,7 +64,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::view('/admin-panel/orders', 'orders-admin');
 Route::view('/admin-panel/tickets', 'tickets-admin');
 Route::view('/admin-panel/users', 'users-admin');
-Route::view('/admin-panel/inventory', 'inventory');
+Route::get('/admin-panel/inventory', function () {
+    $products = app(ProductController::class)->index();
+    return view('inventory', ['products' => $products]);
+});
 
 
 
