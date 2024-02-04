@@ -111,6 +111,8 @@
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">Categories</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col">Expand</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">Edit</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">Delete</th>
@@ -124,15 +126,14 @@
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     scope="col">{{ $product->title }}</td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col">{{ $product->truncateDescription(5) }}... <a
-                                                        class="fa-solid fa-up-right-from-square"></a></td>
+                                                    scope="col">{{ $product->truncateDescription(5) }}...</td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col">{{ $product->stockAmount() }}... <a
-                                                        class="fa-solid fa-up-right-from-square"></a></td>
+                                                    scope="col">{{ $product->stockAmount() }}...</td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col">{{ $product->categoriesNames() }}... <a
-                                                        class="fa-solid fa-up-right-from-square"
-                                                        onclick="openModal({{ $product->id }})"></a></td>
+                                                    scope="col">{{ $product->categories->first()->category }}...</td>
+                                                <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                    scope="col"><button type="button" class="btn btn-primary" onclick="openModal({{ $product->id }})"><i
+                                                            class="fa-solid fa-up-right-from-square"></i></button></td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     scope="col"><button type="button"
                                                         class="btn btn-secondary">Edit</button></td>
