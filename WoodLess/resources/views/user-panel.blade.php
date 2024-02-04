@@ -88,10 +88,11 @@
                                     aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
+
+                           <div class="carousel-item active">
                                 <img src="/images/PictureToBeAdded.png" class="d-block w-100" alt="IMAGE">
                             </div>
-                            <div class="carousel-item">
+                            <div class=" carousel-item">
                                 <img src="/images/PictureToBeAdded.png" class="d-block w-100" alt="IMAGE">
                             </div>
                             <div class="carousel-item">

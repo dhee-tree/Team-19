@@ -87,6 +87,38 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Price Range Section -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="FilterAccordion-headingPrice">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#FilterAccordion-collapsePrice" aria-expanded="false"
+                                aria-controls="FilterAccordion-collapsePrice">
+                                Price
+                            </button>
+                        </h2>
+                        <div id="FilterAccordion-collapsePrice" class="accordion-collapse collapse"
+        aria-labelledby="FilterAccordion-headingPrice">
+        <div class="accordion-body">
+            <div class="mb-3">
+                <label for="minimumPrice" class="form-label">Minimum Price</label>
+                <div class="input-group">
+                <span class="input-group-text">£</span>
+                <input type="text" class="form-control" id="minCost" name="minCost"
+                placeholder="enter price" value="<?php echo htmlspecialchars(request('min_price')); ?>">
+            </div>
+            </div>
+            <div class="mb-3">
+                <label for="maximumPrice" class="form-label">Maximum Price</label>
+                <div class="input-group">
+                <span class="input-group-text">£</span>
+                <input type="text" class="form-control" id="maxCost" name="maxCost"
+                placeholder = "enter price" value="<?php echo htmlspecialchars(request('max_price')); ?>">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+                                        
                     <!--
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="FilterAccordian-headingFinish">

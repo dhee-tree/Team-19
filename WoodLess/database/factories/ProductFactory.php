@@ -27,7 +27,6 @@ class ProductFactory extends Factory
             'tags' => fake()->word() . ',' . fake()-> word(),
             'cost' => fake()->numberBetween(10, 500) + (fake()->numberBetween(0, 99)/100),
             'discount' => fake()->numberBetween(10,50),
-            'amount' => fake()->numberBetween(10,0),
         ];
     }
 }

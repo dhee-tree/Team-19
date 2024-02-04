@@ -55,7 +55,7 @@ class BasketController extends Controller
                 ]);
                 return back()->with([
                     'status' => 'success',
-                    'message' => 'Item(s) added to basket.'
+                    'message' => 'Added to basket.'
                 ]);
             }
         };

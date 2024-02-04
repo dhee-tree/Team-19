@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {   
         
+        $warehouses = \App\Models\Warehouse::factory(3)->create();
+
         $users =\App\Models\User::factory(50)->create();
         //$products =\App\Models\Product::factory(20)->create();
 
@@ -25,6 +27,14 @@ class DatabaseSeeder extends Seeder
             ['category' => 'Bathroom','images'=>'/images/Bathroom.png'],
             ['category'=> 'Office','images'=>'/images/Office.png'],
             ['category'=> 'Garden','images'=>'/images/Garden.png'],
+            //etc...
+        )->create();
+
+        //ADD ORDER STATUSES HERE. INCREMENT COUNT BY NO. OF STATUSES.
+        $categories = \App\Models\OrderStatus::factory()->count(3)->sequence(
+            ['status' => 'Processing'],              
+            ['status' => 'Transit'],
+            ['status' => 'Complete'],
             //etc...
         )->create();
 
@@ -67,16 +77,24 @@ class DatabaseSeeder extends Seeder
         foreach ($products as $product){
             $product->categories()->attach(rand(1, $categories->count()));
         }
-        
-        
+
+        //Adds products to warehouses
+        foreach ($products as $product){
+            for($i = 0; $i < $warehouses->count(); $i++){
+                $product->warehouses()->attach($i+1, ['amount' => 100]);
+            }
+        }
+
         //Creates 500 Random Reviews.
         \App\Models\Review::factory(500)->create();
 
-        //Give user a basket.
+        //Give user a basket and address.
         foreach ($users as $user) {
             if(!($user->basket)){
                 $user->basket()->create();
             }
+
+            \App\Models\Address::factory()->create(['user_id' => $user->id]);
         }
 
         // \App\Models\User::factory()->create([

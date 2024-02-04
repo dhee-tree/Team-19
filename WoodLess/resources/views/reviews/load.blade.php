@@ -60,7 +60,7 @@
                     <form method="POST" action="/review/{{$review->id}}">
                         @csrf
                         @method('DELETE')
-                        <button class="btn p-0">
+                        <button onclick="this.disabled = true; this.form.submit()" class="btn p-0">
                             <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
                         </button>
                     </form>
@@ -104,7 +104,7 @@
             <div class="card-footer">
                 <div class="d-flex flex-row justify-content-end">
                     <div class="">
-                        <button type="submit" class="btn p-0">
+                        <button onclick="this.disabled = true; this.form.submit()" type="submit" class="btn p-0">
                             <small><i class="fa-solid fa-small fa-check"></i> Submit</small>
                         </button>
                     </div>
@@ -162,7 +162,7 @@
                         <form method="POST" action="/review/{{$review->id}}">
                             @csrf
                             @method('DELETE')
-                            <button class="btn p-0">
+                            <button onclick="this.disabled = true; this.form.submit()" class="btn p-0">
                                 <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
                             </button>
                         </form>

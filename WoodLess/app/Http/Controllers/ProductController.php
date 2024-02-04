@@ -18,10 +18,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-
         $product->loadMissing('categories', 'reviews');
 
-        $similarProducts = Product::latest()->take((6 % Product::count()))->get();
+        $similarProducts = $product->categories()->first()->products()->take(8)->get();
 
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
@@ -30,7 +29,7 @@ class ProductController extends Controller
 
         return view('products.show', [
             'product' => $product,
-            //'attributes' => ["5" => 2, "3" => 2] (???),
+            'amount'=> $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
             'categories' => $product->categories()->get(),
             'productImages' => explode(',', $product->images),
@@ -66,8 +65,8 @@ class ProductController extends Controller
             'categories' => $categories,
             'ratings' => $ratings,
             'color' => json_decode($color),
-            'minCost' => (float)$minCost,
-            'maxCost' => (float)$maxCost
+            'minCost' => request('minCost'),
+    'maxCost' => request('maxCost'),
         ];
 
         $products = Product::latest()->filter($data)->get();

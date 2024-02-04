@@ -59,6 +59,22 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the orders associated with the user.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
+     * Get the addresses associated with the user.
+     */
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
+    }
+
+    /**
      * Get the basket associated with the user.
      */
     public function basket()

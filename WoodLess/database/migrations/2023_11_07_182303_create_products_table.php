@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('tags')->nullable();
             $table->decimal('cost', 8, 2)->default(0);
             $table->integer('discount')->nullable();
-            $table->integer('amount')->default(0);
             $table->timestamps();
         });
     }
