@@ -127,9 +127,9 @@
                                                     scope="col">{{ $product->categoriesNames() }}... <a
                                                         class="fa-solid fa-up-right-from-square"></a></td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col">Edit Button</td>
+                                                    scope="col"><button type="button" class="btn btn-secondary">Edit</button></td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col">Delete Button</td>
+                                                    scope="col"><button type="button" class="btn btn-danger">Delete</button></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
