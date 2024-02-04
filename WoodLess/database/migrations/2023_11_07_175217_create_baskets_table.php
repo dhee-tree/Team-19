@@ -16,10 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->integer('total_cost')->default(0);
             $table->timestamps();
-        });
 
-        // Add foregin key constraint
-        Schema::table('baskets', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

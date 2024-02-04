@@ -17,10 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('address_id');
             $table->unsignedBigInteger('status_id');
             $table->timestamps();
-        });
 
-        // Add foregin key constraint
-        Schema::table('orders', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->foreign('status_id')->references('id')->on('order_status')->onDelete('cascade');
