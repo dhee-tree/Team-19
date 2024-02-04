@@ -11,7 +11,7 @@ use App\Http\Controllers\UserPanelController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -64,10 +64,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::view('/admin-panel/orders', 'orders-admin');
 Route::view('/admin-panel/tickets', 'tickets-admin');
 Route::view('/admin-panel/users', 'users-admin');
-Route::get('/admin-panel/inventory', function () {
-    $products = app(ProductController::class)->index();
-    return view('inventory', ['products' => $products]);
-});
+Route::get('/admin-panel/inventory', [AdminController::class,'inventory']);
 
 
 

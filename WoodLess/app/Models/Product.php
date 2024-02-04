@@ -48,6 +48,15 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    /**
+     * Returns the categories in text format associated with the product.
+     */
+    public function categoriesText()
+    {
+        $categoryNames = $this->categories->pluck('Cat')->implode(', ');
+        return $categoryNames;
+    }
+
     //filters the product
     public function scopeFilter($query, array $filters)
     {

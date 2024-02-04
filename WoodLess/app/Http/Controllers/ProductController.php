@@ -71,7 +71,7 @@ class ProductController extends Controller
         ];
 
         $products = Product::latest()->filter($data)->get();
-        return $products;
+        return view('product-list', ['products' => $products]);
     }
     //gets three random categories and products  for home page
     public function getThreeRandom()
