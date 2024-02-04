@@ -27,11 +27,4 @@ class Category extends Model
         return $this->belongsToMany(Product::class);
     }
 
-    /**
-     * Returns the products that belong to the category.
-     */
-    public function getName()
-    {
-        return $this->category;
-    }
 }
