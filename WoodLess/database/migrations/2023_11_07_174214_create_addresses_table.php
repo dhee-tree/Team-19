@@ -19,10 +19,7 @@ return new class extends Migration
             $table->string('postcode');
             $table->string('city', 60);
             $table->timestamps();
-        });
 
-        // Add foregin key constraint
-        Schema::table('addresses', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
