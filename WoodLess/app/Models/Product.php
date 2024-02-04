@@ -56,7 +56,6 @@ class Product extends Model
         return $this->categories->pluck('category')->implode(', ');
     }
 
-
     //filters the product
     public function scopeFilter($query, array $filters)
     {
@@ -89,5 +88,26 @@ class Product extends Model
         }
         //Rating
 
+    }
+
+    //deals with cutting/shortening description
+    public function truncateDescription($words = 20)
+    {
+        $description = $this->description;
+        $tokens = strtok($description, " ");
+        $truncatedDescription = '';
+
+        while ($tokens !== false && $words > 0) {
+            $truncatedDescription .= $tokens . ' ';
+            $tokens = strtok(" ");
+            $words--;
+        }
+
+        // Add ellipsis if the description was truncated
+        if ($tokens !== false) {
+            $truncatedDescription .= '...';
+        }
+
+        return $truncatedDescription;
     }
 }
