@@ -66,7 +66,7 @@ class ProductController extends Controller
             'ratings' => $ratings,
             'color' => json_decode($color),
             'minCost' => request('minCost'),
-    'maxCost' => request('maxCost'),
+            'maxCost' => request('maxCost'),
         ];
 
         $products = Product::latest()->filter($data)->get();

@@ -132,11 +132,15 @@
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     scope="col">{{ $product->categories->first()->category }}...</td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col"><button type="button" class="btn btn-primary" onclick="openModal({{ $product->id }})"><i
+                                                    scope="col"><button type="button" class="btn btn-primary openInfoModalButton"
+                                                        onclick="openInfoModal({{ $product->id }})"
+                                                        id="openInfoModalButton"><i
                                                             class="fa-solid fa-up-right-from-square"></i></button></td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                    scope="col"><button type="button"
-                                                        class="btn btn-secondary">Edit</button></td>
+                                                    scope="col"><button type="button" class="btn btn-secondary openEditModalButton"
+                                                        onclick="openEditModal({{ $product->id }})"
+                                                        id="openEditModalButton">Edit</button>
+                                                </td>
                                                 <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                     scope="col"><button type="button"
                                                         class="btn btn-danger">Delete</button></td>
@@ -159,14 +163,54 @@
 
     <!-- JavaScript to handle modal opening -->
     <script>
-        function openModal(productId) {
-            $.get('/info/' + productId, function(data) {
+        function openInfoModal(productId) {
+            // Disable all buttons with the specified class to disable multiple spam
+            var buttons = document.querySelectorAll(".openInfoModalButton");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = true;
+            }
+
+            $.get('/admin-panel/info/' + productId, function(data) {
                 $('body').append(data);
                 var modal = $('#productModal');
                 modal.modal('show'); // Show the modal after content is appended
 
                 // Remove the modal from the DOM when it's closed
                 modal.on('hidden.bs.modal', function() {
+                    // Re-enable all buttons with the specified class when the modal is closed
+                    var buttons = document.querySelectorAll(".openInfoModalButton");
+                    for (var i = 0; i < buttons.length; i++) {
+                        buttons[i].disabled = false;
+                    }
+
+                    modal.remove();
+                });
+            });
+        }
+    </script>
+
+    <!-- JavaScript to handle modal opening -->
+    <script>
+        function openEditModal(productId) {
+
+            // Disable all buttons with the specified class to disable multiple spam
+            var buttons = document.getElementsByClassName("openEditModalButton");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = true;
+            }
+
+            $.get('/admin-panel/edit/' + productId, function(data) {
+                $('body').append(data);
+                var modal = $('#productModal');
+                modal.modal('show'); // Show the modal after content is appended
+
+                // Remove the modal from the DOM when it's closed
+                modal.on('hidden.bs.modal', function() {
+                    // Re-enable all buttons with the specified class when the modal is closed
+                    var buttons = document.getElementsByClassName("openEditModalButton");
+                    for (var i = 0; i < buttons.length; i++) {
+                        buttons[i].disabled = false;
+                    }
                     modal.remove();
                 });
             });

@@ -24,7 +24,7 @@ class AdminController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        return view('components.show', compact('product'));
+        return view('components.products-edit', compact('product'));
     }
 
     //returns the view for inventory on the admin controller.
