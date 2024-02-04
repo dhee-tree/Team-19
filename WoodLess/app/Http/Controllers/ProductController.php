@@ -20,7 +20,11 @@ class ProductController extends Controller
     {
         $product->loadMissing('categories', 'reviews');
 
-        $similarProducts = $product->categories()->first()->products()->take(8)->get();
+        $similarProducts = $product->categories()->with('products')->get()->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
+            return $p->id == $product->id;
+        });
+        
+        $similarProducts = $similarProducts->shuffle()->take(8);
 
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
