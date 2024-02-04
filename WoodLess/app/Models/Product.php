@@ -100,8 +100,12 @@ class Product extends Model
             $query->whereJsonContains('attributes->color', $filters['color']);
         }
         //Price
-        if ($filters['minCost'] && $filters['maxCost'] ?? false) {
-            $query->whereBetween('attributes->cost', [$filters['minCost'], $filters['maxCost']]);
+        if (($filters['minCost'] ?? null) !== null && ($filters['maxCost'] ?? null) !== null) {
+            $query->whereBetween('cost', [$filters['minCost'], $filters['maxCost']]);
+        } elseif ($filters['minCost'] ?? null) {
+            $query->where('cost', '>=', $filters['minCost']);
+        } elseif ($filters['maxCost'] ?? null) {
+            $query->where('cost', '<=', $filters['maxCost']);
         }
         //Rating
 
