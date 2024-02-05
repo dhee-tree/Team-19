@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('title', 255);
             $table->longText('information');
             $table->string('contact', 30);
-            $table->string('importance_level', 30);
+            $table->unsignedBigInteger('importance_level_id')->default(1);
             $table->boolean('status');
             $table->timestamps();
 
+            $table->foreign('importance_level_id')->references('id')->on('importance_levels')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
         });
