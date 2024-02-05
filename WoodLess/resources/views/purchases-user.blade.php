@@ -21,7 +21,7 @@
                 </div>
                 <ul class="sidebar">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{url('/user-panel/user-panel')}}" class="sidebar-link">
                             <i class="fa-regular fa-clipboard-list pe-2"></i>
                             Dashboard
                         </a>
