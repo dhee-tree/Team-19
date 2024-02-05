@@ -33,7 +33,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{url('/user-panel/tickets')}}" class="sidebar-link">
                             <i class="fa-regular fa-clipboard-list pe-2"></i>
                             Tickets
                         </a>
