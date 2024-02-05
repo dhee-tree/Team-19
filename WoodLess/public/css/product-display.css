@@ -28,5 +28,6 @@
 
 .carousel-control-prev,
 .carousel-control-next{
-    width: 10%;
+    opacity: 15%;
+    width: 7vh;
 }

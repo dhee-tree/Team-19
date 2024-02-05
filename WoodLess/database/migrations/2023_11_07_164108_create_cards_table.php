@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->smallInteger('card_number');
             $table->date('expiry_date');
             $table->string('house_number', 5);
@@ -20,11 +21,7 @@ return new class extends Migration
             $table->string('postcode', 10);
             $table->string('city', 60);
             $table->timestamps();
-        });
 
-        // Add foregin key constraint
-        Schema::table('cards', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
