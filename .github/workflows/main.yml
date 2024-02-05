@@ -25,7 +25,7 @@ jobs:
           username: u-220216407
           server: cs2410-web01pvm.aston.ac.uk
           port: 22 # default is 22
-          # ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
 
           # will put all file under this path
