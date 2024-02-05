@@ -1,0 +1,41 @@
+name: CI-SFTP
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push request events but only for the development branch
+  push:
+    branches: [development]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+  # Additional trigger for increased verbosity
+  workflow_run:
+    workflows: ["CI-SFTP"]
+    types:
+      - requested
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "SFTP"
+  deploy-via-sftp:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: SFTP Deploy
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
+        with:
+          username: u-220216407
+          server: 220216407.cs2410-web01pvm.aston.ac.uk
+          port: 22 # default is 22
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+          # will put all file under this path
+          local_path: ./WoodLess # default is ./*
+          # files will copy to under remote_path
+          remote_path: /wood
+
+          # sftp args
+          args: '-o ConnectTimeout=5'

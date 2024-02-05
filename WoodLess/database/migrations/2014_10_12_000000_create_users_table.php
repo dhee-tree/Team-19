@@ -20,10 +20,12 @@ return new class extends Migration
             $table->string('password', 255);
             $table->string('phone_number', 15);
             $table->string('image', 255)->default('no-image.svg');
-            $table->boolean('is_admin')->default(false)->invisible();
+            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
+
+            $table->index(['last_name','first_name'],'name');
         });
     }
 

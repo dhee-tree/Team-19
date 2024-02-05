@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('house_number', 5);
-            $table->string('street_name', 255);
-            $table->string('postcode', 10);
+            $table->string('street_name');
+            $table->string('postcode');
             $table->string('city', 60);
             $table->timestamps();
-        });
 
-        // Add foregin key constraint
-        Schema::table('addresses', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

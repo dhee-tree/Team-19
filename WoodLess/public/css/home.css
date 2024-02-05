@@ -18,8 +18,14 @@
 .carousel-item img {
   margin-left: auto;
   margin-right: auto;
-  min-width: 100%;
-  max-height: 500px;
+  width: 450px;
+  height: 450px;
+}
+
+/* Add this CSS to your stylesheet */
+#carouselHotSellers a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Use the default text color */
 }
 
 /* 
@@ -28,7 +34,7 @@ Media to change the carosel height for smaller screen sizes
 @media screen and (max-width: 990px) {
   .carousel-item img {
     min-width: 100%;
-    max-height: 100px;
+    height: 200px;
   }
 }
 

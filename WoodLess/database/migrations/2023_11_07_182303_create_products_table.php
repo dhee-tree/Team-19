@@ -19,10 +19,9 @@ return new class extends Migration
             $table->string('images', 255)->default('no-image.svg');
 
             $table->json('attributes')->nullable();
-            $table->string('tags')->nullable();
-            $table->decimal('cost', 8, 2)->default(0);
+            $table->string('tags')->nullable()->index();
+            $table->decimal('cost', 8, 2)->default(0)->index();
             $table->integer('discount')->nullable();
-            $table->integer('amount')->default(0);
             $table->timestamps();
         });
     }

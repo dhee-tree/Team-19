@@ -6,10 +6,8 @@
 @endsection
 
 @php
-    if ($product->id == 1){
-        //Test code to give a product a category ('1' being the first category the the category table)
-        //$product->categories()->attach(2);
-    }
+    //dd(Auth()->user()->orders()->first()->products()->first()->pivot->amount)
+    //dd($product->stockAmount(1))
     /*
         These variables are declared in ProductController and are used here.
 
@@ -18,7 +16,9 @@
         $categories - The product's categories stored in the pivot table 'categories_product'
         $productImages - The file path of each image used for the product, stored in a String array
         $reviews - Rows from the 'reviews' table that match this product's id, stored in an Eloquent model (?) array, currently paginated by 5
+        $amount - Sum of available product stock
         $finalCost - Gets the final price, taking into account discount
+        $similarProducts - Array of 6 products that share similar values to the product
     */
 @endphp
 
@@ -27,7 +27,7 @@
         @include('layouts.alert')
         <div class="row m-0 mt-3 px-1 pt-3" id="product-main">
             <div class="col-md-6 mb-3" id="gallery">
-                <div id="productGallery" class="carousel carousel-dark slide .carousel-fade" data-bs-ride="carousel">
+                <div id="productGallery" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">                  
                         <div class="carousel-inner">
                             @foreach ($productImages as $image)
@@ -60,8 +60,8 @@
                                 <div class="carousel-item @if ($i == 0) active @endif">
                                     <div class="d-flex justify-content-center" role="group">
                                         @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($productImages); $ii++)
-                                            <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
-                                                <img onmouseover="click()" class="" width="100" src="{{asset('images/'.$productImages[$ii])}}" alt="">
+                                            <button class="btn p-0 mx-1" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
+                                                <img onmouseover="" class="" width="100" src="{{asset('images/'.$productImages[$ii])}}" alt="">
                                             </button>
                                         @endfor
                                     </div>
@@ -91,7 +91,7 @@
                         <div class="d-flex flex-row">
                             <div class="" id="product-categories">
                                 @foreach ($categories as $category)
-                                    <a class="category-button btn btn-dark px-1 py-0" role="button" href="/categories/{{lcfirst($category->category)}}">{{$category->category}}</a>
+                                    <a class="category-button btn btn-dark px-1 py-0" role="button" href="/products?categories%5B%5D={{ucfirst($category->category)}}">{{$category->category}}</a>
                                 @endforeach  
                             </div>
                         </div>
@@ -134,7 +134,7 @@
 
                 <form class="row" method="POST" action="/basket/{{$product->id}}" enctype="multipart/form-data">
                     @csrf
-                    @if ($product->amount > 0)
+                    @if ($amount > 0)
                         <div class="d-flex flex-row mb-2 ms-1 align-items-center" id="attributes">
                             <input type="hidden" name="finalCost" value="{{$finalCost}}">
                             @php
@@ -176,13 +176,13 @@
                         <div class="d-flex my-1 align-items-center" id="product-submit">
                             <div class="me-2">
                                 <select class="form-select py-1" name="amount">
-                                    @for ($i = 0; $i < $product->amount; $i++)
+                                    @for ($i = 0; $i < 3; $i++)
                                         <option value="{{$i+1}}">{{$i+1}}</option>
                                     @endfor
                                 </select>
                             </div>
                             <div class="py-0 mb-0 flex-fill">
-                                <button class="btn btn-dark btn py-1 w-100 product-submit" type="submit" name="product-submit" value="Add To Basket">
+                                <button onclick="this.disabled = true; this.form.submit()" class="btn btn-dark btn py-1 w-100 product-submit" type="submit" name="product-submit" value="Add To Basket">
                                     <i class="fa-solid fa-basket-shopping fa-xs" style="color: #ffffff;"></i> Add to Basket
                                 </button>
                             </div>
@@ -220,12 +220,12 @@
                                     <div class="d-flex justify-content-between" role="group">
                                         @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($productImages); $ii++)
                                             <button class="btn p-0" type="button" data-bs-target="#productGallery" data-bs-slide-to="{{$ii}}" aria-current="true" aria-label="Slide">
-                                                <img onmouseover="click()" class="" width="125" src="{{asset('images/'.$productImages[$ii])}}" alt="">
+                                                <img onmouseover="" class="" width="125" src="{{asset('images/'.$productImages[$ii])}}" alt="">
                                             </button>
                                         @endfor
                                     </div>
                                 </div>
-                            @endfor
+                                @endfor
                             </div>
                             
                             
@@ -254,16 +254,90 @@
                 <hr class="mt-3 mb-0 d-none d-xl-block">
             </div>
         </div>
-        
-        <div class="row px-3" id="similar-products">
+
+        <div class="row px-3 @if(empty($similarProducts)) d-none @endif" id="similar-products">
+            <hr>
             <div class="col">
                 <div class="">
-                    <h4 class="p-0 m-0">Similar Products</h4>
+                    <h4 class="p-0 m-0 mb-0">Similar Products</h4>
                 </div>
 
-                @foreach ($similarProducts as $similarProduct)
-                    <p>{{$similarProduct->title}}</p>
-                @endforeach
+                <div id="productCarousel" class="mb-3 carousel carousel-dark slide .carousel-fade" data-bs-interval="false">
+                    <div class="carousel-inner">                  
+                        @php
+                        $pageLimit = 4;
+                        @endphp
+
+                        @for ($i = 0; $i < count($similarProducts); $i += $pageLimit)
+                        <div class="carousel-item @if ($i == 0) active @endif">
+                            <div class="row">
+                                @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($similarProducts); $ii++)
+                                    @php 
+                                        $similarProduct = $similarProducts[$ii];
+                                        $similarProductImages = explode(',', $similarProduct->images);
+                                    @endphp
+                                    <div class="col-6 col-lg-3 col-md-3 col-sm-6">
+                                        <a href="/product/{{ $similarProduct->id }}">
+                                            <div class="card mt-3">
+                                                <!-- Sale badge-->
+                                                @if(($similarProduct->discount))
+                                                <div class="badge bg-dark text-white position-absolute"
+                                                    style="top: 0.5rem; right: 0.5rem">Sale
+                                                </div>
+                                                @endif
+                                                <!-- Product image-->
+                                                <img width="10" class="card-img-top p-3" src="{{asset('images/' . $similarProductImages[0])}}"alt="{{ $similarProduct->title }}" />
+                                                <!-- Product details-->
+                                                <div class="card-body p-0 mb-3">
+                                                    <div class="d-flex flex-row justify-content-center">
+                                                        <div class="text-center d-none d-xl-block">
+                                                            <!-- Product name-->
+                                                            <span class="fs-5 fw-bolder">{{ $similarProduct->title }}</h5>
+                                                        </div>
+                                                        <div class="vr mx-2 d-none d-xl-block"></div>
+                                                        <div class="text-center">
+                                                            <!-- Product price-->
+                                                            <span class="fs-5">
+                                                                @if(($similarProduct->discount))
+                                                                    £{{sprintf("%0.2f", round(($similarProduct->cost) - (($similarProduct->cost) * ($similarProduct->discount / 100)), 2))}}
+                                                                @else
+                                                                    £{{$similarProduct->cost}}
+                                                                @endif  
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex flex-row justify-content-center m-0 p-0">
+                                                        <div class="text-center text-secondary">
+                                                            <!-- Original product price-->
+                                                            <span class="fs-6">
+                                                                @if(($similarProduct->discount))
+                                                                    <strike>£{{$similarProduct->cost}}</strike>                                                                
+                                                                @endif  
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                @endfor
+                            </div>
+                        </div>
+                        @endfor
+                    </div>
+                    
+                    <div class="d-none d-lg-block p-0 m-0">
+                        <button class="p-0 carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                            <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="p-0 carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                            <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
 
             </div>
         </div>
