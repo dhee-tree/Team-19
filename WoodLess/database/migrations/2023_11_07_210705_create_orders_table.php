@@ -13,29 +13,17 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('time');  
-
-            /** 
-            * Can be calculated rather than stored permanently?
-            *$table->dateTime('delivery_time');
-            */
-
-            $table->integer('quantity');
-            $table->string('products', 60);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('address_id');
+            $table->unsignedBigInteger('status_id');
             $table->timestamps();
         });
 
         // Add foregin key constraint
         Schema::table('orders', function (Blueprint $table) {
-            
-            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('address_id');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
-
-            $table->unsignedBigInteger('warehouse_id');
-            $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');
+            $table->foreign('status_id')->references('id')->on('order_status')->onDelete('cascade');
         });
     }
 

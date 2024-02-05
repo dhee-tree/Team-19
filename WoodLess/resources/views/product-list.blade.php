@@ -12,15 +12,6 @@
 
 
 @section('content')
-<div class="container-fluid">
-    <div class="container-fluid">
-        <div class="row justify-content-md-center">
-            <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Products</h2>
-                <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-3">
 
@@ -36,11 +27,14 @@
                             <div class="col mb-5">
                                 <div class="card h-100">
                                     <!-- Sale badge-->
+                                    @if ($product->discount > 0)
                                     <div class="badge bg-dark text-white position-absolute"
-                                        style="top: 0.5rem; right: 0.5rem">Sale</div>
+                                        style="top: 0.5rem; right: 0.5rem">Sale {{$product->discount}}% Off</div>
+
+                                    @endif 
                                     <!-- Product image-->
-                                    <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                                        alt="..." />
+                                    <img class="card-img-top" src="{{ asset('images/' . explode(',', $product->images)[0]) }}"
+                                        alt="..." width="450" height="350"/>
                                     <!-- Product details-->
                                     <div class="card-body p-4">
                                         <div class="text-center">
@@ -54,7 +48,7 @@
                                     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                         <div class="row text-center">
                                             <div class="col"><a class="btn btn-outline-dark" href="/product/{{ $product->id }}">View Product</a></div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
