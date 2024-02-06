@@ -1,5 +1,4 @@
-name: CI-SFTP
-
+#name: CI-SFTP
 # Controls when the action will run. 
 on:
   # Triggers the workflow on push request events but only for the development branch
