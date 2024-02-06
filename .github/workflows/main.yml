@@ -25,17 +25,17 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: SFTP Deploy
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           username: u-220216407
-          server: 220216407.cs2410-web01pvm.aston.ac.uk
+          server: cs2410-web01pvm.aston.ac.uk
           port: 22 # default is 22
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           # will put all file under this path
           local_path: ./WoodLess # default is ./*
           # files will copy to under remote_path
-          remote_path: /wood
+          remote_path: ./Woodless
 
           # sftp args
           args: '-o ConnectTimeout=5'
