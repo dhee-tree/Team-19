@@ -68,7 +68,10 @@ Route::view('/admin-panel/tickets', 'tickets-admin');
 Route::view('/admin-panel/users', 'users-admin');
 Route::view('/admin-panel/inventory', 'inventory');
 
-
+//user panel pages
+Route::view('/user-panel/purchases', 'purchases-user');
+Route::view('/user-panel/tickets', 'tickets-user');
+Route::view('/user-panel/user-panel', 'user-panel');
 
 // Display categories
 
