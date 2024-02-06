@@ -23,8 +23,18 @@
                 <div class="row">
                     <div class="container px-4 px-lg-5 mt-5">
                         <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
-                            @foreach ($products as $product)
+                        @if ($products->isEmpty())
+                            
                             <div class="col mb-5">
+                                <div class="card h-100">
+                                <div class="card-body text-center">
+                                            <h5 class="card-title">No products found</h5>
+                                            </div>
+                                    </div>
+                                </div>
+                                @else
+                                @foreach ($products as $product)
+                                <div class="col mb-5">
                                 <div class="card h-100">
                                     <!-- Sale badge-->
                                     @if ($product->discount > 0)
@@ -54,7 +64,7 @@
                                 </div>
                             </div>
                             @endforeach
-
+                            @endif
                         </div>
                     </div>
                 </div>
