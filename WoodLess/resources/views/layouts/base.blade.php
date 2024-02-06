@@ -56,8 +56,8 @@
                             <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="{{ url('/about') }}">About us</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form  method="GET" action="{{ url('/products/search') }}" class="d-flex" role="search">
+                        <input class="form-control me-2" name ="search" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" style="margin-right: 0px;" type="submit">Search</button>
                     </form>
                     <li class="d-flex">

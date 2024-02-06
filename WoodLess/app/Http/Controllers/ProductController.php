@@ -43,6 +43,13 @@ class ProductController extends Controller
         ])->render();
 
     }
+    public function search(){
+        $search_text =$_GET['search'];
+        $products= Product::where('title','LIKE','%'.$search_text.'%')->get();
+        return view('product-list', ['products' => $products]);
+
+     
+    }
     //Queries the products, and returns if we searched for something or not.
     public function index()
     {
