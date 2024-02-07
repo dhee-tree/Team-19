@@ -7,6 +7,11 @@ main{
     padding-top: 0 !important;
 }
 
+.content {
+    width: 100%;
+    padding: 20px;
+}
+
 footer {
     margin-top: 0 !important;
 }
