@@ -40,6 +40,16 @@ tr {
   }
 }
 
+/* Order Card */
+.order-card {
+    background-color: #ffffff; 
+    padding: 10px;
+    border-radius: 8px; 
+    box-shadow: 0 2px 4px rgb(0 0 0);
+    margin: 10px;
+    align-items: center;
+}
+
 /* Sidebar */
 #sidebar {
     width: 250px;
