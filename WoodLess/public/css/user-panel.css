@@ -16,6 +16,30 @@ footer {
     margin-top: 0 !important;
 }
 
+/* Orders Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+th, td {
+    margin: 20px;
+    text-align: center;
+}
+
+tr {
+    border-bottom: 1px solid #dddddd;
+    margin: 20px !important;
+}
+
+@media screen and (max-width: 600px) {
+  /* Make table cells stack on top of each other */
+  th, td {
+    display: block;
+    width: 100%;
+  }
+}
+
 /* Sidebar */
 #sidebar {
     width: 250px;
