@@ -69,9 +69,11 @@ Route::view('/admin-panel/users', 'users-admin');
 Route::view('/admin-panel/inventory', 'inventory');
 
 //user panel pages
-Route::view('/user-panel/purchases', 'purchases-user');
 Route::view('/user-panel/tickets', 'tickets-user');
 Route::view('/user-panel/user-panel', 'user-panel');
+Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
+Route::get('/user/purchases', [App\Http\Controllers\OrderController::class, 'show'])->name('user.purchases')->middleware('auth');
+Route::get('/user/purchases/view/{order}', [App\Http\Controllers\OrderController::class, 'showOrderProducts'])->name('user.view-purchase')->middleware('auth');
 
 // Display categories
 
@@ -79,8 +81,6 @@ Route::get('/categories', [CategoryController::class, 'getCategories']);
 //Display three random categories and products on home page
 Auth::routes();
 Route::get('/', [ProductController::class, 'getThreeRandom']);
-// User panel links
-Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
 
 Route::get('/password/change', [App\Http\Controllers\ChangePasswordController::class, 'showChangePasswordForm'])->name('password.change.form');
 Route::post('/password/change', [App\Http\Controllers\ChangePasswordController::class, 'changePassword'])->name('password.change');
