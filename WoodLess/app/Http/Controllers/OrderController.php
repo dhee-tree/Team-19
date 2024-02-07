@@ -54,4 +54,14 @@ class OrderController extends Controller
             'basket' => $basket,
         ]);
     }
+
+    // Show order of a user
+    function show(){
+        $user = auth()->user();
+        $orders = Order::where('user_id', $user->id)->get();
+        return view('purchases-user', [
+            'user' => $user,
+            'orders' => $orders,
+        ]);
+    }
 }
