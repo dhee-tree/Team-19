@@ -52,7 +52,7 @@ class ProductController extends Controller
     
       
         
-        return view('product-list', ['products' => $products]);
+        return view('product-list', ['products' => $products, 'search_text' => $search_text]);
 
      
     }
