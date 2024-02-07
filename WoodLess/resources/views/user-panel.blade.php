@@ -21,13 +21,13 @@
                 </div>
                 <ul class="sidebar">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{ route('user-panel') }}" class="sidebar-link">
                             <i class="fa-regular fa-clipboard-list pe-2"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="{{url('/user-panel/purchases')}}" class="sidebar-link">
+                        <a href="{{ route('user.purchases') }}" class="sidebar-link">
                             <i class="fa-regular fa-clipboard-list pe-2"></i>
                             My Purchases
                         </a>
