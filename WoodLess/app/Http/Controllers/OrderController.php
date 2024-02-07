@@ -64,4 +64,18 @@ class OrderController extends Controller
             'orders' => $orders,
         ]);
     }
+
+    // Show order products
+    function showOrderProducts($id){
+        $user = auth()->user();
+        $order = Order::find($id);
+        $address = Address::find($order->address_id);
+        $attributes = $order->products->first()->pivot->attributes;
+        return view('order-products', [
+            'user' => $user,
+            'order' => $order,
+            'address' => $address,
+            'attributes' => $attributes,
+        ]);
+    }
 }
