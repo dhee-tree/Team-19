@@ -61,7 +61,7 @@ class ProductController extends Controller
     {
         //Get search paramaters
         $filters = collect(request()->query());
-        $search_text = request('search', '');
+        $search_text = request('search', null);
 
         //get categories    
 
