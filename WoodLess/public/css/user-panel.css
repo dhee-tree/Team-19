@@ -50,6 +50,33 @@ tr {
     align-items: center;
 }
 
+/* Order status colour code */
+.order-status {
+    border-radius: 5px;
+    color: #ffffff;
+    padding: 5px 5px;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.order-status-processing {
+    background-color: #007bff;
+}
+
+.order-status-transit {
+    background-color: #ffc107;
+}
+
+
+.order-status-completed {
+    background-color: #28a745;
+}
+
+.order-small-width {
+    width: 10rem;
+}
+
 /* Sidebar */
 #sidebar {
     width: 250px;
