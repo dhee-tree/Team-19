@@ -43,6 +43,7 @@ class OrderController extends Controller
                 'amount' => $product->pivot->amount,
                 'attributes' => $product->pivot->attributes,
                 'warehouse_id' => $product->warehouses->first()->id,
+                'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
             ]);
         }
 
