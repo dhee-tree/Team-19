@@ -52,7 +52,7 @@ class ProductController extends Controller
     
       
         
-        return view('product-list', ['products' => $products]);
+        return view('product-list', ['products' => $products, 'search_text' => $search_text]);
 
      
     }
@@ -61,6 +61,7 @@ class ProductController extends Controller
     {
         //Get search paramaters
         $filters = collect(request()->query());
+        $search_text = request('search', null);
 
         //get categories    
 
@@ -87,8 +88,10 @@ class ProductController extends Controller
         ];
 
         $products = Product::latest()->filter($data)->get();
-        return view('product-list', ['products' => $products]);
+        return view('product-list', ['products' => $products,'search_text' => $search_text]);
+
     }
+    
     //gets three random categories and products  for home page
     public function getThreeRandom()
     {
@@ -100,4 +103,5 @@ class ProductController extends Controller
             'categories' => $categories,  
         ]);
     }
+
 }
