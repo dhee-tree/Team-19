@@ -20,7 +20,11 @@ class ProductController extends Controller
     {
         $product->loadMissing('categories', 'reviews');
 
-        $similarProducts = $product->categories()->first()->products()->take(8)->get();
+        $similarProducts = $product->categories()->with('products')->get()->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
+            return $p->id == $product->id;
+        });
+        
+        $similarProducts = $similarProducts->shuffle()->take(8);
 
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
@@ -39,11 +43,25 @@ class ProductController extends Controller
         ])->render();
 
     }
+    public function search(){
+        $search_text =$_GET['search'];
+        $products= Product::where('title','LIKE','%'.$search_text.'%');
+        $products->orWhere('tags', 'LIKE', '%' . $search_text . '%');
+
+        $products = $products->get();
+    
+      
+        
+        return view('product-list', ['products' => $products, 'search_text' => $search_text]);
+
+     
+    }
     //Queries the products, and returns if we searched for something or not.
     public function index()
     {
         //Get search paramaters
         $filters = collect(request()->query());
+        $search_text = request('search', null);
 
         //get categories    
 
@@ -65,13 +83,15 @@ class ProductController extends Controller
             'categories' => $categories,
             'ratings' => $ratings,
             'color' => json_decode($color),
-            'minCost' => request('minCost'),
-    'maxCost' => request('maxCost'),
+            'minCost' => (float)$minCost,
+            'maxCost' => (float)$maxCost
         ];
 
         $products = Product::latest()->filter($data)->get();
-        return view('product-list', ['products' => $products]);
+        return view('product-list', ['products' => $products,'search_text' => $search_text]);
+
     }
+    
     //gets three random categories and products  for home page
     public function getThreeRandom()
     {
@@ -83,4 +103,5 @@ class ProductController extends Controller
             'categories' => $categories,  
         ]);
     }
+
 }

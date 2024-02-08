@@ -19,10 +19,7 @@ return new class extends Migration
             $table->integer('amount')->default(1);
             $table->json('attributes')->nullable();
             $table->timestamps();
-        });
 
-        // Add foregin key constraint
-        Schema::table('basket_product', function (Blueprint $table) {
             $table->foreign('basket_id')->references('user_id')->on('baskets')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });

@@ -17,10 +17,7 @@ return new class extends Migration
             $table->primary(['warehouse_id','product_id']);
             $table->integer('amount')->default(0);
             $table->timestamps();
-        });
 
-        // Add foregin key constraint
-        Schema::table('product_warehouse', function (Blueprint $table) {
             $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });

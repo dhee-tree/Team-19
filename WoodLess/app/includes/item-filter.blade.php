@@ -104,7 +104,7 @@
                 <div class="input-group">
                 <span class="input-group-text">£</span>
                 <input type="text" class="form-control" id="minCost" name="minCost"
-                placeholder="enter price" value="<?php echo htmlspecialchars(request('min_price')); ?>">
+                placeholder="enter price" value="<?php echo htmlspecialchars(request('minCost')); ?>">
             </div>
             </div>
             <div class="mb-3">
@@ -112,7 +112,7 @@
                 <div class="input-group">
                 <span class="input-group-text">£</span>
                 <input type="text" class="form-control" id="maxCost" name="maxCost"
-                placeholder = "enter price" value="<?php echo htmlspecialchars(request('max_price')); ?>">
+                placeholder = "enter price" value="<?php echo htmlspecialchars(request('maxCost')); ?>">
             </div>
         </div>
     </div>

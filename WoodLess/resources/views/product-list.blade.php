@@ -12,55 +12,75 @@
 
 
 @section('content')
-    <div class="row">
-        <div class="col-md-3">
+<div class="row">
+    <div class="col-md-3">
 
-            <?php include(app_path().'/includes/item-filter.blade.php'); ?>
-        </div>
-        <div class="col-md-9">
-            <div class="container-fluid">
+        <?php include(app_path().'/includes/item-filter.blade.php'); ?>
+    </div>
+    <div class="col-md-9">
+        <div class="container-fluid">
 
-                <div class="row">
-                    <div class="container px-4 px-lg-5 mt-5">
-                        <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
-                            @foreach ($products as $product)
-                            <div class="col mb-5">
-                                <div class="card h-100">
-                                    <!-- Sale badge-->
-                                    @if ($product->discount > 0)
-                                    <div class="badge bg-dark text-white position-absolute"
-                                        style="top: 0.5rem; right: 0.5rem">Sale {{$product->discount}}% Off</div>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                @if (trim($search_text) !== '')
+                    @if ($products->isEmpty())
 
-                                    @endif 
-                                    <!-- Product image-->
-                                    <img class="card-img-top" src="{{ asset('images/' . explode(',', $product->images)[0]) }}"
-                                        alt="..." width="450" height="350"/>
-                                    <!-- Product details-->
-                                    <div class="card-body p-4">
-                                        <div class="text-center">
-                                            <!-- Product name-->
-                                            <h5 class="fw-bolder">{{ $product->title }}</h5>
-                                            <!-- Product price-->
-                                            £{{ $product->cost }}
-                                        </div>
-                                    </div>
-                                    <!-- Product actions-->
-                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                        <div class="row text-center">
-                                            <div class="col"><a class="btn btn-outline-dark" href="/product/{{ $product->id }}">View Product</a></div>
+                    <div class="alert alert-info" role="alert">
+                        No products found for "{{ $search_text }}"
+                    </div>
 
-                                        </div>
-                                    </div>
-                                </div>
+
+                    @else
+
+                    <div class="alert alert-info" role="alert">
+                        Showing results for "{{ $search_text }}"
+                    </div>
+                    @endif
+                    @endif
+
+                </div>
+            </div>
+
+            <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+                @foreach ($products as $product)
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Sale badge-->
+                        @if ($product->discount > 0)
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">
+                            Sale {{$product->discount}}% Off</div>
+
+                        @endif
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{ asset('images/' . explode(',', $product->images)[0]) }}"
+                            alt="..." width="450" height="350" />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ $product->title }}</h5>
+                                <!-- Product price-->
+                                £{{ $product->cost }}
                             </div>
-                            @endforeach
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="row text-center">
+                                <div class="col"><a class="btn btn-outline-dark" href="/product/{{ $product->id }}">View
+                                        Product</a></div>
 
+                            </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
+
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
 </div>
 
 @endsection

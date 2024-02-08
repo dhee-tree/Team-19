@@ -13,20 +13,17 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('admin_id')->nullable();
             $table->string('title', 255);
             $table->longText('information');
             $table->string('contact', 30);
-            $table->string('importance_level', 30);
+            $table->unsignedBigInteger('importance_level_id')->default(1);
             $table->boolean('status');
             $table->timestamps();
-        });
 
-        // Add foregin key constraint
-        Schema::table('tickets', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
+            $table->foreign('importance_level_id')->references('id')->on('importance_levels')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('admin_id')->nullable();
             $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
