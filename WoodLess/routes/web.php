@@ -55,7 +55,7 @@ Route::delete('/review/{review}', [ReviewController::class,'destroy']);
 // search
 Route::get('/products/search', [ProductController::class, 'search']);
 //showcases products
-Route::get('/products', [ProductController::class,'index']);
+Route::get('/products', [ProductController::class,'index'])->name('products.filter');
 
 Route::view('/admin-panel', 'admin-panel');
 
