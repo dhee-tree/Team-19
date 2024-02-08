@@ -104,7 +104,9 @@
                 <div class="input-group">
                 <span class="input-group-text">£</span>
                 <input type="text" class="form-control" id="minCost" name="minCost"
-                placeholder="enter price" value="<?php echo htmlspecialchars(request('minCost')); ?>">
+                placeholder="enter price"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                 value="<?php echo htmlspecialchars(request('minCost')); ?>">
             </div>
             </div>
             <div class="mb-3">
@@ -112,13 +114,15 @@
                 <div class="input-group">
                 <span class="input-group-text">£</span>
                 <input type="text" class="form-control" id="maxCost" name="maxCost"
-                placeholder = "enter price" value="<?php echo htmlspecialchars(request('maxCost')); ?>">
+                placeholder = "enter price" 
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                value="<?php echo htmlspecialchars(request('maxCost')); ?>">
             </div>
         </div>
     </div>
 </div>
 </div>
-                                        
+                                         
                     <!--
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="FilterAccordian-headingFinish">
