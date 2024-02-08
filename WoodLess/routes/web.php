@@ -74,6 +74,7 @@ Route::view('/user-panel/user-panel', 'user-panel');
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
 Route::get('/user/purchases', [App\Http\Controllers\OrderController::class, 'show'])->name('user.purchases')->middleware('auth');
 Route::get('/user/purchases/view/{order}', [App\Http\Controllers\OrderController::class, 'showOrderProducts'])->name('user.view-purchase')->middleware('auth');
+Route::get('/user/purchases/return/{order}/{product}', [App\Http\Controllers\OrderController::class, 'returnOrder'])->name('user.return-purchase')->middleware('auth');
 
 // Display categories
 
