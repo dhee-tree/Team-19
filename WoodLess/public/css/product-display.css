@@ -21,3 +21,13 @@
 .product-submit, .category-button{
     background-color: #1d1912;
 }
+
+#productCarousel a:link { 
+    text-decoration: none; 
+}
+
+.carousel-control-prev,
+.carousel-control-next{
+    opacity: 15%;
+    width: 7vh;
+}

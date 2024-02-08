@@ -1,11 +1,12 @@
 <div class="container">
-
     <div class="card filter" style="width: 18rem;">
-        <form id="filter" action="/products" method="GET">
+        <form id="filter" action="{{ route('products.filter') }}" method="GET">
+            @if (isset($search_text))
+                <input type="hidden" name="search" value="{{ $search_text }}">
+            @endif
             <div class="card-body">
                 <h5 class="card-title">Filter</h5>
                 <div class="accordion" id="FilterAccordian">
-
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="FilterAccordian-headingCategories">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
@@ -87,6 +88,42 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Price Range Section -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="FilterAccordion-headingPrice">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#FilterAccordion-collapsePrice" aria-expanded="false"
+                                aria-controls="FilterAccordion-collapsePrice">
+                                Price
+                            </button>
+                        </h2>
+                        <div id="FilterAccordion-collapsePrice" class="accordion-collapse collapse"
+                            aria-labelledby="FilterAccordion-headingPrice">
+                            <div class="accordion-body">
+                                <div class="mb-3">
+                                    <label for="minimumPrice" class="form-label">Minimum Price</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">£</span>
+                                        <input type="text" class="form-control" id="minCost" name="minCost"
+                                            placeholder="enter price"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                            value="<?php echo htmlspecialchars(request('minCost')); ?>">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="maximumPrice" class="form-label">Maximum Price</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">£</span>
+                                        <input type="text" class="form-control" id="maxCost" name="maxCost"
+                                            placeholder = "enter price"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                            value="<?php echo htmlspecialchars(request('maxCost')); ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!--
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="FilterAccordian-headingFinish">
