@@ -78,7 +78,6 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'verification_code' => $verificationCode
         ]);
 
         event(new Registered($user));

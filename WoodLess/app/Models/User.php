@@ -69,24 +69,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Basket::class);
     }
 
+    public function emailVerificationCodes(){
+        return $this->hasMany(EmailVerificationCode::class);
+    }
+
+    public function generateEmailVerificationCode(int $code){
+        $this->emailVerificationCodes()->attach(['code' => $code]);
+    }
+
     
     public function isAdmin(){
         return $this->makeVisible('is_admin')->is_admin;
     }
-    public function up()
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->timestamp('email_verified_at')->nullable();
-        $table->string('verification_code')->nullable();
-    });
-}
-
-public function down()
-{
-    Schema::table('users', function (Blueprint $table) {
-        $table->dropColumn('email_verified_at');
-        $table->dropColumn('verification_code');
-    });
-}
-
 }
