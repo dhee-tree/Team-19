@@ -35,7 +35,7 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           # will put all file under this path
-          local_path: ./WoodLess # default is ./*
+          local_path: ./# default is ./*
           # files will copy to under remote_path
           remote_path: ./
 
