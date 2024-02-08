@@ -86,6 +86,11 @@
                                     <p class="card-text">Delivery Address: {{ $address->house_number }} {{ $address->street_name }}, {{ $address->city }}. {{ $address->postcode }}</p>
                                     <hr>
                                     <p class="card-text">Items:</p>
+                                    @if(session('message'))
+                                        <div class="alert alert-success">
+                                            {{ session('message') }}
+                                        </div>
+                                    @endif
                                     @foreach ($order->products as $product)
                                         <div class="row order-card">
                                             <div class="col-sm-4 mb-4">
