@@ -34,6 +34,7 @@ class OrderController extends Controller
             'user_id' => $user->id,
             'address_id' => 1, // Needs to be changed to the address id associated with the user and the order.
             'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
+            'details' => 'Order placed by user',
             // 'status_id' => 1,
         ]);
         
