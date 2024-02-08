@@ -109,8 +109,7 @@
                                                 <p>Delivery Address: {{ $address->house_number }} {{ $address->street_name }}, {{ $address->city }}. {{ $address->postcode }}</p>
                                             </div>
                                             <div class="col-sm-2">
-                                                <!-- Add return link -->
-                                                <a href="#" class="btn btn-danger">Return</a>
+                                                <a href="{{ route('user.return-purchase', ['order' => $order->id, 'product' => $product->id]) }}" class="btn btn-primary">Return Product</a>
                                             </div>
                                         </div>
                                     @endforeach
