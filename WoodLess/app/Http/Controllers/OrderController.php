@@ -51,7 +51,7 @@ class OrderController extends Controller
         $basket->products()->detach();
 
         // Send an email to the user with the order confirmation.
-        Mail::to($user->email)->send(new OrderConfirmation($basket));
+        // Mail::to($user->email)->send(new OrderConfirmation($basket));
         return view('order-confirmation', [
             'basket' => $basket,
         ]);
@@ -78,6 +78,17 @@ class OrderController extends Controller
             'order' => $order,
             'address' => $address,
             'attributes' => $attributes,
+        ]);
+    }
+
+    // Return an order
+    function returnOrder($id, $product_id){
+        $order = Order::find($id);
+        $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Processing Return')->first()->id]);
+        $order->save();
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Return request sent. Please wait for confirmation.'
         ]);
     }
 }
