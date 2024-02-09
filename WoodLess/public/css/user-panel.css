@@ -75,6 +75,14 @@ tr {
 
 .order-small-width {
     width: 10rem;
+    display: inline;
+}
+
+@media screen and (max-width: 1020px) {
+    .btn-warning {
+        width: 100%;
+        display: block;
+    }
 }
 
 /* Sidebar */
