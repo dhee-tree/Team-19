@@ -107,11 +107,16 @@
 
 
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <p>£{{ $product->cost }}</p>
                                             </div>
-                                            <div class="col-sm-2">
-                                                <a href="{{ route('user.return-purchase', ['order' => $order->id, 'product' => $product->id]) }}" class="btn btn-primary">Return Product</a>
+                                            <div class="col-sm-3">
+                                                @if ($product->orderProductStatus->first()->status == 'Processing Return') 
+                                                    <span class="order-status order-status-processing order-small-width btn btn-warning disabled">{{ $product->orderProductStatus->first()->status }}</span>
+                                                    <i class="fa-solid fa-circle-xmark btn" style="color: #ff0000;" title="Cancel return"></i>
+                                                @else
+                                                    <a href="{{ route('user.return-purchase', ['order' => $order->id, 'product' => $product->id]) }}" class="btn btn-primary">Return Product</a>
+                                                @endif
                                             </div>
                                         </div>
                                     @endforeach
