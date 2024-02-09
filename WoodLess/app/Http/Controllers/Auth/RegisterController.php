@@ -80,10 +80,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        event(new Registered($user));
-
-        //Send the Email verification message
-        $user -> sendEmailVerificationNotification();
+        // Store verification code for a user
+        $user->emailVerificationCodes()->attach($verificationCode, ['user_id' => $user->id]);
 
         // Create a new basket for the user
         Basket::create([
