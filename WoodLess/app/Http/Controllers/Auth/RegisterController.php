@@ -10,6 +10,7 @@ use App\Models\Basket;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\VerificationMail;
 //use Illuminate\Auth\Events\Registered;
 
 
@@ -82,6 +83,9 @@ class RegisterController extends Controller
 
         // Store verification code for a user
         $user->emailVerificationCodes()->attach($verificationCode, ['user_id' => $user->id]);
+
+        //Send verification email to user
+        Mail::to($data['email'])->send(new VerificationMail($verificationCode));
 
         // Create a new basket for the user
         Basket::create([
