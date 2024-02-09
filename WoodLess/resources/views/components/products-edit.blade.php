@@ -31,7 +31,22 @@
                             </div>
                         @endforeach
                     </div>
-
+                    <div class="mb-3">
+                        <label class="form-label">Attributes</label>
+                        <div id="attributeFields">
+                            @foreach(json_decode($product->attributes, true) as $key => $value)
+                                <div class="row mb-3">
+                                    <div class="col-auto">
+                                        <input type="text" class="form-control" name="attributes_keys[]" placeholder="Attribute Name" value="{{ $key }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="attributes_values[]" placeholder="Attribute Value" value="{{ $value }}">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button type="button" class="btn btn-primary mt-2" id="addAttributeField">Add Attribute</button>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">Images (Max: 5)</label>
                         <div id="imageUploadContainer">
@@ -109,26 +124,36 @@
         }
     });
 
+</script>
+
+<script>
     document.getElementById('addAttributeField').addEventListener('click', function() {
         var attributeFields = document.getElementById('attributeFields');
         
+        var row = document.createElement('div');
+        row.className = 'row mb-3';
+        
+        var keyCol = document.createElement('div');
+        keyCol.className = 'col-auto';
         var keyInput = document.createElement('input');
         keyInput.type = 'text';
         keyInput.className = 'form-control';
         keyInput.placeholder = 'Attribute Name';
         keyInput.name = 'new_attributes_keys[]';
+        keyCol.appendChild(keyInput);
 
+        var valueCol = document.createElement('div');
+        valueCol.className = 'col';
         var valueInput = document.createElement('input');
         valueInput.type = 'text';
-        valueInput.className = 'form-control mt-2';
+        valueInput.className = 'form-control';
         valueInput.placeholder = 'Attribute Value';
         valueInput.name = 'new_attributes_values[]';
+        valueCol.appendChild(valueInput);
         
-        var inputGroup = document.createElement('div');
-        inputGroup.className = 'input-group';
-        inputGroup.appendChild(keyInput);
-        inputGroup.appendChild(valueInput);
+        row.appendChild(keyCol);
+        row.appendChild(valueCol);
 
-        attributeFields.appendChild(inputGroup);
+        attributeFields.appendChild(row);
     });
 </script>
