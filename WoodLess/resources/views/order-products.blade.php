@@ -93,7 +93,7 @@
                                     @endif
                                     @foreach ($order->products as $product)
                                         <div class="row order-card">
-                                            <div class="col-sm-4 mb-4">
+                                            <div class="col-sm-6 mb-4">
                                                 {{ $product->pivot->amount }}x
                                                 @foreach (json_decode($product->pivot->attributes) as $key => $value)
                                                     @if ($key == "colour") 
@@ -107,11 +107,8 @@
 
 
                                             </div>
-                                            <div class="col-sm-2">
-                                                <p>£{{ $product->cost }}</p>
-                                            </div>
                                             <div class="col-sm-4">
-                                                <p>Delivery Address: {{ $address->house_number }} {{ $address->street_name }}, {{ $address->city }}. {{ $address->postcode }}</p>
+                                                <p>£{{ $product->cost }}</p>
                                             </div>
                                             <div class="col-sm-2">
                                                 <a href="{{ route('user.return-purchase', ['order' => $order->id, 'product' => $product->id]) }}" class="btn btn-primary">Return Product</a>
