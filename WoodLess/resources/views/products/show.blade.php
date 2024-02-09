@@ -144,7 +144,7 @@
                                 @switch($attribute)
                                     @case('colour')
                                         <input type="hidden" name="attribute-colours" value="0">
-                                        @php $i=1; @endphp
+
                                         @foreach (explode(',', $values) as $value)
                                             <div class="form-check form-check-inline me-2 m-0">
                                                 <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-colours" id="inlineRadio{{$i}}" value='{{$attribute}}:{{$value}}'>
@@ -167,9 +167,7 @@
                                         </div>
                                     @break
                                 @endswitch
-                                @php
-                                    $count++
-                                @endphp
+
                             @endforeach
                         </div>
 

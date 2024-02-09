@@ -32,7 +32,7 @@
                         @endforeach
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Attributes</label>
+                        <label class="form-label">Attributes (Note: attributes are to be put in array format, so "data1","data2"...etc)</label>
                         <div id="attributeFields">
                             @foreach (json_decode($product->attributes, true) as $key => $value)
                                 <div class="row mb-3">
@@ -137,7 +137,7 @@
 
         // Count the number of existing images
         var preExistingImageCount = document.querySelectorAll('#preExistingImagesContainer img').length;
-        // Count the number of new images
+        // Count the number of current images
         var imageInputs = imageUploadContainer.querySelectorAll('input[type=file]');
         if (imageInputs.length + preExistingImageCount < 5) {
             var lastInput = imageInputs[imageInputs.length - 1];
