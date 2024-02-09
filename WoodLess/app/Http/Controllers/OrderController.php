@@ -86,6 +86,7 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Processing Return')->first()->id]);
         $order->save();
+        $order->touch();
         return back()->with([
             'status' => 'success',
             'message' => 'Return request sent. Please wait for confirmation.'
