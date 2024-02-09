@@ -34,13 +34,15 @@
                     <div class="mb-3">
                         <label class="form-label">Attributes</label>
                         <div id="attributeFields">
-                            @foreach(json_decode($product->attributes, true) as $key => $value)
+                            @foreach (json_decode($product->attributes, true) as $key => $value)
                                 <div class="row mb-3">
                                     <div class="col-auto">
-                                        <input type="text" class="form-control" name="attributes_keys[]" placeholder="Attribute Name" value="{{ $key }}">
+                                        <input type="text" class="form-control" name="attributes_keys[]"
+                                            placeholder="Attribute Name" value="{{ $key }}">
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" name="attributes_values[]" placeholder="Attribute Value" value="{{ $value }}">
+                                        <input type="text" class="form-control" name="attributes_values[]"
+                                            placeholder="Attribute Value" value="{{ $value }}">
                                     </div>
                                     <div class="col-auto">
                                         <button type="button" class="btn btn-danger remove-attribute">&times;</button>
@@ -48,14 +50,42 @@
                                 </div>
                             @endforeach
                         </div>
-                        <button type="button" class="btn btn-primary mt-2" id="addAttributeField">Add Attribute</button>
+                        <button type="button" class="btn btn-primary mt-2" id="addAttributeField">Add
+                            Attribute</button>
                     </div>
+
+                    <!-- Pre-existing Images -->
+                    <div class="mb-3">
+                        <label class="form-label">Pre-existing Images</label>
+                        <div id="preExistingImagesContainer" class="row row-cols-3 g-3">
+                            @foreach (explode(',', $product->images) as $index => $image)
+                                <div class="col">
+                                    <div class="card">
+                                        <img src="{{ asset('images/' . $image) }}" alt="Pre-existing Image"
+                                            class="card-img-top img-thumbnail">
+                                        <div class="card-body">
+                                            <button type="button" class="btn btn-danger btn-sm remove-image"
+                                                data-image-index="{{ $index }}">Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- Image Upload Section -->
                     <div class="mb-3">
                         <label class="form-label">Images (Max: 5)</label>
                         <div id="imageUploadContainer">
-                            <input type="file" class="form-control" name="images[]" accept="image/*">
+                            <div class="input-group"><input type="file" class="form-control mt-2" name="images[]"
+                                    accept="image/*">
+                                <div class="btn-group mt-2">
+                                    <button type="button" class="btn btn-secondary btn-sm unset-image">Unset</button>
+                                </div>
+                            </div>
                         </div>
-                        <button type="button" class="btn btn-primary mt-2" id="addImageField" disabled>Add Image</button>
+                        <button type="button" class="btn btn-primary mt-2" id="addImageField">Add
+                            Image</button>
                     </div>
 
                 </form>
@@ -75,28 +105,46 @@
         newInput.className = 'form-control mt-2';
         newInput.name = 'images[]';
         newInput.accept = 'image/*';
-        
-        var closeButton = document.createElement('button');
-        closeButton.type = 'button';
-        closeButton.className = 'btn-close remove-image';
-        
+
+        var removeButton = document.createElement('button');
+        removeButton.type = 'button';
+        removeButton.className = 'btn btn-danger btn-sm remove-image';
+        removeButton.innerText = 'Remove';
+
+        var unsetButton = document.createElement('button');
+        unsetButton.type = 'button';
+        unsetButton.className = 'btn btn-secondary btn-sm unset-image';
+        unsetButton.innerText = 'Unset';
+
+        var buttonGroup = document.createElement('div');
+        buttonGroup.className = 'btn-group mt-2';
+        buttonGroup.appendChild(removeButton);
+        buttonGroup.appendChild(unsetButton);
+
         var inputGroup = document.createElement('div');
         inputGroup.className = 'input-group';
         inputGroup.appendChild(newInput);
-        inputGroup.appendChild(closeButton);
-        
+        inputGroup.appendChild(buttonGroup);
+
         return inputGroup;
     }
 
+    // Count the number of existing images
+    var preExistingImageCount = document.querySelectorAll('#preExistingImagesContainer img').length;
+
     document.getElementById('addImageField').addEventListener('click', function() {
         var imageUploadContainer = document.getElementById('imageUploadContainer');
+
+        // Count the number of existing images
+        var preExistingImageCount = document.querySelectorAll('#preExistingImagesContainer img').length;
+        // Count the number of new images
         var imageInputs = imageUploadContainer.querySelectorAll('input[type=file]');
-        if (imageInputs.length < 5) {
+        if (imageInputs.length + preExistingImageCount < 5) {
             var lastInput = imageInputs[imageInputs.length - 1];
-            if (lastInput.files.length > 0) {
+            if (lastInput.files.length > 0 || imageInputs.length > 0) {
                 var newInput = createImageInput();
                 imageUploadContainer.appendChild(newInput);
-                if (imageInputs.length === 4) {
+                if (imageInputs.length + preExistingImageCount === 4) {
                     document.getElementById('addImageField').disabled = true;
                     document.getElementById('addImageField').innerText = 'Images Full';
                 }
@@ -113,7 +161,7 @@
     document.getElementById('imageUploadContainer').addEventListener('change', function() {
         var imageInputs = this.querySelectorAll('input[type=file]');
         var lastInput = imageInputs[imageInputs.length - 1];
-        if (lastInput.files.length > 0 && imageInputs.length < 5) {
+        if (lastInput.files.length > 0 && imageInputs.length + preExistingImageCount < 5) {
             document.getElementById('addImageField').disabled = false;
             document.getElementById('addImageField').innerText = 'Add Image';
         }
@@ -121,21 +169,37 @@
 
     document.getElementById('imageUploadContainer').addEventListener('click', function(event) {
         if (event.target.classList.contains('remove-image')) {
-            event.target.parentElement.remove();
+            event.target.closest('.input-group').remove();
             document.getElementById('addImageField').disabled = false;
             document.getElementById('addImageField').innerText = 'Add Image';
+        } else if (event.target.classList.contains('unset-image')) {
+            var inputGroup = event.target.closest('.input-group');
+            var inputFile = inputGroup.querySelector('input[type=file]');
+            inputFile.value = ''; // Clear the file input
         }
     });
 
+    // Event listener for removing pre-existing images
+    document.querySelectorAll('#preExistingImagesContainer .remove-image').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            this.closest('.col').remove();
+            // Enable the "Add Image" button
+            document.getElementById('addImageField').disabled = false;
+            document.getElementById('addImageField').innerText = 'Add Image';
+        });
+    });
 </script>
+
+
+
 
 <script>
     document.getElementById('addAttributeField').addEventListener('click', function() {
         var attributeFields = document.getElementById('attributeFields');
-        
+
         var row = document.createElement('div');
         row.className = 'row mb-3';
-        
+
         var keyCol = document.createElement('div');
         keyCol.className = 'col-auto';
         var keyInput = document.createElement('input');
@@ -161,7 +225,7 @@
         deleteButton.className = 'btn btn-danger remove-attribute';
         deleteButton.innerHTML = '&times;';
         deleteCol.appendChild(deleteButton);
-        
+
         row.appendChild(keyCol);
         row.appendChild(valueCol);
         row.appendChild(deleteCol);
