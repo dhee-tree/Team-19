@@ -31,11 +31,6 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="mb-3">
-                        <label for="rating" class="form-label">Rating</label>
-                        <input type="number" class="form-control" id="rating" name="rating"
-                            value="{{ $product->rating }}">
-                    </div>
 
                     <div class="mb-3">
                         <label class="form-label">Images (Max: 5)</label>
@@ -44,6 +39,7 @@
                         </div>
                         <button type="button" class="btn btn-primary mt-2" id="addImageField" disabled>Add Image</button>
                     </div>
+
                 </form>
             </div>
             <div class="modal-footer">
@@ -55,17 +51,32 @@
 </div>
 
 <script>
+    function createImageInput() {
+        var newInput = document.createElement('input');
+        newInput.type = 'file';
+        newInput.className = 'form-control mt-2';
+        newInput.name = 'images[]';
+        newInput.accept = 'image/*';
+        
+        var closeButton = document.createElement('button');
+        closeButton.type = 'button';
+        closeButton.className = 'btn-close remove-image';
+        
+        var inputGroup = document.createElement('div');
+        inputGroup.className = 'input-group';
+        inputGroup.appendChild(newInput);
+        inputGroup.appendChild(closeButton);
+        
+        return inputGroup;
+    }
+
     document.getElementById('addImageField').addEventListener('click', function() {
         var imageUploadContainer = document.getElementById('imageUploadContainer');
         var imageInputs = imageUploadContainer.querySelectorAll('input[type=file]');
         if (imageInputs.length < 5) {
             var lastInput = imageInputs[imageInputs.length - 1];
             if (lastInput.files.length > 0) {
-                var newInput = document.createElement('input');
-                newInput.type = 'file';
-                newInput.className = 'form-control mt-2';
-                newInput.name = 'images[]';
-                newInput.accept = 'image/*';
+                var newInput = createImageInput();
                 imageUploadContainer.appendChild(newInput);
                 if (imageInputs.length === 4) {
                     document.getElementById('addImageField').disabled = true;
@@ -88,5 +99,36 @@
             document.getElementById('addImageField').disabled = false;
             document.getElementById('addImageField').innerText = 'Add Image';
         }
+    });
+
+    document.getElementById('imageUploadContainer').addEventListener('click', function(event) {
+        if (event.target.classList.contains('remove-image')) {
+            event.target.parentElement.remove();
+            document.getElementById('addImageField').disabled = false;
+            document.getElementById('addImageField').innerText = 'Add Image';
+        }
+    });
+
+    document.getElementById('addAttributeField').addEventListener('click', function() {
+        var attributeFields = document.getElementById('attributeFields');
+        
+        var keyInput = document.createElement('input');
+        keyInput.type = 'text';
+        keyInput.className = 'form-control';
+        keyInput.placeholder = 'Attribute Name';
+        keyInput.name = 'new_attributes_keys[]';
+
+        var valueInput = document.createElement('input');
+        valueInput.type = 'text';
+        valueInput.className = 'form-control mt-2';
+        valueInput.placeholder = 'Attribute Value';
+        valueInput.name = 'new_attributes_values[]';
+        
+        var inputGroup = document.createElement('div');
+        inputGroup.className = 'input-group';
+        inputGroup.appendChild(keyInput);
+        inputGroup.appendChild(valueInput);
+
+        attributeFields.appendChild(inputGroup);
     });
 </script>
