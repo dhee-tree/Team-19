@@ -110,4 +110,11 @@ class Product extends Model
         //Rating
 
     }
+
+    /**
+     * Returns the order status associated with the product.
+     */
+    public function orderProductStatus(){
+        return $this->belongsToMany(OrderStatus::class, 'order_product_warehouse', 'product_id', 'status_id');
+    }
 }
