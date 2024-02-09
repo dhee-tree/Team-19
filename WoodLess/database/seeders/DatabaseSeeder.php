@@ -31,10 +31,20 @@ class DatabaseSeeder extends Seeder
         )->create();
 
         //ADD ORDER STATUSES HERE. INCREMENT COUNT BY NO. OF STATUSES.
-        $categories = \App\Models\OrderStatus::factory()->count(3)->sequence(
+        $orderStatuses = \App\Models\OrderStatus::factory()->count(6)->sequence(
             ['status' => 'Processing'],              
             ['status' => 'Transit'],
             ['status' => 'Complete'],
+            ['status' => 'Processing Return'],
+            ['status' => 'Return Complete'],
+            ['status' => 'Refunded'],
+            //etc...
+        )->create();
+
+        $importanceLevel = \App\Models\ImportanceLevel::factory()->count(3)->sequence(
+            ['level' => 'Low'],              
+            ['level' => 'Medium'],
+            ['level' => 'High'],
             //etc...
         )->create();
 
