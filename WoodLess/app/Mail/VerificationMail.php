@@ -8,17 +8,21 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Address;
 
 class VerificationMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $verificationCode;
+    public $name;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($verificationCode)
+    public function __construct($verificationCode, $name)
     {
         $this->verificationCode = $verificationCode;
+        $this->name = $name;
         //
     }
 
