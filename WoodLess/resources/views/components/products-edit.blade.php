@@ -42,6 +42,9 @@
                                     <div class="col">
                                         <input type="text" class="form-control" name="attributes_values[]" placeholder="Attribute Value" value="{{ $value }}">
                                     </div>
+                                    <div class="col-auto">
+                                        <button type="button" class="btn btn-danger remove-attribute">&times;</button>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
@@ -150,10 +153,25 @@
         valueInput.placeholder = 'Attribute Value';
         valueInput.name = 'new_attributes_values[]';
         valueCol.appendChild(valueInput);
+
+        var deleteCol = document.createElement('div');
+        deleteCol.className = 'col-auto';
+        var deleteButton = document.createElement('button');
+        deleteButton.type = 'button';
+        deleteButton.className = 'btn btn-danger remove-attribute';
+        deleteButton.innerHTML = '&times;';
+        deleteCol.appendChild(deleteButton);
         
         row.appendChild(keyCol);
         row.appendChild(valueCol);
+        row.appendChild(deleteCol);
 
         attributeFields.appendChild(row);
+    });
+
+    document.getElementById('attributeFields').addEventListener('click', function(event) {
+        if (event.target.classList.contains('remove-attribute')) {
+            event.target.parentElement.parentElement.remove();
+        }
     });
 </script>
