@@ -86,9 +86,13 @@
                                     <p class="card-text">Delivery Address: {{ $address->house_number }} {{ $address->street_name }}, {{ $address->city }}. {{ $address->postcode }}</p>
                                     <hr>
                                     <p class="card-text">Items:</p>
-                                    @if(session('message'))
+                                    @if(session('status') == 'success')
                                         <div class="alert alert-success">
-                                            {{ session('message') }}
+                                            <i class="fa-regular fa-circle-check"></i> <span>{{ session('message') }}</span>
+                                        </div>
+                                    @elseif (session('status') == 'error')
+                                        <div class="alert alert-danger">
+                                        <i class="fa-regular fa-circle-xmark"></i> <span>{{ session('message') }}</span>
                                         </div>
                                     @endif
                                     @foreach ($order->products as $product)
@@ -113,7 +117,7 @@
                                             <div class="col-sm-3">
                                                 @if ($product->orderProductStatus->first()->status == 'Processing Return') 
                                                     <span class="order-status order-status-processing order-small-width btn btn-warning disabled">{{ $product->orderProductStatus->first()->status }}</span>
-                                                    <i class="fa-solid fa-circle-xmark btn" style="color: #ff0000;" title="Cancel return"></i>
+                                                    <i class="fa-solid fa-circle-xmark btn" style="color: #ff0000;" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel return"></i>
                                                 @else
                                                     <a href="{{ route('user.return-purchase', ['order' => $order->id, 'product' => $product->id]) }}" class="btn btn-primary">Return Product</a>
                                                 @endif
