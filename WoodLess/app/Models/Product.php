@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Review;
+use App\Traits\Cacheable;
 use PHPUnit\Util\Json;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Product extends Model
 {
     use HasFactory;
+    use Cacheable;
+    
     protected $fillable = [
         'title',
         'description',
@@ -41,42 +44,6 @@ class Product extends Model
             $product->wipeCache();
             Cache::forget('products');
         });
-    }
-
-    /**
-     * Return/create a cached version of all products.
-     * @param int $id Return/create a cached version of a single product.
-     * @param int $seconds Seconds before the cache updates to match database (single only).
-     */
-    
-     protected static function allCached(int $id = null, int $seconds = 30){
-        if (is_null($id)){
-            return Cache::rememberForever('products', function() {
-                return Product::all();
-            });
-        }
-
-        else{
-            return Cache::remember('products_'.$id, now()->addSeconds($seconds), function() use ($id) {
-                return Product::findOrFail($id);
-            });
-        }
-    }
-
-    /**
-     * Returns the cache key of a product instance.
-     */
-    public function cacheKey()
-    {
-        return 'product_' . $this->id;
-    }
-
-    /**
-     * Return/create a cached version of the product.
-     */
-    
-     public function cached(){
-        return $this->allCached($this->id);
     }
 
     public function wipeCache(){
@@ -131,16 +98,6 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
-    }
-
-    /**
-     * Returns a cached version of categories associated with the product.
-     */
-    public function cachedCategories()
-    {   
-        return Cache::remember($this->cacheKey() . ':categories', now()->addSeconds(60), function () {
-            return $this->categories()->get();
-        });
     }
 
     //filters the product
