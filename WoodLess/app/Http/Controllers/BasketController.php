@@ -18,7 +18,7 @@ class BasketController extends Controller
      */
     function store(Request $request, int $product_id){
         try{
-            $product = Product::allCached($product_id);
+            $product = Product::getCached($product_id);
             if($product->stockAmount() > 0){
                 $attributes = [];
 
