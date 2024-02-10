@@ -23,7 +23,6 @@ class ProductController extends Controller
         $categories = $product->getCachedRelation('categories');
 
         $product->loadMissing('reviews');
-
         $similarProducts = $categories->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
             return $p->id == $product->id;
         })->shuffle()->take(8);
