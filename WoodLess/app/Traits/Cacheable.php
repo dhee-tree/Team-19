@@ -18,6 +18,15 @@ trait Cacheable{
     }
 
     /**
+     * Returns a special string appended with the parameter, intended to be used as a cache key.
+     * @param mixed $input The value to be appended.
+     * @return string
+    */
+    public static function generateCacheKey($input){
+        return static::getTableName().'_'.$input;
+    }
+
+    /**
      * Return/create a cached version of the model.
      * @param DateTime $time Time before the cache updates to match database. (Default - 120 Sec)
      *
@@ -36,7 +45,7 @@ trait Cacheable{
     */
     public static function getCached(int $id, DateTime $time = null){
         $time = $time ?? now()->addSeconds(30)->toDateTime();
-        return Cache::remember(static::find($id)->cacheKey(), $time, function() use ($id) {
+        return Cache::remember(static::generateCacheKey($id), $time, function() use ($id) {
             return static::findOrFail($id);
         });
     }
@@ -46,7 +55,7 @@ trait Cacheable{
     */
     public function cacheKey()
     {
-        return static::getTableName().'_'.$this->id;
+        return static::generateCacheKey($this->id);
     }
 
     /**
