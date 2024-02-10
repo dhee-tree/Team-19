@@ -7,7 +7,6 @@ use App\Models\Category;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
-use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -17,9 +16,9 @@ class ProductController extends Controller
     /**
      * Retrieve a single product.
      */
-    public function show(int $id)
+    public function show(int $product_id)
     {   
-        $product = Product::allCached($id);
+        $product = Product::allCached($product_id);
 
         $product->loadMissing('reviews');
 
