@@ -138,3 +138,7 @@
         </div>
     </div>
 @endsection
+
+@section('js')
+    <script src="{{ asset('js/user-panel.js') }}"></script>
+@endsection
