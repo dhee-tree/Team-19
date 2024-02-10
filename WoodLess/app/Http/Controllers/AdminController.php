@@ -7,6 +7,7 @@ use App\Models\Category;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -40,47 +41,75 @@ class AdminController extends Controller
 
     public function ProductStore(Request $request, $id)
     {
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'warehouse_quantities' => 'array', // adjust validation rules as per your needs
-            'attributes_keys' => 'array',
-            'attributes_values' => 'array',
-            'images.*' => 'image|max:2048', // adjust max file size as per your needs
-        ]);
+        // Log that the function is being executed
+        Log::info('ProductStore function called.');
 
+        // Log the provided ID
+        Log::info('Provided ID: ' . $id);
 
-        // If ID is provided, update the existing product
+        // Log the form data
+        Log::info('Form data:', $request->all());
+
+        // Check if an ID is provided
         if ($id) {
-            $product = Product::findOrFail($id);
-            $product->update($request->all());
-            // You can add more specific updating logic here if needed
-        } else {
-            // If no ID is provided, create a new product
-            $product = new Product();
-            $product->fill($request->all());
-            $product->save();
-        }
-        // Process the form data and save to the database, etc.
+            // Retrieve the product by ID
+            $product = Product::find($id);
 
-        // For demonstration, you can access the data like this:
-        $title = $request->input('title');
-        $description = $request->input('description');
-        $warehouseQuantities = $request->input('warehouse_quantities');
-        $attributesKeys = $request->input('attributes_keys');
-        $attributesValues = $request->input('attributes_values');
-        $images = $request->file('images');
-
-        // Loop through the images and store/upload them as needed
-        if ($request->hasFile('images')) {
-            foreach ($images as $image) {
-                // Store or process the image
-                $image->store('images');
+            // Check if the product exists
+            if (!$product) {
+                return redirect()->back()->with('error', 'Product not found.');
             }
-        }
 
-        // Redirect back with a success message, or any other response
-        return redirect()->back()->with('success', 'Product created successfully!');
+            // Update the product fields
+            $product->title = $request->input('title');
+            $product->description = $request->input('description');
+            $product->cost = $request->input('cost');
+            $product->discount = $request->input('discount');
+            $product->updated_at = now();
+            // Update the warehouse quantities
+            $warehouseQuantities = $request->input('warehouse_quantities', []);
+            foreach ($warehouseQuantities as $warehouseId => $quantity) {
+                $product->setStockAmount($warehouseId, $quantity);
+            }
+
+            // Update the attributes
+            $attributes = [];
+            $attributeKeys = $request->input('attributes_keys', []);
+            $attributeValues = $request->input('attributes_values', []);
+            foreach ($attributeKeys as $index => $key) {
+                if (!empty($key)) {
+                    $attributes[$key] = $attributeValues[$index] ?? null;
+                }
+            }
+            $product->attributes = json_encode($attributes);
+
+            // Update the images (if any)
+            $images = $request->file('images');
+            if ($images) {
+                $imagePaths = [];
+                foreach ($images as $image) {
+                    $path = $image->store('images');
+                    $imagePaths[] = $path;
+                }
+                $product->images = implode(',', $imagePaths);
+            }
+
+            // Save the updated product
+            $product->save();
+
+            return redirect()->route('admin-panel.inventory')->with('success', 'Product updated successfully.');
+        } else {
+            // Create a new product instance
+            $product = new Product();
+
+            // Fill the product attributes
+            $product->fill($request->all());
+
+            // Save the product
+            $product->save();
+
+            // Redirect or return a response
+            return redirect()->route('products.index')->with('success', 'Product created successfully.');
+        }
     }
 }

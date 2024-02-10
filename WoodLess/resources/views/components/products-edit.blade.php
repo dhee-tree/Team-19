@@ -54,7 +54,16 @@
                         <button type="button" class="btn btn-primary mt-2" id="addAttributeField">Add
                             Attribute</button>
                     </div>
-
+                    <div class="mb-3">
+                        <label for="cost" class="form-label">Cost</label>
+                        <input type="number" class="form-control" id="cost" name="cost"
+                            value="{{ $product->cost }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="discount" class="form-label">Discount Percentage</label>
+                        <input type="number" class="form-control" id="discount" name="discount"
+                            value="{{ $product->discount }}">
+                    </div>
                     <!-- Pre-existing Images -->
                     <div class="mb-3">
                         <label class="form-label">Pre-existing Images</label>

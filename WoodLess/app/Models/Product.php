@@ -52,17 +52,27 @@ class Product extends Model
      * Returns the stock amount for the product.
      * @param int|null $warehouse (Optional) Specify a warehouse using id
      */
-    public function stockAmount(int $warehouse = null){
+    public function stockAmount(int $warehouse = null)
+    {
 
         $this->loadMissing('warehouses');
 
-        if(is_null($warehouse)){
+        if (is_null($warehouse)) {
             return $this->warehouses()->sum('amount');
-        }
-
-        else{
+        } else {
             return $this->warehouses()->wherePivot('warehouse_id', $warehouse)->sum('amount');
         }
+    }
+
+    /**
+     * Sets the stock amount for the product in the specified warehouse.
+     * @param int $warehouseId Specify the warehouse ID
+     * @param int $amount Specify the stock amount to set
+     * @return void
+     */
+    public function setStockAmount(int $warehouseId, int $amount): void
+    {
+        $this->warehouses()->syncWithoutDetaching([$warehouseId => ['amount' => $amount]]);
     }
 
     /**
@@ -130,5 +140,24 @@ class Product extends Model
         }
 
         return $truncatedDescription;
+    }
+
+    /**
+     * Fill or update the product attributes.
+     *
+     * @param array $attributes
+     * @param int|null $id
+     * @return Product
+     */
+    public static function fillOrUpdate(array $attributes, $id = null)
+    {
+        // If an ID is provided, find the existing product
+        $product = $id ? static::findOrFail($id) : new static();
+
+        // Fill or update the attributes
+        $product->fill($attributes);
+        $product->save();
+
+        return $product;
     }
 }
