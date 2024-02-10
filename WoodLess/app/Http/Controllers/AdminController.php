@@ -13,7 +13,7 @@ class AdminController extends Controller
 
     protected $reviews;
 
-    public function AdditionalInfo($id)
+    public function ProductInfo($id)
     {
         $product = Product::findOrFail($id);
 
