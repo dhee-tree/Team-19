@@ -38,7 +38,7 @@ class AdminController extends Controller
         return view('inventory', ['products' => $products]);
     }
 
-    public function ProductStore(Request $request)
+    public function ProductStore(Request $request, $id)
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
@@ -50,6 +50,18 @@ class AdminController extends Controller
             'images.*' => 'image|max:2048', // adjust max file size as per your needs
         ]);
 
+
+        // If ID is provided, update the existing product
+        if ($id) {
+            $product = Product::findOrFail($id);
+            $product->update($request->all());
+            // You can add more specific updating logic here if needed
+        } else {
+            // If no ID is provided, create a new product
+            $product = new Product();
+            $product->fill($request->all());
+            $product->save();
+        }
         // Process the form data and save to the database, etc.
 
         // For demonstration, you can access the data like this:
