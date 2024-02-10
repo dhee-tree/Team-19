@@ -13,6 +13,13 @@ class AdminController extends Controller
 
     protected $reviews;
 
+    public function UserInfo($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('components.users-info', compact('user'));
+    }
+
     public function AdditionalInfo($id)
     {
         $product = Product::findOrFail($id);

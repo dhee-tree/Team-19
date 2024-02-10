@@ -106,9 +106,8 @@
                                         <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">{{ $user->last_name }}</td>
                                         <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">{{ $user->email }}</td>
                                         <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">{{ $user->phone_number }}</td>
-                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col"><button type="button" class="btn btn-primary openModalButton" onclick="openInfoModal()" id="openModalButton"><i class="fa-solid fa-up-right-from-square"></i></button></td>
-                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col"><button type="button" class="btn btn-secondary openModalButton" onclick="openEditModal()" id="openModalButton">Edit</button>
-                                        </td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col"><button type="button" class="btn btn-primary openModalButton" onclick="openInfoModal({{ $user->id }})" id="openModalButton"><i class="fa-solid fa-up-right-from-square"></i></button></td>
+                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col"><button type="button" class="btn btn-secondary openModalButton" onclick="openEditModal({{ $user->id }})" id="openModalButton">Edit</button></td>
                                         <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col"><button type="button" class="btn btn-danger">Delete</button></td>
                                     </tr>
                                     @endforeach
@@ -121,4 +120,35 @@
         </div>
     </div>
 </body>
+@endsection
+
+
+@section('js')
+<!-- JavaScript to handle modal opening -->
+<script>
+    function openInfoModal(userId) {
+        // Disable all buttons with the specified class to disable multiple spam
+        var buttons = document.querySelectorAll(".openModalButton");
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].disabled = true;
+        }
+
+        $.get('/admin-panel/user-info/' + userId, function(data) {
+            $('body').append(data);
+            var modal = $('#ExtraModal');
+            modal.modal('show'); // Show the modal after content is appended
+
+            // Remove the modal from the DOM when it's closed
+            modal.on('hidden.bs.modal', function() {
+                // Re-enable all buttons with the specified class when the modal is closed
+                var buttons = document.querySelectorAll(".openModalButton");
+                for (var i = 0; i < buttons.length; i++) {
+                    buttons[i].disabled = false;
+                }
+
+                modal.remove();
+            });
+        });
+    }
+</script>
 @endsection

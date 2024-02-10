@@ -170,7 +170,7 @@
                 buttons[i].disabled = true;
             }
 
-            $.get('/admin-panel/info/' + productId, function(data) {
+            $.get('/admin-panel/product-info/' + productId, function(data) {
                 $('body').append(data);
                 var modal = $('#productModal');
                 modal.modal('show'); // Show the modal after content is appended

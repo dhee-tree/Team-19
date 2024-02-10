@@ -68,10 +68,11 @@ Route::view('/admin-panel/tickets', 'tickets-admin');
 Route::get('/admin-panel/users', [AdminController::class,'users']);
 Route::get('/admin-panel/inventory', [AdminController::class,'inventory']);
 //The additional information modal to expand fields in inventory managment
-Route::get('/admin-panel/info/{id}', [AdminController::class,'AdditionalInfo'])->name('components.products-info');
+Route::get('/admin-panel/product-info/{id}', [AdminController::class,'AdditionalInfo'])->name('components.products-info');
 //editing the products
 Route::get('/admin-panel/edit/{id}', [AdminController::class,'EditProduct'])->name('components.products-edit');
-
+//The additional information modal to expand fields in inventory managment
+Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.users-info');
 
 
 
