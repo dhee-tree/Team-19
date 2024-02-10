@@ -22,25 +22,6 @@ class Product extends Model
         'cost',
         'discount',
     ];
-    
-    /**
-     * Return/create a cached version of all products.
-     * @param int $id Return/create a cached version of a single product.
-     */
-    
-    protected static function allCached(int $id = null){
-        if (is_null($id)){
-            return Cache::rememberForever('products', function() {
-                return Product::all();
-            });
-        }
-
-        else{
-            return Cache::remember('products_'.$id, now()->addSeconds(30), function() use ($id) {
-                return Product::findOrFail($id);
-            });
-        }
-    }
 
     protected static function booted(){
         static::creating(function ($product){
@@ -63,6 +44,26 @@ class Product extends Model
     }
 
     /**
+     * Return/create a cached version of all products.
+     * @param int $id Return/create a cached version of a single product.
+     * @param int $seconds Seconds before the cache updates to match database (single only).
+     */
+    
+     protected static function allCached(int $id = null, int $seconds = 30){
+        if (is_null($id)){
+            return Cache::rememberForever('products', function() {
+                return Product::all();
+            });
+        }
+
+        else{
+            return Cache::remember('products_'.$id, now()->addSeconds($seconds), function() use ($id) {
+                return Product::findOrFail($id);
+            });
+        }
+    }
+
+    /**
      * Returns the cache key of a product instance.
      */
     public function cacheKey()
@@ -75,9 +76,7 @@ class Product extends Model
      */
     
      public function cached(){
-        return Cache::remember($this->cacheKey(),now()->addSeconds(30), function() {
-            return $this;
-        });
+        return $this->allCached($this->id);
     }
 
     public function wipeCache(){
