@@ -57,10 +57,10 @@
                     <div class="mb-3">
                         <label for="cost" class="form-label">Cost</label>
                         <input type="number" class="form-control" id="cost" name="cost"
-                            value="{{ $product->cost }}">
+                            value="{{ $product->cost }}" step="any">
                     </div>
                     <div class="mb-3">
-                        <label for="discount" class="form-label">Discount Percentage</label>
+                        <label for="discount" class="form-label">Discount Percentage - Discounted Price: {{$product->discount}}</label>
                         <input type="number" class="form-control" id="discount" name="discount"
                             value="{{ $product->discount }}">
                     </div>
