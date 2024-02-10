@@ -35,7 +35,7 @@ Route::get('/contact', [ContactController::class, 'showForm'])->name('contact');
 Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
 
 //Display single product
-Route::get('/product/{product}', [ProductController::class,'show']);
+Route::get('/product/{id}', [ProductController::class,'show']);
 
 // Basket URLS
 Route::get('/basket', [BasketController::class,'show'])->middleware('auth');
