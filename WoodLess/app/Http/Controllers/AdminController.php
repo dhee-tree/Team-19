@@ -20,7 +20,7 @@ class AdminController extends Controller
         return view('components.products-info', compact('product'));
     }
 
-    public function EditProduct($id)
+    public function ProductEdit($id)
     {
         $product = Product::findOrFail($id);
 
@@ -36,5 +36,39 @@ class AdminController extends Controller
         $products = $products->sortBy('id');
 
         return view('inventory', ['products' => $products]);
+    }
+
+    public function ProductStore(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'warehouse_quantities' => 'array', // adjust validation rules as per your needs
+            'attributes_keys' => 'array',
+            'attributes_values' => 'array',
+            'images.*' => 'image|max:2048', // adjust max file size as per your needs
+        ]);
+
+        // Process the form data and save to the database, etc.
+
+        // For demonstration, you can access the data like this:
+        $title = $request->input('title');
+        $description = $request->input('description');
+        $warehouseQuantities = $request->input('warehouse_quantities');
+        $attributesKeys = $request->input('attributes_keys');
+        $attributesValues = $request->input('attributes_values');
+        $images = $request->file('images');
+
+        // Loop through the images and store/upload them as needed
+        if ($request->hasFile('images')) {
+            foreach ($images as $image) {
+                // Store or process the image
+                $image->store('images');
+            }
+        }
+
+        // Redirect back with a success message, or any other response
+        return redirect()->back()->with('success', 'Product created successfully!');
     }
 }

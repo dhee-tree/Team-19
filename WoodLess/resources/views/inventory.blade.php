@@ -170,9 +170,9 @@
                 buttons[i].disabled = true;
             }
 
-            $.get('/admin-panel/info/' + productId, function(data) {
+            $.get('/admin-panel/inventory/info/' + productId, function(data) {
                 $('body').append(data);
-                var modal = $('#productModal');
+                var modal = $('#extraModal');
                 modal.modal('show'); // Show the modal after content is appended
 
                 // Remove the modal from the DOM when it's closed
@@ -199,9 +199,9 @@
                 buttons[i].disabled = true;
             }
 
-            $.get('/admin-panel/edit/' + productId, function(data) {
+            $.get('/admin-panel/inventory/edit/' + productId, function(data) {
                 $('body').append(data);
-                var modal = $('#productModal');
+                var modal = $('#extraModal');
                 modal.modal('show'); // Show the modal after content is appended
 
                 // Remove the modal from the DOM when it's closed
