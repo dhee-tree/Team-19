@@ -65,7 +65,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //admin panel pages
 Route::view('/admin-panel/orders', 'orders-admin');
 Route::view('/admin-panel/tickets', 'tickets-admin');
-Route::view('/admin-panel/users', 'users-admin');
+Route::get('/admin-panel/users', [AdminController::class,'users']);
 Route::get('/admin-panel/inventory', [AdminController::class,'inventory']);
 //The additional information modal to expand fields in inventory managment
 Route::get('/admin-panel/info/{id}', [AdminController::class,'AdditionalInfo'])->name('components.products-info');

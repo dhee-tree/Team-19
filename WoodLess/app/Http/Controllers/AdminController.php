@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\Category;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
@@ -36,5 +36,15 @@ class AdminController extends Controller
         $products = $products->sortBy('id');
 
         return view('inventory', ['products' => $products]);
+    }
+
+    public function users()
+    {
+
+        $users = User::latest()->get();
+
+        $users = $users->sortBy('id');
+
+        return view('users-admin', ['users' => $users]);
     }
 }
