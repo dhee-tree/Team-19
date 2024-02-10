@@ -7,6 +7,7 @@ use App\Models\Category;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -16,15 +17,15 @@ class ProductController extends Controller
     /**
      * Retrieve a single product.
      */
-    public function show(Product $product)
-    {
-        $product->loadMissing('categories', 'reviews');
+    public function show(int $id)
+    {   
+        $product = Product::allCached($id);
 
-        $similarProducts = $product->categories()->with('products')->get()->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
+        $product->loadMissing('reviews');
+
+        $similarProducts = $product->cachedCategories()->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
             return $p->id == $product->id;
-        });
-        
-        $similarProducts = $similarProducts->shuffle()->take(8);
+        })->shuffle()->take(8);
 
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
@@ -35,13 +36,12 @@ class ProductController extends Controller
             'product' => $product,
             'amount'=> $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
-            'categories' => $product->categories()->get(),
+            'categories' => $product->cachedCategories(),
             'productImages' => explode(',', $product->images),
             'reviews' => $reviews,
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
         ])->render();
-
     }
     public function search(){
         $search_text =$_GET['search'];
