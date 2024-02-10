@@ -32,7 +32,8 @@
                         @endforeach
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Attributes (Note: attributes are to be put in array format, so "data1","data2"...etc)</label>
+                        <label class="form-label">Attributes (Note: attributes are to be put in array format, so
+                            "data1","data2"...etc)</label>
                         <div id="attributeFields">
                             @foreach (json_decode($product->attributes, true) as $key => $value)
                                 <div class="row mb-3">
@@ -135,13 +136,11 @@
     document.getElementById('addImageField').addEventListener('click', function() {
         var imageUploadContainer = document.getElementById('imageUploadContainer');
 
-        // Count the number of existing images
-        var preExistingImageCount = document.querySelectorAll('#preExistingImagesContainer img').length;
         // Count the number of current images
         var imageInputs = imageUploadContainer.querySelectorAll('input[type=file]');
         if (imageInputs.length + preExistingImageCount < 5) {
             var lastInput = imageInputs[imageInputs.length - 1];
-            if (lastInput.files.length > 0 || imageInputs.length > 0) {
+            if (!lastInput || lastInput.files.length > 0) { // Check if last input is not set or has a file
                 var newInput = createImageInput();
                 imageUploadContainer.appendChild(newInput);
                 if (imageInputs.length + preExistingImageCount === 4) {
@@ -189,6 +188,7 @@
         });
     });
 </script>
+
 
 
 
