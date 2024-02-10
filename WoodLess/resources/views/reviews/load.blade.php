@@ -115,6 +115,19 @@
     </div>
     @endauth
 
+    @guest
+    <div class="container">
+        <div class="row card mb-3 p-0 mx-0">
+            <div class="card-body">
+            
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+    @endguest
+
     @foreach ($reviews as $review)
     @php
         $user = $review->user;
