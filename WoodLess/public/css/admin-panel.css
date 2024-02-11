@@ -34,7 +34,7 @@ li{
     transition: all 0.35s ease-in-out;
 }
 
-.main{
+main{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -43,6 +43,11 @@ li{
     transition: all 0.35s ease-in-out;
     width: 100%;
     background: var(--bs-dark-bg-subtle);
+    margin:0;
+}
+
+footer{
+    margin-top:0;
 }
 
 /* Sidebar Elements Style */
