@@ -150,7 +150,7 @@
         
             @foreach ($reviews as $review)
             @php
-                $reviewUser = $review->user;
+                $reviewUser = $review->getCachedRelation('user')[0];
                 if($reviewUser == $user){
                     continue;
                 }
