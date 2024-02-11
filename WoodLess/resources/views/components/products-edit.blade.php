@@ -9,7 +9,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editProductForm" method="POST" action="{{ route('product-store', ['id' => $product->id]) }}">
+                <form id="editProductForm" method="POST" action="{{ route('product-store', ['id' => $product->id]) }}"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
@@ -60,7 +61,8 @@
                             value="{{ $product->cost }}" step="any">
                     </div>
                     <div class="mb-3">
-                        <label for="discount" class="form-label">Discount Percentage - Discounted Price: {{$product->discount}}</label>
+                        <label for="discount" class="form-label">Discount Percentage - Discounted Price:
+                            {{ sprintf('%0.2f', round($product->cost - $product->cost * ($product->discount / 100), 2)) }}</label>
                         <input type="number" class="form-control" id="discount" name="discount"
                             value="{{ $product->discount }}">
                     </div>
@@ -76,6 +78,9 @@
                                         <div class="card-body">
                                             <button type="button" class="btn btn-danger btn-sm remove-image"
                                                 data-image-index="{{ $index }}">Remove</button>
+                                            <input type="hidden" name="pre_existing_images[]"
+                                                value="{{ $image }}">
+
                                         </div>
                                     </div>
                                 </div>
@@ -215,7 +220,7 @@
         keyInput.type = 'text';
         keyInput.className = 'form-control';
         keyInput.placeholder = 'Attribute Name';
-        keyInput.name = 'new_attributes_keys[]';
+        keyInput.name = 'attributes_keys[]';
         keyCol.appendChild(keyInput);
 
         var valueCol = document.createElement('div');
@@ -224,7 +229,7 @@
         valueInput.type = 'text';
         valueInput.className = 'form-control';
         valueInput.placeholder = 'Attribute Value';
-        valueInput.name = 'new_attributes_values[]';
+        valueInput.name = 'attributes_values[]';
         valueCol.appendChild(valueInput);
 
         var deleteCol = document.createElement('div');

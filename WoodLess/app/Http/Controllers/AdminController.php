@@ -7,7 +7,7 @@ use App\Models\Category;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -41,14 +41,7 @@ class AdminController extends Controller
 
     public function ProductStore(Request $request, $id)
     {
-        // Log that the function is being executed
-        Log::info('ProductStore function called.');
 
-        // Log the provided ID
-        Log::info('Provided ID: ' . $id);
-
-        // Log the form data
-        Log::info('Form data:', $request->all());
 
         // Check if an ID is provided
         if ($id) {
@@ -59,7 +52,7 @@ class AdminController extends Controller
             if (!$product) {
                 return redirect()->back()->with('error', 'Product not found.');
             }
-
+            //dd($request->all());
             // Update the product fields
             $product->title = $request->input('title');
             $product->description = $request->input('description');
@@ -72,6 +65,8 @@ class AdminController extends Controller
                 $product->setStockAmount($warehouseId, $quantity);
             }
 
+
+
             // Update the attributes
             $attributes = [];
             $attributeKeys = $request->input('attributes_keys', []);
@@ -81,19 +76,41 @@ class AdminController extends Controller
                     $attributes[$key] = $attributeValues[$index] ?? null;
                 }
             }
+            //dd($product->images);
+
             $product->attributes = json_encode($attributes);
 
-            // Update the images (if any)
+            // Get the pre-existing images from the request
+            $preExistingImages = $request->input('pre_existing_images', []);
+
+            // Get the current images of the product
+            $currentImagesArray = explode(',', $product->images);
+
+            // Iterate over the current images
+            foreach ($currentImagesArray as $currentImage) {
+                // Check if the current image is not included in the pre-existing images sent in the request
+                if (!in_array($currentImage, $preExistingImages)) {
+                    // Delete or remove the image
+                    //File::delete(public_path('path/to/' . $currentImage));
+                }
+            }
             $images = $request->file('images');
+            //dd($currentImages);
             if ($images) {
-                $imagePaths = [];
                 foreach ($images as $image) {
-                    $path = $image->store('images');
+                    // Generate a unique filename for each image
+                    $imageName = uniqid() . '_' . $image->getClientOriginalName();
+
+                    // Store the image in the specified directory
+                    $path = $image->storeAs('images/products/' . $product->id, $imageName, 'public');
+
+                    // Save the image path
                     $imagePaths[] = $path;
                 }
-                $product->images = implode(',', $imagePaths);
-            }
 
+                // Save the image paths in the database
+                $product->images = json_encode($imagePaths);
+            }
             // Save the updated product
             $product->save();
 
