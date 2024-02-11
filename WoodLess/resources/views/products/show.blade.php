@@ -11,6 +11,7 @@
     /*
         These variables are declared in ProductController and are used here.
 
+        $user - The user, null if not present
         $product - A row from the 'products' table, Eloquent model (?)
         $attributes - The product's attributes decoded from JSON
         $categories - The product's categories stored in the pivot table 'categories_product'
@@ -255,95 +256,97 @@
             </div>
         </div>
 
-        <div class="row px-3 @if(empty($similarProducts)) d-none @endif" id="similar-products">
-            <hr>
-            <div class="col">
-                <div class="">
-                    <h4 class="p-0 m-0 mb-0">Similar Products</h4>
-                </div>
+        @if(isset($similarProducts))
+            <div class="row px-3" id="similar-products">
+                <hr>
+                <div class="col">
+                    <div class="">
+                        <h4 class="p-0 m-0 mb-0">Similar Products</h4>
+                    </div>
 
-                <div id="productCarousel" class="mb-3 carousel carousel-dark slide .carousel-fade" data-bs-interval="false">
-                    <div class="carousel-inner">                  
-                        @php
-                        $pageLimit = 4;
-                        @endphp
+                    <div id="productCarousel" class="mb-3 carousel carousel-dark slide .carousel-fade" data-bs-interval="false">
+                        <div class="carousel-inner">                  
+                            @php
+                            $pageLimit = 4;
+                            @endphp
 
-                        @for ($i = 0; $i < count($similarProducts); $i += $pageLimit)
-                        <div class="carousel-item @if ($i == 0) active @endif">
-                            <div class="row">
-                                @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($similarProducts); $ii++)
-                                    @php 
-                                        $similarProduct = $similarProducts[$ii];
-                                        $similarProductImages = explode(',', $similarProduct->images);
-                                    @endphp
-                                    <div class="col-6 col-lg-3 col-md-3 col-sm-6">
-                                        <a href="/product/{{ $similarProduct->id }}">
-                                            <div class="card mt-3">
-                                                <!-- Sale badge-->
-                                                @if(($similarProduct->discount))
-                                                <div class="badge bg-dark text-white position-absolute"
-                                                    style="top: 0.5rem; right: 0.5rem">Sale
-                                                </div>
-                                                @endif
-                                                <!-- Product image-->
-                                                <img width="10" class="card-img-top p-3" src="{{asset('images/' . $similarProductImages[0])}}"alt="{{ $similarProduct->title }}" />
-                                                <!-- Product details-->
-                                                <div class="card-body p-0 mb-3">
-                                                    <div class="d-flex flex-row justify-content-center">
-                                                        <div class="text-center d-none d-xl-block">
-                                                            <!-- Product name-->
-                                                            <span class="fs-5 fw-bolder">{{ $similarProduct->title }}</h5>
+                            @for ($i = 0; $i < count($similarProducts); $i += $pageLimit)
+                            <div class="carousel-item @if ($i == 0) active @endif">
+                                <div class="row">
+                                    @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($similarProducts); $ii++)
+                                        @php 
+                                            $similarProduct = $similarProducts[$ii];
+                                            $similarProductImages = explode(',', $similarProduct->images);
+                                        @endphp
+                                        <div class="col-6 col-lg-3 col-md-3 col-sm-6">
+                                            <a href="/product/{{ $similarProduct->id }}">
+                                                <div class="card mt-3">
+                                                    <!-- Sale badge-->
+                                                    @if(($similarProduct->discount))
+                                                    <div class="badge bg-dark text-white position-absolute"
+                                                        style="top: 0.5rem; right: 0.5rem">Sale
+                                                    </div>
+                                                    @endif
+                                                    <!-- Product image-->
+                                                    <img width="10" class="card-img-top p-3" src="{{asset('images/' . $similarProductImages[0])}}"alt="{{ $similarProduct->title }}" />
+                                                    <!-- Product details-->
+                                                    <div class="card-body p-0 mb-3">
+                                                        <div class="d-flex flex-row justify-content-center">
+                                                            <div class="text-center d-none d-xl-block">
+                                                                <!-- Product name-->
+                                                                <span class="fs-5 fw-bolder">{{ $similarProduct->title }}</h5>
+                                                            </div>
+                                                            <div class="vr mx-2 d-none d-xl-block"></div>
+                                                            <div class="text-center">
+                                                                <!-- Product price-->
+                                                                <span class="fs-5">
+                                                                    @if(($similarProduct->discount))
+                                                                        £{{sprintf("%0.2f", round(($similarProduct->cost) - (($similarProduct->cost) * ($similarProduct->discount / 100)), 2))}}
+                                                                    @else
+                                                                        £{{$similarProduct->cost}}
+                                                                    @endif  
+                                                                </span>
+                                                            </div>
                                                         </div>
-                                                        <div class="vr mx-2 d-none d-xl-block"></div>
-                                                        <div class="text-center">
-                                                            <!-- Product price-->
-                                                            <span class="fs-5">
-                                                                @if(($similarProduct->discount))
-                                                                    £{{sprintf("%0.2f", round(($similarProduct->cost) - (($similarProduct->cost) * ($similarProduct->discount / 100)), 2))}}
-                                                                @else
-                                                                    £{{$similarProduct->cost}}
-                                                                @endif  
-                                                            </span>
+
+                                                        <div class="d-flex flex-row justify-content-center m-0 p-0">
+                                                            <div class="text-center text-secondary">
+                                                                <!-- Original product price-->
+                                                                <span class="fs-6">
+                                                                    @if(($similarProduct->discount))
+                                                                        <strike>£{{$similarProduct->cost}}</strike>                                                                
+                                                                    @endif  
+                                                                </span>
+                                                            </div>
                                                         </div>
                                                     </div>
-
-                                                    <div class="d-flex flex-row justify-content-center m-0 p-0">
-                                                        <div class="text-center text-secondary">
-                                                            <!-- Original product price-->
-                                                            <span class="fs-6">
-                                                                @if(($similarProduct->discount))
-                                                                    <strike>£{{$similarProduct->cost}}</strike>                                                                
-                                                                @endif  
-                                                            </span>
-                                                        </div>
-                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                @endfor
+                                            </a>
+                                        </div>
+                                    @endfor
+                                </div>
                             </div>
+                            @endfor
                         </div>
-                        @endfor
+                        
+                        <div class="d-none d-lg-block p-0 m-0">
+                            <button class="p-0 carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                                <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="p-0 carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                                <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
-                    
-                    <div class="d-none d-lg-block p-0 m-0">
-                        <button class="p-0 carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
-                            <i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #000000;"></i>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="p-0 carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
-                            <i class="fa-solid fa-arrow-right-long fa-2xl" style="color: #000000;"></i>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
+
                 </div>
-
             </div>
-        </div>
+        @endif
 
-        <hr class="mb-1">
-
+        <hr class="">
+        
         @include('reviews.load')
     </div>
 @endsection
