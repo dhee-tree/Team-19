@@ -83,24 +83,44 @@ class AdminController extends Controller
 
             // Get the pre-existing images from the request
             $preExistingImages = $request->input('pre_existing_images', []);
+            if ($preExistingImages === null) {
+                $product->images = '';
+            } else {
+                // Get the current images of the product
+                $currentImagesArray = explode(',', $product->images);
 
-            // Get the current images of the product
-            $currentImagesArray = explode(',', $product->images);
 
-            // Iterate over the current images
-            foreach ($currentImagesArray as $currentImage) {
-                // Check if the current image is not included in the pre-existing images sent in the request
-                if (!in_array($currentImage, $preExistingImages)) {
-                    // Delete or remove the image
-                    Storage::delete('images/products/' . $currentImage);
 
-                    // Remove the image from the product model
-                    $product->images = array_diff(explode(',', $product->images), [$currentImage]);
+                // Iterate over the current images
+                foreach ($currentImagesArray as $currentImage) {
+                    // Check if the current image is not included in the pre-existing images sent in the request
+                    if (!in_array('/storage/'  . $currentImage, $preExistingImages)) {
+                        // Delete or remove the image
+                        Storage::delete('images/products/' . $currentImage);
+
+                        // Remove the image from the array
+                        $currentImagesArray = array_diff($currentImagesArray, [$currentImage]);
+                    }
                 }
+
+                // Convert the array back to a string
+                $product->images = implode(',', $currentImagesArray);
             }
-            //dd($product->images);
+
+
+            // Retrieve the existing images from the product model
+            $existingImages = explode(',', $product->images);
+
+            // Initialize an array to store the paths of all images
+            $imagePaths = [];
+
+            // Iterate over the existing images and add them to the image paths array
+            foreach ($existingImages as $existingImage) {
+                $imagePaths[] = $existingImage;
+            }
+
+            //adding new image to product
             $images = $request->file('images');
-            //dd($currentImages);
             if ($images) {
                 foreach ($images as $image) {
                     // Generate a unique filename for each image
@@ -117,6 +137,12 @@ class AdminController extends Controller
                 $product->images = implode(',', $imagePaths);
                 //dd($product->images);
             }
+
+            // Save the merged image paths in the database
+            $product->images = implode(',', $imagePaths);
+
+
+
             // Save the updated product
             $product->save();
 

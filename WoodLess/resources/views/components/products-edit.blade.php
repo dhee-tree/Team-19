@@ -75,12 +75,14 @@
                                 $productImages = explode(',', $product->images);
 
                                 foreach ($productImages as $imagePath) {
+
                                     // Generate the URL for each image and add it to the $imageUrls array
                                     $imageUrl = Storage::url($imagePath);
                                     $imageUrls[] = $imageUrl;
                                 }
                             @endphp
-                            @foreach ($imageUrls as $index => $image)
+                            @foreach ($imageUrls as $index => $image) 
+                            
                                 <div class="col">
                                     <div class="card">
                                         <img src="{{ $image }}" alt="Pre-existing Image"
