@@ -49,7 +49,7 @@
                                     @php
                                         $active = false;
                                     @endphp
-                                    <img src="{{ Storage::url('images/' . explode(',', $product->images)[0]); }}" class="d-block"
+                                    <img src="{{ Storage::url(explode(',', $product->images)[0]) }}" class="d-block"
                                         alt="Product image">
                                     <div class="carousel-caption d-none d-md-block">
                                         <h5>{{ $product->title }}</h5>
