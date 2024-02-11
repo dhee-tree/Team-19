@@ -176,7 +176,7 @@ abstract class Relation implements BuilderContract
     public function cache(DateTime $time = null){
         $time = $time ?? now()->addSeconds(30)->toDateTime();
         $parent = $this->getParent();
-        return Cache::remember($parent->getTable().'_'.$parent->id.':'.$this->getRelationName(), $time, function() {
+        return Cache::remember($parent->getTable().'_'.$parent->id.':'.$this->getRelated()->getTable(), $time, function() {
             return $this->get();
         });
     }
