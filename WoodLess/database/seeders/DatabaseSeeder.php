@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         $warehouses = \App\Models\Warehouse::factory(3)->create();
 
         // Default image URL
-        $defaultUserImageUrl = 'https://placehold.co/300x350.png';
+        $defaultUserImageUrl = 'https://placehold.co/250x300';
 
         // Create 50 users
         $users = \App\Models\User::factory(50)->create([
