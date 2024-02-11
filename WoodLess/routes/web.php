@@ -72,7 +72,7 @@ Route::get('/admin-panel/inventory/product-info/{id}', [AdminController::class,'
 //editing the products modal
 Route::get('/admin-panel/inventory/product-edit/{id}', [AdminController::class,'ProductEdit'])->name('components.products-edit');
 //The modal to open the add modal for products
-Route::get('/admin-panel/inventory/product-add/{id}', [AdminController::class,'ProductAdd'])->name('components.products-add');
+Route::get('/admin-panel/inventory/product-add', [AdminController::class,'ProductAdd'])->name('components.products-add');
 //stores products, either edits or creates a new ones
 Route::post('/admin-panel/inventory/store/{id}', [AdminController::class,'ProductStore'])->name('product-store');
 
