@@ -37,6 +37,12 @@ class AdminController extends Controller
         return view('components.products-edit', compact('product'));
     }
 
+    public function ProductAdd()
+    {
+
+        return view('components.products-add');
+    }
+
     //returns the view for inventory on the admin controller.
     public function inventory()
     {
