@@ -19,9 +19,6 @@ class ProductController extends Controller
     public function show(Product $product)
     {
 
-        $faker = \Faker\Factory::create('en_GB');
-        dd($faker->postcode);
-
         $product->loadMissing('categories', 'reviews');
 
         $similarProducts = $product->categories()->with('products')->get()->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
