@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Address;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
@@ -16,6 +17,13 @@ class AdminController extends Controller
     public function UserInfo($id)
     {
         $user = User::findOrFail($id);
+
+        return view('components.users-info', compact('user'));
+    }
+
+    public function AddressInfo($user_id)
+    {
+        $addresses = Address::findOrFail($user_id);
 
         return view('components.users-info', compact('user'));
     }

@@ -152,6 +152,15 @@
                 }
 
                 container.remove();
+
+                // Get the modal backdrop element
+                var backdrop = document.querySelector('.modal-backdrop');
+
+                // Check if the backdrop element exists
+                if (backdrop) {
+                    // Remove the backdrop element from the DOM
+                    backdrop.parentNode.removeChild(backdrop);
+                }
             });
 
             // Event listener for clicking outside the modal
@@ -166,6 +175,14 @@
                     }
 
                     container.remove();
+                    // Get the modal backdrop element
+                    var backdrop = document.querySelector('.modal-backdrop');
+
+                    // Check if the backdrop element exists
+                    if (backdrop) {
+                        // Remove the backdrop element from the DOM
+                        backdrop.parentNode.removeChild(backdrop);
+                    }
                 }
             });
         });

@@ -20,9 +20,9 @@
                         <!-- Display the user ID underneath the image with margin -->
                         <p class="mt-3 mb-0">User ID: {{$user->id}}</p>
                         <!-- Display the role underneath the image without a title -->
-                        <p><strong>{{$user->is_admin ? 'Admin' : 'Customer'}}</strong></p>
-                        <!-- Thin line -->
-                        <hr>
+                        <h5><strong>{{$user->is_admin ? 'Admin' : 'Customer'}}</strong></h1>
+                            <!-- Thin line -->
+                            <hr>
                     </div>
                     <div class="row text-center">
                         <div class="col-md-6">
@@ -50,22 +50,27 @@
                             <p><strong>Phone number</strong><br>{{$user->phone_number}}</p>
                         </div>
                         <div class="col-md-6">
-                            <p><strong>Phone number</strong><br>{{$user->phone_number}}</p>
+                            <p><strong>City</strong><br>{{$user->phone_number}}</p>
                         </div>
-                        <div class="">
-                            <div class="d-flex justify-content-center">
-                                <button class="btn btn-primary" data-bs-target="#CardsModal" data-bs-toggle="modal" data-bs-dismiss="modal">Open second modal</button>
-                                <button class="btn btn-primary ms-3" data-bs-target="#AddressesModal" data-bs-toggle="modal" data-bs-dismiss="modal">Addresses</button>
+                        <div class="container">
+                            <div class="row justify-content-center">
                             </div>
                         </div>
-
                     </div>
                     <br>
                     <p class="text-center"><strong>Created</strong> {{date('F j, Y', strtotime($user->created_at))}}</p>
                 </div>
                 <div class="modal-footer">
-                    <div class="col-auto">
-                        <button id="btn-close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col justify-content-left">
+                                <button class="btn btn-warning" data-bs-target="#AddressesModal" data-bs-toggle="modal" data-bs-dismiss="modal">Addresses</button>
+                                <button class="btn btn-warning" data-bs-target="#CardsModal" data-bs-toggle="modal" data-bs-dismiss="modal">Cards</button>
+                            </div>
+                            <div class="col-auto order-lg-last">
+                                <button id="btn-close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -73,23 +78,44 @@
         </div>
     </div>
 
-    <div class="modal fade" id="CardsModal" aria-hidden="true" aria-labelledby="ModalLabel2" tabindex="-1">
+    <div class="modal fade" id="CardsModal" aria-hidden="true" aria-labelledby="CardsModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="ModalLabel2">Modal 2</h5>
+                    <h5 class="modal-title" id="CardsModal">Cards</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     Hide this modal and show the first with the button below.
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-target="#ExtraModal" data-bs-toggle="modal" data-bs-dismiss="modal">Back to first</button>
+                    <button class="btn btn-primary" data-bs-target="#ExtraModal" data-bs-toggle="modal" data-bs-dismiss="modal">Back to details</button>
                 </div>
             </div>
         </div>
     </div>
     <a class="btn btn-primary" data-bs-toggle="modal" href="#ExtraModal" role="button">Return</a>
 
+    <div class="modal fade" id="AddressesModal" aria-hidden="true" aria-labelledby="AddressesModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="AddressesModal">Delivery addresses</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    @foreach($user->addresses as $address)
+                    <h5><strong>Address ({{ $address->id }})</h3></strong>
+                    <p class="fs-6">{{$address->house_number}} {{$address->street_name}}<br>
+                    {{$address->city}}, {{$address->postcode}}</p>
+                    @endforeach
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-target="#ExtraModal" data-bs-toggle="modal" data-bs-dismiss="modal">Back to details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-primary" data-bs-toggle="modal" href="#ExtraModal" role="button">Return</a>
 
 </container>
