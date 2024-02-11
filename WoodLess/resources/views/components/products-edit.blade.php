@@ -75,14 +75,12 @@
                                 $productImages = explode(',', $product->images);
 
                                 foreach ($productImages as $imagePath) {
-
                                     // Generate the URL for each image and add it to the $imageUrls array
                                     $imageUrl = Storage::url($imagePath);
                                     $imageUrls[] = $imageUrl;
                                 }
                             @endphp
-                            @foreach ($imageUrls as $index => $image) 
-                            
+                            @foreach ($imageUrls as $index => $image)
                                 <div class="col">
                                     <div class="card">
                                         <img src="{{ $image }}" alt="Pre-existing Image"
@@ -104,12 +102,16 @@
                     <div class="mb-3">
                         <label class="form-label">Images (Max: 5)</label>
                         <div id="imageUploadContainer">
-                            <div class="input-group"><input type="file" class="form-control mt-2" name="images[]"
-                                    accept="image/*">
-                                <div class="btn-group mt-2">
-                                    <button type="button" class="btn btn-secondary btn-sm unset-image">Unset</button>
+                            <!-- checks if pre existing images are more then 5. -->
+                            @if (count(explode(',', $product->images)) < 5)
+                                <div class="input-group"><input type="file" class="form-control mt-2"
+                                        name="images[]" accept="image/*">
+                                    <div class="btn-group mt-2">
+                                        <button type="button"
+                                            class="btn btn-secondary btn-sm unset-image">Unset</button>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         <button type="button" class="btn btn-primary mt-2" id="addImageField">Add
                             Image</button>
@@ -211,6 +213,7 @@
             // Enable the "Add Image" button
             document.getElementById('addImageField').disabled = false;
             document.getElementById('addImageField').innerText = 'Add Image';
+            preExistingImageCount--;
         });
     });
 </script>

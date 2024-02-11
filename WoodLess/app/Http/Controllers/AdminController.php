@@ -148,7 +148,7 @@ class AdminController extends Controller
             if ($images) {
                 foreach ($images as $image) {
                     // Generate a unique filename for each image
-                    $imageName = uniqid() . '_' . $image->getClientOriginalName();
+                    $imageName = md5(uniqid() . microtime()) . '.' . $image->getClientOriginalExtension();
                     //dd($imageName);
                     // Store the image in the specified directory
                     $path = $image->storeAs('images/products/' . $product->id, $imageName, 'public');
