@@ -25,7 +25,7 @@ class AdminController extends Controller
     public function ProductInfo($id)
     {
         $product = Product::findOrFail($id);
-        
+
         return view('components.products-info', compact('product'));
     }
 
@@ -110,8 +110,13 @@ class AdminController extends Controller
                     $attributes[$key] = $attributeValues[$index] ?? null;
                 }
             }
-            //dd($product->images);
 
+
+            //categories 
+            // Update the associated categories
+            $categories = $request->input('categories', []);
+            $product->categories()->sync($categories);
+            
             $product->attributes = json_encode($attributes);
 
             // Get the pre-existing images from the request
