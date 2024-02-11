@@ -111,6 +111,7 @@ class DatabaseSeeder extends Seeder
             }
 
             \App\Models\Address::factory()->create(['user_id' => $user->id]);
+            \App\Models\Card::factory()->create(['user_id' => $user->id]);
         }
 
         // \App\Models\User::factory()->create([
