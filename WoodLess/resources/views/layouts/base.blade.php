@@ -56,8 +56,8 @@
                             <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="{{ url('/about') }}">About us</a>
                         </li>
                     </ul>
-                    <form  method="GET" action="{{ url('/products/search') }}" class="d-flex" role="search">
-                        <input class="form-control me-1" name ="search" type="search" placeholder="Search" aria-label="Search">
+                    <form  method="GET" action=" {{route('products.filter')}}" class="d-flex" role="search">
+                        <input class="form-control me-1" name ="search" type="search" placeholder="search" aria-label="search">
                         <button class="btn btn-outline-success" style="margin-right: 25px;" type="submit">Search</button>
                     </form>
                     <li class="d-flex">
@@ -78,7 +78,7 @@
             @yield('content')
         </main>
 
-        <footer class="border-top bg-dark">
+        <footer class="bg-dark">
             <div class="container-fluid">
                 <div class="row row-cols-5 py-5">
                     <div class="col">
@@ -124,7 +124,7 @@
 
         <!-- bootstrap 5.3 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+ 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 

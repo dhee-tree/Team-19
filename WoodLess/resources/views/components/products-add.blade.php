@@ -9,17 +9,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editProductForm" method="POST" action="{{ route('product-store', ['id' => $product->id]) }}"
+                <form id="editProductForm" method="POST" action="{{ route('product-store') }}"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control" id="title" name="title"
-                            value="{{ $product->title }}">
+                            value="Title here">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" id="description" name="description">{{ $product->description }}</textarea>
+                        <textarea class="form-control" id="description" name="description">Description goes here:</textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Quantity</label>
@@ -36,21 +36,7 @@
                         <label class="form-label">Attributes (Note: attributes are to be put in array format, so
                             "data1","data2"...etc)</label>
                         <div id="attributeFields">
-                            @foreach (json_decode($product->attributes, true) as $key => $value)
-                                <div class="row mb-3">
-                                    <div class="col-auto">
-                                        <input type="text" class="form-control" name="attributes_keys[]"
-                                            placeholder="Attribute Name" value="{{ $key }}">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" name="attributes_values[]"
-                                            placeholder="Attribute Value" value="{{ $value }}">
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-danger remove-attribute">&times;</button>
-                                    </div>
-                                </div>
-                            @endforeach
+                            
                         </div>
                         <button type="button" class="btn btn-primary mt-2" id="addAttributeField">Add
                             Attribute</button>
@@ -58,46 +44,12 @@
                     <div class="mb-3">
                         <label for="cost" class="form-label">Cost</label>
                         <input type="number" class="form-control" id="cost" name="cost"
-                            value="{{ $product->cost }}" step="any">
+                            value="Product cost here" step="any">
                     </div>
                     <div class="mb-3">
-                        <label for="discount" class="form-label">Discount Percentage - Discounted Price:
-                            {{ sprintf('%0.2f', round($product->cost - $product->cost * ($product->discount / 100), 2)) }}</label>
+                        <label for="discount" class="form-label">Discount Percentage</label>
                         <input type="number" class="form-control" id="discount" name="discount"
-                            value="{{ $product->discount }}">
-                    </div>
-                    <!-- Pre-existing Images -->
-                    <div class="mb-3">
-                        <label class="form-label">Pre-existing Images</label>
-                        <div id="preExistingImagesContainer" class="row row-cols-3 g-3">
-                            @php
-                                // Retrieve the product images from the database
-                                $productImages = explode(',', $product->images);
-
-                                foreach ($productImages as $imagePath) {
-
-                                    // Generate the URL for each image and add it to the $imageUrls array
-                                    $imageUrl = Storage::url($imagePath);
-                                    $imageUrls[] = $imageUrl;
-                                }
-                            @endphp
-                            @foreach ($imageUrls as $index => $image) 
-                            
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="{{ $image }}" alt="Pre-existing Image"
-                                            class="card-img-top img-thumbnail">
-                                        <div class="card-body">
-                                            <button type="button" class="btn btn-danger btn-sm remove-image"
-                                                data-image-index="{{ $index }}">Remove</button>
-                                            <input type="hidden" name="pre_existing_images[]"
-                                                value="{{ $image }}">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
+                            value="Discounted Percentage here">
                     </div>
 
                     <!-- Image Upload Section -->
@@ -119,7 +71,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" form="editProductForm">Save Changes</button>
+                <button type="submit" class="btn btn-primary" form="editProductForm">Create</button>
             </div>
         </div>
     </div>
@@ -156,9 +108,6 @@
         return inputGroup;
     }
 
-    // Count the number of existing images
-    var preExistingImageCount = document.querySelectorAll('#preExistingImagesContainer img').length;
-
     document.getElementById('addImageField').addEventListener('click', function() {
         var imageUploadContainer = document.getElementById('imageUploadContainer');
 
@@ -169,7 +118,7 @@
             if (!lastInput || lastInput.files.length > 0) { // Check if last input is not set or has a file
                 var newInput = createImageInput();
                 imageUploadContainer.appendChild(newInput);
-                if (imageInputs.length + preExistingImageCount === 4) {
+                if (imageInputs.length === 4) {
                     document.getElementById('addImageField').disabled = true;
                     document.getElementById('addImageField').innerText = 'Images Full';
                 }
@@ -202,16 +151,6 @@
             var inputFile = inputGroup.querySelector('input[type=file]');
             inputFile.value = ''; // Clear the file input
         }
-    });
-
-    // Event listener for removing pre-existing images
-    document.querySelectorAll('#preExistingImagesContainer .remove-image').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            this.closest('.col').remove();
-            // Enable the "Add Image" button
-            document.getElementById('addImageField').disabled = false;
-            document.getElementById('addImageField').innerText = 'Add Image';
-        });
     });
 </script>
 

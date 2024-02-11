@@ -12,27 +12,33 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {   
-        
+    {
+
         $warehouses = \App\Models\Warehouse::factory(3)->create();
 
-        $users =\App\Models\User::factory(50)->create();
+        // Default image URL
+        $defaultUserImageUrl = 'https://placehold.co/250x300';
+
+        // Create 50 users
+        $users = \App\Models\User::factory(50)->create([
+            'image' => $defaultUserImageUrl, // Set the default image URL
+        ]);
         //$products =\App\Models\Product::factory(20)->create();
 
         //ADD CATEGORIES HERE. INCREMENT COUNT BY NO. OF CATEGORIES.
         $categories = \App\Models\Category::factory()->count(6)->sequence(
-            ['category' => 'Kitchen','images'=>'/images/Kitchen.png'],              
-            ['category' => 'Dining','images'=>'/images/Dining-room.png'],
-            ['category' => 'Bedroom','images'=>'/images/Bedroom.png'],
-            ['category' => 'Bathroom','images'=>'/images/Bathroom.png'],
-            ['category'=> 'Office','images'=>'/images/Office.png'],
-            ['category'=> 'Garden','images'=>'/images/Garden.png'],
+            ['category' => 'Kitchen', 'images' => '/images/Kitchen.png'],
+            ['category' => 'Dining', 'images' => '/images/Dining-room.png'],
+            ['category' => 'Bedroom', 'images' => '/images/Bedroom.png'],
+            ['category' => 'Bathroom', 'images' => '/images/Bathroom.png'],
+            ['category' => 'Office', 'images' => '/images/Office.png'],
+            ['category' => 'Garden', 'images' => '/images/Garden.png'],
             //etc...
         )->create();
 
         //ADD ORDER STATUSES HERE. INCREMENT COUNT BY NO. OF STATUSES.
         $orderStatuses = \App\Models\OrderStatus::factory()->count(6)->sequence(
-            ['status' => 'Processing'],              
+            ['status' => 'Processing'],
             ['status' => 'Transit'],
             ['status' => 'Complete'],
             ['status' => 'Processing Return'],
@@ -42,7 +48,7 @@ class DatabaseSeeder extends Seeder
         )->create();
 
         $importanceLevel = \App\Models\ImportanceLevel::factory()->count(3)->sequence(
-            ['level' => 'Low'],              
+            ['level' => 'Low'],
             ['level' => 'Medium'],
             ['level' => 'High'],
             //etc...
@@ -81,17 +87,17 @@ class DatabaseSeeder extends Seeder
             ['title' =>'Cerulean Chair','description'=>'Create a haven of peace with this chic and elegant furniture item.','images'=>'products/30/(1).png,products/30/(2).png,products/30/(3).png']
         )->create();
 
-        
-        
+
+
         //Gives a product a random category.
-        foreach ($products as $product){
+        foreach ($products as $product) {
             $product->categories()->attach(rand(1, $categories->count()));
         }
 
         //Adds products to warehouses
-        foreach ($products as $product){
-            for($i = 0; $i < $warehouses->count(); $i++){
-                $product->warehouses()->attach($i+1, ['amount' => 100]);
+        foreach ($products as $product) {
+            for ($i = 0; $i < $warehouses->count(); $i++) {
+                $product->warehouses()->attach($i + 1, ['amount' => 100]);
             }
         }
 
@@ -100,11 +106,12 @@ class DatabaseSeeder extends Seeder
 
         //Give user a basket and address.
         foreach ($users as $user) {
-            if(!($user->basket)){
+            if (!($user->basket)) {
                 $user->basket()->create();
             }
 
             \App\Models\Address::factory()->create(['user_id' => $user->id]);
+            \App\Models\Card::factory()->create(['user_id' => $user->id]);
         }
 
         // \App\Models\User::factory()->create([

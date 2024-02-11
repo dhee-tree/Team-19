@@ -65,13 +65,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //admin panel pages
 Route::view('/admin-panel/orders', 'orders-admin');
 Route::view('/admin-panel/tickets', 'tickets-admin');
-Route::view('/admin-panel/users', 'users-admin');
-Route::get('/admin-panel/inventory', [AdminController::class,'inventory']);
+Route::get('/admin-panel/users', [AdminController::class,'users']);
+Route::get('/admin-panel/inventory', [AdminController::class,'inventory'])->name('admin-panel.inventory');
 //The additional information modal to expand fields in inventory managment
-Route::get('/admin-panel/info/{id}', [AdminController::class,'AdditionalInfo'])->name('components.products-info');
-//editing the products
-Route::get('/admin-panel/edit/{id}', [AdminController::class,'EditProduct'])->name('components.products-edit');
+Route::get('/admin-panel/inventory/product-info/{id}', [AdminController::class,'ProductInfo'])->name('components.products-info');
+//editing the products modal
+Route::get('/admin-panel/inventory/product-edit/{id}', [AdminController::class,'ProductEdit'])->name('components.products-edit');
+//The modal to open the add modal for products
+Route::get('/admin-panel/inventory/product-add', [AdminController::class,'ProductAdd'])->name('components.products-add');
+//stores products, either edits or creates a new ones
+Route::post('/admin-panel/inventory/store/{id}', [AdminController::class,'ProductStore'])->name('product-store');
 
+//The additional information modal to expand fields in user admin panel
+Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.users-info');//saving to database, either edited or a new product
 
 
 
