@@ -50,7 +50,7 @@
                             <p><strong>Phone number</strong><br>{{$user->phone_number}}</p>
                         </div>
                         <div class="col-md-6">
-                            <p><strong>City</strong><br>{{$user->phone_number}}</p>
+                            <p><strong>City</strong><br>{{ $user->addresses->isEmpty() ? 'N/A' : $user->addresses->first()->city }}</p>
                         </div>
                         <div class="container">
                             <div class="row justify-content-center">
@@ -64,8 +64,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col justify-content-left">
-                                <button class="btn btn-warning" data-bs-target="#AddressesModal" data-bs-toggle="modal" data-bs-dismiss="modal">Addresses</button>
-                                <button class="btn btn-warning" data-bs-target="#CardsModal" data-bs-toggle="modal" data-bs-dismiss="modal">Cards</button>
+                                <button class="btn btn-warning" data-bs-target="#AddressesModal" data-bs-toggle="modal" data-bs-dismiss="modal">Address</button>
+                                <button class="btn btn-warning" data-bs-target="#CardsModal" data-bs-toggle="modal" data-bs-dismiss="modal">Card</button>
                             </div>
                             <div class="col-auto order-lg-last">
                                 <button id="btn-close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -82,11 +82,22 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="CardsModal">Cards</h5>
+                    <h5 class="modal-title" id="CardsModal">
+                        @if(count($user->cards) > 1)
+                        Cards
+                        @else
+                        Card
+                        @endif
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Hide this modal and show the first with the button below.
+                    @foreach($user->cards as $index => $cards)
+                    <h5><strong>Card ({{ $index + 1 }})</strong></h5>
+                    <p class="fs-6">{{ $cards->house_number }} {{ $address->street_name }}<br>
+                        {{ $address->city }}, {{ $address->postcode }}
+                    </p>
+                    @endforeach
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-bs-target="#ExtraModal" data-bs-toggle="modal" data-bs-dismiss="modal">Back to details</button>
@@ -100,16 +111,24 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="AddressesModal">Delivery addresses</h5>
+                    <h5 class="modal-title" id="AddressesModal">
+                        @if(count($user->addresses) > 1)
+                        Delivery addresses
+                        @else
+                        Delivery address
+                        @endif
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    @foreach($user->addresses as $address)
-                    <h5><strong>Address ({{ $address->id }})</h3></strong>
-                    <p class="fs-6">{{$address->house_number}} {{$address->street_name}}<br>
-                    {{$address->city}}, {{$address->postcode}}</p>
+                    @foreach($user->addresses as $index => $address)
+                    <h5><strong>Address ({{ $index + 1 }})</strong></h5>
+                    <p class="fs-6">{{ $address->house_number }} {{ $address->street_name }}<br>
+                        {{ $address->city }}, {{ $address->postcode }}
+                    </p>
                     @endforeach
                 </div>
+
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-bs-target="#ExtraModal" data-bs-toggle="modal" data-bs-dismiss="modal">Back to details</button>
                 </div>
