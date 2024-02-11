@@ -18,12 +18,16 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+
+        $faker = \Faker\Factory::create('en_GB');
+        dd($faker->postcode);
+
         $product->loadMissing('categories', 'reviews');
 
         $similarProducts = $product->categories()->with('products')->get()->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
             return $p->id == $product->id;
         });
-        
+
         $similarProducts = $similarProducts->shuffle()->take(8);
 
         $reviews = $product->reviews()->orderBy(
@@ -33,7 +37,7 @@ class ProductController extends Controller
 
         return view('products.show', [
             'product' => $product,
-            'amount'=> $product->stockAmount(),
+            'amount' => $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
             'categories' => $product->categories()->get(),
             'productImages' => explode(',', $product->images),
@@ -41,20 +45,18 @@ class ProductController extends Controller
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
         ])->render();
-
     }
-    public function search(){
-        $search_text =$_GET['search'];
-        $products= Product::where('title','LIKE','%'.$search_text.'%');
+    public function search()
+    {
+        $search_text = $_GET['search'];
+        $products = Product::where('title', 'LIKE', '%' . $search_text . '%');
         $products->orWhere('tags', 'LIKE', '%' . $search_text . '%');
 
         $products = $products->get();
-    
-      
-        
-        return view('product-list', ['products' => $products, 'search_text' => $search_text]);
 
-     
+
+
+        return view('product-list', ['products' => $products, 'search_text' => $search_text]);
     }
     //Queries the products, and returns if we searched for something or not.
     public function index()
@@ -88,20 +90,18 @@ class ProductController extends Controller
         ];
 
         $products = Product::latest()->filter($data)->get();
-        return view('product-list', ['products' => $products,'search_text' => $search_text]);
-
+        return view('product-list', ['products' => $products, 'search_text' => $search_text]);
     }
-    
+
     //gets three random categories and products  for home page
     public function getThreeRandom()
     {
         $products = Product::all();
-        $categories = Category::all(); 
-    
+        $categories = Category::all();
+
         return view('welcome', [
             'products' => $products,
-            'categories' => $categories,  
+            'categories' => $categories,
         ]);
     }
-
 }

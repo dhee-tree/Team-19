@@ -22,12 +22,12 @@ class CardFactory extends Factory
     public function definition(): array
     {
         return [
-            'card_number' => fake()->creditCardNumber(),
-            'expiry_date' => fake()->creditCardExpirationDate(),
-            'house_number' => fake()->numberBetween(1, 100),
-            'street_name' => fake()->streetName(),
-            'postcode' => fake()->postcode(),
-            'city' => fake()->city(),
+            'card_number' => $this->faker->creditCardNumber(),
+            'expiry_date' => $this->faker->creditCardExpirationDate(),
+            'house_number' => $this->faker->numberBetween(1, 100),
+            'street_name' => $this->faker->streetName(),
+            'postcode' => $this->faker->postcode(),
+            'city' => $this->faker->city(),
         ];
     }
 }
