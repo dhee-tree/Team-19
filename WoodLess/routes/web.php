@@ -65,13 +65,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //admin panel pages
 Route::view('/admin-panel/orders', 'orders-admin');
 Route::view('/admin-panel/tickets', 'tickets-admin');
-Route::view('/admin-panel/users', 'users-admin');
+Route::get('/admin-panel/users', [AdminController::class,'users']);
 Route::get('/admin-panel/inventory', [AdminController::class,'inventory'])->name('admin-panel.inventory');
 //The additional information modal to expand fields in inventory managment
-Route::get('/admin-panel/inventory/info/{id}', [AdminController::class,'ProductInfo'])->name('components.products-info');
+Route::get('/admin-panel/inventory/product-info/{id}', [AdminController::class,'ProductInfo'])->name('components.products-info');
 //editing the products modal
 Route::get('/admin-panel/inventory/edit/{id}', [AdminController::class,'ProductEdit'])->name('components.products-edit');
-//saving to database, either edited or a new product
+//The additional information modal to expand fields in inventory managment
+Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.users-info');//saving to database, either edited or a new product
 Route::post('/admin-panel/inventory/store/{id}', [AdminController::class,'ProductStore'])->name('product-store');
 
 
