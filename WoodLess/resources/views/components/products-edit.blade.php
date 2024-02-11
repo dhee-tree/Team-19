@@ -33,6 +33,16 @@
                         @endforeach
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Categories</label>
+                        <select class="form-select" name="categories[]" multiple aria-label="Select Categories">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    {{ $product->categories->contains($category->id) ? 'selected' : '' }}>
+                                    {{ $category->category }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Attributes (Note: attributes are to be put in array format, so
                             "data1","data2"...etc)</label>
                         <div id="attributeFields">

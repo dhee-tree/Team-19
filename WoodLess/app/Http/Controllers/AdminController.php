@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
-use App\Models\Address;
+use App\Models\Category;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
@@ -26,7 +25,7 @@ class AdminController extends Controller
     public function ProductInfo($id)
     {
         $product = Product::findOrFail($id);
-
+        
         return view('components.products-info', compact('product'));
     }
 
@@ -34,13 +33,23 @@ class AdminController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        return view('components.products-edit', compact('product'));
+        // Retrieve all categories
+        $categories = Category::all();
+
+        return view('components.products-edit', [
+            'product' => $product,
+            'categories' => $categories,
+        ]);
     }
 
     public function ProductAdd()
     {
+        // Retrieve all categories
+        $categories = Category::all();
 
-        return view('components.products-add');
+        return view('components.products-add', [
+            'categories' => $categories,
+        ]);
     }
 
     //returns the view for inventory on the admin controller.
