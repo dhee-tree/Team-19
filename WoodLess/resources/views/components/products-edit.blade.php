@@ -70,10 +70,20 @@
                     <div class="mb-3">
                         <label class="form-label">Pre-existing Images</label>
                         <div id="preExistingImagesContainer" class="row row-cols-3 g-3">
-                            @foreach (explode(',', $product->images) as $index => $image)
+                            @php
+                                // Retrieve the product images from the database
+                                $productImages = explode(',', $product->images);
+
+                                foreach ($productImages as $imagePath) {
+                                    // Generate the URL for each image and add it to the $imageUrls array
+                                    $imageUrl = Storage::url($imagePath);
+                                    $imageUrls[] = $imageUrl;
+                                }
+                            @endphp
+                            @foreach ($imageUrls as $index => $image)
                                 <div class="col">
                                     <div class="card">
-                                        <img src="{{ asset('images/' . $image) }}" alt="Pre-existing Image"
+                                        <img src="{{ $image }}" alt="Pre-existing Image"
                                             class="card-img-top img-thumbnail">
                                         <div class="card-body">
                                             <button type="button" class="btn btn-danger btn-sm remove-image"

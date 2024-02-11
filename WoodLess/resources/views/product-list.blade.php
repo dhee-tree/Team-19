@@ -40,10 +40,9 @@
                         @php
                             // Extract the first image path from the comma-separated list of images
                             $imagePaths = explode(',', $product->images);
-                            $firstImagePath = count($imagePaths) > 0 ? $imagePaths[0] : null;
 
                             // Generate the URL for the first image
-                            $imageUrl = $firstImagePath ? asset('storage/images/' . $firstImagePath) : null;
+                            $imageUrl = Storage::url($imagePaths[0]);
                         @endphp
                         <div class="col mb-5">
                             <div class="card h-100">

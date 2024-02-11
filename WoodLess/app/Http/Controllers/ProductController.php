@@ -37,7 +37,7 @@ class ProductController extends Controller
 
         foreach ($productImages as $imagePath) {
             // Generate the URL for each image and add it to the $imageUrls array
-            $imageUrl = Storage::url("images/" . $imagePath);
+            $imageUrl = Storage::url($imagePath);
             $imageUrls[] = $imageUrl;
         }
 

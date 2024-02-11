@@ -100,16 +100,17 @@ class AdminController extends Controller
                 foreach ($images as $image) {
                     // Generate a unique filename for each image
                     $imageName = uniqid() . '_' . $image->getClientOriginalName();
-
+                    //dd($imageName);
                     // Store the image in the specified directory
                     $path = $image->storeAs('images/products/' . $product->id, $imageName, 'public');
-
+                    //dd($path);
                     // Save the image path
                     $imagePaths[] = $path;
                 }
 
                 // Save the image paths in the database
-                $product->images = json_encode($imagePaths);
+                $product->images = implode(',', $imagePaths);
+                //dd($product->images);
             }
             // Save the updated product
             $product->save();
