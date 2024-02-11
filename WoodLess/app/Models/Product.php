@@ -115,6 +115,7 @@ class Product extends Model
 
     /**
      * Returns the order status associated with the product.
+     * Rename to orderStatus to match model if possible
      */
     public function orderProductStatus(){
         return $this->belongsToMany(OrderStatus::class, 'order_product_warehouse', 'product_id', 'status_id');
