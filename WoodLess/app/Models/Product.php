@@ -32,6 +32,7 @@ class Product extends Model
         });
 
         static::saving(function ($product){
+            $product->wipeCache();
             Cache::forget('products');
         });
 
