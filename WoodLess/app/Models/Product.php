@@ -78,6 +78,13 @@ class Product extends Model
     //filters the product
     public function scopeFilter($query, array $filters)
     {
+           // Search
+           if ($filters['search'] ?? false) {
+            $searchText = $filters['search'];
+            $query->where(function ($searchQuery) use ($searchText) {
+                $searchQuery->where('title', 'like', '%' . $searchText . '%')
+                            ->orWhere('tags', 'like', '%' . $searchText . '%');
+            });
 
         //Category
         if ($filters['categories'] ?? false) {
@@ -109,9 +116,10 @@ class Product extends Model
         } elseif ($filters['maxCost'] ?? null) {
             $query->where('cost', '<=', $filters['maxCost']);
         }
+    }
         //Rating
 
-    }
+           }
 
     /**
      * Returns the order status associated with the product.

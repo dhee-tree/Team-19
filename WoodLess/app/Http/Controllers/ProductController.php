@@ -46,25 +46,25 @@ class ProductController extends Controller
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
         ])->render();
     }
-    public function search(){
-        $search_text =$_GET['search'];
-        $products= Product::where('title','LIKE','%'.$search_text.'%');
-        $products->orWhere('tags', 'LIKE', '%' . $search_text . '%');
+    // public function search(){
+    //     $search_text =$_GET['search'];
+    //     $products= Product::where('title','LIKE','%'.$search_text.'%');
+    //     $products->orWhere('tags', 'LIKE', '%' . $search_text . '%');
 
-        $products = $products->get();
+    //     $products = $products->get();
     
       
         
-        return view('product-list', ['products' => $products, 'search_text' => $search_text]);
+    //     return view('product-list', ['products' => $products, 'search_text' => $search_text]);
 
      
-    }
+    // }
     //Queries the products, and returns if we searched for something or not.
     public function index()
     {
         //Get search paramaters
         $filters = collect(request()->query());
-        $search_text = request('search', null);
+        $search_text = $filters['search'] ?? null;
 
         //get categories    
 
@@ -92,6 +92,7 @@ class ProductController extends Controller
 
         $products = Product::latest()->filter($data)->get();
         return view('product-list', ['products' => $products,'search_text' => $search_text]);
+        
 
     }
     
