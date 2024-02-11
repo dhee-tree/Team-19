@@ -263,12 +263,12 @@
                             </button>
 
                             <!--
-                                <div class="carousel-indicators p-0 m-0">
-                                    <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                </div>
-                                -->
+                                    <div class="carousel-indicators p-0 m-0">
+                                        <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                        <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                        <button type="button" data-bs-target="#productGallerySelect-lg" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    </div>
+                                    -->
                         </div>
                     </div>
                 </div>
@@ -298,6 +298,9 @@
                                         @php
                                             $similarProduct = $similarProducts[$ii];
                                             $similarProductImages = explode(',', $similarProduct->images);
+
+   
+
                                         @endphp
                                         <div class="col-6 col-lg-3 col-md-3 col-sm-6">
                                             <a href="/product/{{ $similarProduct->id }}">
@@ -310,7 +313,7 @@
                                                     @endif
                                                     <!-- Product image-->
                                                     <img width="10" class="card-img-top p-3"
-                                                        src="{{ asset('images/' . $similarProductImages[0]) }}"alt="{{ $similarProduct->title }}" />
+                                                        src="{{ Storage::url('images/' . $similarProductImages[0]); }}"alt="{{ $similarProduct->title }}" />
                                                     <!-- Product details-->
                                                     <div class="card-body p-0 mb-3">
                                                         <div class="d-flex flex-row justify-content-center">
