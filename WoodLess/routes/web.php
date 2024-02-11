@@ -70,7 +70,7 @@ Route::get('/admin-panel/inventory', [AdminController::class,'inventory'])->name
 //The additional information modal to expand fields in inventory managment
 Route::get('/admin-panel/inventory/product-info/{id}', [AdminController::class,'ProductInfo'])->name('components.products-info');
 //editing the products modal
-Route::get('/admin-panel/inventory/edit/{id}', [AdminController::class,'ProductEdit'])->name('components.products-edit');
+Route::get('/admin-panel/inventory/product-edit/{id}', [AdminController::class,'ProductEdit'])->name('components.products-edit');
 //The additional information modal to expand fields in inventory managment
 Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.users-info');//saving to database, either edited or a new product
 Route::post('/admin-panel/inventory/store/{id}', [AdminController::class,'ProductStore'])->name('product-store');
