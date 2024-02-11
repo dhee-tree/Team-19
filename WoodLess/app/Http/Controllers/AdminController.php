@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\File;
@@ -91,9 +92,13 @@ class AdminController extends Controller
                 // Check if the current image is not included in the pre-existing images sent in the request
                 if (!in_array($currentImage, $preExistingImages)) {
                     // Delete or remove the image
-                    //File::delete(public_path('path/to/' . $currentImage));
+                    Storage::delete('images/products/' . $currentImage);
+
+                    // Remove the image from the product model
+                    $product->images = array_diff(explode(',', $product->images), [$currentImage]);
                 }
             }
+            //dd($product->images);
             $images = $request->file('images');
             //dd($currentImages);
             if ($images) {
