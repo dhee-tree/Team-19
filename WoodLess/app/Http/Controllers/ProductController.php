@@ -23,7 +23,9 @@ class ProductController extends Controller
         $product = Product::getCached($product_id);
         $categories = $product->getCachedRelation('categories');
 
-        $similarProducts = $categories->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
+        $similarProducts = $categories->flatMap(function ($category) {
+            return $category->getCachedRelation('products');
+        })->unique('id')->reject(function ($p) use ($product) {
             return $p->id == $product->id;
         })->shuffle()->take(8);
 
