@@ -1,192 +1,215 @@
-<div class="row m-0 px-1 py-2" id="reviews">
-
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <div class="">
-            <h2 class="p-0 m-0">Reviews</h2>
-        </div>
-
-        <div class="dropstart">
-            <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Sort
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'created_at', 'order'=>'desc'])}}#reviews">Most Recent</a></li>
-                <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (High to Low)</a></li>
-                <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (Low to High)</a></li>
-            </ul>
-        </div>
-    </div>
-
-    @auth
-    <div class="container">
-        @php
-            $user = Auth()->user();
-            $review = $product->reviews()->where('user_id', $user->id)->first() ?? null;
-        @endphp
-        @if(isset($review))
-        <div class="row card mb-3 p-0 mx-0">
-            <div class="card-body">
-                <div class="d-flex flex-row">
-                    <div class="">
-                        <img src="{{asset('images/'.$user->image)}}" width="60" alt="">
-                    </div>
-
-                    <div class="vr mx-2"></div>
-
-                    <div class="">
-                        <h6 class="card-title">{{$user->first_name}} {{$user->last_name}}</h6>
-                        <h6 class="card-subtitle">
-                            <i class="fa-solid fa-star" style="color: #000000;"></i> 
-                            {{$review->rating}}/5
-                        </h6>
-                    </div>
-                </div>
-                
-                <hr>
-
-                <p class="card-text">{{$review->description}}</p>
+<div class="row row-cols-1 px-3" id="reviews">
+    <div class="col">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="">
+                <h3 class="p-0 m-0">Reviews</h2>
             </div>
-            <div class="card-footer">
-                <div class="d-flex flex-row justify-content-between">
-                    <div class="">
-                        <p class="card-text"><small class="text-body-secondary">
-                            {{$review->created_at->diffInDays()}} Days Ago 
-                            @if($review->created_at != $review->updated_at)
-                            , Edited 
-                            @endif
-                        </small></p>
-                    </div>
-                    @auth
-                    <form method="POST" action="/review/{{$review->id}}">
-                        @csrf
-                        @method('DELETE')
-                        <button onclick="this.disabled = true; this.form.submit()" class="btn p-0">
-                            <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
-                        </button>
-                    </form>
-                    @endauth
-                </div>
-            </div>
-        </div>
-        @else
-        <form method="POST" action="/review/{{$product->id}}" class="row card mb-3 p-0 mx-0">
-            @csrf
-            <div class="card-body">
-                <div class="d-flex flex-row">
-                    <div class="">
-                        <img src="{{asset('images/'.$user->image)}}" width="60" alt="">
-                    </div>
-
-                    <div class="vr mx-2"></div>
-
-                    <div class="">
-                        <h6 class="card-title">{{$user->first_name}} {{$user->last_name}}</h6>
-                        <h6 class="card-subtitle d-flex flex-row">
-                            <i class="fa-solid fa-star" style="color: #000000;"> </i> 
-                            <select class="form-select form-select-sm" name="rating" aria-label="Default select example">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option selected value="5">5</option>
-                            </select>
-                        </h6>
-                    </div>
-                </div>
-                
-                <hr>
-
-                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
-                @error('description')
-                <p class="mt-2 mb-0">Please enter a description. Min 25 characters.</p>
-                @enderror
-            </div>
-            <div class="card-footer">
-                <div class="d-flex flex-row justify-content-end">
-                    <div class="">
-                        <button onclick="this.disabled = true; this.form.submit()" type="submit" class="btn p-0">
-                            <small><i class="fa-solid fa-small fa-check"></i> Submit</small>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </form>
-        @endif
-    </div>
-    @endauth
-
-    @guest
-    <div class="container">
-        <div class="row card mb-3 p-0 mx-0">
-            <div class="card-body">
-            
-            </div>
-            <div class="card-footer">
-
-            </div>
-        </div>
-    </div>
-    @endguest
-
-    @foreach ($reviews as $review)
-    @php
-        $user = $review->user;
-        if($user == auth()->user()){
-            continue;
-        }
-    @endphp
     
-    <div class="container">
-        <div class="row card mb-3 p-0 mx-0">
-            <div class="card-body">
-                <div class="d-flex flex-row">
-                    <div class="">
-                        <img src="{{asset('images/'.$user->image)}}" width="60" alt="">
-                    </div>
-
-                    <div class="vr mx-2"></div>
-
-                    <div class="">
-                        <h6 class="card-title">{{$user->first_name}} {{$user->last_name}}</h6>
-                        <h6 class="card-subtitle">
-                            <i class="fa-solid fa-star" style="color: #000000;"></i> 
-                            {{$review->rating}}/5
-                        </h6>
-                    </div>
-                </div>
-                
-                <hr>
-
-                <p class="card-text">{{$review->description}}</p>
-            </div>
-            <div class="card-footer">
-                <div class="d-flex flex-row justify-content-between">
-                    <div class="">
-                        <p class="card-text"><small class="text-body-secondary">
-                            {{$review->created_at->diffInDays()}} Days Ago 
-                            @if($review->created_at != $review->updated_at)
-                            , Edited 
-                            @endif
-                        </small></p>
-                    </div>
-                    @auth
-                    @if ($user == auth()->user() || auth()->user()->isAdmin())
-                    <div class="">
-                        <form method="POST" action="/review/{{$review->id}}">
-                            @csrf
-                            @method('DELETE')
-                            <button onclick="this.disabled = true; this.form.submit()" class="btn p-0">
-                                <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
-                            </button>
-                        </form>
-                    </div>
-                    @endif
-                    @endauth
-                </div>
+            <div class="dropstart">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Sort
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'created_at', 'order'=>'desc'])}}#reviews">Most Recent</a></li>
+                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (High to Low)</a></li>
+                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (Low to High)</a></li>
+                </ul>
             </div>
         </div>
     </div>
-    @endforeach
+    
+    <div class="col mb-3">
+        <div class="row row-cols-1 row-cols-lg-2 g-4">
+            <div class="col">
+                @auth
+                    @php
+                        $review = $reviews->where('user_id', $user->id)->first() ?? null;
+                    @endphp
+                    
+                    @if(isset($review))
+                    <div class="card p-0 mx-0">
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="">
+                                    <img src="{{asset('images/'.$user->image)}}" width="50" alt="">
+                                </div>
+        
+                                <div class="vr mx-2"></div>
+        
+                                <div class="">
+                                    <h6 class="card-title">{{$user->first_name}} {{$user->last_name}}</h6>
+                                    <h6 class="card-subtitle">
+                                        <i class="fa-solid fa-star" style="color: #000000;"></i> 
+                                        {{$review->rating}}/5
+                                    </h6>
+                                </div>
+                            </div>
+                            
+                            <hr>
+        
+                            <p class="truncate card-text">{{$review->description}}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex flex-row justify-content-between">
+                                <div class="">
+                                    <p class="card-text"><small class="text-body-secondary">
+                                        {{$review->created_at->diffInDays()}} Days Ago 
+                                        @if($review->created_at != $review->updated_at)
+                                        , Edited 
+                                        @endif
+                                    </small></p>
+                                </div>
+                                @auth
+                                <form method="POST" action="/review/{{$review->id}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button onclick="this.disabled = true; this.form.submit()" class="btn p-0">
+                                        <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
+                                    </button>
+                                </form>
+                                @endauth
+                            </div>
+                        </div>
+                    </div>
+                    @else
+                    <form method="POST" action="/review/{{$product->id}}" class="row card mb-3 p-0 mx-0">
+                        @csrf
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="">
+                                    <img src="{{asset('images/'.$user->image)}}" width="50" alt="">
+                                </div>
+        
+                                <div class="vr mx-2"></div>
+        
+                                <div class="">
+                                    <h6 class="card-title">{{$user->first_name}} {{$user->last_name}}</h6>
+                                    <h6 class="card-subtitle d-flex flex-row">
+                                        <i class="fa-solid fa-star" style="color: #000000;"> </i> 
+                                        <select class="form-select form-select-sm" name="rating" aria-label="Default select example">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option selected value="5">5</option>
+                                        </select>
+                                    </h6>
+                                </div>
+                            </div>
+                            
+                            <hr>
+        
+                            <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            @error('description')
+                            <p class="mt-2 mb-0">Please enter a description. Min 25 characters.</p>
+                            @enderror
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex flex-row justify-content-end">
+                                <div class="">
+                                    <button onclick="this.disabled = true; this.form.submit()" type="submit" class="btn p-0">
+                                        <small><i class="fa-solid fa-small fa-check"></i> Submit</small>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    @endif
+                @endauth
+                
+                @guest
+                    <div class="card p-0 mx-0">
+                        @csrf
+                        <div class="card-body">
+                            <div class="d-flex flex-row">
+                                <div class="">
+                                    <img src="{{asset('images/no-image.svg')}}" width="50" alt="">
+                                </div>
+        
+                                <div class="vr mx-2"></div>
+        
+                                <div class="">
+                                    <h6 class="card-title">You</h6>
+                                    <h6 class="card-subtitle">
+                                        <i class="fa-solid fa-star" style="color: #000000;"></i> 
+                                        5/5
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <div class="d-flex flex-row justify-content-end">
+                                <div class="p-0 m-0">
+                                    <p class="card-text"><a href="{{url('login')}}">Log in</a> to post a review.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endguest
+            </div>
+        
+            @foreach ($reviews as $review)
+            @php
+                $reviewUser = $review->user;
+                if($reviewUser == $user){
+                    continue;
+                }
+            @endphp
+            
+            <div class="col">
+                <div class="card p-0 mx-0">
+                    <div class="card-body">
+                        <div class="d-flex flex-row">
+                            <div class="">
+                                <img src="{{asset('images/'.$reviewUser->image)}}" width="50" alt="">
+                            </div>
+        
+                            <div class="vr mx-2"></div>
+        
+                            <div class="">
+                                <h6 class="card-title">{{$reviewUser->first_name}} {{$reviewUser->last_name}}</h6>
+                                <h6 class="card-subtitle">
+                                    <i class="fa-solid fa-star" style="color: #000000;"></i> 
+                                    {{$review->rating}}/5
+                                </h6>
+                            </div>
+                        </div>
+                        
+                        <hr>
+        
+                        <p class="truncate card-text fs-6 review">{{$review->description}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex flex-row justify-content-between">
+                            <div class="">
+                                <p class="card-text"><small class="text-body-secondary">
+                                    {{$review->created_at->diffInDays()}} Days Ago 
+                                    @if($review->created_at != $review->updated_at)
+                                    , Edited 
+                                    @endif
+                                </small></p>
+                            </div>
+                            @auth
+                            @if ($reviewUser == $user || $user->isAdmin())
+                            <div class="">
+                                <form method="POST" action="/review/{{$review->id}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button onclick="this.disabled = true; this.form.submit()" class="btn p-0">
+                                        <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
+                                    </button>
+                                </form>
+                            </div>
+                            @endif
+                            @endauth
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+
     @if ($reviews->hasPages())
     <div class="col" id="pageSelector">
         <nav aria-label="...">
