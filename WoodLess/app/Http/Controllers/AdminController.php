@@ -23,27 +23,6 @@ class AdminController extends Controller
         return view('components.users-info', compact('user'));
     }
 
-    public function ProductInfo($user_id)
-    {
-        $addresses = Address::findOrFail($user_id);
-
-        return view('components.users-info', compact('user'));
-    }
-
-    public function UserInfo($id)
-    {
-        $user = User::findOrFail($id);
-
-        return view('components.users-info', compact('user'));
-    }
-
-    public function ProductInfo($user_id)
-    {
-        $addresses = Address::findOrFail($user_id);
-
-        return view('components.users-info', compact('user'));
-    }
-
     public function ProductInfo($id)
     {
         $product = Product::findOrFail($id);
