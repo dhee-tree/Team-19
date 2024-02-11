@@ -14,32 +14,38 @@
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="title"
-                            value="Title here">
+                        <input type="text" class="form-control" id="title" name="title" value="Title here">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" id="description" name="description">Description goes here:</textarea>
                     </div>
-                    
+                    <div class="mb-3">
+                        <label class="form-label">Categories</label>
+                        <select class="form-select" name="categories[]" multiple aria-label="Select Categories">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">
+                                    {{ $category->category }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">Attributes (Note: attributes are to be put in array format, so
                             "data1","data2"...etc)</label>
                         <div id="attributeFields">
-                            
+
                         </div>
                         <button type="button" class="btn btn-primary mt-2" id="addAttributeField">Add
                             Attribute</button>
                     </div>
                     <div class="mb-3">
                         <label for="cost" class="form-label">Cost</label>
-                        <input type="number" class="form-control" id="cost" name="cost"
-                            value="0" step="any">
+                        <input type="number" class="form-control" id="cost" name="cost" value="0"
+                            step="any">
                     </div>
                     <div class="mb-3">
                         <label for="discount" class="form-label">Discount Percentage</label>
-                        <input type="number" class="form-control" id="discount" name="discount"
-                            value="0">
+                        <input type="number" class="form-control" id="discount" name="discount" value="0">
                     </div>
 
                     <!-- Image Upload Section -->

@@ -116,7 +116,7 @@ class AdminController extends Controller
             // Update the associated categories
             $categories = $request->input('categories', []);
             $product->categories()->sync($categories);
-            
+
             $product->attributes = json_encode($attributes);
 
             // Get the pre-existing images from the request
@@ -225,6 +225,10 @@ class AdminController extends Controller
             //dd($product->images);
 
             $product->attributes = json_encode($attributes);
+
+            // Update the associated categories
+            $categories = $request->input('categories', []);
+            $product->categories()->sync($categories);
 
             // Initialize an array to store the paths of all images
             $imagePaths = [];
