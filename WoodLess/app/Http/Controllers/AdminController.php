@@ -69,7 +69,7 @@ class AdminController extends Controller
 
 
         // Check if an ID is provided
-        if ($id) {
+        if ($id >= 0) {
             // Retrieve the product by ID
             $product = Product::find($id);
 
@@ -107,7 +107,7 @@ class AdminController extends Controller
 
             // Get the pre-existing images from the request
             $preExistingImages = $request->input('pre_existing_images', []);
-            if ($preExistingImages === null) {
+            if (empty($preExistingImages)) {
                 $product->images = '';
             } else {
                 // Get the current images of the product
@@ -118,7 +118,7 @@ class AdminController extends Controller
                 // Iterate over the current images
                 foreach ($currentImagesArray as $currentImage) {
                     // Check if the current image is not included in the pre-existing images sent in the request
-                    if (!in_array('/storage/'  . $currentImage, $preExistingImages)) {
+                    if (!in_array('storage/'  . $currentImage, $preExistingImages)) {
                         // Delete or remove the image
                         Storage::delete('images/products/' . $currentImage);
 
@@ -132,16 +132,88 @@ class AdminController extends Controller
             }
 
 
+
             // Retrieve the existing images from the product model
-            $existingImages = explode(',', $product->images);
+
+
+            // Check if product images is empty or not
+            if (!empty($product->images)) {
+                // If not empty, explode the images string
+                $imagePaths = explode(',', $product->images);
+            } else {
+                // If empty, assign an empty array
+                $imagePaths = [];
+            }
+
+            //adding new image to product
+            $images = $request->file('images');
+            if ($images) {
+                foreach ($images as $image) {
+                    // Generate a unique filename for each image
+                    $imageName = md5(uniqid() . microtime()) . '.' . $image->getClientOriginalExtension();
+                    //dd($imageName);
+                    // Store the image in the specified directory
+                    $path = $image->storeAs('images/products/' . $product->id, $imageName, 'public');
+                    //dd($path);
+                    // Save the image path
+                    $imagePaths[] = $path;
+                }
+
+                // Save the image paths in the database
+                $product->images = implode(',', $imagePaths);
+                //dd($product->images);
+            }
+
+            // Check if product images is empty or not
+            if (!empty($imagePaths)) {
+                // If not empty, explode the images string
+                $product->images = implode(',', $imagePaths);
+            } else {
+                // If empty, assign an empty array
+                $product->images = "https://placehold.co/600x400/png";
+            }
+
+
+            // Save the merged image paths in the database
+
+
+
+            // Save the updated product
+            $product->save();
+
+            return redirect()->route('admin-panel.inventory')->with('success', 'Product updated successfully.');
+        } else {
+            // Create a new product instance
+            $product = new Product();
+
+            // Enter the product fields
+            $product->title = $request->input('title');
+            $product->description = $request->input('description');
+            $product->cost = $request->input('cost');
+            $product->discount = $request->input('discount');
+            $product->updated_at = now();
+            // Enter the warehouse quantities
+            $warehouseQuantities = $request->input('warehouse_quantities', []);
+            foreach ($warehouseQuantities as $warehouseId => $quantity) {
+                $product->setStockAmount($warehouseId, $quantity);
+            }
+
+
+            // Enter the attributes
+            $attributes = [];
+            $attributeKeys = $request->input('attributes_keys', []);
+            $attributeValues = $request->input('attributes_values', []);
+            foreach ($attributeKeys as $index => $key) {
+                if (!empty($key)) {
+                    $attributes[$key] = $attributeValues[$index] ?? null;
+                }
+            }
+            //dd($product->images);
+
+            $product->attributes = json_encode($attributes);
 
             // Initialize an array to store the paths of all images
             $imagePaths = [];
-
-            // Iterate over the existing images and add them to the image paths array
-            foreach ($existingImages as $existingImage) {
-                $imagePaths[] = $existingImage;
-            }
 
             //adding new image to product
             $images = $request->file('images');
@@ -166,23 +238,11 @@ class AdminController extends Controller
             $product->images = implode(',', $imagePaths);
 
 
-
-            // Save the updated product
-            $product->save();
-
-            return redirect()->route('admin-panel.inventory')->with('success', 'Product updated successfully.');
-        } else {
-            // Create a new product instance
-            $product = new Product();
-
-            // Fill the product attributes
-            $product->fill($request->all());
-
             // Save the product
             $product->save();
 
             // Redirect or return a response
-            return redirect()->route('products.index')->with('success', 'Product created successfully.');
+            return redirect()->route('admin-panel.inventory')->with('success', 'Product created successfully.');
         }
     }
 }

@@ -9,7 +9,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editProductForm" method="POST" action="{{ route('product-store') }}"
+                <form id="editProductForm" method="POST" action="{{ route('product-store', ['id' => -1]) }}"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
@@ -21,17 +21,7 @@
                         <label for="description" class="form-label">Description</label>
                         <textarea class="form-control" id="description" name="description">Description goes here:</textarea>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Quantity</label>
-                        @foreach ($product->warehouses as $warehouse)
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">Warehouse {{ $warehouse->id }}:</span>
-                                <input type="number" class="form-control"
-                                    name="warehouse_quantities[{{ $warehouse->id }}]"
-                                    value="{{ $product->stockAmount($warehouse->id) ?? 0 }}">
-                            </div>
-                        @endforeach
-                    </div>
+                    
                     <div class="mb-3">
                         <label class="form-label">Attributes (Note: attributes are to be put in array format, so
                             "data1","data2"...etc)</label>
@@ -44,12 +34,12 @@
                     <div class="mb-3">
                         <label for="cost" class="form-label">Cost</label>
                         <input type="number" class="form-control" id="cost" name="cost"
-                            value="Product cost here" step="any">
+                            value="0" step="any">
                     </div>
                     <div class="mb-3">
                         <label for="discount" class="form-label">Discount Percentage</label>
                         <input type="number" class="form-control" id="discount" name="discount"
-                            value="Discounted Percentage here">
+                            value="0">
                     </div>
 
                     <!-- Image Upload Section -->
