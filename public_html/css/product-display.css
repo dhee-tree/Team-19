@@ -31,3 +31,9 @@
     opacity: 15%;
     width: 7vh;
 }
+
+.truncate {
+    white-space: nowrap;         /* Prevents wrapping of text */
+    overflow: hidden;            /* Hides overflow text */
+    text-overflow: ellipsis;     /* Displays ellipsis (...) when text overflows */
+}
