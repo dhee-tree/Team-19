@@ -51,7 +51,7 @@ Route::post('/checkout/success', [OrderController::class,'store'])->name('checko
 //Store single review
 Route::post('/review/{product}', [ReviewController::class,'store'])->middleware('auth');
 //Delete single review
-Route::delete('/review/{review}', [ReviewController::class,'destroy']);
+Route::delete('/review/{review}', [ReviewController::class,'destroy'])->middleware('auth');
 // search
 Route::get('/products/search', [ProductController::class, 'search']);
 //showcases products
