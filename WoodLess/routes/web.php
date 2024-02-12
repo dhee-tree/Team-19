@@ -13,7 +13,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +60,7 @@ Route::get('/products', [ProductController::class,'index'])->name('products.filt
 Route::view('/admin-panel', 'admin-panel');
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //admin panel pages
 Route::view('/admin-panel/orders', 'orders-admin');
