@@ -147,7 +147,7 @@
                     </div>
                 @endguest
             </div>
-        
+
             @foreach ($reviews as $review)
             @php
                 $reviewUser = $review->getCachedRelation('user')[0];
