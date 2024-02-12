@@ -170,14 +170,15 @@ abstract class Relation implements BuilderContract
 
     /**
     * Return/create a cached version of the relationship as an Eloquent Collection.
-    * @param DateTime $time Time before the cache updates to match database (Default - 30s).
+    * @param DateTime $time Time before the cache updates to match database (Default - 30m).
     * @return \Illuminate\Database\Eloquent\Collection
     * @Sgy157
     */
     public function getCached(DateTime $time = null){
-        $time = $time ?? now()->addSeconds(30)->toDateTime();
-        $parent = $this->getParent();
-        return Cache::remember($parent->getTable().'_'.$parent->id.':'.$this->getRelated()->getTable(), $time, function() {
+        $time = $time ?? now()->addMinutes(30)->toDateTime();
+        $cacheKey = $this->getParent()->cacheKey($this->getRelated()->getTable());
+    
+        return Cache::remember($cacheKey, $time, function () {
             return $this->get();
         });
     }
