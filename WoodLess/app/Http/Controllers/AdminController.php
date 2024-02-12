@@ -104,9 +104,6 @@ class AdminController extends Controller
                 $product->setStockAmount($warehouseId, $quantity);
             }
 
-
-
-
             // Update the attributes
             $attributes = [];
             $attributeKeys = $request->input('attributes_keys', []);
@@ -117,11 +114,24 @@ class AdminController extends Controller
                 }
             }
 
-
-            //categories 
-            // Update the associated categories
+            // Associate categories with the product
             $categories = $request->input('categories', []);
-            $product->categories()->sync($categories);
+
+            // Check if categories are provided
+            if (empty($categories)) {
+                // If no categories are provided, use the default category
+                $defaultCategory = Category::defaultCategory();
+                if ($defaultCategory) {
+                    // Sync the default category with the product
+                    $product->categories()->sync([$defaultCategory->id]);
+                } else {
+                    // Handle the case where the default category is not found
+                    // You can log an error, display a message, or take other actions
+                }
+            } else {
+                // Sync the provided categories with the product
+                $product->categories()->sync($categories);
+            }
 
             $product->attributes = json_encode($attributes);
 
@@ -201,7 +211,7 @@ class AdminController extends Controller
             // Save the updated product
             $product->save();
 
-            return redirect()->route('admin-panel.inventory')->with('success', 'Product updated successfully.');
+            return redirect()->route('admin-panel.inventory')->with('success', 'Product ' . $product->id . ' updated successfully.');
         } else {
             // Create a new product instance
             $product = new Product();
@@ -212,12 +222,15 @@ class AdminController extends Controller
             $product->cost = $request->input('cost');
             $product->discount = $request->input('discount');
             $product->updated_at = now();
-            // Enter the warehouse quantities
-            $warehouseQuantities = $request->input('warehouse_quantities', []);
+
+            // Save the product first to get an ID
+            $product->save();
+
+            // Update the warehouse quantities
+            $warehouseQuantities = $request->input('quantities', []);
             foreach ($warehouseQuantities as $warehouseId => $quantity) {
                 $product->setStockAmount($warehouseId, $quantity);
             }
-
 
             // Enter the attributes
             $attributes = [];
@@ -228,41 +241,50 @@ class AdminController extends Controller
                     $attributes[$key] = $attributeValues[$index] ?? null;
                 }
             }
-            //dd($product->images);
-
             $product->attributes = json_encode($attributes);
 
-            // Update the associated categories
+            // Save the product's attributes
+            $product->save();
+
+            // Associate categories with the product
             $categories = $request->input('categories', []);
-            $product->categories()->sync($categories);
+
+            // Check if categories are provided
+            if (empty($categories)) {
+                // If no categories are provided, use the default category
+                $defaultCategory = Category::defaultCategory();
+                if ($defaultCategory) {
+                    // Sync the default category with the product
+                    $product->categories()->sync([$defaultCategory->id]);
+                } else {
+                    // Handle the case where the default category is not found
+                    // You can log an error, display a message, or take other actions
+                }
+            } else {
+                // Sync the provided categories with the product
+                $product->categories()->sync($categories);
+            }
 
             // Initialize an array to store the paths of all images
             $imagePaths = [];
 
-            //adding new image to product
+            // Add new images to the product
             $images = $request->file('images');
             if ($images) {
                 foreach ($images as $image) {
                     // Generate a unique filename for each image
                     $imageName = md5(uniqid() . microtime()) . '.' . $image->getClientOriginalExtension();
-                    //dd($imageName);
                     // Store the image in the specified directory
                     $path = $image->storeAs('images/products/' . $product->id, $imageName, 'public');
-                    //dd($path);
                     // Save the image path
                     $imagePaths[] = $path;
                 }
-
-                // Save the image paths in the database
-                $product->images = implode(',', $imagePaths);
-                //dd($product->images);
             }
 
             // Save the merged image paths in the database
             $product->images = implode(',', $imagePaths);
 
-
-            // Save the product
+            // Save the product with updated image paths
             $product->save();
 
             // Redirect or return a response

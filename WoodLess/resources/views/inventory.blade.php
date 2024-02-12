@@ -133,7 +133,13 @@
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->stockAmount() }}...</td>
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                scope="col">{{ $product->categories->first()->category }}...</td>
+                                                scope="col">
+                                                @if ($product->categories->isNotEmpty())
+                                                    {{ $product->categories->first()->category }}...
+                                                @else
+                                                    No category found
+                                                @endif
+                                            </td>
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col"><button type="button"
                                                     class="btn btn-primary openModalButton"
