@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Category;
-
+use App\Models\Warehouse;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -36,8 +36,11 @@ class AdminController extends Controller
         // Retrieve all categories
         $categories = Category::all();
 
+        // Retrieve all categories
+        $warehouses = Warehouse::all();
         return view('components.products-edit', [
             'product' => $product,
+            'warehouses' => $warehouses,
             'categories' => $categories,
         ]);
     }
@@ -46,8 +49,10 @@ class AdminController extends Controller
     {
         // Retrieve all categories
         $categories = Category::all();
-
+        // Retrieve all categories
+        $warehouses = Warehouse::all();
         return view('components.products-add', [
+            'warehouses' => $warehouses,
             'categories' => $categories,
         ]);
     }
@@ -94,10 +99,11 @@ class AdminController extends Controller
             $product->discount = $request->input('discount');
             $product->updated_at = now();
             // Update the warehouse quantities
-            $warehouseQuantities = $request->input('warehouse_quantities', []);
+            $warehouseQuantities = $request->input('quantities', []);
             foreach ($warehouseQuantities as $warehouseId => $quantity) {
                 $product->setStockAmount($warehouseId, $quantity);
             }
+
 
 
 
