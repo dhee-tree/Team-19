@@ -256,7 +256,7 @@
             </div>
         </div>
 
-        @if(isset($similarProducts))
+        @if(!$similarProducts->isEmpty())
             <div class="row px-3" id="similar-products">
                 <hr>
                 <div class="col">
