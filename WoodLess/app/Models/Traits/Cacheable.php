@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\Relation;
  * @Sgy157
  */
 trait Cacheable{
+    
     /**
      * Listens for model changes on boot and wipes cache if so.
     */
