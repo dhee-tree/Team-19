@@ -12,19 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-
-    public static function boot(){
-        parent::boot();
-
-        self::saved(function ($user) {
-            $user->basket()->create();
-        });
-
-        self::deleted(function ($user) {
-            $user->basket()->delete();
-        });
-    }
-
     /**
      * The attributes that are mass assignable.
      *

@@ -75,6 +75,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        // Create a new basket for the user
+        Basket::create([
+            'user_id' => $user->id,
+        ]);
+
         return $user;
     }
 }

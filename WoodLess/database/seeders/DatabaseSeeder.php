@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {   
+        
         $warehouses = \App\Models\Warehouse::factory(3)->create();
 
         $users =\App\Models\User::factory(50)->create();
@@ -99,6 +100,10 @@ class DatabaseSeeder extends Seeder
 
         //Give user a basket and address.
         foreach ($users as $user) {
+            if(!($user->basket)){
+                $user->basket()->create();
+            }
+
             \App\Models\Address::factory()->create(['user_id' => $user->id]);
         }
 
