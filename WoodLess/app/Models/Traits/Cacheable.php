@@ -19,9 +19,9 @@ trait Cacheable{
      * Listens for model changes on boot and wipes cache if so.
     */
     protected static function bootCacheable(){
-        foreach (['creating', 'saving', 'deleted', 'updating'] as $event) {
+        foreach (['created', 'saved', 'deleted', 'updated'] as $event) {
             static::$event(function ($instance) use ($event) {
-                if ($event === 'creating' || $event === 'saving' || $event === 'updating') {
+                if ($event === 'created' || $event === 'saved' || $event === 'updated') {
                     $instance->wipeRelatedCaches($instance->relationships());
                 }
                 if ($event === 'deleted') {
