@@ -21,7 +21,7 @@
     <div class="col mb-3">
         <div class="row row-cols-1 row-cols-lg-2 g-4">
             <div class="col">
-                @auth
+                @if($user)
                     @php
                         $review = $reviews->where('user_id', $user->id)->first() ?? null;
                     @endphp
@@ -59,7 +59,7 @@
                                         @endif
                                     </small></p>
                                 </div>
-                                @auth
+                                @if($user)
                                 <form method="POST" action="/review/{{$review->id}}">
                                     @csrf
                                     @method('DELETE')
@@ -67,7 +67,7 @@
                                         <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
                                     </button>
                                 </form>
-                                @endauth
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -115,7 +115,7 @@
                         </div>
                     </form>
                     @endif
-                @endauth
+                @endif
                 
                 @guest
                     <div class="card p-0 mx-0">
@@ -189,7 +189,7 @@
                                     @endif
                                 </small></p>
                             </div>
-                            @auth
+                            @if($user)
                             @if ($reviewUser == $user || $user->isAdmin())
                             <div class="">
                                 <form method="POST" action="/review/{{$review->id}}">
@@ -201,7 +201,7 @@
                                 </form>
                             </div>
                             @endif
-                            @endauth
+                            @endif
                         </div>
                     </div>
                 </div>
