@@ -19,22 +19,17 @@ trait Cacheable{
      * Listens for model changes on boot and wipes cache if so.
     */
     protected static function bootCacheable(){
-
-        static::created(function ($instance){
-            $instance->wipeRelatedCaches($instance->relationships());
-        });
-
-        static::saving(function ($instance){
-            $instance->wipeRelatedCaches($instance->relationships());
-        });
-
-        static::deleting(function ($instance){
-            $instance->wipeRelatedCaches($instance->relationships());
-        });
-
-        static::updated(function ($instance) {
-            $instance->wipeRelatedCaches($instance->relationships());
-        });
+        foreach (['creating', 'saving', 'deleted', 'updating'] as $event) {
+            static::$event(function ($instance) use ($event) {
+                if ($event === 'creating' || $event === 'saving' || $event === 'updating') {
+                    $instance->wipeRelatedCaches($instance->relationships());
+                }
+                if ($event === 'deleted') {
+                    $instance->wipeRelatedCaches($instance->relationships());
+                    $instance->wipeCache();
+                }
+            });
+        }
     }
 
     private static function getTableName()
@@ -92,9 +87,15 @@ trait Cacheable{
     */
     public static function getCached(int $id, DateTime $time = null){
         $time = $time ?? now()->addMinutes(30)->toDateTime();
-        return Cache::remember(static::generateCacheKey($id), $time, function() use ($id) {
-            return static::findOrFail($id);
-        });
+        $model = static::findCached($id);
+
+        if(is_null($model)){
+            $model = Cache::remember(static::generateCacheKey($id), $time, function() use ($id) {
+                return static::findOrFail($id);
+            });
+        }
+
+        return $model;
     }
 
     /**
@@ -104,34 +105,44 @@ trait Cacheable{
     */
     public function getCachedRelation(string $relation, DateTime $time = null){
         $time = $time ?? now()->addMinutes(30)->toDateTime();
-        $cachedRelation = Cache::get($this->cacheKey().':'.$relation);
+        $cachedRelation = $this->findCachedRelation($relation);
 
         if (is_null($cachedRelation) || isset($time)){
-            $cachedRelation = call_user_func([$this, $relation])->getCached($time);
+            $cachedRelation = call_user_func([$this, $relation]);
+
+            if(isset($cachedRelation)){
+                $cachedRelation = $cachedRelation->getCached($time);
+            }
+
+            else{
+                return null;
+            }
         }
 
         return $cachedRelation;
     }
 
     /**
+     * Returns a cached version of a relationship as an Model instance if it is present.
+     * @param string $id Id of Model instance.
+    */
+    public static function findCached(int $id){
+        return Cache::get(static::generateCacheKey($id));
+    }
+
+    /**
+     * Returns a cached version of a relationship as an Eloquent Collection if it is present.
+     * @param string $relation Name of a function that returns an Eloquent relation (For example: `product->categories()`)
+    */
+    public function findCachedRelation($relation = null){
+        return Cache::get($this->cacheKey($relation));
+    }
+
+    /**
      * Delete the cached instance.
      * @param string|array $relations Name of relation(s) to delete.
     */
-    public function wipeCache(array|string $relations = null, bool $deleteAllRelations = false){
-        if(isset($relations)){
-            if(is_array($relations)){
-                $this->wipeCachedRelations($relations);
-            }
-
-            else{
-                $this->wipeCachedRelation($relations);
-            }
-        }
-        
-        else if ($deleteAllRelations){
-            $this->wipeCachedRelations();
-        }
-
+    public function wipeCache(){
         Cache::forget($this->cacheKey());
         return true;
     }
@@ -141,7 +152,7 @@ trait Cacheable{
      * @param string $relation The relation to forget.
      */
     public function wipeCachedRelation(string $relation){
-        Cache::forget($this->cacheKey($relation));
+        return Cache::forget($this->cacheKey($relation));
     }
 
     /**
@@ -161,14 +172,18 @@ trait Cacheable{
     }
     
     /**
-     * Forget the cached relation of this model in a related model.
+     * Forget the cached relation of this model in related models.
      * @param string $relation The relation to forget.
      */
     public function wipeRelatedCache(string $relation){
-        $cachedModel = call_user_func([$this, $relation])->getCached()[0];
+        $cachedModels = $this->getCachedRelation($relation);
 
-        $cachedModel->wipeCachedRelation(lcfirst(class_basename($this)));
-        $cachedModel->wipeCachedRelation($this->getTableName());
+        if (isset($cachedModels)){
+            foreach ($cachedModels as $cachedModel) {
+                $cachedModel->wipeCachedRelation($this->getTableName());
+                $cachedModel->wipeCachedRelation(lcfirst(class_basename($this)));
+            }
+        }
     }
 
     /**
