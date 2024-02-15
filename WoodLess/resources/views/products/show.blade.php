@@ -6,20 +6,18 @@
 @endsection
 
 @php
-    //dd(Auth()->user()->orders()->first()->products()->first()->pivot->amount)
-    //dd($product->stockAmount(1))
     /*
-        These variables are declared in ProductController and are used here.
+    These variables are declared in ProductController and are used here.
 
-        $user - The user, null if not present
-        $product - A row from the 'products' table, Eloquent model (?)
-        $attributes - The product's attributes decoded from JSON
-        $categories - The product's categories stored in the pivot table 'categories_product'
-        $productImages - The file path of each image used for the product, stored in a String array
-        $reviews - Rows from the 'reviews' table that match this product's id, stored in an Eloquent model (?) array, currently paginated by 5
-        $amount - Sum of available product stock
-        $finalCost - Gets the final price, taking into account discount
-        $similarProducts - Array of 6 products that share similar values to the product
+    $user - The user, null if not present
+    $product - A row from the 'products' table, Eloquent model (?)
+    $attributes - The product's attributes decoded from JSON
+    $categories - The product's categories stored in the pivot table 'categories_product'
+    $productImages - The file path of each image used for the product, stored in a String array
+    $reviews - Rows from the 'reviews' table that match this product's id, stored in an Eloquent model (?) array, currently paginated by 5
+    $amount - Sum of available product stock
+    $finalCost - Gets the final price, taking into account discount
+    $similarProducts - Array of 6 products that share similar values to the product
     */
 @endphp
 
@@ -84,12 +82,12 @@
             </div>
 
             <div class="col-md-6" id="product-information">
-                <div class="d-flex flex-row justify-content-between mb-2" id="product-title">
+                <div class="d-flex flex-row justify-content-between mb-0" id="product-title">
                     <div class="flex-shrink-1">
                         <h1 class="mb-0 ms-0 p-0">
                             <b>{{$product->title}}</b>
                         </h1>
-                        <div class="d-flex flex-row">
+                        <div class="d-flex flex-row mb-1">
                             <div class="" id="product-categories">
                                 @foreach ($categories as $category)
                                     <a class="category-button btn btn-dark px-1 py-0" role="button" href="/products?categories%5B%5D={{ucfirst($category->category)}}">{{$category->category}}</a>
@@ -102,13 +100,13 @@
                         <h4 class="text-end p-0 m-0">
                             <i class="fa-regular fa-star"></i>
                             <a href="#reviews" class="link-dark link-offset-1 link-underline-opacity-25 link-underline-opacity-100-hover">
-                                {{round($product->reviews()->avg('rating'), 2)}}/5
+                                {{round($product->getCachedRelation('reviews')->avg('rating'))}}/5
                             </a>
                         </h4>
                     </div>
                 </div>
 
-                <div class="w-100"></div>
+                <div class="w-100 mb-0"></div>
 
                 <div class="d-flex flex-row justify-content-between" id="product-price">
                     <div class="">
