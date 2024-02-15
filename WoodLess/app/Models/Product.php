@@ -3,12 +3,8 @@
 namespace App\Models;
 
 use App\Models\Review;
-use PHPUnit\Util\Json;
 use App\Models\Traits\Cacheable;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
