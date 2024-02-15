@@ -151,13 +151,12 @@
                                                     onclick="openEditModal({{ $product->id }})"
                                                     id="openModalButton">Edit</button>
                                             </td>
+                                            <!-- Button to trigger modal -->
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">
-                                                <form action="{{ route('product-delete', ['id' => $product->id]) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#confirmDeleteModal"
+                                                    onclick="DeleteItemId({{ $product->id }})">Delete</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -169,9 +168,45 @@
             </div>
         </div>
     </div>
+
+    <!-- Delete Product Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+        aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form id="deleteForm" action="{{ route('product-delete', ['id' => ':product_id']) }}"
+                        method="POST">
+                        @csrf
+                        <input type="hidden" name="id_input" id="id_input" value="">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')
+
+
+    <script>
+        function DeleteItemId(Id) {
+            document.getElementById('id_input').value = Id;
+            document.getElementById('deleteForm').action = '/admin-panel/inventory/delete/' + Id;
+
+        }
+    </script>
 
     <!-- JavaScript to handle info modal opening -->
     <script>
