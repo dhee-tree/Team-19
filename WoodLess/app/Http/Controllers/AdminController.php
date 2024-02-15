@@ -88,7 +88,8 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Product not found.');
         }
 
-        
+        // Delete the product
+        $product->delete();
 
         return redirect()->route('admin-panel.inventory')->with('success', 'Product ' . $id . ' deleted succesfully.');
     }
