@@ -3,17 +3,15 @@
 namespace Illuminate\Database\Eloquent\Relations;
 
 use Closure;
-use DateTime;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Traits\Macroable;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Query\Expression;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Traits\ForwardsCalls;
-use Illuminate\Database\MultipleRecordsFoundException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Contracts\Database\Eloquent\Builder as BuilderContract;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\MultipleRecordsFoundException;
+use Illuminate\Database\Query\Expression;
+use Illuminate\Support\Traits\ForwardsCalls;
+use Illuminate\Support\Traits\Macroable;
 
 abstract class Relation implements BuilderContract
 {
@@ -166,19 +164,6 @@ abstract class Relation implements BuilderContract
         return $this->eagerKeysWereEmpty
                     ? $this->query->getModel()->newCollection()
                     : $this->get();
-    }
-
-    /**
-    * Return/create a cached version of the relationship.
-    * @param DateTime $time Time before the cache updates to match database (default is 30 Seconds).
-    * @Sgy157
-    */
-    public function cache(DateTime $time = null){
-        $time = $time ?? now()->addSeconds(30)->toDateTime();
-        $parent = $this->getParent();
-        return Cache::remember($parent->getTable().'_'.$parent->id.':'.$this->getRelationName(), $time, function() {
-            return $this->get();
-        });
     }
 
     /**

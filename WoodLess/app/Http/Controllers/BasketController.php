@@ -3,87 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Basket;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\BasketProduct;
-use Exception;
-use Illuminate\Database\QueryException;
-use PHPUnit\Util\Xml\XmlException;
+use App\Models\Basket;
 
 class BasketController extends Controller
 {
     /**
      * Store a product in a basket.
      */
-    function store(Request $request, int $product_id){
-        try{
-            $product = Product::getCached($product_id);
-            if($product->stockAmount() > 0){
-                $attributes = [];
+    function store(Request $request, Product $product){
 
-                $rules = [
-                    'amount' => 'required|numeric|not_in:0',
-                    'attributes' => 'required|array',
-                ];
+        //Currently stores in first basket in db.
+        $basket = auth()->user()->basket;
+        $basket->loadMissing('products');
 
-                if($request->has('attribute-colours')){
-                    $rules['attribute-colours'] = 'required|not_in:0';
-                    $request->validate($rules);
+        $attributes = [];
 
-                    $pairs = explode(':', $request->input('attribute-colours'));
-                    $attributes[$pairs[0]] = $pairs[1];
-                };
+        $rules = [
+            'amount' => 'required|numeric|not_in:0',
+            'attributes' => 'required|array',
+        ];
 
-                $request->validate($rules);
+        if($request->has('attribute-colours')){
+            $rules['attribute-colours'] = 'required|not_in:0';
+            $request->validate($rules);
 
-                foreach($request->input('attributes') as $attribute){
-                    $pairs = explode(':', $attribute);
-                    $attributes[$pairs[0]] = $pairs[1];
-                };
+            $pairs = explode(':', $request->input('attribute-colours'));
+            $attributes[$pairs[0]] = $pairs[1];
+        };
 
-                $data = [
-                    'amount' => $request->input('amount'),
-                    'attributes' => json_encode($attributes),
-                ];
+        $request->validate($rules);
 
-                $basket = auth()->user()->basket;
-                $basket->loadMissing('products');
-                
-                $productInBasket = $basket->products()
-                ->wherePivot('product_id', $product_id)
-                ->wherePivot('attributes', $data['attributes'])
-                ->first();
+        foreach($request->input('attributes') as $attribute){
+            $pairs = explode(':', $attribute);
+            $attributes[$pairs[0]] = $pairs[1];
+        };
 
-                if(isset($productInBasket)){
-                    $productInBasket->pivot->update([
-                        'amount' => $productInBasket->pivot->amount + $data['amount'],
-                    ]);
-                }
+        $data = [
+            'amount' => $request->input('amount'),
+            'attributes' => json_encode($attributes),
+        ];
 
-                else{
-                    $basket->products()->attach($product_id, $data);
-                }
-
+        foreach($basket->products->where('id', $product->id) as $basketItem){
+            $basketItem = $basketItem->pivot;
+            
+            if($basketItem->attributes == $data['attributes']){
+                $basketItem->update([
+                    'amount' => $basketItem->amount + $data['amount'],
+                ]);
                 return back()->with([
                     'status' => 'success',
                     'message' => 'Added to basket.'
                 ]);
             }
+        };
+        
+        $basket->products()->attach($product, $data);
 
-            $product->wipeCache();
-            return back()->with([
-                'status' => 'danger',
-                'message' => 'Product is unavailable.'
-            ]);
-        }
-
-        catch(QueryException $ex){
-            return back()->with([
-                'status' => 'danger',
-                'message' => 'Failed to update basket.'
-            ]);
-        }
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Added to basket.'
+        ]);
     }
 
     // Show the basket of the authenticated user.

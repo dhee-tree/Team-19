@@ -35,12 +35,12 @@ Route::get('/contact', [ContactController::class, 'showForm'])->name('contact');
 Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
 
 //Display single product
-Route::get('/product/{product_id}', [ProductController::class,'show']);
+Route::get('/product/{product}', [ProductController::class,'show']);
 
 // Basket URLS
 Route::get('/basket', [BasketController::class,'show'])->middleware('auth');
 //Store product in basket
-Route::post('/basket/{product_id}', [BasketController::class,'store'])->middleware('auth');
+Route::post('/basket/{product}', [BasketController::class,'store'])->middleware('auth');
 // Delete product from basket
 Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('basket.destroy');
 
