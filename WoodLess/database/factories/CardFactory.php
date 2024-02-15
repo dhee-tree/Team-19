@@ -2,14 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Card;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Address>
- */
-class AddressFactory extends Factory
+class CardFactory extends Factory
 {
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Card::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,9 +21,10 @@ class AddressFactory extends Factory
      */
     public function definition(): array
     {
-        
         return [
-            'house_number' => $this->faker->numberBetween(1,100),
+            'card_number' => $this->faker->creditCardNumber(),
+            'expiry_date' => $this->faker->creditCardExpirationDate(),
+            'house_number' => $this->faker->numberBetween(1, 100),
             'street_name' => $this->faker->streetName(),
             'postcode' => $this->faker->postcode(),
             'city' => $this->faker->city(),

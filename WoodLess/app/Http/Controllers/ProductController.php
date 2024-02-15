@@ -35,12 +35,23 @@ class ProductController extends Controller
 
         //ddd('test');
 
+        // Retrieve the product images from the database
+        $productImages = explode(',', $product->images);
+
+        foreach ($productImages as $imagePath) {
+            // Generate the URL for each image and add it to the $imageUrls array
+            $imageUrl = Storage::url($imagePath);
+            $imageUrls[] = $imageUrl;
+        }
+
+        //dd($imageUrls);
+
         return view('products.show', [
             'product' => $product,
-            'amount'=> $product->stockAmount(),
+            'amount' => $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
-            'categories' => $categories,
-            'productImages' => explode(',', $product->images),
+            'categories' => $product->categories()->get(),
+            'productImages' => $imageUrls,
             'reviews' => $reviews,
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
@@ -95,17 +106,16 @@ class ProductController extends Controller
         
 
     }
-    
+
     //gets three random categories and products  for home page
     public function getThreeRandom()
     {
         $products = Product::all();
-        $categories = Category::all(); 
-    
+        $categories = Category::all();
+
         return view('welcome', [
             'products' => $products,
-            'categories' => $categories,  
+            'categories' => $categories,
         ]);
     }
-
 }
