@@ -81,6 +81,8 @@ class AdminController extends Controller
     public function ProductDelete($id)
     {
 
+
+        return redirect()->route('admin-panel.inventory')->with('success', 'Product ' . $id . ' deleted succesfully.');
     }
 
     public function ProductStore(Request $request, $id)
