@@ -169,21 +169,6 @@ abstract class Relation implements BuilderContract
     }
 
     /**
-    * Return/create a cached version of the relationship as an Eloquent Collection.
-    * @param DateTime $time Time before the cache updates to match database (Default - 30m).
-    * @return \Illuminate\Database\Eloquent\Collection
-    * @Sgy157
-    */
-    public function getCached(DateTime $time = null){
-        $time = $time ?? now()->addMinutes(30)->toDateTime();
-        $cacheKey = $this->getParent()->cacheKey($this->getRelated()->getTable());
-    
-        return Cache::remember($cacheKey, $time, function () {
-            return $this->get();
-        });
-    }
-
-    /**
      * Execute the query and get the first result if it's the sole matching record.
      *
      * @param  array|string  $columns
