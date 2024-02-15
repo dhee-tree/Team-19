@@ -152,8 +152,13 @@
                                                     id="openModalButton">Edit</button>
                                             </td>
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                scope="col"><button type="button"
-                                                    class="btn btn-danger">Delete</button></td>
+                                                scope="col">
+                                                <form action="{{ route('product.delete', ['id' => $product->id]) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
