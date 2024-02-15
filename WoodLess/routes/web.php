@@ -76,7 +76,8 @@ Route::get('/admin-panel/inventory/product-edit/{id}', [AdminController::class,'
 Route::get('/admin-panel/inventory/product-add', [AdminController::class,'ProductAdd'])->name('components.products-add');
 //stores products, either edits or creates a new ones
 Route::post('/admin-panel/inventory/store/{id}', [AdminController::class,'ProductStore'])->name('product-store');
-
+//stores products, either edits or creates a new ones
+Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class,'ProductDelete']);
 //The additional information modal to expand fields in user admin panel
 Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.users-info');//saving to database, either edited or a new product
 

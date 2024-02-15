@@ -78,6 +78,11 @@ class AdminController extends Controller
         return view('users-admin', ['users' => $users]);
     }
 
+    public function ProductDelete($id)
+    {
+
+    }
+
     public function ProductStore(Request $request, $id)
     {
 
