@@ -80,7 +80,15 @@ class AdminController extends Controller
 
     public function ProductDelete($id)
     {
+        // Retrieve the product by ID
+        $product = Product::find($id);
 
+        // Check if the product exists
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+
+        
 
         return redirect()->route('admin-panel.inventory')->with('success', 'Product ' . $id . ' deleted succesfully.');
     }
