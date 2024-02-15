@@ -191,7 +191,7 @@ trait Cacheable{
     public function wipeRelatedCache(string $relation){
         $cachedModels = $this->getCachedRelation($relation);
 
-        if (isset($cachedModels)){
+        if (!($cachedModels->isEmpty())){
             foreach ($cachedModels as $cachedModel) {
                 $cachedModel->wipeCachedRelation($this->getTableName());
                 $cachedModel->wipeCachedRelation(lcfirst(class_basename($this)));
