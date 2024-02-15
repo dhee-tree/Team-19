@@ -38,17 +38,20 @@ trait Cacheable{
         }
     }
 
+    /**
+     * Returns the model table name.
+     */
     private static function getTableName()
     {
         return (new self())->getTable();
     }
 
     /**
-     * Returns a special string appended with the parameter, intended to be used as a cache key.
-     * @param mixed $input The value to be appended.
-     * @return string
+     * Returns the model table name, intended to be used as the cache key.
+     * @param mixed $input [optional] A value to be appended, such as an identifier for a model instance.
+     * @return string @example `products`, `products_1`
     */
-    private static function generateCacheKey($input = null){
+    private static function generateCacheKey(string|int $input = null){
         $key = static::getTableName();
 
         if(isset($input)){
@@ -60,8 +63,10 @@ trait Cacheable{
 
     /**
      * Returns the cache key of a model instance.
+     * @param null|string|int $input [optional] A value to be appended, such as an identifier for a model relationship.
+     * @return string @example `reviews_1`, `reviews_1:product`
     */
-    public function cacheKey($input = null)
+    public function cacheKey(string|int $input = null)
     {   
         $key = static::generateCacheKey($this->id);
 
@@ -114,10 +119,12 @@ trait Cacheable{
         $cachedRelation = $this->findCachedRelation($relation);
 
         if (is_null($cachedRelation) || isset($time)){
-            $cachedRelation = call_user_func([$this, $relation]);
+            $cachedRelation = $this->$relation();
 
             if(isset($cachedRelation)){
-                $cachedRelation = $cachedRelation->getCached($time);
+                $cachedRelation = Cache::remember($this->cacheKey($relation), $time, function () use ($cachedRelation){
+                    return $cachedRelation->get();
+                });
             }
 
             else{
