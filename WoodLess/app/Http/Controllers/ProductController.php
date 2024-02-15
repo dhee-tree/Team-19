@@ -99,7 +99,8 @@ class ProductController extends Controller
             'ratings' => $ratings,
             'color' => json_decode($color),
             'minCost' => (float)$minCost,
-            'maxCost' => (float)$maxCost
+            'maxCost' => (float)$maxCost,
+            'search' => $search_text
         ];
 
         $products = Product::latest()->filter($data)->get();
