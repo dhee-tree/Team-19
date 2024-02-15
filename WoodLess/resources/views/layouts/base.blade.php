@@ -27,7 +27,7 @@
     <!-- Font Awesome JS -->
     <script src="https://kit.fontawesome.com/c5cd4f3e40.js" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     @yield('style')
 
 </head>
