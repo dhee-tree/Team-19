@@ -1,4 +1,20 @@
-# Team Members:
+# Introduction
+## About:
+
+# Table of Contents:
+## [Setup](README.md#Setup)
+## [Team-Members](README.md#team-members)
+
+# Setup:
+This guide assumes you are familiar with Apache web server solutions and have cloned/copied the repository to one.
+## Table of Contents:
+### [1.-Installation](README.md#1.1:-Installation)
+
+## 1. Installation
+### 1.1: File Setup
+
+
+# Team Members
 
 ## 1. Name: Ighomena Odebala
 ## 2. Name: Lewis Neiland
