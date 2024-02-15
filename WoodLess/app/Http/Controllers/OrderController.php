@@ -34,6 +34,7 @@ class OrderController extends Controller
             'user_id' => $user->id,
             'address_id' => 1, // Needs to be changed to the address id associated with the user and the order.
             'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
+            'details' => 'Order placed by user',
             // 'status_id' => 1,
         ]);
         
@@ -50,9 +51,45 @@ class OrderController extends Controller
         $basket->products()->detach();
 
         // Send an email to the user with the order confirmation.
-        Mail::to($user->email)->send(new OrderConfirmation($basket));
+        // Mail::to($user->email)->send(new OrderConfirmation($basket));
         return view('order-confirmation', [
             'basket' => $basket,
+        ]);
+    }
+
+    // Show order of a user
+    function show(){
+        $user = auth()->user();
+        $orders = Order::where('user_id', $user->id)->get();
+        return view('purchases-user', [
+            'user' => $user,
+            'orders' => $orders,
+        ]);
+    }
+
+    // Show order products
+    function showOrderProducts($id){
+        $user = auth()->user();
+        $order = Order::find($id);
+        $address = Address::find($order->address_id);
+        $attributes = $order->products->first()->pivot->attributes;
+        return view('order-products', [
+            'user' => $user,
+            'order' => $order,
+            'address' => $address,
+            'attributes' => $attributes,
+        ]);
+    }
+
+    // Return an order
+    function returnOrder($id, $product_id){
+        $order = Order::find($id);
+        $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Processing Return')->first()->id]);
+        $order->save();
+        $order->touch();
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Return request sent. Please wait for confirmation.'
         ]);
     }
 }

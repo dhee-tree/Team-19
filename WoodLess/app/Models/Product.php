@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Models\Review;
+use App\Traits\Cacheable;
 use PHPUnit\Util\Json;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,24 +14,41 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Product extends Model
 {
     use HasFactory;
+    use Cacheable;
+    
     protected $fillable = [
         'title',
         'description',
         'attributes',
         'tags',
         'images',
-        'categories',
         'cost',
         'discount',
-        'amount',
     ];
 
-    /**
-     * Returns the reviews associated with the product.
-     */
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
+    protected static function booted(){
+        static::creating(function ($product){
+            Cache::forget('products');
+        });
+
+        static::saving(function ($product){
+            Cache::forget('products');
+        });
+
+        static::deleting(function ($product) {
+            $product->wipeCache();
+            Cache::forget('products');
+        });
+
+        static::updating(function ($product) {
+            $product->wipeCache();
+            Cache::forget('products');
+        });
+    }
+
+    public function wipeCache(){
+        Cache::forget($this->cacheKey());
+        Cache::forget($this->cacheKey().':categories');
     }
 
     /**
@@ -38,6 +57,14 @@ class Product extends Model
     public function baskets()
     {
         return $this->belongsToMany(Basket::class)->withPivot('id', 'amount', 'attributes')->withTimestamps();
+    }
+
+    /**
+     * Returns the reviews associated with the product.
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
     /**
@@ -86,6 +113,13 @@ class Product extends Model
     //filters the product
     public function scopeFilter($query, array $filters)
     {
+           // Search
+           if ($filters['search'] ?? false) {
+            $searchText = $filters['search'];
+            $query->where(function ($searchQuery) use ($searchText) {
+                $searchQuery->where('title', 'like', '%' . $searchText . '%')
+                            ->orWhere('tags', 'like', '%' . $searchText . '%');
+            });
 
         //Category
         if ($filters['categories'] ?? false) {
@@ -117,8 +151,16 @@ class Product extends Model
         } elseif ($filters['maxCost'] ?? null) {
             $query->where('cost', '<=', $filters['maxCost']);
         }
+    }
         //Rating
 
+           }
+
+    /**
+     * Returns the order status associated with the product.
+     */
+    public function orderProductStatus(){
+        return $this->belongsToMany(OrderStatus::class, 'order_product_warehouse', 'product_id', 'status_id');
     }
 
     //deals with cutting/shortening description
