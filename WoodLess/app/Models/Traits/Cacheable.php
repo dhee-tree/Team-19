@@ -8,18 +8,23 @@ use ErrorException;
 use ReflectionClass;
 use ReflectionMethod;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 /**
- * Provides easier implementation for caching models and their relationships.
- * @Sgy157
+ * Provides easier implementation for caching models and their relationships. 
+ * Cannot listen for pivot table changes.
+ * @sgy157
  */
 trait Cacheable{
-    
     /**
      * Listens for model changes on boot and wipes cache if so.
     */
     protected static function bootCacheable(){
+        if (!(is_subclass_of(static::class, Model::class))) {
+            die('Error: Class is not of type Illuminate\Database\Eloquent\Model');
+        }
+
         foreach (['created', 'saved', 'deleted', 'updated'] as $event) {
             static::$event(function ($instance) use ($event) {
                 if ($event === 'created' || $event === 'saved' || $event === 'updated') {
@@ -101,7 +106,7 @@ trait Cacheable{
 
     /**
      * Returns/creates a cached version of a relationship as an Eloquent Collection.
-     * @param string $relation Name of a function that returns an Eloquent relation (For example: `product->categories()`)
+     * @param string $relation Name of a function that returns an Eloquent relation. @example `product->categories()`
      * @param DateTime|null $time [optional] Time before the cache updates to match database. (Default - 30m)
     */
     public function getCachedRelation(string $relation, DateTime $time = null){
