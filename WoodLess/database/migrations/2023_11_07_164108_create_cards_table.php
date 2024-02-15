@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('card_number');
+            $table->smallInteger('card_number');
             $table->date('expiry_date');
             $table->string('house_number', 5);
             $table->string('street_name', 255);

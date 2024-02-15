@@ -36,7 +36,7 @@ class User extends Authenticatable
         'is_admin',
     ];
 
-    protected $guarded = [
+    protected $guarded =[
         'is_admin'
     ];
 
@@ -75,14 +75,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the cards associated with the user.
-     */
-    public function cards()
-    {
-        return $this->hasMany(Card::class);
-    }
-
-    /**
      * Get the basket associated with the user.
      */
     public function basket()
@@ -90,9 +82,8 @@ class User extends Authenticatable
         return $this->hasOne(Basket::class);
     }
 
-
-    public function isAdmin()
-    {
+    
+    public function isAdmin(){
         return $this->makeVisible('is_admin')->is_admin;
     }
 }

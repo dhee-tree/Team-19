@@ -25,7 +25,6 @@ li{
     align-items: stretch;
     display: flex;
     width: 100%;
-    min-height: 100vh;
 }
 
 #sidebar{
@@ -35,7 +34,7 @@ li{
     transition: all 0.35s ease-in-out;
 }
 
-main{
+.main{
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -44,11 +43,6 @@ main{
     transition: all 0.35s ease-in-out;
     width: 100%;
     background: var(--bs-dark-bg-subtle);
-    margin:0;
-}
-
-footer{
-    margin-top:0;
 }
 
 /* Sidebar Elements Style */
@@ -77,20 +71,17 @@ a.sidebar-link{
     display: block;
     font-size: 0.875rem;
 }
-.sidebar-link[data-bs-toggle="collapse"] {
-    position: relative; /* Make the parent element relative */
-}
 
-.sidebar-link[data-bs-toggle="collapse"]::after {
+.sidebar-link[data-bs-toggle="collapse"]::after{
     border: solid;
     border-width: 0 .075rem .075rem 0;
     content: "";
     display: inline-block;
-    padding: 4px;
+    padding: 2px;
     position: absolute;
     right: 1.5rem;
-    top: 30%; /* Center vertically */
-    transform: translateY(90%) rotate(-135deg); /* Center vertically and rotate */
+    top: 1.4rem;
+    transform: rotate(-135deg);
     transition: all .2s ease-out;
 }
 
@@ -131,12 +122,6 @@ div.dataTables_filter input {
     min-height: min-content;
     padding: .25rem .5rem;
     font-size: .875rem;
-}
-
-table
-{
-    table-layout: fixed;
-    width: 100px;
 }
 
 table.dataTable {

@@ -17,12 +17,11 @@ class AddressFactory extends Factory
      */
     public function definition(): array
     {
-        
         return [
-            'house_number' => $this->faker->numberBetween(1,100),
-            'street_name' => $this->faker->streetName(),
-            'postcode' => $this->faker->postcode(),
-            'city' => $this->faker->city(),
+            'house_number' => fake()->numberBetween(1,100),
+            'street_name' => fake()->streetAddress(),
+            'postcode' => fake()->postcode(),
+            'city' => fake()->city(),
         ];
     }
 }

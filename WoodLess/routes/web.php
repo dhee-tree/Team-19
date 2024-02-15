@@ -12,7 +12,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\AdminController;
+
 
 
 /*
@@ -65,16 +65,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //admin panel pages
 Route::view('/admin-panel/orders', 'orders-admin');
 Route::view('/admin-panel/tickets', 'tickets-admin');
-Route::get('/admin-panel/users', [AdminController::class,'users']);
-Route::get('/admin-panel/inventory', [AdminController::class,'inventory'])->name('admin-panel.inventory');
-//The additional information modal to expand fields in inventory managment
-Route::get('/admin-panel/inventory/product-info/{id}', [AdminController::class,'ProductInfo'])->name('components.products-info');
-//editing the products modal
-Route::get('/admin-panel/inventory/product-edit/{id}', [AdminController::class,'ProductEdit'])->name('components.products-edit');
-//The additional information modal to expand fields in inventory managment
-Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.users-info');//saving to database, either edited or a new product
-Route::post('/admin-panel/inventory/store/{id}', [AdminController::class,'ProductStore'])->name('product-store');
-
+Route::view('/admin-panel/users', 'users-admin');
+Route::view('/admin-panel/inventory', 'inventory');
 
 //user panel pages
 Route::view('/user-panel/tickets', 'tickets-user');
