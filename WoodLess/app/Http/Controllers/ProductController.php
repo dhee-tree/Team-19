@@ -6,11 +6,6 @@ use App\Models\Product;
 use App\Models\Category;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
-=======
->>>>>>> parent of bda66db (Merge branch 'development' of https://github.com/dhee-tree/Team-19 into development)
 use App\Http\Controllers\CategoryController;
 
 class ProductController extends Controller
