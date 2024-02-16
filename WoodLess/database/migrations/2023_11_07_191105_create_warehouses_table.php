@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('warehouses', function (Blueprint $table) {
             $table->id();
-            $table->string('number');
             $table->string('address', 255);
             $table->string('address_2', 255);
-            $table->string('postcode', 7);
+            $table->string('postcode', 255);
             $table->string('city', 60);
+            $table->timestamps();
         });
     }
 

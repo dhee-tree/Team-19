@@ -16,10 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->primary(['product_id', 'category_id']);
             $table->timestamps();
-        });
 
-        // Add foregin key constraint
-        Schema::table('category_product', function (Blueprint $table) {
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });

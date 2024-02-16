@@ -1,0 +1,43 @@
+.logo {
+  text-align: center;
+  min-width: 50%;
+}
+
+.logo img {
+  display: block;
+  margin: 0 auto;
+}
+
+.carousel {
+  width: auto;
+  max-height: auto;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.carousel-item img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 450px;
+  height: 450px;
+}
+
+/* Add this CSS to your stylesheet */
+#carouselHotSellers a {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Use the default text color */
+}
+
+/* 
+Media to change the carosel height for smaller screen sizes
+*/
+@media screen and (max-width: 990px) {
+  .carousel-item img {
+    min-width: 100%;
+    height: 200px;
+  }
+}
+
+.card {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}

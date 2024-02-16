@@ -1,0 +1,35 @@
+.checkout-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-item {
+    flex: 1;
+}
+
+.colour-square {
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 0 0 3px 0;
+}
+
+#payment-card {
+    display: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+#choice-paypal, #choice-card {
+    display: none;
+}
+
+.btn-success {
+    margin: 10px;
+}

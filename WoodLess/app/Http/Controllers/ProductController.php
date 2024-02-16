@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\Category;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\CategoryController;
 
 class ProductController extends Controller
@@ -16,35 +18,65 @@ class ProductController extends Controller
     /**
      * Retrieve a single product.
      */
-    public function show(Product $product)
-    {
+    public function show(int $product_id)
+    {   
+        $product = Product::getCached($product_id);
+        $categories = $product->getCachedRelation('categories');
 
-        $product->loadMissing('categories', 'reviews');
+        $product->loadMissing('reviews');
 
-        $similarProducts = Product::latest()->take((6 % Product::count()))->get();
+        $similarProducts = $categories->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
+            return $p->id == $product->id;
+        })->shuffle()->take(8);
 
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
             request('order') ?? 'desc'
         )->paginate(5)->withQueryString()->fragment('reviews');
 
+        //ddd('test');
+
+        // Retrieve the product images from the database
+        $productImages = explode(',', $product->images);
+
+        foreach ($productImages as $imagePath) {
+            // Generate the URL for each image and add it to the $imageUrls array
+            $imageUrl = Storage::url($imagePath);
+            $imageUrls[] = $imageUrl;
+        }
+
+        //dd($imageUrls);
+
         return view('products.show', [
             'product' => $product,
-            //'attributes' => ["5" => 2, "3" => 2] (???),
+            'amount' => $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
             'categories' => $product->categories()->get(),
-            'productImages' => explode(',', $product->images),
+            'productImages' => $imageUrls,
             'reviews' => $reviews,
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
         ])->render();
-
     }
+    // public function search(){
+    //     $search_text =$_GET['search'];
+    //     $products= Product::where('title','LIKE','%'.$search_text.'%');
+    //     $products->orWhere('tags', 'LIKE', '%' . $search_text . '%');
+
+    //     $products = $products->get();
+    
+      
+        
+    //     return view('product-list', ['products' => $products, 'search_text' => $search_text]);
+
+     
+    // }
     //Queries the products, and returns if we searched for something or not.
     public function index()
     {
         //Get search paramaters
         $filters = collect(request()->query());
+        $search_text = $filters['search'] ?? null;
 
         //get categories    
 
@@ -71,17 +103,20 @@ class ProductController extends Controller
         ];
 
         $products = Product::latest()->filter($data)->get();
-        return view('product-list', ['products' => $products]);
+        return view('product-list', ['products' => $products,'search_text' => $search_text]);
+        
+
     }
+
     //gets three random categories and products  for home page
     public function getThreeRandom()
     {
         $products = Product::all();
-        $categories = Category::all(); 
-    
+        $categories = Category::all();
+
         return view('welcome', [
             'products' => $products,
-            'categories' => $categories,  
+            'categories' => $categories,
         ]);
     }
 }
