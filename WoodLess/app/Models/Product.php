@@ -3,12 +3,8 @@
 namespace App\Models;
 
 use App\Models\Review;
-use App\Traits\Cacheable;
-use PHPUnit\Util\Json;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
+use App\Models\Traits\Cacheable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
@@ -25,31 +21,6 @@ class Product extends Model
         'cost',
         'discount',
     ];
-
-    protected static function booted(){
-        static::creating(function ($product){
-            Cache::forget('products');
-        });
-
-        static::saving(function ($product){
-            Cache::forget('products');
-        });
-
-        static::deleting(function ($product) {
-            $product->wipeCache();
-            Cache::forget('products');
-        });
-
-        static::updating(function ($product) {
-            $product->wipeCache();
-            Cache::forget('products');
-        });
-    }
-
-    public function wipeCache(){
-        Cache::forget($this->cacheKey());
-        Cache::forget($this->cacheKey().':categories');
-    }
 
     /**
      * Returns the baskets that belong to the product.
@@ -106,7 +77,7 @@ class Product extends Model
      * Returns the categories associated with the product.
      */
     public function categories()
-    {
+    {   
         return $this->belongsToMany(Category::class);
     }
 
@@ -158,6 +129,7 @@ class Product extends Model
 
     /**
      * Returns the order status associated with the product.
+     * Rename to orderStatus to match model if possible
      */
     public function orderProductStatus(){
         return $this->belongsToMany(OrderStatus::class, 'order_product_warehouse', 'product_id', 'status_id');
