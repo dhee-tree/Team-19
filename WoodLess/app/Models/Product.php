@@ -3,34 +3,24 @@
 namespace App\Models;
 
 use App\Models\Review;
-use PHPUnit\Util\Json;
-use Illuminate\Support\Facades\DB;
+use App\Models\Traits\Cacheable;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
     use HasFactory;
+    use Cacheable;
+    
     protected $fillable = [
         'title',
         'description',
         'attributes',
         'tags',
         'images',
-        'categories',
         'cost',
         'discount',
-        'amount',
     ];
-
-    /**
-     * Returns the reviews associated with the product.
-     */
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
 
     /**
      * Returns the baskets that belong to the product.
@@ -38,6 +28,14 @@ class Product extends Model
     public function baskets()
     {
         return $this->belongsToMany(Basket::class)->withPivot('id', 'amount', 'attributes')->withTimestamps();
+    }
+
+    /**
+     * Returns the reviews associated with the product.
+     */
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
     }
 
     /**
@@ -69,13 +67,20 @@ class Product extends Model
      * Returns the categories associated with the product.
      */
     public function categories()
-    {
+    {   
         return $this->belongsToMany(Category::class);
     }
 
     //filters the product
     public function scopeFilter($query, array $filters)
     {
+           // Search
+           if ($filters['search'] ?? false) {
+            $searchText = $filters['search'];
+            $query->where(function ($searchQuery) use ($searchText) {
+                $searchQuery->where('title', 'like', '%' . $searchText . '%')
+                            ->orWhere('tags', 'like', '%' . $searchText . '%');
+            });
 
         //Category
         if ($filters['categories'] ?? false) {
@@ -107,7 +112,16 @@ class Product extends Model
         } elseif ($filters['maxCost'] ?? null) {
             $query->where('cost', '<=', $filters['maxCost']);
         }
+    }
         //Rating
 
+           }
+
+    /**
+     * Returns the order status associated with the product.
+     * Rename to orderStatus to match model if possible
+     */
+    public function orderProductStatus(){
+        return $this->belongsToMany(OrderStatus::class, 'order_product_warehouse', 'product_id', 'status_id');
     }
 }

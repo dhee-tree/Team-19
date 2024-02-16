@@ -14,6 +14,7 @@ class Order extends Model
         'warehouse_id',
         'address_id',
         'status_id',
+        'details',
     ];
 
     /**

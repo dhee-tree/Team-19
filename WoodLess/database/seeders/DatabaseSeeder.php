@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {   
-        
         $warehouses = \App\Models\Warehouse::factory(3)->create();
 
         $users =\App\Models\User::factory(50)->create();
@@ -31,10 +30,13 @@ class DatabaseSeeder extends Seeder
         )->create();
 
         //ADD ORDER STATUSES HERE. INCREMENT COUNT BY NO. OF STATUSES.
-        $orderStatuses = \App\Models\OrderStatus::factory()->count(3)->sequence(
+        $orderStatuses = \App\Models\OrderStatus::factory()->count(6)->sequence(
             ['status' => 'Processing'],              
             ['status' => 'Transit'],
             ['status' => 'Complete'],
+            ['status' => 'Processing Return'],
+            ['status' => 'Return Complete'],
+            ['status' => 'Refunded'],
             //etc...
         )->create();
 
@@ -97,10 +99,6 @@ class DatabaseSeeder extends Seeder
 
         //Give user a basket and address.
         foreach ($users as $user) {
-            if(!($user->basket)){
-                $user->basket()->create();
-            }
-
             \App\Models\Address::factory()->create(['user_id' => $user->id]);
         }
 
