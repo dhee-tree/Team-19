@@ -13,12 +13,12 @@ class Category extends Model
     protected $fillable = [
         'category',
     ];
-    
+
     /**
-    * The table associated with the model.
-    *
-    * @var string
-    */
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'categories';
 
     /**
@@ -29,4 +29,13 @@ class Category extends Model
         return $this->belongsToMany(Product::class);
     }
 
+    /**
+     * Get the default category.
+     *
+     * @return Category|null
+     */
+    public static function defaultCategory()
+    {
+        return static::where('category', 'Default')->first();
+    }
 }
