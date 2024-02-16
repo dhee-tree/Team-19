@@ -117,6 +117,13 @@
                                             <div class="col-sm-3">
                                                 @if ($product->orderProductStatus->first()->status == 'Complete') 
                                                     <a href="{{ route('user.return-purchase', ['order' => $order->id, 'product' => $product->id]) }}" class="btn btn-primary">Return Product</a>
+                                                @else
+                                                    <span class="order-status order-status-processing order-small-width btn btn-warning disabled">{{ $product->orderProductStatus->first()->status }}</span>
+                                                    @if ($product->orderProductStatus->first()->status == 'Processing Return')
+                                                        <a href="{{ route('user.cancel-return-purchase', ['order' => $order->id, 'product' => $product->id]) }}">
+                                                            <i class="fa-solid fa-circle-xmark btn" style="color: #ff0000;" data-bs-toggle="tooltip" data-bs-placement="top" title="Cancel return"></i>
+                                                        </a> 
+                                                    @endif
                                                 @endif
                                             </div>
                                         </div>
