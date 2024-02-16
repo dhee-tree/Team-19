@@ -25,12 +25,12 @@ trait Cacheable{
             die('Error: Class is not of type Illuminate\Database\Eloquent\Model');
         }
 
-        foreach (['created', 'saved', 'deleted', 'updated'] as $event) {
+        foreach (['created', 'saved', 'deleting', 'updated'] as $event) {
             static::$event(function ($instance) use ($event) {
                 if ($event === 'created' || $event === 'saved' || $event === 'updated') {
                     $instance->wipeRelatedCaches($instance->relationships());
                 }
-                if ($event === 'deleted') {
+                if ($event === 'deleting') {
                     $instance->wipeRelatedCaches($instance->relationships());
                     $instance->wipeCache();
                 }
@@ -197,6 +197,8 @@ trait Cacheable{
                 $cachedModel->wipeCachedRelation(lcfirst(class_basename($this)));
             }
         }
+
+        $this->wipeCachedRelation($relation);
     }
 
     /**
