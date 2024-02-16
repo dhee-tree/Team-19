@@ -40,7 +40,7 @@ class ProductController extends Controller
             'amount'=> $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
             'categories' => $categories,
-            'productImages' => explode(',', $product->images),
+            'productImages' => explode(',', $product->images), //EDIT IMAGES IMAGE PATH HERE 
             'reviews' => $reviews,
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
