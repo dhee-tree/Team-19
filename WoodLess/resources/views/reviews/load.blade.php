@@ -27,7 +27,7 @@
                     @endphp
                     
                     @if(isset($review))
-                    <div class="card p-0 mx-0">
+                    <div class="card shadow-sm p-0 mx-0">
                         <div class="card-body">
                             <div class="d-flex flex-row">
                                 <div class="">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     @else
-                    <form method="POST" action="/review/{{$product->id}}" class="row card mb-3 p-0 mx-0">
+                    <form method="POST" action="/review/{{$product->id}}" class="shadow-sm row card mb-3 p-0 mx-0">
                         @csrf
                         <div class="card-body">
                             <div class="d-flex flex-row">
@@ -157,7 +157,7 @@
             @endphp
             
             <div class="col">
-                <div class="card p-0 mx-0">
+                <div class="shadow-sm card p-0 mx-0">
                     <div class="card-body">
                         <div class="d-flex flex-row">
                             <div class="">

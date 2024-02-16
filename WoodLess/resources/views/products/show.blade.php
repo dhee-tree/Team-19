@@ -96,13 +96,13 @@
                         </div>
                     </div>
 
-                    <div class="align-self-start w-25">
-                        <h4 class="text-end p-0 m-0">
+                    <div id="average-rating" class="align-self-start w-25">
+                        <h3 class="text-end p-0 m-0">
                             <i class="fa-regular fa-star"></i>
                             <a href="#reviews" class="link-dark link-offset-1 link-underline-opacity-25 link-underline-opacity-100-hover">
                                 {{round($product->getCachedRelation('reviews')->avg('rating'))}}/5
                             </a>
-                        </h4>
+                        </h3>
                     </div>
                 </div>
 
@@ -145,7 +145,7 @@
                                         <input type="hidden" name="attribute-colours" value="0">
                                         @php $i=1; @endphp
                                         @foreach (explode(',', $values) as $value)
-                                            <div class="form-check form-check-inline me-2 m-0">
+                                            <div id='attribute-colours' class="form-check form-check-inline me-2 m-0">
                                                 <input style="color:{{$value}};" class="form-check-input attribute-color shadow-none" type="radio" name="attribute-colours" id="inlineRadio{{$i}}" value='{{$attribute}}:{{$value}}'>
                                                 <label class="form-check-label" for="inlineRadio{{$i++}}"></label>
                                             </div>
@@ -278,7 +278,7 @@
                                         @endphp
                                         <div class="col-6 col-lg-3 col-md-3 col-sm-6">
                                             <a href="/product/{{ $similarProduct->id }}">
-                                                <div class="card mt-3">
+                                                <div class="shadow-sm card mt-3">
                                                     <!-- Sale badge-->
                                                     @if(($similarProduct->discount))
                                                     <div class="badge bg-dark text-white position-absolute"
