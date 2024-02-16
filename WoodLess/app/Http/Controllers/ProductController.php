@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\CategoryController;
 
@@ -17,21 +18,23 @@ class ProductController extends Controller
     /**
      * Retrieve a single product.
      */
-    public function show(Product $product)
-    {
+    public function show(int $product_id)
+    {   
+        $product = Product::getCached($product_id);
+        $categories = $product->getCachedRelation('categories');
 
-        $product->loadMissing('categories', 'reviews');
+        $product->loadMissing('reviews');
 
-        $similarProducts = $product->categories()->with('products')->get()->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
+        $similarProducts = $categories->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
             return $p->id == $product->id;
-        });
-
-        $similarProducts = $similarProducts->shuffle()->take(8);
+        })->shuffle()->take(8);
 
         $reviews = $product->reviews()->orderBy(
             request('sort') ?? 'created_at',
             request('order') ?? 'desc'
         )->paginate(5)->withQueryString()->fragment('reviews');
+
+        //ddd('test');
 
         // Retrieve the product images from the database
         $productImages = explode(',', $product->images);
@@ -55,24 +58,25 @@ class ProductController extends Controller
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
         ])->render();
     }
-    public function search()
-    {
-        $search_text = $_GET['search'];
-        $products = Product::where('title', 'LIKE', '%' . $search_text . '%');
-        $products->orWhere('tags', 'LIKE', '%' . $search_text . '%');
+    // public function search(){
+    //     $search_text =$_GET['search'];
+    //     $products= Product::where('title','LIKE','%'.$search_text.'%');
+    //     $products->orWhere('tags', 'LIKE', '%' . $search_text . '%');
 
-        $products = $products->get();
+    //     $products = $products->get();
+    
+      
+        
+    //     return view('product-list', ['products' => $products, 'search_text' => $search_text]);
 
-
-
-        return view('product-list', ['products' => $products, 'search_text' => $search_text]);
-    }
+     
+    // }
     //Queries the products, and returns if we searched for something or not.
     public function index()
     {
         //Get search paramaters
         $filters = collect(request()->query());
-        $search_text = request('search', null);
+        $search_text = $filters['search'] ?? null;
 
         //get categories    
 
@@ -99,7 +103,9 @@ class ProductController extends Controller
         ];
 
         $products = Product::latest()->filter($data)->get();
-        return view('product-list', ['products' => $products, 'search_text' => $search_text]);
+        return view('product-list', ['products' => $products,'search_text' => $search_text]);
+        
+
     }
 
     //gets three random categories and products  for home page

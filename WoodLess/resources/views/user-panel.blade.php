@@ -17,23 +17,23 @@
         <aside id="sidebar">
             <div class="sidebar-list">
                 <div class="heading">
-                    <p>Hi, {{ $user->first_name }}. Welcome back to your account.</p>
+                    <p>Hi, Welcome back to your account.</p>
                 </div>
                 <ul class="sidebar">
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{ route('user-panel') }}" class="sidebar-link">
                             <i class="fa-regular fa-clipboard-list pe-2"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{ route('user.purchases') }}" class="sidebar-link">
                             <i class="fa-regular fa-clipboard-list pe-2"></i>
                             My Purchases
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="{{url('/user-panel/tickets')}}" class="sidebar-link">
                             <i class="fa-regular fa-clipboard-list pe-2"></i>
                             Tickets
                         </a>

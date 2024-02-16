@@ -41,6 +41,8 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+$app->usePublicPath($app->basePath('../public_html'));
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application
