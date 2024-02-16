@@ -101,4 +101,23 @@ class OrderController extends Controller
             ]);
         }
     }
+
+    // Cancel a return request
+    function cancelReturnOrderItem($id, $product_id){
+        $order = Order::find($id);
+        if ($order->products->find($product_id)->orderProductStatus->first()->status == 'Processing Return')  {
+            $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Complete')->first()->id]);
+            $order->save();
+            $order->touch();
+            return back()->with([
+                'status' => 'success',
+                'message' => 'Return request cancelled.'
+            ]);
+        } else {
+            return back()->with([
+                'status' => 'error',
+                'message' => 'Cannot cancel return request, return already processed.'
+            ]);   
+        }
+    }
 }
