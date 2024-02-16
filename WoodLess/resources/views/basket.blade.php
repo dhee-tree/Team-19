@@ -59,8 +59,9 @@
                                         <td>
                                             <p>Quantity: {{ $product->pivot->amount }}</p>
                                             <p>Total: £{{ $product->pivot->amount * $discountPrice }}</p>
-                                            <form action="{{ route('basket.update', $basket) }}" method="POST">
+                                            <form action="{{ route('basket.update', ['basket' => $basket->id]) }}" method="POST">
                                                 @csrf
+                                                @method('PUT')
                                                 <input type="number" name="amount" value="{{ $product->pivot->amount }}" min="1" max="10">
                                                 <input type="hidden" name="id" value="{{ $product->pivot->id }}">
                                                 <button type="submit" class="btn btn-primary">Update</button>
