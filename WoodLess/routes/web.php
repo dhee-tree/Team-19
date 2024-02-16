@@ -43,6 +43,8 @@ Route::get('/basket', [BasketController::class,'show'])->middleware('auth');
 Route::post('/basket/{product_id}', [BasketController::class,'store'])->middleware('auth');
 // Delete product from basket
 Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('basket.destroy');
+// Update product in basket
+Route::put('/update-basket/{basket}', [BasketController::class,'update'])->name('basket.update');
 
 // Checkout URLS
 Route::get('/checkout', [CheckoutController::class,'show']);
