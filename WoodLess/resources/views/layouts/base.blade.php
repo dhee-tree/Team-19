@@ -75,6 +75,7 @@
         </nav>
 
         <main>
+            @include('layouts.alert')
             @yield('content')
         </main>
 
