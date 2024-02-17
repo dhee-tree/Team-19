@@ -43,6 +43,8 @@ Route::get('/basket', [BasketController::class,'show'])->middleware('auth');
 Route::post('/basket/{product_id}', [BasketController::class,'store'])->middleware('auth');
 // Delete product from basket
 Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('basket.destroy');
+// Update product in basket
+Route::put('/update-basket/{basket}', [BasketController::class,'update'])->name('basket.update');
 
 // Checkout URLS
 Route::get('/checkout', [CheckoutController::class,'show']);
@@ -87,7 +89,8 @@ Route::view('/user-panel/user-panel', 'user-panel');
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
 Route::get('/user/purchases', [App\Http\Controllers\OrderController::class, 'show'])->name('user.purchases')->middleware('auth');
 Route::get('/user/purchases/view/{order}', [App\Http\Controllers\OrderController::class, 'showOrderProducts'])->name('user.view-purchase')->middleware('auth');
-Route::get('/user/purchases/return/{order}/{product}', [App\Http\Controllers\OrderController::class, 'returnOrder'])->name('user.return-purchase')->middleware('auth');
+Route::get('/user/purchases/return/{order}/{product}', [App\Http\Controllers\OrderController::class, 'returnOrderItem'])->name('user.return-purchase')->middleware('auth');
+Route::get('/user/purchases/cancel-return/{order}/{product}', [App\Http\Controllers\OrderController::class, 'cancelReturnOrderItem'])->name('user.cancel-return-purchase')->middleware('auth');
 
 // Display categories
 

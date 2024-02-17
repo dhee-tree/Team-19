@@ -27,8 +27,8 @@
                             <thead>
                                 <tr>
                                     <th>Product</th>
-                                    <th>Amount</th>
                                     <th>Price</th>
+                                    <th>Amount</th>
                                     <th>Remove</th>
                                 </tr>
                             </thead>
@@ -36,16 +36,15 @@
                                 @foreach($basket->products as $product)
                                     <tr>
                                         <td>
-                                            <img src="{{ 'images/'.explode(',', $product->images)[0] }}" alt="product image" class="img-fluid">
-                                            <h5>{{ $product->title }}</h5>
-                                            <p>{{ $product->description }}</p>
+                                            <img src="{{ 'images/'.explode(',', $product->images)[0] }}" alt="product image" width="60" height="60">
+                                            <span>{{ $product->title }}</span>
+                                            <br>
                                             @foreach(json_decode($product->pivot->attributes) as $key => $value)
                                                 @if ($key == "colour") 
-                                                    <div class="colour-square" style="background-color: {{ $value }};"></div>
-                                                @elseif ($key == "size")
-                                                    <p>{{ $key }}: {{ $value }}</p>
+                                                   <span>Colour</span> <div class="colour-square" style="background-color: {{ $value }};"></div>
+                                                @else
+                                                    <span>{{ $key }}: {{ $value }}</span>
                                                 @endif
-                                                
                                             @endforeach
                                         </td>
                                         <td>
@@ -60,12 +59,15 @@
                                         <td>
                                             <p>Quantity: {{ $product->pivot->amount }}</p>
                                             <p>Total: £{{ $product->pivot->amount * $discountPrice }}</p>
-                                            <form action="/basket/{{ $product->id }}" method="POST">
+                                            <form action="{{ route('basket.update', ['basket' => $basket->id]) }}" method="POST">
                                                 @csrf
+                                                @method('PUT')
                                                 <input type="number" name="amount" value="{{ $product->pivot->amount }}" min="1" max="10">
+                                                <input type="hidden" name="id" value="{{ $product->pivot->id }}">
+                                                <button type="submit" class="btn btn-primary">Update</button>
                                             </form>
                                         </td>
-                                        <td>
+                                        <td class="align-middle">
                                             <form action="{{ route('basket.destroy', $basket) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
