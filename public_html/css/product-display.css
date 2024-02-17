@@ -1,0 +1,33 @@
+.product-badge{
+    background-color: #1d1912;
+    color: white;
+    font-size: 50%;
+    position: absolute;
+}
+
+.attribute-color, .attribute-color:checked{
+    transform:scale(1.5);
+    accent-color: currentColor;
+    cursor: pointer;
+    background-color: currentColor;
+    border-color:color-mix(in srgb, currentColor 70%, black);
+}
+
+.attribute-color:checked{
+    opacity: 40%;
+    background: currentColor;
+}
+
+.product-submit, .category-button{
+    background-color: #1d1912;
+}
+
+#productCarousel a:link { 
+    text-decoration: none; 
+}
+
+.carousel-control-prev,
+.carousel-control-next{
+    opacity: 15%;
+    width: 7vh;
+}

@@ -35,12 +35,12 @@ Route::get('/contact', [ContactController::class, 'showForm'])->name('contact');
 Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.send');
 
 //Display single product
-Route::get('/product/{product}', [ProductController::class,'show']);
+Route::get('/product/{product_id}', [ProductController::class,'show']);
 
 // Basket URLS
 Route::get('/basket', [BasketController::class,'show'])->middleware('auth');
 //Store product in basket
-Route::post('/basket/{product}', [BasketController::class,'store'])->middleware('auth');
+Route::post('/basket/{product_id}', [BasketController::class,'store'])->middleware('auth');
 // Delete product from basket
 Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('basket.destroy');
 
@@ -81,7 +81,13 @@ Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class,'Produ
 //The additional information modal to expand fields in user admin panel
 Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.users-info');//saving to database, either edited or a new product
 
-
+//user panel pages
+Route::view('/user-panel/tickets', 'tickets-user');
+Route::view('/user-panel/user-panel', 'user-panel');
+Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
+Route::get('/user/purchases', [App\Http\Controllers\OrderController::class, 'show'])->name('user.purchases')->middleware('auth');
+Route::get('/user/purchases/view/{order}', [App\Http\Controllers\OrderController::class, 'showOrderProducts'])->name('user.view-purchase')->middleware('auth');
+Route::get('/user/purchases/return/{order}/{product}', [App\Http\Controllers\OrderController::class, 'returnOrder'])->name('user.return-purchase')->middleware('auth');
 
 // Display categories
 
@@ -89,8 +95,6 @@ Route::get('/categories', [CategoryController::class, 'getCategories']);
 //Display three random categories and products on home page
 Auth::routes();
 Route::get('/', [ProductController::class, 'getThreeRandom']);
-// User panel links
-Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
 
 Route::get('/password/change', [App\Http\Controllers\ChangePasswordController::class, 'showChangePasswordForm'])->name('password.change.form');
 Route::post('/password/change', [App\Http\Controllers\ChangePasswordController::class, 'changePassword'])->name('password.change');

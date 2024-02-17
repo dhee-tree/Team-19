@@ -94,8 +94,17 @@
                 <div class="modal-body">
                     @foreach($user->cards as $index => $cards)
                     <h5><strong>Card ({{ $index + 1 }})</strong></h5>
-                    <p class="fs-6">{{ $cards->house_number }} {{ $address->street_name }}<br>
-                        {{ $address->city }}, {{ $address->postcode }}
+                    <p>
+                        <strong>Card number</strong>
+                        @foreach(array_chunk(str_split($cards->card_number), 4) as $chunk)
+                        {{ implode('', $chunk) }}
+                        @endforeach
+                        <br>
+                        <strong>Expiry date</strong>
+                        {{ $cards->expiry_date }}
+                    </p>
+                    <p class="fs-6">{{ $cards->house_number }} {{ $cards->street_name }}<br>
+                        {{ $cards->city }}, {{ $cards->postcode }}
                     </p>
                     @endforeach
                 </div>
