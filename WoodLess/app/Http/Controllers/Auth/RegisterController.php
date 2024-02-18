@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificationMail;
+use App\Models\EmailVerificationCode;
 
 //use Illuminate\Auth\Events\Registered;
 
@@ -84,10 +85,13 @@ class RegisterController extends Controller
         ]);
 
         // Store verification code for a user
-        $user->emailVerificationCodes()->attach($verificationCode, ['user_id' => $user->id]);
+        $verify_code = EmailVerificationCode::create([
+            'user_id' => $user->id,
+            'code' => $verificationCode,
+        ]);
 
         //Send verification email to user
-        Mail::to($data['email'])->send(new VerificationMail($verificationCode));
+        Mail::to($data['email'])->send(new VerificationMail($verificationCode, $data['first_name']));
 
         // Create a new basket for the user
         Basket::create([
@@ -95,5 +99,5 @@ class RegisterController extends Controller
         ]);
 
         return $user;
-    }
+    }    
 }
