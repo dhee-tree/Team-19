@@ -153,8 +153,10 @@ class AdminController extends Controller
 
             // Get the pre-existing images from the request
             $preExistingImages = $request->input('pre_existing_images', []);
+            
             if (empty($preExistingImages)) {
                 $product->images = '';
+                
             } else {
                 // Get the current images of the product
                 $currentImagesArray = explode(',', $product->images);
@@ -164,7 +166,7 @@ class AdminController extends Controller
                 // Iterate over the current images
                 foreach ($currentImagesArray as $currentImage) {
                     // Check if the current image is not included in the pre-existing images sent in the request
-                    if (!in_array('storage/'  . $currentImage, $preExistingImages)) {
+                    if (!in_array('/storage/'  . $currentImage, $preExistingImages)) {
                         // Delete or remove the image
                         Storage::delete('images/products/' . $currentImage);
 
@@ -176,7 +178,7 @@ class AdminController extends Controller
                 // Convert the array back to a string
                 $product->images = implode(',', $currentImagesArray);
             }
-
+            
 
 
             // Retrieve the existing images from the product model
