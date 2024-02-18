@@ -14,27 +14,26 @@ class ProductController extends Controller
 {
 
     protected $reviews;
-
+    
     /**
      * Retrieve a single product.
      */
     public function show(int $product_id)
     {   
+        $user = Auth()->user() ?? null;
         $product = Product::getCached($product_id);
         $categories = $product->getCachedRelation('categories');
 
-        $product->loadMissing('reviews');
-
-        $similarProducts = $categories->pluck('products')->flatten()->unique('id')->reject(function ($p) use ($product) {
+        $similarProducts = $categories->flatMap(function ($category) {
+            return $category->getCachedRelation('products');
+        })->unique('id')->reject(function ($p) use ($product) {
             return $p->id == $product->id;
         })->shuffle()->take(8);
 
-        $reviews = $product->reviews()->orderBy(
-            request('sort') ?? 'created_at',
-            request('order') ?? 'desc'
-        )->paginate(5)->withQueryString()->fragment('reviews');
-
-        //ddd('test');
+        $reviews = $product->getCachedRelation('reviews')->sortBy([
+            [request('sort') ?? 'created_at', request('order') ?? 'desc']
+        ]
+        )->paginate(8)->withQueryString()->fragment('reviews');
 
         // Retrieve the product images from the database
         $productImages = explode(',', $product->images);
@@ -48,6 +47,7 @@ class ProductController extends Controller
         //dd($imageUrls);
 
         return view('products.show', [
+            'user' => $user,
             'product' => $product,
             'amount' => $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),

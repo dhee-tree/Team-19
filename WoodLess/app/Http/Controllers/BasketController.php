@@ -104,4 +104,14 @@ class BasketController extends Controller
 
         return back()->with('message', 'Item removed from basket.');
     }
+
+    // Update a product in the basket.
+    function update(Request $request, Basket $basket){
+        $basket->loadMissing('products');
+        $product = $basket->products()->wherePivot('id', $request->input('id'))->first();
+        $product->pivot->update(['amount' => $request->input('amount')]);
+
+        return back()->with('message', 'Basket updated.');
+    }
+     
 }

@@ -82,14 +82,42 @@ class OrderController extends Controller
     }
 
     // Return an order
-    function returnOrder($id, $product_id){
+    function returnOrderItem($id, $product_id){
+        $order_status = Order::find($id)->status->status;
+
+        if($order_status != 'Complete'){
+            return back()->with([
+                'status' => 'error',
+                'message' => 'Cannot return item, order still processing.'
+            ]);
+        } else {            
+            $order = Order::find($id);
+            $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Processing Return')->first()->id]);
+            $order->save();
+            $order->touch();
+            return back()->with([
+                'status' => 'success',
+                'message' => 'Return request sent. Please wait for confirmation.'
+            ]);
+        }
+    }
+
+    // Cancel a return request
+    function cancelReturnOrderItem($id, $product_id){
         $order = Order::find($id);
-        $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Processing Return')->first()->id]);
-        $order->save();
-        $order->touch();
-        return back()->with([
-            'status' => 'success',
-            'message' => 'Return request sent. Please wait for confirmation.'
-        ]);
+        if ($order->products->find($product_id)->orderProductStatus->first()->status == 'Processing Return')  {
+            $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Complete')->first()->id]);
+            $order->save();
+            $order->touch();
+            return back()->with([
+                'status' => 'success',
+                'message' => 'Return request cancelled.'
+            ]);
+        } else {
+            return back()->with([
+                'status' => 'error',
+                'message' => 'Cannot cancel return request, return already processed.'
+            ]);   
+        }
     }
 }
