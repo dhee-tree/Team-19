@@ -1,4 +1,4 @@
-<div class="modal fade" id="extraModal" tabindex="-1" aria-labelledby="extraModalLabel" aria-hidden="true">
+<div class="modal fade" id="extraModal" tabindex="-1" aria-labelledby="extraModalLabel" aria-hidden="true" data-bs-backdrop="static">
 
     <!-- Is responsible for expanding the fields for the item in the inventory management system -->
 
@@ -22,15 +22,36 @@
                         <textarea class="form-control" id="description" name="description">{{ $product->description }}</textarea>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Quantity</label>
-                        @foreach ($product->warehouses as $warehouse)
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">Warehouse {{ $warehouse->id }}:</span>
-                                <input type="number" class="form-control"
-                                    name="warehouse_quantities[{{ $warehouse->id }}]"
-                                    value="{{ $product->stockAmount($warehouse->id) ?? 0 }}">
+                        <label class="form-label">Select Warehouse</label>
+                        <select class="form-select" id="warehouseSelect">
+                            <option value="" selected>Select Warehouse</option>
+                            @foreach ($warehouses as $warehouse)
+                                <option value="{{ $warehouse->id }}">{{ $warehouse->address }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div id="warehouseStock" class="mb-3">
+                        @foreach ($warehouses as $warehouse)
+                            <div id="warehouseInput_{{ $warehouse->id }}" class="warehouse-input"
+                                style="display: none;">
+                                <label for="quantity_{{ $warehouse->id }}" class="form-label">Quantity for Warehouse
+                                    {{ $warehouse->id }}</label>
+                                <input type="number" class="form-control" id="quantity_{{ $warehouse->id }}"
+                                    name="quantities[{{ $warehouse->id }}]" min="0" value="{{ $product->stockAmount($warehouse->id) }}">
                             </div>
                         @endforeach
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label class="form-label">Categories</label>
+                        <select class="form-select" name="categories[]" multiple aria-label="Select Categories">
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}"
+                                    {{ $product->categories->contains($category->id) ? 'selected' : '' }}>
+                                    {{ $category->category }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Attributes (Note: attributes are to be put in array format, so
@@ -265,6 +286,26 @@
     document.getElementById('attributeFields').addEventListener('click', function(event) {
         if (event.target.classList.contains('remove-attribute')) {
             event.target.parentElement.parentElement.remove();
+        }
+    });
+</script>
+
+<script>
+    document.getElementById('warehouseSelect').addEventListener('change', function() {
+        var warehouseId = this.value;
+        var warehouseInputs = document.querySelectorAll('.warehouse-input');
+        if (warehouseId) {
+            // Hide all warehouse inputs
+            warehouseInputs.forEach(function(input) {
+                input.style.display = 'none';
+            });
+            // Show the input for the selected warehouse
+            document.getElementById('warehouseInput_' + warehouseId).style.display = 'block';
+        } else {
+            // Hide all inputs if no warehouse is selected
+            warehouseInputs.forEach(function(input) {
+                input.style.display = 'none';
+            });
         }
     });
 </script>

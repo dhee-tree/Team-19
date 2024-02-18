@@ -169,19 +169,6 @@ abstract class Relation implements BuilderContract
     }
 
     /**
-    * Return/create a cached version of the relationship.
-    * @param DateTime $time Time before the cache updates to match database (default is 30 Seconds).
-    * @Sgy157
-    */
-    public function cache(DateTime $time = null){
-        $time = $time ?? now()->addSeconds(30)->toDateTime();
-        $parent = $this->getParent();
-        return Cache::remember($parent->getTable().'_'.$parent->id.':'.$this->getRelationName(), $time, function() {
-            return $this->get();
-        });
-    }
-
-    /**
      * Execute the query and get the first result if it's the sole matching record.
      *
      * @param  array|string  $columns
