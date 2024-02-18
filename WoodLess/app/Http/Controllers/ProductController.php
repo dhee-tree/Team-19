@@ -51,7 +51,7 @@ class ProductController extends Controller
             'product' => $product,
             'amount' => $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
-            'categories' => $product->categories()->get(),
+            'categories' => $categories,
             'productImages' => $imageUrls,
             'reviews' => $reviews,
             'similarProducts' => $similarProducts,
