@@ -3,9 +3,12 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}">
 @endsection
 
 @php
+    // Convert the $products array into a JSON string
+    $productsJson = json_encode($products);
     // Convert the $products array into a JSON string
     $productsJson = json_encode($products);
 @endphp
@@ -67,7 +70,7 @@
             </div>
             <div class="container-fluid px-5 py-4">
                 <div class="row">
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-5">
                         <div class="dataTables_length" id="user_length">
                             <label>
                                 Show
@@ -82,7 +85,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-5">
                         <div class="dataTables_filter" id="user_filter">
                             <label>
                                 Search:
@@ -91,6 +94,11 @@
                             </label>
                         </div>
                     </div>
+                    <div class="col-sm-12 col-md-2">
+                        <button type="button" class="btn btn-primary openModalButton" onclick="openAddModal()"
+                            id="openModalButton">Create Product <i class="fa-solid fa-plus"></i></button>
+                    </div>
+
                 </div>
                 <div class="card mb-4">
                     <div class="card-body px-0 pt-0 pb-2">
@@ -146,9 +154,13 @@
                                                     onclick="openEditModal({{ $product->id }})"
                                                     id="openModalButton">Edit</button>
                                             </td>
+                                            <!-- Button to trigger modal -->
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                                scope="col"><button type="button"
-                                                    class="btn btn-danger">Delete</button></td>
+                                                scope="col">
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#confirmDeleteModal"
+                                                    onclick="DeleteItemId({{ $product->id }})">Delete</button>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -159,63 +171,35 @@
             </div>
         </div>
     </div>
+
+    <!-- Delete Product Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+        aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form id="deleteForm" action="{{ route('product-delete', ['id' => ':product_id']) }}"
+                        method="POST">
+                        @csrf
+                        <input type="hidden" name="id_input" id="id_input" value="">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('js')
-
-    <!-- JavaScript to handle modal opening -->
-    <script>
-        function openInfoModal(productId) {
-            // Disable all buttons with the specified class to disable multiple spam
-            var buttons = document.querySelectorAll(".openModalButton");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].disabled = true;
-            }
-
-            $.get('/admin-panel/inventory/product-info/' + productId, function(data) {
-                $('body').append(data);
-                var modal = $('#extraModal');
-                modal.modal('show'); // Show the modal after content is appended
-
-                // Remove the modal from the DOM when it's closed
-                modal.on('hidden.bs.modal', function() {
-                    // Re-enable all buttons with the specified class when the modal is closed
-                    var buttons = document.querySelectorAll(".openModalButton");
-                    for (var i = 0; i < buttons.length; i++) {
-                        buttons[i].disabled = false;
-                    }
-
-                    modal.remove();
-                });
-            });
-        }
-    </script>
-
-    <!-- JavaScript to handle modal opening -->
-    <script>
-        function openEditModal(productId) {
-
-            // Disable all buttons with the specified class to disable multiple spam
-            var buttons = document.getElementsByClassName("openModalButton");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].disabled = true;
-            }
-
-            $.get('/admin-panel/inventory/product-edit/' + productId, function(data) {
-                $('body').append(data);
-                var modal = $('#extraModal');
-                modal.modal('show'); // Show the modal after content is appended
-
-                // Remove the modal from the DOM when it's closed
-                modal.on('hidden.bs.modal', function() {
-                    // Re-enable all buttons with the specified class when the modal is closed
-                    var buttons = document.getElementsByClassName("openModalButton");
-                    for (var i = 0; i < buttons.length; i++) {
-                        buttons[i].disabled = false;
-                    }
-                    modal.remove();
-                });
-            });
-        }
-    </script>
+    <script src="{{ asset('js/admin-panel.js') }}"></script>
 @endsection

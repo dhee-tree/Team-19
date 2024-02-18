@@ -9,17 +9,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editProductForm" method="POST" action="{{ route('product-store', ['id' => $product->id]) }}"
+                <form id="editProductForm" method="POST" action="{{ route('product-store', ['id' => -1]) }}"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="title" name="title"
-                            value="{{ $product->title }}">
+                        <input type="text" class="form-control" id="title" name="title" value="Title here">
                     </div>
                     <div class="mb-3">
                         <label for="description" class="form-label">Description</label>
-                        <textarea class="form-control" id="description" name="description">{{ $product->description }}</textarea>
+                        <textarea class="form-control" id="description" name="description">Description goes here:</textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Select Warehouse</label>
@@ -37,18 +36,16 @@
                                 <label for="quantity_{{ $warehouse->id }}" class="form-label">Quantity for Warehouse
                                     {{ $warehouse->id }}</label>
                                 <input type="number" class="form-control" id="quantity_{{ $warehouse->id }}"
-                                    name="quantities[{{ $warehouse->id }}]" min="0" value="{{ $product->stockAmount($warehouse->id) }}">
+                                    name="quantities[{{ $warehouse->id }}]" min="0"
+                                    value="0">
                             </div>
                         @endforeach
                     </div>
-
-
                     <div class="mb-3">
                         <label class="form-label">Categories</label>
                         <select class="form-select" name="categories[]" multiple aria-label="Select Categories">
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}"
-                                    {{ $product->categories->contains($category->id) ? 'selected' : '' }}>
+                                <option value="{{ $category->id }}">
                                     {{ $category->category }}</option>
                             @endforeach
                         </select>
@@ -57,82 +54,31 @@
                         <label class="form-label">Attributes (Note: attributes are to be put in array format, so
                             "data1","data2"...etc)</label>
                         <div id="attributeFields">
-                            @foreach (json_decode($product->attributes, true) as $key => $value)
-                                <div class="row mb-3">
-                                    <div class="col-auto">
-                                        <input type="text" class="form-control" name="attributes_keys[]"
-                                            placeholder="Attribute Name" value="{{ $key }}">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" name="attributes_values[]"
-                                            placeholder="Attribute Value" value="{{ $value }}">
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-danger remove-attribute">&times;</button>
-                                    </div>
-                                </div>
-                            @endforeach
+
                         </div>
                         <button type="button" class="btn btn-primary mt-2" id="addAttributeField">Add
                             Attribute</button>
                     </div>
                     <div class="mb-3">
                         <label for="cost" class="form-label">Cost</label>
-                        <input type="number" class="form-control" id="cost" name="cost"
-                            value="{{ $product->cost }}" step="any">
+                        <input type="number" class="form-control" id="cost" name="cost" value="0"
+                            step="any">
                     </div>
                     <div class="mb-3">
-                        <label for="discount" class="form-label">Discount Percentage - Discounted Price:
-                            {{ sprintf('%0.2f', round($product->cost - $product->cost * ($product->discount / 100), 2)) }}</label>
-                        <input type="number" class="form-control" id="discount" name="discount"
-                            value="{{ $product->discount }}">
-                    </div>
-                    <!-- Pre-existing Images -->
-                    <div class="mb-3">
-                        <label class="form-label">Pre-existing Images</label>
-                        <div id="preExistingImagesContainer" class="row row-cols-3 g-3">
-                            @php
-                                // Retrieve the product images from the database
-                                $productImages = explode(',', $product->images);
-
-                                foreach ($productImages as $imagePath) {
-                                    // Generate the URL for each image and add it to the $imageUrls array
-                                    $imageUrl = Storage::url($imagePath);
-                                    $imageUrls[] = $imageUrl;
-                                }
-                            @endphp
-                            @foreach ($imageUrls as $index => $image)
-                                <div class="col">
-                                    <div class="card">
-                                        <img src="{{ $image }}" alt="Pre-existing Image"
-                                            class="card-img-top img-thumbnail">
-                                        <div class="card-body">
-                                            <button type="button" class="btn btn-danger btn-sm remove-image"
-                                                data-image-index="{{ $index }}">Remove</button>
-                                            <input type="hidden" name="pre_existing_images[]"
-                                                value="{{ $image }}">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
+                        <label for="discount" class="form-label">Discount Percentage</label>
+                        <input type="number" class="form-control" id="discount" name="discount" value="0">
                     </div>
 
                     <!-- Image Upload Section -->
                     <div class="mb-3">
                         <label class="form-label">Images (Max: 5)</label>
                         <div id="imageUploadContainer">
-                            <!-- checks if pre existing images are more then 5. -->
-                            @if (count(explode(',', $product->images)) < 5)
-                                <div class="input-group"><input type="file" class="form-control mt-2"
-                                        name="images[]" accept="image/*">
-                                    <div class="btn-group mt-2">
-                                        <button type="button"
-                                            class="btn btn-secondary btn-sm unset-image">Unset</button>
-                                    </div>
+                            <div class="input-group"><input type="file" class="form-control mt-2" name="images[]"
+                                    accept="image/*">
+                                <div class="btn-group mt-2">
+                                    <button type="button" class="btn btn-secondary btn-sm unset-image">Unset</button>
                                 </div>
-                            @endif
+                            </div>
                         </div>
                         <button type="button" class="btn btn-primary mt-2" id="addImageField">Add
                             Image</button>
@@ -142,7 +88,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" form="editProductForm">Save Changes</button>
+                <button type="submit" class="btn btn-primary" form="editProductForm">Create</button>
             </div>
         </div>
     </div>
@@ -179,9 +125,6 @@
         return inputGroup;
     }
 
-    // Count the number of existing images
-    var preExistingImageCount = document.querySelectorAll('#preExistingImagesContainer img').length;
-
     document.getElementById('addImageField').addEventListener('click', function() {
         var imageUploadContainer = document.getElementById('imageUploadContainer');
 
@@ -192,7 +135,7 @@
             if (!lastInput || lastInput.files.length > 0) { // Check if last input is not set or has a file
                 var newInput = createImageInput();
                 imageUploadContainer.appendChild(newInput);
-                if (imageInputs.length + preExistingImageCount === 4) {
+                if (imageInputs.length === 4) {
                     document.getElementById('addImageField').disabled = true;
                     document.getElementById('addImageField').innerText = 'Images Full';
                 }
@@ -226,21 +169,27 @@
             inputFile.value = ''; // Clear the file input
         }
     });
-
-    // Event listener for removing pre-existing images
-    document.querySelectorAll('#preExistingImagesContainer .remove-image').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            this.closest('.col').remove();
-            // Enable the "Add Image" button
-            document.getElementById('addImageField').disabled = false;
-            document.getElementById('addImageField').innerText = 'Add Image';
-            preExistingImageCount--;
-        });
-    });
 </script>
 
-
-
+<script>
+    document.getElementById('warehouseSelect').addEventListener('change', function() {
+        var warehouseId = this.value;
+        var warehouseInputs = document.querySelectorAll('.warehouse-input');
+        if (warehouseId) {
+            // Hide all warehouse inputs
+            warehouseInputs.forEach(function(input) {
+                input.style.display = 'none';
+            });
+            // Show the input for the selected warehouse
+            document.getElementById('warehouseInput_' + warehouseId).style.display = 'block';
+        } else {
+            // Hide all inputs if no warehouse is selected
+            warehouseInputs.forEach(function(input) {
+                input.style.display = 'none';
+            });
+        }
+    });
+</script>
 
 
 <script>
@@ -286,26 +235,6 @@
     document.getElementById('attributeFields').addEventListener('click', function(event) {
         if (event.target.classList.contains('remove-attribute')) {
             event.target.parentElement.parentElement.remove();
-        }
-    });
-</script>
-
-<script>
-    document.getElementById('warehouseSelect').addEventListener('change', function() {
-        var warehouseId = this.value;
-        var warehouseInputs = document.querySelectorAll('.warehouse-input');
-        if (warehouseId) {
-            // Hide all warehouse inputs
-            warehouseInputs.forEach(function(input) {
-                input.style.display = 'none';
-            });
-            // Show the input for the selected warehouse
-            document.getElementById('warehouseInput_' + warehouseId).style.display = 'block';
-        } else {
-            // Hide all inputs if no warehouse is selected
-            warehouseInputs.forEach(function(input) {
-                input.style.display = 'none';
-            });
         }
     });
 </script>

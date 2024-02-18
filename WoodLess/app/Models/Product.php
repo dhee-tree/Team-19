@@ -184,22 +184,5 @@ class Product extends Model
         return $truncatedDescription;
     }
 
-    /**
-     * Fill or update the product attributes.
-     *
-     * @param array $attributes
-     * @param int|null $id
-     * @return Product
-     */
-    public static function fillOrUpdate(array $attributes, $id = null)
-    {
-        // If an ID is provided, find the existing product
-        $product = $id ? static::findOrFail($id) : new static();
 
-        // Fill or update the attributes
-        $product->fill($attributes);
-        $product->save();
-
-        return $product;
-    }
 }
