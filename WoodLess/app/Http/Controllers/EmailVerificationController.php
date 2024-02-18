@@ -17,8 +17,12 @@ class EmailVerificationController extends Controller
             $verificationCode->is_verified = true;
             $verificationCode->save();
             
-            // Redirect to the login page with a success message
-            return redirect('login')->with('message', "Your email has been verified successfully!");
+            // Redirect to the login or home page with a success message
+            if (auth()->check()) {
+                return redirect('home')->with('message', "Your email has been verified successfully!");
+            } else {
+                return redirect('login')->with('message', "Your email has been verified successfully!");
+            }
         } else {
             // If the verification code record is not found, redirect back with an error message
             return redirect()->back()->with('error', 'Invalid verification code.');
