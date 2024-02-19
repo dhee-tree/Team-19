@@ -12,8 +12,8 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
-
-
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,13 +62,26 @@ Route::get('/products', [ProductController::class,'index'])->name('products.filt
 Route::view('/admin-panel', 'admin-panel');
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //admin panel pages
 Route::view('/admin-panel/orders', 'orders-admin');
 Route::view('/admin-panel/tickets', 'tickets-admin');
-Route::view('/admin-panel/users', 'users-admin');
-Route::view('/admin-panel/inventory', 'inventory');
+Route::get('/admin-panel/users', [AdminController::class,'users']);
+Route::get('/admin-panel/inventory', [AdminController::class,'inventory'])->name('admin-panel.inventory');
+
+//The additional information modal to expand fields in inventory managment
+Route::get('/admin-panel/inventory/product-info/{id}', [AdminController::class,'ProductInfo'])->name('components.products-info');
+//editing the products modal
+Route::get('/admin-panel/inventory/product-edit/{id}', [AdminController::class,'ProductEdit'])->name('components.products-edit');
+//The modal to open the add modal for products
+Route::get('/admin-panel/inventory/product-add', [AdminController::class,'ProductAdd'])->name('components.products-add');
+//stores products, either edits or creates a new ones
+Route::post('/admin-panel/inventory/store/{id}', [AdminController::class,'ProductStore'])->name('product-store');
+//stores products, either edits or creates a new ones
+Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class,'ProductDelete'])->name('product-delete');;
+//The additional information modal to expand fields in user admin panel
+Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.users-info');//saving to database, either edited or a new product
 
 //user panel pages
 Route::view('/user-panel/tickets', 'tickets-user');

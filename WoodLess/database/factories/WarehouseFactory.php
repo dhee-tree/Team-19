@@ -17,10 +17,10 @@ class WarehouseFactory extends Factory
     public function definition(): array
     {
         return [
-            'address' => fake()->streetAddress(),
-            'address_2' => fake()->streetAddress(),
-            'postcode' => fake()->postcode(),
-            'city' => fake()->city(),
+            'address' => $this->faker->streetAddress(),
+            'address_2' => $this->faker->streetAddress(),
+            'postcode' => $this->faker->postcode(),
+            'city' => $this->faker->city(),
         ];
     }
 }

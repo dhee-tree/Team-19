@@ -7,6 +7,7 @@ use App\Models\Category;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\CategoryController;
 
 class ProductController extends Controller
@@ -34,13 +35,24 @@ class ProductController extends Controller
         ]
         )->paginate(8)->withQueryString()->fragment('reviews');
 
+        // Retrieve the product images from the database
+        $productImages = explode(',', $product->images);
+
+        foreach ($productImages as $imagePath) {
+            // Generate the URL for each image and add it to the $imageUrls array
+            $imageUrl = Storage::url($imagePath);
+            $imageUrls[] = $imageUrl;
+        }
+
+        //dd($imageUrls);
+
         return view('products.show', [
             'user' => $user,
             'product' => $product,
-            'amount'=> $product->stockAmount(),
+            'amount' => $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
             'categories' => $categories,
-            'productImages' => explode(',', $product->images), //EDIT IMAGES IMAGE PATH HERE 
+            'productImages' => $imageUrls,
             'reviews' => $reviews,
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
@@ -87,7 +99,8 @@ class ProductController extends Controller
             'ratings' => $ratings,
             'color' => json_decode($color),
             'minCost' => (float)$minCost,
-            'maxCost' => (float)$maxCost
+            'maxCost' => (float)$maxCost,
+            'search' => $search_text
         ];
 
         $products = Product::latest()->filter($data)->get();
@@ -95,17 +108,16 @@ class ProductController extends Controller
         
 
     }
-    
+
     //gets three random categories and products  for home page
     public function getThreeRandom()
     {
         $products = Product::all();
-        $categories = Category::all(); 
-    
+        $categories = Category::all();
+
         return view('welcome', [
             'products' => $products,
-            'categories' => $categories,  
+            'categories' => $categories,
         ]);
     }
-
 }

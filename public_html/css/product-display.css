@@ -1,7 +1,3 @@
-#average-rating, #productCarousel .card{
-    transition: 0.3s ease-in-out;
-}
-
 .product-badge{
     background-color: #1d1912;
     color: white;
@@ -9,26 +5,18 @@
     position: absolute;
 }
 
-.attribute-color, .attribute-color:checked, .attribute-color:focus{
+.attribute-color, .attribute-color:checked{
     transform:scale(1.5);
     accent-color: currentColor;
     cursor: pointer;
     background-color: currentColor;
     border-color:color-mix(in srgb, currentColor 70%, black);
-    transition: all 0.2s;
 }
 
-.attribute-color:checked, .attribute-color:focus{
-    opacity: 80%;
-    border: currentColor;
+.attribute-color:checked{
+    opacity: 40%;
     background: currentColor;
 }
-
-
-#average-rating:hover{
-    transform: rotate(3deg);
-}
-
 
 .product-submit, .category-button{
     background-color: #1d1912;
