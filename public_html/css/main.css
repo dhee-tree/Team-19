@@ -11,7 +11,10 @@ footer{
 }
 main{
     min-height: 100vh;
+    margin:5vh;
 }
+
+
 
 /*
 .btn{
