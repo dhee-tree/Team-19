@@ -24,14 +24,14 @@
                             aria-labelledby="SortAccordion-headingPrice">
                             <div class="accordion-body">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="pricehighlow"
+                                    <input class="form-check-input" type="radio" id="pricehighlow"
                                         name="sortprice" value="pricehighlow">
                                     <label class="form-check-label" for="pricehighlow">
                                         High to Low
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="pricelowhigh"
+                                    <input class="form-check-input" type="radio" id="pricelowhigh"
                                         name="sortprice" value="pricelowhigh">
                                     <label class="form-check-label" for="pricelowhigh">
                                         Low to High
@@ -54,15 +54,15 @@
                             aria-labelledby="SortAccordion-headingRating">
                             <div class="accordion-body">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="ratinghighlow"
+                                    <input class="form-check-input" type="radio" id="ratinghighlow"
                                         name="sortRating" value="ratinghighlow">
                                     <label class="form-check-label" for="ratinghighlow">
                                         High to Low
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="ratinglowhigh"
-                                        name="sortrating" value="ratinglowhigh">
+                                    <input class="form-check-input" type="radio" id="ratinglowhigh"
+                                        name="sortRating" value="ratinglowhigh">
                                     <label class="form-check-label" for="ratinglowhigh">
                                         Low to High
                                     </label>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="SortAccordion-headingDiscount">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed" type="radio" data-bs-toggle="collapse"
                                 data-bs-target="#SortAccordion-collapseRating" aria-expanded="false"
                                 aria-controls="SortAccordion-collapseRating">
                                 Discount
@@ -82,14 +82,14 @@
                             aria-labelledby="SortAccordion-headingDiscount">
                             <div class="accordion-body">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="discounthighlow"
+                                    <input class="form-check-input" type="radio" id="discounthighlow"
                                         name="sortdiscount" value="ratinghighlow">
                                     <label class="form-check-label" for="discounthighlow">
                                         High to Low
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="discountlowhigh"
+                                    <input class="form-check-input" type="radio" id="discountlowhigh"
                                         name="sortdiscount" value="discountlowhigh">
                                     <label class="form-check-label" for="discountlowhigh">
                                         Low to High
