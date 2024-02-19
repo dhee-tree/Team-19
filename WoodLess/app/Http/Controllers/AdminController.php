@@ -153,10 +153,9 @@ class AdminController extends Controller
 
             // Get the pre-existing images from the request
             $preExistingImages = $request->input('pre_existing_images', []);
-            
+
             if (empty($preExistingImages)) {
                 $product->images = '';
-                
             } else {
                 // Get the current images of the product
                 $currentImagesArray = explode(',', $product->images);
@@ -178,7 +177,7 @@ class AdminController extends Controller
                 // Convert the array back to a string
                 $product->images = implode(',', $currentImagesArray);
             }
-            
+
 
 
             // Retrieve the existing images from the product model
@@ -202,10 +201,19 @@ class AdminController extends Controller
                     //dd($imageName);
                     // Store the image in the specified directory
                     $path = Storage::putFileAs('public/images/products/' . $product->id, $image, $imageName);
+                    dd(Storage::url('images/products/1/' . $imageName));
+                    dd($path);
+                    dd(Storage::url($path));
+                    $test = Storage::url($path);
+
+                    dd($test);
                     //dd($path);
                     // Save the image path
                     $imagePaths[] = $path;
                 }
+
+                //"public/images/products/1/a304ab50b085900a2e51cbfd8f44a8a8.png" // app\Http\Controllers\AdminController.php:205
+                //"/storage/images/products/1/34aa6096d7e9c519b3dc4f6fb80ec9c0.png" // app\Http\Controllers\AdminController.php:205
 
                 // Save the image paths in the database
                 $product->images = implode(',', $imagePaths);
