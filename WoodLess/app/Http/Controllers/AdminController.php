@@ -201,7 +201,7 @@ class AdminController extends Controller
                     $imageName = md5(uniqid() . microtime()) . '.' . $image->getClientOriginalExtension();
                     //dd($imageName);
                     // Store the image in the specified directory
-                    $path = $image->storeAs('images/products/' . $product->id, $imageName, 'public');
+                    $path = Storage::putFileAs('public/images/products/' . $product->id, $image, $imageName);
                     //dd($path);
                     // Save the image path
                     $imagePaths[] = $path;
