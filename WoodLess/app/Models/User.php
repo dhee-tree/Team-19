@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,12 +29,18 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
     protected $fillable = [
         'first_name',
         'last_name',
         'phone_number',
         'email',
         'password',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed'
     ];
 
     /**
@@ -58,10 +63,7 @@ class User extends Authenticatable
      *
      * @var array<string, string>
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
+    
 
     /**
      * Get the reviews associated with the user.
@@ -103,9 +105,11 @@ class User extends Authenticatable
         return $this->hasOne(Basket::class);
     }
 
-
-    public function isAdmin()
-    {
+    public function emailVerificationCodes(){
+        return $this->belongsToMany(EmailVerificationCode::class, 'email_verification_codes', 'user_id','code')->withTimeStamps();
+    }
+    
+    public function isAdmin(){
         return $this->makeVisible('is_admin')->is_admin;
     }
 }

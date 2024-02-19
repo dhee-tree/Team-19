@@ -9,14 +9,21 @@
 @endsection
 
 @section('content')
-
-    <div class="container-fluid">
-
+    <div class="container-fluid">        
         <section id="Slogan">
             <header>
                 <div class="container-fluid" style="margin-top:2.5rem;">
                     <div class="row justify-content-md-center">
                         <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                            @if(session('message'))
+                                <div class="alert alert-success pt-2">
+                                    {{ session('message') }}
+                                </div>
+                            @elseif(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <p class="display-2 mb-2 mb-md-3 text-center">Making a bluer and greener earth</p>
                         </div>
                     </div>

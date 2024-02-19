@@ -12,6 +12,7 @@ use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 
@@ -28,6 +29,7 @@ use App\Http\Controllers\HomeController;
 
 
 Route::view('/about', 'about');
+Route::get('/verify/{code}', [EmailVerificationController::class, 'verifyUserEmail'])->name('user.verify');
 
 Route::view('/categories', 'categories');
 
@@ -47,7 +49,7 @@ Route::delete('/basket/{basket}', [BasketController::class,'destroy'])->name('ba
 Route::put('/update-basket/{basket}', [BasketController::class,'update'])->name('basket.update');
 
 // Checkout URLS
-Route::get('/checkout', [CheckoutController::class,'show']);
+Route::get('/checkout', [CheckoutController::class,'show'])->middleware('auth','VerifyEmailForCheckout');
 Route::post('/checkout/success', [OrderController::class,'store'])->name('checkout.store')->middleware('auth');
 
 //Store single review

@@ -5,10 +5,17 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use App\Models\Basket;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerificationMail;
+use App\Models\EmailVerificationCode;
+
+//use Illuminate\Auth\Events\Registered;
+
 
 class RegisterController extends Controller
 {
@@ -67,6 +74,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $verificationCode = \Illuminate\Support\Str::random(40);
+
         $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
@@ -75,6 +84,20 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        // Store verification code for a user
+        $verify_code = EmailVerificationCode::create([
+            'user_id' => $user->id,
+            'code' => $verificationCode,
+        ]);
+
+        //Send verification email to user
+        Mail::to($data['email'])->send(new VerificationMail($verificationCode, $data['first_name']));
+
+        // Create a new basket for the user
+        Basket::create([
+            'user_id' => $user->id,
+        ]);
+
         return $user;
-    }
+    }    
 }
