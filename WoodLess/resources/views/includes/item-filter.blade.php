@@ -8,6 +8,99 @@
                 <h5 class="card-title">Filter</h5>
                 <div class="accordion" id="FilterAccordian">
                     <div class="accordion-item">
+                      
+                <div class="accordion" id="SortAccordion">
+                      <!-- Sort Section -->
+                      <!-- price -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="SortAccordion-headingPrice">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#SortAccordion-collapsePrice" aria-expanded="false"
+                                aria-controls="SortAccordion-collapsePrice">
+                                Price
+                            </button>
+                        </h2>
+                        <div id="SortAccordion-collapsePrice" class="accordion-collapse collapse"
+                            aria-labelledby="SortAccordion-headingPrice">
+                            <div class="accordion-body">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pricehighlow"
+                                        name="sortprice" value="pricehighlow">
+                                    <label class="form-check-label" for="pricehighlow">
+                                        High to Low
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="pricelowhigh"
+                                        name="sortprice" value="pricelowhigh">
+                                    <label class="form-check-label" for="pricelowhigh">
+                                        Low to High
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="SortAccordion-headingRating">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#SortAccordion-collapseRating" aria-expanded="false"
+                                aria-controls="SortAccordion-collapseRating">
+                                Rating
+                            </button>
+                        </h2>
+                        <div id="SortAccordion-collapseRating" class="accordion-collapse collapse"
+                            aria-labelledby="SortAccordion-headingRating">
+                            <div class="accordion-body">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="ratinghighlow"
+                                        name="sortRating" value="ratinghighlow">
+                                    <label class="form-check-label" for="ratinghighlow">
+                                        High to Low
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="ratinglowhigh"
+                                        name="sortrating" value="ratinglowhigh">
+                                    <label class="form-check-label" for="ratinglowhigh">
+                                        Low to High
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="SortAccordion-headingDiscount">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#SortAccordion-collapseRating" aria-expanded="false"
+                                aria-controls="SortAccordion-collapseRating">
+                                Discount
+                            </button>
+                        </h2>
+                        <div id="SortAccordion-collapseRating" class="accordion-collapse collapse"
+                            aria-labelledby="SortAccordion-headingDiscount">
+                            <div class="accordion-body">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="discounthighlow"
+                                        name="sortdiscount" value="ratinghighlow">
+                                    <label class="form-check-label" for="discounthighlow">
+                                        High to Low
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="discountlowhigh"
+                                        name="sortdiscount" value="discountlowhigh">
+                                    <label class="form-check-label" for="discountlowhigh">
+                                        Low to High
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    
+                
                         <h2 class="accordion-header" id="FilterAccordian-headingCategories">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#FilterAccordian-collapseCategories" aria-expanded="true"
@@ -124,92 +217,7 @@
                         </div>
                     </div>
 
-                    <!--
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="FilterAccordian-headingFinish">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#FilterAccordian-collapseFinish" aria-expanded="false"
-                                aria-controls="FilterAccordian-collapseFinish">
-                                Finish
-                            </button>
-                        </h2>
-                        <div id="FilterAccordian-collapseFinish" class="accordion-collapse collapse"
-                            aria-labelledby="FilterAccordian-headingFinish">
-                            <div class="accordion-body">
-
-                                <div class="mb-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="Plastic">
-                                        <label class="form-check-label" for="Plastic">
-                                            Plastic
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="Wood">
-                                        <label class="form-check-label" for="Wood">
-                                            Wood
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="Rough">
-                                        <label class="form-check-label" for="Rough">
-                                            Rough
-                                        </label>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="FilterAccordian-headingSize">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#FilterAccordian-collapseSize" aria-expanded="false"
-                                aria-controls="FilterAccordian-collapseSize">
-                                Size
-                            </button>
-                        </h2>
-                        <div id="FilterAccordian-collapseSize" class="accordion-collapse collapse"
-                            aria-labelledby="FilterAccordian-headingSize">
-                            <div class="accordion-body">
-
-                                <div class="mb-3">
-                                    <label for="width" class="form-label">Width</label>
-                                    <input type="range" class="form-range" id="width">
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="FilterAccordian-headingPrice">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#FilterAccordian-collapsePrice" aria-expanded="false"
-                                aria-controls="FilterAccordian-collapsePrice">
-                                Cost
-                            </button>
-                        </h2>
-                        <div id="FilterAccordian-collapsePrice" class="accordion-collapse collapse"
-                            aria-labelledby="FilterAccordian-headingPrice">
-                            <div class="accordion-body">
-
-                                <div class="mb-3">
-                                    <label for="minimumPrice" class="form-label">Minimum Cost</label>
-                                    <input type="range" class="form-range" id="minimumPrice">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="maximumPrice" class="form-label">Maximum Cost</label>
-                                    <input type="range" class="form-range" id="maximumPrice">
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                -->
+                    
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="FilterAccordian-headingRating">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -303,13 +311,7 @@
                         </div>
                     </div>
                 </div>
-                <!--
-                <div class="input-group input-group-sm mb-3" style="margin-top:1.5rem">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Color</span>
-                    <input type="text" class="form-control" aria-label="Color input"
-                        aria-describedby="inputGroup-sizing-sm">
-                </div>
-                     -->
+               
                 <button type="submit" class="btn btn-primary" style="margin-top:1.5rem">Submit</button>
 
             </div>
