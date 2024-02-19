@@ -201,12 +201,7 @@ class AdminController extends Controller
                     //dd($imageName);
                     // Store the image in the specified directory
                     $path = Storage::putFileAs('public/images/products/' . $product->id, $image, $imageName);
-                    dd(Storage::url('images/products/1/' . $imageName));
-                    dd($path);
-                    dd(Storage::url($path));
-                    $test = Storage::url($path);
 
-                    dd($test);
                     //dd($path);
                     // Save the image path
                     $imagePaths[] = $path;
