@@ -82,50 +82,67 @@ class Product extends Model
     }
 
     //filters the product
-    public function scopeFilter($query, array $filters)
-    {
-           // Search
-           if ($filters['search'] ?? false) {
-            $searchText = $filters['search'];
-            $query->where(function ($searchQuery) use ($searchText) {
-                $searchQuery->where('title', 'like', '%' . $searchText . '%')
-                            ->orWhere('tags', 'like', '%' . $searchText . '%');
-            });
-        }
-        //Category
-        if ($filters['categories'] ?? false) {
-            $category = $filters['categories'];
+  
+public function scopeFilter($query, array $filters)
+{
+    // Search
+    if ($searchText = $filters['search'] ?? false) {
+        $query->where(function ($searchQuery) use ($searchText) {
+            $searchQuery->where('title', 'like', '%' . $searchText . '%')
+                        ->orWhere('tags', 'like', '%' . $searchText . '%');
+        });
+    }
 
-            $query->whereHas('categories', function ($categoryQuery) use ($category) {
-                $categoryQuery->where('category', $category);
-            });
-        
-        //ratings
-        if ($filters['ratings'] ?? false) {
-            $ratings = (array)$filters['ratings'];
+    // Category
+    if ($category = $filters['categories'] ?? false) {
+        $query->whereHas('categories', function ($categoryQuery) use ($category) {
+            $categoryQuery->where('category', $category);
+        });
+    }
 
-            $query->whereHas('reviews', function ($reviewQuery) use ($ratings) {
-                foreach ($ratings as $rating) {
-                    $reviewQuery->orHavingRaw('coalesce(avg(rating), 0) >= ?', [$rating]);
-                }
-            });
-        }
-        //Color
-        if ($filters['color'] ?? false) {
-            $query->whereJsonContains('attributes->color', $filters['color']);
-        }
-        //Price
-        if (($filters['minCost'] ?? null) !== null && ($filters['maxCost'] ?? null) !== null) {
-            $query->whereBetween('cost', [$filters['minCost'], $filters['maxCost']]);
-        } elseif ($filters['minCost'] ?? null) {
-            $query->where('cost', '>=', $filters['minCost']);
-        } elseif ($filters['maxCost'] ?? null) {
-            $query->where('cost', '<=', $filters['maxCost']);
+    // Ratings
+    if ($ratings = $filters['ratings'] ?? false) {
+        $query->whereHas('reviews', function ($reviewQuery) use ($ratings) {
+            foreach ($ratings as $rating) {
+                $reviewQuery->havingRaw('coalesce(avg(rating), 0) >= ?', [$rating]);
+            }
+        });
+    }
+
+    // Color
+    if ($color = $filters['color'] ?? false) {
+        $query->whereJsonContains('attributes->color', $color);
+    }
+
+    // Price
+    if (isset($filters['minCost'])) {
+        $query->where('cost', '>=', $filters['minCost']);
+    }
+
+    if (isset($filters['maxCost'])) {
+        $query->where('cost', '<=', $filters['maxCost']);
+    }
+
+    // Sorting
+    if (isset($filters['sort_by'])) {
+        $sortBy = $filters['sort_by'];
+        if ($sortBy === 'price_high_low') {
+            $query->orderByDesc('cost');
+        } elseif ($sortBy === 'price_low_high') {
+            $query->orderBy('cost');
+        } elseif ($sortBy === 'rating_high_low') {
+            $query->orderByDesc('rating'); 
+        } elseif ($sortBy === 'rating_low_high') {
+            $query->orderBy('rating'); 
+        } elseif ($sortBy === 'discount_high_low') {
+            $query->orderByDesc('discount');
+        } elseif ($sortBy === 'discount_low_high') {
+            $query->orderBy('discount');
         }
     }
-        //Rating
 
-           }
+    return $query;
+}
 
     /**
      * Returns the order status associated with the product.
