@@ -69,7 +69,7 @@
                                 href="{{ url('/about') }}">About us</a>
                         </li>
                     </ul>
-
+                    
                     <li class="d-flex ms-2">
                         <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas"
                          role="button" class="nav-link">
@@ -113,7 +113,7 @@
                         <p class="ps-4" style="color: #a9a9a9;">© 2023</p>
                     </div>
                     
-                    <div class="col" id="basket">
+                    <div class="col" id="basket-offcanvas-div">
                         <div class="offcanvas offcanvas-end" tabindex="-1" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
                             <div class="offcanvas-header">
                               <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
