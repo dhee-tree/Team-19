@@ -91,7 +91,7 @@ class Product extends Model
                 $searchQuery->where('title', 'like', '%' . $searchText . '%')
                             ->orWhere('tags', 'like', '%' . $searchText . '%');
             });
-
+        }
         //Category
         if ($filters['categories'] ?? false) {
             $category = $filters['categories'];
@@ -99,7 +99,7 @@ class Product extends Model
             $query->whereHas('categories', function ($categoryQuery) use ($category) {
                 $categoryQuery->where('category', $category);
             });
-        }
+        
         //ratings
         if ($filters['ratings'] ?? false) {
             $ratings = (array)$filters['ratings'];
