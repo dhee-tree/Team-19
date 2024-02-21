@@ -53,10 +53,10 @@
                             <div class="d-flex flex-row justify-content-between">
                                 <div class="">
                                     <p class="card-text"><small class="text-body-secondary">
-                                        @if($review->created_at->diffInDays() == (0 || 1))
-                                        Today
+                                        @if($review->created_at->diffInDays() <= 1)
+                                            {{$review->created_at->diffInHours()}} Hours Ago
                                         @else
-                                        {{$review->created_at->diffInDays()}} Days Ago 
+                                            {{$review->created_at->diffInDays()}} Days Ago 
                                         @endif
                                         @if($review->created_at != $review->updated_at)
                                         , Edited 
@@ -189,8 +189,8 @@
                         <div class="d-flex flex-row justify-content-between">
                             <div class="">
                                 <p class="card-text"><small class="text-body-secondary">
-                                    @if($review->created_at->diffInDays() == (0 || 1))
-                                        Today
+                                    @if($review->created_at->diffInDays() <= 1)
+                                        {{$review->created_at->diffInHours()}} Hours Ago
                                     @else
                                     {{$review->created_at->diffInDays()}} Days Ago 
                                     @endif
