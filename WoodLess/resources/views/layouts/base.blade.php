@@ -34,16 +34,19 @@
 
 <body class="antialiased">
     <div class="">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #1d1912">
             <div class="container-fluid">
                 <a class="navbar-brand" style="margin-left:4px" href="#"><img class="logo"
-                        src="{{ asset('images\logo.png') }}" alt="Woodless Logo" /></a>
+                        src="{{ asset('images\logo.png') }}" alt="Woodless Logo" />
+                </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+                <div class="collapse navbar-collapse" id="navbarToggler">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page"
@@ -66,26 +69,30 @@
                                 href="{{ url('/about') }}">About us</a>
                         </li>
                     </ul>
-                    <form method="GET" action=" {{ route('products.filter') }}" class="d-flex" role="search">
-                        <input class="form-control me-1" name ="search" type="search" placeholder="search"
-                            aria-label="search">
-                        <button class="btn btn-outline-success" style="margin-right: 25px;"
-                            type="submit">Search</button>
-                    </form>
-                    <li class="d-flex">
-                        <a class="nav-link" href="{{ url('basket') }}"><i class="fa-solid fa-basket-shopping fa-xl"
-                                style="color:#e8e8e8; margin-right:20px;"></i></a>
-                    </li>
-                    <li class="d-flex">
+
+                    <li class="d-flex ms-2">
+                        <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas"
+                         role="button" class="nav-link">
+                            <small class="badge rounded-pill badge-notification bg-danger">+10</small>
+                            <i class="me-2 fa-solid fa-basket-shopping fa-xl" style="color:#e8e8e8;"></i>
+                        </a>
+
                         @guest
-                            <a class="nav-link" href="{{ url('login') }}"><i
-                                    class="fa-solid fa-unlock fa-flip-horizontal fa-xl"
-                                    style="color: #e8e8e8; margin-right:10px;"></i></a>
+                        <a class="nav-link" href="{{ url('login') }}"><i
+                                class="fa-solid fa-unlock fa-flip-horizontal fa-xl"
+                                style="color: #e8e8e8; margin-right:10px;"></i></a>
                         @else
                             <a class="nav-link" href="{{ url('user-panel') }}"> <i class="fa-solid fa-user fa-xl"
                                     style="color:#e8e8e8; margin-right:10px;"></i></a>
                         @endguest
                     </li>
+
+                    <form method="GET" action=" {{ route('products.filter') }}" class="d-flex justify-content-center" role="search">
+                        <input type="search" name ="search" placeholder="Search Woodless..." class="rounded-pill form-control"/>
+                        <button class="ms-1 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>
@@ -105,7 +112,29 @@
                         </a>
                         <p class="ps-4" style="color: #a9a9a9;">© 2023</p>
                     </div>
-                    <div class="col">
+                    
+                    <div class="col" id="basket">
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
+                            <div class="offcanvas-header">
+                              <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                              <div>
+                                Something is cooking... <a href="{{ url('basket') }}">Full Basket</a>
+                              </div>
+                              <div class="dropdown mt-3">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                  Dropdown button
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="#">Action</a></li>
+                                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                              </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col">
                         <h5 class="fw-bold" style="color: #e8e8e8">Site Map</h5>
