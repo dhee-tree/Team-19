@@ -69,11 +69,11 @@
                                 href="{{ url('/about') }}">About us</a>
                         </li>
                     </ul>
-                    
+
                     <li class="d-flex ms-2">
                         <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas"
                          role="button" class="nav-link">
-                            <small class="badge rounded-pill badge-notification bg-danger">+10</small>
+                            <small class="badge rounded-pill badge-notification bg-danger">@auth {{Auth()->user()->basket()->first()->productAmount()}} @endauth</small>
                             <i class="me-2 fa-solid fa-basket-shopping fa-xl" style="color:#e8e8e8;"></i>
                         </a>
 
