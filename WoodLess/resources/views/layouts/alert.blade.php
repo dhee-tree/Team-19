@@ -1,6 +1,6 @@
 @if(session('status'))
-<div class="container">
-    <div class="mt-4 alert alert-{{session('status')}} alert-dismissible fade show" role="alert">
+<div class="container" style="margin-top: -20px">
+    <div class="mt-4 mb-2 alert alert-{{session('status')}} alert-dismissible fade show" role="alert">
         @switch(session('status'))
             @case('success')
                 <i class="fa-solid fa-xs fa-check"></i>
@@ -25,6 +25,5 @@
         {{session('message')}}
         <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <hr class="mt-0">
 </div>
 @endif
