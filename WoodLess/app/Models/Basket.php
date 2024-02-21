@@ -25,7 +25,7 @@ class Basket extends Model
     }
 
     /**
-     * Returns the amount of products in a basket, including amount.
+     * Returns the amount of products in a basket, including quantity.
      */
     public function productAmount(){
         return $this->products()->sum('amount');
