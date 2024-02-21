@@ -117,10 +117,7 @@ trait AuthenticatesUsers
 
         return $request->wantsJson()
                     ? new JsonResponse([], 204)
-                    : redirect()->intended($this->redirectPath())->with([
-                        'status' => 'success',
-                        'message' => 'Logged in successfully.'
-                    ]);
+                    : redirect()->intended($this->redirectPath());
     }
 
     /**
@@ -180,10 +177,7 @@ trait AuthenticatesUsers
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('/')->with([
-                'status' => 'success',
-                'message' => 'You have been logged out.'
-            ]);
+            : redirect('/');
     }
 
     /**
