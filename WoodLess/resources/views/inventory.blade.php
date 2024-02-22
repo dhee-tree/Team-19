@@ -64,7 +64,7 @@
                     <h1 class="page-title">Products</h1>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-5">
                         <div class="dataTables_length" id="length_dropdown">
                             <label>
                                 Show
@@ -86,7 +86,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-12 col-md-4">
                         <div class="dataTables_filter" id="filter">
                             <label>
                                 Search:
@@ -94,6 +94,10 @@
                                     aria-controls="search">
                             </label>
                         </div>
+                    </div>
+                    <div class="col-sm-12 col-md-3">
+                        <button type="button" class="btn btn-primary openModalButton" onclick="openAddModal()"
+                            id="openModalButton">Create Product <i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
                 <div class="card mb-4">
