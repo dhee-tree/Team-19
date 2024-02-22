@@ -16,11 +16,12 @@
                         <div class="checkout-item">
                             {{ $product->pivot->amount }} x
                             <a class="" href="/product/{{ $product->id }}">{{ $product->title }}</a>
-                            @foreach(json_decode($product->pivot->attributes) as $key => $value)
-                                @if ($key == "colour") 
-                                <span class="colour-square" style="background-color: {{ $value }};"></span>
+                            <img src="{{ Storage::url(explode(',', $product->images)[0]) }}" alt="product image" width="60" height="60">
                         </div>
                         <div class="checkout-item">
+                            @foreach(json_decode($product->pivot->attributes) as $key => $value)
+                                @if ($key == "colour") 
+                                    <span class="colour-square" style="background-color: {{ $value }};"></span>
                                 @else
                                     <span>{{ $key }}: {{ $value }}</span>
                                 @endif
@@ -28,10 +29,14 @@
                         </div>
                         <div class="checkout-item">
                             @if($product->discount > 0)
+                                <span class><s>£{{ $product->cost }}</s> - </span>
                                 <?php $discountPrice = round($product->cost - ($product->cost * ($product->discount / 100)), 2) ?>
-                                <p>£{{ $discountPrice }}</p>
+                                <span>£{{ $discountPrice }}</span>
+                                <hr>
+                                <p>Total: £{{ $product->pivot->amount * $discountPrice }}</p>
                             @else
                                 <p>£{{ $product->cost }}</p>
+                                Total: £{{ $product->pivot->amount * $product->cost }}
                             @endif
                         </div>
                     </div>
