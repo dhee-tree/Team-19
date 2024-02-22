@@ -154,6 +154,7 @@ class AdminController extends Controller
             // Get the pre-existing images from the request
             $preExistingImages = $request->input('pre_existing_images', []);
 
+            //checks if array is empty to delete images if so.
             if (empty($preExistingImages)) {
                 $product->images = '';
 
@@ -166,21 +167,38 @@ class AdminController extends Controller
 
 
 
-                // Iterate over the current images
                 foreach ($currentImagesArray as $currentImage) {
-                    // Check if the current image is not included in the pre-existing images sent in the request
-                    //dd($preExistingImages);
-                    if (!in_array('/storage/' . $currentImage, $preExistingImages)) {
-                        // Delete or remove the image
-                        $path = Storage::delete($currentImage);
-                        dd($path);
-                        // Remove the image from the array
-                        $currentImagesArray = array_diff($currentImagesArray, [$currentImage]);
+                    //checks if this is the placeholder image
+                    //dd($currentImage);
+                    if ($currentImage != "https://placehold.co/600x400/png") {
+                        // Extract the file name from the path
+                        $currentFileName = pathinfo($currentImage, PATHINFO_BASENAME);
+
+                        // Check if the current file name is not included in the pre-existing images' file names
+
+                        foreach ($preExistingImages as $preExistingImage) {
+
+                            if ($preExistingImage != "/storage/https://placehold.co/600x400/png") {
+                                $preExistingFileName = pathinfo($preExistingImage, PATHINFO_BASENAME);
+                                //dd($preExistingFileName . " " . $currentFileName);
+                                if ($currentFileName != $preExistingFileName) {
+                                    // Delete or remove the image
+                                    $path = Storage::delete($currentImage);
+                                    //dd($currentFileName . " " . $preExistingFileName);
+                                    // Remove the image from the array
+                                    $currentImagesArray = array_diff($currentImagesArray, [$currentImage]);
+                                }
+                            }
+                        }
                     }
                 }
-
                 // Convert the array back to a string
+                //  1 => "/storage/public/images/products/10/95d642e9751caf33e6a622cc45fba2aa.png"
+                //  0 => "/storage/images/products/10/95d642e9751caf33e6a622cc45fba2aa.png"
+
+
                 $product->images = implode(',', $currentImagesArray);
+                //dd($currentImagesArray);
             }
 
 
