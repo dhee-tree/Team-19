@@ -1,5 +1,5 @@
 @extends('layouts.user-panel-base')
-@section('title', 'Tickets')
+@section('title', 'User Details')
 
 @section('main')
     
