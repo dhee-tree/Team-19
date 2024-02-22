@@ -98,7 +98,7 @@
         </nav>
 
         <div class="col" id="basket-offcanvas-div" tabindex="-1">
-            <div class="shadow-lg offcanvas offcanvas-end" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
+            <div class="shadow-lg offcanvas offcanvas-end scrollable" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
                 <div class="offcanvas-header text-light" style="background-color: #1d1912">
                   <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
                   <button type="button" class="btn text-light" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
@@ -112,31 +112,44 @@
                     @auth
                         @php
                             $user = Auth()->user();
-                            $basketItems = $user->basket()->first()->products()->take(6)->get();
+                            $basketItems = $user->basket()->first()->products()->get();
+                            $totalBasketCost = $user->basket()->first()->products()->sum('cost');
                         @endphp
                         @foreach($basketItems as $item)
-                        <a href="/product/{{ $item->id }}" style="text-decoration: none;">
-                            <div class="card shadow-sm mb-3">
-                                <div class="row g-0">
-                                    <div class="col-3">
-                                        <img src="{{asset($item->getImages()[0])}}" class="p-2 img-fluid rounded-start" alt="...">
-                                    </div>
+                            <a href="/product/{{ $item->id }}" style="text-decoration: none;">
+                                <div class="card shadow-sm mb-3">
+                                    <div class="row g-0">
+                                        <div class="col-3">
+                                            <img src="{{asset($item->getImages()[0])}}" class="p-2 img-fluid rounded-start" alt="...">
+                                        </div>
 
-                                    <div class="vr shadow-none bg-secondary"></div>
+                                        <div class="vr shadow-none bg-secondary"></div>
 
-                                    <div class="col-4">
-                                        <div class="card-body ms-0 ps-2 pt-2">
-                                            <h6 class="fw-bold mb-0 card-title">{{$item->title}}</h6>
-                                            <p class="card-text"></p>
+                                        <div class="col-6">
+                                            <div class="card-body ms-0 ps-2 pt-2">
+                                                <h6 class="fw-bold mb-0 card-title">{{$item->title}}</h6>
+                                                <p class="card-text">£{{$totalBasketCost}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <small class="text-end position-absolute bottom-0 end-0 p-1 pe-2">Qty: {{$item->pivot->amount}}</small>
                                         </div>
                                     </div>
-                                    <div class="">
-                                        <small class="text-end position-absolute bottom-0 end-0 p-1 pe-2">Qty: {{$item->pivot->amount}}</small>
-                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
                         @endforeach
+
+                        <div class="row bg-white sticky-bottom align-items-end">
+                            <div class="col-100 pt-2 mb-0">
+                                <h5>Total: £{{$basketItems->sum('cost')}}</h5>
+                            </div>
+                            <div class="col">
+                                <a class="w-100 btn btn-dark" role="button" href="{{asset('basket')}}">Go to Basket</a>
+                            </div>
+                            <div class="col">
+                                <a class="w-100 btn btn-dark" role="button" href="{{asset('checkout')}}">Checkout</a>
+                            </div>
+                        </div>
                     @endauth
                 </div>
             </div>
