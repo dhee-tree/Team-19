@@ -65,22 +65,29 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_length" id="user_length">
+                        <div class="dataTables_length" id="length_dropdown">
                             <label>
                                 Show
-                                <select name="user_length" id="user_length" aria-controls="example"
+                                <select name="length" id="length" aria-controls="example"
                                     class="form-select form-select-sm">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
+                                    <option value="0">Select Value</option>
+                                    <option value="5" {{ request()->input('length') == 5 ? 'selected' : '' }}>5
+                                    </option>
+                                    <option value="10" {{ request()->input('length') == 10 ? 'selected' : '' }}>10
+                                    </option>
+                                    <option value="25" {{ request()->input('length') == 25 ? 'selected' : '' }}>25
+                                    </option>
+                                    <option value="50" {{ request()->input('length') == 50 ? 'selected' : '' }}>50
+                                    </option>
+                                    <option value="100" {{ request()->input('length') == 100 ? 'selected' : '' }}>100
+                                    </option>
                                 </select>
                                 entries
                             </label>
                         </div>
                     </div>
                     <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_filter" id="user_filter">
+                        <div class="dataTables_filter" id="filter">
                             <label>
                                 Search:
                                 <input type="search" class="form-control form-control-sm" placeholder
@@ -158,8 +165,12 @@
                         </div>
                     </div>
                 </div>
-                <!-- Pagination Links -->
-                {{ $products->links() }}
+                @if ($products->hasPages())
+                    <!-- Pagination Links -->
+                    {{ $products->links() }}
+                @else
+                    <p>No extra found.</p>
+                @endif
             </div>
         </div>
     </div>

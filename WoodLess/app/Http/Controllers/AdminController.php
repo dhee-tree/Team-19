@@ -61,12 +61,14 @@ class AdminController extends Controller
     public function inventory(Request $request)
     {
 
-        $selectedLength = $request->input('user_length', 5); // Default to 50 if not provided
+        $selectedLength = $request->input('length', 1000); // Default to 50 if not provided
 
         $products = Product::latest()->get();
 
         $products = $products->sortBy('id');
-        $products = Product::paginate($selectedLength);
+        $products = Product::paginate($selectedLength)->withQueryString();
+
+
         return view('inventory', compact('products'));
     }
 

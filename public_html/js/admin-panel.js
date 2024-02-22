@@ -90,15 +90,29 @@ function openAddModal(productId) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var userLengthSelect = document.getElementById('user_length_select');
+    var lengthSelect = document.getElementById('length');
 
     // Event listener for changes in the select element
-    userLengthSelect.addEventListener('change', function () {
+    lengthSelect.addEventListener('change', function () {
         // Get the selected value
-        var selectedValue = userLengthSelect.value;
+        var selectedValue = lengthSelect.value;
 
-        // You can use AJAX to load data based on the selected value
-        // Here, I'll just log the selected value for demonstration
-        console.log('Selected value:', selectedValue);
+        // Get the current page URL
+        var currentPageUrl = window.location.href;
+
+        // Check if there are existing query parameters
+        var querySeparator = currentPageUrl.includes('?') ? '&' : '?';
+
+        // Check if the URL already contains a length parameter
+        if (currentPageUrl.includes('length=')) {
+            // Replace the existing length parameter with the new value
+            currentPageUrl = currentPageUrl.replace(/(length=)[^\&]+/, '$1' + selectedValue);
+        } else {
+            // Append the length parameter to the URL
+            currentPageUrl += querySeparator + 'length=' + selectedValue;
+        }
+
+        // Reload the page with the updated URL
+        window.location.href = currentPageUrl;
     });
 });
