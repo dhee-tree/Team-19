@@ -73,7 +73,7 @@
                     <li class="d-flex ms-2">
                         <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas"
                          role="button" class="nav-link">
-                            <small class="badge rounded-pill badge-notification bg-danger">@auth {{Auth()->user()->basket()->first()->productAmount()}} @endauth</small>
+                            <small style="background-color: #655d52" class="badge rounded-pill badge-notification">@auth {{Auth()->user()->basket()->first()->productAmount()}} @endauth</small>
                             <i class="me-2 fa-solid fa-basket-shopping fa-xl" style="color:#e8e8e8;"></i>
                         </a>
 
@@ -139,15 +139,15 @@
                             </a>
                         @endforeach
 
-                        <div class="row bg-white sticky-bottom align-items-end">
+                        <div class="row bg-white sticky-bottom align-items-center">
                             <div class="col-100 pt-2 mb-0">
                                 <h5>Total: £{{$basketItems->sum('cost')}}</h5>
                             </div>
                             <div class="col">
-                                <a class="w-100 btn btn-dark" role="button" href="{{asset('basket')}}">Go to Basket</a>
+                                <a style="background-color: #1d1912" class="w-100 btn text-light" role="button" href="{{asset('basket')}}">Go to Basket<span style="background-color: #655d52" class="ms-2 badge rounded-pill badge-notification">{{$user->basket()->first()->productAmount()}}</span></a>
                             </div>
                             <div class="col">
-                                <a class="w-100 btn btn-dark" role="button" href="{{asset('checkout')}}">Checkout</a>
+                                <a style="background-color: #1d1912" class="w-100 btn btn-dark" role="button" href="{{asset('checkout')}}">Checkout</a>
                             </div>
                         </div>
                     @endauth
