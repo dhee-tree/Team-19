@@ -18,13 +18,12 @@
                             <a class="" href="/product/{{ $product->id }}">{{ $product->title }}</a>
                             @foreach(json_decode($product->pivot->attributes) as $key => $value)
                                 @if ($key == "colour") 
-                                    <span class="colour-square" style="background-color: {{ $value }};"></span>
+                                <span class="colour-square" style="background-color: {{ $value }};"></span>
                         </div>
                         <div class="checkout-item">
-                                @elseif ($key == "size")
-                                    <p>Size: {{ $value }}</p>
+                                @else
+                                    <span>{{ $key }}: {{ $value }}</span>
                                 @endif
-                                
                             @endforeach
                         </div>
                         <div class="checkout-item">
