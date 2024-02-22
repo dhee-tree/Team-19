@@ -44,9 +44,9 @@
                                             {{ $product->pivot->amount }}x
                                             @foreach (json_decode($product->pivot->attributes) as $key => $value)
                                                 @if ($key == "colour") 
-                                                    <div class="colour-square" style="background-color: {{ $value }};"></div>
+                                                    <span class="colour-square" style="background-color: {{ $value }};"></span>
                                             {{ $product->title }}                                                    
-                                                <a href="{{ url('/product/' . $product->id) }}"><img src="{{ asset('images/' . explode(',', $product->images)[0]) }}" alt="..." width="40" height="40"></a>
+                                                <a href="{{ url('/product/' . $product->id) }}"><img src="{{ Storage::url(explode(',', $product->images)[0]) }}" alt="product image" width="40" height="40"></a>
                                                 @else
                                                     <p>{{ $key }}: {{ $value }}</p>
                                                 @endif
