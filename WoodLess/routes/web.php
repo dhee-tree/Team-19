@@ -87,6 +87,7 @@ Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->
 //user panel pages
 Route::get('/user-panel/tickets', [TicketController::class, 'show'])->name('user.tickets')->middleware('auth');
 Route::post('/user-panel/tickets', [TicketController::class, 'store'])->name('user.tickets.store')->middleware('auth');
+Route::get('/user-panel/tickets/{id}', [TicketController::class, 'view'])->name('user.tickets.view')->middleware('auth');
 Route::view('/user-panel/user-panel', 'user-panel');
 Route::view('/user-panel/user-details', 'user-details')->name('user-details');
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
