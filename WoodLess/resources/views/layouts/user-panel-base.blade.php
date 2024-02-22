@@ -7,11 +7,6 @@
 
 @section('content')
     <!-- Code for sidebar -->
-    @if (session()->has('success'))
-        <div class="alert alert-success">
-            <i class="fa-regular fa-circle-check fa-fade"></i> <span>{{ session('success') }}</span>
-        </div>
-    @endif
     <div class="wrapper">
         <aside id="sidebar">
             <div class="sidebar-list">
