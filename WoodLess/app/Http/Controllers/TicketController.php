@@ -29,4 +29,11 @@ class TicketController extends Controller
             ->route('user.tickets')
             ->with('success', 'Ticket created successfully');
     }
+
+    function view($id){
+        $ticket = Ticket::find($id);
+        return view('ticket-user', [
+            'ticket' => $ticket,
+        ]);
+    }
 }
