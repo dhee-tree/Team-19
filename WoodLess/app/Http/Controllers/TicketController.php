@@ -15,4 +15,18 @@ class TicketController extends Controller
             'tickets' => $tickets,
         ]);
     }
+
+    function store(Request $request){
+        $user = auth()->user();
+        $ticket = new Ticket();
+        $ticket->user_id = $user->id;
+        $ticket->title = $request->title;
+        $ticket->information = $request->information;
+        $ticket->contact = $user->email;
+        $ticket->status = 1;
+        $ticket->save();
+        return redirect()
+            ->route('user.tickets')
+            ->with('success', 'Ticket created successfully');
+    }
 }
