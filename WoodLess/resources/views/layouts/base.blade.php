@@ -60,25 +60,26 @@
                         </li>
                     </ul>
 
+                    <form method="GET" action=" {{ route('products.filter') }}" class="d-flex justify-content-center" role="search">
+                        <input type="search" name="search" placeholder="Search Products..." class="rounded-pill form-control" />
+                        <button class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
+
                     <li class="d-flex ms-2">
-                        <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas" role="button" class="nav-link">
-                            <small class="badge rounded-pill badge-notification bg-danger">@auth {{Auth()->user()->basket()->first()->productAmount()}} @endauth</small>
-                            <i class="me-2 fa-solid fa-basket-shopping fa-xl" style="color:#e8e8e8;"></i>
-                        </a>
+                    <button class="ms-1 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                            <i class="fa-solid fa-shopping-basket"></i>
+                        </button>
 
                         @guest
-                        <a class="nav-link" href="{{ url('login') }}"><i class="fa-solid fa-unlock fa-flip-horizontal fa-xl" style="color: #e8e8e8; margin-right:10px;"></i></a>
+                        <button class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                            <i class="fa-solid fa-unlock"></i>
+                        </button>
                         @else
                         <a class="nav-link" href="{{ url('user-panel') }}"> <i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
                         @endguest
                     </li>
-
-                    <form method="GET" action=" {{ route('products.filter') }}" class="d-flex justify-content-center" role="search">
-                        <input type="search" name="search" placeholder="Search Products..." class="rounded-pill form-control" />
-                        <button class="ms-1 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </form>
                 </div>
             </div>
         </nav>
@@ -110,7 +111,7 @@
             @yield('content')
         </main>
 
-        <footer class="text-center text-white"  style="background-color: #1d1912">
+        <footer class="text-center text-white" style="background-color: #1d1912">
             <!-- Grid container -->
             <div class="container pt-4">
                 <!-- Three columns -->
