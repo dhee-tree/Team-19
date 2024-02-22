@@ -154,9 +154,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
+                <!-- Pagination Links -->
+                {{ $products->links() }}
             </div>
         </div>
     </div>

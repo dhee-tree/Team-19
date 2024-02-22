@@ -58,14 +58,16 @@ class AdminController extends Controller
     }
 
     //returns the view for inventory on the admin controller.
-    public function inventory()
+    public function inventory(Request $request)
     {
+
+        $selectedLength = $request->input('user_length', 5); // Default to 50 if not provided
 
         $products = Product::latest()->get();
 
         $products = $products->sortBy('id');
-
-        return view('inventory', ['products' => $products]);
+        $products = Product::paginate($selectedLength);
+        return view('inventory', compact('products'));
     }
 
     public function users()
@@ -170,8 +172,8 @@ class AdminController extends Controller
             } else {
                 // Get the current images of the product
                 $currentImagesArray = explode(',', $product->images);
-                $preExistingImages = implode(',', $preExistingImages); 
-               
+                $preExistingImages = implode(',', $preExistingImages);
+
 
                 foreach ($currentImagesArray as $currentImage) {
                     //checks if this is the placeholder image
@@ -181,7 +183,7 @@ class AdminController extends Controller
                         $currentFileName = pathinfo($currentImage, PATHINFO_BASENAME);
 
                         // Check if the current file name is not included in the pre-existing images' file names
-                        
+
 
                         if (strpos($preExistingImages, $currentFileName) === false) {
                             // Delete or remove the image
@@ -200,7 +202,7 @@ class AdminController extends Controller
                 //dd($currentImagesArray);
             }
         }
-        
+
         // Check if product images is empty or not, if the array also contains placeholder, we overwrite it since we dont want it there.
         if ($product->images == null || $product->images == "https://placehold.co/600x400/png") {
             // If empty, assign an empty array

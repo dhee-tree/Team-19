@@ -88,3 +88,17 @@ function openAddModal(productId) {
         });
     });
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    var userLengthSelect = document.getElementById('user_length_select');
+
+    // Event listener for changes in the select element
+    userLengthSelect.addEventListener('change', function () {
+        // Get the selected value
+        var selectedValue = userLengthSelect.value;
+
+        // You can use AJAX to load data based on the selected value
+        // Here, I'll just log the selected value for demonstration
+        console.log('Selected value:', selectedValue);
+    });
+});
