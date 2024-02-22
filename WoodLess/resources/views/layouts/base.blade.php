@@ -97,11 +97,11 @@
             </div>
         </nav>
 
-        <div class="col" id="basket-offcanvas-div">
-            <div class="shadow-lg offcanvas offcanvas-end" tabindex="-1" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
+        <div class="col" id="basket-offcanvas-div" tabindex="-1">
+            <div class="shadow-lg offcanvas offcanvas-end" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
                 <div class="offcanvas-header text-light" style="background-color: #1d1912">
                   <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  <button type="button" class="btn text-light" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="offcanvas-body">
                     @guest
