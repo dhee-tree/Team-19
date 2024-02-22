@@ -11,7 +11,9 @@ use Illuminate\Http\Request;
 class ReviewController extends Controller
 {   
 
-    //Store single review
+    /**
+     * Store a single review.
+     */
     public function store(Request $request, Product $product){
         try {
             $product->loadMissing('reviews');
@@ -38,17 +40,29 @@ class ReviewController extends Controller
         } catch (QueryException $e) {
             return back()->with([
                 'status' => 'danger',
-                'message' => 'Failed to upload review.'
+                'message' => 'Failed to upload review.',
+                'error' => $e
             ]);
         }
     }
 
-    //Delete single review
+    /**
+     * Delete a single review.
+     */
     public function destroy(Review $review){
-        $review->delete();
-        return back()->with([
-            'status' => 'success',
-            'message' => 'Review deleted successfully.'
-        ]);
+        try {
+            $review->delete();
+            return back()->with([
+                'status' => 'success',
+                'message' => 'Review deleted successfully.'
+            ]);
+        } catch (QueryException $e) {
+            return back()->with([
+                'status' => 'danger',
+                'message' => 'Failed to delete review.',
+                'error' => $e
+            ]);
+        }
+
     }
 }

@@ -35,24 +35,13 @@ class ProductController extends Controller
         ]
         )->paginate(8)->withQueryString()->fragment('reviews');
 
-        // Retrieve the product images from the database
-        $productImages = explode(',', $product->images);
-
-        foreach ($productImages as $imagePath) {
-            // Generate the URL for each image and add it to the $imageUrls array
-            $imageUrl = Storage::url($imagePath);
-            $imageUrls[] = $imageUrl;
-        }
-
-        //dd($imageUrls);
-
         return view('products.show', [
             'user' => $user,
             'product' => $product,
             'amount' => $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
             'categories' => $categories,
-            'productImages' => $imageUrls,
+            'productImages' => $product->getImages(),
             'reviews' => $reviews,
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),

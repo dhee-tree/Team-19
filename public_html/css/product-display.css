@@ -1,3 +1,7 @@
+#average-rating, #productCarousel .card{
+    transition: 0.3s ease-in-out;
+}
+
 .product-badge{
     background-color: #1d1912;
     color: white;
@@ -5,18 +9,26 @@
     position: absolute;
 }
 
-.attribute-color, .attribute-color:checked{
+.attribute-color, .attribute-color:checked, .attribute-color:focus{
     transform:scale(1.5);
     accent-color: currentColor;
     cursor: pointer;
     background-color: currentColor;
     border-color:color-mix(in srgb, currentColor 70%, black);
+    transition: all 0.2s;
 }
 
-.attribute-color:checked{
-    opacity: 40%;
+.attribute-color:checked, .attribute-color:focus{
+    opacity: 80%;
+    border: currentColor;
     background: currentColor;
 }
+
+
+#average-rating:hover{
+    transform: rotate(3deg);
+}
+
 
 .product-submit, .category-button{
     background-color: #1d1912;
@@ -31,3 +43,36 @@
     opacity: 15%;
     width: 7vh;
 }
+
+.truncate {
+    width: 100%;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    display: -webkit-box; 
+}
+
+#productCarousel .card{
+    box-shadow:100px;
+}
+
+#productCarousel .card:hover{
+    transform: scale(1.03);
+}
+
+#productCarousel .carousel-inner:hover{
+    overflow: visible;
+}
+
+
+.review-card .card select{
+    align-items: start;
+    width: 55px;
+    height: 30px;
+}
+
+input:focus, textarea:focus, select:focus {
+    border: 1px solid #d0dadb !important;
+    box-shadow: 0 0 3px #d0dadb!important;
+}
+  
