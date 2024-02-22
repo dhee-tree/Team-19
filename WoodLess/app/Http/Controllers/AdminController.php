@@ -206,13 +206,13 @@ class AdminController extends Controller
             // Retrieve the existing images from the product model
 
 
-            // Check if product images is empty or not
-            if (!empty($product->images)) {
-                // If not empty, explode the images string
-                $imagePaths = explode(',', $product->images);
-            } else {
+            // Check if product images is empty or not, if the array also contains placeholder, we overwrite it since we dont want it there.
+            if (empty($product->images) || $product->images == "https://placehold.co/600x400/png") {
                 // If empty, assign an empty array
                 $imagePaths = [];
+            } else {
+                // If not empty, explode the images string
+                $imagePaths = explode(',', $product->images);
             }
 
             //adding new image to product
