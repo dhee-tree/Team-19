@@ -33,6 +33,21 @@ class Product extends Model
     ];
 
     /**
+     * Returns the filepaths of images associated with the product as an array.
+     */
+    public function getImages(){
+        $imageDir = public_path('images/products/'.$this->id);
+        $images = [];
+
+        foreach (scandir($imageDir) as $path) {
+            if (!is_dir($imageDir . '/' . $path)) {
+                $images[] = 'images/products/'.$this->id.'/'.$path;
+            }
+        }
+        return $images;
+    }
+
+    /**
      * Returns the baskets that belong to the product.
      */
     public function baskets()

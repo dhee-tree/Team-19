@@ -25,6 +25,13 @@ class Basket extends Model
     }
 
     /**
+     * Returns the amount of products in a basket, including quantity.
+     */
+    public function productAmount(){
+        return $this->products()->sum('amount');
+    }
+
+    /**
      * Returns the User that belongs to the basket.
      */
     public function user()
