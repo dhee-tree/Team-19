@@ -117,12 +117,12 @@
                 <!-- Section: Social media -->
                 <section class="mb-4">
                     <!-- Social media buttons -->
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-linkedin"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.facebook.com" role="button"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.twitter.com" role="button"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.whatsapp.com" role="button"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.instagram.com" role="button"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.linkedin.com" role="button"><i class="fab fa-linkedin"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.github.com" role="button"><i class="fab fa-github"></i></a>
                 </section>
                 <!-- Section: Social media -->
             </div>
@@ -131,7 +131,7 @@
             <!-- Copyright text -->
             <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 © 2024 Copyright:
-                <a class="text-white">WoodLess</a>
+                <a class="text-white" href="{{ url('/') }}">WoodLess</a>
             </div>
             <!-- Copyright text -->
         </footer>
