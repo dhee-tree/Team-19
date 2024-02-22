@@ -97,12 +97,36 @@
             </div>
         </nav>
 
+        <div class="col" id="basket-offcanvas-div">
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <div>
+                    Something is cooking... <a href="{{ url('basket') }}">Full Basket</a>
+                  </div>
+                  <div class="dropdown mt-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                      Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div>
+                </div>
+            </div>
+        </div>
+
         <main>
             @include('layouts.alert')
             @yield('content')
         </main>
 
-        <footer class="bg-dark">
+        <footer style="background-color: #1d1912">
             <div class="container-fluid">
                 <div class="row row-cols-5 py-5">
                     <div class="col">
@@ -113,29 +137,6 @@
                         <p class="ps-4" style="color: #a9a9a9;">© 2023</p>
                     </div>
                     
-                    <div class="col" id="basket-offcanvas-div">
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
-                            <div class="offcanvas-header">
-                              <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-                            <div class="offcanvas-body">
-                              <div>
-                                Something is cooking... <a href="{{ url('basket') }}">Full Basket</a>
-                              </div>
-                              <div class="dropdown mt-3">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                  Dropdown button
-                                </button>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">Action</a></li>
-                                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col">
                         <h5 class="fw-bold" style="color: #e8e8e8">Site Map</h5>
                         <ul class="nav flex-column">
