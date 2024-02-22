@@ -56,8 +56,8 @@
                             <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="{{ url('/about') }}">About us</a>
                         </li>
                     </ul>
-                    <form  method="GET" action=" {{route('products.filter')}}" class="d-flex" role="search">
-                        <input class="form-control me-1" name ="search" type="search" placeholder="search" aria-label="search">
+                    <form method="GET" action=" {{route('products.filter')}}" class="d-flex" role="search">
+                        <input class="form-control me-1" name="search" type="search" placeholder="search" aria-label="search">
                         <button class="btn btn-outline-success" style="margin-right: 25px;" type="submit">Search</button>
                     </form>
                     <li class="d-flex">
@@ -65,9 +65,9 @@
                     </li>
                     <li class="d-flex">
                         @guest
-                            <a class="nav-link" href="{{ url('login') }}"><i class="fa-solid fa-unlock fa-flip-horizontal fa-xl" style="color: #e8e8e8; margin-right:10px;"></i></a>
+                        <a class="nav-link" href="{{ url('login') }}"><i class="fa-solid fa-unlock fa-flip-horizontal fa-xl" style="color: #e8e8e8; margin-right:10px;"></i></a>
                         @else
-                            <a class="nav-link" href="{{ url('user-panel') }}"> <i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
+                        <a class="nav-link" href="{{ url('user-panel') }}"> <i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
                         @endguest
                     </li>
                 </div>
@@ -78,49 +78,67 @@
             @yield('content')
         </main>
 
-        <footer class="border-top bg-dark">
-            <div class="container-fluid">
-                <div class="row row-cols-5 py-5">
-                    <div class="col">
-                        <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
-                            <img src="{{ asset('images/logo_plain.svg') }}" class="bi me-2" width="400" height="100">
-                        </a>
-                        <p class="ps-4" style="color: #a9a9a9;">© 2023</p>
+
+        <footer class="text-center text-white bg-dark">
+            <!-- Grid container -->
+            <div class="container pt-4">
+                <!-- Three columns -->
+                <div class="row my-3">
+                    <!-- About column -->
+                    <div class="col-md-4">
+                        <div class="border border-secondary px-2 pt-3 rounded mb-4">
+                            <h5><strong>WoodLess</strong></h5>
+                            <p>Stylish furniture crafted from ocean plastic, where sustainability meets sophistication in every piece of furniture.</p>
+                        </div>
                     </div>
-                    <div class="col">
-                    </div>
-                    <div class="col">
-                        <h5 class="fw-bold" style="color: #e8e8e8">Site Map</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="{{ url('/') }}" class="nav-link p-0" style="color: #ffffff;">Home</a></li>
-                            <li class="nav-item mb-2"><a href="products" class="nav-link p-0" style="color: #ffffff;">Products</a></li>
-                            <li class="nav-item mb-2"><a href="{{ url('basket') }}" class="nav-link p-0" style="color: #ffffff;">Basket</a></li>
-                            <li class="nav-item mb-2"><a href="team" class="nav-link p-0" style="color: #ffffff;">Meet the Team</a></li>
+                    <!-- Site Map column -->
+                    <div class="col-md-4">
+                        <h5><strong>Site Links</strong></h5>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ url('categories') }}" class="nav-link p-0">Categories</a></li>
+                            <li><a href="{{ url('products') }}" class="nav-link p-0">Products</a></li>
+                            <li><a href="{{ url('contact') }}" class="nav-link p-0">Contact Us</a></li>
+                            <li><a href="{{ url('about') }}" class="nav-link p-0">About Us</a></li>
                         </ul>
                     </div>
-
-                    <div class="col">
-                        <h5>‎</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="contact" class="nav-link p-0" style="color: #ffffff;">Contact Us</a></li>
-                            <li class="nav-item mb-2"><a href="about" class="nav-link p-0" style="color: #ffffff;">About Us</a></li>
-                            <li class="nav-item mb-2"><a href="register" class="nav-link p-0" style="color: #ffffff;">Register</a></li>
-                            <li class="nav-item mb-2"><a href="login" class="nav-link p-0" style="color: #ffffff;">Login</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="col">
-                        <h5 class="fw-bold"></h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-3 ps-5"><a href="https://www.instagram.com" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-instagram fa-xl"></i></a></li>
-                            <li class="nav-item mb-3 ps-5"><a href="https://www.twitter.com" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-x-twitter fa-xl"></i></a></li>
-                            <li class="nav-item mb-3 ps-5"><a href="https://www.facebook.com" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-square-facebook fa-xl"></i></a></li>
-                            <li class="nav-item mb-3 ps-5"><a href="https://www.whatsapp.com" class="nav-link p-0" style="color: #ffffff;"><i class="fa-brands fa-whatsapp fa-xl"></i></a></li>
+                    <!-- Second Site Map column -->
+                    <div class="col-md-4">
+                        <h5><strong>Account</strong></h5>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ url('register') }}" class="nav-link p-0">Register</a></li>
+                            <li><a href="{{ url('login') }}" class="nav-link p-0">Login</a></li>
+                            <li><a href="{{ url('basket') }}" class="nav-link p-0">Basket</a></li>
+                            <li><a href="{{ url('/') }}" class="nav-link p-0">T&Cs</a></li>
                         </ul>
                     </div>
                 </div>
+                <!-- Three columns -->
+                <hr>
+                <!-- Section: Social media -->
+                <section class="mb-4">
+                    <!-- Social media buttons -->
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-linkedin"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+                </section>
+                <!-- Section: Social media -->
             </div>
+            <!-- Grid container -->
+
+            <!-- Copyright text -->
+            <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2024 Copyright:
+                <a class="text-white">WoodLess</a>
+            </div>
+            <!-- Copyright text -->
         </footer>
+
+
+
+
 
         <!-- bootstrap 5.3 -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
