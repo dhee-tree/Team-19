@@ -69,7 +69,7 @@
                                 href="{{ url('/about') }}">About us</a>
                         </li>
                     </ul>
-
+                    
                     <li class="d-flex ms-2">
                         <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas"
                          role="button" class="nav-link">
@@ -99,24 +99,22 @@
 
         <div class="col" id="basket-offcanvas-div">
             <div class="offcanvas offcanvas-end" tabindex="-1" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
-                <div class="offcanvas-header">
-                  <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
+                <div class="offcanvas-header pb-0">
+                  <h5 class="offcanvas-title fw-bold" id="basket-offcanvas">Your Basket</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                  <div>
-                    Something is cooking... <a href="{{ url('basket') }}">Full Basket</a>
-                  </div>
-                  <div class="dropdown mt-3">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                      Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                  </div>
+                    <hr class="mt-0 py-0">
+                    @guest
+                        <div class="">
+                            <a class="link-dark" href="{{ url('basket') }}">Sign in</a> to view your basket.
+                        </div>
+                    @endguest
+                    @auth
+                        <div>
+                            Something is cooking... <a href="{{ url('basket') }}">Full Basket</a>
+                        </div>
+                    @endauth
                 </div>
             </div>
         </div>
