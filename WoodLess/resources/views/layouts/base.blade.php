@@ -74,7 +74,7 @@
                     </li>
 
                     <form method="GET" action=" {{ route('products.filter') }}" class="d-flex justify-content-center" role="search">
-                        <input type="search" name="search" placeholder="Search Woodless..." class="rounded-pill form-control" />
+                        <input type="search" name="search" placeholder="Search Products..." class="rounded-pill form-control" />
                         <button class="ms-1 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
