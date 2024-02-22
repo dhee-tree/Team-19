@@ -58,5 +58,11 @@
         </aside>
 
         @yield('main')
+
+        <div class="main content">
+           @yield('banner')
+           @yield('page-content')
+        </div> 
+
     </div>
 @endsection
