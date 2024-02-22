@@ -156,6 +156,10 @@ class AdminController extends Controller
 
             if (empty($preExistingImages)) {
                 $product->images = '';
+
+                // Empty the folder associated with the product that contains all the images
+                $productImagesFolder = 'public/images/products/' . $product->id;
+                Storage::deleteDirectory($productImagesFolder);
             } else {
                 // Get the current images of the product
                 $currentImagesArray = explode(',', $product->images);
@@ -165,10 +169,11 @@ class AdminController extends Controller
                 // Iterate over the current images
                 foreach ($currentImagesArray as $currentImage) {
                     // Check if the current image is not included in the pre-existing images sent in the request
-                    if (!in_array('/storage/'  . $currentImage, $preExistingImages)) {
+                    //dd($preExistingImages);
+                    if (!in_array('/storage/' . $currentImage, $preExistingImages)) {
                         // Delete or remove the image
-                        Storage::delete('images/products/' . $currentImage);
-
+                        $path = Storage::delete($currentImage);
+                        dd($path);
                         // Remove the image from the array
                         $currentImagesArray = array_diff($currentImagesArray, [$currentImage]);
                     }
