@@ -85,16 +85,16 @@ Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class,'Produ
 Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.users-info');//saving to database, either edited or a new product
 
 //user panel pages
+Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
 Route::get('/user-panel/tickets', [TicketController::class, 'show'])->name('user.tickets')->middleware('auth');
 Route::post('/user-panel/tickets', [TicketController::class, 'store'])->name('user.tickets.store')->middleware('auth');
 Route::get('/user-panel/tickets/{id}', [TicketController::class, 'view'])->name('user.tickets.view')->middleware('auth');
-Route::view('/user-panel/user-panel', 'user-panel');
-Route::view('/user-panel/user-details', 'user-details')->name('user-details');
-Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
-Route::get('/user/purchases', [App\Http\Controllers\OrderController::class, 'show'])->name('user.purchases')->middleware('auth');
-Route::get('/user/purchases/view/{order}', [App\Http\Controllers\OrderController::class, 'showOrderProducts'])->name('user.view-purchase')->middleware('auth');
-Route::get('/user/purchases/return/{order}/{product}', [App\Http\Controllers\OrderController::class, 'returnOrderItem'])->name('user.return-purchase')->middleware('auth');
-Route::get('/user/purchases/cancel-return/{order}/{product}', [App\Http\Controllers\OrderController::class, 'cancelReturnOrderItem'])->name('user.cancel-return-purchase')->middleware('auth');
+Route::get('/user-panel/details', [App\Http\Controllers\UserPanelController::class, 'showDetails'])->name('user-details')->middleware('auth');
+Route::put('/user-panel/details/update/{id}', [App\Http\Controllers\UserPanelController::class, 'update'])->name('user-details.update')->middleware('auth');
+Route::get('/user-panel/purchases', [App\Http\Controllers\OrderController::class, 'show'])->name('user.purchases')->middleware('auth');
+Route::get('/user-panel/purchases/view/{order}', [App\Http\Controllers\OrderController::class, 'showOrderProducts'])->name('user.view-purchase')->middleware('auth');
+Route::get('/user-panel/purchases/return/{order}/{product}', [App\Http\Controllers\OrderController::class, 'returnOrderItem'])->name('user.return-purchase')->middleware('auth');
+Route::get('/user-panel/purchases/cancel-return/{order}/{product}', [App\Http\Controllers\OrderController::class, 'cancelReturnOrderItem'])->name('user.cancel-return-purchase')->middleware('auth');
 
 // Display categories
 
