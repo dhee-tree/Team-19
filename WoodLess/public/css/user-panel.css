@@ -1,83 +1,45 @@
-/* Sidebar */
-body #sidebar {
-    width: 250px;
-    background: #343a40;
-    color: #fff;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    overflow-y: auto;
-}
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-body .wrapper {
-    margin-left: 250px; /* Adjust based on sidebar width */
-    transition: margin-left 0.3s;
-}
-
-body .heading {
-    padding: 20px;
-    margin-top: 2vh;
-}
-
-body .sidebar {
-    list-style-type: none;
-    padding: 10px;
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    color: black;
     margin: 0;
+    padding: 0;
 }
 
-body .sidebar-item {
-    border-bottom: 1px solid #495057;
-    padding: 10px 0;
+main {
+    min-height: 100vh;
+    margin: 0 !important;
+    padding: 5vh; /* Adjust padding as needed */
 }
 
-body .sidebar-link {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    color: #adb5bd;
-    text-decoration: none;
-    transition: background-color 0.3s ease-in-out;
+footer {
+    margin-top: 2rem;
+    padding: 0; /* Removes default padding */
 }
 
-body .sidebar-link i {
-    margin-right: 10px;
+/* Sidebar and Wrapper Styles */
+.wrapper {
+    display: flex; /* Aligns sidebar and content horizontally */
+    margin: 0;
+    padding: 0;
 }
 
-body .sidebar-link:hover,
-body .sidebar-item.active .sidebar-link {
-    background-color: #495057;
-    color: #fff;
+#sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px; /* Adjust the width as per your design */
+    background-color: #f0f0f0; /* Example background color */
 }
 
-body .sidebar-item:hover {
-    background-color: #495057;
-}
-
-/* Adjust main content */
-body main {
-    margin-left: 250px; /* Same as sidebar width */
-    padding-top: 20px; /* Adjust based on header height */
-}
-
-body footer {
-    margin-top: 0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    body #sidebar {
-        width: 100%;
-        position: static;
-        height: auto;
-    }
-    
-    body .wrapper {
-        margin-left: 0;
-    }
-    
-    body main {
-        margin-left: 0;
-        padding-top: 0;
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    #sidebar {
+        width: 100%; /* Full width on smaller screens */
     }
 }
+
+/* Additional styles can be added here as needed */
