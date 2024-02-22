@@ -77,6 +77,8 @@ class ProductController extends Controller
         //Get search paramaters
         $filters = collect(request()->query());
         $search_text = $filters['search'] ?? null;
+        $sortBy = $filters['sort_by'] ?? null;
+
 
         //get categories    
 
@@ -100,7 +102,8 @@ class ProductController extends Controller
             'color' => json_decode($color),
             'minCost' => (float)$minCost,
             'maxCost' => (float)$maxCost,
-            'search' => $search_text
+            'search' => $search_text,
+            'sort_by'=>$sortBy
         ];
 
         $products = Product::latest()->filter($data)->get();
