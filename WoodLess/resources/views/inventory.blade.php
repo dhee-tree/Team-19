@@ -3,7 +3,6 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}">
 @endsection
 
 @php
@@ -60,45 +59,46 @@
             </div>
         </aside>
         <div class="main">
-            <div class="navbar navbar-expand px-3">
-                <ul class="navbar-nav">
-                    <nav-item class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"><i
-                                class="fa-solid fa-plus"></i></a>
-                    </nav-item>
-                </ul>
-            </div>
             <div class="container-fluid px-5 py-4">
+                <div class="content">
+                    <h1 class="page-title">Products</h1>
+                </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_length" id="user_length">
+                        <div class="dataTables_length" id="length_dropdown">
                             <label>
                                 Show
-                                <select name="user_length" id="user_length" aria-controls="example"
+                                <select name="length" id="length" aria-controls="example"
                                     class="form-select form-select-sm">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
+                                    <option value="0">Select Value</option>
+                                    <option value="5" {{ request()->input('length') == 5 ? 'selected' : '' }}>5
+                                    </option>
+                                    <option value="10" {{ request()->input('length') == 10 ? 'selected' : '' }}>10
+                                    </option>
+                                    <option value="25" {{ request()->input('length') == 25 ? 'selected' : '' }}>25
+                                    </option>
+                                    <option value="50" {{ request()->input('length') == 50 ? 'selected' : '' }}>50
+                                    </option>
+                                    <option value="100" {{ request()->input('length') == 100 ? 'selected' : '' }}>100
+                                    </option>
                                 </select>
                                 entries
                             </label>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-5">
-                        <div class="dataTables_filter" id="user_filter">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="dataTables_filter" id="filter">
                             <label>
                                 Search:
-                                <input type="search" class="form-control form-control-sm" placeholder
+                                <input type="search" id="search" class="form-control form-control-sm" placeholder
                                     aria-controls="search">
                             </label>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-2">
+                    <div class="col-sm-12 col-md-3">
                         <button type="button" class="btn btn-primary openModalButton" onclick="openAddModal()"
                             id="openModalButton">Create Product <i class="fa-solid fa-plus"></i></button>
                     </div>
-
                 </div>
                 <div class="card mb-4">
                     <div class="card-body px-0 pt-0 pb-2">
@@ -126,12 +126,12 @@
                                 </thead>
                                 <tbody class="datatable-body">
                                     @foreach ($products as $product)
-                                        <tr scope="row">
+                                        <tr class="product-row" scope="row">
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->id }}</td>
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            <td class="title text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->title }}</td>
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            <td class="description text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->truncateDescription(5) }}...</td>
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->stockAmount() }}...</td>
@@ -165,9 +165,16 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
+                @if ($products->hasPages())
+                    <!-- Pagination Links -->
+                    {{ $products->links() }}
+                @else
+                    <p>No extra found.</p>
+                @endif
             </div>
         </div>
     </div>
@@ -202,4 +209,28 @@
 
 @section('js')
     <script src="{{ asset('js/admin-panel.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('search');
+            var productRows = document.querySelectorAll('.product-row');
+
+            // Event listener for changes in the search input
+            searchInput.addEventListener('input', function() {
+                var searchQuery = searchInput.value.trim().toLowerCase();
+
+                // Iterate over product rows to filter products
+                productRows.forEach(function(row) {
+                    var title = row.querySelector('.title').textContent.trim().toLowerCase();
+                    var description = row.querySelector('.description').textContent.trim()
+                        .toLowerCase();
+                    var matchTitle = title.includes(searchQuery);
+                    var matchDescription = description.includes(searchQuery);
+
+                    // Show or hide the product row based on search query
+                    row.style.display = matchTitle || matchDescription ? 'table-row' : 'none';
+                });
+            });
+        });
+    </script>
 @endsection
