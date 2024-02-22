@@ -48,7 +48,7 @@
                             </table>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTicketModal"><i class="fa-solid fa-file-pen"></i> Create Ticket</a>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTicketModal"><i class="fa-solid fa-file-pen"></i> Create Ticket</button>
                         </div>
 
                         <!-- This include user panel modal -->
