@@ -34,11 +34,6 @@ class Product extends Model
                 $images[] = 'images/products/'.$this->id.'/'.$path;
             }
         }
-
-        if(is_null($images)){
-            $images = public_path('images/placeholders/no-image.svg');
-        }
-
         return $images;
     }
 
