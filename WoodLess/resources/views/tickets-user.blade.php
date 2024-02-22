@@ -34,14 +34,14 @@
                                             <td>{{ $ticket->title }}</td>
                                             <td>{{ $ticket->information }}</td>                                                    
                                             @if ($ticket->status == '1') 
-                                                <td class="order-status order-status-processing">{{ $ticket->status }}</td>
+                                                <td class="order-status order-status-processing">Open</td>
                                             @elseif ($ticket->status->status == '2') 
-                                                <td class="order-status order-status-transit">{{ $ticket->status }}</td>
+                                                <td class="order-status order-status-transit">In Progress</td>
                                             @else 
-                                                <td class="order-status order-status-completed">{{ $ticket->status }}</td>
+                                                <td class="order-status order-status-completed">Resolved</td>
                                             @endif
                                             <td>{{ $ticket->created_at }}</td>
-                                            <td><a href="#" class="btn btn-primary">View</a></td>
+                                            <td><a href="{{ route('user.tickets.view', $ticket->id) }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewTicketModal"><i class="fa-solid fa-eye"></i> View Ticket</a></td>
                                         </tr>
                                     </tbody>
                                 @endforeach
