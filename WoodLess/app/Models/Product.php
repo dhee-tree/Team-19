@@ -12,16 +12,6 @@ class Product extends Model
     use HasFactory;
     use Cacheable;
 
-    public static function boot(){
-        parent::boot();
-
-        self::deleted(function ($product) {
-            $product->categories()->delete();
-            $product->reviews()->delete();
-            $product->warehouses()->delete();
-        });
-    }
-
     protected $fillable = [
         'title',
         'description',
