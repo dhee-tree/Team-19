@@ -69,23 +69,6 @@
                                 href="{{ url('/about') }}">About us</a>
                         </li>
                     </ul>
-                    
-                    <li class="d-flex ms-2">
-                        <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas"
-                         role="button" class="nav-link">
-                            <small style="background-color: #655d52" class="badge rounded-pill badge-notification">@auth {{Auth()->user()->basket()->first()->productAmount()}} @endauth</small>
-                            <i class="me-2 fa-solid fa-basket-shopping fa-xl" style="color:#e8e8e8;"></i>
-                        </a>
-
-                        @guest
-                        <a class="nav-link" href="{{ url('login') }}"><i
-                                class="fa-solid fa-unlock fa-flip-horizontal fa-xl"
-                                style="color: #e8e8e8; margin-right:10px;"></i></a>
-                        @else
-                            <a class="nav-link" href="{{ url('user-panel') }}"> <i class="fa-solid fa-user fa-xl"
-                                    style="color:#e8e8e8; margin-right:10px;"></i></a>
-                        @endguest
-                    </li>
 
                     <form method="GET" action=" {{ route('products.filter') }}" class="d-flex justify-content-center" role="search">
                         <input type="search" name ="search" placeholder="Search Woodless..." class="rounded-pill form-control"/>
