@@ -3,7 +3,6 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin-panel.css') }}">
 @endsection
 
 @php
@@ -60,17 +59,12 @@
             </div>
         </aside>
         <div class="main">
-            <div class="navbar navbar-expand px-3">
-                <ul class="navbar-nav">
-                    <nav-item class="dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button"><i
-                                class="fa-solid fa-plus"></i></a>
-                    </nav-item>
-                </ul>
-            </div>
             <div class="container-fluid px-5 py-4">
+                <div class="content">
+                    <h1 class="page-title">Products</h1>
+                </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-5">
+                    <div class="col-sm-12 col-md-6">
                         <div class="dataTables_length" id="user_length">
                             <label>
                                 Show
@@ -85,7 +79,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-5">
+                    <div class="col-sm-12 col-md-6">
                         <div class="dataTables_filter" id="user_filter">
                             <label>
                                 Search:
@@ -94,11 +88,6 @@
                             </label>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-2">
-                        <button type="button" class="btn btn-primary openModalButton" onclick="openAddModal()"
-                            id="openModalButton">Create Product <i class="fa-solid fa-plus"></i></button>
-                    </div>
-
                 </div>
                 <div class="card mb-4">
                     <div class="card-body px-0 pt-0 pb-2">
