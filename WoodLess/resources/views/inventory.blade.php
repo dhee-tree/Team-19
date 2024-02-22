@@ -90,7 +90,7 @@
                         <div class="dataTables_filter" id="filter">
                             <label>
                                 Search:
-                                <input type="search" class="form-control form-control-sm" placeholder
+                                <input type="search" id="search" class="form-control form-control-sm" placeholder
                                     aria-controls="search">
                             </label>
                         </div>
@@ -122,12 +122,12 @@
                                 </thead>
                                 <tbody class="datatable-body">
                                     @foreach ($products as $product)
-                                        <tr scope="row">
+                                        <tr class="product-row" scope="row">
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->id }}</td>
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            <td class="title text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->title }}</td>
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            <td class="description text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->truncateDescription(5) }}...</td>
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->stockAmount() }}...</td>
@@ -205,4 +205,28 @@
 
 @section('js')
     <script src="{{ asset('js/admin-panel.js') }}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('search');
+            var productRows = document.querySelectorAll('.product-row');
+
+            // Event listener for changes in the search input
+            searchInput.addEventListener('input', function() {
+                var searchQuery = searchInput.value.trim().toLowerCase();
+
+                // Iterate over product rows to filter products
+                productRows.forEach(function(row) {
+                    var title = row.querySelector('.title').textContent.trim().toLowerCase();
+                    var description = row.querySelector('.description').textContent.trim()
+                        .toLowerCase();
+                    var matchTitle = title.includes(searchQuery);
+                    var matchDescription = description.includes(searchQuery);
+
+                    // Show or hide the product row based on search query
+                    row.style.display = matchTitle || matchDescription ? 'table-row' : 'none';
+                });
+            });
+        });
+    </script>
 @endsection
