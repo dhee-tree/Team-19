@@ -68,17 +68,30 @@
                     </form>
 
                     <li class="d-flex ms-2">
-                    <button class="ms-1 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
-                            <i class="fa-solid fa-shopping-basket"></i>
-                        </button>
+                        <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas" role="button" class="nav-link">
 
-                        @guest
-                        <button class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
-                            <i class="fa-solid fa-unlock"></i>
-                        </button>
-                        @else
-                        <a class="nav-link" href="{{ url('user-panel') }}"> <i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
-                        @endguest
+                            <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas" role="button" class="nav-link position-relative">
+                                <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1" type="submit" data-mdb-ripple-init>
+                                    <!-- Basket Icon -->
+                                    <i class="fa-solid fa-shopping-basket"></i>
+                                </button>
+                                <!-- Red Small Icon (only shown if user has items in the basket) -->
+                                <?php if (Auth()->check() && Auth()->user()->basket()->first()->productAmount() > 0) : ?>
+                                    <small class="badge position-absolute translate-middle badge-notification bg-danger rounded-pill">
+                                        {{ Auth()->user()->basket()->first()->productAmount() }}
+                                    </small>
+                                <?php endif; ?>
+                            </a>
+
+                            @guest
+                            <a type="button" href="{{ url('login') }}" class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                                <i class="fa-solid fa-unlock"></i>
+                            </a>
+                            @else
+                            <a type="button" href="{{ url('user-panel') }}" class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                                <i class="fa-solid fa-user"></i>
+                            </a>
+                            @endguest
                     </li>
                 </div>
             </div>
