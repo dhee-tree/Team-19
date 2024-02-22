@@ -38,6 +38,12 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
+                        <a href="{{ route('user-details')}}" class="sidebar-link">
+                            <i class="fa-regular fa-clipboard-list pe-2"></i>
+                            My Details
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
                         <a href="{{ route('password.change.form') }}" class="sidebar-link">
                             <i class="fa-solid fa-lock" style="color: #e8e8e8;"></i>
                             Change Password
