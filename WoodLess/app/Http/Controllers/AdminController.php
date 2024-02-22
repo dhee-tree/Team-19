@@ -58,14 +58,18 @@ class AdminController extends Controller
     }
 
     //returns the view for inventory on the admin controller.
-    public function inventory()
+    public function inventory(Request $request)
     {
+
+        $selectedLength = $request->input('length', 1000); // Default to 50 if not provided
 
         $products = Product::latest()->get();
 
         $products = $products->sortBy('id');
+        $products = Product::paginate($selectedLength)->withQueryString();
 
-        return view('inventory', ['products' => $products]);
+
+        return view('inventory', compact('products'));
     }
 
     public function users()
@@ -97,219 +101,164 @@ class AdminController extends Controller
     public function ProductStore(Request $request, $id)
     {
 
-
-        // Check if an ID is provided
+        //checks if we need to make a new product or get an old one
         if ($id >= 0) {
-            // Retrieve the product by ID
             $product = Product::find($id);
 
             // Check if the product exists
             if (!$product) {
                 return redirect()->back()->with('error', 'Product not found.');
             }
-            //dd($request->all());
-            // Update the product fields
-            $product->title = $request->input('title');
-            $product->description = $request->input('description');
-            $product->cost = $request->input('cost');
-            $product->discount = $request->input('discount');
-            $product->updated_at = now();
-            // Update the warehouse quantities
-            $warehouseQuantities = $request->input('quantities', []);
-            foreach ($warehouseQuantities as $warehouseId => $quantity) {
-                $product->setStockAmount($warehouseId, $quantity);
-            }
-
-            // Update the attributes
-            $attributes = [];
-            $attributeKeys = $request->input('attributes_keys', []);
-            $attributeValues = $request->input('attributes_values', []);
-            foreach ($attributeKeys as $index => $key) {
-                if (!empty($key)) {
-                    $attributes[$key] = $attributeValues[$index] ?? null;
-                }
-            }
-
-            // Associate categories with the product
-            $categories = $request->input('categories', []);
-
-            // Check if categories are provided
-            if (empty($categories)) {
-                // If no categories are provided, use the default category
-                $defaultCategory = Category::defaultCategory();
-                if ($defaultCategory) {
-                    // Sync the default category with the product
-                    $product->categories()->sync([$defaultCategory->id]);
-                } else {
-                    // Handle the case where the default category is not found
-                    // You can log an error, display a message, or take other actions
-                }
-            } else {
-                // Sync the provided categories with the product
-                $product->categories()->sync($categories);
-            }
-
-            $product->attributes = json_encode($attributes);
-
-            // Get the pre-existing images from the request
-            $preExistingImages = $request->input('pre_existing_images', []);
-
-            if (empty($preExistingImages)) {
-                $product->images = '';
-            } else {
-                // Get the current images of the product
-                $currentImagesArray = explode(',', $product->images);
-
-
-
-                // Iterate over the current images
-                foreach ($currentImagesArray as $currentImage) {
-                    // Check if the current image is not included in the pre-existing images sent in the request
-                    if (!in_array('/storage/'  . $currentImage, $preExistingImages)) {
-                        // Delete or remove the image
-                        Storage::delete('images/products/' . $currentImage);
-
-                        // Remove the image from the array
-                        $currentImagesArray = array_diff($currentImagesArray, [$currentImage]);
-                    }
-                }
-
-                // Convert the array back to a string
-                $product->images = implode(',', $currentImagesArray);
-            }
-
-
-
-            // Retrieve the existing images from the product model
-
-
-            // Check if product images is empty or not
-            if (!empty($product->images)) {
-                // If not empty, explode the images string
-                $imagePaths = explode(',', $product->images);
-            } else {
-                // If empty, assign an empty array
-                $imagePaths = [];
-            }
-
-            //adding new image to product
-            $images = $request->file('images');
-            if ($images) {
-                foreach ($images as $image) {
-                    // Generate a unique filename for each image
-                    $imageName = md5(uniqid() . microtime()) . '.' . $image->getClientOriginalExtension();
-                    //dd($imageName);
-                    // Store the image in the specified directory
-                    $path = Storage::putFileAs('public/images/products/' . $product->id, $image, $imageName);
-
-                    //dd($path);
-                    // Save the image path
-                    $imagePaths[] = $path;
-                }
-
-                //"public/images/products/1/a304ab50b085900a2e51cbfd8f44a8a8.png" // app\Http\Controllers\AdminController.php:205
-                //"/storage/images/products/1/34aa6096d7e9c519b3dc4f6fb80ec9c0.png" // app\Http\Controllers\AdminController.php:205
-
-                // Save the image paths in the database
-                $product->images = implode(',', $imagePaths);
-                //dd($product->images);
-            }
-
-            // Check if product images is empty or not
-            if (!empty($imagePaths)) {
-                // If not empty, explode the images string
-                $product->images = implode(',', $imagePaths);
-            } else {
-                // If empty, assign an empty array
-                $product->images = "https://placehold.co/600x400/png";
-            }
-
-
-            // Save the merged image paths in the database
-
-
-
-            // Save the updated product
-            $product->save();
-
-            return redirect()->route('admin-panel.inventory')->with('success', 'Product ' . $product->id . ' updated successfully.');
         } else {
             // Create a new product instance
             $product = new Product();
+        }
 
-            // Enter the product fields
-            $product->title = $request->input('title');
-            $product->description = $request->input('description');
-            $product->cost = $request->input('cost');
-            $product->discount = $request->input('discount');
-            $product->updated_at = now();
+        $product->title = $request->input('title');
+        $product->description = $request->input('description');
+        $product->cost = $request->input('cost');
+        $product->discount = $request->input('discount');
+        $product->updated_at = now();
+        // Save the product
+        $product->save();
 
-            // Save the product first to get an ID
-            $product->save();
+        // Update the warehouse quantities
+        $warehouseQuantities = $request->input('quantities', []);
+        foreach ($warehouseQuantities as $warehouseId => $quantity) {
+            $product->setStockAmount($warehouseId, $quantity);
+        }
 
-            // Update the warehouse quantities
-            $warehouseQuantities = $request->input('quantities', []);
-            foreach ($warehouseQuantities as $warehouseId => $quantity) {
-                $product->setStockAmount($warehouseId, $quantity);
+        // Update the attributes
+        $attributes = [];
+        $attributeKeys = $request->input('attributes_keys', []);
+        $attributeValues = $request->input('attributes_values', []);
+        foreach ($attributeKeys as $index => $key) {
+            if (!empty($key)) {
+                $attributes[$key] = $attributeValues[$index] ?? null;
             }
+        }
 
-            // Enter the attributes
-            $attributes = [];
-            $attributeKeys = $request->input('attributes_keys', []);
-            $attributeValues = $request->input('attributes_values', []);
-            foreach ($attributeKeys as $index => $key) {
-                if (!empty($key)) {
-                    $attributes[$key] = $attributeValues[$index] ?? null;
-                }
-            }
-            $product->attributes = json_encode($attributes);
+        //store attributes
+        $product->attributes = json_encode($attributes);
 
-            // Save the product's attributes
-            $product->save();
+        // Associate categories with the product
+        $categories = $request->input('categories', []);
 
-            // Associate categories with the product
-            $categories = $request->input('categories', []);
-
-            // Check if categories are provided
-            if (empty($categories)) {
-                // If no categories are provided, use the default category
-                $defaultCategory = Category::defaultCategory();
-                if ($defaultCategory) {
-                    // Sync the default category with the product
-                    $product->categories()->sync([$defaultCategory->id]);
-                } else {
-                    // Handle the case where the default category is not found
-                    // You can log an error, display a message, or take other actions
-                }
+        // Check if categories are provided
+        if (empty($categories)) {
+            // If no categories are provided, use the default category
+            $defaultCategory = Category::defaultCategory();
+            if ($defaultCategory) {
+                // Sync the default category with the product
+                $product->categories()->sync([$defaultCategory->id]);
             } else {
-                // Sync the provided categories with the product
-                $product->categories()->sync($categories);
+                // Handle the case where the default category is not found
+                // You can log an error, display a message, or take other actions
             }
+        } else {
+            // Sync the provided categories with the product
+            $product->categories()->sync($categories);
+        }
+        //checks if its existing product or not
+        if ($id >= 0) {
+            // Get the pre-existing images from the request
+            $preExistingImages = $request->input('pre_existing_images', []);
 
-            // Initialize an array to store the paths of all images
-            $imagePaths = [];
+            //checks if array is empty to delete images if so.
+            if (empty($preExistingImages)) {
+                $product->images = '';
 
-            // Add new images to the product
-            $images = $request->file('images');
-            if ($images) {
-                foreach ($images as $image) {
-                    // Generate a unique filename for each image
-                    $imageName = md5(uniqid() . microtime()) . '.' . $image->getClientOriginalExtension();
-                    // Store the image in the specified directory
-                    $path = $image->storeAs('images/products/' . $product->id, $imageName, 'public');
-                    // Save the image path
-                    $imagePaths[] = $path;
+                // Empty the folder associated with the product that contains all the images
+                $productImagesFolder = 'public/images/products/' . $product->id;
+                Storage::deleteDirectory($productImagesFolder);
+            } else {
+                // Get the current images of the product
+                $currentImagesArray = explode(',', $product->images);
+                $preExistingImages = implode(',', $preExistingImages);
+
+
+                foreach ($currentImagesArray as $currentImage) {
+                    //checks if this is the placeholder image
+                    //dd($currentImage);
+                    if ($currentImage != "https://placehold.co/600x400/png") {
+                        // Extract the file name from the path
+                        $currentFileName = pathinfo($currentImage, PATHINFO_BASENAME);
+
+                        // Check if the current file name is not included in the pre-existing images' file names
+
+
+                        if (strpos($preExistingImages, $currentFileName) === false) {
+                            // Delete or remove the image
+                            $path = Storage::delete($currentImage);
+                            // Remove the image from the array
+                            $currentImagesArray = array_diff($currentImagesArray, [$currentImage]);
+                        }
+                    }
                 }
+                // Convert the array back to a string
+                //  1 => "/storage/public/images/products/10/95d642e9751caf33e6a622cc45fba2aa.png"
+                //  0 => "/storage/images/products/10/95d642e9751caf33e6a622cc45fba2aa.png"
+
+
+                $product->images = implode(',', $currentImagesArray);
+                //dd($currentImagesArray);
+            }
+        }
+
+        // Check if product images is empty or not, if the array also contains placeholder, we overwrite it since we dont want it there.
+        if ($product->images == null || $product->images == "https://placehold.co/600x400/png") {
+            // If empty, assign an empty array
+            $imagePaths = [];
+        } else {
+            // If not empty, explode the images string
+            $imagePaths = explode(',', $product->images);
+        }
+
+        //adding new image to product
+        $images = $request->file('images');
+        if ($images) {
+            foreach ($images as $image) {
+                // Generate a unique filename for each image
+                $imageName = substr(md5(uniqid() . microtime()), 0, 5) .  '.' . $image->getClientOriginalExtension();
+                //dd($imageName);
+                // Store the image in the specified directory
+                $path = Storage::putFileAs('public/images/products/' . $product->id, $image, $imageName);
+                //dd($imagePaths);
+                //dd($path);
+                // Save the image path
+                $imagePaths[] = $path;
+                //dd($imagePaths);
             }
 
-            // Save the merged image paths in the database
+            //"public/images/products/1/a304ab50b085900a2e51cbfd8f44a8a8.png" // app\Http\Controllers\AdminController.php:205
+            //"/storage/images/products/1/34aa6096d7e9c519b3dc4f6fb80ec9c0.png" // app\Http\Controllers\AdminController.php:205
+
+            // Save the image paths in the database
             $product->images = implode(',', $imagePaths);
+            //dd($product->images);
+        }
 
-            // Save the product with updated image paths
-            $product->save();
+        // Check if product images is empty or not
+        if (!empty($imagePaths)) {
+            // If not empty, explode the images string
+            $product->images = implode(',', $imagePaths);
+        } else {
+            // If empty, assign an empty array
+            $product->images = "https://placehold.co/600x400/png";
+        }
 
-            // Redirect or return a response
-            return redirect()->route('admin-panel.inventory')->with('success', 'Product created successfully.');
+
+        // Save the merged image paths in the database
+
+
+
+        // Save the updated product
+        $product->save();
+
+        if ($id >= 0) {
+            return redirect()->route('admin-panel.inventory')->with('success', 'Product ' . $product->id . ' updated successfully.');
+        } else {
+            return redirect()->route('admin-panel.inventory')->with('success', 'Product ' . $product->id . ' created successfully.');
         }
     }
 }
