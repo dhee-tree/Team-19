@@ -56,5 +56,7 @@
                 </ul>
             </div>
         </aside>
+
+        @yield('main')
     </div>
 @endsection

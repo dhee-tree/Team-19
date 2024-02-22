@@ -1,6 +1,6 @@
 @extends('layouts.user-panel-base')
 
-@section('other')
+@section('main')
         <!-- Main content -->
         <div class="main content">
             <!-- Code for banner -->
