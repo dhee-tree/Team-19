@@ -128,7 +128,7 @@
                                         <div class="col-6">
                                             <div class="card-body ms-0 ps-2 pt-2">
                                                 <h6 class="fw-bold mb-0 card-title">{{$item->title}}</h6>
-                                                <p class="card-text">£{{$totalBasketCost}}</p>
+                                                <p class="card-text">£{{$item->cost}}</p>
                                             </div>
                                         </div>
                                         <div class="">
@@ -139,16 +139,19 @@
                             </a>
                         @endforeach
 
-                        <div class="row bg-white sticky-bottom align-items-center">
+                        <div class="row bg-white sticky-bottom align-items-center mt-0">
                             <div class="col-100 pt-2 mb-0">
                                 <h5>Total: £{{$basketItems->sum('cost')}}</h5>
                             </div>
                             <div class="col">
                                 <a style="background-color: #1d1912" class="w-100 btn text-light" role="button" href="{{asset('basket')}}">Go to Basket<span style="background-color: #655d52" class="ms-2 badge rounded-pill badge-notification">{{$user->basket()->first()->productAmount()}}</span></a>
                             </div>
+
+                            @if(!$basketItems->isEmpty())
                             <div class="col">
                                 <a style="background-color: #1d1912" class="w-100 btn btn-dark" role="button" href="{{asset('checkout')}}">Checkout</a>
                             </div>
+                            @endif
                         </div>
                     @endauth
                 </div>
@@ -156,7 +159,7 @@
         </div>
 
         <main>
-            @include('layouts.alert')
+            <!-- @include('layouts.alert') !-->
             @yield('content')
         </main>
 
@@ -222,6 +225,36 @@
 
                 {{ session('success') }}
                 <button type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if(session('status'))
+            <div id="successAlert" class="alert alert-{{session('status')}} alert-dismissible fade show position-fixed bottom-0 end-0 mb-3 me-3" 
+                style="display: none;"
+                role="alert">
+                @switch(session('status'))
+                    @case('success')
+                        <i class="fa-solid fa-xs fa-check"></i>
+                    @break
+            
+                    @case('warning')
+                    <i class="fa-solid fa-warning"></i>
+                    @break
+            
+                    @case('danger')
+                        <i class="fa-solid fa-xmark"></i>
+                    @break
+            
+                    @case('info')
+                        <i class="fa-solid fa-circle-info"></i>
+                    @break  
+            
+                    @default
+                        <i class="fa-solid fa-circle-info"></i>
+                    @break
+                @endswitch
+                 {{session('message')}}
+                <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
         <!-- bootstrap 5.3 -->
