@@ -98,22 +98,45 @@
         </nav>
 
         <div class="col" id="basket-offcanvas-div">
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
-                <div class="offcanvas-header pb-0">
-                  <h5 class="offcanvas-title fw-bold" id="basket-offcanvas">Your Basket</h5>
+            <div class="shadow-lg offcanvas offcanvas-end" tabindex="-1" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
+                <div class="offcanvas-header text-light" style="background-color: #1d1912">
+                  <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <hr class="mt-0 py-0">
                     @guest
                         <div class="">
                             <a class="link-dark" href="{{ url('basket') }}">Sign in</a> to view your basket.
                         </div>
                     @endguest
                     @auth
-                        <div>
-                            Something is cooking... <a href="{{ url('basket') }}">Full Basket</a>
-                        </div>
+                        @php
+                            $user = Auth()->user();
+                            $basketItems = $user->basket()->first()->products()->take(6)->get();
+                        @endphp
+                        @foreach($basketItems as $item)
+                        <a href="/product/{{ $item->id }}" style="text-decoration: none;">
+                            <div class="card shadow-sm mb-3">
+                                <div class="row g-0">
+                                    <div class="col-3">
+                                        <img src="{{asset($item->getImages()[0])}}" class="p-2 img-fluid rounded-start" alt="...">
+                                    </div>
+
+                                    <div class="vr shadow-none bg-secondary"></div>
+
+                                    <div class="col-4">
+                                        <div class="card-body ms-0 ps-2 pt-2">
+                                            <h6 class="fw-bold mb-0 card-title">{{$item->title}}</h6>
+                                            <p class="card-text"></p>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <small class="text-end position-absolute bottom-0 end-0 p-1 pe-2">Qty: {{$item->pivot->amount}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        @endforeach
                     @endauth
                 </div>
             </div>
