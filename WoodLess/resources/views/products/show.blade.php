@@ -30,7 +30,7 @@
                         <div class="carousel-inner">
                             @foreach ($productImages as $image)
                                 <div class="carousel-item @if ($loop->first) active @endif">
-                                    <img src="{{ $image }}" class="d-block w-100" alt="product-image">
+                                    <img src="{{asset($image)}}" class="d-block w-100" alt="product-image">
                                 </div>
                             @endforeach
                         </div>
@@ -64,7 +64,7 @@
                                                 data-bs-slide-to="{{ $ii }}" aria-current="true"
                                                 aria-label="Slide">
                                                 <img onmouseover="" class="" width="100"
-                                                    src="{{ $productImages[$ii] }}" alt="">
+                                                    src="{{ asset($productImages[$ii]) }}" alt="">
                                             </button>
                                         @endfor
                                     </div>
@@ -234,7 +234,7 @@
                                                     data-bs-slide-to="{{ $ii }}" aria-current="true"
                                                     aria-label="Slide">
                                                     <img onmouseover="" class="" width="125"
-                                                        src="{{ $productImages[$ii] }}" alt="">
+                                                        src="{{ asset($productImages[$ii]) }}" alt="">
                                                 </button>
                                             @endfor
                                         </div>
@@ -291,7 +291,7 @@
                                     @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($similarProducts); $ii++)
                                         @php 
                                             $similarProduct = $similarProducts[$ii];
-                                            $similarProductImages = explode(',', $similarProduct->images);
+                                            $similarProductImages = $similarProduct->getImages();
                                         @endphp
                                         <div class="col-6 col-lg-3 col-md-3 col-sm-6">
                                             <a href="/product/{{ $similarProduct->id }}">
@@ -303,7 +303,7 @@
                                                     </div>
                                                     @endif
                                                     <!-- Product image-->
-                                                    <img width="10" class="card-img-top p-3" src="{{ Storage::url($similarProductImages[0]); }}"alt="{{ $similarProduct->title }}" />
+                                                    <img width="10" class="card-img-top p-3" src="{{asset($similarProductImages[0])}}"alt="{{ $similarProduct->title }}" />
                                                     <!-- Product details-->
                                                     <div class="card-body p-0 mb-3">
                                                         <div class="d-flex flex-row justify-content-center">
