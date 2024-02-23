@@ -230,8 +230,7 @@
         @endif
 
         @if(session('status'))
-            <div id="successAlert" class="alert alert-{{session('status')}} alert-dismissible fade show position-fixed bottom-0 end-0 mb-3 me-3" 
-                style="display: none;"
+            <div id="successAlert" class="alert alert-{{session('status') ?? 'info'}} fade show position-fixed bottom-0 end-0 mb-3 me-3 py-2"
                 role="alert">
                 @switch(session('status'))
                     @case('success')
@@ -239,23 +238,23 @@
                     @break
             
                     @case('warning')
-                    <i class="fa-solid fa-warning"></i>
+                    <i class="fa-solid fa-xs fa-warning"></i>
                     @break
             
                     @case('danger')
-                        <i class="fa-solid fa-xmark"></i>
+                        <i class="fa-solid fa-xs fa-xmark"></i>
                     @break
             
                     @case('info')
-                        <i class="fa-solid fa-circle-info"></i>
+                        <i class="fa-solid fa-xs fa-circle-info"></i>
                     @break  
             
                     @default
-                        <i class="fa-solid fa-circle-info"></i>
+                        <i class="fa-solid fa-xs fa-circle-info"></i>
                     @break
                 @endswitch
                  {{session('message')}}
-                <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
+                <!--<button type="button" class="btn-close btn-sm py-0" data-bs-dismiss="alert" aria-label="Close"></button>!-->
             </div>
         @endif
         <!-- bootstrap 5.3 -->
