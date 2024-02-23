@@ -68,7 +68,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 //admin panel pages
 Route::view('/admin-panel/orders', 'orders-admin');
 Route::view('/admin-panel/tickets', 'tickets-admin');
-Route::get('/admin-panel/users', [AdminController::class,'users']);
+Route::get('/admin-panel/users', [AdminController::class,'users'])->name('admin-panel.users');
 
 Route::get('/admin-panel/inventory', [AdminController::class,'inventory'])->name('admin-panel.inventory');
 

@@ -41,7 +41,7 @@
 
                     <label for="address" class="pt-3">Address:</label>
                     <select name="address" id="address" class="form-control">
-                        <option value="">Select Address
+                        <option value="" selected>Select Address
                         </option>
 
                         @foreach ($user->addresses as $address)
@@ -49,6 +49,34 @@
                                 {{ $address->house_number . ' ' . $address->street_name }}</option>
                         @endforeach
                     </select>
+                    <div id="addressInputs">
+                        <!-- Address fields will be dynamically added here -->
+                        @foreach ($user->addresses as $address)
+                            <div class="address-fields" id="addressFields_{{ $address->id }}" style="display: none;">
+                                <div class="form-group">
+                                    <label for="house_number">House Number:</label>
+                                    <input type="text" name="house_number" class="form-control"
+                                        value="{{ $address->house_number }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="street_name">Street Name:</label>
+                                    <input type="text" name="street_name" class="form-control"
+                                        value="{{ $address->street_name }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="postcode">Postcode:</label>
+                                    <input type="text" name="postcode" class="form-control"
+                                        value="{{ $address->postcode }}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">City:</label>
+                                    <input type="text" name="city" class="form-control"
+                                        value="{{ $address->city }}">
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -58,3 +86,27 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.getElementById('address').addEventListener('change', function() {
+        var addressId = this.value;
+        var addressInputs = document.getElementById('addressInputs');
+        if (addressId) {
+            // Hide all previous address fields
+            var previousAddressFields = document.querySelectorAll('.address-fields');
+            previousAddressFields.forEach(function(field) {
+                field.style.display = 'none';
+            });
+
+            // Show the selected address fields
+            document.getElementById('addressFields_' + addressId).style.display = 'block';
+        } else {
+            // If no address is selected, hide all address fields
+            var allAddressFields = document.querySelectorAll('.address-fields');
+            allAddressFields.forEach(function(field) {
+                field.style.display = 'none';
+            });
+        }
+    });
+</script>
