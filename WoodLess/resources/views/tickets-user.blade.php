@@ -28,23 +28,31 @@
                                         <th>View Ticket</th>
                                     </tr>
                                 </thead>
-                                @foreach ($tickets as $ticket)
+                                @if ($tickets != null) 
+                                    @foreach ($tickets as $ticket)
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ $ticket->title }}</td>
+                                                <td>{{ $ticket->information }}</td>                                                    
+                                                @if ($ticket->status == '1') 
+                                                    <td class="order-status order-status-processing">Open</td>
+                                                @elseif ($ticket->status->status == '2') 
+                                                    <td class="order-status order-status-transit">In Progress</td>
+                                                @else 
+                                                    <td class="order-status order-status-completed">Resolved</td>
+                                                @endif
+                                                <td>{{ $ticket->created_at }}</td>
+                                                <td><a href="{{ route('user.tickets.view', $ticket->id) }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewTicketModal"><i class="fa-solid fa-eye"></i> View Ticket</a></td>
+                                            </tr>
+                                        </tbody>
+                                    @endforeach
+                                @else
                                     <tbody>
                                         <tr>
-                                            <td>{{ $ticket->title }}</td>
-                                            <td>{{ $ticket->information }}</td>                                                    
-                                            @if ($ticket->status == '1') 
-                                                <td class="order-status order-status-processing">Open</td>
-                                            @elseif ($ticket->status->status == '2') 
-                                                <td class="order-status order-status-transit">In Progress</td>
-                                            @else 
-                                                <td class="order-status order-status-completed">Resolved</td>
-                                            @endif
-                                            <td>{{ $ticket->created_at }}</td>
-                                            <td><a href="{{ route('user.tickets.view', $ticket->id) }}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewTicketModal"><i class="fa-solid fa-eye"></i> View Ticket</a></td>
+                                            <td colspan="5">No tickets found</td>
                                         </tr>
                                     </tbody>
-                                @endforeach
+                                @endif
                             </table>
                         </div>
                         <div class="card-footer">

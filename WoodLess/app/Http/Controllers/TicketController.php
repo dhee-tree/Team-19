@@ -10,6 +10,9 @@ class TicketController extends Controller
     function show(){
         $user = auth()->user();
         $tickets = Ticket::where('user_id', $user->id)->get();
+        if ($tickets->count() == 0) {
+            $tickets = null;
+        }
         return view('tickets-user', [
             'user' => $user,
             'tickets' => $tickets,
