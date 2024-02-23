@@ -135,7 +135,7 @@
 
                                         @if($itemAttributes["colour"])
                                         <div class="">
-                                            <small class="position-absolute bottom-0 end-0 pb-1 pe-2">
+                                            <small class="position-absolute bottom-0 start-0 pb-1 ps-2">
                                                 <span class="fw-bold">{{$item->pivot->amount}}x</span> <i style="color: {{$itemAttributes["colour"]}}" class="fa-solid fa-circle"></i>
                                             </small>
                                         </div>
