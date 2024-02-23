@@ -3,6 +3,7 @@
 
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/user-panel.css')}}">
+<link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
 @endsection
 
 @section('content')

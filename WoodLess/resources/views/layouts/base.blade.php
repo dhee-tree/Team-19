@@ -26,20 +26,49 @@
     <script src="https://kit.fontawesome.com/c5cd4f3e40.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/wavyanimation-footer.css') }}">
+
     @yield('style')
 
 </head>
 
 <body class="antialiased">
     <div class="">
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #1d1912">
+        <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container-fluid">
-                <a class="navbar-brand" style="margin-left:4px" href="#"><img class="logo" src="{{ asset('images\logo.png') }}" alt="Woodless Logo" />
-                </a>
+                <a class="navbar-brand" style="margin-left:4px" href="#"><img class="logo" src="{{ asset('images\logo.png') }}" alt="Woodless Logo" /></a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
+                <li id="iconsnavbar" class="d-flex ms-2">
+
+
+                    <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas" role="button" class="nav-link position-relative">
+                        <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1" type="submit" data-mdb-ripple-init>
+                            <!-- Basket Icon -->
+                            <i class="fa-solid fa-shopping-basket"></i>
+                        </button>
+                        <!-- Red Small Icon (only shown if user has items in the basket) -->
+                        <?php if (Auth()->check() && Auth()->user()->basket()->first()->productAmount() > 0) : ?>
+                            <small class="badge position-absolute translate-middle badge-notification bg-danger rounded-pill">
+                                {{ Auth()->user()->basket()->first()->productAmount() }}
+                            </small>
+                        <?php endif; ?>
+                    </a>
+
+                    @guest
+                    <a type="button" href="{{ url('login') }}" class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                        <i class="fa-solid fa-unlock"></i>
+                    </a>
+                    @else
+                    <a type="button" href="{{ url('user-panel') }}" class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                    @endguest
+
+                    <button id="navbartoggler" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </li>
 
                 <div class="collapse navbar-collapse" id="navbarToggler">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -67,39 +96,69 @@
                         </button>
                     </form>
 
-                    <li class="d-flex ms-2">
-                    <button class="ms-1 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
-                            <i class="fa-solid fa-shopping-basket"></i>
-                        </button>
 
-                        @guest
-                        <button class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
-                            <i class="fa-solid fa-unlock"></i>
-                        </button>
-                        @else
-                        <a class="nav-link" href="{{ url('user-panel') }}"> <i class="fa-solid fa-user fa-xl" style="color:#e8e8e8; margin-right:10px;"></i></a>
-                        @endguest
-                    </li>
                 </div>
+
+
+
             </div>
         </nav>
 
-        <div class="col" id="basket-offcanvas-div">
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
-                <div class="offcanvas-header pb-0">
-                    <h5 class="offcanvas-title fw-bold" id="basket-offcanvas">Your Basket</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <div class="col" id="basket-offcanvas-div" tabindex="-1">
+            <div class="shadow-lg offcanvas offcanvas-end scrollable" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
+                <div class="offcanvas-header text-light" style="background-color: #1d1912">
+                    <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
+                    <button type="button" class="btn text-light" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="offcanvas-body">
-                    <hr class="mt-0 py-0">
                     @guest
                     <div class="">
                         <a class="link-dark" href="{{ url('basket') }}">Sign in</a> to view your basket.
                     </div>
                     @endguest
                     @auth
-                    <div>
-                        Something is cooking... <a href="{{ url('basket') }}">Full Basket</a>
+                    @php
+                    $user = Auth()->user();
+                    $basketItems = $user->basket()->first()->products()->get();
+                    $totalBasketCost = $user->basket()->first()->products()->sum('cost');
+                    @endphp
+                    @foreach($basketItems as $item)
+                    <a href="/product/{{ $item->id }}" style="text-decoration: none;">
+                        <div class="card shadow-sm mb-3">
+                            <div class="row g-0">
+                                <div class="col-3">
+                                    <img src="{{asset($item->getImages()[0])}}" class="p-2 img-fluid rounded-start" alt="...">
+                                </div>
+
+                                <div class="vr shadow-none bg-secondary"></div>
+
+                                <div class="col-6">
+                                    <div class="card-body ms-0 ps-2 pt-2">
+                                        <h6 class="fw-bold mb-0 card-title">{{$item->title}}</h6>
+                                        <p class="card-text">£{{$item->cost}}</p>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <small class="text-end position-absolute bottom-0 end-0 p-1 pe-2">Qty: {{$item->pivot->amount}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    @endforeach
+
+                    <div class="row bg-white sticky-bottom align-items-center mt-0">
+                        <div class="col-100 pt-2 mb-0">
+                            <h5>Total: £{{$basketItems->sum('cost')}}</h5>
+                        </div>
+                        <div class="col">
+                            <a style="background-color: #1d1912" class="w-100 btn text-light" role="button" href="{{asset('basket')}}">Go to Basket<span style="background-color: #655d52" class="ms-2 badge rounded-pill badge-notification">{{$user->basket()->first()->productAmount()}}</span></a>
+                        </div>
+
+                        @if(!$basketItems->isEmpty())
+                        <div class="col">
+                            <a style="background-color: #1d1912" class="w-100 btn btn-dark" role="button" href="{{asset('checkout')}}">Checkout</a>
+                        </div>
+                        @endif
                     </div>
                     @endauth
                 </div>
@@ -107,11 +166,30 @@
         </div>
 
         <main>
-            @include('layouts.alert')
+            <!-- @include('layouts.alert') !-->
             @yield('content')
         </main>
 
-        <footer class="text-center text-white" style="background-color: #1d1912">
+        <footer class="text-center">
+            <div class="svgHolder">
+                <svg viewBox="0 5 120 5" class="svg-behind-footer">
+                    <defs>
+                        <path id="wave" d="M 0,5 C 30,5 30,7 60,7 90,7 90,5 120,5 150,5 150,7 180,7 210,7 210,5 240,5 v 28 h -248 z" />
+                    </defs>
+
+                    <!-- Adjusted position of wave3 -->
+                    <use id="wave3" class="wave" xlink:href="#wave" x="0" y="1"></use>
+
+                    <!-- Adjusted position of wave2 -->
+                    <use id="wave2" class="wave" xlink:href="#wave" x="0" y="2"></use>
+
+                    <g class="gooeff">
+                        <!-- Adjusted position of wave1 -->
+                        <use id="wave1" class="wave" xlink:href="#wave" x="0" y="3" />
+                    </g>
+                </svg>
+            </div>
+
             <!-- Grid container -->
             <div class="container pt-4">
                 <!-- Three columns -->
@@ -149,12 +227,12 @@
                 <!-- Section: Social media -->
                 <section class="mb-4">
                     <!-- Social media buttons -->
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.facebook.com" role="button"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.twitter.com" role="button"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.whatsapp.com" role="button"><i class="fab fa-whatsapp"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.instagram.com" role="button"><i class="fab fa-instagram"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.linkedin.com" role="button"><i class="fab fa-linkedin"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.github.com" role="button"><i class="fab fa-github"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.facebook.com" role="button"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.twitter.com" role="button"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.whatsapp.com" role="button"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.instagram.com" role="button"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.linkedin.com" role="button"><i class="fab fa-linkedin"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.github.com" role="button"><i class="fab fa-github"></i></a>
                 </section>
                 <!-- Section: Social media -->
             </div>
@@ -174,6 +252,34 @@
 
             {{ session('success') }}
             <button type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+        @endif
+
+        @if(session('status'))
+        <div id="successAlert" class="alert alert-{{session('status') ?? 'info'}} fade show position-fixed bottom-0 end-0 mb-3 me-3 py-2" role="alert">
+            @switch(session('status'))
+            @case('success')
+            <i class="fa-solid fa-xs fa-check"></i>
+            @break
+
+            @case('warning')
+            <i class="fa-solid fa-xs fa-warning"></i>
+            @break
+
+            @case('danger')
+            <i class="fa-solid fa-xs fa-xmark"></i>
+            @break
+
+            @case('info')
+            <i class="fa-solid fa-xs fa-circle-info"></i>
+            @break
+
+            @default
+            <i class="fa-solid fa-xs fa-circle-info"></i>
+            @break
+            @endswitch
+            {{session('message')}}
+            <!--<button type="button" class="btn-close btn-sm py-0" data-bs-dismiss="alert" aria-label="Close"></button>!-->
         </div>
         @endif
         <!-- bootstrap 5.3 -->
