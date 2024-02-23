@@ -133,13 +133,11 @@
                                             </div>
                                         </div>
 
-                                        @if($itemAttributes["colour"])
                                         <div class="">
                                             <small class="position-absolute bottom-0 start-0 pb-1 ps-2">
-                                                <span class="fw-bold">{{$item->pivot->amount}}x</span> <i style="color: {{$itemAttributes["colour"]}}" class="fa-solid fa-circle"></i>
+                                                <span class="fw-bold">{{$item->pivot->amount}}x</span> @if($itemAttributes["colour"])<i style="color: {{$itemAttributes["colour"]}}" class="fa-solid fa-circle"></i>@endif
                                             </small>
                                         </div>
-                                        @endif
                                     </div>
                                 </div>
                             </a>
