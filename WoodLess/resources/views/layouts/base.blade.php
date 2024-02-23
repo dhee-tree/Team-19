@@ -116,6 +116,7 @@
                             $totalBasketCost = $user->basket()->first()->totalCost();
                         @endphp
                         @foreach($basketItems as $item)
+                            @php $itemAttributes = json_decode($item->pivot->attributes, true); @endphp
                             <a href="/product/{{ $item->id }}" style="text-decoration: none;">
                                 <div class="card shadow-sm mb-3">
                                     <div class="row g-0">
@@ -131,9 +132,12 @@
                                                 <p class="card-text">£{{sprintf("%0.2f", round(($item->cost) - (($item->cost) * ($item->discount / 100)), 2))}}</p>
                                             </div>
                                         </div>
+
+                                        @if($itemAttributes["colour"])
                                         <div class="">
-                                            <small class="text-end position-absolute bottom-0 end-0 p-1 pe-2">Qty: {{$item->pivot->amount}}</small>
+                                            <small class="position-absolute bottom-0 end-0 pb-1 pe-2"><span class="fw-bold">{{$item->pivot->amount}}x</span> <i style="color: {{$itemAttributes["colour"]}}" class="fa-solid fa-circle"></i></small>
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                             </a>
