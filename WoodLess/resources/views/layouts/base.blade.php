@@ -118,7 +118,7 @@
                         @foreach($basketItems as $item)
                             @php $itemAttributes = json_decode($item->pivot->attributes, true); @endphp
                             <a href="/product/{{ $item->id }}" style="text-decoration: none;">
-                                <div class="card shadow-sm mb-3">
+                                <div class="card expand-hover shadow-sm mb-3">
                                     <div class="row g-0">
                                         <div class="col-3">
                                             <img src="{{asset($item->getImages()[0])}}" class="p-2 img-fluid rounded-start" alt="...">
@@ -135,7 +135,9 @@
 
                                         @if($itemAttributes["colour"])
                                         <div class="">
-                                            <small class="position-absolute bottom-0 end-0 pb-1 pe-2"><span class="fw-bold">{{$item->pivot->amount}}x</span> <i style="color: {{$itemAttributes["colour"]}}" class="fa-solid fa-circle"></i></small>
+                                            <small class="position-absolute bottom-0 end-0 pb-1 pe-2">
+                                                <span class="fw-bold">{{$item->pivot->amount}}x</span> <i style="color: {{$itemAttributes["colour"]}}" class="fa-solid fa-circle"></i>
+                                            </small>
                                         </div>
                                         @endif
                                     </div>

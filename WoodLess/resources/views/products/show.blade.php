@@ -295,7 +295,7 @@
                                         @endphp
                                         <div class="col-6 col-lg-3 col-md-3 col-sm-6">
                                             <a href="/product/{{ $similarProduct->id }}">
-                                                <div class="shadow-sm card mt-3">
+                                                <div class="expand-hover shadow-sm card mt-3">
                                                     <!-- Sale badge-->
                                                     @if(($similarProduct->discount))
                                                     <div class="badge bg-dark text-white position-absolute"
