@@ -2,18 +2,35 @@
 
 body{
     font-family: 'Poppins', sans-serif;   
-    background-color:white;
-    color:black;
+    background-color:#FFEED9;
+    color: #183838;
     
 }
 footer{
-    margin-top:2rem;
+    background-color: #e4c9a9;
+}
+nav{
+    background-color: #39A7FF;
+}
+.nav-item .nav-link{
+    color: #FFEED9;
 }
 main{
     min-height: 100vh;
-    margin:5vh;
+    margin-left:3vh;
+    margin-top:3vh;
+    margin-right:3vh;
 }
+.card{
+    background-color: #87C4FF;
+    border-radius: 25px; /* Adjust the value as needed */
 
+}
+@media (min-width: 980px) {
+    #iconsnavbar {
+        order: 2; /* Change the order of the iconsnavbar */
+    }
+}
 
 
 /*

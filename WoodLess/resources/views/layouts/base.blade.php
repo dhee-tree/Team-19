@@ -26,20 +26,49 @@
     <script src="https://kit.fontawesome.com/c5cd4f3e40.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/wavyanimation-footer.css') }}">
+
     @yield('style')
 
 </head>
 
 <body class="antialiased">
     <div class="">
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #1d1912">
+        <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container-fluid">
-                <a class="navbar-brand" style="margin-left:4px" href="#"><img class="logo" src="{{ asset('images\logo.png') }}" alt="Woodless Logo" />
-                </a>
+                <a class="navbar-brand" style="margin-left:4px" href="#"><img class="logo" src="{{ asset('images\logo.png') }}" alt="Woodless Logo" /></a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
+                <li id="iconsnavbar" class="d-flex ms-2">
+
+
+                    <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas" role="button" class="nav-link position-relative">
+                        <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1" type="submit" data-mdb-ripple-init>
+                            <!-- Basket Icon -->
+                            <i class="fa-solid fa-shopping-basket"></i>
+                        </button>
+                        <!-- Red Small Icon (only shown if user has items in the basket) -->
+                        <?php if (Auth()->check() && Auth()->user()->basket()->first()->productAmount() > 0) : ?>
+                            <small class="badge position-absolute translate-middle badge-notification bg-danger rounded-pill">
+                                {{ Auth()->user()->basket()->first()->productAmount() }}
+                            </small>
+                        <?php endif; ?>
+                    </a>
+
+                    @guest
+                    <a type="button" href="{{ url('login') }}" class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                        <i class="fa-solid fa-unlock"></i>
+                    </a>
+                    @else
+                    <a type="button" href="{{ url('user-panel') }}" class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                    @endguest
+
+                    <button id="navbartoggler" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </li>
 
                 <div class="collapse navbar-collapse" id="navbarToggler">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -67,33 +96,11 @@
                         </button>
                     </form>
 
-                    <li class="d-flex ms-2">
-                        <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas" role="button" class="nav-link">
 
-                            <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas" aria-controls="basket-offcanvas" role="button" class="nav-link position-relative">
-                                <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1" type="submit" data-mdb-ripple-init>
-                                    <!-- Basket Icon -->
-                                    <i class="fa-solid fa-shopping-basket"></i>
-                                </button>
-                                <!-- Red Small Icon (only shown if user has items in the basket) -->
-                                <?php if (Auth()->check() && Auth()->user()->basket()->first()->productAmount() > 0) : ?>
-                                    <small class="badge position-absolute translate-middle badge-notification bg-danger rounded-pill">
-                                        {{ Auth()->user()->basket()->first()->productAmount() }}
-                                    </small>
-                                <?php endif; ?>
-                            </a>
-
-                            @guest
-                            <a type="button" href="{{ url('login') }}" class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
-                                <i class="fa-solid fa-unlock"></i>
-                            </a>
-                            @else
-                            <a type="button" href="{{ url('user-panel') }}" class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
-                                <i class="fa-solid fa-user"></i>
-                            </a>
-                            @endguest
-                    </li>
                 </div>
+
+
+
             </div>
         </nav>
 
@@ -123,7 +130,30 @@
             @yield('content')
         </main>
 
-        <footer class="text-center text-white" style="background-color: #1d1912">
+        <footer class="text-center">
+            <div class="svgHolder">
+                <svg viewBox="0 0 120 10" class="svg-behind-footer" x="50" y="100">
+                    <defs>
+                        <path id="wave" d="M 0,5 C 30,5 30,7 60,7 90,7 90,5 120,5 150,5 150,7 180,7 210,7 210,5 240,5 v 28 h -248 z" />
+                    </defs>
+
+                    <!-- Adjusted position of wave3 -->
+                    <use id="wave3" class="wave" xlink:href="#wave" x="0" y="1"></use>
+
+                    <!-- Adjusted position of wave2 -->
+                    <use id="wave2" class="wave" xlink:href="#wave" x="0" y="2"></use>
+
+                    <g class="gooeff">
+                        <!-- Adjusted position of wave1 -->
+                        <use id="wave1" class="wave" xlink:href="#wave" x="0" y="3" />
+                    </g>
+                </svg>
+
+
+
+
+            </div>
+
             <!-- Grid container -->
             <div class="container pt-4">
                 <!-- Three columns -->
@@ -161,12 +191,12 @@
                 <!-- Section: Social media -->
                 <section class="mb-4">
                     <!-- Social media buttons -->
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.facebook.com" role="button"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.twitter.com" role="button"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.whatsapp.com" role="button"><i class="fab fa-whatsapp"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.instagram.com" role="button"><i class="fab fa-instagram"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.linkedin.com" role="button"><i class="fab fa-linkedin"></i></a>
-                    <a class="btn btn-link btn-floating btn-lg text-white m-1" href="https://www.github.com" role="button"><i class="fab fa-github"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.facebook.com" role="button"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.twitter.com" role="button"><i class="fab fa-twitter"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.whatsapp.com" role="button"><i class="fab fa-whatsapp"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.instagram.com" role="button"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.linkedin.com" role="button"><i class="fab fa-linkedin"></i></a>
+                    <a class="btn btn-link btn-floating btn-lg m-1" href="https://www.github.com" role="button"><i class="fab fa-github"></i></a>
                 </section>
                 <!-- Section: Social media -->
             </div>

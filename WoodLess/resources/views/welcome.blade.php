@@ -141,7 +141,7 @@
                             <div class="card h-100">
                                 <div class="card-body p-4 p-xxl-5">
                                     <figure>
-                                        <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
+                                        <img class="img-fluid rounded rounded-circle mb-4" loading="lazy"
                                             src="./assets/img/testimonial-img-1.jpg" alt="">
                                         <figcaption>
                                             <div class="bsb-ratings text-warning mb-3" data-bsb-star="5"
@@ -163,7 +163,7 @@
                             <div class="card h-100">
                                 <div class="card-body p-4 p-xxl-5">
                                     <figure>
-                                        <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
+                                        <img class="img-fluid rounded rounded-circle mb-4" loading="lazy"
                                             src="./assets/img/testimonial-img-2.jpg" alt="">
                                         <figcaption>
                                             <div class="bsb-ratings text-warning mb-3" data-bsb-star="4"
@@ -185,7 +185,7 @@
                             <div class="card h-100">
                                 <div class="card-body p-4 p-xxl-5">
                                     <figure>
-                                        <img class="img-fluid rounded rounded-circle mb-4 border border-5" loading="lazy"
+                                        <img class="img-fluid rounded rounded-circle mb-4" loading="lazy"
                                             src="./assets/img/testimonial-img-4.jpg" alt="">
                                         <figcaption>
                                             <div class="bsb-ratings text-warning mb-3" data-bsb-star="5"
