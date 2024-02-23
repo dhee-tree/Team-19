@@ -35,23 +35,27 @@
             </div>
 
             <div class="modal-body">
-                <strong><p>Title:</p></strong>
-                <p>{{ $ticket->title }}</p>
+                @if ($tickets != null)
+                    <strong><p>Title:</p></strong>
+                    <p>{{ $ticket->title }}</p>
 
-                <strong><p>Information:</p></strong>
-                <p>{{ $ticket->information }}</p>
+                    <strong><p>Information:</p></strong>
+                    <p>{{ $ticket->information }}</p>
 
-                <strong><p>Status:</p></strong>
-                @if ($ticket->status == '1') 
-                    <p>Open</p>
-                @elseif ($ticket->status == '2')
-                    <p>In Progress</p>
+                    <strong><p>Status:</p></strong>
+                    @if ($ticket->status == '1') 
+                        <p>Open</p>
+                    @elseif ($ticket->status == '2')
+                        <p>In Progress</p>
+                    @else
+                        <p>Resolved</p>
+                    @endif
+
+                    <strong><p>Created At:</p></strong>
+                    <p>{{ $ticket->created_at }}</p>
                 @else
-                    <p>Resolved</p>
+                    <p>No ticket found</p>
                 @endif
-
-                <strong><p>Created At:</p></strong>
-                <p>{{ $ticket->created_at }}</p>
             </div>
 
             <div class="modal-footer">
