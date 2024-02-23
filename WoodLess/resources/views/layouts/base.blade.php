@@ -113,7 +113,7 @@
                         @php
                             $user = Auth()->user();
                             $basketItems = $user->basket()->first()->products()->get();
-                            $totalBasketCost = $user->basket()->first()->products()->sum('cost');
+                            $totalBasketCost = $user->basket()->first()->totalCost();
                         @endphp
                         @foreach($basketItems as $item)
                             <a href="/product/{{ $item->id }}" style="text-decoration: none;">
@@ -128,7 +128,7 @@
                                         <div class="col-6">
                                             <div class="card-body ms-0 ps-2 pt-2">
                                                 <h6 class="fw-bold mb-0 card-title">{{$item->title}}</h6>
-                                                <p class="card-text">£{{$item->cost}}</p>
+                                                <p class="card-text">£{{$item->cost * $item->pivot->amount}}</p>
                                             </div>
                                         </div>
                                         <div class="">
@@ -141,7 +141,7 @@
 
                         <div class="row bg-white sticky-bottom align-items-center mt-0">
                             <div class="col-100 pt-2 mb-0">
-                                <h5>Total: £{{$basketItems->sum('cost')}}</h5>
+                                <h5>Total: £{{$totalBasketCost}}</h5>
                             </div>
                             <div class="col">
                                 <a style="background-color: #1d1912" class="w-100 btn text-light" role="button" href="{{asset('basket')}}">Go to Basket<span style="background-color: #655d52" class="ms-2 badge rounded-pill badge-notification">{{$user->basket()->first()->productAmount()}}</span></a>
