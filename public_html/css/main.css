@@ -14,6 +14,14 @@ main{
     margin:5vh;
 }
 
+.expand-hover{
+    transition: 0.3s ease-in-out;
+}
+
+.expand-hover:hover{
+    transform: scale(1.03);
+}
+
 
 
 /*
