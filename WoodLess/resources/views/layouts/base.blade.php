@@ -172,7 +172,7 @@
 
         <footer class="text-center">
             <div class="svgHolder">
-                <svg viewBox="0 0 120 10" class="svg-behind-footer">
+                <svg viewBox="0 5 120 5" class="svg-behind-footer">
                     <defs>
                         <path id="wave" d="M 0,5 C 30,5 30,7 60,7 90,7 90,5 120,5 150,5 150,7 180,7 210,7 210,5 240,5 v 28 h -248 z" />
                     </defs>
