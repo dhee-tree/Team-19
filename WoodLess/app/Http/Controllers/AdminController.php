@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Address;
 use App\Models\Category;
 use App\Models\Warehouse;
 use Illuminate\Support\Facades\Storage;
@@ -29,11 +30,57 @@ class AdminController extends Controller
         return view('components.user-edit', compact('user'));
     }
 
-    public function UserStore($id)
+    public function UserStore(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+        // Validate incoming request data
+        $validatedData = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone_number' => 'required|string|max:20',
+            'is_admin' => 'boolean',
+            'address' => 'required|array', // Validate address as an array
+            'address.*.house_number' => 'required|string|max:50',
+            'address.*.street_name' => 'required|string|max:255',
+            'address.*.postcode' => 'required|string|max:20',
+            'address.*.city' => 'required|string|max:255',
+        ]);
 
-        return redirect()->route('admin-panel.users')->with('success', 'user ' . $id . ' was clicked and submitted yay');
+        //checks if we need to make a new product or get an old one
+        if ($id >= 0) {
+            $user = User::find($id);
+
+            // Check if the product exists
+            if (!$user) {
+                return redirect()->back()->with('error', 'User not found.');
+            }
+        } else {
+            // Create a new product instance
+            $user = new User();
+        }
+
+        // Update user information
+        $user->first_name = $validatedData['first_name'];
+        $user->last_name = $validatedData['last_name'];
+        $user->email = $validatedData['email'];
+        $user->phone_number = $validatedData['phone_number'];
+        $user->is_admin = $request->has('is_admin'); // Convert checkbox value to boolean
+
+        // Save or update the user
+        $user->save();
+
+        // Save addresses
+        foreach ($validatedData['address'] as $addressData) {
+            $address = new Address();
+            $address->fill($addressData); // Fill address data
+            $user->addresses()->save($address); // Save address for the user
+        }
+
+        if ($id >= 0) {
+            return redirect()->route('admin-panel.users')->with('success', 'user ' . $id . ' was edited successfully');
+        } else {
+            return redirect()->route('admin-panel.users')->with('success', 'user ' . $id . ' was created successfully');
+        }
     }
 
     public function ProductInfo($id)

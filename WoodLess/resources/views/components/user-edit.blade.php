@@ -10,9 +10,6 @@
             <form action="{{ route('user-store', ['id' => $user->id]) }}" method="POST">
                 @csrf
                 <div class="modal-body">
-
-
-
                     <label for="first_name">First Name:</label>
                     <input type="text" name="first_name" id="first_name"
                         class="pb-2 form-control @error('first_name') is-invalid @enderror"
