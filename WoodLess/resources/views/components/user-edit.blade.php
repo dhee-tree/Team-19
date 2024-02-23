@@ -7,7 +7,7 @@
                 <h1 class="modal-title fs-5" id="extraModalLabel">Edit User: {{ $user->id }} Details </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('user-store', ['id' => $user->id]) }}" method="POST">
+            <form id="editUserForm" action="{{ route('user-store', ['id' => $user->id]) }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label for="first_name">First Name:</label>
@@ -36,11 +36,9 @@
                         <label for="is_admin" class="form-check-label">Set as Admin</label>
                     </div>
 
-                    <label for="address" class="pt-3">Address:</label>
-                    <select name="address" id="address" class="form-control">
-                        <option value="" selected>Select Address
-                        </option>
-
+                    <label for="addresses" class="pt-3">Addresses:</label>
+                    <select name="addresses[]" id="addresses" class="form-control">
+                        <option value="" selected>Select Address</option>
                         @foreach ($user->addresses as $address)
                             <option value="{{ $address->id }}">
                                 {{ $address->house_number . ' ' . $address->street_name }}</option>
@@ -52,23 +50,23 @@
                             <div class="address-fields" id="addressFields_{{ $address->id }}" style="display: none;">
                                 <div class="form-group">
                                     <label for="house_number">House Number:</label>
-                                    <input type="text" name="house_number" class="form-control"
-                                        value="{{ $address->house_number }}">
+                                    <input type="text" name="addresses[{{ $address->id }}][house_number]"
+                                        class="form-control" value="{{ $address->house_number }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="street_name">Street Name:</label>
-                                    <input type="text" name="street_name" class="form-control"
-                                        value="{{ $address->street_name }}">
+                                    <input type="text" name="addresses[{{ $address->id }}][street_name]"
+                                        class="form-control" value="{{ $address->street_name }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="postcode">Postcode:</label>
-                                    <input type="text" name="postcode" class="form-control"
-                                        value="{{ $address->postcode }}">
+                                    <input type="text" name="addresses[{{ $address->id }}][postcode]"
+                                        class="form-control" value="{{ $address->postcode }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="city">City:</label>
-                                    <input type="text" name="city" class="form-control"
-                                        value="{{ $address->city }}">
+                                    <input type="text" name="addresses[{{ $address->id }}][city]"
+                                        class="form-control" value="{{ $address->city }}">
                                 </div>
                             </div>
                         @endforeach
@@ -77,16 +75,16 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary" form="editUserForm">Save</button>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
 
-
 <script>
-    document.getElementById('address').addEventListener('change', function() {
+    document.getElementById('addresses').addEventListener('change', function() {
         var addressId = this.value;
         var addressInputs = document.getElementById('addressInputs');
         if (addressId) {
@@ -97,7 +95,10 @@
             });
 
             // Show the selected address fields
-            document.getElementById('addressFields_' + addressId).style.display = 'block';
+            var selectedAddressFields = document.getElementById('addressFields_' + addressId);
+            if (selectedAddressFields) {
+                selectedAddressFields.style.display = 'block';
+            }
         } else {
             // If no address is selected, hide all address fields
             var allAddressFields = document.querySelectorAll('.address-fields');

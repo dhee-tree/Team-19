@@ -87,7 +87,7 @@ Route::get('/admin-panel/users/user-info/{id}', [AdminController::class,'UserInf
 //Used to edit the user
 Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class,'UserEdit'])->name('components.user-edit');//saving to database, either edited or a new product
 //stores products, either edits or creates a new ones
-Route::post('/admin-panel/users/store/{id}', [AdminController::class,'UserStore'])->name('user-store');
+Route::post('/admin-panel/users/user-store/{id}', [AdminController::class,'UserStore'])->name('user-store');
 
 //user panel pages
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
