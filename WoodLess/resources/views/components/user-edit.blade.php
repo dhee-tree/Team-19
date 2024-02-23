@@ -37,7 +37,7 @@
                     </div>
 
                     <label for="addresses" class="pt-3">Addresses:</label>
-                    <select name="addresses[]" id="addresses" class="form-control">
+                    <select name="address_selector" id="addresses" class="form-control">
                         <option value="" selected>Select Address</option>
                         @foreach ($user->addresses as $address)
                             <option value="{{ $address->id }}">

@@ -60,8 +60,12 @@ class AdminController extends Controller
         $user->addresses()->delete();
         if ($request->has('addresses')) {
             foreach ($request->input('addresses') as $addressData) {
+
                 $address = new Address();
-                $address->fill($addressData); // Fill address data
+                $address->house_number = $addressData['house_number'];
+                $address->street_name = $addressData['street_name'];
+                $address->postcode = $addressData['postcode'];
+                $address->city = $addressData['city'];
                 $user->addresses()->save($address); // Save address for the user
             }
         }
