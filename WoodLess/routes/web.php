@@ -66,28 +66,28 @@ Route::view('/admin-panel', 'admin-panel');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //admin panel pages
-Route::view('/admin-panel/orders', 'orders-admin');
-Route::view('/admin-panel/tickets', 'tickets-admin');
-Route::get('/admin-panel/users', [AdminController::class,'users'])->name('admin-panel.users');
+Route::view('/admin-panel/orders', 'orders-admin')->middleware('admin');
+Route::view('/admin-panel/tickets', 'tickets-admin')->middleware('admin');
+Route::get('/admin-panel/users', [AdminController::class,'users'])->name('admin-panel.users')->middleware('admin');
 
-Route::get('/admin-panel/inventory', [AdminController::class,'inventory'])->name('admin-panel.inventory');
+Route::get('/admin-panel/inventory', [AdminController::class,'inventory'])->name('admin-panel.inventory')->middleware('admin');
 
 //The additional information modal to expand fields in inventory managment
-Route::get('/admin-panel/inventory/product-info/{id}', [AdminController::class,'ProductInfo'])->name('components.products-info');
+Route::get('/admin-panel/inventory/product-info/{id}', [AdminController::class,'ProductInfo'])->name('components.products-info')->middleware('admin');
 //editing the products modal
-Route::get('/admin-panel/inventory/product-edit/{id}', [AdminController::class,'ProductEdit'])->name('components.products-edit');
+Route::get('/admin-panel/inventory/product-edit/{id}', [AdminController::class,'ProductEdit'])->name('components.products-edit')->middleware('admin');
 //The modal to open the add modal for products
-Route::get('/admin-panel/inventory/product-add', [AdminController::class,'ProductAdd'])->name('components.products-add');
+Route::get('/admin-panel/inventory/product-add', [AdminController::class,'ProductAdd'])->name('components.products-add')->middleware('admin');
 //stores products, either edits or creates a new ones
-Route::post('/admin-panel/inventory/store/{id}', [AdminController::class,'ProductStore'])->name('product-store');
+Route::post('/admin-panel/inventory/store/{id}', [AdminController::class,'ProductStore'])->name('product-store')->middleware('admin');
 //stores products, either edits or creates a new ones
-Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class,'ProductDelete'])->name('product-delete');;
+Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class,'ProductDelete'])->name('product-delete')->middleware('admin');
 //The additional information modal to expand fields in user admin panel
-Route::get('/admin-panel/users/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.user-info');//saving to database, either edited or a new product
+Route::get('/admin-panel/users/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.user-info')->middleware('admin');//saving to database, either edited or a new product
 //Used to edit the user
-Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class,'UserEdit'])->name('components.user-edit');//saving to database, either edited or a new product
+Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class,'UserEdit'])->name('components.user-edit')->middleware('admin');//saving to database, either edited or a new product
 //stores products, either edits or creates a new ones
-Route::post('/admin-panel/users/user-store/{id}', [AdminController::class,'UserStore'])->name('user-store');
+Route::post('/admin-panel/users/user-store/{id}', [AdminController::class,'UserStore'])->name('user-store')->middleware('admin');
 
 //user panel pages
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');
