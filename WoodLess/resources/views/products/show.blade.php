@@ -360,7 +360,7 @@
             </div>
         @endif
 
-        <hr class="">
+        <hr id="go-reviews">
         
         @include('reviews.load')
     </div>
