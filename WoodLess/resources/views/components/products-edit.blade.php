@@ -1,4 +1,5 @@
-<div class="modal fade" id="extraModal" tabindex="-1" aria-labelledby="extraModalLabel" aria-hidden="true" data-bs-backdrop="static">
+<div class="modal fade" id="extraModal" tabindex="-1" aria-labelledby="extraModalLabel" aria-hidden="true"
+    data-bs-backdrop="static">
 
     <!-- Is responsible for expanding the fields for the item in the inventory management system -->
 
@@ -8,10 +9,11 @@
                 <h5 class="modal-title" id="extraModalLabel">Edit Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <form id="editProductForm" method="POST" action="{{ route('product-store', ['id' => $product->id]) }}"
-                    enctype="multipart/form-data">
-                    @csrf
+            <form id="editProductForm" method="POST" action="{{ route('product-store', ['id' => $product->id]) }}"
+                enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
                         <input type="text" class="form-control" id="title" name="title"
@@ -37,7 +39,8 @@
                                 <label for="quantity_{{ $warehouse->id }}" class="form-label">Quantity for Warehouse
                                     {{ $warehouse->id }}</label>
                                 <input type="number" class="form-control" id="quantity_{{ $warehouse->id }}"
-                                    name="quantities[{{ $warehouse->id }}]" min="0" value="{{ $product->stockAmount($warehouse->id) }}">
+                                    name="quantities[{{ $warehouse->id }}]" min="0"
+                                    value="{{ $product->stockAmount($warehouse->id) }}">
                             </div>
                         @endforeach
                     </div>
@@ -138,12 +141,13 @@
                             Image</button>
                     </div>
 
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary" form="editProductForm">Save Changes</button>
-            </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" form="editProductForm">Save Changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
