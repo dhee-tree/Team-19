@@ -128,7 +128,7 @@
                                         <div class="col-6">
                                             <div class="card-body ms-0 ps-2 pt-2">
                                                 <h6 class="fw-bold mb-0 card-title">{{$item->title}}</h6>
-                                                <p class="card-text">£{{$item->cost * $item->pivot->amount}}</p>
+                                                <p class="card-text">£{{sprintf("%0.2f", round(($item->cost) - (($item->cost) * ($item->discount / 100)), 2))}}</p>
                                             </div>
                                         </div>
                                         <div class="">
