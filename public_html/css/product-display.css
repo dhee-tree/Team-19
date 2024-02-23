@@ -24,12 +24,6 @@
     background: currentColor;
 }
 
-
-#average-rating:hover{
-    transform: rotate(3deg);
-}
-
-
 .product-submit, .category-button{
     background-color: #1d1912;
 }
@@ -60,8 +54,8 @@
     transform: scale(1.03);
 }
 
-#productCarousel .carousel-inner:hover{
-    overflow: visible;
+#productCarousel .carousel-inner{
+    overflow:visible;
 }
 
 
