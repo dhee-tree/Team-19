@@ -1,15 +1,15 @@
 <!-- User update modal -->
-<div class="modal fade" id="updateUserModal" tabindex="-1" aria-labelledby="updateUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="extraModal" tabindex="-1" aria-labelledby="extraModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="updateUserModal">Edit Details </h1>
+                <h1 class="modal-title fs-5" id="extraModalLabel">Edit User: {{$user->id}} Details </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('user-details.update', $user->id) }}" method="POST">
+                <form action="{{ route('user-store', ['id' => $user->id]) }}" method="POST">
                     @csrf
-                    @method('PUT')
+
 
                     <label for="first_name">First Name:</label>
                     <input type="text" name="first_name" id="first_name" class="pb-2 form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name', $user->first_name) }}" required autofocus>

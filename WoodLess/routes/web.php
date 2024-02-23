@@ -69,6 +69,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::view('/admin-panel/orders', 'orders-admin');
 Route::view('/admin-panel/tickets', 'tickets-admin');
 Route::get('/admin-panel/users', [AdminController::class,'users']);
+
 Route::get('/admin-panel/inventory', [AdminController::class,'inventory'])->name('admin-panel.inventory');
 
 //The additional information modal to expand fields in inventory managment
@@ -82,7 +83,11 @@ Route::post('/admin-panel/inventory/store/{id}', [AdminController::class,'Produc
 //stores products, either edits or creates a new ones
 Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class,'ProductDelete'])->name('product-delete');;
 //The additional information modal to expand fields in user admin panel
-Route::get('/admin-panel/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.users-info');//saving to database, either edited or a new product
+Route::get('/admin-panel/users/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.user-info');//saving to database, either edited or a new product
+//Used to edit the user
+Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class,'UserEdit'])->name('components.user-edit');//saving to database, either edited or a new product
+//stores products, either edits or creates a new ones
+Route::post('/admin-panel/users/store/{id}', [AdminController::class,'UserStore'])->name('user-store');
 
 //user panel pages
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');

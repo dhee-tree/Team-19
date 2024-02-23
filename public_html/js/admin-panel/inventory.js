@@ -1,3 +1,25 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('search');
+    var productRows = document.querySelectorAll('.product-row');
+
+    // Event listener for changes in the search input
+    searchInput.addEventListener('input', function() {
+        var searchQuery = searchInput.value.trim().toLowerCase();
+
+        // Iterate over product rows to filter products
+        productRows.forEach(function(row) {
+            var title = row.querySelector('.title').textContent.trim().toLowerCase();
+            var description = row.querySelector('.description').textContent.trim()
+                .toLowerCase();
+            var matchTitle = title.includes(searchQuery);
+            var matchDescription = description.includes(searchQuery);
+
+            // Show or hide the product row based on search query
+            row.style.display = matchTitle || matchDescription ? 'table-row' : 'none';
+        });
+    });
+});
+
 //Delete item modal info handlers
 function DeleteItemId(Id) {
     document.getElementById('id_input').value = Id;

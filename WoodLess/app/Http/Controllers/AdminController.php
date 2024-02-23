@@ -19,7 +19,21 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('components.users-info', compact('user'));
+        return view('components.user-info', compact('user'));
+    }
+
+    public function UserEdit($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('components.user-edit', compact('user'));
+    }
+
+    public function UserStore($id)
+    {
+        $user = User::findOrFail($id);
+
+        return redirect()->route('admin-panel.users')->with('success', 'user ' . $id . ' was clicked and submitted yay');
     }
 
     public function ProductInfo($id)
