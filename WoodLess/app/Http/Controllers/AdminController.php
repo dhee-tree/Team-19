@@ -31,6 +31,12 @@ class AdminController extends Controller
         return view('components.user-edit', compact('user'));
     }
 
+    public function UserAdd()
+    {
+
+        return view('components.user-add');
+    }
+
     public function UserStore(Request $request, $id)
     {
         // Checks if we need to make a new user or get an existing one

@@ -62,6 +62,33 @@ function openInfoModal(userId) {
 
 }
 
+//JavaScript to handle add/create modal opening
+
+function openAddModal() {
+    // Disable all buttons with the specified class to disable multiple spam
+    var buttons = document.querySelectorAll(".openModalButton");
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].disabled = true;
+    }
+    
+    $.get('/admin-panel/users/user-add/', function (data) {
+        $('body').append(data);
+        var modal = $('#extraModal');
+        modal.modal('show'); // Show the modal after content is appended
+
+        // Remove the modal from the DOM when it's closed
+        modal.on('hidden.bs.modal', function () {
+            // Re-enable all buttons with the specified class when the modal is closed
+            var buttons = document.querySelectorAll(".openModalButton");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = false;
+            }
+
+            modal.remove();
+        });
+    });
+}
+
 //JavaScript to handle edit modal opening
 
 function openEditModal(userId) {

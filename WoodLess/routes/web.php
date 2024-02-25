@@ -84,6 +84,8 @@ Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class,'Produ
 Route::get('/admin-panel/users/user-info/{id}', [AdminController::class,'UserInfo'])->name('components.user-info')->middleware('admin');//saving to database, either edited or a new product
 //Used to edit the user
 Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class,'UserEdit'])->name('components.user-edit')->middleware('admin');//saving to database, either edited or a new product
+//create a user
+Route::get('/admin-panel/users/user-add', [AdminController::class,'UserAdd'])->name('components.user-add')->middleware('admin');
 //stores products, either edits or creates a new ones
 Route::post('/admin-panel/users/user-store/{id}', [AdminController::class,'UserStore'])->name('user-store')->middleware('admin');
 
