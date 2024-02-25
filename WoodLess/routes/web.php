@@ -60,14 +60,12 @@ Route::get('/products/search', [ProductController::class, 'search']);
 //showcases products
 Route::get('/products', [ProductController::class,'index'])->name('products.filter');
 
-Route::view('/admin-panel', 'admin-panel');
-
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+Route::view('/admin-panel', 'admin-panel')->middleware('admin');;
 //admin panel pages
-Route::view('/admin-panel/orders', 'orders-admin')->middleware('admin');
-Route::view('/admin-panel/tickets', 'tickets-admin')->middleware('admin');
+Route::view('/admin-panel/orders', 'orders-admin')->middleware('admin')->middleware('admin');
+Route::view('/admin-panel/tickets', 'tickets-admin')->middleware('admin')->middleware('admin');
 Route::get('/admin-panel/users', [AdminController::class,'users'])->name('admin-panel.users')->middleware('admin');
 
 Route::get('/admin-panel/inventory', [AdminController::class,'inventory'])->name('admin-panel.inventory')->middleware('admin');
