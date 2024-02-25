@@ -2,114 +2,150 @@
 @section('title', 'WoodLess - Admin')
 
 @section('style')
-<link rel="stylesheet" href="{{ asset('css/admin-panel.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/admin-panel.css')}}">
 @endsection
 
 @section('content')
 <body>
-    <div class="wrapper">
-        <aside id="sidebar">
-            <!-- Content for sidebar -->
-            <div class="h-100">
-                <div class="sidebar-logo">
-                    <a href="#">Admin Panel</a>
+    <!-- sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <div class="logo-name"><span>Wood</span>Less</div>
+        </a>
+        <ul class="side-menu">
+            <li class="active"><a href="#"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+            <li><a href="{{url('/admin-panel/inventory')}}"><i class="fa-solid fa-warehouse"></i>Inventory</a></li>
+            <li><a href="{{url('/admin-panel/orders')}}"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
+            <li><a href="{{url('/admin-panel/tickets')}}"><i class="fa-solid fa-message"></i>Tickets</a></li>
+            <li><a href="{{url('/admin-panel/users')}}"><i class="fa-solid fa-user"></i>Users</a></li>
+            <li><a href="#"><i class="fa-solid fa-gear"></i>Settings</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#" class="logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End of sidebar -->
+
+    <!-- Main content -->
+    <div class="content">
+        <!-- Navbar -->
+        <nav>
+            <i class="fa-solid fa-bars"></i>
+            <form action="#">
+                <div class="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-                <ul class="sidebar-nav">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
-                            <i class="fa-solid fa-house pe-2"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="{{url('/admin-panel/orders')}}" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i>
-                            Orders
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#customers" data-bs-toggle="collapse" aria-expanded="false">
-                            <i class="fa-solid fa-user pe-2"></i>
-                            Customers
-                        </a>
-                        <ul id="customers" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="{{url('/admin-panel/users')}}" class="sidebar-link">User display</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="{{url('/admin-panel/tickets')}}" class="sidebar-link">Support tickets</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="{{url('/admin-panel/inventory')}}" class="sidebar-link">
-                            <i class="fa-regular fa-store pe-2"></i>
-                            Inventory
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
-        <div class="main">
-            <div class="container">
-                <div class="row">
-                    <div class="section-header">
-                        <span><h2>Recent Orders</h2></span>
-                    </div>
-                    <div class="card">
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Order number</th>
-                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Item</th>
-                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
-                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Shipping address</th>
-                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p class="text-xs mb-0">910928302</p>
-                                        </td>
-                                        <td><p class="text-xs mb-0">Product name</p></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="section-header">
-                        <span><h2>Support tickets</h2></span>
-                    </div>
-                    <div class="card">
-                        <div class="table-responsive">
-                            <table class="table align-items-center mb-0">
-                                <thead>
-                                    <tr>
-                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Ticket ID</th>
-                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7">Ticket title</th>
-                                        <th class="text-uppercase text-xxs font-weight-bolder opacity-7 ps-2">Message</th>
-                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Status</th>
-                                        <th class="text-center text-uppercase text-xxs font-weight-bolder opacity-7">Username</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <p class="text-xs mb-0">00042</p>
-                                        </td>
-                                        <td><p class="text-xs mb-0">Sign-in issue</p></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            </form>
+            <a href="#" class="notif">
+                <i class="fa-solid fa-bell"></i>
+                <span class="count">12</span>
+            </a>
+            <a href="" class="profile">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"/></svg>
+            </a>
+        </nav>
+        <!-- End of Navbar -->
+
+        <main>
+            <div class="header">
+                <div class="left">
+                    <h1>Welcome Admin!</h1>
                 </div>
             </div>
-        </div>
+            <!-- Insights -->
+            <ul class="insights">
+                <li>
+                    <i class="fa-solid fa-clipboard-check"></i>
+                    <span class="info">
+                        <h3>
+                            1,074
+                        </h3>
+                        <p>Paid Orders</p>
+                    </span>
+                </li>
+                <li><i class="fa-solid fa-user"></i>
+                    <span class="info">
+                        <h3>
+                            3,944
+                        </h3>
+                        <p>Users</p>
+                    </span>
+                </li>
+                <li><i class="fa-solid fa-comments"></i>
+                    <span class="info">
+                        <h3>
+                            14,721
+                        </h3>
+                        <p>Tickets</p>
+                    </span>
+                </li>
+                <li><i class="fa-solid fa-money-bill-wave"></i>
+                    <span class="info">
+                        <h3>
+                            £6,742
+                        </h3>
+                        <p>Total Sales</p>
+                    </span>
+                </li>
+            </ul>
+            <!-- End of Insights -->
+
+            <!-- Recent orders table -->
+            <!-- Recent orders table -->
+            <div class="bottom-data">
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-receipt'></i>
+                        <h3>Recent Orders</h3>
+                        <i class='bx bx-filter'></i>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Order Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>John Doe</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>John Doe</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>John Doe</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td><span class="status process">Processing</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
     </div>
 </body>
+@endsection
+
+@section('js')
+    <script src="{{ asset('js/admin-panel.js')}}"></script>
 @endsection
