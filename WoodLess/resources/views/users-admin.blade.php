@@ -157,6 +157,12 @@
                         </div>
                     </div>
                 </div>
+                @if ($users->hasPages())
+                    <!-- Pagination Links -->
+                    {{ $users->links() }}
+                @else
+                    <p>No extra found.</p>
+                @endif
             </div>
         </div>
     </div>

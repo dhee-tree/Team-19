@@ -151,13 +151,13 @@ class AdminController extends Controller
     }
 
     public function users(Request $request)
-    {
-        $selectedLength = $request->input('length', 1000); // Default to 50 if not provided
+    {   
+        $selectedLength = $request->input('length', 1000); // Default to 1000 if not provided
 
         $users = User::latest()->get();
-        $products = User::paginate($selectedLength)->withQueryString();
 
         $users = $users->sortBy('id');
+        $users = User::paginate($selectedLength)->withQueryString();
 
         return view('users-admin', compact('users'));
 
