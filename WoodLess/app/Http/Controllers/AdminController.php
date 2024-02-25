@@ -37,6 +37,22 @@ class AdminController extends Controller
         return view('components.user-add');
     }
 
+    public function UserDelete($id)
+    {
+        // Retrieve the product by ID
+        $user = User::find($id);
+
+        // Check if the product exists
+        if (!$user) {
+            return redirect()->back()->with('error', 'User account not found.');
+        }
+
+        // Delete the product
+        $user->delete();
+
+        return redirect()->route('admin-panel.users')->with('success', 'user ' . $id . ' deleted succesfully.');
+    }
+
     public function UserStore(Request $request, $id)
     {
         // Checks if we need to make a new user or get an existing one

@@ -88,6 +88,8 @@ Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class,'UserEdi
 Route::get('/admin-panel/users/user-add', [AdminController::class,'UserAdd'])->name('components.user-add')->middleware('admin');
 //stores products, either edits or creates a new ones
 Route::post('/admin-panel/users/user-store/{id}', [AdminController::class,'UserStore'])->name('user-store')->middleware('admin');
+//deletes the user
+Route::post('/admin-panel/users/delete/{id}', [AdminController::class,'UserDelete'])->name('user-delete')->middleware('admin');
 
 //user panel pages
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');

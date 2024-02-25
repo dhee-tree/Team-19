@@ -62,15 +62,21 @@ function openInfoModal(userId) {
 
 }
 
-//JavaScript to handle add/create modal opening
+//Delete item modal info handlers
+function DeleteItemId(Id) {
+    document.getElementById('id_input').value = Id;
+    document.getElementById('deleteForm').action = '/admin-panel/users/delete/' + Id;
 
+}
+
+//JavaScript to handle add/create modal opening
 function openAddModal() {
     // Disable all buttons with the specified class to disable multiple spam
     var buttons = document.querySelectorAll(".openModalButton");
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].disabled = true;
     }
-    
+
     $.get('/admin-panel/users/user-add/', function (data) {
         $('body').append(data);
         var modal = $('#extraModal');
