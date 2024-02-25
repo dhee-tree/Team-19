@@ -152,3 +152,32 @@ function openEditModal(userId) {
         });
     });
 }
+
+//for pagination
+document.addEventListener('DOMContentLoaded', function () {
+    var lengthSelect = document.getElementById('length');
+
+    // Event listener for changes in the select element
+    lengthSelect.addEventListener('change', function () {
+        // Get the selected value
+        var selectedValue = lengthSelect.value;
+
+        // Get the current page URL
+        var currentPageUrl = window.location.href;
+
+        // Check if there are existing query parameters
+        var querySeparator = currentPageUrl.includes('?') ? '&' : '?';
+
+        // Check if the URL already contains a length parameter
+        if (currentPageUrl.includes('length=')) {
+            // Replace the existing length parameter with the new value
+            currentPageUrl = currentPageUrl.replace(/(length=)[^\&]+/, '$1' + selectedValue);
+        } else {
+            // Append the length parameter to the URL
+            currentPageUrl += querySeparator + 'length=' + selectedValue;
+        }
+
+        // Reload the page with the updated URL
+        window.location.href = currentPageUrl;
+    });
+});
