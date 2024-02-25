@@ -30,7 +30,7 @@
                         class="form-control @error('phone_number') is-invalid @enderror" value="Input phone Number"
                         maxlength="15" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
 
-                    <label for="password" class="pt-3">Last Name (up to 60 characters):</label>
+                    <label for="password" class="pt-3">password (up to 255 characters):</label>
                     <input type="text" name="password" id="password"
                         class="form-control @error('password') is-invalid @enderror" value="Input temperory Paassword"
                         maxlength="255" required>
