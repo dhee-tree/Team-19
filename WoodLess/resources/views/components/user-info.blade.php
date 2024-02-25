@@ -89,7 +89,6 @@
                         Card
                         @endif
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     @foreach($user->cards as $index => $cards)
@@ -127,7 +126,6 @@
                         Delivery address
                         @endif
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     @foreach($user->addresses as $index => $address)
