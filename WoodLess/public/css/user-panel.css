@@ -1,354 +1,45 @@
-.wrapper {
-    display: flex;
-    min-height: 100vh;
-}
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-main{
-    padding-top: 0 !important;
-}
-
-.content {
-    width: 100%;
-    padding: 20px;
-}
-
-footer {
-    margin-top: 0 !important;
-}
-
-/* Orders Table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-th, td {
-    margin: 20px;
-    text-align: center;
-}
-
-tr {
-    border-bottom: 1px solid #dddddd;
-    margin: 20px !important;
-}
-
-@media screen and (max-width: 600px) {
-  /* Make table cells stack on top of each other */
-  th, td {
-    display: block;
-    width: 100%;
-  }
-}
-
-/* Order Card */
-.order-card {
-    background-color: #ffffff; 
-    padding: 10px;
-    border-radius: 8px; 
-    box-shadow: 0 2px 4px rgb(0 0 0);
-    margin: 10px;
-    align-items: center;
-}
-
-/* Order status colour code */
-.order-status {
-    border-radius: 5px;
-    color: #ffffff;
-    padding: 5px 5px;
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.order-status-processing {
-    background-color: #007bff;
-}
-
-.order-status-transit {
-    background-color: #ffc107;
-}
-
-
-.order-status-completed {
-    background-color: #28a745;
-}
-
-.order-small-width {
-    width: 10rem;
-    display: inline;
-}
-
-@media screen and (max-width: 1020px) {
-    .btn-warning {
-        width: 100%;
-        display: block;
-    }
-}
-
-/* Sidebar */
-#sidebar {
-    width: 250px;
-    background: #343a40;
-    color: #fff;
-    min-height: 100vh;
-    padding-right: 50px;
-}
-
-.heading {
-    padding: 20px;
-    margin-top: 2vh;
-}
-
-.sidebar {
-    list-style-type: none;
-    padding: 10px;
-}
-
-.sidebar-item {
-    border-bottom: ipx solid #495057;
-    padding: 10px 0;
-}
-
-.sidebar-link {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    color: #adb5bd;
-    text-decoration: none;
-    transition: background-color 0.3s ease-in-out 0.3s ease-in-out;
-}
-
-.sidebar-link i {
-    margin-right: 10px;
-}
-
-.sidebar-link:hover,
-.sidebar-item.active .sidebar-link {
-    background-color: #495057;
-    color: #fff;
-}
-
-.sidebar-item:hover {
-    background-color: #495057;
-}
-
-
-/* Banner */
-.banner {
-    background-color: #e9ecef; 
-    color: #333; 
-    padding: 2rem;
-    margin: 0rem; 
-    text-align: center; 
-}
-
-.banner h1 {
-    margin: 0; 
-    padding: 0.5rem 0; 
-    font-size: 1.5rem; 
-    font-weight: bold; 
-    color: inherit; 
-}
-
-.banner p {
-    margin: 0; 
-    padding: 0.25rem 0; 
-    font-size: 1rem; 
-    color: inherit; 
-}
-
-
-/* Carrousel */
-#CustomersAlsoBought {
-    background-color: #f8f9fa; 
-    width: 70%;
-    margin: auto;
-}
-
-.py-5 {
-    padding-top: 1rem!important;
-}
-
-#CustomersAlsoBought .container-fluid {
-    padding: 0; 
-}
-
-#CustomersAlsoBought .carousel {
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    color: black;
+    margin: 0;
     padding: 0;
 }
 
-#CustomersAlsoBought .carousel-inner {
-    position: relative;
-    width: 90%; 
-    margin: auto; 
+main {
+    min-height: 100vh;
+    margin: 0 !important;
+    padding: 5vh; /* Adjust padding as needed */
 }
 
-#CustomersAlsoBought .carousel-item {
-    transition: transform 0.2s ease-in-out; 
+footer {
+    margin-top: 2rem;
+    padding: 0; /* Removes default padding */
 }
 
-#CustomersAlsoBought .carousel-item img {
-    width: 100%; 
-    height: auto; 
-    object-fit: cover; 
+/* Sidebar and Wrapper Styles */
+.wrapper {
+    display: flex; /* Aligns sidebar and content horizontally */
+    margin: 0;
+    padding: 0;
 }
 
-#CustomersAlsoBought .carousel-control-prev,
-#CustomersAlsoBought .carousel-control-next {
-    width: 4%; 
+#sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px; /* Adjust the width as per your design */
+    background-color: #f0f0f0; /* Example background color */
 }
 
-#CustomersAlsoBought .carousel-indicators button {
-    width: 10px;
-    height: 10px;
-    border-radius: 100%; 
-    background-color: #333; 
-}
-
-
-/* Recent Purchase Section */
-.recent-purchase-section {
-    padding: 20px;
-    background-color: #ffffff; 
-}
-
-.recent-purchase-heading {
-    font-size: 1.5rem; 
-    color: #333; 
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    text-align: center;
-}
-
-.purchase-card {
-    background-color: #cccccc; 
-    padding: 30px;
-    border-radius: 8px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    margin: 20px;
-}
-
-.purchase-images-container {
-    padding: 20px;
-    display: flex;
-    overflow-x: auto; 
-}
-
-.purchase-image {
-    flex-shrink: 0;
-    width: 100px; 
-    height: auto;
-    border-radius: 4px; 
-    margin-right: 10px; 
-    margin-bottom: 10px;
-}
-
-.purchase-details {
-    text-align: left;
-}
-
-.purchase-title {
-    font-size: 1.2rem; 
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.purchase-description {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 0.5rem;
-}
-
-.purchase-date {
-    font-size: 0.9rem;
-    color: #999;
-}
-
-.view-more-container {
-    text-align: center; 
-    padding-top: 10px; 
-}
-
-.view-more-button {
-    text-decoration: none;
-    color: #ffffff; 
-    background-color: #007bff; 
-    padding: 10px 20px;
-    border-radius: 5px; 
-    font-size: 1rem;
-    transition: background-color 0.3s; 
-}
-
-.view-more-button:hover {
-    background-color: #0056b3; 
-}
-
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .wrapper {
-        flex-direction: column;
-    }
-
+/* Responsive Design */
+@media screen and (max-width: 768px) {
     #sidebar {
-        width: 100%; 
-        height: auto; 
-        min-height: 0; 
-    }
-
-    #CustomersAlsoBought {
-        order: 3; 
-    }
-
-    #CustomersAlsoBought .carousel-inner {
-        width: 100%; 
-    }
-    
-    #CustomersAlsoBought .carousel-control-prev,
-    #CustomersAlsoBought .carousel-control-next {
-        width: 10%; 
-    }
-
-    .banner {
-        order: 2; 
+        width: 100%; /* Full width on smaller screens */
     }
 }
 
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .wrapper {
-        flex-direction: column;
-    }
-
-    #sidebar {
-        width: 100%; 
-        height: auto; 
-        min-height: 0; 
-    }
-
-    #CustomersAlsoBought {
-        order: 3; 
-    }
-
-    #CustomersAlsoBought .carousel-inner {
-        width: 100%; 
-    }
-    
-    #CustomersAlsoBought .carousel-control-prev,
-    #CustomersAlsoBought .carousel-control-next {
-        width: 10%; 
-    }
-
-    .banner {
-        order: 2; 
-    }
-}
-
-
-
-
-.password-change-button {
-    text-align: center;
-    margin: 10px;
-}
+/* Additional styles can be added here as needed */

@@ -12,7 +12,7 @@
   width: auto;
   max-height: auto;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+  background-color: #98c1d9;
 }
 
 .carousel-item img {
@@ -38,6 +38,3 @@ Media to change the carosel height for smaller screen sizes
   }
 }
 
-.card {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
-}

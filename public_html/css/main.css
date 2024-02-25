@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --main-background-color: #FFEED9;
+    --main-text-color: #183838;
+
+    --nav-background-color: #39A7FF;
+    --nav-text-color: #FFEED9;
+
+    --footer-background-color: #e4c9a9;
+
+    --spotlight-color-1: #87C4FF;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--main-background-color);
+    color: var(--main-text-color);
+}
+
+footer {
+    background-color: var(--footer-background-color);
+}
+
+nav {
+    background-color: var(--nav-background-color);
+}
+
+.nav-item .nav-link {
+    color: var(--nav-text-color);
+}
+
+main {
+    min-height: 100vh;
+    margin-left: 3vh;
+    margin-top: 3vh;
+    margin-right: 3vh;
+}
+
+.card {
+    background-color: var(--spotlight-color-1);
+    border-radius: 25px; /* Adjust the value as needed */
+}
+
+@media (min-width: 980px) {
+    #iconsnavbar {
+        order: 2; /* Change the order of the iconsnavbar */
+    }
+}
