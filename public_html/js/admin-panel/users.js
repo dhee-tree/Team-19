@@ -1,3 +1,34 @@
+document.addEventListener('DOMContentLoaded', function () {
+    var searchInput = document.getElementById('search');
+    var productRows = document.querySelectorAll('.user-row');
+
+    // Event listener for changes in the search input
+    searchInput.addEventListener('input', function () {
+        var searchQuery = searchInput.value.trim().toLowerCase();
+
+        // Iterate over product rows to filter products
+        productRows.forEach(function (row) {
+            var id = row.querySelector('.id').textContent.trim().toLowerCase();
+            var first = row.querySelector('.first').textContent.trim().toLowerCase();
+            var last = row.querySelector('.last').textContent.trim().toLowerCase();
+            var email = row.querySelector('.email').textContent.trim().toLowerCase();
+            var phone = row.querySelector('.phone').textContent.trim().toLowerCase();
+
+            var matchId = id.includes(searchQuery);
+            var matchFirst = first.includes(searchQuery);
+            var matchLast = last.includes(searchQuery);
+            var matchEmail = email.includes(searchQuery);
+            var matchPhone = phone.includes(searchQuery);
+
+            // Show or hide the product row based on search query
+            // You may need to adjust this logic depending on your specific requirements
+            row.style.display = matchId || matchFirst || matchLast || matchEmail || matchPhone ? 'table-row' : 'none';
+        });
+
+    });
+});
+
+
 function openInfoModal(userId) {
     // Disable all buttons with the specified class to disable multiple spam
     var buttons = document.querySelectorAll(".openModalButton");

@@ -60,25 +60,32 @@
                 </div>
                 <div class="row">
                     <div class="col-md-3">
-                        <div class="dataTables_length" id="user_length">
+                        <div class="dataTables_length" id="length_dropdown">
                             <label>
                                 Show
-                                <select name="user_length" id="user_length" aria-controls="example"
+                                <select name="length" id="length" aria-controls="example"
                                     class="form-select form-select-sm">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
+                                    <option value="0">Select Value</option>
+                                    <option value="5" {{ request()->input('length') == 5 ? 'selected' : '' }}>5
+                                    </option>
+                                    <option value="10" {{ request()->input('length') == 10 ? 'selected' : '' }}>10
+                                    </option>
+                                    <option value="25" {{ request()->input('length') == 25 ? 'selected' : '' }}>25
+                                    </option>
+                                    <option value="50" {{ request()->input('length') == 50 ? 'selected' : '' }}>50
+                                    </option>
+                                    <option value="100" {{ request()->input('length') == 100 ? 'selected' : '' }}>100
+                                    </option>
                                 </select>
                                 entries
                             </label>
                         </div>
                     </div>
                     <div class="col-md-6 d-flex justify-content-center">
-                        <div class="dataTables_filter" id="user_filter">
+                        <div class="dataTables_filter" id="filter">
                             <label>
                                 Search:
-                                <input type="search" class="form-control form-control-sm" placeholder
+                                <input type="search" id="search" class="form-control form-control-sm" placeholder
                                     aria-controls="search">
                             </label>
                         </div>
@@ -115,16 +122,16 @@
                                 </thead>
                                 <tbody class="datatable-body">
                                     @foreach ($users as $user)
-                                        <tr scope="row">
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                        <tr class="user-row" scope="row">
+                                            <td class="id text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $user->id }}</td>
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            <td class="first text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $user->first_name }}</td>
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            <td class="last text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $user->last_name }}</td>
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            <td class="email text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $user->email }}</td>
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            <td class="phone text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $user->phone_number }}</td>
                                             <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col"><button type="button"

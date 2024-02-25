@@ -8,14 +8,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Iterate over product rows to filter products
         productRows.forEach(function(row) {
+            var id = row.querySelector('.id').textContent.trim().toLowerCase();
             var title = row.querySelector('.title').textContent.trim().toLowerCase();
-            var description = row.querySelector('.description').textContent.trim()
-                .toLowerCase();
+            var description = row.querySelector('.description').textContent.trim().toLowerCase();
+
+            var matchId = id.includes(searchQuery);
             var matchTitle = title.includes(searchQuery);
             var matchDescription = description.includes(searchQuery);
 
             // Show or hide the product row based on search query
-            row.style.display = matchTitle || matchDescription ? 'table-row' : 'none';
+            row.style.display = matchId || matchTitle || matchDescription ? 'table-row' : 'none';
         });
     });
 });

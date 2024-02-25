@@ -127,7 +127,7 @@
                                 <tbody class="datatable-body">
                                     @foreach ($products as $product)
                                         <tr class="product-row" scope="row">
-                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                            <td class="id text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->id }}</td>
                                             <td class="title text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">{{ $product->title }}</td>
