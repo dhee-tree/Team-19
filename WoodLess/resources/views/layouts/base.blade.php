@@ -178,7 +178,7 @@
         </div>
 
         <main>
-            <!-- @include('layouts.alert') !-->
+            <!-- include('layouts.alert') !-->
             @yield('content')
         </main>
 

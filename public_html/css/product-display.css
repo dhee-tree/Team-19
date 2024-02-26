@@ -1,7 +1,3 @@
-#average-rating, #productCarousel .card{
-    transition: 0.3s ease-in-out;
-}
-
 .product-badge{
     background-color: #1d1912;
     color: white;
@@ -23,12 +19,6 @@
     border: currentColor;
     background: currentColor;
 }
-
-
-#average-rating:hover{
-    transform: rotate(3deg);
-}
-
 
 .product-submit, .category-button{
     background-color: #1d1912;
@@ -56,12 +46,8 @@
     box-shadow:100px;
 }
 
-#productCarousel .card:hover{
-    transform: scale(1.03);
-}
-
-#productCarousel .carousel-inner:hover{
-    overflow: visible;
+#productCarousel .carousel-inner{
+    overflow:visible;
 }
 
 
