@@ -186,7 +186,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a support ticket</h1>
-        <form action="{{ route('user.tickets.store') }}" method="POST">
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="{{ route('user.tickets.store') }}" method="POST">
                     @csrf
                     <label for="title">Title</label>
                     <input type="text" name="title" id="title" class="form-control" required>
@@ -199,10 +203,6 @@
                         <button type="submit" class="btn btn-primary">Create Ticket</button>
                     </div>
                 </form>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        
       </div>
       <div class="modal-footer">
         
