@@ -99,8 +99,8 @@
 
         <div class="col" id="basket-offcanvas-div" tabindex="-1">
             <div class="shadow-lg offcanvas offcanvas-end scrollable" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
-                <div class="offcanvas-header text-light" style="background-color: #1d1912">
-                  <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
+                <div class="offcanvas-header text-light mb-0 py-2" style="background-color: #1d1912">
+                  <span class="fs-5 offcanvas-title" id="basket-offcanvas">Your Basket</span>
                   <button type="button" class="btn text-light" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="offcanvas-body">
@@ -135,7 +135,8 @@
 
                                         <div class="">
                                             <small class="position-absolute bottom-0 start-0 pb-1 ps-2">
-                                                <span class="fw-bold">{{$item->pivot->amount}}x</span> @if($itemAttributes["colour"])<i style="color: {{$itemAttributes["colour"]}}" class="fa-solid fa-circle"></i>@endif
+                                                <span class="fw-bold">{{$item->pivot->amount}}x</span> 
+                                                @if($itemAttributes["colour"])<i style="color: {{$itemAttributes["colour"]}}" class="fa-solid fa-circle"></i>@endif
                                             </small>
                                         </div>
                                     </div>
@@ -145,10 +146,10 @@
 
                         <div class="row bg-white sticky-bottom align-items-center mt-0">
                             <div class="col-100 pt-2 mb-0">
-                                <h5>Total: £{{$totalBasketCost}}</h5>
+                                <h5 class="fw-bold">Total: £{{$totalBasketCost}}</h5>
                             </div>
                             <div class="col">
-                                <a style="background-color: #1d1912" class="w-100 btn text-light" role="button" href="{{asset('basket')}}">Go to Basket<span style="background-color: #655d52" class="ms-2 badge rounded-pill badge-notification">{{$user->basket()->first()->productAmount()}}</span></a>
+                                <a style="background-color: #1d1912" class="w-100 btn text-light" role="button" href="{{asset('basket')}}">Go to Basket<span style="background-color: #655d52" class="ms-2 fw-light badge rounded-pill badge-notification">{{$user->basket()->first()->productAmount()}}</span></a>
                             </div>
 
                             @if(!$basketItems->isEmpty())
