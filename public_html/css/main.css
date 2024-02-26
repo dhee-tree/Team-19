@@ -37,6 +37,22 @@ main {
     margin-right: 3vh;
 }
 
+.expand-hover{
+    transition: 0.3s ease-in-out;
+}
+
+.expand-hover:hover{
+    transform: scale(1.03);
+}
+
+.expand-hover{
+    transition: 0.3s ease-in-out;
+}
+
+.expand-hover:hover{
+    transform: scale(1.03);
+}
+
 .card {
     background-color: var(--spotlight-color-1);
     border-radius: 25px; /* Adjust the value as needed */
