@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Ticket;
 use App\Models\Address;
 use App\Models\Category;
 use App\Models\Warehouse;
@@ -16,6 +17,20 @@ class AdminController extends Controller
 {
 
     protected $reviews;
+
+    #region User
+
+    public function users(Request $request)
+    {
+        $selectedLength = $request->input('length', 1000); // Default to 1000 if not provided
+
+        $users = User::latest()->get();
+
+        $users = $users->sortBy('id');
+        $users = User::paginate($selectedLength)->withQueryString();
+
+        return view('users-admin', compact('users'));
+    }
 
     public function UserInfo($id)
     {
@@ -99,6 +114,23 @@ class AdminController extends Controller
         }
     }
 
+    #endregion
+
+    #region Products
+    //returns the view for inventory on the admin controller.
+    public function inventory(Request $request)
+    {
+
+        $selectedLength = $request->input('length', 1000); // Default to 50 if not provided
+
+        $products = Product::latest()->get();
+
+        $products = $products->sortBy('id');
+        $products = Product::paginate($selectedLength)->withQueryString();
+
+
+        return view('inventory', compact('products'));
+    }
 
     public function ProductInfo($id)
     {
@@ -133,34 +165,6 @@ class AdminController extends Controller
             'warehouses' => $warehouses,
             'categories' => $categories,
         ]);
-    }
-
-    //returns the view for inventory on the admin controller.
-    public function inventory(Request $request)
-    {
-
-        $selectedLength = $request->input('length', 1000); // Default to 50 if not provided
-
-        $products = Product::latest()->get();
-
-        $products = $products->sortBy('id');
-        $products = Product::paginate($selectedLength)->withQueryString();
-
-
-        return view('inventory', compact('products'));
-    }
-
-    public function users(Request $request)
-    {   
-        $selectedLength = $request->input('length', 1000); // Default to 1000 if not provided
-
-        $users = User::latest()->get();
-
-        $users = $users->sortBy('id');
-        $users = User::paginate($selectedLength)->withQueryString();
-
-        return view('users-admin', compact('users'));
-
     }
 
     public function ProductDelete($id)
@@ -342,4 +346,27 @@ class AdminController extends Controller
             return redirect()->route('admin-panel.inventory')->with('success', 'Product ' . $product->id . ' created successfully.');
         }
     }
+
+    #endregion
+
+    #region tickets
+
+    public function tickets(Request $request)
+    {
+
+        $selectedLength = $request->input('length', 1000); // Default to 50 if not provided
+
+        $tickets = Ticket::latest()->get();
+
+        $tickets = $tickets->sortBy('id');
+        $tickets = Ticket::paginate($selectedLength)->withQueryString();
+
+
+        return view('tickets-admin', compact('tickets'));
+    }
+
+    #endregion
+
+
+
 }
