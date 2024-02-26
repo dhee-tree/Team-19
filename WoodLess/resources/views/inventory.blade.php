@@ -14,50 +14,30 @@
 
 
 @section('content')
-    <div class="wrapper">
-        <aside id="sidebar">
-            <!-- Content for sidebar -->
-            <div class="h-100">
-                <div class="sidebar-logo">
-                    <a href="#">Admin Panel</a>
-                </div>
-                <ul class="sidebar-nav">
-                    <li class="sidebar-item">
-                        <a href="{{ url('admin-panel') }}" class="sidebar-link">
-                            <i class="fa-solid fa-house pe-2"></i>
-                            Dashboard
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="{{ url('/admin-panel/orders') }}" class="sidebar-link">
-                            <i class="fa-solid fa-list pe-2"></i>
-                            Orders
-                        </a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-target="#customers"
-                            data-bs-toggle="collapse" aria-expanded="false">
-                            <i class="fa-solid fa-user pe-2"></i>
-                            Customers
-                        </a>
-                        <ul id="customers" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                            <li class="sidebar-item">
-                                <a href="{{ url('/admin-panel/users') }}" class="sidebar-link">User display</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="{{ url('/admin-panel/tickets') }}" class="sidebar-link">Support tickets</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="{{ url('/admin-panel/inventory') }}" class="sidebar-link">
-                            <i class="fa-regular fa-store pe-2"></i>
-                            Inventory
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </aside>
+    <!-- sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+            <div class="logo-name"><span>Wood</span>Less</div>
+        </a>
+        <ul class="side-menu">
+            <li><a href="{{url('/admin-panel')}}"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+            <li class="active"><a href="{{url('/admin-panel/inventory')}}"><i class="fa-solid fa-warehouse"></i>Inventory</a></li>
+            <li><a href="{{url('/admin-panel/orders')}}"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
+            <li><a href="{{url('/admin-panel/tickets')}}"><i class="fa-solid fa-message"></i>Tickets</a></li>
+            <li><a href="{{url('/admin-panel/users')}}"><i class="fa-solid fa-user"></i>Users</a></li>
+            <li><a href="#"><i class="fa-solid fa-gear"></i>Settings</a></li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="#" class="logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- End of sidebar -->
+    <div class="content">
         <div class="main">
             <div class="container-fluid px-5 py-4">
                 <div class="content">
