@@ -33,7 +33,7 @@ class ProductController extends Controller
         $reviews = $product->getCachedRelation('reviews')->sortBy([
             [request('sort') ?? 'created_at', request('order') ?? 'desc']
         ]
-        )->paginate(8)->withQueryString()->fragment('reviews');
+        )->paginate(8)->withQueryString()->fragment('go-reviews');
 
         // Retrieve the product images from the database
         $productImages = explode(',', $product->images);
