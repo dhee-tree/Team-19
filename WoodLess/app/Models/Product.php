@@ -11,7 +11,7 @@ class Product extends Model
 {
     use HasFactory;
     use Cacheable;
-    
+
     protected $fillable = [
         'title',
         'description',
@@ -21,6 +21,21 @@ class Product extends Model
         'cost',
         'discount',
     ];
+
+    /**
+     * Returns the filepaths of images associated with the product as an array.
+     */
+    public function getImages(){
+        $imageDir = public_path('images/products/'.$this->id);
+        $images = [];
+
+        foreach (scandir($imageDir) as $path) {
+            if (!is_dir($imageDir . '/' . $path)) {
+                $images[] = 'images/products/'.$this->id.'/'.$path;
+            }
+        }
+        return $images;
+    }
 
     /**
      * Returns the baskets that belong to the product.
@@ -77,61 +92,79 @@ class Product extends Model
      * Returns the categories associated with the product.
      */
     public function categories()
-    {   
+    {
         return $this->belongsToMany(Category::class);
     }
 
     //filters the product
+
     public function scopeFilter($query, array $filters)
     {
-           // Search
-           if ($filters['search'] ?? false) {
-            $searchText = $filters['search'];
+        // Search
+        if ($searchText = $filters['search'] ?? false) {
             $query->where(function ($searchQuery) use ($searchText) {
                 $searchQuery->where('title', 'like', '%' . $searchText . '%')
-                            ->orWhere('tags', 'like', '%' . $searchText . '%');
+                    ->orWhere('tags', 'like', '%' . $searchText . '%');
             });
+        }
 
-        //Category
-        if ($filters['categories'] ?? false) {
-            $category = $filters['categories'];
-
+        // Category
+        if ($category = $filters['categories'] ?? false) {
             $query->whereHas('categories', function ($categoryQuery) use ($category) {
                 $categoryQuery->where('category', $category);
             });
         }
-        //ratings
-        if ($filters['ratings'] ?? false) {
-            $ratings = (array)$filters['ratings'];
 
+        // Ratings
+        if ($ratings = $filters['ratings'] ?? false) {
             $query->whereHas('reviews', function ($reviewQuery) use ($ratings) {
                 foreach ($ratings as $rating) {
-                    $reviewQuery->orHavingRaw('coalesce(avg(rating), 0) >= ?', [$rating]);
+                    $reviewQuery->havingRaw('coalesce(avg(rating), 0) >= ?', [$rating]);
                 }
             });
         }
-        //Color
-        if ($filters['color'] ?? false) {
-            $query->whereJsonContains('attributes->color', $filters['color']);
+
+        // Color
+        if ($color = $filters['color'] ?? false) {
+            $query->whereJsonContains('attributes->color', $color);
         }
-        //Price
-        if (($filters['minCost'] ?? null) !== null && ($filters['maxCost'] ?? null) !== null) {
-            $query->whereBetween('cost', [$filters['minCost'], $filters['maxCost']]);
-        } elseif ($filters['minCost'] ?? null) {
+
+        // Price
+        if (isset($filters['minCost'])) {
             $query->where('cost', '>=', $filters['minCost']);
-        } elseif ($filters['maxCost'] ?? null) {
+        }
+
+        if (isset($filters['maxCost'])) {
             $query->where('cost', '<=', $filters['maxCost']);
         }
-    }
-        //Rating
 
-           }
+        // Sorting
+        if (isset($filters['sort_by'])) {
+            $sortBy = $filters['sort_by'];
+            if ($sortBy === 'price_high_low') {
+                $query->orderByDesc('cost');
+            } elseif ($sortBy === 'price_low_high') {
+                $query->orderBy('cost');
+            } elseif ($sortBy === 'rating_high_low') {
+                $query->orderByDesc('rating');
+            } elseif ($sortBy === 'rating_low_high') {
+                $query->orderBy('rating');
+            } elseif ($sortBy === 'discount_high_low') {
+                $query->orderByDesc('discount');
+            } elseif ($sortBy === 'discount_low_high') {
+                $query->orderBy('discount');
+            }
+        }
+
+        return $query;
+    }
 
     /**
      * Returns the order status associated with the product.
      * Rename to orderStatus to match model if possible
      */
-    public function orderProductStatus(){
+    public function orderProductStatus()
+    {
         return $this->belongsToMany(OrderStatus::class, 'order_product_warehouse', 'product_id', 'status_id');
     }
 
@@ -155,6 +188,4 @@ class Product extends Model
 
         return $truncatedDescription;
     }
-
-
 }

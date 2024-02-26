@@ -33,7 +33,7 @@ class ProductController extends Controller
         $reviews = $product->getCachedRelation('reviews')->sortBy([
             [request('sort') ?? 'created_at', request('order') ?? 'desc']
         ]
-        )->paginate(8)->withQueryString()->fragment('reviews');
+        )->paginate(8)->withQueryString()->fragment('go-reviews');
 
         // Retrieve the product images from the database
         $productImages = explode(',', $product->images);
@@ -77,6 +77,8 @@ class ProductController extends Controller
         //Get search paramaters
         $filters = collect(request()->query());
         $search_text = $filters['search'] ?? null;
+        $sortBy = $filters['sort_by'] ?? null;
+
 
         //get categories    
 
@@ -99,7 +101,9 @@ class ProductController extends Controller
             'ratings' => $ratings,
             'color' => json_decode($color),
             'minCost' => (float)$minCost,
-            'maxCost' => (float)$maxCost
+            'maxCost' => (float)$maxCost,
+            'search' => $search_text,
+            'sort_by'=>$sortBy
         ];
 
         $products = Product::latest()->filter($data)->get();

@@ -23,8 +23,7 @@
 
 @section('content')
     <div class="container">
-        @include('layouts.alert')
-        <div class="row m-0 mt-3 px-1 pt-3" id="product-main">
+        <div class="row m-0 mt-3 px-1" id="product-main">
             <div class="col-md-6 mb-3" id="gallery">
                 <div id="productGallery" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -120,20 +119,20 @@
                     <div class="">
                         <h3>
                             @if ($product->discount > 0)
-                                <div class="col m-0 p-0">
-                                    £{{ $finalCost }}
-                                    <span class="product-badge badge py-1 px-2 ms-2">{{ $product->discount }}% Off</span>
-                                </div>
-
-                                <div class="col m-0 p-0 opacity-50">
-                                    <small>
-                                        <h6>Was: £{{ $product->cost }}</h6>
-                                    </small>
-                                </div>
-                            @else
-                                £{{ $product->cost }}
-                            @endif
-                        </h3>
+                            <div class="col m-0 p-0">
+                                <span class="text-secondary">-{{$product->discount}}%</span>
+                                <span class="">£{{$finalCost}}</span>
+                            </div>
+                            
+                            <div class="col m-0 p-0 opacity-50">
+                                <small>
+                                    <h6>Was: <strike>£{{$product->cost}}</strike></h6>
+                                </small>
+                            </div>
+                            @else  
+                                £{{$product->cost}}
+                            @endif   
+                        </h3>        
                     </div>
                 </div>
 
@@ -296,7 +295,7 @@
                                         @endphp
                                         <div class="col-6 col-lg-3 col-md-3 col-sm-6">
                                             <a href="/product/{{ $similarProduct->id }}">
-                                                <div class="shadow-sm card mt-3">
+                                                <div class="expand-hover shadow-sm card mt-3">
                                                     <!-- Sale badge-->
                                                     @if(($similarProduct->discount))
                                                     <div class="badge bg-dark text-white position-absolute"
@@ -361,7 +360,7 @@
             </div>
         @endif
 
-        <hr class="">
+        <hr id="go-reviews">
         
         @include('reviews.load')
     </div>

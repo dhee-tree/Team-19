@@ -78,10 +78,11 @@ class BasketController extends Controller
             ]);
         }
 
-        catch(QueryException $ex){
+        catch(QueryException $e){
             return back()->with([
                 'status' => 'danger',
-                'message' => 'Failed to update basket.'
+                'message' => 'Failed to update basket.',
+                'error' => $e
             ]);
         }
     }
