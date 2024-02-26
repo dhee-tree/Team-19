@@ -67,8 +67,19 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::view('/admin-panel', 'admin-panel')->middleware('admin');;
 //admin panel pages
 Route::view('/admin-panel/orders', 'orders-admin')->middleware('admin')->middleware('admin');
+
+#region admin panel tickets
+
 Route::get('/admin-panel/tickets', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin');
-Route::get('/admin-panel/users', [AdminController::class, 'users'])->name('admin-panel.users')->middleware('admin');
+
+Route::get('', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin');
+
+//The additional information modal to expand fields in user admin panel
+Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin'); 
+
+#endregion
+
+#region admin panel inventory
 
 Route::get('/admin-panel/inventory', [AdminController::class, 'inventory'])->name('admin-panel.inventory')->middleware('admin');
 
@@ -82,16 +93,26 @@ Route::get('/admin-panel/inventory/product-add', [AdminController::class, 'Produ
 Route::post('/admin-panel/inventory/store/{id}', [AdminController::class, 'ProductStore'])->name('product-store')->middleware('admin');
 //stores products, either edits or creates a new ones
 Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class, 'ProductDelete'])->name('product-delete')->middleware('admin');
+
+#endregion
+
+
+#region admin panel users
+
+Route::get('/admin-panel/users', [AdminController::class, 'users'])->name('admin-panel.users')->middleware('admin');
+
 //The additional information modal to expand fields in user admin panel
-Route::get('/admin-panel/users/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin'); //saving to database, either edited or a new product
+Route::get('/admin-panel/users/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin'); 
 //Used to edit the user
-Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class, 'UserEdit'])->name('components.user-edit')->middleware('admin'); //saving to database, either edited or a new product
+Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class, 'UserEdit'])->name('components.user-edit')->middleware('admin');
 //create a user
 Route::get('/admin-panel/users/user-add', [AdminController::class, 'UserAdd'])->name('components.user-add')->middleware('admin');
 //stores products, either edits or creates a new ones
-Route::post('/admin-panel/users/user-store/{id}', [AdminController::class, 'UserStore'])->name('user-store')->middleware('admin');
+Route::post('/admin-panel/users/user-store/{id}', [AdminController::class, 'UserStore'])->name('user-store')->middleware('admin'); //saving to database, either edited or a new product
 //deletes the user
 Route::post('/admin-panel/users/delete/{id}', [AdminController::class, 'UserDelete'])->name('user-delete')->middleware('admin');
+
+#endregion
 
 //user panel pages
 Route::get('/user-panel', [App\Http\Controllers\UserPanelController::class, 'show'])->name('user-panel')->middleware('auth');

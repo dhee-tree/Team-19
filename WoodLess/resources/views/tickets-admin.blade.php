@@ -156,14 +156,14 @@
                                             scope="col">{{ $ticket->created_at }}</td>
                                         <td class="contact text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                             scope="col"><button type="button" class="btn btn-primary openModalButton"
-                                                onclick="openAdminInfoModal({{ $ticket->user_id }})"
+                                                onclick="openUserInfoModal({{ $ticket->user_id }})"
                                                 id="openModalButton">{{ $ticket->user_id }}</button>
                                         </td>
                                         <td class="contact text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                             scope="col">
                                             @if ($ticket->admin_id)
                                                 <button type="button" class="btn btn-primary openModalButton"
-                                                    onclick="openAdminInfoModal({{ $ticket->admin_id }})"
+                                                    onclick="openUserInfoModal({{ $ticket->admin_id }})"
                                                     id="openModalButton">{{ $ticket->admin_id }}</button>
                                             @else
                                                 Not Claimed
@@ -214,4 +214,35 @@
             </div>
         </div>
     </div>
+
+    <!-- Delete Product Modal -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+        aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <form id="deleteForm" action="{{ route('product-delete', ['id' => ':product_id']) }}"
+                        method="POST">
+                        @csrf
+                        <input type="hidden" name="id_input" id="id_input" value="">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('js')
+    <script src="{{ asset('js/admin-panel/tickets.js') }}"></script>
 @endsection
