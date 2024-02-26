@@ -11,7 +11,13 @@
 
     --spotlight-color-1: #87C4FF;
 }
-
+.btn-sticky {
+    position: fixed;
+    bottom: 6%;
+    right: 0;
+    transform: translateY(50%);
+    z-index: 1000; /* Ensure it's above other content */
+  }
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--main-background-color);
@@ -35,22 +41,6 @@ main {
     margin-left: 3vh;
     margin-top: 3vh;
     margin-right: 3vh;
-}
-
-.expand-hover{
-    transition: 0.3s ease-in-out;
-}
-
-.expand-hover:hover{
-    transform: scale(1.03);
-}
-
-.expand-hover{
-    transition: 0.3s ease-in-out;
-}
-
-.expand-hover:hover{
-    transform: scale(1.03);
 }
 
 .card {
