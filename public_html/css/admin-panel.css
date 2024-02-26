@@ -24,7 +24,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 .fa-solid{
@@ -43,13 +42,16 @@ html {
     overflow-x: hidden;
 }
 
+main {
+    margin-top: 0;
+}
+
 body{
     overflow-x: hidden;
 }
 
 .sidebar{
-    position: fixed;
-    top: 0;
+    position: absolute;
     left: 0;
     background: var(--light);
     width: 230px;
