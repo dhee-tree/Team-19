@@ -58,7 +58,7 @@ body{
 .sidebar{
     position: absolute;
     left: 0;
-    background: linear-gradient(180deg, rgba(183,222,237,1) 60%, rgba(255,238,217,1) 100%);
+    background: linear-gradient(180deg, rgba(183,222,237,1) 70%, rgba(255,238,217,1) 100%);
     width: 230px;
     height: 100%;
     z-index: 2000;
