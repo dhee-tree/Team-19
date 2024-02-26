@@ -50,7 +50,7 @@ The file .env declares the app environment, so it is important to set this up fi
 4. Run the command `php artisan key:generate`. This will generate an app key unique to your project installation.
 
 ### Database Setup
-Before you can run the website, the project must have a database setup.
+Before you can run the website, the database needs to be setup.
 1. Ensure your target MySQL server is running, and you have created a database that matches the one specifed in `.env`.
 2. Go to the WoodLess directory in a terminal. Run `php artisan migrate`. This will build the tables required to run the website in the database.
 - For additonal database information and commands, including test data, see the database readme.
