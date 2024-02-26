@@ -41,17 +41,25 @@ Woodless uses the powerful Eloquent ORM to ensure safe and streamlined database 
 To make our work as accessible as possible, all models and methods written for Woodless have proper documenting with PHPDoc and/or commenting. 
 - For Laravel or other features, please refer to the relevant documentation.
 
-
 ## Setup
 ### Introduction
-This guide assumes you are familiar with PHP web development environments (such as XAMMP) and have cloned/copied the repository to one. You will also need access to a MySQL server and may also require [Composer](https://getcomposer.org/download/).
+This guide assumes you are familiar with PHP web development environments (such as XAMMP) and have cloned/copied the repository to one. You will also need access to a MySQL server and [Composer](https://getcomposer.org/download/).
 
-### Setting up the .env file
+### Setup the .env file
 The file .env declares the app environment, so it is important to set this up first. 
 1. Rename [`.env.example`](./WoodLess/.env.example) in the project root folder to `.env`.
-2. Inside `.env`, modify lines 12-17 to match the information of your target database/table. This will be the table used by the website.
-3. Go to the WoodLess directory in a terminal. Run `composer install` to ensure the project is setup correctly.
+2. Inside `.env`, modify lines 12-17 to match the information of your target database. This will be the database that the project will use and connect to.
+3. Go to the WoodLess directory in a terminal. Run `composer install` to ensure the project is set up correctly. You may also wish to run `composer update`.
 4. Run the command `php artisan key:generate`. This will generate an app key unique to your project installation.
+
+### Setup the Database
+Before you can run the website, the project must have a database setup.
+1. Ensure your target MySQL server is running, and you have created a database that matches the one specifed in `.env`.
+2. Go to the WoodLess directory in a terminal. Run `php artisan migrate`. This will build the tables required to run the website in the database.
+- For additonal database information and commands, including test data, see the database readme.
+
+### Accessing the website
+1. Go to the WoodLess directory in a terminal. Run `php artisan serve`. This will create a server that you can access the website with. If everything is setup correctly, you will be able to access WoodLess.
 
 
 ## Team Members
