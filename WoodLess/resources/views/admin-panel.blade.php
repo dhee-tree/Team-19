@@ -19,7 +19,6 @@
             <li><a href="{{url('/admin-panel/orders')}}"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
             <li><a href="{{url('/admin-panel/tickets')}}"><i class="fa-solid fa-message"></i>Tickets</a></li>
             <li><a href="{{url('/admin-panel/users')}}"><i class="fa-solid fa-user"></i>Users</a></li>
-            <li><a href="#"><i class="fa-solid fa-gear"></i>Settings</a></li>
         </ul>
         <ul class="side-menu">
             <li>
