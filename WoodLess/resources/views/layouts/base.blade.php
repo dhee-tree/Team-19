@@ -138,6 +138,13 @@
                                                 <span class="fw-bold">{{$item->pivot->amount}}x</span> 
                                                 @if($itemAttributes["colour"])<i style="color: {{$itemAttributes["colour"]}}" class="fa-solid fa-circle"></i>@endif
                                             </small>
+                                            <small class="position-absolute bottom-0 end-0 pb-1 pe-2">
+                                                @foreach($itemAttributes as $itemAttribute => $key)
+                                                    @php if($itemAttribute == "colour"){continue;} @endphp
+                                                    <span class="fw-bold">{{ucFirst($itemAttribute)}}:</span>
+                                                    <span class="">{{$itemAttributes[$itemAttribute]}}</span>
+                                                @endforeach
+                                            </small>
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +171,7 @@
         </div>
 
         <main>
-            <!-- @include('layouts.alert') !-->
+            <!-- include('layouts.alert') !-->
             @yield('content')
         </main>
 
