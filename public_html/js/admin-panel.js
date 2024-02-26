@@ -1,36 +1,26 @@
 //Main page js
 const sideLinks = document.querySelectorAll('.sidebar .side-menu li a:not(.logout)');
+const menuBar = document.querySelector('.content nav .fa-bars');
+const sideBar = document.querySelector('.sidebar');
+const searchBtn = document.querySelector('.content nav form .form-input button');
+const searchBtnIcon = document.querySelector('.content nav form .form-input button .fa');
 
 sideLinks.forEach(item => {
-    const li = item.parentElement;
     item.addEventListener('click', () => {
-        sideLinks.forEach(i => {
-            i.parentElement.classList.remove('active');
-        })
-        li.classList.add('active');
-    })
+        item.parentElement.classList.toggle('active');
+    });
 });
-
-const menuBar = document.querySelector('.content nav .fa-solid.fa-bars');
-const sideBar = document.querySelector('.sidebar');
 
 menuBar.addEventListener('click', () => {
     sideBar.classList.toggle('close');
 });
 
-const searchBtn = document.querySelector('.content nav form .form-input button');
-const searchBtnIcon = document.querySelector('.content nav form .form-input button .fa-solid');
-const searchForm = document.querySelector('.content nav form');
-
 searchBtn.addEventListener('click', function (e) {
     if (window.innerWidth < 576) {
-        e.preventDefault;
+        e.preventDefault();
         searchForm.classList.toggle('show');
-        if (searchForm.classList.contains('show')) {
-            searchBtnIcon.classList.replace('bx-search', 'bx-x');
-        } else {
-            searchBtnIcon.classList.replace('bx-x', 'bx-search');
-        }
+        searchBtnIcon.classList.toggle('fa-magnifying-glass');
+        searchBtnIcon.classList.toggle('fa-x');
     }
 });
 
@@ -41,10 +31,12 @@ window.addEventListener('resize', () => {
         sideBar.classList.remove('close');
     }
     if (window.innerWidth > 576) {
-        searchBtnIcon.classList.replace('bx-x', 'bx-search');
+        searchBtnIcon.classList.remove('fa-x');
+        searchBtnIcon.classList.add('fa-magnifying-glass');
         searchForm.classList.remove('show');
     }
 });
+
 
 
 //Delete item modal info handlers
