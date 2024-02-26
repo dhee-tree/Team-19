@@ -74,8 +74,11 @@ Route::get('/admin-panel/tickets', [AdminController::class, 'tickets'])->name('a
 
 Route::get('', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin');
 
-//The additional information modal to expand fields in user admin panel
+//The additional information modal to expand fields in tickets for user or admin that claimed a ticket admin panel
 Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin'); 
+
+//uised to claim a ticket
+Route::get('/admin-panel/tickets/claim/{id}', [AdminController::class, 'ClaimTicket'])->name('Ticket.claim')->middleware('admin'); 
 
 #endregion
 

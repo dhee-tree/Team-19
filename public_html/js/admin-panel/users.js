@@ -46,24 +46,27 @@ function openInfoModal(userId) {
         var extraModalClosed = false;
 
 
-        // Set the flag when the close button on the ExtraModal is clicked
-        modal.find('#btn-close').on('click', function () {
-            // Re-enable all buttons with the specified class when the modal is closed
-            var buttons = document.querySelectorAll(".openModalButton");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].disabled = false;
-            }
+        // Set the flag when any close button inside the modal is clicked
+        var closeButtons = modal.find('[id="btn-close"]');
+        closeButtons.each(function () {
+            $(this).on('click', function () {
+                // Re-enable all buttons with the specified class when the modal is closed
+                var buttons = document.querySelectorAll(".openModalButton");
+                for (var i = 0; i < buttons.length; i++) {
+                    buttons[i].disabled = false;
+                }
 
-            container.remove();
+                container.remove();
 
-            // Get the modal backdrop element
-            var backdrop = document.querySelector('.modal-backdrop');
+                // Get the modal backdrop element
+                var backdrop = document.querySelector('.modal-backdrop');
 
-            // Check if the backdrop element exists
-            if (backdrop) {
-                // Remove the backdrop element from the DOM
-                backdrop.parentNode.removeChild(backdrop);
-            }
+                // Check if the backdrop element exists
+                if (backdrop) {
+                    // Remove the backdrop element from the DOM
+                    backdrop.parentNode.removeChild(backdrop);
+                }
+            });
         });
 
         // Event listener for clicking outside the modal

@@ -365,6 +365,32 @@ class AdminController extends Controller
         return view('tickets-admin', compact('tickets'));
     }
 
+    public function ClaimTicket(Request $request, $id)
+    {
+        // Get the authenticated user
+        $admin = auth()->user();
+        //get ticket
+        $ticket = Ticket::findOrFail($id);
+
+        // Set the admin_id of the ticket to the ID of the authenticated user
+        $ticket->admin_id = $admin->id;
+
+        // Save the changes to the ticket
+        $ticket->save();
+
+        $tickets = Ticket::latest()->get();
+
+        // Get the selected pagination length from the query string
+        $selectedLength = request()->query('length', 1000); // Default to 10 if not provided
+
+
+        $tickets = $tickets->sortBy('id');
+        $tickets = Ticket::paginate($selectedLength)->withQueryString();
+
+
+        return view('tickets-admin', compact('tickets'));
+    }
+
     #endregion
 
 

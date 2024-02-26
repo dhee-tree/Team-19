@@ -89,26 +89,33 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_length" id="user_length">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_length" id="length_dropdown">
                             <label>
                                 Show
-                                <select name="user_length" id="user_length" aria-controls="example"
+                                <select name="length" id="length" aria-controls="example"
                                     class="form-select form-select-sm">
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
+                                    <option value="0">Select Value</option>
+                                    <option value="5" {{ request()->input('length') == 5 ? 'selected' : '' }}>5
+                                    </option>
+                                    <option value="10" {{ request()->input('length') == 10 ? 'selected' : '' }}>10
+                                    </option>
+                                    <option value="25" {{ request()->input('length') == 25 ? 'selected' : '' }}>25
+                                    </option>
+                                    <option value="50" {{ request()->input('length') == 50 ? 'selected' : '' }}>50
+                                    </option>
+                                    <option value="100" {{ request()->input('length') == 100 ? 'selected' : '' }}>100
+                                    </option>
                                 </select>
                                 entries
                             </label>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-6">
-                        <div class="dataTables_filter" id="user_filter">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="dataTables_filter" id="filter">
                             <label>
                                 Search:
-                                <input type="search" class="form-control form-control-sm" placeholder
+                                <input type="search" id="search" class="form-control form-control-sm" placeholder
                                     aria-controls="search">
                             </label>
                         </div>
@@ -164,9 +171,12 @@
                                             @if ($ticket->admin_id)
                                                 <button type="button" class="btn btn-primary openModalButton"
                                                     onclick="openUserInfoModal({{ $ticket->admin_id }})"
-                                                    id="openModalButton">{{ $ticket->admin_id }}</button>
+                                                    id="openModalButton">Claimed: {{ $ticket->admin_id }}</button>
                                             @else
-                                                Not Claimed
+                                                <a href="{{ route('Ticket.claim', ['id' => $ticket->id]) }}"
+                                                    class="btn btn-secondary openModalButton" id="openModalButton">
+                                                    Claim?
+                                                </a>
                                             @endif
                                         </td>
                                         <td class="status text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
@@ -183,18 +193,25 @@
                                         <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                             scope="col"><button type="button" class="btn btn-primary openModalButton"
                                                 onclick="openInfoModal({{ $ticket->id }})" id="openModalButton"><i
-                                                    class="fa-solid fa-up-right-from-square"></i></button></td>
+                                                    class="fa-solid fa-up-right-from-square"></i></button>
+                                        </td>
                                         <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col"><button type="button"
-                                                class="btn btn-secondary openModalButton"
-                                                onclick="openResolveModal({{ $ticket->id }})"
-                                                id="openModalButton">Resolve</button>
+                                            scope="col">
+                                            @if ($ticket->admin_id == auth()->user()->id)
+                                                <button type="button" class="btn btn-secondary openModalButton"
+                                                    onclick="openResolveModal({{ $ticket->id }})"
+                                                    id="openModalButton">Resolve</button>
+                                            @elseif ($ticket->admin_id)
+                                                Claimed
+                                            @else
+                                                Unclaimed
+                                            @endif
                                         </td>
                                         <!-- Button to trigger modal -->
                                         <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                             scope="col">
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#confirmDeleteModal"
+                                                data-bs-target="#confirmDeleteModal" id="openModalButton"
                                                 onclick="DeleteItemId({{ $ticket->id }})">Delete</button>
                                         </td>
                                     </tr>
