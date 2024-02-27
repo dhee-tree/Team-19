@@ -23,7 +23,9 @@ footer {
 }
 
 nav {
-    background-color: var(--nav-background-color);
+    background: linear-gradient(90deg, #39a6ffe0 52%, rgba(0,212,255,0) 100%), 
+            url('https://media.istockphoto.com/id/1300107681/photo/surface-of-the-atlantic-ocean.jpg?s=612x612&w=0&k=20&c=w_5KDlGHRBKgLzjyA6KrdFHDlrO4B2M4LtflWAyzGhc=');
+
 }
 
 .nav-item .nav-link {
