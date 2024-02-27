@@ -29,7 +29,7 @@ class TicketFactory extends Factory
             'information' => $this->faker->paragraph,
             'contact' => $this->faker->phoneNumber,
             'importance_level_id' => rand(1, 3), // Assuming you have importance levels seeded already
-            'status' => $this->faker->boolean, // Random true/false value
+            'status' => rand(1, 3), // Random true/false value
         ];
     }
 }

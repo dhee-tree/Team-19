@@ -201,11 +201,11 @@
                                             </td>
                                             <td class="status text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
                                                 scope="col">
-                                                @if ($ticket->status == '1')
+                                                @if ($ticket->status == 1)
                                                     Open
-                                                @elseif ($ticket->status->status == '2')
+                                                @elseif ($ticket->status == 2)
                                                     In Progress
-                                                @elseif ($ticket->status->status == '3')
+                                                @elseif ($ticket->status == 3)
                                                     Resolved
                                                 @endif
                                             </td>
