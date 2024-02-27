@@ -61,8 +61,7 @@
                                     class="text-decoration-none">
                                     <p class="text-sm mb-0 text-uppercase">ALL TICKETS</p>
                                     <h4 class="font-weight-bolder">
-                                        <!-- store number of tickets here, will hardcode a value for now -->
-                                        230
+                                        {{ $countTickets->count() }}
                                     </h4>
                                 </a>
                             </div>
@@ -80,7 +79,7 @@
                                         class="text-decoration-none">
                                         <p class="text-sm mb-0 text-uppercase">SOLVED TICKETS</p>
                                         <h4 class="font-weight-bolder">
-                                            {{ $tickets->where('status', 3)->count() }}
+                                            {{ $countTickets->where('status', 3)->count() }}
                                         </h4>
                                     </a>
                                 @else
@@ -100,8 +99,7 @@
                                     class="text-decoration-none">
                                     <p class="text-sm mb-0 text-uppercase">PENDING TICKETS</p>
                                     <h4 class="font-weight-bolder">
-                                        <!-- store number of tickets here, will hardcode a value for now -->
-                                        230
+                                        {{ $countTickets->where('admin_id', auth()->user()->id)->count() }}
                                     </h4>
                                 </a>
                             </div>

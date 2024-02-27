@@ -359,18 +359,26 @@ class AdminController extends Controller
 
         $queryFilter = $request->input('filter', 'all');
 
-        $tickets = Ticket::latest()->filter($queryFilter)->simplePaginate($selectedLength)->withQueryString();
 
+        // Retrieve tickets
+        $tickets = Ticket::latest()->filter($queryFilter)->orderBy('id', 'desc')->get();
 
-        return view('tickets-admin', compact('tickets'));
+        // Manually sort the tickets
+        $tickets = $tickets->sortBy('id');
+
+        // Paginate the sorted tickets
+        $tickets = $tickets->paginate($selectedLength)->withQueryString();
+        $countTickets = Ticket::latest()->get();
+
+        return view('tickets-admin', compact('tickets', 'countTickets'));
     }
 
-    public function ClaimTicket(Request $request, $id)
+    public function ClaimTicket(Request $request, $ticketId)
     {
         // Get the authenticated user
         $admin = auth()->user();
         //get ticket
-        $ticket = Ticket::findOrFail($id);
+        $ticket = Ticket::findOrFail($ticketId);
 
         // Set the admin_id of the ticket to the ID of the authenticated user
         $ticket->admin_id = $admin->id;
@@ -383,12 +391,20 @@ class AdminController extends Controller
 
         // Get the selected pagination length from the query string
         $selectedLength = request()->query('length', 1000); // Default to 10 if not provided
+        $countTickets = Ticket::latest()->get();
 
 
-        $tickets = Ticket::latest()->filter($queryFilter)->simplePaginate($selectedLength)->withQueryString();
+        // Retrieve tickets
+        $tickets = Ticket::latest()->filter($queryFilter)->orderBy('id', 'desc')->get();
+
+        // Manually sort the tickets
+        $tickets = $tickets->sortBy('id');
+
+        // Paginate the sorted tickets
+        $tickets = $tickets->paginate($selectedLength)->withQueryString();
 
 
-        return view('tickets-admin', compact('tickets'));
+        return view('tickets-admin', compact('tickets', 'countTickets'));
     }
 
     #endregion
