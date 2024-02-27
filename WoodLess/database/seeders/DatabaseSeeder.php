@@ -19,6 +19,9 @@ class DatabaseSeeder extends Seeder
         // Default image URL
         $defaultUserImageUrl = 'https://placehold.co/250x300';
 
+        //create 100 tickets
+        \App\Models\Ticket::factory()->count(500)->create();
+
         // Create 50 users
         $users = \App\Models\User::factory(50)->create([
             'image' => $defaultUserImageUrl, // Set the default image URL
