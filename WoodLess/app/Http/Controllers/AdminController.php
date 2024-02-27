@@ -356,10 +356,10 @@ class AdminController extends Controller
 
         $selectedLength = $request->input('length', 1000); // Default to 50 if not provided
 
-        $tickets = Ticket::latest()->get();
 
-        $tickets = $tickets->sortBy('id');
-        $tickets = Ticket::paginate($selectedLength)->withQueryString();
+        $queryFilter = $request->input('filter', 'all');
+
+        $tickets = Ticket::latest()->filter($queryFilter)->simplePaginate($selectedLength)->withQueryString();
 
 
         return view('tickets-admin', compact('tickets'));
@@ -378,14 +378,14 @@ class AdminController extends Controller
         // Save the changes to the ticket
         $ticket->save();
 
-        $tickets = Ticket::latest()->get();
+
+        $queryFilter = $request->input('filter', 'all');
 
         // Get the selected pagination length from the query string
         $selectedLength = request()->query('length', 1000); // Default to 10 if not provided
 
 
-        $tickets = $tickets->sortBy('id');
-        $tickets = Ticket::paginate($selectedLength)->withQueryString();
+        $tickets = Ticket::latest()->filter($queryFilter)->simplePaginate($selectedLength)->withQueryString();
 
 
         return view('tickets-admin', compact('tickets'));

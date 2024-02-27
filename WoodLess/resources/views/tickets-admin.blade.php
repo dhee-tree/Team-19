@@ -57,34 +57,55 @@
                     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-body p-3">
-                                <p class="text-sm mb-0 text-uppercase">ALL TICKETS</p>
-                                <h4 class="font-weight-bolder">
-                                    <!-- store number of tickets here, will hardcode a value for now -->
-                                    230
-                                </h4>
+                                <a href="{{ route('admin-panel.tickets', ['filter' => 'all']) }}"
+                                    class="text-decoration-none">
+                                    <p class="text-sm mb-0 text-uppercase">ALL TICKETS</p>
+                                    <h4 class="font-weight-bolder">
+                                        <!-- store number of tickets here, will hardcode a value for now -->
+                                        230
+                                    </h4>
+                                </a>
                             </div>
+
+                        </div>
+                    </div>
+                    @php
+                        $hasSolvedTickets = $tickets->contains('status', 3);
+                    @endphp
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                @if ($hasSolvedTickets)
+                                    <a href="{{ route('admin-panel.tickets', ['filter' => 'solved']) }}"
+                                        class="text-decoration-none">
+                                        <p class="text-sm mb-0 text-uppercase">SOLVED TICKETS</p>
+                                        <h4 class="font-weight-bolder">
+                                            {{ $tickets->where('status', 3)->count() }}
+                                        </h4>
+                                    </a>
+                                @else
+                                    <p class="text-sm mb-0 text-uppercase">SOLVED TICKETS</p>
+                                    <h4 class="font-weight-bolder">
+                                        Get to solving!
+                                    </h4>
+                                @endif
+                            </div>
+
                         </div>
                     </div>
                     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
                             <div class="card-body p-3">
-                                <p class="text-sm mb-0 text-uppercase">SOLVED TICKETS</p>
-                                <h4 class="font-weight-bolder">
-                                    <!-- store number of tickets here, will hardcode a value for now -->
-                                    60
-                                </h4>
+                                <a href="{{ route('admin-panel.tickets', ['filter' => 'current']) }}"
+                                    class="text-decoration-none">
+                                    <p class="text-sm mb-0 text-uppercase">PENDING TICKETS</p>
+                                    <h4 class="font-weight-bolder">
+                                        <!-- store number of tickets here, will hardcode a value for now -->
+                                        230
+                                    </h4>
+                                </a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                        <div class="card">
-                            <div class="card-body p-3">
-                                <p class="text-sm mb-0 text-uppercase">PENDING TICKETS</p>
-                                <h4 class="font-weight-bolder">
-                                    <!-- store number of tickets here, will hardcode a value for now -->
-                                    170
-                                </h4>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -150,83 +171,87 @@
                                     </tr>
                                 </thead>
                                 <tbody class="datatable-body">
-                                    <tr scope="row">
-                                        @foreach ($tickets as $ticket)
-                                    <tr class="product-row" scope="row">
-                                        <td class="id text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col">{{ $ticket->id }}</td>
-                                        <td class="title text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col">{{ $ticket->title }}</td>
-                                        <td class="description text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col">{{ $ticket->truncateInformation(5) }}...</td>
-                                        <td class="contact text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col">{{ $ticket->created_at }}</td>
-                                        <td class="contact text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col"><button type="button" class="btn btn-primary openModalButton"
-                                                onclick="openUserInfoModal({{ $ticket->user_id }})"
-                                                id="openModalButton">{{ $ticket->user_id }}</button>
-                                        </td>
-                                        <td class="contact text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col">
-                                            @if ($ticket->admin_id)
-                                                <button type="button" class="btn btn-primary openModalButton"
-                                                    onclick="openUserInfoModal({{ $ticket->admin_id }})"
-                                                    id="openModalButton">Claimed: {{ $ticket->admin_id }}</button>
-                                            @else
-                                                <a href="{{ route('Ticket.claim', ['id' => $ticket->id]) }}"
-                                                    class="btn btn-secondary openModalButton" id="openModalButton">
-                                                    Claim?
-                                                </a>
-                                            @endif
-                                        </td>
-                                        <td class="status text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col">
-                                            @if ($ticket->status == '1')
-                                                Open
-                                            @elseif ($ticket->status->status == '2')
-                                                In Progress
-                                            @else
-                                                Resolved
-                                            @endif
-                                        </td>
 
-                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col"><button type="button" class="btn btn-primary openModalButton"
-                                                onclick="openInfoModal({{ $ticket->id }})" id="openModalButton"><i
-                                                    class="fa-solid fa-up-right-from-square"></i></button>
-                                        </td>
-                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col">
-                                            @if ($ticket->admin_id == auth()->user()->id)
-                                                <button type="button" class="btn btn-secondary openModalButton"
-                                                    onclick="openResolveModal({{ $ticket->id }})"
-                                                    id="openModalButton">Resolve</button>
-                                            @elseif ($ticket->admin_id)
-                                                Claimed
-                                            @else
-                                                Unclaimed
-                                            @endif
-                                        </td>
-                                        <!-- Button to trigger modal -->
-                                        <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                            scope="col">
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#confirmDeleteModal" id="openModalButton"
-                                                onclick="DeleteItemId({{ $ticket->id }})">Delete</button>
-                                        </td>
-                                    </tr>
+                                    @foreach ($tickets as $ticket)
+                                        <tr class="tickets-row" scope="row">
+                                            <td class="id text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col">{{ $ticket->id }}</td>
+                                            <td class="title text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col">{{ $ticket->title }}</td>
+                                            <td class="information text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col">{{ $ticket->truncateInformation(5) }}...</td>
+                                            <td class="created text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col">{{ $ticket->created_at }}</td>
+                                            <td class="user text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col"><button type="button"
+                                                    class="btn btn-primary openModalButton"
+                                                    onclick="openUserInfoModal({{ $ticket->user_id }})"
+                                                    id="openModalButton">{{ $ticket->user_id }}</button>
+                                            </td>
+                                            <td class="admin text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col">
+                                                @if ($ticket->admin_id)
+                                                    <button type="button" class="btn btn-primary openModalButton"
+                                                        onclick="openUserInfoModal({{ $ticket->admin_id }})"
+                                                        id="openModalButton">Claimed: {{ $ticket->admin_id }}</button>
+                                                @else
+                                                    <a href="{{ route('Ticket.claim', ['id' => $ticket->id]) }}"
+                                                        class="btn btn-secondary openModalButton" id="openModalButton">
+                                                        Claim?
+                                                    </a>
+                                                @endif
+                                            </td>
+                                            <td class="status text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col">
+                                                @if ($ticket->status == '1')
+                                                    Open
+                                                @elseif ($ticket->status->status == '2')
+                                                    In Progress
+                                                @elseif ($ticket->status->status == '3')
+                                                    Resolved
+                                                @endif
+                                            </td>
+
+                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col"><button type="button"
+                                                    class="btn btn-primary openModalButton"
+                                                    onclick="openInfoModal({{ $ticket->id }})" id="openModalButton"><i
+                                                        class="fa-solid fa-up-right-from-square"></i></button>
+                                            </td>
+                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col">
+                                                @if ($ticket->admin_id == auth()->user()->id)
+                                                    <button type="button" class="btn btn-secondary openModalButton"
+                                                        onclick="openResolveModal({{ $ticket->id }})"
+                                                        id="openModalButton">Resolve</button>
+                                                @elseif ($ticket->admin_id)
+                                                    Claimed
+                                                @else
+                                                    Unclaimed
+                                                @endif
+                                            </td>
+                                            <!-- Button to trigger modal -->
+                                            <td class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
+                                                scope="col">
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#confirmDeleteModal" id="openModalButton"
+                                                    onclick="DeleteItemId({{ $ticket->id }})">Delete</button>
+                                            </td>
+                                        </tr>
                                     @endforeach
-                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                @if ($tickets->hasPages())
+                @if (!$tickets->isEmpty())
                     <!-- Pagination Links -->
-                    {{ $tickets->links() }}
+                    @if ($tickets->hasPages())
+                        {{ $tickets->links() }}
+                    @endif
                 @else
-                    <p>No extra found.</p>
+                    <p>No tickets found.</p>
                 @endif
             </div>
         </div>

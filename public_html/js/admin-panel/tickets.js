@@ -1,3 +1,37 @@
+document.addEventListener('DOMContentLoaded', function () {
+    var searchInput = document.getElementById('search');
+    var ticketsRow = document.querySelectorAll('.tickets-row');
+
+    // Event listener for changes in the search input
+    searchInput.addEventListener('input', function () {
+        var searchQuery = searchInput.value.trim().toLowerCase();
+        ticketsRow.forEach(function (row) {
+            var id = row.querySelector('.id').textContent.trim().toLowerCase();
+            var title = row.querySelector('.title').textContent.trim().toLowerCase();
+            var information = row.querySelector('.information').textContent.trim().toLowerCase();
+            var created = row.querySelector('.created').textContent.trim().toLowerCase();
+            var user = row.querySelector('.user').textContent.trim().toLowerCase();
+            var admin = row.querySelector('.admin').textContent.trim().toLowerCase();
+            var status = row.querySelector('.status').textContent.trim().toLowerCase();
+
+            // Check if any of the row's content matches the search query
+            var matchId = id.includes(searchQuery);
+            var matchTitle = title.includes(searchQuery);
+            var matchInformation = information.includes(searchQuery);
+            var matchCreated = created.includes(searchQuery);
+            var matchUser = user.includes(searchQuery);
+            var matchAdmin = admin.includes(searchQuery);
+            var matchStatus = status.includes(searchQuery);
+
+            // Show or hide the product row based on search query
+            // You may need to adjust this logic depending on your specific requirements
+            row.style.display = matchId || matchTitle || matchInformation || matchCreated || matchUser || matchAdmin || matchStatus ? 'table-row' : 'none';
+        });
+
+    });
+});
+
+
 function openUserInfoModal(userId) {
     // Disable all buttons with the specified class to disable multiple spam
     var buttons = document.querySelectorAll(".openModalButton");
@@ -71,35 +105,9 @@ function DeleteItemId(Id) {
 
 }
 
-//JavaScript to handle add/create modal opening
-function openAddModal() {
-    // Disable all buttons with the specified class to disable multiple spam
-    var buttons = document.querySelectorAll(".openModalButton");
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].disabled = true;
-    }
-
-    $.get('/admin-panel/users/user-add/', function (data) {
-        $('body').append(data);
-        var modal = $('#extraModal');
-        modal.modal('show'); // Show the modal after content is appended
-
-        // Remove the modal from the DOM when it's closed
-        modal.on('hidden.bs.modal', function () {
-            // Re-enable all buttons with the specified class when the modal is closed
-            var buttons = document.querySelectorAll(".openModalButton");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].disabled = false;
-            }
-
-            modal.remove();
-        });
-    });
-}
-
 //JavaScript to handle edit modal opening
 
-function openEditModal(userId) {
+function openResolveModal(userId) {
 
     // Disable all buttons with the specified class to disable multiple spam
     var buttons = document.getElementsByClassName("openModalButton");
@@ -107,7 +115,7 @@ function openEditModal(userId) {
         buttons[i].disabled = true;
     }
 
-    $.get('/admin-panel/users/user-edit/' + userId, function (data) {
+    $.get('/admin-panel/tickets/admin-resolve/' + userId, function (data) {
         $('body').append(data);
         var modal = $('#extraModal');
         modal.modal('show'); // Show the modal after content is appended
