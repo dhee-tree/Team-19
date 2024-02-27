@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="http://220216407.cs2410-web01pvm.aston.ac.uk/" target="_blank"><img src="public_html/images/logo_plain.png" width="300" alt="Woodless">
+    <a href="http://220216407.cs2410-web01pvm.aston.ac.uk/" target="_blank"><img src="public_html/images/logo_plain.png" width="350" alt="Woodless">
     </a>
 </p>
 <p align="center">
