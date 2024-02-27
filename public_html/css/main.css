@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
+    /*
+    Naming:
+    First the class or id it belongs to. ex body
+    next what area it targets. ex background (can be as many as needed. ex active-text)
+    then lastly the attributes name. ex color
+    */
     --main-background-color: #FFEED9;
     --main-text-color: #183838;
 
     --nav-background-color: #39A7FF;
-    --nav-text-color: #FFEED9;
+    --nav-text-color: #FFFFFF;
+    --nav-active-text-color: #ffffff;
 
     --footer-background-color: #e4c9a9;
 
@@ -22,15 +29,24 @@ footer {
     background-color: var(--footer-background-color);
 }
 
-nav {
-    background: linear-gradient(90deg, #39a6ffe0 52%, rgba(0,212,255,0) 100%), 
-            url('https://media.istockphoto.com/id/1300107681/photo/surface-of-the-atlantic-ocean.jpg?s=612x612&w=0&k=20&c=w_5KDlGHRBKgLzjyA6KrdFHDlrO4B2M4LtflWAyzGhc=');
+/* #region Navigation */
 
+#navbar {
+    background: linear-gradient(90deg, #00709ce1 45%, rgba(0,212,255,0) 100%), url('/images/styling/oceanbackground.jpg');
 }
 
-.nav-item .nav-link {
+#navbar .nav-item .nav-link {
     color: var(--nav-text-color);
 }
+
+#navbar .nav-link.active {
+    color: var(--nav-active-text-color) !important;
+    text-decoration: underline ;
+    font-weight: bold;
+    text-underline-offset: 0.3rem;
+}
+
+/* #endregion */
 
 main {
     min-height: 100vh;
