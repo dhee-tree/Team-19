@@ -106,9 +106,9 @@
 
         <div class="col" id="basket-offcanvas-div" tabindex="-1">
             <div class="shadow-lg offcanvas offcanvas-end scrollable" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
-                <div class="offcanvas-header text-light" style="background-color: #1d1912">
-                    <h5 class="offcanvas-title" id="basket-offcanvas">Your Basket</h5>
-                    <button type="button" class="btn text-light" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                <div class="offcanvas-header text-light mb-0 py-2" style="background-color: #1d1912">
+                  <span class="fs-5 offcanvas-title" id="basket-offcanvas">Your Basket</span>
+                  <button type="button" class="btn text-light" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="offcanvas-body">
                     @guest
@@ -117,57 +117,104 @@
                     </div>
                     @endguest
                     @auth
-                    @php
-                    $user = Auth()->user();
-                    $basketItems = $user->basket()->first()->products()->get();
-                    $totalBasketCost = $user->basket()->first()->products()->sum('cost');
-                    @endphp
-                    @foreach($basketItems as $item)
-                    <a href="/product/{{ $item->id }}" style="text-decoration: none;">
-                        <div class="card shadow-sm mb-3">
-                            <div class="row g-0">
-                                <div class="col-3">
-                                    <img src="{{asset($item->getImages()[0])}}" class="p-2 img-fluid rounded-start" alt="...">
-                                </div>
+                        @php
+                            $user = Auth()->user();
+                            $basketItems = $user->basket()->first()->products()->get();
+                            $totalBasketCost = $user->basket()->first()->totalCost();
+                        @endphp
+                        @foreach($basketItems as $item)
+                            @php $itemAttributes = json_decode($item->pivot->attributes, true); @endphp
+                            <a href="/product/{{ $item->id }}" style="text-decoration: none;">
+                                <div class="card expand-hover shadow-sm mb-3">
+                                    <div class="row g-0">
+                                        <div class="col-3">
+                                            <img src="{{asset($item->getImages()[0])}}" class="p-2 img-fluid rounded-start" alt="...">
+                                        </div>
 
-                                <div class="vr shadow-none bg-secondary"></div>
+                                        <div class="vr shadow-none bg-secondary"></div>
 
-                                <div class="col-6">
-                                    <div class="card-body ms-0 ps-2 pt-2">
-                                        <h6 class="fw-bold mb-0 card-title">{{$item->title}}</h6>
-                                        <p class="card-text">£{{$item->cost}}</p>
+                                        <div class="col-6">
+                                            <div class="card-body ms-0 ps-2 pt-2">
+                                                <h6 class="fw-bold mb-0 card-title">{{$item->title}}</h6>
+                                                <p class="card-text">£{{sprintf("%0.2f", round(($item->cost) - (($item->cost) * ($item->discount / 100)), 2))}}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="">
+                                            <small class="position-absolute bottom-0 start-0 pb-1 ps-2">
+                                                <span class="fw-bold">{{$item->pivot->amount}}x</span> 
+                                                @if($itemAttributes["colour"])<i style="color: {{$itemAttributes["colour"]}}" class="fa-solid fa-circle"></i>@endif
+                                            </small>
+                                            <small class="position-absolute bottom-0 end-0 pb-1 pe-2">
+                                                @foreach($itemAttributes as $itemAttribute => $key)
+                                                    @php if($itemAttribute == "colour"){continue;} @endphp
+                                                    <span class="fw-bold">{{ucFirst($itemAttribute)}}:</span>
+                                                    <span class="">{{$itemAttributes[$itemAttribute]}}</span>
+                                                @endforeach
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="">
-                                    <small class="text-end position-absolute bottom-0 end-0 p-1 pe-2">Qty: {{$item->pivot->amount}}</small>
-                                </div>
+                            </a>
+                        @endforeach
+
+                        <div class="row bg-white sticky-bottom align-items-center mt-0">
+                            <div class="col-100 pt-2 mb-0">
+                                <h5 class="fw-bold">Total: £{{$totalBasketCost}}</h5>
                             </div>
-                        </div>
-                    </a>
-                    @endforeach
+                            <div class="col">
+                                <a style="background-color: #1d1912" class="w-100 btn text-light" role="button" href="{{asset('basket')}}">Go to Basket<span style="background-color: #655d52" class="ms-2 fw-light badge rounded-pill badge-notification">{{$user->basket()->first()->productAmount()}}</span></a>
+                            </div>
 
-                    <div class="row bg-white sticky-bottom align-items-center mt-0">
-                        <div class="col-100 pt-2 mb-0">
-                            <h5>Total: £{{$basketItems->sum('cost')}}</h5>
+                            @if(!$basketItems->isEmpty())
+                            <div class="col">
+                                <a style="background-color: #1d1912" class="w-100 btn btn-dark" role="button" href="{{asset('checkout')}}">Checkout</a>
+                            </div>
+                            @endif
                         </div>
-                        <div class="col">
-                            <a style="background-color: #1d1912" class="w-100 btn text-light" role="button" href="{{asset('basket')}}">Go to Basket<span style="background-color: #655d52" class="ms-2 badge rounded-pill badge-notification">{{$user->basket()->first()->productAmount()}}</span></a>
-                        </div>
-
-                        @if(!$basketItems->isEmpty())
-                        <div class="col">
-                            <a style="background-color: #1d1912" class="w-100 btn btn-dark" role="button" href="{{asset('checkout')}}">Checkout</a>
-                        </div>
-                        @endif
-                    </div>
                     @endauth
                 </div>
             </div>
         </div>
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sticky sticky-bottom  end-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+ Create a Support Ticket
+</button>
+        <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a support ticket</h1>
+        
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action="{{ route('user.tickets.store') }}" method="POST">
+                    @csrf
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" class="form-control" required>
 
+                    <label for="information">Information</label>
+                    <textarea name="information" id="information" class="form-control" required style="resize: none;"></textarea>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Ticket</button>
+                    </div>
+                </form>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
         <main>
-            <!-- @include('layouts.alert') !-->
+            <!-- include('layouts.alert') !-->
             @yield('content')
+            
+
         </main>
 
         <footer class="text-center">
@@ -292,6 +339,7 @@
 
         @yield('js')
     </div>
+
 </body>
 
 </html>
