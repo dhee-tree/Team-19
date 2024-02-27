@@ -7,10 +7,10 @@
     next what area it targets. ex background (can be as many as needed. ex active-text)
     then lastly the attributes name. ex color
     */
-    --main-background-color: #FFEED9;
+    --main-background-color: #c2b395e7;
     --main-text-color: #183838;
 
-    --nav-background-color: #39A7FF;
+    --nav-background-color: #00709ce1;
     --nav-text-color: #FFFFFF;
     --nav-active-text-color: #ffffff;
 
@@ -18,27 +18,32 @@
 
     --spotlight-color-1: #87C4FF;
 }
+
 .btn-sticky {
     position: fixed;
     bottom: 6%;
     right: 0;
     transform: translateY(50%);
-    z-index: 1000; /* Ensure it's above other content */
-  }
+    z-index: 1000;
+    /* Ensure it's above other content */
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--main-background-color);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--main-background-color) 10%, var(--main-background-color) 90%, rgba(255, 255, 255, 0) 100%), url('https://live.staticflickr.com/31/44927594_e068e92c56_c.jpg');
+    background-size: cover;
+    background-position: center;
+    background-size: auto;
     color: var(--main-text-color);
 }
 
-footer {
-    background-color: var(--footer-background-color);
-}
+
+
 
 /* #region Navigation */
 
 #navbar {
-    background: linear-gradient(90deg, #00709ce1 45%, rgba(0,212,255,0) 100%), url('/images/styling/oceanbackground.jpg');
+    background: linear-gradient(90deg, var(--nav-background-color) 45%, rgba(0, 212, 255, 0) 100%), url('/images/styling/oceanbackground.jpg');
 }
 
 #navbar .nav-item .nav-link {
@@ -47,9 +52,26 @@ footer {
 
 #navbar .nav-link.active {
     color: var(--nav-active-text-color) !important;
-    text-decoration: underline ;
+    text-decoration: underline;
     font-weight: bold;
     text-underline-offset: 0.3rem;
+}
+
+@media (min-width: 980px) {
+    #iconsnavbar {
+        order: 2;
+        /* Change the order of the iconsnavbar */
+    }
+}
+
+/* #endregion */
+
+
+/* #region Footer */
+
+
+footer {
+    background-color: var(--footer-background-color);
 }
 
 /* #endregion */
@@ -61,13 +83,3 @@ main {
     margin-right: 3vh;
 }
 
-.card {
-    background-color: var(--spotlight-color-1);
-    border-radius: 25px; /* Adjust the value as needed */
-}
-
-@media (min-width: 980px) {
-    #iconsnavbar {
-        order: 2; /* Change the order of the iconsnavbar */
-    }
-}
