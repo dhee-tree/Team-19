@@ -13,11 +13,11 @@
 
 #
 
-Developed using Laravel, WoodLess is an E-commerce website that facilitates the online transactions and sales of an eco-friendly furniture company. WoodLess offers a user-friendly experience, enabling users to make safe and easy purchases of a range of available furniture products.
+Developed using Laravel, WoodLess is an E-commerce website intended to facilitate the online transactions and sales of an eco-friendly furniture company. 
 
-The business domain of the eco-friendly furniture business involves creating and selling furniture that's designed with the environment in mind. This includes using sustainable materials, implementing eco-friendly manufacturing processes, and targeting consumers who prioritize environmentally responsible products. 
+It's aim is the distribution of furniture, designed with the environment in mind. This includes the use of sustainable materials, eco-friendly manufacturing processes, and targeting consumers who prioritize environmentally responsible products. 
 
-The scope of this domain incorporates a range of factors, such as the specific eco-friendly furniture products offered, the sourcing and use of sustainable materials, following the environmental certifications, and efforts to minimize the environmental footprint through initiatives like waste collection and reusability.
+WoodLess strives to offer a user-friendly experience, enabling users to make safe and easy purchases on a range of available furniture products.
 
 ### Official Deployment
 As of 26/02/2024, A public deployment of the website is available for anyone to visit at: [20216407.cs2410-web01pvm.aston.ac.uk](http://220216407.cs2410-web01pvm.aston.ac.uk/).
@@ -28,7 +28,7 @@ WoodLess has a complete and in-depth user experience, from login to checkout:
 - Fully responsive UI using CSS and Bootstrap
 - Register/Login
 - Manage user account
-- Browse available products and search by filters
+- Browse available products by search and/or filter
 - Edit/add products in basket
 - Purchase products via checkout
 - Leave reviews of product/service
@@ -49,7 +49,7 @@ To make our work as accessible as possible, all models and methods written by th
 - For Laravel or other built-in features, please refer to the relevant documentation.
 
 ## Setup
-This guide assumes you are familiar with PHP web development environments (such as XAMMP) and have cloned/copied the repository to one. You will also need access to a MySQL server and [Composer](https://getcomposer.org/download/).
+This guide assumes you are familiar with PHP web development environments (such as XAMMP) and have cloned/copied the repository to one. You will also need access to a MySQL server and [Composer](https://getcomposer.org/download/). Note that the workflows folder is not nec
 
 ### .env Setup
 The file .env declares the app environment, so it is important to set this up first. 
@@ -73,7 +73,7 @@ Before you can run the website, the database needs to be setup.
 See below additional information
 
 ## Contributors
-WoodLess was developed by eight students at Aston University, who possess a strong understanding of PHP and Laravel.
+WoodLess was developed by eight students at Aston University, who possess a strong understanding of Web Development, PHP and Laravel.
 ### Ighomena Odebala
 ### Lewis Neiland
 ### Zaakir Mohammad
