@@ -5,6 +5,11 @@
     position: absolute;
 }
 
+main{
+    margin:0vh;
+    margin-top: 3vh;
+}
+
 .attribute-color, .attribute-color:checked, .attribute-color:focus{
     transform:scale(1.5);
     accent-color: currentColor;
