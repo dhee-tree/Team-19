@@ -103,7 +103,7 @@
                     <div class="header">
                         <i class='bx bx-receipt'></i>
                         <h3>Recent Orders</h3>
-                        <i class='bx bx-filter'></i>
+                        <i class='fa-solid fa-filter'></i>
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                     <table>
