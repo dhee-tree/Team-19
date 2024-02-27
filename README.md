@@ -9,7 +9,6 @@
     <img alt="GitHub commit activity (branch)" src="https://img.shields.io/github/commit-activity/t/dhee-tree/Team-19/development">
     <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/dhee-tree/Team-19/development">
     <img alt="GitHub License" src="https://img.shields.io/github/license/dhee-tree/Team-19">
-
 </p>
 
 ## About Woodless
