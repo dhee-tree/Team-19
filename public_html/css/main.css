@@ -43,6 +43,7 @@ body {
 
 #navbar {
     background: linear-gradient(90deg, var(--nav-background-color) 45%, rgba(0, 212, 255, 0) 100%), url('/images/styling/oceanbackground.jpg');
+    border-bottom: 1.5px solid #FFFFFF;
 }
 
 #navbar .nav-item .nav-link {
