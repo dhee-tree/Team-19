@@ -35,7 +35,7 @@
 <body class="antialiased">
     <nav id="navbar" class="navbar navbar-expand-lg sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand" style="margin-left:4px" href="#"><img class="logo" src="{{ asset('images\logo.png') }}" alt="Woodless Logo" /></a>
+            <a class="navbar-brand" style="margin-left:4px" href="/"><img class="logo" src="{{ asset('images\logo.png') }}" alt="Woodless Logo" /></a>
 
 
             <li id="iconsnavbar" class="d-flex ms-2">
