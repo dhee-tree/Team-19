@@ -18,7 +18,7 @@
 
     --links-text-color: #ffffff;
 
-    --spotlight-color-1: #87C4FF;
+    --spotlight-color-1: #ebebeb;
 }
 
 .btn-sticky {
@@ -34,7 +34,8 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--main-background-color);
     color: var(--main-text-color);
-    overflow-x: hidden; /* Prevent horizontal overflow */
+    overflow-x: hidden;
+    /* Prevent horizontal overflow */
 
 }
 
@@ -78,7 +79,11 @@ footer {
 
 /* #endregion */
 
+.card {
+    background-color: var(--spotlight-color-1);
+    border: none;
+}
+
 main {
     min-height: 100vh;
 }
-
