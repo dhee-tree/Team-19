@@ -9,6 +9,7 @@
     <!-- sidebar -->
     <div class="sidebar">
         <a href="#" class="logo">
+            <i class="fa-solid fa-bars"></i>
             <div class="logo-name"><span>Wood</span>Less</div>
         </a>
         <ul class="side-menu">
@@ -77,25 +78,12 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>
-                                    <p>John Doe</p>
-                                </td>
-                                <td>14-08-2023</td>
-                                <td><span class="status completed">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>John Doe</p>
-                                </td>
-                                <td>14-08-2023</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p>John Doe</p>
-                                </td>
-                                <td>14-08-2023</td>
-                                <td><span class="status process">Processing</span></td>
+                                <td>T001</td>
+                                <td><p>Sign-in issue</p></td>
+                                <td><p>I can't sign in. How do I get my account back</p></td>
+                                <td><p>14-08-2023</p></td>
+                                <td><p>John Doe</p></td>
+                                <td><p><span class="status completed">Completed</span></p></td>
                             </tr>
                         </tbody>
                     </table>
@@ -103,4 +91,8 @@
             </div>
         </main>
     </div>
+@endsection
+
+@section('script')
+    <script src="{{asset('js/admin-panel.js')}}"></script>
 @endsection
