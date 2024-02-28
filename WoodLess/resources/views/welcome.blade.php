@@ -21,7 +21,8 @@
 
                 <p class="display-2 mb-2 mb-md-3 text-center">Earth</p>
             </div>
-
+            <div id="bg">
+            </div>
             <p id="title-greener" class="display-2 mb-2 mb-md-3 text-center">Making a Greener</p>
 
             <p id="title-bluer" class="display-2 mb-2 mb-md-3 text-centertext-right">Bluer</p>

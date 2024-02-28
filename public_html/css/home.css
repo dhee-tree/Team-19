@@ -4,8 +4,10 @@
 
 /* #region Title Desktop */
 #title-desktop {
-  min-height: 70vh;
+  min-height: 100vh;
   min-width: 100vw;
+  /* Semi-transparent white background color */
+  z-index: 5;
   display: block;
   position: relative;
 }
@@ -82,12 +84,12 @@
 
   }
 
-  35%{
+  35% {
     opacity: 1;
     clip-path: polygon(100% 0, 0 0, -10% 100%, 100% 100%);
   }
 
-  95%{
+  95% {
     opacity: 1;
     clip-path: polygon(100% 0, 55% 0, 45% 100%, 100% 100%);
     background-image: url('/images/styling/title-2.gif');
@@ -101,18 +103,68 @@
   }
 }
 
-#title-desktop #title-greener {
+#title-desktop #bg {
+  position: absolute; /* Position the background absolutely within the parent div */
+  top: 0; /* Align the background to the top of the parent div */
+  left: 0; /* Align the background to the left of the parent div */
+  width: 100%; /* Ensure the background spans the entire width of the parent div */
+  height: 100%; /* Ensure the background spans the entire height of the parent div */
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background color */
+  z-index: 1; /* Ensure the background appears in front of other content */
+}
+
+#title-desktop #title-greener,
+#title-desktop #title-bluer {
   position: absolute;
-  left: 0; /* Position "title-greener" to the left side */
-  z-index: 1; /* Ensure "title-greener" appears in front of other content */
+  z-index: 1;
+  /* Ensure "title-greener" appears in front of other content */
+  font-size: 5vw;
+}
+
+#title-desktop #title-greener {
+  top: 10%;
+  /* Align "title-bluer" vertically in the middle */
+  left: 5%;
+  /* Position "title-greener" to the left side */
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #ccc,
+    0 2px 0 #c9c9c9,
+    0 3px 0 #bbb,
+    0 4px 0 #b9b9b9,
+    0 5px 0 #aaa,
+    0 6px 1px rgba(0, 0, 0, .1),
+    0 0 5px rgba(0, 0, 0, .1),
+    0 1px 3px rgba(0, 0, 0, .3),
+    0 3px 5px rgba(0, 0, 0, .2),
+    0 5px 10px rgba(0, 0, 0, .25),
+    0 10px 10px rgba(0, 0, 0, .2),
+    0 20px 20px rgba(0, 0, 0, .15);
 }
 
 #title-desktop #title-bluer {
-  position: absolute;
-  top: 50%; /* Align "title-bluer" vertically in the middle */
-  right: 0; /* Position "title-bluer" to the right side */
-  transform: translateY(-50%); /* Adjust vertical alignment */
-  z-index: 1; /* Ensure "title-bluer" appears in front of other content */
+  top: 50%;
+  /* Align "title-bluer" vertically in the middle */
+  right: 10%;
+  /* Position "title-bluer" to the right side */
+  transform: translateY(-50%);
+  /* Adjust vertical alignment */
+  color: #fff;
+  font-weight: bold;
+
+  text-shadow: 0 1px 0 #ccc,
+    0 2px 0 #c9c9c9,
+    0 3px 0 #bbb,
+    0 4px 0 #b9b9b9,
+    0 5px 0 #aaa,
+    0 6px 1px rgba(0, 0, 0, .1),
+    0 0 5px rgba(0, 0, 0, .1),
+    0 1px 3px rgba(0, 0, 0, .3),
+    0 3px 5px rgba(0, 0, 0, .2),
+    0 5px 10px rgba(0, 0, 0, .25),
+    0 10px 10px rgba(0, 0, 0, .2),
+    0 20px 20px rgba(0, 0, 0, .15);
+
 }
 
 /* #endregion */
