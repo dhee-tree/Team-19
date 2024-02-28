@@ -65,7 +65,7 @@
     /* Start with opacity 0 */
   }
 
-  1%{
+  1% {
     background-image: url('/images/styling/title-1.gif');
 
   }
@@ -114,23 +114,21 @@
 
 #title-desktop #bg {
   position: absolute;
-  /* Position the background absolutely within the parent div */
   top: 0;
-  /* Align the background to the top of the parent div */
   left: 0;
-  /* Align the background to the left of the parent div */
   width: 100%;
-  /* Ensure the background spans the entire width of the parent div */
-  height: 100%;
-  /* Ensure the background spans the entire height of the parent div */
-  background-color: rgba(255, 255, 255, 0.2);
-  /* Semi-transparent white background color */
+  height: 100%; 
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 70%, rgba(0, 0, 0, 0.553) 100%);
   z-index: 1;
-  /* Ensure the background appears in front of other content */
-  backdrop-filter: blur(5px);
-  /* Apply a blur effect to the background */
-
+  backdrop-filter: blur(4px);
+  animation-name: backgroundAnimation;
+  animation-delay: 4s;
+  animation-duration: 4.0s;
+  animation-fill-mode: forwards;
 }
+
+
+
 
 #title-desktop #title-greener,
 #title-desktop #title-bluer {
