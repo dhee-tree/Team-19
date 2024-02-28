@@ -12,9 +12,7 @@
     <section id="title">
         <div id="title-desktop">
 
-            <div class="img-1">
-                <p class="display-2 mb-2 mb-md-3 text-center">Making a bluer and greener earth</p>
-
+            <div class="img-1" id="img-1">
             </div>
             <div class="img-2">
                 <p class="display-2 mb-2 mb-md-3 text-center">Making a bluer and greener earth</p>
@@ -215,4 +213,8 @@
 
 
 
+    @endsection
+
+    @section('js')
+        <script src="{{ asset('js/home.js') }}"></script>
     @endsection

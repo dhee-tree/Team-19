@@ -2,7 +2,8 @@
 
 /* #region Title Desktop */
 #title-desktop {
-  min-height: 60vh;
+  min-height: 70vh;
+  min-width: 100vw;
   display: block;
   position: relative;
 
@@ -15,19 +16,91 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-size: cover;
-
+  background-size: 100% 100%;
+  opacity: 0;
+  /* Maintain final state of the animation */
 }
 
 #title-desktop .img-1 {
-  background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2019/05/spencer-watson-330677-unsplash-1170x490.jpg);
-  /* Clip the element to show the right side */
+  left: 0;
+  /* Position img-1 on the left */
+  background-image: url('/images/styling/title-1.gif');
+  animation-name: fadeInImg1;
+  /* Start with opacity set to 0 */
+  animation-duration: 2.4s;
+  /* Animation duration */
+  animation-fill-mode: forwards;
+  transition: opacity 0.1s;
+  /* Detect changes to the opacity property */
+  /* Apply fadeInImg1 animation */
+
 }
 
 #title-desktop .img-2 {
-  background-image: url(https://live.staticflickr.com/31/44927594_e068e92c56_c.jpg);
-  clip-path: polygon(100% 0, 55% 0, 45% 100%, 100% 100%);
+  right: 0;
+  /* Position img-2 on the right */
+  background-image: url('/images/styling/title-2.gif');
   /* Clip the element to show the left side */
+  animation-name: fadeInImg2;
+  /* Apply fadeInImg2 animation */
+  animation-delay: 2.2s;
+  /* Delay the animation for 5 seconds */
+  /* Start with opacity set to 0 */
+  animation-duration: 2.5s;
+  /* Animation duration */
+  animation-fill-mode: forwards;
+  transition: opacity 0.1s;
+
+}
+
+@keyframes fadeInImg1 {
+  from {
+    opacity: 0;
+    /* Start with opacity 0 */
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  95% {
+    background-image: url('/images/styling/title-1.gif');
+  }
+
+  to {
+    /* End with opacity 1 */
+    background-image: url('/images/styling/title-1.jpg');
+    opacity: 1;
+
+  }
+}
+
+@keyframes fadeInImg2 {
+  from {
+    opacity: 0;
+    /* Start with opacity 0 */
+    clip-path: polygon(100% 0, 0 0, -10% 100%, 100% 100%);
+
+  }
+
+  35%{
+    opacity: 1;
+    clip-path: polygon(100% 0, 0 0, -10% 100%, 100% 100%);
+  }
+
+  95%{
+    opacity: 1;
+    clip-path: polygon(100% 0, 55% 0, 45% 100%, 100% 100%);
+    background-image: url('/images/styling/title-2.gif');
+  }
+
+  to {
+    opacity: 1;
+    /* End with opacity 1 */
+    clip-path: polygon(100% 0, 55% 0, 45% 100%, 100% 100%);
+    background-image: url('/images/styling/title-2.jpg');
+
+  }
 }
 
 
