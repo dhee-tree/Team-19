@@ -1,14 +1,13 @@
 /* #region Title */
 
+
+
 /* #region Title Desktop */
 #title-desktop {
   min-height: 70vh;
   min-width: 100vw;
   display: block;
   position: relative;
-
-
-
 }
 
 #title-desktop .img-1,
@@ -102,6 +101,19 @@
   }
 }
 
+#title-desktop #title-greener {
+  position: absolute;
+  left: 0; /* Position "title-greener" to the left side */
+  z-index: 1; /* Ensure "title-greener" appears in front of other content */
+}
+
+#title-desktop #title-bluer {
+  position: absolute;
+  top: 50%; /* Align "title-bluer" vertically in the middle */
+  right: 0; /* Position "title-bluer" to the right side */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+  z-index: 1; /* Ensure "title-bluer" appears in front of other content */
+}
 
 /* #endregion */
 
@@ -119,6 +131,7 @@
 }
 
 /* #endregion */
+
 
 
 /* Media query for mobile screens */
