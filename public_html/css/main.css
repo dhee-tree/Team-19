@@ -34,12 +34,15 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--main-background-color);
     color: var(--main-text-color);
+    overflow-x: hidden; /* Prevent horizontal overflow */
+
 }
 
 /* #region Navigation */
 
 #navbar {
     background: linear-gradient(90deg, var(--nav-background-color) 45%, rgba(0, 212, 255, 0) 100%), url('/images/styling/oceanbackground.jpg');
+    padding-right: 1%;
 }
 
 #navbar .nav-item .nav-link {
@@ -84,5 +87,7 @@ main {
 .container-fluid {
     padding-right: 0 !important;
     padding-left: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
 }
 
