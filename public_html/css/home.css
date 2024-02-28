@@ -235,3 +235,7 @@ Media to change the carosel height for smaller screen sizes
     height: 200px;
   }
 }
+
+section{
+  padding-bottom: 5vh;
+}
