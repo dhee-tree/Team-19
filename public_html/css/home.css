@@ -1,13 +1,68 @@
-#title-desktop{
-  background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2019/05/spencer-watson-330677-unsplash-1170x490.jpg);
-  background-size: cover; /* Ensures the background image covers the entire #title section */
-  min-height: 60vh; /* Set a minimum height for the section */
+/* #region Title */
+
+/* #region Title Desktop */
+#title-desktop {
+  min-height: 60vh;
+  display: block;
+  position: relative;
+
+
+
 }
-#title-mobile{
-  background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2019/05/spencer-watson-330677-unsplash-1170x490.jpg);
-  background-size: cover; /* Ensures the background image covers the entire #title section */
-  min-height: 50vh; /* Set a minimum height for the section */
+
+#title-desktop .img-1,
+#title-desktop .img-2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+
 }
+
+#title-desktop .img-1 {
+  background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2019/05/spencer-watson-330677-unsplash-1170x490.jpg);
+  /* Clip the element to show the right side */
+}
+
+#title-desktop .img-2 {
+  background-image: url(https://live.staticflickr.com/31/44927594_e068e92c56_c.jpg);
+  clip-path: polygon(100% 0, 55% 0, 45% 100%, 100% 100%);
+  /* Clip the element to show the left side */
+}
+
+
+/* #endregion */
+
+/* #region Title Mobile */
+
+#title-mobile {
+  background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2019/05/spencer-watson-330677-unsplash-1170x490.jpg);
+  background-size: cover;
+  /* Ensures the background image covers the entire #title section */
+  min-height: 100vh;
+  /* Set a minimum height for the section */
+  display: none;
+  /* Hide the element by default */
+
+}
+
+/* #endregion */
+
+
+/* Media query for mobile screens */
+@media (max-width: 767px) {
+  #title-desktop {
+    display: none;
+    /* Hide the desktop version on mobile screens */
+  }
+
+  #title-mobile {
+    display: block;
+    /* Show the mobile version on mobile screens */
+  }
+}
+
+/* #endregion */
 
 
 .carousel {
@@ -26,8 +81,10 @@
 
 /* Add this CSS to your stylesheet */
 #carouselHotSellers a {
-  text-decoration: none; /* Remove underline */
-  color: inherit; /* Use the default text color */
+  text-decoration: none;
+  /* Remove underline */
+  color: inherit;
+  /* Use the default text color */
 }
 
 /* 
@@ -39,4 +96,3 @@ Media to change the carosel height for smaller screen sizes
     height: 200px;
   }
 }
-
