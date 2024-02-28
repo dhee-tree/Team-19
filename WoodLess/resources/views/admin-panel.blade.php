@@ -11,7 +11,8 @@
     <!-- sidebar -->
     <div class="sidebar">
         <a href="#" class="logo">
-            <i class="fa-solid fa-shop"></i>
+            <!-- Still looking for a logo which links to WoodLess, picked the L because of the favicon -->
+            <i class="fa-solid fa-l"></i>
             <div class="logo-name"><span>Wood</span>Less</div>
         </a>
         <ul class="side-menu">
