@@ -8,25 +8,17 @@
 @endsection
 
 @section('content')
-<section id="Slogan">
-    <header>
-        <div id="title" class="container-fluid">
-            <div class="row justify-content-md-center">
-                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                    @if(session('message'))
-                    <div class="alert alert-success pt-2">
-                        {{ session('message') }}
-                    </div>
-                    @elseif(session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                    @endif
-                    <p class="display-2 mb-2 mb-md-3 text-center">Making a bluer and greener earth</p>
-                </div>
-            </div>
-        </div>
-    </header>
+<section id="title-desktop">
+    @if(session('message'))
+    <div class="alert alert-success pt-2">
+        {{ session('message') }}
+    </div>
+    @elseif(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+    <p class="display-2 mb-2 mb-md-3 text-center">Making a bluer and greener earth</p>
 
 </section>
 

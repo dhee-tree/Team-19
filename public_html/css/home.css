@@ -1,6 +1,12 @@
-#title{
+#title-desktop{
   background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2019/05/spencer-watson-330677-unsplash-1170x490.jpg);
-
+  background-size: cover; /* Ensures the background image covers the entire #title section */
+  min-height: 60vh; /* Set a minimum height for the section */
+}
+#title-mobile{
+  background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2019/05/spencer-watson-330677-unsplash-1170x490.jpg);
+  background-size: cover; /* Ensures the background image covers the entire #title section */
+  min-height: 50vh; /* Set a minimum height for the section */
 }
 
 
