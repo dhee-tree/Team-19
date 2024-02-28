@@ -23,13 +23,12 @@
 }
 
 #title-desktop .img-1 {
-  opacity: 1;
-  background-image: url('/images/styling/placeholder.jpg');
+  background-image: url('/images/styling/title-1.gif');
 
   content: url('/images/styling/title-1.gif') url('/images/styling/title-1.jpg') url('/images/styling/placeholder.jpg');
   animation-name: fadeInImg1;
   /* Start with opacity set to 0 */
-  animation-duration: 2.3s;
+  animation-duration: 2.35s;
   /* Animation duration */
   animation-fill-mode: forwards;
   transition: opacity 0.1s;
@@ -57,9 +56,18 @@
 
 @keyframes fadeInImg1 {
   from {
-    background-image: url('/images/styling/title-1.gif');
+    opacity: 1;
+
+    background-image: url('/images/styling/placeholder.jpg');
+
+
 
     /* Start with opacity 0 */
+  }
+
+  1%{
+    background-image: url('/images/styling/title-1.gif');
+
   }
 
   95% {
