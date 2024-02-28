@@ -32,7 +32,27 @@
     <!-- End of sidebar -->
 
     <div class="content">
-        <div class="main">
+        <!-- Navbar -->
+        <nav>
+            <i class="fa-solid fa-bars"></i>
+            <!--Commented out while there is no functionality, left to keep space open -->
+            <form action="#">
+                <div class="form-input">
+                    <!--<input type="search" placeholder="Search...">
+                    <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
+                </div>
+            </form>
+            <a href="#" class="notif">
+                <i class="fa-solid fa-bell"></i>
+                <span class="count">12</span>
+            </a>
+            <a href="" class="profile">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M304 128a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM49.3 464H398.7c-8.9-63.3-63.3-112-129-112H178.3c-65.7 0-120.1 48.7-129 112zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3z"/></svg>
+            </a>
+        </nav>
+        <!-- End of Navbar -->
+
+        <main>
             <div class="container">
                 <div class="content">
                     <h1 class="page-title">Orders</h1>
@@ -85,7 +105,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 </body>
 @endsection
