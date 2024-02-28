@@ -121,6 +121,7 @@
 
 @section('js')
 <!-- JavaScript to handle modal opening -->
+<script src="{{asset('js/admin-panel.js')}}"></script>
 <script>
     function openInfoModal(userId) {
         // Disable all buttons with the specified class to disable multiple spam

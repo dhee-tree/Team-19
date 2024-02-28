@@ -111,5 +111,6 @@
 @endsection
 
 @section('script')
+    <script src="{{asset('js/admin-panel.js')}}"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTable.js"></script>
 @endsection
