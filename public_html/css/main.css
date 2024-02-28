@@ -42,7 +42,6 @@ body {
 
 #navbar {
     background: linear-gradient(90deg, var(--nav-background-color) 45%, rgba(0, 212, 255, 0) 100%), url('/images/styling/oceanbackground.jpg');
-    padding-right: 1%;
 }
 
 #navbar .nav-item .nav-link {
@@ -81,13 +80,5 @@ footer {
 
 main {
     min-height: 100vh;
-}
-
-/* Override Bootstrap 5 container-fluid margins */
-.container-fluid {
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-    margin-right: 0 !important;
-    margin-left: 0 !important;
 }
 
