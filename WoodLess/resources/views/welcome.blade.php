@@ -10,8 +10,8 @@
 @endsection
 
 @section('content')
-<section id="title">
-    <div id="title-desktop">
+    <section id="title">
+        <div id="title-desktop">
 
             <div class="img-1" id="img-1">
                 <p class="display-2 mb-2 mb-md-3 text-center">Earth</p>
@@ -27,134 +27,140 @@
 
             <p id="title-bluer" class="display-2 mb-2 mb-md-3 text-centertext-right">Bluer</p>
 
-    </div>
+        </div>
 
-    <div id="title-mobile">
+        <div id="title-mobile">
 
-    </div>
+        </div>
 
 
-</section>
+    </section>
 
-<section id="Hot Sellers/Top Discounts">
+    <section id="Hot Sellers/Top Discounts">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-sm-12">
-                <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Hot Sellers</h2>
-                <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
-                <div class="card h-100 position-relative">
-                    <!-- Flame animation -->
-                    <div class="fire position-absolute top-0 start-0">
-                        <div class="flames">
-                            <div class="flame"></div>
-                            <div class="flame"></div>
-                            <div class="flame"></div>
-                            <div class="flame"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-12">
+                    <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Hot Sellers</h2>
+                    <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
+                    <div class="card h-100 position-relative">
+                        <!-- Flame animation -->
+                        <div class="fire position-absolute top-0 start-0">
+                            <div class="flames">
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Card body -->
-                    <div class="card-body p-4 p-xxl-5">
-                        <figure>
-                            <img class="img-fluid rounded rounded-circle mb-4" loading="lazy" src="./assets/img/testimonial-img-1.jpg" alt="">
-                            <figcaption>
-                                <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0"></div>
-                                <blockquote class="bsb-blockquote-icon mb-4">Thrilled to support this furniture
-                                    company for its stylish, quality pieces made from recycled ocean plastic. A
-                                    win-win, combining excellent design with a meaningful contribution to
-                                    tackling
-                                    plastic pollution.</blockquote>
-                                <h4 class="mb-2">Luna John</h4>
-                                <h5 class="fs-6 text-secondary mb-0">Eco-Conscious Customer</h5>
-                            </figcaption>
-                        </figure>
+                        <!-- Card body -->
+                        <div class="card-body p-4 p-xxl-5">
+                            <figure>
+                                <img class="img-fluid rounded rounded-circle mb-4" loading="lazy"
+                                    src="./assets/img/testimonial-img-1.jpg" alt="">
+                                <figcaption>
+                                    <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0">
+                                    </div>
+                                    <blockquote class="bsb-blockquote-icon mb-4">Thrilled to support this furniture
+                                        company for its stylish, quality pieces made from recycled ocean plastic. A
+                                        win-win, combining excellent design with a meaningful contribution to
+                                        tackling
+                                        plastic pollution.</blockquote>
+                                    <h4 class="mb-2">Luna John</h4>
+                                    <h5 class="fs-6 text-secondary mb-0">Eco-Conscious Customer</h5>
+                                </figcaption>
+                            </figure>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-                <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Top Discounts</h2>
-                <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
-                <div class="card h-100 position-relative">
-                    <!-- Flame animation -->
-                    <div class="fire position-absolute top-0 start-0">
-                        <div class="flames">
-                            <div class="flame"></div>
-                            <div class="flame"></div>
-                            <div class="flame"></div>
-                            <div class="flame"></div>
+                <div class="col-lg-4 col-sm-12">
+                    <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Top Discounts</h2>
+                    <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
+                    <div class="card h-100 position-relative">
+                        <!-- Flame animation -->
+                        <div class="fire position-absolute top-0 start-0">
+                            <div class="flames">
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Card body -->
-                    <div class="card-body p-4 p-xxl-5">
-                        <figure>
-                            <img class="img-fluid rounded rounded-circle mb-4" loading="lazy" src="./assets/img/testimonial-img-1.jpg" alt="">
-                            <figcaption>
-                                <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0"></div>
-                                <blockquote class="bsb-blockquote-icon mb-4">Thrilled to support this furniture
-                                    company for its stylish, quality pieces made from recycled ocean plastic. A
-                                    win-win, combining excellent design with a meaningful contribution to
-                                    tackling
-                                    plastic pollution.</blockquote>
-                                <h4 class="mb-2">Luna John</h4>
-                                <h5 class="fs-6 text-secondary mb-0">Eco-Conscious Customer</h5>
-                            </figcaption>
-                        </figure>
+                        <!-- Card body -->
+                        <div class="card-body p-4 p-xxl-5">
+                            <figure>
+                                <img class="img-fluid rounded rounded-circle mb-4" loading="lazy"
+                                    src="./assets/img/testimonial-img-1.jpg" alt="">
+                                <figcaption>
+                                    <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0">
+                                    </div>
+                                    <blockquote class="bsb-blockquote-icon mb-4">Thrilled to support this furniture
+                                        company for its stylish, quality pieces made from recycled ocean plastic. A
+                                        win-win, combining excellent design with a meaningful contribution to
+                                        tackling
+                                        plastic pollution.</blockquote>
+                                    <h4 class="mb-2">Luna John</h4>
+                                    <h5 class="fs-6 text-secondary mb-0">Eco-Conscious Customer</h5>
+                                </figcaption>
+                            </figure>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-
-
-
-
-
-</section>
-
-<section id="categories" class="py-5 py-xl-8">
-    <div class="container-fluid">
-        <div class="row justify-content-md-center">
-            <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Categories</h2>
-                <p class="display-5 mb-2 mb-md-3 text-center">Come browse our wares</p>
-                <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
-            </div>
         </div>
-    </div>
-    <div class="container"> <!-- Carousel hot sellers -->
-        <div class="container px-4 px-lg-4 mt-2">
-            <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-3 justify-content-center">
-                @foreach ($categories->shuffle()->take(3) as $category)
-                <div class="col mb-5">
-                    <div class="card category-card h-100">
-                        <!-- Category image-->
-                        <img class="card-img" src="{{ asset($category->images) }}" height="100%" width="100%" alt="..." />
-                        <!-- Category details-->
-                        <div class="card-img-overlay d-flex flex-column align-items-center">
-                            <!-- Category actions-->
-                            <a class="btn mt-auto stretched-link shadow border border-info" href="/products?categories%5B%5D={{ ucfirst($category->category) }}">{{ $category->category }}</a>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
 
 
 
-    <!-- Testimonial 3 - Bootstrap Brain Component -->
-    <section id="testimonials" class="py-5 py-xl-8">
+
+
+    </section>
+
+    <section id="categories" class="py-5 py-xl-8">
         <div class="container-fluid">
             <div class="row justify-content-md-center">
                 <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                    <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Happy Customers</h2>
-                    <p class="display-5 mb-2 mb-md-3 text-center">We deliver what we promise</p>
+                    <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Categories</h2>
+                    <p class="display-5 mb-2 mb-md-3 text-center">Come browse our wares</p>
                     <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
                 </div>
             </div>
         </div>
+        <div class="container"> <!-- Carousel hot sellers -->
+            <div class="container px-4 px-lg-4 mt-2">
+                <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                    @foreach ($categories->shuffle()->take(3) as $category)
+                        <div class="col mb-5">
+                            <div class="card category-card h-100">
+                                <!-- Category image-->
+                                <img class="card-img" src="{{ asset($category->images) }}" height="100%" width="100%"
+                                    alt="..." />
+                                <!-- Category details-->
+                                <div class="card-img-overlay d-flex flex-column align-items-center">
+                                    <!-- Category actions-->
+                                    <a class="btn mt-auto stretched-link shadow border border-info"
+                                        href="/products?categories%5B%5D={{ ucfirst($category->category) }}">{{ $category->category }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Testimonial 3 - Bootstrap Brain Component -->
+        <section id="testimonials" class="py-5 py-xl-8">
+            <div class="container-fluid">
+                <div class="row justify-content-md-center">
+                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                        <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Happy Customers</h2>
+                        <p class="display-5 mb-2 mb-md-3 text-center">We deliver what we promise</p>
+                        <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
+                    </div>
+                </div>
+            </div>
 
             <div class="container">
                 <div class="row gy-4 gy-md-0 gx-xxl-5">
@@ -262,5 +268,5 @@
     @endsection
 
     @section('js')
-    <script src="{{ asset('js/home.js') }}"></script>
+        <script src="{{ asset('js/home.js') }}"></script>
     @endsection
