@@ -2,13 +2,10 @@
 
 /* #region Title Desktop */
 #title-desktop {
-  min-height: 70vh;
+  min-height: 100vh;
   min-width: 100vw;
   display: block;
   position: relative;
-
-
-
 }
 
 #title-desktop .img-1,
@@ -167,4 +164,8 @@ Media to change the carosel height for smaller screen sizes
     min-width: 100%;
     height: 200px;
   }
+}
+
+section{
+  padding-bottom: 5vh;
 }
