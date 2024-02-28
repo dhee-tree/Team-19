@@ -109,8 +109,10 @@
   left: 0; /* Align the background to the left of the parent div */
   width: 100%; /* Ensure the background spans the entire width of the parent div */
   height: 100%; /* Ensure the background spans the entire height of the parent div */
-  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background color */
+  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background color */
   z-index: 1; /* Ensure the background appears in front of other content */
+  backdrop-filter: blur(5px); /* Apply a blur effect to the background */
+
 }
 
 #title-desktop #title-greener,
