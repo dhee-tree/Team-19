@@ -1,15 +1,11 @@
-.logo {
-  text-align: center;
-  min-width: 50%;
+#title{
+  background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2019/05/spencer-watson-330677-unsplash-1170x490.jpg);
+
 }
 
-.logo img {
-  display: block;
-  margin: 0 auto;
-}
 
 .carousel {
-  width: auto;
+  width: 100%;
   max-height: auto;
   overflow: hidden;
   background-color: #98c1d9;

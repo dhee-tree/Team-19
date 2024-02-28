@@ -7,14 +7,16 @@
     next what area it targets. ex background (can be as many as needed. ex active-text)
     then lastly the attributes name. ex color
     */
-    --main-background-color: #c2b395e7;
+    --main-background-color: #ffff;
     --main-text-color: #183838;
 
     --nav-background-color: #00709ce1;
     --nav-text-color: #FFFFFF;
     --nav-active-text-color: #ffffff;
 
-    --footer-background-color: #e4c9a9;
+    --footer-background-color: #c2b395;
+
+    --links-text-color: #ffffff;
 
     --spotlight-color-1: #87C4FF;
 }
@@ -30,15 +32,9 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, var(--main-background-color) 10%, var(--main-background-color) 90%, rgba(255, 255, 255, 0) 100%), url('https://live.staticflickr.com/31/44927594_e068e92c56_c.jpg');
-    background-size: cover;
-    background-position: center;
-    background-size: auto;
+    background-color: var(--main-background-color);
     color: var(--main-text-color);
 }
-
-
-
 
 /* #region Navigation */
 
@@ -71,15 +67,22 @@ body {
 
 
 footer {
-    background-color: var(--footer-background-color);
+    background: linear-gradient(180deg, var(--footer-background-color) 57%, rgba(0, 212, 255, 0) 100%), url('https://live.staticflickr.com/31/44927594_e068e92c56_c.jpg');
+}
+
+#footericons a {
+    color: var(--links-text-color);
 }
 
 /* #endregion */
 
 main {
     min-height: 100vh;
-    margin-left: 3vh;
-    margin-top: 3vh;
-    margin-right: 3vh;
+}
+
+/* Override Bootstrap 5 container-fluid margins */
+.container-fluid {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
 }
 
