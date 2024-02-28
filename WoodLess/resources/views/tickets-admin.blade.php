@@ -9,7 +9,6 @@
     <!-- sidebar -->
     <div class="sidebar">
         <a href="#" class="logo">
-            <i class="fa-solid fa-bars"></i>
             <div class="logo-name"><span>Wood</span>Less</div>
         </a>
         <ul class="side-menu">
