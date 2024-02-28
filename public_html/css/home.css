@@ -23,11 +23,13 @@
 }
 
 #title-desktop .img-1 {
-  /* Position img-1 on the left */
-  background-image: url('/images/styling/title-1.gif');
+  opacity: 1;
+  background-image: url('/images/styling/placeholder.jpg');
+
+  content: url('/images/styling/title-1.gif') url('/images/styling/title-1.jpg') url('/images/styling/placeholder.jpg');
   animation-name: fadeInImg1;
   /* Start with opacity set to 0 */
-  animation-duration: 2.4s;
+  animation-duration: 2.3s;
   /* Animation duration */
   animation-fill-mode: forwards;
   transition: opacity 0.1s;
@@ -38,15 +40,15 @@
 
 #title-desktop .img-2 {
   right: 0;
-  /* Position img-2 on the right */
-  background-image: url('/images/styling/title-2.gif');
   /* Clip the element to show the left side */
+  background-image: url('/images/styling/title-2.gif');
+  content: url('/images/styling/title-2.gif') url('/images/styling/title-2.jpg');
   animation-name: fadeInImg2;
   /* Apply fadeInImg2 animation */
-  animation-delay: 2.2s;
+  animation-delay: 2.25s;
   /* Delay the animation for 5 seconds */
   /* Start with opacity set to 0 */
-  animation-duration: 2.5s;
+  animation-duration: 2.50s;
   /* Animation duration */
   animation-fill-mode: forwards;
   transition: opacity 0.1s;
@@ -55,16 +57,15 @@
 
 @keyframes fadeInImg1 {
   from {
-    opacity: 0;
-    /* Start with opacity 0 */
-  }
+    background-image: url('/images/styling/title-1.gif');
 
-  10% {
-    opacity: 1;
+    /* Start with opacity 0 */
   }
 
   95% {
     background-image: url('/images/styling/title-1.gif');
+    opacity: 1;
+
   }
 
   to {
@@ -104,14 +105,22 @@
 }
 
 #title-desktop #bg {
-  position: absolute; /* Position the background absolutely within the parent div */
-  top: 0; /* Align the background to the top of the parent div */
-  left: 0; /* Align the background to the left of the parent div */
-  width: 100%; /* Ensure the background spans the entire width of the parent div */
-  height: 100%; /* Ensure the background spans the entire height of the parent div */
-  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background color */
-  z-index: 1; /* Ensure the background appears in front of other content */
-  backdrop-filter: blur(5px); /* Apply a blur effect to the background */
+  position: absolute;
+  /* Position the background absolutely within the parent div */
+  top: 0;
+  /* Align the background to the top of the parent div */
+  left: 0;
+  /* Align the background to the left of the parent div */
+  width: 100%;
+  /* Ensure the background spans the entire width of the parent div */
+  height: 100%;
+  /* Ensure the background spans the entire height of the parent div */
+  background-color: rgba(255, 255, 255, 0.2);
+  /* Semi-transparent white background color */
+  z-index: 1;
+  /* Ensure the background appears in front of other content */
+  backdrop-filter: blur(5px);
+  /* Apply a blur effect to the background */
 
 }
 
@@ -236,6 +245,6 @@ Media to change the carosel height for smaller screen sizes
   }
 }
 
-section{
+section {
   padding-bottom: 5vh;
 }
