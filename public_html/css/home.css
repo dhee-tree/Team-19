@@ -22,7 +22,6 @@
 }
 
 #title-desktop .img-1 {
-  left: 0;
   /* Position img-1 on the left */
   background-image: url('/images/styling/title-1.gif');
   animation-name: fadeInImg1;
@@ -77,6 +76,7 @@
 
 @keyframes fadeInImg2 {
   from {
+    left: 0;
     opacity: 0;
     /* Start with opacity 0 */
     clip-path: polygon(100% 0, 0 0, -10% 100%, 100% 100%);
@@ -99,7 +99,6 @@
     /* End with opacity 1 */
     clip-path: polygon(100% 0, 55% 0, 45% 100%, 100% 100%);
     background-image: url('/images/styling/title-2.jpg');
-
   }
 }
 
