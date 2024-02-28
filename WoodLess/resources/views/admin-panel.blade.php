@@ -11,6 +11,7 @@
     <!-- sidebar -->
     <div class="sidebar">
         <a href="#" class="logo">
+            <i class="fa-solid fa-shop"></i>
             <div class="logo-name"><span>Wood</span>Less</div>
         </a>
         <ul class="side-menu">
@@ -36,10 +37,11 @@
         <!-- Navbar -->
         <nav>
             <i class="fa-solid fa-bars"></i>
+            <!--Commented out while there is no functionality, left to keep space open -->
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <!--<input type="search" placeholder="Search...">
+                    <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
                 </div>
             </form>
             <a href="#" class="notif">
