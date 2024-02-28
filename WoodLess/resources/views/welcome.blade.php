@@ -3,6 +3,7 @@
 @section('style')
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 <link rel="stylesheet" href="{{ asset('css/category-card.css') }}">
+<link rel="stylesheet" href="{{ asset('css/hot-animation.css') }}">
 <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.2/components/testimonials/testimonial-3/assets/css/testimonial-3.css" />
 
 @endsection
@@ -125,13 +126,22 @@
         <div class="container">
             <div class="row gy-4 gy-md-0 gx-xxl-5">
                 <div class="col-12 col-md-4">
-                    <div class="card h-100">
+                    <div class="card h-100 position-relative">
+                        <!-- Flame animation -->
+                        <div class="fire position-absolute top-0 start-0">
+                            <div class="flames">
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                            </div>
+                        </div>
+                        <!-- Card body -->
                         <div class="card-body p-4 p-xxl-5">
                             <figure>
                                 <img class="img-fluid rounded rounded-circle mb-4" loading="lazy" src="./assets/img/testimonial-img-1.jpg" alt="">
                                 <figcaption>
-                                    <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0">
-                                    </div>
+                                    <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0"></div>
                                     <blockquote class="bsb-blockquote-icon mb-4">Thrilled to support this furniture
                                         company for its stylish, quality pieces made from recycled ocean plastic. A
                                         win-win, combining excellent design with a meaningful contribution to
@@ -145,13 +155,22 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="card h-100">
+                    <div class="card h-100 position-relative">
+                        <!-- Flame animation -->
+                        <div class="fire position-absolute top-0 start-0">
+                            <div class="flames">
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                            </div>
+                        </div>
+                        <!-- Card body -->
                         <div class="card-body p-4 p-xxl-5">
                             <figure>
                                 <img class="img-fluid rounded rounded-circle mb-4" loading="lazy" src="./assets/img/testimonial-img-2.jpg" alt="">
                                 <figcaption>
-                                    <div class="bsb-ratings text-warning mb-3" data-bsb-star="4" data-bsb-star-off="1">
-                                    </div>
+                                    <div class="bsb-ratings text-warning mb-3" data-bsb-star="4" data-bsb-star-off="1"></div>
                                     <blockquote class="bsb-blockquote-icon mb-4">Exceeded my expectations with
                                         modern,
                                         chic designs that seamlessly blend into my decor. Proud to showcase these
@@ -165,13 +184,22 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <div class="card h-100">
+                    <div class="card h-100 position-relative">
+                        <!-- Flame animation -->
+                        <div class="fire position-absolute top-0 start-0">
+                            <div class="flames">
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                                <div class="flame"></div>
+                            </div>
+                        </div>
+                        <!-- Card body -->
                         <div class="card-body p-4 p-xxl-5">
                             <figure>
                                 <img class="img-fluid rounded rounded-circle mb-4" loading="lazy" src="./assets/img/testimonial-img-4.jpg" alt="">
                                 <figcaption>
-                                    <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0">
-                                    </div>
+                                    <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0"></div>
                                     <blockquote class="bsb-blockquote-icon mb-4">Woodless's minimalist design with
                                         sleek,
                                         durable pieces made from recycled ocean plastic. Furnishing my space
