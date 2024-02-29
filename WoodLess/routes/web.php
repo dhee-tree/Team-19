@@ -79,8 +79,13 @@ Route::get('/admin-panel/tickets/info/{id}', [AdminController::class, 'TicketInf
 //The additional information modal to expand fields in tickets for user or admin that claimed a ticket admin panel
 Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin'); 
 
-//uised to claim a ticket
-Route::get('/admin-panel/tickets/claim/{id}', [AdminController::class, 'ClaimTicket'])->name('Ticket.claim')->middleware('admin'); 
+//used to claim a ticket
+Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin'); 
+//used to resolve a ticket
+Route::get('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('ticket-resolve')->middleware('admin'); 
+//used to delete a ticket
+Route::post('/admin-panel/tickets/delete/{id}', [AdminController::class, 'TicketDelete'])->name('ticket-delete')->middleware('admin');
+
 
 #endregion
 

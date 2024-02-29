@@ -53,10 +53,29 @@
                     <p><strong>Message</strong><br>{{ $ticket->information }}</p>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer d-flex justify-content-between">
+
+                <div class="d-flex">
+                    @if ($ticket->admin_id == auth()->user()->id)
+                        <button type="button" class="btn btn-secondary openModalButton me-2"
+                            onclick="openResolveModal({{ $ticket->id }})" id="openModalButton">Resolve</button>
+                    @elseif ($ticket->admin_id)
+                        Claimed
+                    @else
+                        <form id="claimTicket" action="{{ route('ticket-claim', ['id' => $ticket->id]) }}"
+                            method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-secondary me-2">Claim</button>
+                        </form>
+                    @endif
+                    <!-- Button to trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                        data-bs-target="#confirmDeleteModal" id="openModalButton"
+                        onclick="DeleteItemId({{ $ticket->id }})">Delete</button>
+                </div>
+
                 <button type="button" id="btn-close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <p>{{ $ticket->user_id }}</p>
-                <p>{{ $ticket->admin_id }}</p>
+
             </div>
         </div>
     </div>

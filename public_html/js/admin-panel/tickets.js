@@ -99,9 +99,9 @@ function openUserInfoModal(userId) {
 }
 
 //Delete item modal info handlers
-function DeleteItemId(Id) {
+function DeleteTicket(Id) {
     document.getElementById('id_input').value = Id;
-    document.getElementById('deleteForm').action = '/admin-panel/users/delete/' + Id;
+    document.getElementById('deleteForm').action = '/admin-panel/tickets/delete/' + Id;
 
 }
 
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
 $(document).ready(function() {
     $('.tickets-row').click(function() {
         var ticketId = $(this).find('td:first-child').text(); // Get the ticket ID from the first column
-        console.log("here");
+        console.log(ticketId);
 
         $.get('/admin-panel/tickets/info/' + ticketId, function (data) {
             $('body').append(data);

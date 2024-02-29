@@ -373,7 +373,7 @@ class AdminController extends Controller
         return view('tickets-admin', compact('tickets', 'countTickets'));
     }
 
-    public function ClaimTicket(Request $request, $ticketId)
+    public function TicketClaim(Request $request, $ticketId)
     {
         // Get the authenticated user
         $admin = auth()->user();
@@ -386,33 +386,45 @@ class AdminController extends Controller
         // Save the changes to the ticket
         $ticket->save();
 
-
-        $queryFilter = $request->input('filter', 'all');
-
-        // Get the selected pagination length from the query string
-        $selectedLength = request()->query('length', 100); // Default to 10 if not provided
-        $countTickets = Ticket::latest()->get();
-
-
-        // Retrieve tickets
-        $tickets = Ticket::latest()->filter($queryFilter)->orderBy('id', 'desc')->get();
-
-        // Manually sort the tickets
-        $tickets = $tickets->sortBy('id');
-
-        // Paginate the sorted tickets
-        $tickets = $tickets->paginate($selectedLength)->withQueryString();
-
-
-        return view('tickets-admin', compact('tickets', 'countTickets'));
+        return redirect()->route('admin-panel.tickets')->with('success', 'Successfully claimed ticket ' . $ticketId);
     }
 
     public function TicketInfo($id)
     {
         $ticket = Ticket::findOrFail($id);
 
-        return view('components.admin-panel.ticket-info', compact('ticket'));
+        return  view('components.admin-panel.ticket-info', compact('ticket'));
     }
+
+    public function TicketDelete($id)
+    {
+        // Retrieve the product by ID
+        $ticket = Ticket::find($id);
+
+        // Check if the product exists
+        if (!$ticket) {
+            return redirect()->back()->with('error', 'ticket with ' . $id . ' not found.');
+        }
+
+        // Delete the product
+        $ticket->delete();
+
+        return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ' . $id . ' deleted succesfully.');
+    }
+
+    public function TicketResolve($id)
+    {
+        // Retrieve the product by ID
+        $ticket = Ticket::find($id);
+
+        // Check if the product exists
+        if (!$ticket) {
+            return redirect()->back()->with('error', 'ticket with ' . $id . ' not found.');
+        }
+
+        return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ' . $id . ' resolved! JK WORKING ON IT LOLLOLAOFDLAWOFKJAWOFJAWOIFJAWOIFA');
+    }
+
 
     #endregion
 
