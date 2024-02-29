@@ -22,7 +22,7 @@
 @endphp
 
 @section('content')
-    <div class="container">
+    <div id="maincontent" class="container">
         <div class="row m-0 mt-3 px-1" id="product-main">
             <div class="col-md-6 mb-3" id="gallery">
                 <div id="productGallery" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">

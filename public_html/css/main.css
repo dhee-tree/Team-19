@@ -88,3 +88,14 @@ footer {
 main {
     min-height: 100vh;
 }
+
+@media screen and (min-width: 1368px) {
+    main {
+        background-color: #e3eefc56;
+    }
+
+    main #maincontent {
+        min-height: 100vh;
+        background-color: #fff;
+    }
+}

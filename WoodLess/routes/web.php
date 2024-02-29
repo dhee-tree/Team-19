@@ -29,7 +29,7 @@ use App\Http\Controllers\TicketController;
 */
 
 
-Route::view('/about', 'about');
+Route::view('/about', 'about')->name("about-us");
 Route::get('/verify/{code}', [EmailVerificationController::class, 'verifyUserEmail'])->name('user.verify');
 
 Route::view('/categories', 'categories');
