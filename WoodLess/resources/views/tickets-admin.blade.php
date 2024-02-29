@@ -39,7 +39,7 @@
             <form action="#">
                 <div class="form-input">
                     <!--<input type="search" placeholder="Search...">
-                                <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
+                                    <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
                 </div>
             </form>
             <a href="#" class="notif">
@@ -106,7 +106,7 @@
                 <div class="orders">
                     <div class="header">
                         <i class="fa-solid fa-ticket"></i>
-                        <h3>Recent Tickets</h3>
+                        <h3>Tickets</h3>
                         <i class="fa-solid fa-filter"></i>
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
@@ -161,8 +161,9 @@
             @else
                 <p>No tickets found.</p>
             @endif
+        </main>
+
     </div>
-    </main>
 
     <!-- Delete Product Modal -->
     <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel"

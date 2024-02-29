@@ -66,7 +66,17 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::view('/admin-panel', 'admin-panel')->middleware('admin');;
 //admin panel pages
-Route::view('/admin-panel/orders', 'orders-admin')->middleware('admin')->middleware('admin');
+Route::view('/admin-panel/orders', 'orders-admin')->middleware('admin');
+
+#region admin panel warehouses / categories
+
+Route::view('/admin-panel/warehouse', 'warehouse-admin')->middleware('admin');
+
+
+
+#endregion
+
+
 
 #region admin panel tickets
 
