@@ -256,3 +256,21 @@ Media to change the carosel height for smaller screen sizes
 section {
   padding-bottom: 5vh;
 }
+
+
+
+.homeproducts {
+  display: flex;
+  justify-content: space-between;
+}
+
+.homeproducts #hotSellers {
+  width: calc(66.666% - 10px); /* 2/3rds of the container width minus gap */
+  margin-right: 5vw; /* Adjust as needed for the gap between items */
+}
+
+.homeproducts #topDiscounts {
+
+  width: calc(33.333% - 10px); /* 1/3rd of the container width minus gap */
+  margin-right: 0; /* Remove margin from the last item */
+}
