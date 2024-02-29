@@ -157,13 +157,13 @@
   font-size: 2vw;
   color: #f8f8f8;
   font-weight: normal;
-  top: 29%;
+  top: 19%;
   left: 15%;
   transform: translate(0%, -50%);
 }
 
 #title-desktop #title-greener {
-  top: 35%;
+  top: 25%;
   left: 15%;
   transform: translate(0%, -50%);
 }
@@ -172,21 +172,21 @@
   font-size: 3.5vw;
   color: #f8f8f8;
   font-weight: normal;
-  top: 35%;
+  top: 25%;
   left: 50%;
   transform: translate(-35%, -50%);
 
 }
 
 #title-desktop #title-bluer {
-  top: 35%;
+  top: 25%;
   right: 5%;
   transform: translate(-100%, -50%);
 }
 
 #title-desktop #title-earth {
   font-size: 10vw;
-  bottom: 5%;
+  bottom: 15%;
   left: 50%;
   transform: translate(-50%, -100%);
 }
@@ -195,7 +195,7 @@
   padding: 0.5%;
   background-color: #429dd2c4;
   font-size: 1.5vw;
-  bottom: 15%;
+  bottom: 25%;
   left: 50%;
   border: none;
   transform: translate(-50%, -100%);
@@ -212,59 +212,11 @@
 
 /* #endregion */
 
-/* #region Title Mobile */
-
-#title-mobile {
-  background-image: url(https://sb.ecobnb.net/app/uploads/sites/3/2019/05/spencer-watson-330677-unsplash-1170x490.jpg);
-  background-size: cover;
-  /* Ensures the background image covers the entire #title section */
-  min-height: 100vh;
-  /* Set a minimum height for the section */
-  display: none;
-  /* Hide the element by default */
-
-}
-
-/* #endregion */
-
 
 
 
 
 /* #endregion */
-
-
-.carousel {
-  width: 100%;
-  max-height: auto;
-  overflow: hidden;
-  background-color: #98c1d9;
-}
-
-.carousel-item img {
-  margin-left: auto;
-  margin-right: auto;
-  width: 450px;
-  height: 450px;
-}
-
-/* Add this CSS to your stylesheet */
-#carouselHotSellers a {
-  text-decoration: none;
-  /* Remove underline */
-  color: inherit;
-  /* Use the default text color */
-}
-
-/* 
-Media to change the carosel height for smaller screen sizes
-*/
-@media screen and (max-width: 990px) {
-  .carousel-item img {
-    min-width: 100%;
-    height: 200px;
-  }
-}
 
 section {
   padding-bottom: 5vh;
