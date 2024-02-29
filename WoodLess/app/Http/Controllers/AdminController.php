@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Ticket;
 use App\Models\Address;
 use App\Models\Category;
@@ -349,7 +350,7 @@ class AdminController extends Controller
 
     #endregion
 
-    #region tickets
+    #region Tickets
 
     public function tickets(Request $request)
     {
@@ -428,6 +429,21 @@ class AdminController extends Controller
 
     #endregion
 
+    #region Orders
 
+
+    public function orders(Request $request)
+    {
+        $selectedLength = $request->input('length', 1000); // Default to 1000 if not provided
+
+        $orders = Order::latest()->get();
+
+        $orders = $orders->sortBy('id');
+        $orders = Order::paginate($selectedLength)->withQueryString();
+
+        return view('orders-admin', compact('orders'));
+    }
+
+    #endregion
 
 }

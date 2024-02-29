@@ -127,7 +127,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        //create 500 tickets
-        \App\Models\Ticket::factory()->count(500)->create();
+
     }
 }
