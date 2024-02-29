@@ -50,8 +50,8 @@ Route::delete('/basket/{basket}', [BasketController::class, 'destroy'])->name('b
 Route::put('/update-basket/{basket}', [BasketController::class, 'update'])->name('basket.update');
 
 // Checkout URLS
-Route::get('/checkout', [CheckoutController::class, 'show'])->middleware('auth', 'VerifyEmailForCheckout');
-Route::post('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('auth');
+Route::get('/checkout', [CheckoutController::class,'show'])->middleware('auth');
+Route::post('/checkout/success', [OrderController::class,'store'])->name('checkout.store')->middleware('auth');
 
 //Store single review
 Route::post('/review/{product}', [ReviewController::class, 'store'])->middleware('auth');
