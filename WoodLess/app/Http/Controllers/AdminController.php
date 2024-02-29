@@ -354,7 +354,7 @@ class AdminController extends Controller
     public function tickets(Request $request)
     {
 
-        $selectedLength = $request->input('length', 1000); // Default to 50 if not provided
+        $selectedLength = $request->input('length', 100); // Default to 50 if not provided
 
 
         $queryFilter = $request->input('filter', 'all');
@@ -390,7 +390,7 @@ class AdminController extends Controller
         $queryFilter = $request->input('filter', 'all');
 
         // Get the selected pagination length from the query string
-        $selectedLength = request()->query('length', 1000); // Default to 10 if not provided
+        $selectedLength = request()->query('length', 100); // Default to 10 if not provided
         $countTickets = Ticket::latest()->get();
 
 
@@ -405,6 +405,13 @@ class AdminController extends Controller
 
 
         return view('tickets-admin', compact('tickets', 'countTickets'));
+    }
+
+    public function TicketInfo($id)
+    {
+        $ticket = Ticket::findOrFail($id);
+
+        return view('components.admin-panel.ticket-info', compact('ticket'));
     }
 
     #endregion
