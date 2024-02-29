@@ -99,7 +99,7 @@ function openUserInfoModal(userId) {
 }
 
 //Delete item modal info handlers
-function DeleteTicket(Id) {
+function DeleteItemId(Id) {
     document.getElementById('id_input').value = Id;
     document.getElementById('deleteForm').action = '/admin-panel/tickets/delete/' + Id;
 

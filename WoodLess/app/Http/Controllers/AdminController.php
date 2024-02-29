@@ -403,13 +403,13 @@ class AdminController extends Controller
 
         // Check if the product exists
         if (!$ticket) {
-            return redirect()->back()->with('error', 'ticket with ' . $id . ' not found.');
+            return redirect()->back()->with('error', 'ticket with ID:' . $id . ' not found.');
         }
 
         // Delete the product
         $ticket->delete();
 
-        return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ' . $id . ' deleted succesfully.');
+        return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ID:' . $id . ' deleted succesfully.');
     }
 
     public function TicketResolve($id)
@@ -422,7 +422,7 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'ticket with ' . $id . ' not found.');
         }
 
-        return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ' . $id . ' resolved! JK WORKING ON IT LOLLOLAOFDLAWOFKJAWOFJAWOIFJAWOIFA');
+        return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ID:' . $id . ' resolved! JK WORKING ON IT LOLLOLAOFDLAWOFKJAWOFJAWOIFJAWOIFA');
     }
 
 
