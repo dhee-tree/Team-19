@@ -35,3 +35,8 @@ The file [DatabaseSeeder](./seeders/DatabaseSeeder.php) contains methods to popu
 1. Open the [WoodLess](../../WoodLess/) folder in terminal. 
 2. Next, `php artisan db:seed` to run data to the database, or `php artisan migrate:fresh --seed` to both drop all table rows and add fresh new data.
 
+## Schema (Last Updated: 29/02/24)
+See below information on the database.
+
+##
+

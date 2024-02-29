@@ -45,7 +45,7 @@ WoodLess offers robust administration features, while remaining accessible and u
 
 ### Database Management
 WoodLess uses the powerful Eloquent ORM to ensure safe and streamlined database interactions, enabling rapid deployment and full CRUD functionality. For testing, WoodLess comes with built-in products and model factories that can be seeded to the target database.
-- For more information, see the guide on [Database](./WoodLess/database/README.md).
+- For more information, see the guide on [Database](./WoodLess/database).
 
 ### Documentation
 To make our work as accessible as possible, all models and methods written by the team have proper documenting with PHPDoc and/or commenting. 
@@ -53,7 +53,7 @@ To make our work as accessible as possible, all models and methods written by th
 ## Guide
 This project contains guides to speed up development and deployment.
 - [Getting Started](#getting-started) - Instructions for deploying WoodLess on your web server.
-- [Database](./WoodLess/database/README.md) - Instructions and information on WoodLess' database management.
+- [Database](./WoodLess/database) - Instructions and information on WoodLess' database management.
 - For Laravel or other built-in features, please refer to the [relevant documentation](https://laravel.com/docs/10.x).
 
 ## Getting Started
@@ -73,7 +73,7 @@ The file .env declares the app environment, so it is important to set this up fi
 Before you can run the website, the database needs to be setup.
 1. Ensure your target MySQL server is running, and you have created a database that matches the one specifed in `.env`.
 2. Go to the WoodLess directory in a terminal. Run `php artisan migrate`. This will build the tables required by the website in your database.
-- For additonal database information and commands, including test data, see the guide on [Database](./WoodLess/database/README.md).
+- For additonal database information and commands, including test data, see the guide on [Database](./WoodLess/database).
 
 ### Accessing the Website
 - Go to the WoodLess directory in a terminal. Run `php artisan serve`. 
