@@ -43,25 +43,7 @@
                 @endphp
                 <div class="col mb-5">
                     <div class="card h-100">
-                        @if ($product->discount > 40)
-                            <div class="fire position-absolute top-0 start-0">
-                                <div class="fire-left">
-                                    <div class="main-fire"></div>
-                                    <div class="particle-fire"></div>
-                                </div>
-                                <div class="fire-center">
-                                    <div class="main-fire"></div>
-                                    <div class="particle-fire"></div>
-                                </div>
-                                <div class="fire-right">
-                                    <div class="main-fire"></div>
-                                    <div class="particle-fire"></div>
-                                </div>
-                                <div class="fire-bottom">
-                                    <div class="main-fire"></div>
-                                </div>
-                            </div>
-                            @endif
+
                             <!-- Sale badge-->
                             @if ($product->discount > 0)
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">

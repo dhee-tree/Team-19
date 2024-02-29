@@ -134,17 +134,23 @@
   font-size: 5vw;
   color: #fff;
   font-weight: bold;
-  opacity: 0; /* Start with zero opacity */
-  animation: fadeInText 1s ease forwards; /* Apply fade-in animation */
-  animation-delay: 3.5s; /* Delay the animation start */
+  opacity: 0;
+  /* Start with zero opacity */
+  animation: fadeInText 1s ease forwards;
+  /* Apply fade-in animation */
+  animation-delay: 3.5s;
+  /* Delay the animation start */
 }
 
 @keyframes fadeInText {
   from {
-    opacity: 0; /* Start with zero opacity */
+    opacity: 0;
+    /* Start with zero opacity */
   }
+
   to {
-    opacity: 1; /* Fade in to full opacity */
+    opacity: 1;
+    /* Fade in to full opacity */
   }
 }
 
@@ -224,25 +230,127 @@
 /* #endregion */
 
 
-
-
-
-/* #endregion */
-
-
-
-.homeproducts {
-  display: flex;
-  justify-content: space-between;
+#hotSellers .card {
+  background-color: #ff800031;
 }
 
-.homeproducts #hotSellers {
-  width: calc(66.666% - 10px); /* 2/3rds of the container width minus gap */
-  margin-right: 5vw; /* Adjust as needed for the gap between items */
+#topDiscounts .card {
+  background-color: #c5ffd172;
+}
+#hotSellers .title {
+  font-weight: normal !important;
 }
 
-.homeproducts #topDiscounts {
 
-  width: calc(33.333% - 10px); /* 1/3rd of the container width minus gap */
-  margin-right: 0; /* Remove margin from the last item */
+#hotSellers .title-text,
+#hotSellers .regular-price,
+#hotSellers .text-discount-number,
+#hotSellers .title {
+  font-weight: bold;
+  /* Make the text bold */
+  font-size: 1.5rem !important;
+}
+
+@media (max-width: 1024px) {
+  #hotSellers .title-text,
+  #hotSellers .regular-price,
+  #hotSellers .text-discount-number,
+  #hotSellers .title {
+    font-size: 1.4rem !important; /* Adjust font size for smaller screens */
+  }
+}
+
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+  #hotSellers .title-text,
+  #hotSellers .regular-price,
+  #hotSellers .text-discount-number,
+  #hotSellers .title {
+    font-size: 1.2rem !important; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Media queries for even smaller screens */
+@media (max-width: 576px) {
+  #hotSellers .title-text,
+  #hotSellers .regular-price,
+  #hotSellers .text-discount-number,
+  #hotSellers .title {
+    font-size: 0.7rem !important; /* Further adjust font size for even smaller screens */
+  }
+}
+
+#hotSellers .card-details {
+  padding: 4%;
+  padding-left: 6%;
+}
+
+#hotSellers .regular-price {
+  padding-right: 1%;
+  font-size: 1.5rem;
+}
+
+#hotSellers .start {
+  position: relative;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#hotSellers .end {
+  position: absolute;
+  bottom: 13%;
+  right: 15%;
+}
+
+@media (max-width: 1024px) {
+  #hotSellers .end  {
+    position: absolute;
+    bottom: 16%;
+    right: 15%;
+  }
+}
+
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+  #hotSellers .end  {
+    position: absolute;
+    bottom: 8%;
+    right: 15%;
+  }
+}
+
+/* Media queries for even smaller screens */
+@media (max-width: 576px) {
+  #hotSellers .end  {
+    position: absolute;
+    bottom: 11%;
+    right: 10%;
+  }
+}
+
+
+.end {
+  position: relative;
+}
+
+#hotSellers .text-discount-number {
+  position: absolute;
+  bottom: 0; /* Adjust as needed */
+  right: 0.8rem; /* Adjust as needed */
+  transform: translateY(83%);
+  color: #cc0c39; /* Adjust text color as needed */
+  font-weight: normal;
+}
+
+.price-wrapper {
+  flex-direction: column;
+}
+
+.price-wrapper span {
+  margin-top: 0.25rem;
 }
