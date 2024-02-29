@@ -33,11 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function openUserInfoModal(userId) {
-    // Disable all buttons with the specified class to disable multiple spam
-    var buttons = document.querySelectorAll(".openModalButton");
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].disabled = true;
-    }
 
     $.get('/admin-panel/tickets/user-info/' + userId, function (data) {
         $('body').append(data);
@@ -53,11 +48,7 @@ function openUserInfoModal(userId) {
         var closeButtons = modal.find('[id="btn-close"]');
         closeButtons.each(function () {
             $(this).on('click', function () {
-                // Re-enable all buttons with the specified class when the modal is closed
-                var buttons = document.querySelectorAll(".openModalButton");
-                for (var i = 0; i < buttons.length; i++) {
-                    buttons[i].disabled = false;
-                }
+
 
                 container.remove();
 
@@ -76,11 +67,7 @@ function openUserInfoModal(userId) {
             // Check if the click is outside the modal and not on any elements within the modal
 
             if ($(e.target).hasClass('modal')) {
-                // Re-enable all buttons with the specified class when the modal is closed
-                var buttons = document.querySelectorAll(".openModalButton");
-                for (var i = 0; i < buttons.length; i++) {
-                    buttons[i].disabled = false;
-                }
+
 
                 container.remove();
                 // Get the modal backdrop element
@@ -109,12 +96,6 @@ function DeleteItemId(Id) {
 
 function openResolveModal(userId) {
 
-    // Disable all buttons with the specified class to disable multiple spam
-    var buttons = document.getElementsByClassName("openModalButton");
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].disabled = true;
-    }
-
     $.get('/admin-panel/tickets/admin-resolve/' + userId, function (data) {
         $('body').append(data);
         var modal = $('#extraModal');
@@ -122,11 +103,7 @@ function openResolveModal(userId) {
 
         // Remove the modal from the DOM when it's closed
         modal.on('hidden.bs.modal', function () {
-            // Re-enable all buttons with the specified class when the modal is closed
-            var buttons = document.getElementsByClassName("openModalButton");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].disabled = false;
-            }
+
             modal.remove();
         });
     });
@@ -161,16 +138,15 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-$(document).ready(function() {
-    $('.tickets-row').click(function() {
+$(document).ready(function () {
+    $('.ticket-row').click(function () {
         var ticketId = $(this).find('td:first-child').text(); // Get the ticket ID from the first column
-        console.log(ticketId);
 
         $.get('/admin-panel/tickets/info/' + ticketId, function (data) {
             $('body').append(data);
             var modal = $('#extraModal');
             modal.modal('show'); // Show the modal after content is appended
-    
+
             // Remove the modal from the DOM when it's closed
             modal.on('hidden.bs.modal', function () {
                 // Re-enable all buttons with the specified class when the modal is closed

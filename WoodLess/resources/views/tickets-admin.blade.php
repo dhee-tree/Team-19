@@ -13,7 +13,7 @@
         </a>
         <ul class="side-menu">
             <li><a href="{{ url('/admin-panel') }}"><i class="fa-solid fa-house"></i>Dashboard</a></li>
-            <li><a href="{{ url('/admin-panel/inventory') }}"><i class="fa-solid fa-warehouse"></i>Inventory</a></li>
+            <li><a href="{{ url('/admin-panel/inventory') }}"><i class="fa-solid fa-store"></i>Inventory</a></li>
             <li><a href="{{ url('/admin-panel/orders') }}"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
             <li class="active"><a href="{{ url('/admin-panel/tickets') }}"><i class="fa-solid fa-message"></i>Tickets</a>
             </li>
@@ -39,7 +39,7 @@
             <form action="#">
                 <div class="form-input">
                     <!--<input type="search" placeholder="Search...">
-                                    <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
+                                        <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
                 </div>
             </form>
             <a href="#" class="notif">
@@ -128,26 +128,23 @@
                         </thead>
                         <tbody>
                             @foreach ($tickets as $ticket)
-                                <a href="{{ route('admin-panel.tickets', ['filter' => 'current']) }}"
-                                    class="text-decoration-none">
-                                    <tr class="tickets-row" scope="row">
-                                        <td>{{ $ticket->id }}</td>
-                                        <td>{{ $ticket->title }}</td>
-                                        <td>{{ $ticket->truncateInformation(5) }}...</td>
-                                        <td>{{ $ticket->created_at }}</td>
+                                <tr class="ticket-row" scope="row">
+                                    <td>{{ $ticket->id }}</td>
+                                    <td>{{ $ticket->title }}</td>
+                                    <td>{{ $ticket->truncateInformation(5) }}...</td>
+                                    <td>{{ $ticket->created_at }}</td>
 
-                                        <td>
-                                            @if ($ticket->status == 1)
-                                                Open
-                                            @elseif ($ticket->status == 2)
-                                                In Progress
-                                            @elseif ($ticket->status == 3)
-                                                Resolved
-                                            @endif
-                                        </td>
+                                    <td>
+                                        @if ($ticket->status == 1)
+                                            Open
+                                        @elseif ($ticket->status == 2)
+                                            In Progress
+                                        @elseif ($ticket->status == 3)
+                                            Resolved
+                                        @endif
+                                    </td>
 
-                                    </tr>
-                                </a>
+                                </tr>
                             @endforeach
                         </tbody>
                     </table>

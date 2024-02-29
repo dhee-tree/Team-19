@@ -58,6 +58,17 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <p><strong>Addresses: </strong><br> <button class="btn btn-warning"
+                                    data-bs-target="#AddressesModal" data-bs-toggle="modal"
+                                    data-bs-dismiss="modal">Address</button></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Cards: </strong><br><button class="btn btn-warning" data-bs-target="#CardsModal"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal">Card</button></p>
+                        </div>
+                    </div>
                     <br>
                     <p class="text-center"><strong>Created</strong> {{ date('F j, Y', strtotime($user->created_at)) }}
                     </p>
@@ -66,10 +77,12 @@
                     <div class="container">
                         <div class="row">
                             <div class="col justify-content-left">
-                                <button class="btn btn-warning" data-bs-target="#AddressesModal" data-bs-toggle="modal"
-                                    data-bs-dismiss="modal">Address</button>
-                                <button class="btn btn-warning" data-bs-target="#CardsModal" data-bs-toggle="modal"
-                                    data-bs-dismiss="modal">Card</button>
+                                <button type="button" class="btn btn-secondary openModalButton"
+                                    onclick="openEditModal({{ $user->id }})" id="btn-close"
+                                    data-bs-dismiss="modal">Edit</button>
+                                <button type="button" class="btn btn-danger openModalButton" data-bs-toggle="modal"
+                                    data-bs-target="#confirmDeleteModal" onclick="DeleteItemId({{ $user->id }})"
+                                    id="btn-close" data-bs-dismiss="modal">Delete</button>
                             </div>
                             <div class="col-auto order-lg-last">
                                 <button id="btn-close" type="button" class="btn btn-secondary"

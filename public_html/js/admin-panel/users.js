@@ -28,70 +28,79 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+$(document).ready(function () {
+    $('.user-row').click(function () {
+        var userId = $(this).find('td:first-child').text(); // Get the ticket ID from the first column
 
-function openInfoModal(userId) {
-    // Disable all buttons with the specified class to disable multiple spam
-    var buttons = document.querySelectorAll(".openModalButton");
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].disabled = true;
-    }
+        $.get('/admin-panel/users/user-info/' + userId, function (data) {
+            $('body').append(data);
+            var modal = $('#ExtraModal');
+            var container = $('#ExtraModals');
+            modal.modal('show'); // Show the modal after content is appended
 
-    $.get('/admin-panel/users/user-info/' + userId, function (data) {
-        $('body').append(data);
-        var modal = $('#ExtraModal');
-        var container = $('#ExtraModals');
-        modal.modal('show'); // Show the modal after content is appended
-
-        // Flag to determine if the ExtraModal was explicitly closed by the user
-        var extraModalClosed = false;
+            // Flag to determine if the ExtraModal was explicitly closed by the user
+            var extraModalClosed = false;
 
 
-        // Set the flag when any close button inside the modal is clicked
-        var closeButtons = modal.find('[id="btn-close"]');
-        closeButtons.each(function () {
-            $(this).on('click', function () {
-                // Re-enable all buttons with the specified class when the modal is closed
-                var buttons = document.querySelectorAll(".openModalButton");
-                for (var i = 0; i < buttons.length; i++) {
-                    buttons[i].disabled = false;
+            // Set the flag when any close button inside the modal is clicked
+            var closeButtons = modal.find('[id="btn-close"]');
+            closeButtons.each(function () {
+                $(this).on('click', function () {
+
+                    container.remove();
+
+                    // Get the modal backdrop element
+                    var backdrop = document.querySelector('.modal-backdrop');
+
+                    // Check if the backdrop element exists
+                    if (backdrop) {
+                        // Remove the backdrop element from the DOM
+                        backdrop.parentNode.removeChild(backdrop);
+                    }
+                });
+            });
+
+            // Event listener for clicking outside the modal
+            container.on('click', function (e) {
+                // Check if the click is outside the modal and not on any elements within the modal
+
+                if ($(e.target).hasClass('modal')) {
+                    container.remove();
+                    // Get the modal backdrop element
+                    var backdrop = document.querySelector('.modal-backdrop');
+
+                    // Check if the backdrop element exists
+                    if (backdrop) {
+                        // Remove the backdrop element from the DOM
+                        backdrop.parentNode.removeChild(backdrop);
+                    }
                 }
+            });
 
-                container.remove();
-
-                // Get the modal backdrop element
-                var backdrop = document.querySelector('.modal-backdrop');
-
-                // Check if the backdrop element exists
-                if (backdrop) {
-                    // Remove the backdrop element from the DOM
-                    backdrop.parentNode.removeChild(backdrop);
+            // Event listener for modal close event
+            $('.modal').on('hidden.bs.modal', function (e) {
+                var closedModalId = $(this).attr('id'); // Get the ID of the closed modal
+                var parentContainer = $('#' + closedModalId).parent(); // Get the parent of the closed modal
+                console.log(parentContainer.attr('id'));
+                // Check if the parent of the closed modal is the container modal
+                if (!parentContainer.is('#extraModals')) {
+                    // The modal was closed outside of the container, handle it here
+                    // For example, remove the container or perform other actions
                 }
             });
         });
 
-        // Event listener for clicking outside the modal
-        container.on('click', function (e) {
-            // Check if the click is outside the modal and not on any elements within the modal
 
-            if ($(e.target).hasClass('modal')) {
-                // Re-enable all buttons with the specified class when the modal is closed
-                var buttons = document.querySelectorAll(".openModalButton");
-                for (var i = 0; i < buttons.length; i++) {
-                    buttons[i].disabled = false;
-                }
-
-                container.remove();
-                // Get the modal backdrop element
-                var backdrop = document.querySelector('.modal-backdrop');
-
-                // Check if the backdrop element exists
-                if (backdrop) {
-                    // Remove the backdrop element from the DOM
-                    backdrop.parentNode.removeChild(backdrop);
-                }
-            }
-        });
     });
+
+
+});
+
+
+
+function openInfoModal(userId) {
+
+
 
 
 }
@@ -105,11 +114,6 @@ function DeleteItemId(Id) {
 
 //JavaScript to handle add/create modal opening
 function openAddModal() {
-    // Disable all buttons with the specified class to disable multiple spam
-    var buttons = document.querySelectorAll(".openModalButton");
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].disabled = true;
-    }
 
     $.get('/admin-panel/users/user-add/', function (data) {
         $('body').append(data);
@@ -118,11 +122,6 @@ function openAddModal() {
 
         // Remove the modal from the DOM when it's closed
         modal.on('hidden.bs.modal', function () {
-            // Re-enable all buttons with the specified class when the modal is closed
-            var buttons = document.querySelectorAll(".openModalButton");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].disabled = false;
-            }
 
             modal.remove();
         });
@@ -133,12 +132,6 @@ function openAddModal() {
 
 function openEditModal(userId) {
 
-    // Disable all buttons with the specified class to disable multiple spam
-    var buttons = document.getElementsByClassName("openModalButton");
-    for (var i = 0; i < buttons.length; i++) {
-        buttons[i].disabled = true;
-    }
-
     $.get('/admin-panel/users/user-edit/' + userId, function (data) {
         $('body').append(data);
         var modal = $('#extraModal');
@@ -146,11 +139,7 @@ function openEditModal(userId) {
 
         // Remove the modal from the DOM when it's closed
         modal.on('hidden.bs.modal', function () {
-            // Re-enable all buttons with the specified class when the modal is closed
-            var buttons = document.getElementsByClassName("openModalButton");
-            for (var i = 0; i < buttons.length; i++) {
-                buttons[i].disabled = false;
-            }
+
             modal.remove();
         });
     });

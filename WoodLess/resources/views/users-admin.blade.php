@@ -13,7 +13,7 @@
         </a>
         <ul class="side-menu">
             <li><a href="{{ url('/admin-panel') }}"><i class="fa-solid fa-house"></i>Dashboard</a></li>
-            <li><a href="{{ url('/admin-panel/inventory') }}"><i class="fa-solid fa-warehouse"></i>Inventory</a></li>
+            <li><a href="{{ url('/admin-panel/inventory') }}"><i class="fa-solid fa-store"></i>Inventory</a></li>
             <li><a href="{{ url('/admin-panel/orders') }}"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
             <li><a href="{{ url('/admin-panel/tickets') }}"><i class="fa-solid fa-message"></i>Tickets</a></li>
             <li class="active"><a href="{{ url('/admin-panel/users') }}"><i class="fa-solid fa-user"></i>Users</a></li>
@@ -114,9 +114,6 @@
                                 <th>Last Name</th>
                                 <th>Email</th>
                                 <th>Phone Number</th>
-                                <th>Information</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -127,18 +124,6 @@
                                     <td>{{ $user->last_name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone_number }}</td>
-                                    <td><button type="button" class="btn btn-primary openModalButton"
-                                            onclick="openInfoModal({{ $user->id }})" id="openModalButton"><i
-                                                class="fa-solid fa-up-right-from-square"></i></button></td>
-                                    <td><button type="button" class="btn btn-secondary openModalButton"
-                                            onclick="openEditModal({{ $user->id }})" id="openModalButton">Edit</button>
-                                    </td>
-                                    <!-- Button to trigger modal -->
-                                    <td>
-                                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                            data-bs-target="#confirmDeleteModal"
-                                            onclick="DeleteItemId({{ $user->id }})">Delete</button>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -162,7 +147,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="confirmDeleteModalLabel">Confirm Delete</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -170,7 +155,7 @@
                     Are you sure you want to delete this?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <form id="deleteForm" action="{{ route('user-delete', ['id' => ':user_id']) }}" method="POST">
                         @csrf
                         <input type="hidden" name="id_input" id="id_input" value="">
