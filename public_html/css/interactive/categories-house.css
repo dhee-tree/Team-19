@@ -109,7 +109,7 @@
     color: #fff;
     background-color: rgba(0, 0, 0, 0.34);
     padding: 0.2rem;
-    font-size: 190%;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
@@ -123,7 +123,7 @@
 
 @media only screen and (max-width: 768px) {
     #house .button h3 {
-        font-size: 80%;
+        font-size: 1rem;
         /* Adjusted font size for smaller screens */
     }
 
@@ -135,7 +135,7 @@
 
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
     #house .button h3 {
-        font-size: 130%;
+        font-size: 0.5rem;
         /* Adjusted font size for medium-sized screens */
     }
     
