@@ -1,26 +1,37 @@
-# Information
+# Database
+This document goes over the contents of the database folder, how to use them, as well as the Database Schema.
 
 ## Migrations
-Migration files define database tables used for this project.
-Any schema changes we want for our database can be modified here so that it'll easily work with version control.
-Please review migrations to make sure you are happy with them, each one is currently based on a table from the design document.
+The migrations folder contains files that define database tables used for this project, including indexes and relationships.
 
-See (https://laravel.com/docs/10.x/migrations)
+Any schema changes for the database can be modified here. This is also Laravel's point of reference when querying the database with Eloquent models.
 
-The default file [create_users_table](./migrations/2014_10_12_000000_create_users_table.php) was modified to fit our design document.
-(Idk if this will cause any problems)
+**Changes aren't automatically updated in the database; you'll have to [run migration commands](#building-the-database) again.** 
+- See (https://laravel.com/docs/10.x/migrations) for more information.
 
-## (Local) Database Setup
-### Building Database
-1. Modify [.env](../.env) to connect to your target database.
+### Running Migrations
+This will query the database, building the tables specifed in migrations.
+1. Ensure [.env](../.env) is modified to connect to your target database.
 2. Open the [WoodLess](../../WoodLess/) folder in terminal, run `php artisan migrate`. This will create the tables in your database.
 
-### Adding Test Data
-The file [DatabaseSeeder](./seeders/DatabaseSeeder.php) currently populates tables `users` and `products` with 10 rows, `reviews` with 500 rows, and `categories` with 2 rows so that elements can be tested before real data is added. Table `category_product` assigns products 1 random category each.
+### Erasing Table Data
+When modifying table columns, relations, etc... you may experience errors when running migrations again. Assuming you're only making changes in a development environment, it is best to wipe the database.
+- To do this, run `php artisan db:wipe` to drop everything and repeat steps above.
+- Alternatively, `php artisan migrate:fresh` will only drop table rows.
 
-Test data is defined by [factories](./factories/). See (https://laravel.com/docs/10.x/eloquent-factories).
+## Factories
+Test data is defined in [factories](./factories/). Each file contains a method to build a model instance using [faker](https://github.com/fzaninotto/Faker) methods. 
 
-1. Open the [WoodLess](../../WoodLess/) folder in terminal 
-2. Run `php artisan db:seed` to add (more) data to the database, or `php artisan migrate:fresh --seed` to both drop all table rows and add fresh new data.
-3. If changes you made to the database are causing issues, run `php artisan db:wipe` to drop everything and repeat steps above.
+- See (https://laravel.com/docs/10.x/eloquent-factories) for more information.
+
+## Seeders
+Seeders allow for quick seeding of data to a database.
+
+The file [DatabaseSeeder](./seeders/DatabaseSeeder.php) contains methods to populate tables with test data, which you can use to test or demo features. Modify this file as required, but it's recommended to make multiple seeders depending on your requirements.
+
+- See (https://laravel.com/docs/10.x/seeding) for more information.
+
+### Running the Seeder
+1. Open the [WoodLess](../../WoodLess/) folder in terminal. 
+2. Next, `php artisan db:seed` to run data to the database, or `php artisan migrate:fresh --seed` to both drop all table rows and add fresh new data.
 
