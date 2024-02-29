@@ -1,0 +1,92 @@
+/* #region Title Desktop */
+#house-container {
+    position: relative;
+    min-width: 100% !important;
+    height: 0;
+    padding-top: 56.25%;
+
+    /* 16:9 aspect ratio (9 divided by 16 = 0.5625) */
+}
+
+#house-container #house {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    background-size: 100% 100%;
+    opacity: 1;
+    background-image: url('/images/styling/house.jpg');
+    background-color: #ffffff00;
+
+    /* Maintain final state of the animation */
+}
+
+#house .button {
+    position: absolute;
+    /* Adjust button height as needed */
+    background-color: blue;
+    /* Example background color */
+    border: none;
+
+    /* Make buttons circular */
+    transform: translate(-50%, -50%);
+}
+
+#bedroom {
+    top: 20%;
+    left: 23.5%;
+    width: 43.5% !important;
+    height: 35% !important;
+}
+
+#dining-room {
+    top: 27%;
+    left: 61%;
+    width: 30% !important;
+    height: 48% !important;
+}
+
+#garden {
+    top: 18.5%;
+    left: 88%;
+    width: 22% !important;
+    height: 33% !important;
+}
+
+#toilet {
+    top: 69%;
+    left: 9.5%;
+    width: 15% !important;
+    height: 55% !important;
+}
+
+#living-room {
+    position: absolute;
+    /* Make buttons circular */
+    transform: translate(-50%, -50%);
+
+    top: 69% !important;
+    left: 38% !important;
+    clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 20%, 67% 20%, 67% 0%) !important;
+    /* Defines the polygon shape */
+    width: 39% !important;
+    height: 55.5% !important;
+    background-color: red;
+    /* Example background color */
+}
+
+#office {
+    top: 74.5%;
+    left: 67.5%;
+    width: 17% !important;
+    height: 44% !important;
+}
+
+#kitchen {
+    top: 67.15%;
+    left: 87.6%;
+    width: 20% !important;
+    height: 57.55% !important;
+}

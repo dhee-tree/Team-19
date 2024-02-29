@@ -1,11 +1,13 @@
 @extends('layouts.base')
 @section('title', 'WoodLess - Home')
 @section('style')
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
-<link rel="stylesheet" href="{{ asset('css/category-card.css') }}">
-<link rel="stylesheet" href="{{ asset('css/flame-animation.css') }}">
-<link rel="stylesheet" href="{{ asset('css/product-display.css') }}">
-<link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.2/components/testimonials/testimonial-3/assets/css/testimonial-3.css" />
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/category-card.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/interactive/hot-animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/interactive/categories-house.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/product-display.css') }}">
+    <link rel="stylesheet"
+        href="https://unpkg.com/bs-brain@2.0.2/components/testimonials/testimonial-3/assets/css/testimonial-3.css" />
 
 @endsection
 
@@ -186,61 +188,56 @@
                     <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
                 </div>
             </div>
-        </div>
-        <div class="container"> <!-- Carousel hot sellers -->
-            <div class="container px-4 px-lg-4 mt-2">
-                <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-3 justify-content-center">
-                    @foreach ($categories->shuffle()->take(3) as $category)
-                    <div class="col mb-5">
-                        <div class="card category-card h-100">
-                            <!-- Category image-->
-                            <img class="card-img" src="{{ asset($category->images) }}" height="100%" width="100%" alt="..." />
-                            <!-- Category details-->
-                            <div class="card-img-overlay d-flex flex-column align-items-center">
-                                <!-- Category actions-->
-                                <a class="btn mt-auto stretched-link shadow border border-info" href="/products?categories%5B%5D={{ ucfirst($category->category) }}">{{ $category->category }}</a>
-                            </div>
-                        </div>
+            <div class="container" id="house-container">
+                <div id="house">
+                    <button class="button" id="bedroom"></button>
+                    <button class="button" id="dining-room"></button>
+                    <button class="button" id="garden"></button>
+                    <button class="button" id="toilet"></button>
+                    <button class="polygon" id="living-room"></button>
+                    <button class="button" id="office"></button>
+                    <button class="button" id="kitchen"></button>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Testimonial 3 - Bootstrap Brain Component -->
+        <section id="testimonials" class="py-5 py-xl-8">
+            <div class="container-fluid">
+                <div class="row justify-content-md-center">
+                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                        <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Happy Customers</h2>
+                        <p class="display-5 mb-2 mb-md-3 text-center">We deliver what we promise</p>
+                        <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
                     </div>
-                    @endforeach
                 </div>
             </div>
-        </div>
-    </section>
 
-
-    <!-- Testimonial 3 - Bootstrap Brain Component -->
-    <section id="testimonials" class="py-5 py-xl-8">
-        <div class="container-fluid">
-            <div class="row justify-content-md-center">
-                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                    <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Happy Customers</h2>
-                    <p class="display-5 mb-2 mb-md-3 text-center">We deliver what we promise</p>
-                    <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row gy-4 gy-md-0 gx-xxl-5">
-                <div class="col-12 col-md-4">
-                    <div class="card h-100 position-relative">
-                        <!-- Card body -->
-                        <div class="card-body p-4 p-xxl-5">
-                            <figure>
-                                <img class="img-fluid rounded rounded-circle mb-4" loading="lazy" src="./assets/img/testimonial-img-1.jpg" alt="">
-                                <figcaption>
-                                    <div class="bsb-ratings text-warning mb-3" data-bsb-star="5" data-bsb-star-off="0">
-                                    </div>
-                                    <blockquote class="bsb-blockquote-icon mb-4">Thrilled to support this furniture
-                                        company for its stylish, quality pieces made from recycled ocean plastic. A
-                                        win-win, combining excellent design with a meaningful contribution to
-                                        tackling
-                                        plastic pollution.</blockquote>
-                                    <h4 class="mb-2">Luna John</h4>
-                                    <h5 class="fs-6 text-secondary mb-0">Eco-Conscious Customer</h5>
-                                </figcaption>
-                            </figure>
+            <div class="container">
+                <div class="row gy-4 gy-md-0 gx-xxl-5">
+                    <div class="col-12 col-md-4">
+                        <div class="card h-100 position-relative">
+                            <!-- Card body -->
+                            <div class="card-body p-4 p-xxl-5">
+                                <figure>
+                                    <img class="img-fluid rounded rounded-circle mb-4" loading="lazy"
+                                        src="./assets/img/testimonial-img-1.jpg" alt="">
+                                    <figcaption>
+                                        <div class="bsb-ratings text-warning mb-3" data-bsb-star="5"
+                                            data-bsb-star-off="0">
+                                        </div>
+                                        <blockquote class="bsb-blockquote-icon mb-4">Thrilled to support this furniture
+                                            company for its stylish, quality pieces made from recycled ocean plastic. A
+                                            win-win, combining excellent design with a meaningful contribution to
+                                            tackling
+                                            plastic pollution.</blockquote>
+                                        <h4 class="mb-2">Luna John</h4>
+                                        <h5 class="fs-6 text-secondary mb-0">Eco-Conscious Customer</h5>
+                                    </figcaption>
+                                </figure>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -296,5 +293,6 @@
 
 
 @section('js')
-<script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/interactive/categories-house.js') }}"></script>
 @endsection
