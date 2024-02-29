@@ -3,7 +3,8 @@
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('css/category-card.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/hot-animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/interactive/hot-animation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/interactive/categories-house.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product-display.css') }}">
     <link rel="stylesheet"
         href="https://unpkg.com/bs-brain@2.0.2/components/testimonials/testimonial-3/assets/css/testimonial-3.css" />
@@ -162,26 +163,17 @@
                     </div>
                 </div>
             </div>
-            <div class="container"> <!-- Carousel hot sellers -->
-                <div class="container px-4 px-lg-4 mt-2">
-                    <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-3 justify-content-center">
-                        @foreach ($categories->shuffle()->take(3) as $category)
-                            <div class="col mb-5">
-                                <div class="card category-card h-100">
-                                    <!-- Category image-->
-                                    <img class="card-img" src="{{ asset($category->images) }}" height="100%"
-                                        width="100%" alt="..." />
-                                    <!-- Category details-->
-                                    <div class="card-img-overlay d-flex flex-column align-items-center">
-                                        <!-- Category actions-->
-                                        <a class="btn mt-auto stretched-link shadow border border-info"
-                                            href="/products?categories%5B%5D={{ ucfirst($category->category) }}">{{ $category->category }}</a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+            <div class="container" id="house-container">
+                <div id="house">
+                    <button class="button" id="bedroom"></button>
+                    <button class="button" id="dining-room"></button>
+                    <button class="button" id="garden"></button>
+                    <button class="button" id="toilet"></button>
+                    <button class="polygon" id="living-room"></button>
+                    <button class="button" id="office"></button>
+                    <button class="button" id="kitchen"></button>
                 </div>
+
             </div>
         </section>
 
@@ -280,4 +272,5 @@
 
 @section('js')
     <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/interactive/categories-house.js') }}"></script>
 @endsection
