@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Warehouse;
-use Illuminate\Support\Facades\Log;
 use Faker\Factory as Faker;
 
 
@@ -62,8 +61,6 @@ class AdminSeeder extends Seeder
 
             // Concatenate the chosen color and size into the attributes string
             $randomAttributes = json_encode(['color' => $randomColor, 'size' => $randomSize]);
-
-            Log::info('attributes: ' . $randomAttributes);
 
             DB::table('order_product_warehouse')->insert([
                 'order_id' => $order_id, // Replace with actual warehouse ID
