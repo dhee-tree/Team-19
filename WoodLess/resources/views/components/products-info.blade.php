@@ -1,4 +1,4 @@
-<div class="modal fade" id="extraModal" tabindex="-1" aria-labelledby="extraModalLabel" aria-hidden="true">
+<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="extraModalLabel" aria-hidden="true">
     <!-- Is responsible for expanding the fields for the item in the inventory managment system -->
 
     <div class="modal-dialog modal-dialog-centered">
@@ -69,7 +69,23 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col justify-content-left">
+                            <button type="button" class="btn btn-warning openModalButton"
+                                onclick="openEditModal({{ $product->id }})" id="openModalButton" data-bs-dismiss="modal">Edit</button>
+                            <!-- Button to trigger modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#confirmDeleteModal"
+                                onclick="DeleteItemId({{ $product->id }})" data-bs-dismiss="modal">Delete</button>
+                        </div>
+                        <div class="col-auto order-lg-last">
+                            <button type="button" id="btn-close" class="btn btn-secondary"
+                                data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

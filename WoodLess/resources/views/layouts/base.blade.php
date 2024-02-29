@@ -161,35 +161,22 @@
                                             </div>
                                         </div>
 
-                                        <div class="">
-                                            <small class="position-absolute bottom-0 start-0 pb-1 ps-2">
-                                                <span class="fw-bold">{{ $item->pivot->amount }}x</span>
-                                                @if ($itemAttributes['colour'])
-                                                    <i style="color: {{ $itemAttributes['colour'] }}"
-                                                        class="fa-solid fa-circle"></i>
-                                                @endif
-                                            </small>
-                                            <small class="position-absolute bottom-0 end-0 pb-1 pe-2">
-                                                @foreach ($itemAttributes as $itemAttribute => $key)
-                                                    @php
-                                                        if ($itemAttribute == 'colour') {
-                                                            continue;
-                                                        }
-                                                    @endphp
-                                                    <span class="fw-bold">{{ ucFirst($itemAttribute) }}:</span>
-                                                    <span class="">{{ $itemAttributes[$itemAttribute] }}</span>
-                                                @endforeach
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
+                        <div class="col bg-white pt-2 sticky-bottom">
+                            <div class="row-100 mb-0">
+                                <h5 class="fw-bold">Total: £{{$totalBasketCost}}</h5>
+                            </div>
+                            <div class="d-flex justify-content-around">
+                                <a style="background-color: #1d1912" class="flex-fill btn text-light me-2" role="button" href="{{asset('basket')}}">
+                                    Edit Basket
+                                    <span style="background-color: #655d52" class="ms-1 fw-light badge rounded-pill badge-notification">
+                                        {{$user->basket()->first()->productAmount()}}
+                                    </span>
+                                </a>
 
-                    <div class="col bg-white pt-2 sticky-bottom">
-                        <div class="row-100 mb-0">
-                            <h5 class="fw-bold">Total: £{{ $totalBasketCost }}</h5>
+                                @if(!$basketItems->isEmpty()) 
+                                    <a style="background-color: #1d1912" class="flex-fill btn btn-dark ms-2" role="button" href="{{asset('checkout')}}">Checkout</a>
+                                @endif
+                            </div>
                         </div>
                         <div class="d-flex justify-content-around">
                             <a style="background-color: #1d1912" class="flex-fill btn text-light me-2" role="button"

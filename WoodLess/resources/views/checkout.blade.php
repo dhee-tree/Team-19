@@ -21,7 +21,7 @@
                         <div class="checkout-item">
                             @foreach(json_decode($product->pivot->attributes) as $key => $value)
                                 @if ($key == "colour") 
-                                    <span class="colour-square" style="background-color: {{ $value }};"></span>
+                                    <i style="color: {{ $value }}" class="fa-solid fa-circle"></i>
                                 @else
                                     <span>{{ $key }}: {{ $value }}</span>
                                 @endif

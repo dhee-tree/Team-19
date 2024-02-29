@@ -41,7 +41,7 @@
                                             <br>
                                             @foreach(json_decode($product->pivot->attributes) as $key => $value)
                                                 @if ($key == "colour") 
-                                                   <span>Colour</span> <div class="colour-square" style="background-color: {{ $value }};"></div>
+                                                    <i style="color: {{ $value }}" class="fa-solid fa-circle"></i>
                                                 @else
                                                     <span>{{ $key }}: {{ $value }}</span>
                                                 @endif

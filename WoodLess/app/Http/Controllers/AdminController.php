@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Ticket;
+use App\Models\Address;
 use App\Models\Category;
+use App\Models\OrderStatus;
 use App\Models\Warehouse;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -15,11 +20,118 @@ class AdminController extends Controller
 
     protected $reviews;
 
+    #region User
+
+    public function users(Request $request)
+    {
+        $selectedLength = $request->input('length', 1000); // Default to 1000 if not provided
+
+        $users = User::latest()->get();
+
+        $users = $users->sortBy('id');
+        $users = User::paginate($selectedLength)->withQueryString();
+
+        return view('users-admin', compact('users'));
+    }
+
     public function UserInfo($id)
     {
         $user = User::findOrFail($id);
 
-        return view('components.users-info', compact('user'));
+        return view('components.user-info', compact('user'));
+    }
+
+    public function UserEdit($id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('components.user-edit', compact('user'));
+    }
+
+    public function UserAdd()
+    {
+
+        return view('components.user-add');
+    }
+
+    public function UserDelete($id)
+    {
+        // Retrieve the product by ID
+        $user = User::find($id);
+
+        // Check if the product exists
+        if (!$user) {
+            return redirect()->back()->with('error', 'User account not found.');
+        }
+
+        // Delete the product
+        $user->delete();
+
+        return redirect()->route('admin-panel.users')->with('success', 'user ' . $id . ' deleted succesfully.');
+    }
+
+    public function UserStore(Request $request, $id)
+    {
+        // Checks if we need to make a new user or get an existing one
+        if ($id >= 0) {
+            $user = User::find($id);
+
+            // Check if the user exists
+            if (!$user) {
+                return redirect()->back()->with('success', 'User not found.');
+            }
+        } else {
+            // Create a new user instance
+            $user = new User();
+        }
+
+        // Update user information
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->email = $request->input('email');
+        $user->phone_number = $request->input('phone_number');
+        $user->is_admin = $request->has('is_admin'); // Convert checkbox value to boolean
+
+        // Save or update the user
+        $user->save();
+
+        // Delete existing addresses and save new ones
+        $user->addresses()->delete();
+        if ($request->has('addresses')) {
+            foreach ($request->input('addresses') as $addressData) {
+
+                $address = new Address();
+                $address->house_number = $addressData['house_number'];
+                $address->street_name = $addressData['street_name'];
+                $address->postcode = $addressData['postcode'];
+                $address->city = $addressData['city'];
+                $user->addresses()->save($address); // Save address for the user
+            }
+        }
+
+        if ($id >= 0) {
+            return redirect()->route('admin-panel.users')->with('success', 'User ' . $id . ' was edited successfully');
+        } else {
+            return redirect()->route('admin-panel.users')->with('success', 'User ' . $id . ' was created successfully');
+        }
+    }
+
+    #endregion
+
+    #region Products
+    //returns the view for inventory on the admin controller.
+    public function inventory(Request $request)
+    {
+
+        $selectedLength = $request->input('length', 1000); // Default to 50 if not provided
+
+        $products = Product::latest()->get();
+
+        $products = $products->sortBy('id');
+        $products = Product::paginate($selectedLength)->withQueryString();
+
+
+        return view('inventory', compact('products'));
     }
 
     public function ProductInfo($id)
@@ -55,31 +167,6 @@ class AdminController extends Controller
             'warehouses' => $warehouses,
             'categories' => $categories,
         ]);
-    }
-
-    //returns the view for inventory on the admin controller.
-    public function inventory(Request $request)
-    {
-
-        $selectedLength = $request->input('length', 1000); // Default to 50 if not provided
-
-        $products = Product::latest()->get();
-
-        $products = $products->sortBy('id');
-        $products = Product::paginate($selectedLength)->withQueryString();
-
-
-        return view('inventory', compact('products'));
-    }
-
-    public function users()
-    {
-
-        $users = User::latest()->get();
-
-        $users = $users->sortBy('id');
-
-        return view('users-admin', ['users' => $users]);
     }
 
     public function ProductDelete($id)
@@ -261,4 +348,144 @@ class AdminController extends Controller
             return redirect()->route('admin-panel.inventory')->with('success', 'Product ' . $product->id . ' created successfully.');
         }
     }
+
+    #endregion
+
+    #region Tickets
+
+    public function tickets(Request $request)
+    {
+
+        $selectedLength = $request->input('length', 100); // Default to 50 if not provided
+
+
+        $queryFilter = $request->input('filter', 'all');
+
+
+        // Retrieve tickets
+        $tickets = Ticket::latest()->filter($queryFilter)->orderBy('id', 'desc')->get();
+
+        // Manually sort the tickets
+        $tickets = $tickets->sortBy('id');
+
+        // Paginate the sorted tickets
+        $tickets = $tickets->paginate($selectedLength)->withQueryString();
+        $countTickets = Ticket::latest()->get();
+
+        return view('tickets-admin', compact('tickets', 'countTickets'));
+    }
+
+    public function TicketClaim(Request $request, $ticketId)
+    {
+        // Get the authenticated user
+        $admin = auth()->user();
+        //get ticket
+        $ticket = Ticket::findOrFail($ticketId);
+
+        // Set the admin_id of the ticket to the ID of the authenticated user
+        $ticket->admin_id = $admin->id;
+
+        // Save the changes to the ticket
+        $ticket->save();
+
+        return redirect()->route('admin-panel.tickets')->with('success', 'Successfully claimed ticket ' . $ticketId);
+    }
+
+    public function TicketInfo($id)
+    {
+        $ticket = Ticket::findOrFail($id);
+
+        return  view('components.admin-panel.ticket-info', compact('ticket'));
+    }
+
+    public function TicketDelete($id)
+    {
+        // Retrieve the product by ID
+        $ticket = Ticket::find($id);
+
+        // Check if the product exists
+        if (!$ticket) {
+            return redirect()->back()->with('error', 'ticket with ID:' . $id . ' not found.');
+        }
+
+        // Delete the product
+        $ticket->delete();
+
+        return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ID:' . $id . ' deleted succesfully.');
+    }
+
+    public function TicketResolve($id)
+    {
+        // Retrieve the product by ID
+        $ticket = Ticket::find($id);
+
+        // Check if the product exists
+        if (!$ticket) {
+            return redirect()->back()->with('error', 'ticket with ' . $id . ' not found.');
+        }
+
+        return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ID:' . $id . ' resolved! JK WORKING ON IT LOLLOLAOFDLAWOFKJAWOFJAWOIFJAWOIFA');
+    }
+
+
+    #endregion
+
+    #region Orders
+
+
+    public function orders(Request $request)
+    {
+        $selectedLength = $request->input('length', 1000); // Default to 1000 if not provided
+
+        $orders = Order::latest()->get();
+
+        $orders = $orders->sortBy('id');
+        $orders = Order::paginate($selectedLength)->withQueryString();
+
+
+        return view('orders-admin', compact('orders'));
+    }
+
+
+    public function OrderInfo($id)
+    {
+        $order = Order::findOrFail($id);
+        // Retrieve all order statuses
+        $order_status = OrderStatus::all();
+
+        return view('components.admin-panel.order-info', compact('order', 'order_status'));
+    }
+
+    public function OrderStatus($id, $statusId)
+    {
+        $order = Order::findOrFail($id);
+        $status = OrderStatus::findOrFail($statusId);
+
+
+        $order->status_id = $status->id;
+
+        $order->save();
+
+        return redirect()->route('admin-panel-orders')->with('success', 'Successfully changed order ' . $id . ' status to' . $status->status);
+    }
+
+    public function OrderDetails(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        // Get the details from the request
+        $details = $request->input('details');
+
+        // Update the order details
+        $order->details = $details;
+
+        // Save the changes
+        $order->save();
+
+        return redirect()->route('admin-panel-orders')->with('success', 'Successfully changed details for order: ' . $id);
+    }
+
+
+
+    #endregion
+
 }

@@ -19,6 +19,13 @@ class ReviewController extends Controller
             $product->loadMissing('reviews');
             $reviews = $product->reviews();
             $user = auth()->user();
+
+            if($reviews->where('user_id', $user->id)->exists()){
+                return back()->with([
+                    'status' => 'danger',
+                    'message' => 'Review already exists.'
+                ]);
+            };
     
             $request->validate([
                 'user_id' => 'unique',
@@ -56,6 +63,7 @@ class ReviewController extends Controller
                 'status' => 'success',
                 'message' => 'Review deleted successfully.'
             ]);
+            
         } catch (QueryException $e) {
             return back()->with([
                 'status' => 'danger',

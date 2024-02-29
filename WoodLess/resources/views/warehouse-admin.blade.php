@@ -1,5 +1,5 @@
 @extends('layouts.base')
-@section('title', 'WoodLess - Admin')
+@section('title', 'Admin - Warehouse')
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/main.css')}}">
@@ -16,12 +16,12 @@
             <div class="logo-name"><span>Wood</span>Less</div>
         </a>
         <ul class="side-menu">
-            <li class="active"><a href="#"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+            <li><a href="{{url('/admin-panel')}}"><i class="fa-solid fa-house"></i>Dashboard</a></li>
             <li><a href="{{url('/admin-panel/inventory')}}"><i class="fa-solid fa-store"></i>Inventory</a></li>
             <li><a href="{{url('/admin-panel/orders')}}"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
             <li><a href="{{url('/admin-panel/tickets')}}"><i class="fa-solid fa-message"></i>Tickets</a></li>
             <li><a href="{{url('/admin-panel/users')}}"><i class="fa-solid fa-user"></i>Users</a></li>
-            <li><a href="{{url('/admin-panel/warehouse')}}"><i class="fa-solid fa-warehouse"></i>Warehouse</a></li>
+            <li class="active"><a href="#"><i class="fa-solid fa-warehouse"></i>Warehouse</a></li>
         </ul>
         <ul class="side-menu">
             <li>
@@ -59,54 +59,66 @@
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>Welcome Admin!</h1>
+                    <h1>Warehouses</h1>
                 </div>
             </div>
-            <!-- Insights -->
-            <ul class="insights">
-                <li>
-                    <i class="fa-solid fa-clipboard-check"></i>
-                    <span class="info">
-                        <h3>
-                            1,074
-                        </h3>
-                        <p>Paid Orders</p>
-                    </span>
-                </li>
-                <li><i class="fa-solid fa-user"></i>
-                    <span class="info">
-                        <h3>
-                            3,944
-                        </h3>
-                        <p>Users</p>
-                    </span>
-                </li>
-                <li><i class="fa-solid fa-comments"></i>
-                    <span class="info">
-                        <h3>
-                            14,721
-                        </h3>
-                        <p>Tickets</p>
-                    </span>
-                </li>
-                <li><i class="fa-solid fa-money-bill-wave"></i>
-                    <span class="info">
-                        <h3>
-                            £6,742
-                        </h3>
-                        <p>Total Sales</p>
-                    </span>
-                </li>
-            </ul>
-            <!-- End of Insights -->
 
-            <!-- Recent orders table -->
-            <!-- Recent orders table -->
+            <!-- Warehouses table -->
             <div class="bottom-data">
                 <div class="orders">
                     <div class="header">
                         <i class='bx bx-receipt'></i>
-                        <h3>Recent Orders</h3>
+                        <h3>Warehouses</h3>
+                        <i class='fa-solid fa-filter'></i>
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Order Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>John Doe</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td><span class="status completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>John Doe</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td><span class="status pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>John Doe</p>
+                                </td>
+                                <td>14-08-2023</td>
+                                <td><span class="status process">Processing</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="header">
+                <div class="left">
+                    <h1>Categories</h1>
+                </div>
+            </div>
+
+            <!-- Warehouses table -->
+            <div class="bottom-data">
+                <div class="orders">
+                    <div class="header">
+                        <i class='bx bx-receipt'></i>
+                        <h3>Categories</h3>
                         <i class='fa-solid fa-filter'></i>
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
@@ -150,6 +162,5 @@
 @endsection
 
 @section('js')
-    <script src="{{asset('js/admin-panel.js')}}"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTable.js"></script>
+    <script src="{{ asset('js/admin-panel.js')}}"></script>
 @endsection
