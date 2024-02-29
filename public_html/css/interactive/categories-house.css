@@ -25,13 +25,29 @@
 
 #house .button {
     position: absolute;
+    width: 100px;
+    /* Adjust button width as needed */
+    height: 100px;
     /* Adjust button height as needed */
-    background-color: blue;
-    /* Example background color */
-    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(255, 255, 255, 0) !important;
+    /* Fade in text color */
 
-    /* Make buttons circular */
+    /* Transparent background */
+    border: none;
     transform: translate(-50%, -50%);
+    transition: backdrop-filter 0.3s ease, color 0.3s ease;
+    /* Add transition for smooth effect */
+
+    /* Add transition for smooth effect */
+}
+
+#house .button:hover {
+    backdrop-filter: blur(5px);
+    /* Apply blur effect on hover */
+    color: rgba(255, 255, 255, 1) !important;
+    /* Fade in text color */
+
 }
 
 #bedroom {
@@ -49,13 +65,13 @@
 }
 
 #garden {
-    top: 18.5%;
+    top: 18%;
     left: 88%;
-    width: 22% !important;
-    height: 33% !important;
+    width: 24% !important;
+    height: 34.5% !important;
 }
 
-#toilet {
+#bathroom {
     top: 69%;
     left: 9.5%;
     width: 15% !important;
@@ -63,17 +79,12 @@
 }
 
 #living-room {
-    position: absolute;
-    /* Make buttons circular */
-    transform: translate(-50%, -50%);
-
     top: 69% !important;
     left: 38% !important;
     clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 20%, 67% 20%, 67% 0%) !important;
     /* Defines the polygon shape */
     width: 39% !important;
     height: 55.5% !important;
-    background-color: red;
     /* Example background color */
 }
 
@@ -89,4 +100,47 @@
     left: 87.6%;
     width: 20% !important;
     height: 57.55% !important;
+}
+
+#house .button h3 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.34);
+    padding: 0.2rem;
+    font-size: 190%;
+    font-weight: bold;
+}
+
+#house .button .info-text {
+    font-size: 180%;
+    right: 8%;
+    bottom: 0;
+    position: absolute;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 768px) {
+    #house .button h3 {
+        font-size: 80%;
+        /* Adjusted font size for smaller screens */
+    }
+
+    #house .button .info-text {
+        font-size: 50%;
+        /* Adjusted font size for smaller screens */
+    }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    #house .button h3 {
+        font-size: 130%;
+        /* Adjusted font size for medium-sized screens */
+    }
+    
+    #house .button .info-text {
+        font-size: 110%;
+        /* Adjusted font size for smaller screens */
+    }
 }
