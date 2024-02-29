@@ -26,14 +26,17 @@ As of 26/02/2024, A public deployment of the website is available for anyone to 
 ### User Experience
 WoodLess has a complete and in-depth user experience, from login to checkout:
 - Fully responsive UI using CSS and Bootstrap
-- Register/Login
-- Manage user account
-- Browse available products by search and/or filter
-- Edit/add products in basket
-- Purchase products via checkout
-- Leave reviews of product/service
-- Contact support or business
-- Create support tickets
+- Authentication and Registration
+- Email Verification
+- User Account Management
+- Navigation of Catalogue
+- Search and Filtering
+- Store and Modify Products in Basket
+- Purchase Products via Checkout
+- Track Orders
+- Leave Reviews of Product/Service
+- Contact Support or Business
+- Create Support Tickets
 - **Add any other features here**
 
 ### Admin Features
@@ -42,14 +45,21 @@ WoodLess offers robust administration features, while remaining accessible and u
 
 ### Database Management
 WoodLess uses the powerful Eloquent ORM to ensure safe and streamlined database interactions, enabling rapid deployment and full CRUD functionality. For testing, WoodLess comes with built-in products and model factories that can be seeded to the target database.
-- See Database Readme. 
+- For more information, see the guide on [Database](./WoodLess/database/README.md).
 
 ### Documentation
 To make our work as accessible as possible, all models and methods written by the team have proper documenting with PHPDoc and/or commenting. 
-- For Laravel or other built-in features, please refer to the relevant documentation.
 
-## Setup
-This guide assumes you are familiar with PHP web development environments (such as XAMMP) and have cloned/copied the repository to one. You will also need access to a MySQL server and [Composer](https://getcomposer.org/download/). Note that the workflows folder is not nec
+## Guide
+This project contains guides to speed up development and deployment.
+- [Getting Started](#getting-started) - Instructions for deploying WoodLess on your web server.
+- [Database](./WoodLess/database/README.md) - Instructions and information on WoodLess' database management.
+- For Laravel or other built-in features, please refer to the [relevant documentation](https://laravel.com/docs/10.x).
+
+## Getting Started
+This guide assumes you are familiar with PHP web development environments (such as XAMMP) and have cloned/copied the repository to one. You will also need access to a MySQL server and [Composer](https://getcomposer.org/download/). 
+
+- The [.github](./.github) folder is not neccessary for WoodLess to be functional.
 
 ### .env Setup
 The file .env declares the app environment, so it is important to set this up first. 
@@ -62,15 +72,12 @@ The file .env declares the app environment, so it is important to set this up fi
 ### Database Setup
 Before you can run the website, the database needs to be setup.
 1. Ensure your target MySQL server is running, and you have created a database that matches the one specifed in `.env`.
-2. Go to the WoodLess directory in a terminal. Run `php artisan migrate`. This will build the tables required to run the website in the database.
-- For additonal database information and commands, including test data, see the database readme.
+2. Go to the WoodLess directory in a terminal. Run `php artisan migrate`. This will build the tables required by the website in your database.
+- For additonal database information and commands, including test data, see the guide on [Database](./WoodLess/database/README.md).
 
 ### Accessing the Website
 - Go to the WoodLess directory in a terminal. Run `php artisan serve`. 
-- If everything is setup correctly, you will be able to access WoodLess with the provided terminal link.
-
-### Additional Information
-See below additional information
+- If everything is setup correctly, you will be able to access WoodLess with the provided link in your terminal.
 
 ## Contributors
 WoodLess was developed by eight students at Aston University, who possess a strong understanding of Web Development, PHP and Laravel.

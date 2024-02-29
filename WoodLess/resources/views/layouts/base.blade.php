@@ -165,7 +165,13 @@
                                 <h5 class="fw-bold">Total: £{{$totalBasketCost}}</h5>
                             </div>
                             <div class="d-flex justify-content-around">
-                                <a style="background-color: #1d1912" class="flex-fill btn text-light me-2" role="button" href="{{asset('basket')}}">Go to Basket<span style="background-color: #655d52" class="ms-2 fw-light badge rounded-pill badge-notification">{{$user->basket()->first()->productAmount()}}</span></a>
+                                <a style="background-color: #1d1912" class="flex-fill btn text-light me-2" role="button" href="{{asset('basket')}}">
+                                    Edit Basket
+                                    <span style="background-color: #655d52" class="ms-1 fw-light badge rounded-pill badge-notification">
+                                        {{$user->basket()->first()->productAmount()}}
+                                    </span>
+                                </a>
+
                                 @if(!$basketItems->isEmpty()) 
                                     <a style="background-color: #1d1912" class="flex-fill btn btn-dark ms-2" role="button" href="{{asset('checkout')}}">Checkout</a>
                                 @endif
