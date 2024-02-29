@@ -109,18 +109,28 @@
                         <thead>
                             <tr>
                                 <th>Order Number</th>
-                                <th>Product</th>
-                                <th>Time</th>
+                                <th>Order Date</th>
+                                <th>Cost</th>
                                 <th>Estimated Delivery</th>
                                 <th>User</th>
-                                <th>Warehouse</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($orders as $order)
                                 <tr class="order-row" scope="row">
                                     <td>{{ $order->id }}</td>
-
+                                    <td>{{ $order->created_at }}</td>
+                                    <td>{{ $order->products->sum('cost')}}</td>
+                                    <td>
+                                        @if ($order->status->id == 3)
+                                        {{ $order->created_at->addDays(14)->format('Y-m-d') }} ({{ now()->diffInDays($order->created_at->addDays(14)) }} days)
+                                    @else
+                                        Delivered
+                                    @endif
+                                    </td>
+                                    <td>{{ $order->user->id }}</td>
+                                    <td>{{ $order->status->status }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
