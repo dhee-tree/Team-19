@@ -46,6 +46,9 @@
                                 @endif
                             </p>
                         </div>
+                    </div>
+                    <div class="row text-center">
+
                         <div class="col-md-6">
                             <p><strong>Phone number</strong><br>{{ $user->phone_number }}</p>
                         </div>
@@ -53,10 +56,7 @@
                             <p><strong>City</strong><br>{{ $user->addresses->isEmpty() ? 'N/A' : $user->addresses->first()->city }}
                             </p>
                         </div>
-                        <div class="container">
-                            <div class="row justify-content-center">
-                            </div>
-                        </div>
+
                     </div>
                     <div class="row text-center">
                         <div class="col-md-6">
@@ -126,13 +126,13 @@
                     @endforeach
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-target="#ExtraModal" data-bs-toggle="modal"
+                    <button class="btn btn-primary" data-bs-target="#infoModal" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Back to details</button>
                 </div>
             </div>
         </div>
     </div>
-    <a class="btn btn-primary" data-bs-toggle="modal" href="#ExtraModal" role="button">Return</a>
+    <a class="btn btn-primary" data-bs-toggle="modal" href="#infoModal" role="button">Return</a>
 
     <div class="modal fade" id="AddressesModal" aria-hidden="true" aria-labelledby="AddressesModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
@@ -156,12 +156,12 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-target="#ExtraModal" data-bs-toggle="modal"
+                    <button class="btn btn-primary" data-bs-target="#infoModal" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Back to details</button>
                 </div>
             </div>
         </div>
     </div>
-    <a class="btn btn-primary" data-bs-toggle="modal" href="#ExtraModal" role="button">Return</a>
+    <a class="btn btn-primary" data-bs-toggle="modal" href="#infoModal" role="button">Return</a>
 
 </container>

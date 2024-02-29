@@ -79,6 +79,13 @@ Route::view('/admin-panel/warehouse', 'warehouse-admin')->middleware('admin');
 
 Route::get('/admin-panel/orders', [AdminController::class, 'orders'])->name('admin-panel-orders')->middleware('admin');
 
+Route::get('/admin-panel/orders/info/{id}', [AdminController::class, 'OrderInfo'])->name('order-info')->middleware('admin'); 
+
+Route::post('/admin-panel/orders/{id}/{statusId}', [AdminController::class, 'OrderStatus'])->name('order-status')->middleware('admin'); 
+
+Route::post('/admin-panel/orders/{id}', [AdminController::class, 'OrderDetails'])->name('order-details')->middleware('admin'); 
+
+
 #endregion
 
 

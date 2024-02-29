@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Ticket;
 use App\Models\Address;
 use App\Models\Category;
+use App\Models\OrderStatus;
 use App\Models\Warehouse;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -441,8 +442,49 @@ class AdminController extends Controller
         $orders = $orders->sortBy('id');
         $orders = Order::paginate($selectedLength)->withQueryString();
 
+
         return view('orders-admin', compact('orders'));
     }
+
+
+    public function OrderInfo($id)
+    {
+        $order = Order::findOrFail($id);
+        // Retrieve all order statuses
+        $order_status = OrderStatus::all();
+
+        return view('components.admin-panel.order-info', compact('order', 'order_status'));
+    }
+
+    public function OrderStatus($id, $statusId)
+    {
+        $order = Order::findOrFail($id);
+        $status = OrderStatus::findOrFail($statusId);
+
+
+        $order->status_id = $status->id;
+
+        $order->save();
+
+        return redirect()->route('admin-panel-orders')->with('success', 'Successfully changed order ' . $id . ' status to' . $status->status);
+    }
+
+    public function OrderDetails(Request $request, $id)
+    {
+        $order = Order::findOrFail($id);
+        // Get the details from the request
+        $details = $request->input('details');
+
+        // Update the order details
+        $order->details = $details;
+
+        // Save the changes
+        $order->save();
+
+        return redirect()->route('admin-panel-orders')->with('success', 'Successfully changed details for order: ' . $id);
+    }
+
+
 
     #endregion
 

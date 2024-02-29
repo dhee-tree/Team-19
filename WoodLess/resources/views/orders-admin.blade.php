@@ -41,7 +41,7 @@
             <form action="#">
                 <div class="form-input">
                     <!--<input type="search" placeholder="Search...">
-                                <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
+                                                <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
                 </div>
             </form>
             <a href="#" class="notif">
@@ -121,13 +121,17 @@
                                 <tr class="order-row" scope="row">
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->created_at }}</td>
-                                    <td>{{ $order->products->sum('cost')}}</td>
+                                    <td>{{ $order->products->sum('cost') }}</td>
                                     <td>
                                         @if ($order->status->id == 3)
-                                        {{ $order->created_at->addDays(14)->format('Y-m-d') }} ({{ now()->diffInDays($order->created_at->addDays(14)) }} days)
-                                    @else
-                                        Delivered
-                                    @endif
+                                            {{ $order->created_at->addDays(14)->format('Y-m-d') }}
+                                            ({{ now()->diffInDays($order->created_at->addDays(14)) }} days)
+                                        @elseif ($order->status->id == 4)
+                                            {{ $order->updated_at->addDays(14)->format('Y-m-d') }}
+                                            ({{ now()->diffInDays($order->updated_at->addDays(14)) }} days)
+                                        @else
+                                            N/A
+                                        @endif
                                     </td>
                                     <td>{{ $order->user->id }}</td>
                                     <td>{{ $order->status->status }}</td>
@@ -147,3 +151,4 @@
     <script src="{{ asset('js/admin-panel.js') }}"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTable.js"></script>
 @endsection
+
