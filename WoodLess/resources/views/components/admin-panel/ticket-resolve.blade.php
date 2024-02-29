@@ -1,4 +1,4 @@
-<div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="extraModalLabel" aria-hidden="true">
+<div class="modal fade" id="extraModal" tabindex="-1" aria-labelledby="extraModalLabel" aria-hidden="true">
     <!-- Is responsible for expanding the fields for the item in the inventory managment system -->
 
     <div class="modal-dialog modal-dialog-centered modal-lg">

@@ -34,8 +34,8 @@ $(document).ready(function () {
 
         $.get('/admin-panel/users/user-info/' + userId, function (data) {
             $('body').append(data);
-            var modal = $('#ExtraModal');
-            var container = $('#ExtraModals');
+            var modal = $('#infoModal');
+            var container = $('#infoModals');
             modal.modal('show'); // Show the modal after content is appended
 
             // Flag to determine if the ExtraModal was explicitly closed by the user
@@ -96,15 +96,6 @@ $(document).ready(function () {
 
 });
 
-
-
-function openInfoModal(userId) {
-
-
-
-
-}
-
 //Delete item modal info handlers
 function DeleteItemId(Id) {
     document.getElementById('id_input').value = Id;
@@ -134,7 +125,7 @@ function openEditModal(userId) {
 
     $.get('/admin-panel/users/user-edit/' + userId, function (data) {
         $('body').append(data);
-        var modal = $('#extraModal');
+        var modal = $('#infoModal');
         modal.modal('show'); // Show the modal after content is appended
 
         // Remove the modal from the DOM when it's closed

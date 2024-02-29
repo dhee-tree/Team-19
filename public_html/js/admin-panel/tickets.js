@@ -144,16 +144,12 @@ $(document).ready(function () {
 
         $.get('/admin-panel/tickets/info/' + ticketId, function (data) {
             $('body').append(data);
-            var modal = $('#extraModal');
+            var modal = $('#infoModal');
             modal.modal('show'); // Show the modal after content is appended
 
             // Remove the modal from the DOM when it's closed
             modal.on('hidden.bs.modal', function () {
-                // Re-enable all buttons with the specified class when the modal is closed
-                var buttons = document.getElementsByClassName("openModalButton");
-                for (var i = 0; i < buttons.length; i++) {
-                    buttons[i].disabled = false;
-                }
+
                 modal.remove();
             });
         });

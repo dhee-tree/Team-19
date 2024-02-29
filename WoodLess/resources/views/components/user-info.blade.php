@@ -1,5 +1,5 @@
-<container id="ExtraModals">
-    <div class="modal fade" id="ExtraModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+<container id="infoModals">
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
         <!-- Is responsible for expanding the fields for the item in the inventory management system -->
 
         <div class="modal-dialog modal-dialog-centered resizable">
