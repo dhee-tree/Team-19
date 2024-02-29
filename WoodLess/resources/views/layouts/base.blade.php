@@ -197,7 +197,7 @@
         </div>
     </div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-sticky sticky-bottom  end-0" data-bs-toggle="modal"
+    <button type="button" class="btn btn-primary btn-sticky sticky-bottom z-1 end-0" data-bs-toggle="modal"
         data-bs-target="#staticBackdrop">
         Create a Support Ticket
     </button>
@@ -309,7 +309,7 @@
 
 
     @if (session('success'))
-        <div id="successAlert" class="alert alert-success position-fixed bottom-0 end-0 mb-3 me-3" role="alert"
+        <div id="successAlert" class="alert alert-success position-fixed bottom-0 end-0 mb-3 me-3 z-3" role="alert"
             style="display: none;">
 
             {{ session('success') }}
@@ -319,7 +319,7 @@
 
     @if (session('status'))
         <div id="successAlert"
-            class="alert alert-{{ session('status') ?? 'info' }} fade show position-fixed bottom-0 end-0 mb-3 me-3 py-2"
+            class="alert z-3 alert-{{ session('status') ?? 'info' }} fade show position-fixed bottom-0 end-0 mb-3 me-3 py-2"
             role="alert">
             @switch(session('status'))
                 @case('success')
