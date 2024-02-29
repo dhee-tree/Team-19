@@ -50,14 +50,6 @@
     overflow:visible;
 }
 
-.expand-hover{
-    transition: 0.3s ease-in-out;
-}
-
-.expand-hover:hover{
-    transform: scale(1.03);
-}
-
 .review-card .card select{
     align-items: start;
     width: 55px;
@@ -67,5 +59,17 @@
 input:focus, textarea:focus, select:focus {
     border: 1px solid #d0dadb !important;
     box-shadow: 0 0 3px #d0dadb!important;
+}
+
+
+@media screen and (min-width: 1368px) {
+    main {
+        background-color: #e3eefc56;
+    }
+
+    main #maincontent {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 }
   

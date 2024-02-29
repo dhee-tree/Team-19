@@ -66,6 +66,13 @@ body {
 
 /* #endregion */
 
+.expand-hover{
+    transition: 0.3s ease-in-out;
+}
+
+.expand-hover:hover{
+    transform: scale(1.03);
+}
 
 /* #region Footer */
 
@@ -100,6 +107,5 @@ main #maincontent section {
         background-color: #fff;
         padding-top: 5vh;
         padding-bottom: 5vh;
-
     }
 }
