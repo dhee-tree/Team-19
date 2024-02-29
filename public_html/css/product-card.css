@@ -1,0 +1,131 @@
+#product .hot .card{
+    background-color: #ff800031;
+}
+
+#product .discount .card {
+    background-color: #c5ffd172;
+}
+
+#product .title {
+    font-weight: normal !important;
+}
+
+
+#product .regular-price,
+#product .discount,
+#product .name,
+#product .discount-number {
+    font-weight: bold;
+    /* Make the text bold */
+    font-size: 1.5rem !important;
+}
+
+@media (max-width: 1024px) {
+
+    #product .regular-price,
+    #product .discount,
+    #product .name,
+    #product .discount-number {
+        font-size: 1.4rem !important;
+        /* Adjust font size for smaller screens */
+    }
+}
+
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+    #product .regular-price,
+    #product .discount,
+    #product .name,
+    #product .discount-number {
+        font-size: 1.2rem !important;
+        /* Adjust font size for smaller screens */
+    }
+}
+
+/* Media queries for even smaller screens */
+@media (max-width: 576px) {
+
+    #product .regular-price,
+    #product .discount,
+    #product .name,
+    #product .discount-number {
+        font-size: 0.7rem !important;
+        /* Further adjust font size for even smaller screens */
+    }
+}
+
+#product .card-details {
+    padding: 4%;
+    padding-left: 6%;
+}
+
+#product .regular-price {
+    padding-right: 1%;
+}
+
+#product .start {
+    position: relative;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#product .end {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+@media (max-width: 1024px) {
+    #product .end {
+        position: absolute;
+        bottom: 16%;
+        right: 15%;
+    }
+}
+
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+    #product .end {
+        position: absolute;
+        bottom: 8%;
+        right: 15%;
+    }
+}
+
+/* Media queries for even smaller screens */
+@media (max-width: 576px) {
+    #product .end {
+        position: absolute;
+        bottom: 11%;
+        right: 10%;
+    }
+}
+
+
+.end {
+    position: relative;
+}
+
+#product .discount {
+    position: absolute;
+    right: 5%;
+    bottom: 0;
+    /* Adjust as needed */
+    transform: translateY(83%);
+    color: #cc0c39;
+    /* Adjust text color as needed */
+    font-weight: normal;
+}
+
+.price-wrapper {
+    flex-direction: column;
+}
+
+.price-wrapper span {
+    margin-top: 0.25rem;
+}
