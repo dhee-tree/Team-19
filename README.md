@@ -11,6 +11,8 @@
     <img alt="GitHub License" src="https://img.shields.io/github/license/dhee-tree/Team-19">
 </p>
 
+<strong><p align="center">Disclaimer: WoodLess is a fictional service. Orders will not be fufilled. Do not enter personal or sensitive information on Official Deployment.</p></strong> 
+
 #
 
 Developed using Laravel, WoodLess is an E-commerce website intended to facilitate the online transactions and sales of an eco-friendly furniture company. 
@@ -20,7 +22,7 @@ It's aim is the distribution of furniture, designed with the environment in mind
 WoodLess strives to offer a user-friendly experience, enabling users to make safe and easy purchases on a range of available furniture products.
 
 ### Official Deployment
-As of 26/02/2024, A public deployment of the website is available for anyone to visit at: [20216407.cs2410-web01pvm.aston.ac.uk](http://220216407.cs2410-web01pvm.aston.ac.uk/).
+As of 26/02/2024, A public deployment of the website is available at: [20216407.cs2410-web01pvm.aston.ac.uk](http://220216407.cs2410-web01pvm.aston.ac.uk/). 
 
 ## Features
 ### User Experience
@@ -53,7 +55,7 @@ To make our work as accessible as possible, all models and methods written by th
 ## Guide
 This project contains guides to speed up development and deployment.
 - [Getting Started](#getting-started) - Instructions for deploying WoodLess on your web server.
-- [Database](./WoodLess/database) - Instructions and information on WoodLess' database management.
+- [Database](./WoodLess/database) - Instructions and information on WoodLess' database.
 - For Laravel or other built-in features, please refer to the [relevant documentation](https://laravel.com/docs/10.x).
 
 ## Getting Started
@@ -89,3 +91,6 @@ WoodLess was developed by eight students at Aston University, who possess a stro
 ### Abdulhamid Mustapha
 ### Umer Mohammed
 ### Matteo Crozat
+
+## License
+WoodLess is open-sourced software licensed under the [MIT Licence](./LICENSE).
