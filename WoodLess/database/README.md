@@ -37,6 +37,12 @@ The file [DatabaseSeeder](./seeders/DatabaseSeeder.php) contains methods to popu
 
 ## Schema (Last Updated: 29/02/24)
 See below information on the database.
+### Overview
+<p align="center">
+    <a href="http://220216407.cs2410-web01pvm.aston.ac.uk/" target="_blank"><img src="./images/schema.png" style="max-width:100%; height:auto;" alt="Schema">
+    </a>
+</p>
 
-##
+
+
 
