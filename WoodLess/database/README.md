@@ -1,5 +1,5 @@
 # Database
-This document goes over the contents of the database folder, how to use them, as well as the Database Schema.
+This guide goes over the contents of the database folder, how to use them, as well as the Database Schema.
 
 ## Migrations
 The migrations folder contains files that define database tables used for this project, including indexes and relationships.
@@ -39,8 +39,7 @@ The file [DatabaseSeeder](./seeders/DatabaseSeeder.php) contains methods to popu
 See below information on the database.
 ### Overview
 <p align="center">
-    <a href="http://220216407.cs2410-web01pvm.aston.ac.uk/" target="_blank"><img src="./images/schema.png" style="max-width:100%; height:auto;" alt="Schema">
-    </a>
+    <img src="./images/schema.png" style="max-width:100%; height:auto;" alt="Schema">
 </p>
 
 
