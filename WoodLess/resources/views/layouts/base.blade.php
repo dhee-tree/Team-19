@@ -177,7 +177,7 @@
 
                     <div class="col bg-white pt-2 sticky-bottom">
                         <div class="row-100 mb-0">
-                            <h5 class="fw-bold">Total: £{{$totalBasketCost}}</h5>
+                            <h5 class="fw-bold">Total: £{{sprintf("%0.2f",$totalBasketCost)}}</h5>
                         </div>
                         <div class="d-flex justify-content-around">
                             <a style="background-color: #1d1912" class="flex-fill btn text-light me-2" role="button" href="{{asset('basket')}}">
