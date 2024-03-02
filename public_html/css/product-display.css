@@ -63,10 +63,6 @@ input:focus, textarea:focus, select:focus {
 
 
 @media screen and (min-width: 1368px) {
-    main {
-        background-color: #e3eefc56;
-    }
-
     main #maincontent {
         padding-top: 0;
         padding-bottom: 0;
