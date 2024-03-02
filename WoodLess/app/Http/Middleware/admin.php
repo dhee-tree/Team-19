@@ -20,12 +20,12 @@ class admin
     {
         // Check if the user is logged in
         if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'You need to be logged in to access this page.');
+            return redirect()->route('login')->with(['status' => 'danger', 'message' => 'You need to be logged in to access this page.']);
         }
         
         // Check if the user is an admin
         if (!Auth::user()->isAdmin()) {
-            return redirect()->route('home')->with('error', 'You do not have permission to access this page.');
+            return redirect()->route('home')->with(['status' => 'danger', 'message' => 'You do not have permission to access this page.']);
         }
 
         // Allow the request to proceed
