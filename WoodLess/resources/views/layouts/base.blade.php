@@ -121,7 +121,7 @@
 
     <div class="col" id="basket-offcanvas-div" tabindex="-1">
         <div class="shadow-lg offcanvas offcanvas-end scrollable" id="basket-offcanvas" aria-labelledby="basket-offcanvas">
-            <div class="offcanvas-header text-light mb-0 py-3" style="background-color: #1d1912">
+            <div class="offcanvas-header text-light mb-0 py-3">
               <span class="fs-5 offcanvas-title" id="basket-offcanvas">Your Basket</span>
               <button type="button" class="btn text-light" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
             </div>
@@ -182,7 +182,7 @@
                         <div class="d-flex justify-content-around">
                             <a style="background-color: #1d1912" class="flex-fill btn text-light me-2" role="button" href="{{asset('basket')}}">
                                 Edit Basket
-                                <span style="background-color: #655d52" class="ms-1 fw-light badge rounded-pill badge-notification">
+                                <span class="ms-1 fw-light badge rounded-pill badge-notification">
                                     {{$user->basket()->first()->productAmount()}}
                                 </span>
                             </a>
