@@ -15,33 +15,6 @@ main{
 }
 
 
-.card-body-s {
-    margin: auto;
-    position: fixed;
-    bottom: 6%;
-    right: 1%;
-    z-index: 1;
-    border: solid 1px #fff;
-    max-width: 250px;
-    width: max-content;
-    background-color: #fff;
-    height: inherit;
-    border-radius: 12px;
-    padding: 10px;
-    display: flex;
-    flex-flow: column;
-    box-shadow: 0 3px 10px 3px #9c9999;
-    cursor: pointer;
-  } 
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }    
-
-
-
 
 
 
