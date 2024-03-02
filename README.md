@@ -66,7 +66,7 @@ This guide assumes you are familiar with PHP web development environments (such 
 ### .env Setup
 The file .env declares the app environment, so it is important to set this up first. 
 1. Rename [`.env.example`](./WoodLess/.env.example) in the project root folder to `.env`.
-2. Modify `APP_URL` (Line 5) to your server's domain name. This can usually be left as `http://localhost` if you are running locally.
+2. In `.env`, modify `APP_URL` (Line 5) to your server's domain name. This can usually be left as `http://localhost` if you are running locally.
 3. Inside `.env`, modify lines 12-17 to match the information of your target database. This will be the database that the project will use and connect to.
 4. Go to the WoodLess directory in a terminal. Run `composer install` to ensure the project is set up correctly. You may also wish to run `composer update`.
 5. Run the command `php artisan key:generate`. This will generate an app key unique to your project installation.
