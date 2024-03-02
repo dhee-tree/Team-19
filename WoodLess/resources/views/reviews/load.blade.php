@@ -144,7 +144,7 @@
                         <div class="card-footer">
                             <div class="d-flex flex-row justify-content-end">
                                 <div class="p-0 m-0">
-                                    <p class="card-text"><a href="{{url('login')}}">Log in</a> to post a review.</p>
+                                    <p class="card-text"><a class="link-dark" href="{{url('login')}}">Sign in</a> to post a review.</p>
                                 </div>
                             </div>
                         </div>
