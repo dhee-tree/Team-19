@@ -19,22 +19,28 @@
     --links-text-color: #ffffff;
 
     --spotlight-color-1: #ebebeb;
+
+    --discount-background-color: #c5ffd172;
+    --hot-background-color: #ff800031;
 }
+
+/* #region Interactive Chat */
 
 .btn-sticky {
     position: fixed;
     bottom: 6%;
     right: 0;
     transform: translateY(50%);
-    z-index: 1000;
+    z-index: 50 !important;
     /* Ensure it's above other content */
 }
+
 .card-body-s {
     margin: auto;
     position: fixed;
     bottom: 6%;
     right: 1%;
-    z-index: 1;
+    z-index: 5;
     border: solid 1px #fff;
     max-width: 250px;
     width: max-content;
@@ -46,16 +52,16 @@
     flex-flow: column;
     box-shadow: 0 3px 10px 3px #9c9999;
     cursor: pointer;
-  } 
-  .close {
+}
+
+.close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }    
+}
 
-
-
+/* #endregion */
 
 
 body {
@@ -94,14 +100,6 @@ body {
 
 /* #endregion */
 
-.expand-hover{
-    transition: 0.3s ease-in-out;
-}
-
-.expand-hover:hover{
-    transform: scale(1.03);
-}
-
 /* #region Footer */
 
 
@@ -115,6 +113,7 @@ footer {
 
 /* #endregion */
 
+/* #region Main */
 
 main {
     min-height: 100vh;
@@ -137,3 +136,26 @@ main #maincontent section {
         padding-bottom: 5vh;
     }
 }
+
+/* #endregion */
+
+/* #region custom styling */
+
+.card.expand-hover {
+    transition: 0.3s ease-in-out;
+}
+
+.card.expand-hover:hover {
+    transform: scale(1.03);
+}
+
+
+.hot-bg{
+    background-color: var(--hot-background-color);
+}
+
+.discount-bg{
+    background-color: var((--discount-background-color));
+}
+
+/* #endregion */

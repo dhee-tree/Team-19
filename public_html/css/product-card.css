@@ -1,19 +1,23 @@
-#product .hot .card{
-    background-color: #ff800031;
+/* #region Text */
+
+#product .name {
+    font-weight: normal;
+    /* Make the text bold */
+    font-size: 1.3rem !important;
 }
 
-#product .discount .card {
-    background-color: #c5ffd172;
+#product .showcase-price {
+    font-weight: bold;
+    /* Make the text bold */
+    font-size: 1.5rem !important;
 }
 
-#product .title {
-    font-weight: normal !important;
+#product .discount-price {
+    font-weight: normal;
+    /* Make the text bold */
+    font-size: 1rem !important;
 }
 
-
-#product .regular-price,
-#product .discount,
-#product .name,
 #product .discount-number {
     font-weight: bold;
     /* Make the text bold */
@@ -22,38 +26,90 @@
 
 @media (max-width: 1024px) {
 
-    #product .regular-price,
-    #product .discount,
-    #product .name,
-    #product .discount-number {
-        font-size: 1.4rem !important;
-        /* Adjust font size for smaller screens */
+
+    #product .name {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1rem !important;
     }
+
+    #product .showcase-price {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1.2rem !important;
+    }
+
+    #product .discount-price {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 0.8rem !important;
+    }
+
+    #product .discount-number {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1.5rem !important;
+    }
+
 }
 
-
 /* Media queries for smaller screens */
-@media (max-width: 768px) {
-    #product .regular-price,
-    #product .discount,
-    #product .name,
+@media (max-width: 767px) {
+
+
+    #product .name {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1.3rem !important;
+    }
+
+    #product .showcase-price {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1.5rem !important;
+    }
+
+    #product .discount-price {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
     #product .discount-number {
-        font-size: 1.2rem !important;
-        /* Adjust font size for smaller screens */
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1.5rem !important;
     }
 }
 
 /* Media queries for even smaller screens */
-@media (max-width: 576px) {
+@media (max-width: 300px) {
 
-    #product .regular-price,
-    #product .discount,
-    #product .name,
+    #product .name {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
+    #product .showcase-price {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
+    #product .discount-price {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 0.9rem !important;
+    }
+
     #product .discount-number {
-        font-size: 0.7rem !important;
-        /* Further adjust font size for even smaller screens */
+        display: none;
     }
 }
+
+/* #endregion */
+
 
 #product .card-details {
     padding: 4%;
@@ -75,35 +131,24 @@
 
 #product .end {
     position: absolute;
-    bottom: 5%;
-    right: 5%;
+    transform-origin: bottom right;
+    bottom: 15%;
+    right: 15%;
 }
 
 @media (max-width: 1024px) {
-    #product .end {
-        position: absolute;
-        bottom: 16%;
-        right: 15%;
-    }
+
 }
 
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
-    #product .end {
-        position: absolute;
-        bottom: 8%;
-        right: 15%;
-    }
+
 }
 
 /* Media queries for even smaller screens */
 @media (max-width: 576px) {
-    #product .end {
-        position: absolute;
-        bottom: 11%;
-        right: 10%;
-    }
+
 }
 
 
@@ -113,8 +158,6 @@
 
 #product .discount {
     position: absolute;
-    right: 5%;
-    bottom: 0;
     /* Adjust as needed */
     transform: translateY(83%);
     color: #cc0c39;
@@ -129,3 +172,39 @@
 .price-wrapper span {
     margin-top: 0.25rem;
 }
+
+/* #region Image */
+
+#product .card-img-top {
+    border-bottom: 1px solid #ccc !important;
+    /* Adjust the color and thickness as needed */
+}
+
+/* #endregion */
+
+
+/* #region Shadow */
+
+.discount.shadow {
+    box-shadow: 0 0 10px 5px rgba(197, 253, 114, 0.2) !important;
+}
+
+.hot.shadow {
+    box-shadow: 0 0 10px 5px rgba(255, 128, 0, 0.1) !important;
+}
+
+
+/* #endregion */
+
+
+/* #region Hover */
+
+#product.expand-hover {
+    transition: 0.3s ease-in-out;
+}
+
+#product.expand-hover:hover {
+    transform: scale(1.03);
+}
+
+/* #endregion */
