@@ -102,14 +102,13 @@
                     </li>
                 </ul>
 
-                <form method="GET" action=" {{ route('products.filter') }}" class="d-flex justify-content-center"
-                    role="search">
-                    <input type="search" name="search" placeholder="Search Products..."
-                        class="rounded-pill form-control" />
+                <form method="GET" action="{{ route('products.filter') }}" class="d-flex justify-content-center" role="search">
+                    <input type="search" name="search" placeholder="Search Products..." class="rounded-pill form-control search-input" />
                     <button class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
+                
 
 
             </div>

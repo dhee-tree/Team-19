@@ -85,6 +85,16 @@ body {
     color: var(--nav-text-color);
 }
 
+#navbar .search-input {
+    width: 60%; /* Initial width */
+    transform-origin: top right; /* Set the transform origin to the top right corner */
+    transition: width 0.5s ease; /* Add transition for smooth effect */
+}
+
+#navbar .search-input:focus {
+    width: 100%; /* Expanded width */
+}
+
 #navbar .nav-link.active {
     color: var(--nav-active-text-color) !important;
     text-decoration: underline;
