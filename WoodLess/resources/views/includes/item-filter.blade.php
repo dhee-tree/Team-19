@@ -114,24 +114,24 @@
                             aria-labelledby="FilterAccordion-headingPrice">
                             <div class="accordion-body">
                                 <div class="mb-3">
-                                    <label for="minimumPrice" class="form-label">Minimum Price</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">£</span>
-                                        <input type="text" class="form-control" id="minCost" name="minCost"
-                                            placeholder="enter price"
-                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                                            value="<?php echo htmlspecialchars(request('minCost')); ?>">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="minPrice" class="form-label">Min</label>
+                                            <div class="input-group mb-2">
+                                                <input type="text" class="form-control" id="minCost"
+                                                    name="minCost" value="0">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="maxPrice" class="form-label">Max</label>
+                                            <div class="input-group mb-2">
+                                                <input type="text" class="form-control" id="maxCost"
+                                                    name="maxCost" value="10000">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="maximumPrice" class="form-label">Maximum Price</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text">£</span>
-                                        <input type="text" class="form-control" id="maxCost" name="maxCost"
-                                            placeholder="enter price"
-                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                                            value="<?php echo htmlspecialchars(request('maxCost')); ?>">
-                                    </div>
+
+                                    <div id="priceRangeSlider"></div>
                                 </div>
                             </div>
                         </div>

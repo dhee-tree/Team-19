@@ -5,10 +5,14 @@
     <link rel="stylesheet" href="{{ asset('css/product-list-page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/interactive/flame-animation.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" rel="stylesheet">
+
 @endsection
 
 @section('js')
     <script src="{{ asset('js/filter.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+
 @endsection
 
 @section('content')
