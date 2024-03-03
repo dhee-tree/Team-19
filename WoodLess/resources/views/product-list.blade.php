@@ -24,39 +24,47 @@
         <div class="row">
             <div class="col col-md-3">
                 <div class="filter">
-                    @if (!$products->isEmpty())
-
-                        <div class="alert alert-info fade show" id="resultsAlert" role="alert">
-                            Showing results for:
-                            <ul>
-                                @foreach ($queryParameters as $key => $value)
-                                    @if ($key != 'sort_by' || ($key == 'sort_by' && $value != 'Select...'))
-                                        <li>
-                                            @if ($key == 'sort_by')
-                                                Sort By:
-                                            @elseif ($key == 'minCost')
-                                                Minimum Cost:
-                                            @elseif ($key == 'maxCost')
-                                                Maximum Cost:
-                                            @elseif ($key == 'ratings')
-                                                Ratings:
-                                                @foreach ($value as $rating)
-                                                    {{ $rating }} <i class="fa-solid fa-star"></i>
-                                                @endforeach
-                                            @else
-                                                {{ $key }}:
+                    @if (!$products->isEmpty() && !empty($queryParameters))
+                        @php
+                            $minCost = $queryParameters['minCost'] ?? null;
+                            $maxCost = $queryParameters['maxCost'] ?? null;
+                        @endphp
+                        @if (!($minCost == 0 && $maxCost == 10000 && count($queryParameters) == 2))
+                            <div class="alert alert-info fade show" id="resultsAlert" role="alert">
+                                Showing results for:
+                                <ul>
+                                    @foreach ($queryParameters as $key => $value)
+                                        @if ($key != 'sort_by' || ($key == 'sort_by' && $value != 'Select...'))
+                                            @if (!($key == 'minCost' && $value == 0) && !($key == 'maxCost' && $value == 10000))
+                                                <li>
+                                                    @if ($key == 'sort_by')
+                                                        Sort By:
+                                                    @elseif ($key == 'minCost')
+                                                        Minimum Cost:
+                                                    @elseif ($key == 'maxCost')
+                                                        Maximum Cost:
+                                                    @elseif ($key == 'ratings')
+                                                        Ratings:
+                                                        @foreach ($value as $rating)
+                                                            {{ $rating }} <i class="fa-solid fa-star"></i>
+                                                        @endforeach
+                                                    @else
+                                                        {{ $key }}:
+                                                    @endif
+                                                    @if (is_array($value) && $key != 'ratings')
+                                                        {{ implode(', ', $value) }}
+                                                    @elseif (!is_array($value))
+                                                        {{ $value }}
+                                                    @endif
+                                                </li>
                                             @endif
-                                            @if (is_array($value) && $key != 'ratings')
-                                                {{ implode(', ', $value) }}
-                                            @elseif (!is_array($value))
-                                                {{ $value }}
-                                            @endif
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     @endif
+
                     @include('includes.item-filter')
                 </div>
             </div>

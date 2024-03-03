@@ -1,12 +1,10 @@
 .filter {
     position: sticky;
-    top: 50vh;
-    /* Stick to the middle of the viewport height */
-    max-height: 90vh;
-    /* Limit the maximum height to 90% of the viewport height */
-    overflow-y: auto;
-    /* Enable vertical scrolling if content exceeds the max height */
+    top: 90px; /* Height of the Bootstrap navbar */
+    max-height: calc(100vh - 90px); /* Subtract the height of the Bootstrap navbar from 100vh */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds the max height */
 }
+
 
 
 /* Custom styles to remove default accordion styles */
