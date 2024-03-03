@@ -1,9 +1,33 @@
-.filter{
-    background: #655D52;
-    color:white;
+/* Custom styles to remove default accordion styles */
+#FilterAccordian .accordion-card {
+    border: none;
+    box-shadow: none;
 }
 
-.accordion-body{
-    background: #655D52;
-    color:white;
+#FilterAccordian .accordion-item {
+    border: none;
+    min-width: 100%;
+}
+
+
+#FilterAccordian .accordion-button {
+    color: inherit;
+    text-align: left !important;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+#FilterAccordian .accordion-button:focus {
+    box-shadow: none;
+}
+
+#FilterAccordian .accordion-button:hover {
+    text-decoration: underline;
+}
+
+/* Optional: Add styles for active accordion button */
+.accordion-button.active {
+    font-weight: bold;
 }

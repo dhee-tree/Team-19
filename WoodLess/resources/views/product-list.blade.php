@@ -15,12 +15,11 @@
     <div class="container" id="maincontent">
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col col-md-3">
                 @include('includes.item-filter')
             </div>
-            <div class="col-md-9">
-                <div class="row justify-content-center">
-                    <div class="col-md-12">
+            <div class="col col-md-9">
+                <div class="justify-content-center">
                         @if (trim($search_text) !== '')
                             @if ($products->isEmpty())
                                 <div class="alert alert-info" role="alert">
@@ -32,9 +31,8 @@
                                 </div>
                             @endif
                         @endif
-                    </div>
                 </div>
-                <div class="row row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
                     @foreach ($products as $product)
 
                         <div class="col pt-4">
