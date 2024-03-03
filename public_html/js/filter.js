@@ -73,3 +73,19 @@ document.addEventListener('DOMContentLoaded', function () {
         maxPriceInput.value = values[1];
     });
 });
+
+function removeSearch() {
+    document.getElementById('searchSaver').remove();
+    // You may also want to submit the form after removing the search text
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    setTimeout(function () {
+        var alert = document.getElementById('resultsAlert');
+        alert.classList.remove('show');
+        setTimeout(function () {
+            alert.style.display = 'none';
+        }, 1000); // 1 second transition time before hiding
+    }, 3000); // 3 seconds delay before starting to hide
+});

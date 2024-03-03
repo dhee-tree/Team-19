@@ -1,8 +1,5 @@
-    <div class="card filter">
+    <div class="card">
         <form id="filter" action="{{ route('products.filter') }}" method="GET">
-            @if (isset($search_text))
-                <input type="hidden" name="search" value="{{ $search_text }}">
-            @endif
             <div class="card-body">
                 <h5 class="card-title">Sort By</h5>
                 <select class="form-select" aria-label="Sort By" name="sort_by">
@@ -15,6 +12,20 @@
                     <option value="discount_low_high">Discount Low to High</option>
                 </select>
                 <hr class="w-100 mx-auto mb-2 border-dark">
+
+                @if (isset($search_text))
+                    <div id="searchSaver">
+                        <h5 class="card-title">Search</h5>
+
+                        <div class="d-flex justify-content-between align-items-center p-2 rounded">
+                            <span class="me-2">{{ $search_text }}</span>
+                            <button type="button" class="btn-close" aria-label="Close"
+                                onclick="removeSearch()"></button>
+                        </div>
+                        <input type="hidden" name="search" value="{{ $search_text }}">
+                        <hr class="w-100 mx-auto mb-2 border-dark">
+                    </div>
+                @endif
 
                 <h5 class="card-title">Filter</h5>
                 <div class="accordion" id="FilterAccordian">
@@ -235,4 +246,3 @@
             </div>
         </form>
     </div>
-
