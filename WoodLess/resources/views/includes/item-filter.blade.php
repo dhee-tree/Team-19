@@ -1,4 +1,3 @@
-<div class="container">
     <div class="card filter">
         <form id="filter" action="{{ route('products.filter') }}" method="GET">
             @if (isset($search_text))
@@ -237,4 +236,3 @@
         </form>
     </div>
 
-</div>
