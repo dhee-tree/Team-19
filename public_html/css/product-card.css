@@ -21,7 +21,7 @@
 #product .discount-number {
     font-weight: bold;
     /* Make the text bold */
-    font-size: 1.5rem !important;
+    font-size: 1.3rem !important;
 }
 
 @media (max-width: 1024px) {
@@ -48,7 +48,7 @@
     #product .discount-number {
         font-weight: bold;
         /* Make the text bold */
-        font-size: 1.5rem !important;
+        font-size: 1rem !important;
     }
 
 }
@@ -78,7 +78,7 @@
     #product .discount-number {
         font-weight: bold;
         /* Make the text bold */
-        font-size: 1.5rem !important;
+        font-size: 0.8rem !important;
     }
 }
 
@@ -112,66 +112,70 @@
 
 
 #product .card-details {
-    padding: 4%;
-    padding-left: 6%;
+    position: relative;
+    display: flex;
+    /* Use flexbox layout */
+    justify-content: space-between;
+    /* Align children to start and end */
+    padding: 5px;
+
 }
 
-#product .regular-price {
-    padding-right: 1%;
-}
+/* #region Start Styling */
 
 #product .start {
-    position: relative;
-    top: 0;
-    left: 0;
+    transform-origin: top left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    /* background-color: rgba(0, 255, 76, 0.5); /* Example red background with 50% opacity */
+    width: 60%;
+    /* Adjust width as needed */
+    height: 100%;
+    /* Adjust height as needed */
 }
+
+/* #endregion */
+
+/* #region End Styling */
 
 #product .end {
-    position: absolute;
-    transform-origin: bottom right;
-    bottom: 15%;
-    right: 15%;
+    transform-origin: top right;
+    /* background-color: rgba(255, 0, 0, 0.5); /*  Example red background with 50% opacity */
+    min-width: 40%;
+    /* Adjust width as needed */
+    min-height: 100%;
+    /* Adjust height as needed */
+
 }
 
-@media (max-width: 1024px) {
+#product .discount-number {
+    /* Adjust as needed */
+    transform-origin: top left;
+    color: #cc0c39;
+    /* Adjust text color as needed */
+    font-weight: normal;
 
 }
 
+#product .end .fire {
+    top: 35%;
+    right: 5%;
+    display: block; /* Change to 'block' or 'inline-block' */
+
+}
 
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
 
+    #product .end .fire {
+
+        display: none;
+
+    }
 }
 
-/* Media queries for even smaller screens */
-@media (max-width: 576px) {
-
-}
-
-
-.end {
-    position: relative;
-}
-
-#product .discount {
-    position: absolute;
-    /* Adjust as needed */
-    transform: translateY(83%);
-    color: #cc0c39;
-    /* Adjust text color as needed */
-    font-weight: normal;
-}
-
-.price-wrapper {
-    flex-direction: column;
-}
-
-.price-wrapper span {
-    margin-top: 0.25rem;
-}
+/* #endregion */
 
 /* #region Image */
 
@@ -183,18 +187,6 @@
 /* #endregion */
 
 
-/* #region Shadow */
-
-.discount.shadow {
-    box-shadow: 0 0 10px 5px rgba(197, 253, 114, 0.2) !important;
-}
-
-.hot.shadow {
-    box-shadow: 0 0 10px 5px rgba(255, 128, 0, 0.1) !important;
-}
-
-
-/* #endregion */
 
 
 /* #region Hover */

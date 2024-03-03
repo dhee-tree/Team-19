@@ -50,13 +50,13 @@
                     <div class="col-md-8">
 
                         <!-- Hot Sellers section -->
-                        <h2 class="mb-2 text-center title-text">Hot Sellers</h2>
+                        <h2 class="text-center title-text">Hot Sellers</h2>
                         <hr class="w-100 mx-auto mb-2">
                         <div class="row row-cols-1 row-cols-md-2">
 
                             <!-- Product cards -->
                             @foreach ($products->shuffle()->take(2) as $key => $product)
-                                <div class="col">
+                                <div class="col pt-sm-4">
                                     <!-- Product card -->
                                     <div id="product" class="card hot shadow expand-hover">
                                         <!-- Sale badge -->
@@ -103,7 +103,7 @@
                                                 </div>
                                                 <div class="end">
                                                     <!-- Text -->
-                                                    <div class="discount">-{{ $product->discount }}%</div>
+                                                    <div class="discount-number">-{{ $product->discount }}%</div>
                                                     <!-- Fire animation -->
                                                     <div class="fire">
                                                         <div class="fire-left">
@@ -135,12 +135,12 @@
                     <div class="col-md-4">
 
                         <!-- Top Discounts section -->
-                        <h2 class="mb-2 text-center title-text">Top Discount</h2>
+                        <h2 class="text-center title-text">Top Discount</h2>
                         <hr class="w-100 mx-auto mb-2 border-dark">
                         @php
                             $discProduct = $products->sortByDesc('discount')->first();
                         @endphp
-                        <div class="col">
+                        <div class="col pt-sm-4">
                             <!-- Product card -->
                             <div id="product" class="card discount shadow expand-hover">
                                 <!-- Sale badge -->
@@ -186,7 +186,7 @@
                                         </div>
                                         <div class="end">
                                             <!-- Text -->
-                                            <div class="discount">-{{ $discProduct->discount }}%</div>
+                                            <div class="discount-number">-{{ $discProduct->discount }}%</div>
                                             <!-- Fire animation -->
                                             <div class="fire">
                                                 <div class="fire-left">
