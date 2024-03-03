@@ -1,8 +1,11 @@
 .filter {
     position: sticky;
-    top: 50vh; /* Stick to the middle of the viewport height */
-    max-height: 90vh; /* Limit the maximum height to 90% of the viewport height */
-    overflow-y: auto; /* Enable vertical scrolling if content exceeds the max height */
+    top: 50vh;
+    /* Stick to the middle of the viewport height */
+    max-height: 90vh;
+    /* Limit the maximum height to 90% of the viewport height */
+    overflow-y: auto;
+    /* Enable vertical scrolling if content exceeds the max height */
 }
 
 
@@ -27,13 +30,18 @@
 }
 
 #FilterAccordian .accordion-button:focus {
-    box-shadow: none;.filter {
-    position: sticky;
-    top: 50vh; /* Stick to the middle of the viewport height */
-    transform: translateY(-50%);
-    max-height: 90vh; /* Limit the maximum height to 90% of the viewport height */
-    overflow-y: auto; /* Enable vertical scrolling if content exceeds the max height */
-}
+    box-shadow: none;
+
+    .filter {
+        position: sticky;
+        top: 50vh;
+        /* Stick to the middle of the viewport height */
+        transform: translateY(-50%);
+        max-height: 90vh;
+        /* Limit the maximum height to 90% of the viewport height */
+        overflow-y: auto;
+        /* Enable vertical scrolling if content exceeds the max height */
+    }
 
 }
 
