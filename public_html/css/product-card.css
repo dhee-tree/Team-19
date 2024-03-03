@@ -4,24 +4,32 @@
     font-weight: normal;
     /* Make the text bold */
     font-size: 1.3rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
 }
 
 #product .showcase-price {
     font-weight: bold;
     /* Make the text bold */
     font-size: 1.5rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
 }
 
 #product .discount-price {
     font-weight: normal;
     /* Make the text bold */
     font-size: 1rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
 }
 
 #product .discount-number {
     font-weight: bold;
     /* Make the text bold */
     font-size: 1.3rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
 }
 
 @media (max-width: 1024px) {
@@ -126,8 +134,7 @@
 #product .start {
     transform-origin: top left;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
     /* background-color: rgba(0, 255, 76, 0.5); /* Example red background with 50% opacity */
     width: 60%;
     /* Adjust width as needed */
@@ -168,7 +175,15 @@
 /* Media queries for smaller screens */
 @media (max-width: 768px) {
 
-    #product .end .fire {
+    #product .start {
+
+        width: 100%;
+        /* Adjust width as needed */
+        height: 100%;
+        /* Adjust height as needed */
+    }
+
+    #product .end {
 
         display: none;
 

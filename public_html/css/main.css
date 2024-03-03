@@ -23,6 +23,7 @@
     --normal-background-color: #fff;
     --discount-background-color: #c5ffd172;
     --hot-background-color: #ff800031;
+
 }
 
 /* #region Interactive Chat */
@@ -70,7 +71,6 @@ body {
     background-color: var(--main-background-color);
     color: var(--main-text-color);
     overflow-x: hidden;
-    /* Prevent horizontal overflow */
 
 }
 

@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="{{ asset('css/category-card.css') }}">
     <link rel="stylesheet" href="{{ asset('css/interactive/flame-animation.css') }}">
     <link rel="stylesheet" href="{{ asset('css/interactive/categories-house.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/product-display.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
     <link rel="stylesheet"
         href="https://unpkg.com/bs-brain@2.0.2/components/testimonials/testimonial-3/assets/css/testimonial-3.css" />
@@ -56,13 +55,13 @@
 
                             <!-- Product cards -->
                             @foreach ($products->shuffle()->take(2) as $key => $product)
-                                <div class="col pt-sm-4">
+                                <div class="col pt-4">
                                     <!-- Product card -->
                                     <div id="product" class="card hot shadow expand-hover">
                                         <!-- Sale badge -->
                                         @if ($product->discount)
                                             <div class="badge bg-dark text-white position-absolute"
-                                                style="top: 0.5rem; right: 0.5rem">Sale
+                                                style="top: 0.5rem; right: 0.5rem">-{{ $product->discount }}%
                                             </div>
                                         @endif
                                         <!-- Product content -->
@@ -125,6 +124,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <a href="/product/{{ $product->id }}" class="stretched-link"></a>
                                     </div>
                                 </div>
                             @endforeach
@@ -140,13 +140,13 @@
                         @php
                             $discProduct = $products->sortByDesc('discount')->first();
                         @endphp
-                        <div class="col pt-sm-4">
+                        <div class="col pt-4">
                             <!-- Product card -->
                             <div id="product" class="card discount shadow expand-hover">
                                 <!-- Sale badge -->
                                 @if ($discProduct->discount)
                                     <div class="badge bg-dark text-white position-absolute"
-                                        style="top: 0.5rem; right: 0.5rem">Sale
+                                        style="top: 0.5rem; right: 0.5rem">-{{ $discProduct->discount }}%
                                     </div>
                                 @endif
                                 <!-- Product content -->
@@ -208,6 +208,8 @@
                                         </div>
                                     </div>
                                 </div>
+                                <a href="/product/{{ $discProduct->id }}" class="stretched-link"></a>
+
                             </div>
                         </div>
                     </div>
@@ -216,83 +218,75 @@
         </section>
 
 
-        <section id="categories" class="">
-            <div class="row justify-content-md-center">
-                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                    <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Categories</h2>
-                    <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
+        <section id="categories">
+            <div class="container">
+                <h2 class="text-center title-text">Categories</h2>
+                <hr class="w-100 mx-auto mb-2 border-dark">
+
+                <div id="house-container">
+                    <div id="house">
+                        <div class="bg">
+                        </div>
+                        <button class="button" id="bedroom">
+                            <h3>
+                                Bedroom
+                            </h3>
+
+                            <p class="info-text">Browse</p>
+                        </button>
+                        <button class="button" id="dining-room">
+                            <h3>
+                                Dining Room
+                            </h3>
+                            <p class="info-text">Browse</p>
+
+                        </button>
+                        <button class="button" id="garden">
+                            <h3>
+                                Garden
+                            </h3>
+                            <p class="info-text">Browse</p>
+
+                        </button>
+                        <button class="button" id="bathroom">
+                            <h3>
+                                Bathroom
+                            </h3>
+                            <p class="info-text">Browse</p>
+
+                        </button>
+                        <button class="polygon button" id="living-room">
+                            <h3>
+                                Living Room
+                            </h3>
+                            <p class="info-text">Browse</p>
+
+                        </button>
+                        <button class="button" id="office">
+                            <h3>
+                                Office
+                            </h3>
+                            <p class="info-text">Browse</p>
+
+                        </button>
+                        <button class="button" id="kitchen">
+                            <h3>
+                                Kitchen
+                            </h3>
+                            <p class="info-text">Browse</p>
+
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="container" id="house-container">
-                <div id="house">
-                    <button class="button" id="bedroom">
-                        <h3>
-                            Bedroom
-                        </h3>
-
-                        <p class="info-text">Browse</p>
-                    </button>
-                    <button class="button" id="dining-room">
-                        <h3>
-                            Dining Room
-                        </h3>
-                        <p class="info-text">Browse</p>
-
-                    </button>
-                    <button class="button" id="garden">
-                        <h3>
-                            Garden
-                        </h3>
-                        <p class="info-text">Browse</p>
-
-                    </button>
-                    <button class="button" id="bathroom">
-                        <h3>
-                            Bathroom
-                        </h3>
-                        <p class="info-text">Browse</p>
-
-                    </button>
-                    <button class="polygon button" id="living-room">
-                        <h3>
-                            Living Room
-                        </h3>
-                        <p class="info-text">Browse</p>
-
-                    </button>
-                    <button class="button" id="office">
-                        <h3>
-                            Office
-                        </h3>
-                        <p class="info-text">Browse</p>
-
-                    </button>
-                    <button class="button" id="kitchen">
-                        <h3>
-                            Kitchen
-                        </h3>
-                        <p class="info-text">Browse</p>
-
-                    </button>
-                </div>
-
             </div>
         </section>
 
 
         <!-- Testimonial 3 - Bootstrap Brain Component -->
-        <section id="testimonials" class="py-5 py-xl-8">
-            <div class="container-fluid">
-                <div class="row justify-content-md-center">
-                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                        <h2 class="fs-6 text-secondary mb-2 text-uppercase text-center">Happy Customers</h2>
-                        <p class="display-5 mb-2 mb-md-3 text-center">We deliver what we promise</p>
-                        <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
-                    </div>
-                </div>
-            </div>
-
+        <section id="testimonials">
             <div class="container">
+                <h2 class="text-center title-text">Testimonials</h2>
+                <hr class="w-100 mx-auto mb-2 border-dark">
                 <div class="row row-cols-1 row-cols-md-3">
                     <div class="col">
                         <div class="card h-100 position-relative">
