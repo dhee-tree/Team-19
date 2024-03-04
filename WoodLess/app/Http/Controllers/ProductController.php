@@ -14,12 +14,12 @@ class ProductController extends Controller
 {
 
     protected $reviews;
-    
+
     /**
      * Retrieve a single product.
      */
     public function show(int $product_id)
-    {   
+    {
         $user = Auth()->user() ?? null;
         $product = Product::getCached($product_id);
         $categories = $product->getCachedRelation('categories');
@@ -30,9 +30,10 @@ class ProductController extends Controller
             return $p->id == $product->id;
         })->shuffle()->take(8);
 
-        $reviews = $product->getCachedRelation('reviews')->sortBy([
-            [request('sort') ?? 'created_at', request('order') ?? 'desc']
-        ]
+        $reviews = $product->getCachedRelation('reviews')->sortBy(
+            [
+                [request('sort') ?? 'created_at', request('order') ?? 'desc']
+            ]
         )->paginate(8)->withQueryString()->fragment('go-reviews');
 
         // Retrieve the product images from the database
@@ -64,16 +65,18 @@ class ProductController extends Controller
     //     $products->orWhere('tags', 'LIKE', '%' . $search_text . '%');
 
     //     $products = $products->get();
-    
-      
-        
+
+
+
     //     return view('product-list', ['products' => $products, 'search_text' => $search_text]);
 
-     
+
     // }
     //Queries the products, and returns if we searched for something or not.
     public function index()
     {
+
+
         //Get search paramaters
         $filters = collect(request()->query());
         $search_text = $filters['search'] ?? null;
@@ -103,13 +106,11 @@ class ProductController extends Controller
             'minCost' => (float)$minCost,
             'maxCost' => (float)$maxCost,
             'search' => $search_text,
-            'sort_by'=>$sortBy
+            'sort_by' => $sortBy
         ];
 
-        $products = Product::latest()->filter($data)->get();
-        return view('product-list', ['products' => $products,'search_text' => $search_text]);
-        
-
+        $products = Product::latest()->filter($data)->paginate(30); // Change 10 to the number of products per page you want to display
+        return view('product-list', ['products' => $products, 'search_text' => $search_text]);
     }
 
     //gets three random categories and products  for home page

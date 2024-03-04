@@ -154,21 +154,36 @@
   }
 }
 
-#title-desktop .d3text {
+/* Only works on screens above a phone */
 
-  text-shadow: 0 1px 0 #ccc,
-    0 2px 0 #c9c9c9,
-    0 3px 0 #bbb,
-    0 4px 0 #b9b9b9,
-    0 5px 0 #aaa,
-    0 6px 1px rgba(0, 0, 0, .1),
-    0 0 5px rgba(0, 0, 0, .1),
-    0 1px 3px rgba(0, 0, 0, .3),
-    0 3px 5px rgba(0, 0, 0, .2),
-    0 5px 10px rgba(0, 0, 0, .25),
-    0 10px 10px rgba(0, 0, 0, .2),
-    0 20px 20px rgba(0, 0, 0, .15);
+@media only screen and (min-width: 724px) {
+
+  /* CSS styles for screens with a minimum width of 700 pixels */
+  #title-desktop .d3text {
+
+    text-shadow: 0 1px 0 #ccc,
+      0 2px 0 #c9c9c9,
+      0 3px 0 #bbb,
+      0 4px 0 #b9b9b9,
+      0 5px 0 #aaa,
+      0 6px 1px rgba(0, 0, 0, .1),
+      0 0 5px rgba(0, 0, 0, .1),
+      0 1px 3px rgba(0, 0, 0, .3),
+      0 3px 5px rgba(0, 0, 0, .2),
+      0 5px 10px rgba(0, 0, 0, .25),
+      0 10px 10px rgba(0, 0, 0, .2),
+      0 20px 20px rgba(0, 0, 0, .15);
+  }
 }
+
+/* Reset shadow for screens smaller than 700px */
+@media only screen and (max-width: 700px) {
+  #title-desktop .d3text {
+    text-shadow: none;
+  }
+}
+
+
 
 #title-desktop #title-making {
   font-size: 2vw;
@@ -228,129 +243,3 @@
 
 
 /* #endregion */
-
-
-#hotSellers .card {
-  background-color: #ff800031;
-}
-
-#topDiscounts .card {
-  background-color: #c5ffd172;
-}
-#hotSellers .title {
-  font-weight: normal !important;
-}
-
-
-#hotSellers .title-text,
-#hotSellers .regular-price,
-#hotSellers .text-discount-number,
-#hotSellers .title {
-  font-weight: bold;
-  /* Make the text bold */
-  font-size: 1.5rem !important;
-}
-
-@media (max-width: 1024px) {
-  #hotSellers .title-text,
-  #hotSellers .regular-price,
-  #hotSellers .text-discount-number,
-  #hotSellers .title {
-    font-size: 1.4rem !important; /* Adjust font size for smaller screens */
-  }
-}
-
-
-/* Media queries for smaller screens */
-@media (max-width: 768px) {
-  #hotSellers .title-text,
-  #hotSellers .regular-price,
-  #hotSellers .text-discount-number,
-  #hotSellers .title {
-    font-size: 1.2rem !important; /* Adjust font size for smaller screens */
-  }
-}
-
-/* Media queries for even smaller screens */
-@media (max-width: 576px) {
-  #hotSellers .title-text,
-  #hotSellers .regular-price,
-  #hotSellers .text-discount-number,
-  #hotSellers .title {
-    font-size: 0.7rem !important; /* Further adjust font size for even smaller screens */
-  }
-}
-
-#hotSellers .card-details {
-  padding: 4%;
-  padding-left: 6%;
-}
-
-#hotSellers .regular-price {
-  padding-right: 1%;
-  font-size: 1.5rem;
-}
-
-#hotSellers .start {
-  position: relative;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-#hotSellers .end {
-  position: absolute;
-  bottom: 13%;
-  right: 15%;
-}
-
-@media (max-width: 1024px) {
-  #hotSellers .end  {
-    position: absolute;
-    bottom: 16%;
-    right: 15%;
-  }
-}
-
-
-/* Media queries for smaller screens */
-@media (max-width: 768px) {
-  #hotSellers .end  {
-    position: absolute;
-    bottom: 8%;
-    right: 15%;
-  }
-}
-
-/* Media queries for even smaller screens */
-@media (max-width: 576px) {
-  #hotSellers .end  {
-    position: absolute;
-    bottom: 11%;
-    right: 10%;
-  }
-}
-
-
-.end {
-  position: relative;
-}
-
-#hotSellers .text-discount-number {
-  position: absolute;
-  bottom: 0; /* Adjust as needed */
-  right: 0.8rem; /* Adjust as needed */
-  transform: translateY(83%);
-  color: #cc0c39; /* Adjust text color as needed */
-  font-weight: normal;
-}
-
-.price-wrapper {
-  flex-direction: column;
-}
-
-.price-wrapper span {
-  margin-top: 0.25rem;
-}

@@ -1,131 +1,217 @@
-#product .hot .card{
-    background-color: #ff800031;
+/* #region Text */
+
+#product .name {
+    font-weight: normal;
+    /* Make the text bold */
+    font-size: 1.3rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
 }
 
-#product .discount .card {
-    background-color: #c5ffd172;
-}
-
-#product .title {
-    font-weight: normal !important;
-}
-
-
-#product .regular-price,
-#product .discount,
-#product .name,
-#product .discount-number {
+#product .showcase-price {
     font-weight: bold;
     /* Make the text bold */
     font-size: 1.5rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
+}
+
+#product .discount-price {
+    font-weight: normal;
+    /* Make the text bold */
+    font-size: 1rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
+}
+
+#product .discount-number {
+    font-weight: bold;
+    /* Make the text bold */
+    font-size: 1.3rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
 }
 
 @media (max-width: 1024px) {
 
-    #product .regular-price,
-    #product .discount,
-    #product .name,
-    #product .discount-number {
-        font-size: 1.4rem !important;
-        /* Adjust font size for smaller screens */
+
+    #product .name {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1rem !important;
     }
+
+    #product .showcase-price {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1.2rem !important;
+    }
+
+    #product .discount-price {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 0.8rem !important;
+    }
+
+    #product .discount-number {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
 }
 
-
 /* Media queries for smaller screens */
-@media (max-width: 768px) {
-    #product .regular-price,
-    #product .discount,
-    #product .name,
+@media (max-width: 767px) {
+
+
+    #product .name {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1.3rem !important;
+    }
+
+    #product .showcase-price {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1.5rem !important;
+    }
+
+    #product .discount-price {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
     #product .discount-number {
-        font-size: 1.2rem !important;
-        /* Adjust font size for smaller screens */
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 0.8rem !important;
     }
 }
 
 /* Media queries for even smaller screens */
-@media (max-width: 576px) {
+@media (max-width: 300px) {
 
-    #product .regular-price,
-    #product .discount,
-    #product .name,
+    #product .name {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
+    #product .showcase-price {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
+    #product .discount-price {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 0.9rem !important;
+    }
+
     #product .discount-number {
-        font-size: 0.7rem !important;
-        /* Further adjust font size for even smaller screens */
+        display: none;
     }
 }
+
+/* #endregion */
+
 
 #product .card-details {
-    padding: 4%;
-    padding-left: 6%;
+    position: relative;
+    display: flex;
+    /* Use flexbox layout */
+    justify-content: space-between;
+    /* Align children to start and end */
+    padding: 5px;
+
 }
 
-#product .regular-price {
-    padding-right: 1%;
-}
+/* #region Start Styling */
 
 #product .start {
-    position: relative;
-    top: 0;
-    left: 0;
+    transform-origin: top left;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+
+    /* background-color: rgba(0, 255, 76, 0.5); /* Example red background with 50% opacity */
+    width: 60%;
+    /* Adjust width as needed */
+    height: 100%;
+    /* Adjust height as needed */
 }
+
+/* #endregion */
+
+/* #region End Styling */
 
 #product .end {
-    position: absolute;
-    bottom: 5%;
-    right: 5%;
+    transform-origin: top right;
+    /* background-color: rgba(255, 0, 0, 0.5); /*  Example red background with 50% opacity */
+    min-width: 40%;
+    /* Adjust width as needed */
+    min-height: 100%;
+    /* Adjust height as needed */
+
 }
 
-@media (max-width: 1024px) {
-    #product .end {
-        position: absolute;
-        bottom: 16%;
-        right: 15%;
-    }
-}
-
-
-/* Media queries for smaller screens */
-@media (max-width: 768px) {
-    #product .end {
-        position: absolute;
-        bottom: 8%;
-        right: 15%;
-    }
-}
-
-/* Media queries for even smaller screens */
-@media (max-width: 576px) {
-    #product .end {
-        position: absolute;
-        bottom: 11%;
-        right: 10%;
-    }
-}
-
-
-.end {
-    position: relative;
-}
-
-#product .discount {
-    position: absolute;
-    right: 5%;
-    bottom: 0;
+#product .discount-number {
     /* Adjust as needed */
-    transform: translateY(83%);
+    transform-origin: top left;
     color: #cc0c39;
     /* Adjust text color as needed */
     font-weight: normal;
+
 }
 
-.price-wrapper {
-    flex-direction: column;
+#product .end .fire {
+    top: 35%;
+    right: 5%;
+    display: block; /* Change to 'block' or 'inline-block' */
+
 }
 
-.price-wrapper span {
-    margin-top: 0.25rem;
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+
+    #product .start {
+
+        width: 100%;
+        /* Adjust width as needed */
+        height: 100%;
+        /* Adjust height as needed */
+    }
+
+    #product .end {
+
+        display: none;
+
+    }
 }
+
+/* #endregion */
+
+/* #region Image */
+
+#product .card-img-top {
+    border-bottom: 1px solid #ccc !important;
+    /* Adjust the color and thickness as needed */
+}
+
+/* #endregion */
+
+
+
+
+/* #region Hover */
+
+#product.expand-hover {
+    transition: 0.3s ease-in-out;
+}
+
+#product.expand-hover:hover {
+    transform: scale(1.03);
+}
+
+/* #endregion */

@@ -102,14 +102,13 @@
                     </li>
                 </ul>
 
-                <form method="GET" action=" {{ route('products.filter') }}" class="d-flex justify-content-center"
-                    role="search">
-                    <input type="search" name="search" placeholder="Search Products..."
-                        class="rounded-pill form-control" />
+                <form method="GET" action="{{ route('products.filter') }}" class="d-flex justify-content-center" role="search">
+                    <input type="search" name="search" placeholder="Search Products..." class="rounded-pill form-control search-input" />
                     <button class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>
+                
 
 
             </div>
@@ -196,10 +195,18 @@
             </div>
         </div>
     </div>
+    <div> 
+<div class="card-body-s">
+    <div>
+<span class="close">&times;</span>
+  <p class="chat-message">We are here to help do not hesitate to get in touch</p>
+  </div>
+</div>
+
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-sticky sticky-bottom z-1 end-0" data-bs-toggle="modal"
         data-bs-target="#staticBackdrop">
-        Create a Support Ticket
+        <i class="fa-solid fa-message"></i>
     </button>
     <!-- Modal -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -358,5 +365,17 @@
     @yield('js')
 
 </body>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var closeButton = document.querySelector('.card-body-s .close');
+    var cardBody = document.querySelector('.card-body-s');
+    closeButton.addEventListener('click', function() {
+        cardBody.style.display = 'none';
+      
+    
+  });
+});
+</script>
+
 
 </html>

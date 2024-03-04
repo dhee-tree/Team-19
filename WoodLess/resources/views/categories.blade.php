@@ -10,23 +10,17 @@
 @section('content')
 
     <div id="maincontent" class="container">
-        <section id="categories" class="py-5 py-xl-8">
+        <section id="categories">
 
-            <div class="container-fluid">
-                <div class="row justify-content-md-center">
-                    <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
-                        <h2 id= "title" class="fs-6 text-secondary mb-2 text-uppercase text-center">Welcome To Our
-                            Categories
-                        </h2>
-                        <hr class="w-50 mx-auto mb-4 mb-xl-5 border-dark">
-                    </div>
-                </div>
-            </div>
+
             <div class="container">
-                <div class="container px-4 px-lg-4 mt-2">
+                <!-- Hot Sellers section -->
+                <h2 class="text-center title-text">Categories</h2>
+                <hr class="w-100 mx-auto">
+                <div class="container">
                     <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-3 justify-content-center">
                         @foreach ($categories as $category)
-                            <div class="col mb-5">
+                            <div class="col pt-2">
                                 <div class="card category-card h-100">
                                     <!-- Category image-->
                                     <img class="card-img" src="{{ asset($category->images) }}" height="100%" width="100%"
@@ -41,10 +35,9 @@
                                 </div>
                             </div>
                         @endforeach
-
-
                     </div>
                 </div>
+                <hr class="w-100 mx-auto mb-3">
             </div>
         </section>
     </div>
