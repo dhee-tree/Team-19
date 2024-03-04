@@ -50,7 +50,7 @@
     position: fixed;
     bottom: 6%;
     right: 1%;
-    z-index: 5;
+    z-index: 2;
     border: solid 1px #fff;
     max-width: 250px;
     width: max-content;
