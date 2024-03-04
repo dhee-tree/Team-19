@@ -71,15 +71,15 @@
                     </a>
                 @endguest
 
-                <button id="navbartoggler" class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse"
+                <button id="navbartoggler" class="d-lg-none btn btn-outline-light rounded-pill ms-2" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="fa-solid fa-bars"></i>
                 </button>
             </li>
 
             <div class="collapse navbar-collapse" id="navbarToggler">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-1 ms-2 mb-lg-0 ms-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page"
                             href="{{ url('/') }}">Home</a>
@@ -102,7 +102,7 @@
                     </li>
                 </ul>
 
-                <form method="GET" action="{{ route('products.filter') }}" class="d-flex justify-content-center" role="search">
+                <form method="GET" action="{{ route('products.filter') }}" class="d-flex justify-content-lg-end justify-content-sm-center" role="search">
                     <input type="search" name="search" placeholder="Search Products..." class="rounded-pill form-control search-input" />
                     <button class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
                         <i class="fa-solid fa-magnifying-glass"></i>
