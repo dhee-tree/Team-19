@@ -64,10 +64,17 @@
                                         </small></p>
                                 </div>
                                 @if($user)
-                                <form method="POST" action="/review/{{$review->id}}">
+                                <form  id="deleteReviewForm{{$review->id}}" method="POST" action="/review/{{$review->id}}">
                                     @csrf
                                     @method('DELETE')
-                                    <button onclick="this.disabled = true; this.form.submit()" class="btn p-0">
+                                    <button 
+                                        type="button" 
+                                        data-bs-toggle="modal" 
+                                        data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
+                                        data-bs-target="#confirmationModal" 
+                                        data-review-id="{{$review->id}}" 
+                                        class="review-delete-btn btn p-0"
+                                    >
                                         <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
                                     </button>
                                 </form>
@@ -202,10 +209,17 @@
                             @if($user)
                             @if ($reviewUser == $user || $user->isAdmin())
                             <div class="">
-                                <form method="POST" action="/review/{{$review->id}}">
+                                <form id="deleteReviewForm{{$review->id}}" method="POST" action="/review/{{$review->id}}">
                                     @csrf
                                     @method('DELETE')
-                                    <button onclick="this.disabled = true; this.form.submit()" class="btn p-0">
+                                    <button 
+                                        type="button" 
+                                        data-bs-toggle="modal" 
+                                        data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
+                                        data-bs-target="#confirmationModal" 
+                                        data-review-id="{{$review->id}}" 
+                                        class="review-delete-btn btn p-0"
+                                    >
                                         <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
                                     </button>
                                 </form>
@@ -237,3 +251,39 @@
     </div>
     @endif
 </div>
+
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-light py-3">
+                <h5 class="fw-bold modal-title" id="confirmationModalLabel">Confirmation</h5>
+            </div>
+            <div class="modal-body">
+                <p id="confirmationMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn p-0" data-bs-dismiss="modal">
+                    <span><i class="fa-solid fa-xmark"></i></span> Cancel
+                </button>
+                <button type="submit" id="confirmDeleteButton" class="btn p-0">
+                    <span><i class="fa-solid fa-small fa-check"></i> Confirm</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const reviewDeleteButtons = document.querySelectorAll('.review-delete-btn');
+
+        reviewDeleteButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const reviewId = this.getAttribute('data-review-id');
+                const modalMessage = document.getElementById('confirmationMessage');
+                modalMessage.textContent = this.getAttribute('data-modal-message');
+                document.getElementById('confirmDeleteButton').setAttribute('form', `deleteReviewForm${reviewId}`);
+            });
+        });
+    });
+</script>
