@@ -229,7 +229,7 @@
                         </div>
                         <button class="button" id="bedroom">
                             <h3>
-                                Bedroom
+                                Bedroom THIS IS a test bro
                             </h3>
 
                             <p class="info-text">Browse</p>
