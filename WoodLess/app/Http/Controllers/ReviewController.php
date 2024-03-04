@@ -41,7 +41,7 @@ class ReviewController extends Controller
     
             return back()->with([
                 'status' => 'success',
-                'message' => 'Review uploaded successfully.'
+                'message' => 'Review uploaded.'
             ]);
 
         } catch (QueryException $e) {
@@ -61,7 +61,7 @@ class ReviewController extends Controller
             $review->delete();
             return back()->with([
                 'status' => 'success',
-                'message' => 'Review deleted successfully.'
+                'message' => 'Review deleted.'
             ]);
             
         } catch (QueryException $e) {
