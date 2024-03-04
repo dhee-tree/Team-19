@@ -10,4 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
             successAlert.classList.remove('show');
         }, 5000); // 5000 milliseconds = 5 seconds
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var closeButton = document.querySelector('.card-body-s .close');
+        var cardBody = document.querySelector('.card-body-s');
+        closeButton.addEventListener('click', function () {
+            cardBody.style.display = 'none';
+
+
+        });
+    });
 });
+
