@@ -7,7 +7,7 @@
     
             <div class="dropstart">
                 <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Sort
+                    Sort By
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'created_at', 'order'=>'desc'])}}#reviews">Most Recent</a></li>
@@ -86,7 +86,8 @@
                                             type="button" 
                                             data-bs-toggle="modal" 
                                             data-bs-target="#confirmationModal" 
-                                            data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
+                                            data-modal-message="Are you sure you want to delete this review? This cannot be undone."
+                                            data-review-user-id="{{$user->id}}" 
                                             data-review-id="{{$review->id}}" 
                                             class="btn-submit btn p-0"
                                         >
@@ -245,6 +246,7 @@
                                             data-bs-target="#confirmationModal" 
                                             data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
                                             data-review-id="{{$review->id}}" 
+                                            data-review-user-id="{{$reviewUser->id}}"
                                             class="btn-submit btn p-0"
                                         >
                                             <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
@@ -321,11 +323,15 @@
                 <button type="button" class="btn p-0" data-bs-dismiss="modal">
                     <span><i class="fa-solid fa-xmark"></i></span> Exit
                 </button>
-                <div class="vr"></div>
-                <button type="submit" id="modalSubmitButton" class="btn p-0">
-                    <span><i class="fa-solid fa-small fa-check"></i> Save Changes</span>
-                </button>
                 
+                @if($user)
+                    <div class="@php if(!$user->isAdmin()){echo('d-none');}@endphp vr modal-submit-element"></div>
+
+                    <button type="submit" id="modalSubmitButton" class="modal-submit-element @php if(!$user->isAdmin()){echo('d-none');}@endphp btn p-0">
+                        <span><i class="fa-solid fa-small fa-check"></i> Save Changes</span>
+                    </button>
+                @endif
+
             </div>
         </form>
     </div>
@@ -348,9 +354,15 @@
         reviewButtons.forEach(button => {
             button.addEventListener('click', function () {
                 const reviewId = this.getAttribute('data-review-id');
+                const userId = this.getAttribute('data-review-user-id');
                 const modalMessage = document.getElementById('reviewModalDescription');
-                document.getElementById('reviewModalUpdateForm').setAttribute('action', `/review/${reviewId}`);
                 modalMessage.value = this.getAttribute('data-modal-message');
+                document.getElementById('reviewModalUpdateForm').setAttribute('action', `/review/${reviewId}`);
+                
+                const modalSubmitElements = document.querySelectorAll('.modal-submit-element');
+                    modalSubmitElements.forEach(element => {
+                        element.classList.remove('d-none');
+                });
             });
         });
     });
