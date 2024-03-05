@@ -50,8 +50,8 @@ Route::delete('/basket/{basket}', [BasketController::class, 'destroy'])->name('b
 Route::put('/update-basket/{basket}', [BasketController::class, 'update'])->name('basket.update');
 
 // Checkout URLS
-Route::get('/checkout', [CheckoutController::class,'show'])->middleware('auth');
-Route::post('/checkout/success', [OrderController::class,'store'])->name('checkout.store')->middleware('auth');
+Route::get('/checkout', [CheckoutController::class, 'show'])->middleware('auth');
+Route::post('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('auth');
 
 //Store single review
 Route::post('/review/{product}', [ReviewController::class, 'store'])->middleware('auth');
@@ -79,11 +79,11 @@ Route::view('/admin-panel/warehouse', 'warehouse-admin')->middleware('admin');
 
 Route::get('/admin-panel/orders', [AdminController::class, 'orders'])->name('admin-panel-orders')->middleware('admin');
 
-Route::get('/admin-panel/orders/info/{id}', [AdminController::class, 'OrderInfo'])->name('order-info')->middleware('admin'); 
+Route::get('/admin-panel/orders/info/{id}', [AdminController::class, 'OrderInfo'])->name('order-info')->middleware('admin');
 
-Route::post('/admin-panel/orders/{id}/{statusId}', [AdminController::class, 'OrderStatus'])->name('order-status')->middleware('admin'); 
+Route::post('/admin-panel/orders/accept/{id}', [AdminController::class, 'OrderAccept'])->name('order-accept')->middleware('admin');
 
-Route::post('/admin-panel/orders/{id}', [AdminController::class, 'OrderDetails'])->name('order-details')->middleware('admin'); 
+Route::post('/admin-panel/orders/{id}', [AdminController::class, 'OrderDetails'])->name('order-details')->middleware('admin');
 
 
 #endregion
@@ -95,15 +95,15 @@ Route::get('/admin-panel/tickets', [AdminController::class, 'tickets'])->name('a
 
 Route::get('', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin');
 
-Route::get('/admin-panel/tickets/info/{id}', [AdminController::class, 'TicketInfo'])->name('ticket-info')->middleware('admin'); 
+Route::get('/admin-panel/tickets/info/{id}', [AdminController::class, 'TicketInfo'])->name('ticket-info')->middleware('admin');
 
 //The additional information modal to expand fields in tickets for user or admin that claimed a ticket admin panel
-Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin'); 
+Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin');
 
 //used to claim a ticket
-Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin'); 
+Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin');
 //used to resolve a ticket
-Route::get('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('ticket-resolve')->middleware('admin'); 
+Route::get('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('ticket-resolve')->middleware('admin');
 //used to delete a ticket
 Route::post('/admin-panel/tickets/delete/{id}', [AdminController::class, 'TicketDelete'])->name('ticket-delete')->middleware('admin');
 
@@ -133,7 +133,7 @@ Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class, 'Prod
 Route::get('/admin-panel/users', [AdminController::class, 'users'])->name('admin-panel.users')->middleware('admin');
 
 //The additional information modal to expand fields in user admin panel
-Route::get('/admin-panel/users/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin'); 
+Route::get('/admin-panel/users/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin');
 //Used to edit the user
 Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class, 'UserEdit'])->name('components.user-edit')->middleware('admin');
 //create a user

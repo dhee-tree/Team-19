@@ -75,10 +75,18 @@
                             <div class="col justify-content-left">
                                 <button class="btn btn-warning" data-bs-target="#ProductsModal" data-bs-toggle="modal"
                                     data-bs-dismiss="modal">Products</button>
-                                <button class="btn btn-warning" data-bs-target="#StatusModal" data-bs-toggle="modal"
-                                    data-bs-dismiss="modal">Set Status</button>
                                 <button class="btn btn-warning" data-bs-target="#DetailsModal" data-bs-toggle="modal"
                                     data-bs-dismiss="modal">Set Note</button>
+                                @if ($order->status->id == 1)
+                                    <form action="{{ route('order-accept', ['id' => $order->id]) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        <button class="btn btn-primary" type="submit">Approve</button>
+                                    </form>
+                                @elseif ($order->status->id == 4)
+                                    <button class="btn btn-primary" disabled>Pending
+                                        Return</button>
+                                @endif
                             </div>
                             <div class="col-auto order-lg-last">
                                 <button id="btn-close" type="button" class="btn btn-secondary"
@@ -101,8 +109,10 @@
                     </h5>
                 </div>
                 <div class="modal-body">
-                </div>
 
+
+
+                </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary" data-bs-target="#infoModal" data-bs-toggle="modal"
                         data-bs-dismiss="modal">Back to details</button>
@@ -111,38 +121,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="StatusModal" aria-hidden="true" aria-labelledby="StatusModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="StatusModal">
-                        Status of Order
-                    </h5>
-                </div>
-                <div class="modal-body">
-                    <div class="row text-center">
-                        @foreach ($order_status as $status)
-                            <div class="col-md-6 mb-2">
-                                <form
-                                    action="{{ route('order-status', ['id' => $order->id, 'statusId' => $status->id]) }}"
-                                    method="POST">
-                                    @csrf
-                                    <input type="hidden" name="status_id" value="{{ $status->id }}">
-                                    <button type="submit"
-                                        class="btn btn-warning btn-block">{{ $status->status }}</button>
-                                </form>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
 
-                <div class="modal-footer">
-                    <button class="btn btn-primary" data-bs-target="#infoModal" data-bs-toggle="modal"
-                        data-bs-dismiss="modal">Back to details</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="DetailsModal" aria-hidden="true" aria-labelledby="DetailsModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -170,8 +149,8 @@
 
                             </div>
                             <div class="col justify-content-left">
-                                <button type="button" class="btn btn-primary" data-bs-target="#infoModal" data-bs-toggle="modal"
-                                    data-bs-dismiss="modal">Back to info</button>
+                                <button type="button" class="btn btn-primary" data-bs-target="#infoModal"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal">Back to info</button>
                             </div>
                         </div>
 
