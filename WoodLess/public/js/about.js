@@ -58,4 +58,7 @@ document.addEventListener('DOMContentLoaded', function standard () {
         meetTeamButton.style.color = 'grey';
         ourCommitmentsButton.style.color = 'black';
     })
-})
+    
+});
+
+

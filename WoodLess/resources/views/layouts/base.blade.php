@@ -8,6 +8,8 @@
     <meta name="author"
         content="Ighomena Odebala, Lewis Neiland, Zaakir Mohammad, Ismaeel Noor, Ndumiso Mbangeleli, Abdulhamid Mustapha, Umer Mohammed, Matteo Crozat">
     <meta name="keywords" content="team project, birmingham, aston university">
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
 
     <title>@yield('title')</title>
 
@@ -28,7 +30,6 @@
     <script src="https://kit.fontawesome.com/c5cd4f3e40.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/wavyanimation-footer.css') }}">
 
     @yield('style')
 
@@ -79,7 +80,7 @@
             </li>
 
             <div class="collapse navbar-collapse" id="navbarToggler">
-                <ul class="navbar-nav me-auto mb-1 ms-2 mb-lg-0 ms-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page"
                             href="{{ url('/') }}">Home</a>
@@ -530,7 +531,7 @@
 
         <!-- Copyright text -->
         <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2024 Copyright:
+            © 2023-{{ date('Y') }} Copyright:
             <a class="text-white" href="{{ url('/') }}">WoodLess</a>
         </div>
         <!-- Copyright text -->
@@ -543,11 +544,39 @@
             role="alert" style="display: none;">
 
             {{ session('success') }}
-            <button hidden type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" aria-label="Close"></button>
         </div>
     @endif
 
-    @include('layouts.alert')
+    @if (session('status'))
+        <div id="successAlert"
+            class="alert z-3 alert-{{ session('status') ?? 'info' }} fade show position-fixed bottom-0 end-0 mb-3 me-3 py-2"
+            role="alert">
+            @switch(session('status'))
+                @case('success')
+                    <i class="fa-solid fa-xs fa-check"></i>
+                @break
+
+                @case('warning')
+                    <i class="fa-solid fa-xs fa-warning"></i>
+                @break
+
+                @case('danger')
+                    <i class="fa-solid fa-xs fa-xmark"></i>
+                @break
+
+                @case('info')
+                    <i class="fa-solid fa-xs fa-circle-info"></i>
+                @break
+
+                @default
+                    <i class="fa-solid fa-xs fa-circle-info"></i>
+                @break
+            @endswitch
+            {{ session('message') }}
+            <!--<button type="button" class="btn-close btn-sm py-0" data-bs-dismiss="alert" aria-label="Close"></button>!-->
+        </div>
+    @endif
     <!-- bootstrap 5.3 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
