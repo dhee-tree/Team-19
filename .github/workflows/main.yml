@@ -18,7 +18,62 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "SFTP"
+  run-tests:
+    runs-on: ubuntu-latest
+    services:
+      # Define a service container for MySQL
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_testing
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install Composer dependencies
+        run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-req=ext-imagick
+        working-directory: WoodLess
+
+      - name: Create .env.testing file
+        run: cp .env.example .env.testing
+        working-directory: WoodLess
+      
+      - name: Configure MySQL settings in .env
+        run: |
+          echo DB_CONNECTION=mysql >> .env.testing
+          echo DB_HOST=127.0.0.1 >> .env.testing
+          echo DB_PORT=3306 >> .env.testing
+          echo DB_DATABASE=laravel_testing >> .env.testing
+          echo DB_USERNAME=root >> .env.testing
+          echo DB_PASSWORD=root >> .env.testing
+        working-directory: WoodLess
+      
+      - name: Generate key for testing
+        run: php artisan key:generate --env=testing
+        working-directory: WoodLess
+
+      - name: Run database migrations for testing
+        run: php artisan migrate --env=testing --force
+        working-directory: WoodLess
+
+      - name: Run Laravel Tests
+        run: php artisan test --env=testing
+        working-directory: WoodLess
+
   deploy-via-sftp:
+    if: ${{ failure() == false }}
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
