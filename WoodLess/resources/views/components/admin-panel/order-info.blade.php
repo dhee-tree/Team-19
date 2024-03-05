@@ -110,10 +110,48 @@
                 </div>
                 <div class="modal-body">
 
-                    @php
-                        $orderProducts = $order->products()->withPivot('amount', 'warehouse_id')->get();
+                    @foreach ($order->products as $product)
+                        <div class="row order-card">
+                            <div class="col-sm-6 mb-4">
+                                {{ $product->pivot->amount }}x
+                                @foreach (json_decode($product->pivot->attributes) as $key => $value)
+                                    @if ($key == 'colour')
+                                        <i style="color: {{ $value }}" class="fa-solid fa-circle"></i>
+                                        {{ $product->title }}
+                                        <a href="{{ url('/product/' . $product->id) }}"><img
+                                                src="{{ Storage::url(explode(',', $product->images)[0]) }}"
+                                                alt="product image" width="40" height="40"></a>
+                                    @else
+                                        <p>{{ $key }}: {{ $value }}</p>
+                                    @endif
+                                @endforeach
 
-                    @endphp
+
+                            </div>
+                            <div class="col-sm-3">
+                                <p>£{{ $product->cost }}</p>
+                            </div>
+                            <div class="col-sm-3">
+                                @if ($product->orderProductStatus->where('status', 'Complete')->first()->status == 'Complete')
+                                    <a href="{{ route('user.return-purchase', ['order' => $order->id, 'product' => $product->id]) }}"
+                                        class="btn btn-primary">Return Product</a>
+                                @else
+                                    <span
+                                        class="order-status order-status-processing order-small-width btn btn-warning disabled">{{ $product->orderProductStatus->first()->status }}</span>
+                                    @if ($product->orderProductStatus->where('status', 'Processing Return')->first()->status == 'Processing Return')
+                                        <a
+                                            href="{{ route('user.cancel-return-purchase', ['order' => $order->id, 'product' => $product->id]) }}">
+                                            <i class="fa-solid fa-circle-xmark btn" style="color: #ff0000;"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                title="Cancel return"></i>
+                                        </a>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+
+
 
 
                 </div>

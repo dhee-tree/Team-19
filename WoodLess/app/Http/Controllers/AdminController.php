@@ -478,11 +478,13 @@ class AdminController extends Controller
             $order->products()->updateExistingPivot($product->id, ['status_id' => $status->id]);
 
             // Set the status_id of the product to $status->id
+            dd($product->orderProductStatus->first());
 
             $product->save();
             // Now $amount contains the amount for the current product
             $stock++;
         }
+
 
         $order->status_id = $status->id;
 
