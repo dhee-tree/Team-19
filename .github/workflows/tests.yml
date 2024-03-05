@@ -1,11 +1,13 @@
-# Define the name of the workflow
-# name: CI-Tests
-
-# Define when the workflow should run
+# Controls when the action will run. 
 on:
+  # Triggers the workflow on push request events but only for the main branch
   push:
     branches: [development]
+
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+  # Additional trigger for increased verbosity
   workflow_run:
     workflows: ["CI-Tests"]
     types:
@@ -27,8 +29,8 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
         
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 2
 
