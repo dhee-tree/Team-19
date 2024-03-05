@@ -5,9 +5,26 @@
 <link rel="stylesheet" href="{{ asset('css/about.css') }}">
 @endsection
 @section('content')
+<style>
+    #back-button {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  z-index: 1000; /* Ensure it's above other content */
+  padding: 10px 20px;
+  background-color: #007bff; /* Change color as needed */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}       
+    </style>
+  
 <div id="meettheteamtext">
-            
-<div id="meettheteamtext">
+<a id="back-button" href="/about">Back</a>      
 <section class="page-section portfolio" id="portfolio">
 <div class="container">
 <h1 class="page-section-heading text-center text-uppercase">Meet the Team</h1>
