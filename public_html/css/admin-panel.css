@@ -55,6 +55,10 @@ body {
     overflow-x: hidden;
 }
 
+#userhelp {
+    display: none;
+}
+
 .sidebar {
     position: absolute;
     left: 0;
