@@ -168,9 +168,9 @@ class OrderController extends Controller
         $actionValue = request('action');
 
         if ($actionValue == 'accept') {
-            $status = OrderStatus::findOrFail(4);
+            $status = OrderStatus::findOrFail(5);
         } elseif ($actionValue == 'cancel') {
-            $status = OrderStatus::findOrFail(3);
+            $status = OrderStatus::findOrFail(6);
         }
 
         // Iterate over each product to set the status

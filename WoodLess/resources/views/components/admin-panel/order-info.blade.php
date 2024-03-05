@@ -132,7 +132,7 @@
                                 <p>£{{ $product->cost }}</p>
                             </div>
                             <div class="col-sm-3">
-                                @if ($product->orderProductStatus->first()->status == 'Processing Return')
+                                @if ($product->orderProductStatus->first()->status == 'Requested Return')
                                     <div class="row">
                                         <div class="mb-3 d-flex flex-column justify-content-between">
                                             <form
