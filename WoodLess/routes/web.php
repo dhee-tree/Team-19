@@ -221,3 +221,6 @@ Route::post('/reset-password', function (Request $request) {
 Route::get('/meet-the-team', function () {
     return view('meettheteam');
 });
+Route::get('/faq', function () {
+    return view('faq');
+});

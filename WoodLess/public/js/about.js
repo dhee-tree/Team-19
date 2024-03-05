@@ -58,13 +58,7 @@ document.addEventListener('DOMContentLoaded', function standard () {
         meetTeamButton.style.color = 'grey';
         ourCommitmentsButton.style.color = 'black';
     })
-    const faqItems = Array.from(document.querySelectorAll('.cs-faq-item'));
-        for (const item of faqItems) {
-            const onClick = () => {
-            item.classList.toggle('active')
-        }
-        item.addEventListener('click', onClick)
-        }
+    
 });
 
 
