@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Product;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {   
@@ -14,8 +15,17 @@ class ReviewController extends Controller
     /**
      * Store a single review.
      */
-    public function store(Request $request, Product $product){
+    public function store(Request $request, int $product_id){
         try {
+            $product = Product::findCached($product_id);
+
+            if (is_null($product)){
+                return back()->with([
+                    'status' => 'danger',
+                    'message' => 'Product no longer exists.'
+                ]);
+            }
+            
             $product->loadMissing('reviews');
             $reviews = $product->reviews();
             $user = auth()->user();
@@ -26,12 +36,24 @@ class ReviewController extends Controller
                     'message' => 'Review already exists.'
                 ]);
             };
-    
-            $request->validate([
-                'user_id' => 'unique',
+
+            $validator = Validator::make($request->all(), [
                 'rating' => 'required|min:1',
                 'description' => 'required|min:25'
+            ],
+
+            [
+                'rating.required' => 'Please provide a rating.',
+                'description.min' => 'Your description must be longer than 25 characters.',
+                'description.required' => 'Your review is missing a description.'
             ]);
+            
+            if($validator->fails()) {
+                return back()->with([
+                    'status' => 'warning',
+                    'message' => $validator->errors()->first()
+                ]);
+            }
     
             $reviews->create([
                 'user_id' => $user->id,
@@ -51,6 +73,13 @@ class ReviewController extends Controller
                 'error' => $e
             ]);
         }
+    }
+
+    public function update(){
+        return back()->with([
+            'status' => 'warning',
+            'message' => 'This feature is in development.'
+        ]);
     }
 
     /**
