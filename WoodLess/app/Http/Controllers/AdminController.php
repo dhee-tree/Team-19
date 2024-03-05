@@ -38,20 +38,20 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('components.user-info', compact('user'));
+        return view('components.admin-panel.user-info', compact('user'));
     }
 
     public function UserEdit($id)
     {
         $user = User::findOrFail($id);
 
-        return view('components.user-edit', compact('user'));
+        return view('components.admin-panel.user-edit', compact('user'));
     }
 
     public function UserAdd()
     {
 
-        return view('components.user-add');
+        return view('components.admin-panel.user-add');
     }
 
     public function UserDelete($id)
@@ -138,7 +138,7 @@ class AdminController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        return view('components.products-info', compact('product'));
+        return view('components.admin-panel.products-info', compact('product'));
     }
 
     public function ProductEdit($id)
@@ -150,7 +150,7 @@ class AdminController extends Controller
 
         // Retrieve all categories
         $warehouses = Warehouse::all();
-        return view('components.products-edit', [
+        return view('components.admin-panel.products-edit', [
             'product' => $product,
             'warehouses' => $warehouses,
             'categories' => $categories,
@@ -163,7 +163,7 @@ class AdminController extends Controller
         $categories = Category::all();
         // Retrieve all categories
         $warehouses = Warehouse::all();
-        return view('components.products-add', [
+        return view('components.admin-panel.products-add', [
             'warehouses' => $warehouses,
             'categories' => $categories,
         ]);
