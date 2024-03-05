@@ -30,7 +30,6 @@
     <script src="https://kit.fontawesome.com/c5cd4f3e40.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/wavyanimation-footer.css') }}">
 
     @yield('style')
 
@@ -528,7 +527,7 @@
 
         <!-- Copyright text -->
         <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2023-{{date('Y')}} Copyright:
+            © 2023-{{ date('Y') }} Copyright:
             <a class="text-white" href="{{ url('/') }}">WoodLess</a>
         </div>
         <!-- Copyright text -->
