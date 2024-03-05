@@ -30,10 +30,12 @@ jobs:
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
+          path: WoodLess
           fetch-depth: 2
 
       - name: Set up PHP
@@ -43,9 +45,11 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-req=ext-imagick
+        working-directory: WoodLess
 
       - name: Create .env.testing file
         run: cp .env.example .env.testing
+        working-directory: WoodLess
       
       - name: Configure MySQL settings in .env
         run: |
@@ -55,27 +59,32 @@ jobs:
           echo DB_DATABASE=laravel_testing >> .env.testing
           echo DB_USERNAME=root >> .env.testing
           echo DB_PASSWORD=root >> .env.testing
+        working-directory: WoodLess
       
       - name: Generate key for testing
         run: php artisan key:generate --env=testing
+        working-directory: WoodLess
 
       - name: Run database migrations for testing
         run: php artisan migrate --env=testing --force
+        working-directory: WoodLess
 
       - name: Run Laravel Tests
         run: php artisan test --env=testing
-
-      - name: Check Test Results
-        if: ${{ failure() }}
-        run: exit 1
+        working-directory: WoodLess
 
   deploy-via-sftp:
+    if: ${{ failure() == false }}
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
+
+      - name: Check Test Results
+        if: ${{ failure() }}
+        run: exit 1
 
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
