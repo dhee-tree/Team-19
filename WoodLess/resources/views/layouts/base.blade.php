@@ -46,7 +46,7 @@
 
                 <a type="button" data-bs-toggle="offcanvas" data-bs-target="#basket-offcanvas"
                     aria-controls="basket-offcanvas" role="button" class="nav-link position-relative">
-                    <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1" type="submit"
+                    <button id="navbar-icons" class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1" type="submit"
                         data-mdb-ripple-init>
                         <!-- Basket Icon -->
                         <i class="fa-solid fa-shopping-basket"></i>
@@ -104,7 +104,7 @@
 
                 <form method="GET" action="{{ route('products.filter') }}" class="d-flex justify-content-lg-end justify-content-sm-center" role="search">
                     <input type="search" name="search" placeholder="Search Products..." class="rounded-pill form-control search-input" />
-                    <button class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
+                    <button id="navbar-icons" class="ms-2 btn btn-outline-light rounded-pill" type="submit" data-mdb-ripple-init>
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>

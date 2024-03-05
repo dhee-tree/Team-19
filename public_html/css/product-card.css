@@ -126,6 +126,7 @@
     justify-content: space-between;
     /* Align children to start and end */
     padding: 5px;
+    padding-left: 5%;
 
 }
 

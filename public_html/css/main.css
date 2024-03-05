@@ -110,6 +110,19 @@ body {
     text-underline-offset: 0.3rem;
 }
 
+#navbar .btn {
+    background-color: #00709c73; /* Set initial background color to white */
+    color: #fff; /* Set icon color to black */
+    border-color: #000000;
+}
+
+#navbar .btn:hover {
+    background-color: #00709cc0; /* Change background color to light grey on hover */
+    border-color: #ffffffbe;
+    color: #fff;
+}
+
+
 @media (min-width: 980px) {
     #iconsnavbar {
         order: 2;
