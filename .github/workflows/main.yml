@@ -18,7 +18,58 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "SFTP"
-  deploy-via-sftp:
+  run-tests:
+    runs-on: ubuntu-latest
+    services:
+      # Define a service container for MySQL
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_testing
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
+
+      - name: Create .env.testing file
+        run: cp .env.example .env
+      
+      - name: Configure MySQL settings in .env
+        run: |
+          echo DB_CONNECTION=mysql >> .env.testing
+          echo DB_HOST=mysql >> .env.testing
+          echo DB_PORT=3306 >> .env.testing
+          echo DB_DATABASE=laravel_testing >> .env.testing
+          echo DB_USERNAME=root >> .env.testing
+          echo DB_PASSWORD=root >> .env.testing
+      
+      - name: Generate key for testing
+        run: php artisan key:generate --env=testing
+
+      - name: Run database migrations for testing
+        run: php artisan migrate --env=testing --force
+
+      - name: Run Laravel Tests
+        run: php artisan test --env=testing
+
+      - name: Check Test Results
+        if: ${{ failure() }}
+        run: exit 1
+
+
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
