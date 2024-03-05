@@ -42,10 +42,10 @@ jobs:
           php-version: '8.2'
 
       - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest --no-interaction
+        run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-req=ext-imagick
 
       - name: Create .env.testing file
-        run: cp .env.example .env
+        run: cp .env.example .env.testing
       
       - name: Configure MySQL settings in .env
         run: |
