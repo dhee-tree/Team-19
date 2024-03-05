@@ -30,6 +30,10 @@
     background: linear-gradient(-90deg, var(--nav-background-color) 75%, rgba(0, 212, 255, 0) 100%), url('/images/styling/oceanbackground.jpg');
 }
 
+.modal .header{
+    background: linear-gradient(90deg, var(--nav-background-color) 75%, rgba(0, 212, 255, 0) 100%), url('/images/styling/oceanbackground.jpg');
+}
+
 .badge-notification{
     background-color: #655d52;
 }
