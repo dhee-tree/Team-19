@@ -26,11 +26,10 @@ class ReviewController extends Controller
                 ]);
             }
             
-            $product->loadMissing('reviews');
-            $reviews = $product->reviews();
+            $reviews = $product->getCachedRelation('reviews');
             $user = auth()->user();
 
-            if($reviews->where('user_id', $user->id)->exists()){
+            if($reviews->contains('user_id', $user->id)){
                 return back()->with([
                     'status' => 'danger',
                     'message' => 'Review already exists.'
@@ -44,8 +43,8 @@ class ReviewController extends Controller
 
             [
                 'rating.required' => 'Please provide a rating.',
-                'description.min' => 'Your description must be longer than 25 characters.',
-                'description.required' => 'Your review is missing a description.'
+                'description.min' => 'Description must be longer than 25 characters.',
+                'description.required' => 'Please provide a description.'
             ]);
             
             if($validator->fails()) {
@@ -54,8 +53,9 @@ class ReviewController extends Controller
                     'message' => $validator->errors()->first()
                 ]);
             }
-    
-            $reviews->create([
+            
+            $product->loadMissing('reviews');
+            $product->reviews()->create([
                 'user_id' => $user->id,
                 'rating' => $request->input('rating'),
                 'description' => $request->input('description')    
@@ -75,11 +75,52 @@ class ReviewController extends Controller
         }
     }
 
-    public function update(){
-        return back()->with([
-            'status' => 'warning',
-            'message' => 'This feature is in development.'
-        ]);
+    /**
+     * Update an existing review's description.
+     */
+    public function update(Request $request, Review $review){
+        
+        try {
+            if($review->description == $request->input('description')){
+                return back()->with([
+                    'status' => 'warning',
+                    'message' => 'No changes were made.'
+                ]);
+            }
+
+            $validator = Validator::make($request->all(), [
+                'description' => 'required|min:25'
+            ],
+        
+            [
+                'description.min' => 'Description must be longer than 25 characters.',
+                'description.required' => 'Please provide a description.'
+            ]);
+    
+            if($validator->fails()) {
+                return back()->with([
+                    'status' => 'warning',
+                    'message' => $validator->errors()->first()
+                ]);
+            }
+    
+            $review->update([
+                'description' => $request->input('description')
+            ]);
+    
+            return back()->with([
+                'status' => 'success',
+                'message' => 'Review updated.'
+            ]);
+        } 
+        
+        catch (QueryException $e) {
+            return back()->with([
+                'status' => 'danger',
+                'message' => 'Failed to update review.',
+                'error' => $e
+            ]);
+        }
     }
 
     /**
@@ -92,14 +133,14 @@ class ReviewController extends Controller
                 'status' => 'success',
                 'message' => 'Review deleted.'
             ]);
-            
-        } catch (QueryException $e) {
+        } 
+        
+        catch (QueryException $e) {
             return back()->with([
                 'status' => 'danger',
                 'message' => 'Failed to delete review.',
                 'error' => $e
             ]);
         }
-
     }
 }
