@@ -1,4 +1,4 @@
-<script defer src="{{asset('js/reviews/modal.js')}}"></script>
+<script src="{{asset('js/reviews/modal.js')}}"></script>
 
 <div class="row row-cols-1 px-3" id="reviews">
     <div class="review-card" class="col">
@@ -315,6 +315,7 @@
             </div>
             <div class="modal-body mb-0">
                 <textarea 
+                    @if($user)@if(!$user->isAdmin()) disabled @endif @else disabled @endif
                     style="height: 200px"
                     class="form-control" 
                     name="description" 
