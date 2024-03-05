@@ -51,33 +51,49 @@
                         </div>
                         <div class="card-footer">
                             <div class="d-flex flex-row justify-content-between">
-                                <div class="">
+                                <div class="flex-grow-1">
                                     <p class="card-text"><small class="text-body-secondary">
                                         @if($review->created_at->diffInDays() <= 1)
                                             {{$review->created_at->diffInHours()}} Hours Ago
                                         @else
-                                            {{$review->created_at->diffInDays()}} Days Ago 
+                                        {{$review->created_at->diffInDays()}} Days Ago 
                                         @endif
                                         @if($review->created_at != $review->updated_at)
                                         , Edited 
                                         @endif
-                                        </small></p>
+                                    </small></p>
                                 </div>
-                                @if($user)
-                                <form  id="deleteReviewForm{{$review->id}}" method="POST" action="/review/{{$review->id}}">
-                                    @csrf
-                                    @method('DELETE')
+                                
+                                <div class="">
                                     <button 
-                                        type="button" 
-                                        data-bs-toggle="modal" 
-                                        data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
-                                        data-bs-target="#confirmationModal" 
-                                        data-review-id="{{$review->id}}" 
-                                        class="review-delete-btn btn p-0"
+                                    type="button" 
+                                    data-bs-toggle="modal" 
+                                    data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
+                                    data-bs-target="#reviewModal" 
+                                    data-review-id="{{$review->id}}" 
+                                    class="btn-view btn p-0"
                                     >
-                                        <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
+                                        <small><i class="fa-solid fa-eye"></i> View</small>
                                     </button>
-                                </form>
+                                </div>
+                                
+                                @if($user)
+                                <div class="ms-2">
+                                    <form id="updateForm{{$review->id}}" method="POST" action="/review/{{$review->id}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button 
+                                            type="button" 
+                                            data-bs-toggle="modal" 
+                                            data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
+                                            data-bs-target="#confirmationModal" 
+                                            data-review-id="{{$review->id}}" 
+                                            class="btn-submit btn p-0"
+                                        >
+                                            <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
+                                        </button>
+                                    </form>
+                                </div>
                                 @endif
                             </div>
                         </div>
@@ -194,7 +210,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="d-flex flex-row justify-content-between">
-                            <div class="">
+                            <div class="flex-grow-1">
                                 <p class="card-text"><small class="text-body-secondary">
                                     @if($review->created_at->diffInDays() <= 1)
                                         {{$review->created_at->diffInHours()}} Hours Ago
@@ -206,25 +222,39 @@
                                     @endif
                                 </small></p>
                             </div>
-                            @if($user)
-                            @if ($reviewUser == $user || $user->isAdmin())
+                            
                             <div class="">
-                                <form id="deleteReviewForm{{$review->id}}" method="POST" action="/review/{{$review->id}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button 
-                                        type="button" 
-                                        data-bs-toggle="modal" 
-                                        data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
-                                        data-bs-target="#confirmationModal" 
-                                        data-review-id="{{$review->id}}" 
-                                        class="review-delete-btn btn p-0"
-                                    >
-                                        <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
-                                    </button>
-                                </form>
+                                <button 
+                                type="button" 
+                                data-bs-toggle="modal" 
+                                data-modal-message="{{$review->description}}" 
+                                data-bs-target="#reviewModal" 
+                                data-review-id="{{$review->id}}" 
+                                class="btn-view btn p-0"
+                                >
+                                    <small><i class="fa-solid fa-eye"></i> View</small>
+                                </button>
                             </div>
-                            @endif
+
+                            @if($user)
+                                @if ($reviewUser == $user || $user->isAdmin())
+                                <div class="ms-2">
+                                    <form id="updateForm{{$review->id}}" method="POST" action="/review/{{$review->id}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button 
+                                            type="button" 
+                                            data-bs-toggle="modal" 
+                                            data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
+                                            data-bs-target="#confirmationModal" 
+                                            data-review-id="{{$review->id}}" 
+                                            class="btn-submit btn p-0"
+                                        >
+                                            <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
+                                        </button>
+                                    </form>
+                                </div>
+                                @endif
                             @endif
                         </div>
                     </div>
@@ -247,26 +277,49 @@
                 <a class="page-link" href="{{$reviews->nextPageUrl()}}">Next</a>
               </li>
             </ul>
-          </nav>
+        </nav>
     </div>
     @endif
 </div>
 
 <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header bg-dark text-light py-3">
+        <div class="modal-content shadow-lg">
+            <div class="header modal-header bg-dark text-light py-3">
                 <h5 class="fw-bold modal-title" id="confirmationModalLabel">Confirmation</h5>
             </div>
-            <div class="modal-body">
+            <div class="modal-body mb-0">
                 <p id="confirmationMessage"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn p-0" data-bs-dismiss="modal">
                     <span><i class="fa-solid fa-xmark"></i></span> Cancel
                 </button>
-                <button type="submit" id="confirmDeleteButton" class="btn p-0">
+                <div class="vr"></div>
+                <button type="submit" id="confirmationModalButton" class="btn p-0">
                     <span><i class="fa-solid fa-small fa-check"></i> Confirm</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg">
+            <div class="header modal-header bg-dark text-light py-3">
+                <h5 class="fw-bold modal-title" id="reviewModalLabel">Full Review</h5>
+            </div>
+            <div class="modal-body mb-0">
+                <p id="reviewDescription"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn p-0" data-bs-dismiss="modal">
+                    <span><i class="fa-solid fa-xmark"></i></span> Exit
+                </button>
+                <div class="vr"></div>
+                <button type="submit" id="reviewModalButton" class="btn p-0">
+                    <span><i class="fa-solid fa-small fa-check"></i> Update</span>
                 </button>
             </div>
         </div>
@@ -275,14 +328,23 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const reviewDeleteButtons = document.querySelectorAll('.review-delete-btn');
+        const formSubmitButtons = document.querySelectorAll('.btn-submit');
+        const reviewButtons = document.querySelectorAll('.btn-view');
 
-        reviewDeleteButtons.forEach(button => {
+        formSubmitButtons.forEach(button => {
             button.addEventListener('click', function () {
                 const reviewId = this.getAttribute('data-review-id');
                 const modalMessage = document.getElementById('confirmationMessage');
                 modalMessage.textContent = this.getAttribute('data-modal-message');
-                document.getElementById('confirmDeleteButton').setAttribute('form', `deleteReviewForm${reviewId}`);
+                document.getElementById('confirmationModalButton').setAttribute('form', `updateForm${reviewId}`);
+            });
+        });
+
+        reviewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const reviewId = this.getAttribute('data-review-id');
+                const modalMessage = document.getElementById('reviewDescription');
+                modalMessage.textContent = this.getAttribute('data-modal-message');
             });
         });
     });
