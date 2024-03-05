@@ -69,7 +69,7 @@ jobs:
         if: ${{ failure() }}
         run: exit 1
 
-
+  deploy-via-sftp:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
