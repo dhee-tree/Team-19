@@ -126,7 +126,7 @@ class OrderController extends Controller
         }
     }
 
-    public function AcceptReturn($id, $productIds)
+    public function OrderAccept($id)
     {
         $order = Order::findOrFail($id);
         $status = OrderStatus::findOrFail(2);
@@ -160,6 +160,35 @@ class OrderController extends Controller
         $order->save();
 
         return redirect()->back()->with('success', 'Successfully changed order ' . $id . ' status to in transit and changed stock level by: ' . $stock);
+    }
+
+    public function ProcessReturn($id, $productIds)
+    {
+        $order = Order::findOrFail($id);
+        $actionValue = request('action');
+
+        if ($actionValue == 'accept') {
+            $status = OrderStatus::findOrFail(4);
+        } elseif ($actionValue == 'cancel') {
+            $status = OrderStatus::findOrFail(3);
+        }
+
+        // Iterate over each product to set the status
+        if (is_array($productIds)) {
+            foreach ($productIds as $pID) {
+                $order->products()->updateExistingPivot($pID, ['status_id' => $status->id]);
+            }
+        } else {
+            // Handle the case where $productIds is not an array
+            $order->products()->updateExistingPivot($productIds, ['status_id' => $status->id]);
+        }
+
+
+        $order->status_id = $status->id;
+
+        $order->save();
+
+        return redirect()->back()->with('success', 'Successfully changed order ' . $id . ' status to ' . $status->status);
     }
 
     public function CancelReturn($id, $productIds)

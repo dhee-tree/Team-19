@@ -135,10 +135,16 @@
                                 @if ($product->orderProductStatus->first()->status == 'Processing Return')
                                     <div class="row">
                                         <div class="mb-3 d-flex flex-column justify-content-between">
-                                            <a href="{{ route('admin.order.accept-return', ['id' => $order->id, 'productids' => $product->id]) }}"
-                                                class="btn btn-primary mb-2">Accept Return</a>
-                                            <a href="{{ route('admin.order.cancel-return', ['id' => $order->id, 'productids' => $product->id]) }}"
-                                                class="btn btn-danger">Cancel Return</a>
+                                            <form
+                                                action="{{ route('admin.order.process-return', ['id' => $order->id, 'productids' => $product->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                <button type="submit" name="action" value="accept"
+                                                    class="btn btn-primary mb-2">Accept Return</button>
+                                                <button type="submit" name="action" value="cancel"
+                                                    class="btn btn-danger">Cancel Return</button>
+                                            </form>
+
                                         </div>
                                     </div>
                                 @else

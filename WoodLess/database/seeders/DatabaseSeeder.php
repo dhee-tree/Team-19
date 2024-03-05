@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
             ['status' => 'Complete'],
             ['status' => 'Requested Return'],
             ['status' => 'Processing Return'],
+            ['status' => 'Return Denied'],
             ['status' => 'Return Complete'],
             ['status' => 'Refunded'],
             //etc...
