@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-md-6">
                             <p>
-                                @if ($order->status->id == 3)
+                                @if ($order->status->id == 2)
                                     <strong>Delivery in: </strong><br>
                                     {{ $order->created_at->addDays(14)->format('Y-m-d') }}
                                     ({{ now()->diffInDays($order->created_at->addDays(14)) }} days)
@@ -110,6 +110,10 @@
                 </div>
                 <div class="modal-body">
 
+                    @php
+                        $orderProducts = $order->products()->withPivot('amount', 'warehouse_id')->get();
+
+                    @endphp
 
 
                 </div>
