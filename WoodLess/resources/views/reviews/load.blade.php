@@ -84,11 +84,11 @@
                                         @method('DELETE')
                                         <button 
                                             type="button" 
-                                            data-bs-toggle="modal" 
-                                            data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
-                                            data-bs-target="#confirmationModal" 
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#reviewModal" 
+                                            data-modal-message="{{$review->description}}" 
                                             data-review-id="{{$review->id}}" 
-                                            class="btn-submit btn p-0"
+                                            class="btn-view btn p-0"
                                         >
                                             <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
                                         </button>
@@ -126,10 +126,7 @@
                             
                             <hr>
         
-                            <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            @error('description')
-                            <p class="mt-2 mb-0">Please enter a description. Min 25 characters.</p>
-                            @enderror
+                            <textarea class="form-control" name="description" rows="3"></textarea>
                         </div>
                         <div class="card-footer">
                             <div class="d-flex flex-row justify-content-end">
@@ -226,9 +223,9 @@
                             <div class="">
                                 <button 
                                 type="button" 
-                                data-bs-toggle="modal" 
-                                data-modal-message="{{$review->description}}" 
+                                data-bs-toggle="modal"
                                 data-bs-target="#reviewModal" 
+                                data-modal-message="{{$review->description}}" 
                                 data-review-id="{{$review->id}}" 
                                 class="btn-view btn p-0"
                                 >
@@ -245,8 +242,8 @@
                                         <button 
                                             type="button" 
                                             data-bs-toggle="modal" 
-                                            data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
                                             data-bs-target="#confirmationModal" 
+                                            data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
                                             data-review-id="{{$review->id}}" 
                                             class="btn-submit btn p-0"
                                         >
@@ -306,7 +303,9 @@
 
 <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content shadow-lg">
+        <form id="reviewModalUpdateForm" method="POST" class="modal-content shadow-lg" action="">
+            @csrf
+            @method('PUT')
             <div class="header modal-header bg-dark text-light py-3">
                 <h5 class="fw-bold modal-title" id="reviewModalLabel">Full Review</h5>
             </div>
@@ -322,7 +321,7 @@
                     <span><i class="fa-solid fa-small fa-check"></i> Update</span>
                 </button>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -344,6 +343,7 @@
             button.addEventListener('click', function () {
                 const reviewId = this.getAttribute('data-review-id');
                 const modalMessage = document.getElementById('reviewDescription');
+                document.getElementById('reviewModalUpdateForm').setAttribute('action', `/review/${reviewId}`);
                 modalMessage.textContent = this.getAttribute('data-modal-message');
             });
         });

@@ -54,9 +54,11 @@ Route::get('/checkout', [CheckoutController::class,'show'])->middleware('auth');
 Route::post('/checkout/success', [OrderController::class,'store'])->name('checkout.store')->middleware('auth');
 
 //Store single review
-Route::post('/review/{product}', [ReviewController::class, 'store'])->middleware('auth');
+Route::post('/review/{product_id}', [ReviewController::class, 'store'])->middleware('auth');
 //Delete single review
 Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
+//Update single review
+Route::put('/review/{review}', [ReviewController::class, 'update'])->middleware('auth');
 // search
 Route::get('/products/search', [ProductController::class, 'search']);
 //showcases products
