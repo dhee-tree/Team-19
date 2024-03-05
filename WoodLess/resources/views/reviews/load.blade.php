@@ -56,10 +56,10 @@
                                         @if($review->created_at->diffInDays() <= 1)
                                             {{$review->created_at->diffInHours()}} Hours Ago
                                         @else
-                                        {{$review->created_at->diffInDays()}} Days Ago 
+                                        {{$review->created_at->diffInDays()}} Days Ago
                                         @endif
                                         @if($review->created_at != $review->updated_at)
-                                        , Edited 
+                                        <span>(Edited)</span>
                                         @endif
                                     </small></p>
                                 </div>
@@ -68,7 +68,7 @@
                                     <button 
                                     type="button" 
                                     data-bs-toggle="modal" 
-                                    data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
+                                    data-modal-message="{{$review->description}}" 
                                     data-bs-target="#reviewModal" 
                                     data-review-id="{{$review->id}}" 
                                     class="btn-view btn p-0"
@@ -84,11 +84,11 @@
                                         @method('DELETE')
                                         <button 
                                             type="button" 
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#reviewModal" 
-                                            data-modal-message="{{$review->description}}" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#confirmationModal" 
+                                            data-modal-message="Are you sure you want to delete this review? This cannot be undone." 
                                             data-review-id="{{$review->id}}" 
-                                            class="btn-view btn p-0"
+                                            class="btn-submit btn p-0"
                                         >
                                             <small><i class="fa-solid fa-small fa-trash"></i> Delete</small>
                                         </button>
@@ -215,19 +215,19 @@
                                     {{$review->created_at->diffInDays()}} Days Ago 
                                     @endif
                                     @if($review->created_at != $review->updated_at)
-                                    , Edited 
+                                    <span>(Edited)</span>
                                     @endif
                                 </small></p>
                             </div>
                             
                             <div class="">
                                 <button 
-                                type="button" 
-                                data-bs-toggle="modal"
-                                data-bs-target="#reviewModal" 
-                                data-modal-message="{{$review->description}}" 
-                                data-review-id="{{$review->id}}" 
-                                class="btn-view btn p-0"
+                                    type="button" 
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#reviewModal" 
+                                    data-modal-message="{{$review->description}}" 
+                                    data-review-id="{{$review->id}}" 
+                                    class="btn-view btn p-0"
                                 >
                                     <small><i class="fa-solid fa-eye"></i> View</small>
                                 </button>
@@ -307,19 +307,25 @@
             @csrf
             @method('PUT')
             <div class="header modal-header bg-dark text-light py-3">
-                <h5 class="fw-bold modal-title" id="reviewModalLabel">Full Review</h5>
+                <h5 class="fw-bold modal-title" id="reviewModalLabel">Review</h5>
             </div>
             <div class="modal-body mb-0">
-                <p id="reviewDescription"></p>
+                <textarea 
+                    style="height: 200px"
+                    class="form-control" 
+                    name="description" 
+                    id="reviewModalDescription">
+                </textarea>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn p-0" data-bs-dismiss="modal">
                     <span><i class="fa-solid fa-xmark"></i></span> Exit
                 </button>
                 <div class="vr"></div>
-                <button type="submit" id="reviewModalButton" class="btn p-0">
-                    <span><i class="fa-solid fa-small fa-check"></i> Update</span>
+                <button type="submit" id="modalSubmitButton" class="btn p-0">
+                    <span><i class="fa-solid fa-small fa-check"></i> Save Changes</span>
                 </button>
+                
             </div>
         </form>
     </div>
@@ -342,9 +348,9 @@
         reviewButtons.forEach(button => {
             button.addEventListener('click', function () {
                 const reviewId = this.getAttribute('data-review-id');
-                const modalMessage = document.getElementById('reviewDescription');
+                const modalMessage = document.getElementById('reviewModalDescription');
                 document.getElementById('reviewModalUpdateForm').setAttribute('action', `/review/${reviewId}`);
-                modalMessage.textContent = this.getAttribute('data-modal-message');
+                modalMessage.value = this.getAttribute('data-modal-message');
             });
         });
     });
