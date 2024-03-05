@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
             ['status' => 'Processing'],
             ['status' => 'Transit'],
             ['status' => 'Complete'],
+            ['status' => 'Requested Return'],
             ['status' => 'Processing Return'],
             ['status' => 'Return Complete'],
             ['status' => 'Refunded'],

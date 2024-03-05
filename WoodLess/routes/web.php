@@ -81,9 +81,13 @@ Route::get('/admin-panel/orders', [AdminController::class, 'orders'])->name('adm
 
 Route::get('/admin-panel/orders/info/{id}', [AdminController::class, 'OrderInfo'])->name('order-info')->middleware('admin');
 
-Route::post('/admin-panel/orders/accept/{id}', [AdminController::class, 'OrderAccept'])->name('order-accept')->middleware('admin');
+Route::post('/admin-panel/orders/accept/{id}', [OrderController::class, 'OrderAccept'])->name('order-accept')->middleware('admin');
 
-Route::post('/admin-panel/orders/{id}', [AdminController::class, 'OrderDetails'])->name('order-details')->middleware('admin');
+Route::post('/admin-panel/return/accept/{id}/{productids}', [OrderController::class, 'AcceptReturn'])->name('admin.order.accept-return')->middleware('admin');
+Route::post('/admin-panel/return/cancel/{id}/{productids}', [OrderController::class, 'CancelReturn'])->name('admin.order.cancel-return')->middleware('admin');
+
+
+Route::post('/admin-panel/orders/details/{id}', [AdminController::class, 'OrderDetails'])->name('order-details')->middleware('admin');
 
 
 #endregion

@@ -456,44 +456,6 @@ class AdminController extends Controller
         return view('components.admin-panel.order-info', compact('order', 'order_status'));
     }
 
-    public function OrderAccept($id)
-    {
-        $order = Order::findOrFail($id);
-        $status = OrderStatus::findOrFail(2);
-
-        // Assuming $order is an instance of your Order model
-        $orderProducts = $order->products()->withPivot('amount', 'warehouse_id')->get();
-
-
-        $stock = 0;
-        // Iterate over each product to get the amount and set stock amount
-        foreach ($orderProducts as $product) {
-            $amount = $product->pivot->amount;
-            $warehouseId = $product->pivot->warehouse_id;
-
-            $newAmount = $product->stockAmount($warehouseId) - $amount;
-
-            $product->setStockAmount($warehouseId, $newAmount);
-
-            $order->products()->updateExistingPivot($product->id, ['status_id' => $status->id]);
-
-            // Set the status_id of the product to $status->id
-            dd($product->orderProductStatus->first());
-
-            $product->save();
-            // Now $amount contains the amount for the current product
-            $stock++;
-        }
-
-
-        $order->status_id = $status->id;
-
-        $order->save();
-
-        return redirect()->route('admin-panel-orders')->with('success', 'Successfully changed order ' . $id . ' status to in transit and changed stock level by: ' . $stock);
-    }
-
-
     public function OrderDetails(Request $request, $id)
     {
         $order = Order::findOrFail($id);

@@ -14,14 +14,15 @@ use Illuminate\Support\Facades\Mail;
 class OrderController extends Controller
 {
     // Store an order in the database.
-    function store(Request $request){
+    function store(Request $request)
+    {
         $user = auth()->user();
         $basket = $user->basket;
         $basket->loadMissing('products');
 
         // We need to create an address for the user if they fill in the form.
         // Possibly a callable function to create an address if certian parameters are passed from the view/form.
-        
+
         // $address = Address::create([
         //     'user_id' => $user->id,
         //     'address' => $request->input('address'),
@@ -37,9 +38,9 @@ class OrderController extends Controller
             'details' => 'Order placed by user',
             // 'status_id' => 1,
         ]);
-        
-        
-        foreach($basket->products as $product){
+
+
+        foreach ($basket->products as $product) {
             $order->products()->attach($product->id, [
                 'amount' => $product->pivot->amount,
                 'attributes' => $product->pivot->attributes,
@@ -58,7 +59,8 @@ class OrderController extends Controller
     }
 
     // Show order of a user
-    function show(){
+    function show()
+    {
         $user = auth()->user();
         $orders = Order::where('user_id', $user->id)->get();
         return view('purchases-user', [
@@ -68,7 +70,8 @@ class OrderController extends Controller
     }
 
     // Show order products
-    function showOrderProducts($id){
+    function showOrderProducts($id)
+    {
         $user = auth()->user();
         $order = Order::find($id);
         $address = Address::find($order->address_id);
@@ -82,15 +85,16 @@ class OrderController extends Controller
     }
 
     // Return an order
-    function returnOrderItem($id, $product_id){
+    function returnOrderItem($id, $product_id)
+    {
         $order_status = Order::find($id)->status->status;
 
-        if($order_status != 'Complete'){
+        if ($order_status != 'Complete') {
             return back()->with([
                 'status' => 'error',
                 'message' => 'Cannot return item, order still processing.'
             ]);
-        } else {            
+        } else {
             $order = Order::find($id);
             $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Processing Return')->first()->id]);
             $order->save();
@@ -103,9 +107,10 @@ class OrderController extends Controller
     }
 
     // Cancel a return request
-    function cancelReturnOrderItem($id, $product_id){
+    function cancelReturnOrderItem($id, $product_id)
+    {
         $order = Order::find($id);
-        if ($order->products->find($product_id)->orderProductStatus->first()->status == 'Processing Return')  {
+        if ($order->products->find($product_id)->orderProductStatus->first()->status == 'Processing Return') {
             $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Complete')->first()->id]);
             $order->save();
             $order->touch();
@@ -117,7 +122,61 @@ class OrderController extends Controller
             return back()->with([
                 'status' => 'error',
                 'message' => 'Cannot cancel return request, return already processed.'
-            ]);   
+            ]);
         }
+    }
+
+    public function AcceptReturn($id, $productIds)
+    {
+        $order = Order::findOrFail($id);
+        $status = OrderStatus::findOrFail(2);
+
+        // Assuming $order is an instance of your Order model
+        $orderProducts = $order->products()->withPivot('amount', 'warehouse_id')->get();
+
+
+        $stock = 0;
+        // Iterate over each product to get the amount and set stock amount
+        foreach ($orderProducts as $product) {
+            $amount = $product->pivot->amount;
+            $warehouseId = $product->pivot->warehouse_id;
+
+            $newAmount = $product->stockAmount($warehouseId) - $amount;
+
+            $product->setStockAmount($warehouseId, $newAmount);
+
+            $order->products()->updateExistingPivot($product->id, ['status_id' => $status->id]);
+
+            // Set the status_id of the product to $status->id
+
+            $product->save();
+            // Now $amount contains the amount for the current product
+            $stock++;
+        }
+
+
+        $order->status_id = $status->id;
+
+        $order->save();
+
+        return redirect()->back()->with('success', 'Successfully changed order ' . $id . ' status to in transit and changed stock level by: ' . $stock);
+    }
+
+    public function CancelReturn($id, $productIds)
+    {
+        $order = Order::findOrFail($id);
+        $status = OrderStatus::findOrFail(4);
+
+        // Iterate over each product to get the amount and set the status
+        foreach ($productIds as $pID) {
+            $order->products()->updateExistingPivot($pID, ['status_id' => $status->id]);
+        }
+
+
+        $order->status_id = $status->id;
+
+        $order->save();
+
+        return redirect()->back()->with('success', 'Successfully changed order ' . $id . ' status to returning');
     }
 }
