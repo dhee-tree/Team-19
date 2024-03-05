@@ -1,5 +1,5 @@
 # Define the name of the workflow
-name: CI-Tests
+# name: CI-Tests
 
 # Define when the workflow should run
 on:
