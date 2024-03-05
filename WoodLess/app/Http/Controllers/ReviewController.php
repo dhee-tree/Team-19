@@ -20,7 +20,7 @@ class ReviewController extends Controller
             $product = Product::findCached($product_id);
 
             if (is_null($product)){
-                return back()->with([
+                return redirect('/')->with([
                     'status' => 'danger',
                     'message' => 'Product no longer exists.'
                 ]);
