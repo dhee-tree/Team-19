@@ -224,3 +224,6 @@ Route::get('/meet-the-team', function () {
 Route::get('/faq', function () {
     return view('faq');
 });
+Route::get('/values', function () {
+    return view('values');
+});
