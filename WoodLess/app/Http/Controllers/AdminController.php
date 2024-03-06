@@ -508,6 +508,37 @@ class AdminController extends Controller
         return view('components.admin-panel.warehouse-info', compact('warehouse'));
     }
 
+    public function CategoryDelete($id)
+    {
+        $category = Category::findOrFail($id);
+
+        // Check if the product exists
+        if (!$category) {
+            return redirect()->back()->with('error', 'Category not found.');
+        }
+
+        // Delete the product
+        $category->delete();
+
+        return redirect()->back()->with('success', 'Deleted Category not found.');
+    }
+
+    public function WarehouseDelete($id)
+    {
+        $warehouse = Warehouse::findOrFail($id);
+
+        // Check if the product exists
+        if (!$warehouse) {
+            return redirect()->back()->with('error', 'Warehouse not found.');
+        }
+
+        // Delete the product
+        $warehouse->delete();
+
+
+        return redirect()->back()->with('success', 'Deleted Warehouse not found.');
+    }
+
     #endregion User
 
 }
