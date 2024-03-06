@@ -140,6 +140,7 @@
                         @php
                             $discProduct = $products->sortByDesc('discount')->first();
                         @endphp
+                        @if($discProduct)
                         <div class="col pt-4">
                             <!-- Product card -->
                             <div id="product" class="card discount shadow expand-hover">
@@ -212,6 +213,7 @@
 
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
