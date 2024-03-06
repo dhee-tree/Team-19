@@ -115,6 +115,10 @@ Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'User
 Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin');
 //used to resolve a ticket
 Route::post('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('admin.ticket-resolve')->middleware('admin');
+
+Route::post('/admin-panel/tickets/importance/{id}/{importance}', [AdminController::class, 'TicketImportance'])->name('admin.ticket-importance')->middleware('web', 'admin');
+
+
 //used to delete a ticket
 Route::post('/admin-panel/tickets/delete/{id}', [AdminController::class, 'TicketDelete'])->name('ticket-delete')->middleware('admin');
 

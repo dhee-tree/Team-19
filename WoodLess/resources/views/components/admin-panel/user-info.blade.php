@@ -132,7 +132,6 @@
             </div>
         </div>
     </div>
-    <a class="btn btn-primary" data-bs-toggle="modal" href="#infoModal" role="button">Return</a>
 
     <div class="modal fade" id="AddressesModal" aria-hidden="true" aria-labelledby="AddressesModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">

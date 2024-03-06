@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Ticket;
+use App\Models\ImportanceLevel;
 use App\Models\Address;
 use App\Models\Category;
 use App\Models\OrderStatus;
@@ -355,25 +356,18 @@ class AdminController extends Controller
 
     public function tickets(Request $request)
     {
-
         $selectedLength = $request->input('length', 100); // Default to 50 if not provided
-
-
         $queryFilter = $request->input('filter', 'all');
 
+        // Retrieve tickets with pagination
+        $tickets = Ticket::latest()->filter($queryFilter)->orderBy('id', 'desc')->paginate($selectedLength)->withQueryString();
 
-        // Retrieve tickets
-        $tickets = Ticket::latest()->filter($queryFilter)->orderBy('id', 'desc')->get();
-
-        // Manually sort the tickets
-        $tickets = $tickets->sortBy('id');
-
-        // Paginate the sorted tickets
-        $tickets = $tickets->paginate($selectedLength)->withQueryString();
+        // Count total number of tickets
         $countTickets = Ticket::latest()->get();
 
         return view('tickets-admin', compact('tickets', 'countTickets'));
     }
+
 
     public function TicketClaim(Request $request, $ticketId)
     {
@@ -395,7 +389,10 @@ class AdminController extends Controller
     {
         $ticket = Ticket::findOrFail($id);
 
-        return  view('components.admin-panel.ticket-info', compact('ticket'));
+        // Retrieve importance levels
+        $importance_levels = ImportanceLevel::latest()->get();
+
+        return  view('components.admin-panel.ticket-info', compact('ticket', 'importance_levels'));
     }
 
     public function TicketDelete($id)
@@ -429,8 +426,23 @@ class AdminController extends Controller
 
         return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ID:' . $id . ' resolved! JK WORKING ON IT LOLLOLAOFDLAWOFKJAWOFJAWOIFJAWOIFA');
     }
+    public function TicketImportance($id, $importance)
+    {
+        // Retrieve the ticket by ID
+        $ticket = Ticket::find($id);
 
+        // Check if the ticket exists
+        if (!$ticket) {
+            return response()->json(['error' => 'Ticket with ID ' . $id . ' not found.'], 404);
+        }
 
+        // Update the importance level
+        $ticket->importance_level_id = $importance;
+        $ticket->save();
+
+        // Return the updated ticket with the new importance level
+        return response()->json(['level' => $ticket->importanceLevel->level]);
+    }
     #endregion
 
     #region Orders

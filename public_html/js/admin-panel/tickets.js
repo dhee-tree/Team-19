@@ -138,6 +138,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function updateImportance(ticketId, importanceLevel) {
+    var url = "/admin-panel/tickets/importance/" + ticketId + "/" + importanceLevel;
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'), // Get the CSRF token from the meta tag
+        },
+        success: function (response) {
+            // Update the content of the <h5> element with the new importance level
+            $('#importanceText').html('<strong>Importance: ' + response.level + '</strong>');
+            console.log(response);
+        },
+        error: function (xhr, status, error) {
+            // Handle error response
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+
+
+
 $(document).ready(function () {
     $('.ticket-row').click(function () {
         var ticketId = $(this).find('td:first-child').text(); // Get the ticket ID from the first column

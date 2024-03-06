@@ -16,7 +16,7 @@
                         <!-- Display the user ID underneath the image with margin -->
                         <p class="mt-3 mb-0">Ticket ID: {{ $ticket->id }}</p>
                         <!-- Display the role underneath the image without a title -->
-                        <h5><strong>Importance:
+                        <h5 id="importanceText"><strong>Importance:
                                 {{ $ticket->importance_level_id ? $ticket->importanceLevel->level : 'None' }}</strong>
                         </h5>
                     </div>
@@ -62,38 +62,56 @@
                         <div class="row">
                             <div class="col justify-content-left">
                                 @if ($ticket->admin_id == auth()->user()->id && $ticket->status == 1)
-                                    <form method="POST"
-                                        action="{{ route('admin.ticket-resolve', ['id' => $ticket->id]) }}">
-                                        @csrf
-                                        <button type="submit" class="btn btn-primary me-2">Set In
-                                            Progress</button>
-                                    </form>
+                                    <div class="d-inline-block">
+                                        <form method="POST"
+                                            action="{{ route('admin.ticket-resolve', ['id' => $ticket->id]) }}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary me-2">Set In Progress</button>
+                                        </form>
+                                    </div>
                                 @elseif ($ticket->admin_id == auth()->user()->id && $ticket->status == 2)
-                                    <form method="POST"
-                                        action="{{ route('admin.ticket-resolve', ['id' => $ticket->id]) }}">
-                                        @csrf
-                                        <button type="submit" class="btn btn-primary me-2">End Ticket</button>
-                                    </form>
+                                    <div class="d-inline-block">
+                                        <form method="POST"
+                                            action="{{ route('admin.ticket-resolve', ['id' => $ticket->id]) }}">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary me-2">End Ticket</button>
+                                        </form>
+                                    </div>
                                 @elseif ($ticket->admin_id == auth()->user()->id && $ticket->status == 3)
                                     <button type="submit" class="btn btn-primary me-2" disabled>Resolved</button>
                                 @else
-                                    <form id="claimTicket" action="{{ route('ticket-claim', ['id' => $ticket->id]) }}"
-                                        method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-primary me-2">Claim</button>
-                                    </form>
+                                    <div class="d-inline-block">
+                                        <form id="claimTicket"
+                                            action="{{ route('ticket-claim', ['id' => $ticket->id]) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-primary me-2">Claim</button>
+                                        </form>
+                                    </div>
                                 @endif
-                                <button type="submit" class="btn btn-warning me-2" disabled>Claimed</button>
+                                <button class="btn btn-warning me-2" disabled>Claimed</button>
                                 <!-- Button to trigger modal -->
                                 <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal"
                                     data-bs-target="#confirmDeleteModal" id="openModalButton"
                                     onclick="DeleteItemId({{ $ticket->id }})">Delete</button>
                             </div>
+
                             <div class="col-auto order-lg-last">
 
-                                <button type="button" class="btn btn-warning openModalButton me-2"
-                                    onclick="openImportanceModal({{ $ticket->id }})" id="openModalButton">Importance
-                                    Level</button>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-warning dropdown-toggle me-2"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Importance Level
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        @foreach ($importance_levels as $level)
+                                            <li><a class="dropdown-item" href="#"
+                                                    onclick="updateImportance({{ $ticket->id }}, '{{ $level->id }}')">
+                                                    {{ $level->level }}</a></li>
+                                        @endforeach
+                                    </ul>
+
+                                </div>
+
                                 <button type="button" id="btn-close" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Close</button>
                             </div>
@@ -103,4 +121,5 @@
             </div>
         </div>
     </div>
+
 </div>
