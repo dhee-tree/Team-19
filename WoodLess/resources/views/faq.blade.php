@@ -11,6 +11,21 @@
 <--- -------------------------- -*/
 
 /* Mobile - 360px */
+#back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    padding: 10px 20px;
+    background-color: #007bff; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 @media only screen and (min-width: 0rem) {
     #faq-1193 {
         padding: var(--sectionPadding);
@@ -202,6 +217,7 @@
 </style>
 <section id="faq-1193">
     <div class="cs-container">
+    <a id="back-button" href="/about">Back</a>
         <div class="cs-image-group">
             <picture class="cs-picture cs-picture1">
                 <!--Mobile Image-->

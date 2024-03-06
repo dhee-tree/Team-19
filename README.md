@@ -3,7 +3,8 @@
     </a>
 </p>
 <p align="center">
-    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/dhee-tree/Team-19/main.yml">
+    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/dhee-tree/Team-19/tests.yml?logo=github&label=tests&branch=development">
+    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/dhee-tree/Team-19/main.yml?logo=github&branch=development">
     <img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/dhee-tree/Team-19/total">
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/dhee-tree/Team-19">
     <img alt="GitHub commit activity (branch)" src="https://img.shields.io/github/commit-activity/t/dhee-tree/Team-19/development">
@@ -46,7 +47,7 @@ WoodLess offers robust administration features, while remaining accessible and u
 - **Add features here**
 
 ### Database Management
-WoodLess uses the powerful Eloquent ORM to ensure safe and streamlined database interactions, enabling rapid deployment and full CRUD functionality. For testing, WoodLess comes with built-in products and model factories that can be seeded to the target database.
+WoodLess uses the powerful Eloquent ORM to ensure safe and streamlined database interactions, enabling rapid deployment and full CRUD functionality. For testing, WoodLess comes with built-in products and model factories that can be seeded to a target database.
 - For more information, see the guide on [Database](./WoodLess/database).
 
 ### Documentation
@@ -56,6 +57,7 @@ To make our work as accessible as possible, all models and methods written by th
 This project contains guides to speed up development and deployment.
 - [Getting Started](#getting-started) - Instructions for deploying WoodLess on your web server.
 - [Database](./WoodLess/database) - Instructions and information on WoodLess' database.
+- [Testing](./WoodLess/tests) - Instructions and information on testing WoodLess.
 - For Laravel or other built-in features, please refer to the [relevant documentation](https://laravel.com/docs/10.x).
 
 ## Getting Started
@@ -63,7 +65,7 @@ This guide assumes you are familiar with PHP web development environments (such 
 
 - The [.github](./.github) folder is not neccessary for WoodLess to be functional.
 
-### .env Setup
+### Environment Setup
 The file .env declares the app environment, so it is important to set this up first. 
 1. Rename [`.env.example`](./WoodLess/.env.example) in the project root folder to `.env`.
 2. In `.env`, modify `APP_URL` (Line 5) to your server's domain name. This can usually be left as `http://localhost` if you are running locally.

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestimonialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -46,7 +47,7 @@ Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.
 Route::get('/product/{product_id}', [ProductController::class, 'show']);
 
 // Basket URLS
-Route::get('/basket', [BasketController::class, 'show'])->middleware('auth');
+Route::get('/basket', [BasketController::class, 'show'])->name('basket')->middleware('auth');
 //Store product in basket
 Route::post('/basket/{product_id}', [BasketController::class, 'store'])->middleware('auth');
 // Delete product from basket
@@ -244,4 +245,11 @@ Route::get('/faq', function () {
 });
 Route::get('/values', function () {
     return view('values');
+});
+Route::get('/testemonial', function () {
+    return view('checkouttestemonial');
+});
+Route::post('/testemonial', [TestimonialController::class, 'store'])->name('submit.testimonial');
+Route::get('/thankyou', function () {
+    return view('thankyou');
 });

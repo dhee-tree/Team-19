@@ -13,13 +13,14 @@ use Illuminate\Mail\Mailables\Address;
 class OrderConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
+    public $order;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($basket)
+    public function __construct($order)
     {
-        $this->basket = $basket;
+        $this->order = $order;
     }
 
     /**

@@ -207,11 +207,11 @@
         <div class="cs-wrapper">
         <picture class="cs-picture">
     <source media="(max-width: 600px)"
-            srcset="{{asset('images//styling/river-1851031_1280.jpg')}}">
+            srcset="{{asset('images/river-1851031_1280.jpg')}}">
     <source media="(min-width: 601px)"
-            srcset="{{asset('images/styling/river-1851031_1280.jpg')}}">
+            srcset="{{asset('images/river-1851031_1280.jpg')}}">
     <img loading="lazy" decoding="async"
-            src="{{asset('images/styling/river-1851031_1280.jpg')}}">
+            src="{{asset('images/river-1851031_1280.jpg')}}">
             </picture>
             <div class="cs-content">
                 <h2 class="cs-title">Our Mission</h2>

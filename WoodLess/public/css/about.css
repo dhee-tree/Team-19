@@ -1,4 +1,4 @@
-                  
+     
 .buttoncontainer {
   width: 100%;
   text-align: center;
@@ -19,7 +19,21 @@ margin-top: 20px;
    margin-top: 20px;
    cursor: pointer;
 }
-
+#back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  padding: 10px 20px;
+  background-color: #007bff; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
 .portfolio .portfolio-item {
     cursor: pointer;
