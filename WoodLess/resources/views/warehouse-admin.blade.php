@@ -44,7 +44,7 @@
                 <form action="#">
                     <div class="form-input">
                         <!--<input type="search" placeholder="Search...">
-                                                                                            <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
+                                                                                                                                                                                                                                            <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
                     </div>
                 </form>
                 <a href="#" class="notif">
@@ -74,7 +74,8 @@
                         <div class="header">
                             <i class='bx bx-receipt'></i>
                             <h3>Warehouses</h3>
-                            <i class='fa-solid fa-filter'></i>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#createWarehouseModal">Create Warehouse</button>
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                         <table>
@@ -112,7 +113,8 @@
                         <div class="header">
                             <i class='bx bx-receipt'></i>
                             <h3>Categories</h3>
-                            <i class='fa-solid fa-filter'></i>
+                            <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                data-bs-target="#createCategoryModal">Create Category</button>
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                         <table>
@@ -136,6 +138,83 @@
             </main>
         </div>
 
+        <div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog"
+            aria-labelledby="createCategoryModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form id="createCategoryForm" action="{{ route('admin.category-create') }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createCategoryModalLabel">Create Category</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Category Name</label>
+                                <input type="text" class="form-control" id="category" name="category" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="images" class="form-label">Images</label>
+                                <input type="file" class="form-control" id="images" name="images"
+                                    accept="image/*" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+
+                            <input type="hidden" name="id_input" id="id_input" value="">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="createWarehouseModal" tabindex="-1" role="dialog"
+            aria-labelledby="createWarehouseModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <form id="createCategoryForm" action="{{ route('admin.warehouse-create') }}" method="POST">
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createWarehouseModalLabel">Confirm Warehouse</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="address" name="address" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="address_2" class="form-label">Address 2</label>
+                                <input type="text" class="form-control" id="address_2" name="address_2">
+                            </div>
+                            <div class="mb-3">
+                                <label for="postcode" class="form-label">Postcode</label>
+                                <input type="text" class="form-control" id="postcode" name="postcode" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="city" class="form-label">City</label>
+                                <input type="text" class="form-control" id="city" name="city" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <input type="hidden" name="id_input" id="id_input" value="">
+                            <button type="submit" class="btn btn-primary">Create</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <!-- Delete Product Modal -->
         <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
             aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
@@ -152,8 +231,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <form id="deleteForm" action="{{ route('product-delete', ['id' => ':product_id']) }}"
-                            method="POST">
+                        <form id="deleteForm" action="" method="POST">
                             @csrf
                             <input type="hidden" name="id_input" id="id_input" value="">
                             <button type="submit" class="btn btn-danger">Delete</button>

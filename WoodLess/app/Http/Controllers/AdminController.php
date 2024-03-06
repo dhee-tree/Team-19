@@ -488,8 +488,9 @@ class AdminController extends Controller
 
     public function misc()
     {
-        $warehouses = Warehouse::latest()->get();
-        $categories = Category::latest()->get();
+        $warehouses = Warehouse::latest()->get()->sortBy('id');
+        $categories = Category::latest()->get()->sortBy('id');
+
 
         return view('warehouse-admin', compact('categories', 'warehouses'));
     }
@@ -508,6 +509,64 @@ class AdminController extends Controller
         return view('components.admin-panel.warehouse-info', compact('warehouse'));
     }
 
+    public function CategoryCreate(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'category' => 'required|string|max:60',
+            'images' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the maximum file size as needed
+        ]);
+
+        // Handle file upload
+        if ($request->hasFile('images')) {
+            $image = $request->file('images');
+            $imageName = time() . '.' . $image->extension(); // Generate a unique image name
+            $image->move(public_path('images/categories'), $imageName); // Move the uploaded image to the public/images directory
+        } else {
+            // Handle file upload error
+            return redirect()->back()->with('error', 'Failed to upload image.');
+        }
+
+        // Create a new category instance
+        $category = new Category();
+
+        // Fill in the category details
+        $category->category = $validatedData['category'];
+        $category->images = $imageName; // Save the image file name
+
+        // Save the category to the database
+        $category->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Created Category with id: ' . $category->id . ' succesfully.');
+    }
+
+    public function WarehouseCreate(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'address' => 'required|string|max:255',
+            'address_2' => 'nullable|string|max:255',
+            'postcode' => 'required|string|max:255',
+            'city' => 'required|string|max:60',
+        ]);
+
+        // Create a new warehouse instance
+        $warehouse = new Warehouse();
+
+        // Fill in the warehouse details
+        $warehouse->address = $validatedData['address'];
+        $warehouse->address_2 = $validatedData['address_2'];
+        $warehouse->postcode = $validatedData['postcode'];
+        $warehouse->city = $validatedData['city'];
+
+        // Save the warehouse to the database
+        $warehouse->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Created Warehouse with id: ' . $warehouse->id . ' succesfully.');
+    }
+
     public function CategoryDelete($id)
     {
         $category = Category::findOrFail($id);
@@ -520,7 +579,7 @@ class AdminController extends Controller
         // Delete the product
         $category->delete();
 
-        return redirect()->back()->with('success', 'Deleted Category not found.');
+        return redirect()->back()->with('success', 'Deleted Category ' . $id . ' succesfully.');
     }
 
     public function WarehouseDelete($id)
@@ -536,7 +595,7 @@ class AdminController extends Controller
         $warehouse->delete();
 
 
-        return redirect()->back()->with('success', 'Deleted Warehouse not found.');
+        return redirect()->back()->with('success', 'Deleted Warehouse ' . $id . ' succesfully.');
     }
 
     #endregion User

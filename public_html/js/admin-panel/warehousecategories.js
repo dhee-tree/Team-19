@@ -18,7 +18,7 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $('.categories-row').click(function () {
+    $('.category-row').click(function () {
         var id = $(this).find('td:first-child').text(); // Get the ticket ID from the first column
 
         $.get('/admin-panel/category/info/' + id, function (data) {

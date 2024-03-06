@@ -4,14 +4,10 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="extraModalLabel">Category Details</h5>
+                <h5 class="modal-title" id="extraModalLabel">Category {{ $category->category }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
 
-
-
-            </div>
             <div class="modal-footer">
                 <div class="container">
                     <div class="row">

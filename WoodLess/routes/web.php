@@ -82,6 +82,11 @@ Route::get('/admin-panel/warehouse/info/{id}', [AdminController::class, 'Warehou
 
 Route::get('/admin-panel/category/info/{id}', [AdminController::class, 'CategoryInfo'])->name('admin.category-info')->middleware('admin');
 
+Route::post('/admin-panel/category/create', [AdminController::class, 'CategoryCreate'])->name('admin.category-create')->middleware('admin');
+
+Route::post('/admin-panel/warehouse/create', [AdminController::class, 'WarehouseCreate'])->name('admin.warehouse-create')->middleware('admin');
+
+
 Route::post('/admin-panel/category/delete/{id}', [AdminController::class, 'CategoryDelete'])->name('admin.category-delete')->middleware('admin');
 
 Route::post('/admin-panel/warehouse/delete/{id}', [AdminController::class, 'WarehouseDelete'])->name('admin.product-delete')->middleware('admin');
