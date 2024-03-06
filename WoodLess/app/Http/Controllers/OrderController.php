@@ -30,32 +30,39 @@ class OrderController extends Controller
         //     'postcode' => $request->input('postcode'),
         // ]);
 
-        // create order item for each product in the basket
-        $order = Order::create([
-            'user_id' => $user->id,
-            'address_id' => 1, // Needs to be changed to the address id associated with the user and the order.
-            'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
-            'details' => 'Order placed by user',
-            // 'status_id' => 1,
-        ]);
-
-
-        foreach ($basket->products as $product) {
-            $order->products()->attach($product->id, [
-                'amount' => $product->pivot->amount,
-                'attributes' => $product->pivot->attributes,
-                'warehouse_id' => $product->warehouses->first()->id,
+        // check if there is at least one product in the basket
+        if ($basket->products->count() > 0) {
+            // create order item for each product in the basket
+            $order = Order::create([
+                'user_id' => $user->id,
+                'address_id' => 1, // Needs to be changed to the address id associated with the user and the order.
                 'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
+                'details' => 'Order placed by user',
+                // 'status_id' => 1,
+            ]);
+    
+            foreach ($basket->products as $product) {
+                $order->products()->attach($product->id, [
+                    'amount' => $product->pivot->amount,
+                    'attributes' => $product->pivot->attributes,
+                    'warehouse_id' => $product->warehouses->first()->id,
+                    'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
+                ]);
+            }
+    
+            $basket->products()->detach();
+    
+            // Send an email to the user with the order confirmation.
+            Mail::to($user->email)->send(new OrderConfirmation($order));
+            return view('order-confirmation', [
+                'order' => $order,
+            ]);
+        } else {
+            return redirect()->route('basket')->with([
+                'status' => 'danger',
+                'message' => 'Cannot place an order with an empty basket.',
             ]);
         }
-
-        $basket->products()->detach();
-
-        // Send an email to the user with the order confirmation.
-        Mail::to($user->email)->send(new OrderConfirmation($order));
-        return view('order-confirmation', [
-            'order' => $order,
-        ]);
     }
 
     // Show order of a user
@@ -74,14 +81,21 @@ class OrderController extends Controller
     {
         $user = auth()->user();
         $order = Order::find($id);
-        $address = Address::find($order->address_id);
-        $attributes = $order->products->first()->pivot->attributes;
-        return view('order-products', [
-            'user' => $user,
-            'order' => $order,
-            'address' => $address,
-            'attributes' => $attributes,
-        ]);
+        if ($order->products->count() > 0) {
+            $address = Address::find($order->address_id);
+            $attributes = $order->products->first()->pivot->attributes;
+            return view('order-products', [
+                'user' => $user,
+                'order' => $order,
+                'address' => $address,
+                'attributes' => $attributes,
+            ]);
+        } else {
+            return back()->with([
+                'status' => 'danger',
+                'message' => 'Order has no products.',
+            ]);
+        }
     }
 
     // Return an order
