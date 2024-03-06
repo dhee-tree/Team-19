@@ -483,4 +483,31 @@ class AdminController extends Controller
 
     #endregion
 
+
+    #region Warehouses/Categories
+
+    public function misc()
+    {
+        $warehouses = Warehouse::latest()->get();
+        $categories = Category::latest()->get();
+
+        return view('warehouse-admin', compact('categories', 'warehouses'));
+    }
+
+    public function CategoryInfo($id)
+    {
+        $category = Category::findOrFail($id);
+
+        return view('components.admin-panel.category-info', compact('category'));
+    }
+
+    public function WarehouseInfo($id)
+    {
+        $warehouse = Warehouse::findOrFail($id);
+
+        return view('components.admin-panel.warehouse-info', compact('warehouse'));
+    }
+
+    #endregion User
+
 }

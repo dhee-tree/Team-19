@@ -76,7 +76,12 @@ Route::view('/admin-panel', 'admin-panel')->middleware('admin');;
 
 #region admin panel warehouses / categories
 
-Route::view('/admin-panel/warehouse', 'warehouse-admin')->middleware('admin');
+Route::get('/admin-panel/warehouse', [AdminController::class, 'Misc'])->name('admin.panel-warehouses-categories')->middleware('admin');
+
+Route::get('/admin-panel/misc/warehouse-info/{id}', [AdminController::class, 'WarehouseInfo'])->name('admin.warehouse-info')->middleware('admin');
+
+Route::get('/admin-panel/misc/category-info/{id}', [AdminController::class, 'CategoryInfo'])->name('admin.category-info')->middleware('admin');
+
 
 
 
