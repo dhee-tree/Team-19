@@ -52,9 +52,9 @@ class OrderController extends Controller
         $basket->products()->detach();
 
         // Send an email to the user with the order confirmation.
-        // Mail::to($user->email)->send(new OrderConfirmation($basket));
+        Mail::to($user->email)->send(new OrderConfirmation($order));
         return view('order-confirmation', [
-            'basket' => $basket,
+            'order' => $order,
         ]);
     }
 
