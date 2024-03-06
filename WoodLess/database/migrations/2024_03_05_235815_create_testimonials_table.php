@@ -18,7 +18,6 @@ class CreateTestimonialsTable extends Migration
             $table->unsignedBigInteger('user_id'); // Foreign key
             $table->integer('rating');
             $table->text('description');
-            $table->string('products');
             $table->timestamps();
 
             // Define foreign key constraint

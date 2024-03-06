@@ -13,6 +13,9 @@
         <p>Thank you for your order. Your order number is: {{ $basket->id }}</p>
         <p>You will receive an email confirmation shortly.</p>
         <p>Click <a href="{{ route('home') }}">here</a> to return to the home page.</p>
+        <P> We would greatly appreciate some feedback</p>
+        <p>Click <a href="/testemonial">here</a> to leave feedback.</p>
+
     </div>
     <div class="col-md-4"></div>
 </div>

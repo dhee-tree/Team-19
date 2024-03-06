@@ -231,3 +231,7 @@ Route::get('/faq', function () {
 Route::get('/values', function () {
     return view('values');
 });
+Route::get('/testemonial', function () {
+    return view('checkoutreview');
+});
+Route::post('/submit-testemonial', 'ReviewController@store')->name('submit.testemonial');
