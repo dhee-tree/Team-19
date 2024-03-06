@@ -237,27 +237,37 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <h2>Questions</h2>
-    <ul>
-      <li class="question">Question 1</li>
-      <li class="question">Question 2</li>
-      <li class="question">Question 3</li>
-    </ul>
-    
-    <!-- Responses -->
-    <div class="responses">
-      <div class="response" id="response1">
-        Response to Question 1
-      </div>
-      <div class="response" id="response2">
-        Response to Question 2
-      </div>
-      <div class="response" id="response3">
-        Response to Question 3
-      </div>
+                    <div class="modal-body">
+    <div class="message" id="messageContainer">
+        <div>
+            <p class="chatmessage">How can we help today? <br>
+                <span class="issue" onclick="showResponse('order')">Issue with an order?</span><br>
+                <span class="issue" onclick="showResponse('return')">Issue with a return?</span><br>
+                <span class="issue" onclick="showResponse('product')">Issue with a product?</span>
+            </p>
+        </div>
     </div>
-  </div>
+    <!-- Separate card for displaying user's selected option -->
+    <div class="card mt-3" id="selectedOptionCard" style="display: none;">
+        <div class="card-body">
+            <h5 class="card-title">Your Selection</h5>
+            <p class="card-text" id="selectedOption"></p>
+        </div>
+    </div>
+    <!-- Separate card for displaying response -->
+    <div class="card mt-3" id="responseCard" style="display: none;">
+        <div class="card-body">
+            <h5 class="card-title">Response</h5>
+            <p class="card-text" id="response"></p>
+        </div>
+    </div>
 </div>
+
+            </div>
+        </div>
+                
+
+    
 
                             <!-- /.card-footer-->
                         </div>
@@ -424,6 +434,33 @@
   
 
     });
+    function showResponse(option) {
+    // Update selected option card
+    document.getElementById('selectedOption').innerText = option;
+    document.getElementById('selectedOptionCard').style.display = 'block';
+
+    // Example: Update response based on selected option
+    let response;
+    switch(option) {
+        case 'order':
+            response = `Please provide more detail so we can assist you better.
+            Order 1
+            Order 2
+            Option 3`;
+            break;
+        case 'return':
+            response = 'Please provide details about the return request.';
+            break;
+        case 'product':
+            response = 'Please specify the issue with the product.';
+            break;
+        default:
+            response = '';
+    }
+    // Update response card
+    document.getElementById('response').innerText = response;
+    document.getElementById('responseCard').style.display = 'block';
+}
 </script>
 
 
