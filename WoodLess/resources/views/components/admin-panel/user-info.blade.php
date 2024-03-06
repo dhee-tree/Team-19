@@ -1,4 +1,4 @@
-<container id="infoModals">
+<div id="infoModals">
     <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
         <!-- Is responsible for expanding the fields for the item in the inventory management system -->
 
@@ -164,4 +164,4 @@
     </div>
     <a class="btn btn-primary" data-bs-toggle="modal" href="#infoModal" role="button">Return</a>
 
-</container>
+</div>

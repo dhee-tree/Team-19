@@ -424,6 +424,9 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'ticket with ' . $id . ' not found.');
         }
 
+        $ticket->status++;
+        $ticket->save();
+
         return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ID:' . $id . ' resolved! JK WORKING ON IT LOLLOLAOFDLAWOFKJAWOFJAWOIFJAWOIFA');
     }
 

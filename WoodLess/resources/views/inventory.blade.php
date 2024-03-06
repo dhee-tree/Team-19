@@ -46,7 +46,7 @@
             <form action="#">
                 <div class="form-input">
                     <!--<input type="search" placeholder="Search...">
-                                    <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
+                                        <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
                 </div>
             </form>
             <a href="#" class="notif">
@@ -126,9 +126,9 @@
                         <tbody>
                             @foreach ($products as $product)
                                 <tr class="product-row">
-                                    <td>{{ $product->id }}</td>
-                                    <td>{{ $product->title }}</td>
-                                    <td>{{ $product->truncateDescription(5) }}...</td>
+                                    <td class="id">{{ $product->id }}</td>
+                                    <td class="title">{{ $product->title }}</td>
+                                    <td class="description">{{ $product->truncateDescription(5) }}...</td>
                                     <td>{{ $product->stockAmount() }}...</td>
                                     <td>
                                         @if ($product->categories->isNotEmpty())
@@ -155,8 +155,8 @@
     </div>
 
     <!-- Delete Product Modal -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
-        aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -184,7 +184,6 @@
 
 @section('js')
     <script src="{{ asset('js/admin-panel/inventory.js') }}"></script>
-    <script src="{{asset('js/admin-panel.js')}}"></script>
+    <script src="{{ asset('js/admin-panel.js') }}"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTable.js"></script>
 @endsection
-
