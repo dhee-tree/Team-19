@@ -12,7 +12,7 @@
             <div class="confirmation-container">
                 <div class="confirmation-card">
                     <h2>Order Confirmed</h2>
-                    <p>Thank you for your order. Your order number is: <strong>{{ $basket->id }}</strong></p>
+                    <p>Thank you for your order. Your order number is: <strong>{{ $order->id }}</strong></p>
                     <p>You will receive an email confirmation shortly.</p>
                     <div> <a href="{{ route('home') }}" class="gradient-button">Return Home</a> </div>
                     <div class="pt-5">
