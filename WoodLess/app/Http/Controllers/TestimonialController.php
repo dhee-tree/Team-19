@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Testimonial;
 
-class TestemonialController extends Controller
+class TestimonialController extends Controller
 {
     public function store(Request $request)
     {
@@ -23,7 +23,7 @@ class TestemonialController extends Controller
         $testimonial->save();
 
        
-        return redirect()->back()->with('success', 'Thank you for your review!');
+        return redirect('/thankyou');
     }
     //
 }

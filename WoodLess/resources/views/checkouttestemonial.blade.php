@@ -132,10 +132,12 @@ textarea {
 	background: var(--light);
 }
         </style>
+		
 
 	<div class="wrapper">
-		<h3>How was your expereince with us ?.</h3>
-		<form action="#">
+		<h3>How was your expereince with us ?</h3>
+		<form action="{{ route('submit.testimonial') }}" method="POST">
+		@csrf
 			<div class="rating">
 				<input type="number" name="rating" hidden>
 				<i class='bx bx-star star' style="--i: 0;"></i>
@@ -151,7 +153,6 @@ textarea {
 			</div>
 		</form>
 	</div>
-  
 </body>
 <script>
     const allStar = document.querySelectorAll('.rating .star')
@@ -177,6 +178,6 @@ allStar.forEach((item, idx)=> {
 		}
 	})
 })
-    </script>
+</script>
 
 </html>

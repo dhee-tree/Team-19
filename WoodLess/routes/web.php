@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestimonialController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -232,6 +233,9 @@ Route::get('/values', function () {
     return view('values');
 });
 Route::get('/testemonial', function () {
-    return view('checkoutreview');
+    return view('checkouttestemonial');
 });
-Route::post('/submit-testemonial', 'ReviewController@store')->name('submit.testemonial');
+Route::post('/testemonial', [TestimonialController::class, 'store'])->name('submit.testimonial');
+Route::get('/thankyou', function () {
+    return view('thankyou');
+});
