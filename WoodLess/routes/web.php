@@ -149,8 +149,6 @@ Route::get('/admin-panel/users', [AdminController::class, 'users'])->name('admin
 
 //The additional information modal to expand fields in user admin panel
 Route::get('/admin-panel/users/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin');
-//Used to edit the user
-Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class, 'UserEdit'])->name('components.user-edit')->middleware('admin');
 //create a user
 Route::get('/admin-panel/users/user-add', [AdminController::class, 'UserAdd'])->name('components.user-add')->middleware('admin');
 //stores products, either edits or creates a new ones

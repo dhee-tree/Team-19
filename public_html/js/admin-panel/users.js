@@ -119,22 +119,6 @@ function openAddModal() {
     });
 }
 
-//JavaScript to handle edit modal opening
-
-function openEditModal(userId) {
-
-    $.get('/admin-panel/users/user-edit/' + userId, function (data) {
-        $('body').append(data);
-        var modal = $('#infoModal');
-        modal.modal('show'); // Show the modal after content is appended
-
-        // Remove the modal from the DOM when it's closed
-        modal.on('hidden.bs.modal', function () {
-
-            modal.remove();
-        });
-    });
-}
 
 //for pagination
 document.addEventListener('DOMContentLoaded', function () {

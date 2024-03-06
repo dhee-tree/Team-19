@@ -42,13 +42,6 @@ class AdminController extends Controller
         return view('components.admin-panel.user-info', compact('user'));
     }
 
-    public function UserEdit($id)
-    {
-        $user = User::findOrFail($id);
-
-        return view('components.admin-panel.user-edit', compact('user'));
-    }
-
     public function UserAdd()
     {
 
