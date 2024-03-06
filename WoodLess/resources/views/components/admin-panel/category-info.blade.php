@@ -7,7 +7,18 @@
                 <h5 class="modal-title" id="extraModalLabel">Category {{ $category->category }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <p><strong>Image </strong></p>
+                        <img class="card-img" src="{{ asset($category->images) }}" height="100%" width="100%"
+                            alt="..." />
+                    </div>
 
+                </div>
+
+
+            </div>
             <div class="modal-footer">
                 <div class="container">
                     <div class="row">
