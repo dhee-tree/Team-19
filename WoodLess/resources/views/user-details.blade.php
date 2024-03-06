@@ -36,4 +36,46 @@
             </div>
         </div>
     </section>
+
+    <section id="address" class="py-5 py-xl-8">
+        
+        {{-- Add Address Form --}}
+        <form method="POST" action="{{ route('address.store') }}">
+            @csrf
+            <div class="form-group">
+                <label for="house_number">House Number:</label>
+                <input type="text" class="form-control" id="house_number" name="house_number" required>
+            </div>
+            <div class="form-group">
+                <label for="street_name">Street Name:</label>
+                <input type="text" class="form-control" id="street_name" name="street_name" required>
+            </div>
+            <div class="form-group">
+                <label for="postcode">Postcode:</label>
+                <input type="text" class="form-control" id="postcode" name="postcode" required>
+            </div>
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" class="form-control" id="city" name="city" required>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Add Address</button>
+        </form>
+
+        {{-- Display existing addresses --}}
+        @foreach ($addresses as $address)
+            <div class="address-item mt-4">
+                <p>{{ $address->house_number }} {{ $address->street_name }},
+                    {{ $address->postcode }}, {{ $address->city }}</p>
+                {{-- Include edit and delete buttons if needed --}}
+                <a href="{{ route('address.edit', $address) }}" class="btn btn-secondary">Edit</a>
+                <form action="{{ route('address.destroy', $address) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        @endforeach
+       
+    </section>
+
 @endsection
