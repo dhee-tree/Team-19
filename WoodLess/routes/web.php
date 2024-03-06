@@ -16,6 +16,7 @@ use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,3 +108,13 @@ Route::get('/', [ProductController::class, 'getThreeRandom']);
 
 Route::get('/password/change', [App\Http\Controllers\ChangePasswordController::class, 'showChangePasswordForm'])->name('password.change.form');
 Route::post('/password/change', [App\Http\Controllers\ChangePasswordController::class, 'changePassword'])->name('password.change');
+
+
+Route::middleware('auth')->group(function () {
+    // Address routes
+    Route::get('/addresses', [AddressController::class, 'index'])->name('user-details');
+    Route::post('/addresses', [AddressController::class, 'store'])->name('address.store');
+    Route::get('/addresses/{address}/edit', [AddressController::class, 'edit'])->name('address.edit');
+    Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('address.update');
+    Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('address.destroy');
+});
