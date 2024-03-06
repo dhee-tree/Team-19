@@ -8,8 +8,10 @@
     <meta name="author"
         content="Ighomena Odebala, Lewis Neiland, Zaakir Mohammad, Ismaeel Noor, Ndumiso Mbangeleli, Abdulhamid Mustapha, Umer Mohammed, Matteo Crozat">
     <meta name="keywords" content="team project, birmingham, aston university">
+    <!--
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    !-->
 
     <title>@yield('title')</title>
 
@@ -214,12 +216,14 @@
     </div>
 
     <div id="userhelp">
+        @if(mt_rand(0,5) == 0 && is_null(session('status')))
         <div class="card-body-s">
             <div>
                 <span class="close">&times;</span>
                 <p class="chat-message">We are here to help do not hesitate to get in touch</p>
             </div>
         </div>
+        @endif
 
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary btn-sticky sticky-bottom z-1 end-0" data-bs-toggle="modal"
@@ -371,35 +375,7 @@
         </div>
     @endif
 
-    @if (session('status'))
-        <div id="successAlert"
-            class="alert z-3 alert-{{ session('status') ?? 'info' }} fade show position-fixed bottom-0 end-0 mb-3 me-3 py-2"
-            role="alert">
-            @switch(session('status'))
-                @case('success')
-                    <i class="fa-solid fa-xs fa-check"></i>
-                @break
-
-                @case('warning')
-                    <i class="fa-solid fa-xs fa-warning"></i>
-                @break
-
-                @case('danger')
-                    <i class="fa-solid fa-xs fa-xmark"></i>
-                @break
-
-                @case('info')
-                    <i class="fa-solid fa-xs fa-circle-info"></i>
-                @break
-
-                @default
-                    <i class="fa-solid fa-xs fa-circle-info"></i>
-                @break
-            @endswitch
-            {{ session('message') }}
-            <!--<button type="button" class="btn-close btn-sm py-0" data-bs-dismiss="alert" aria-label="Close"></button>!-->
-        </div>
-    @endif
+    @include('layouts.alert')
     <!-- bootstrap 5.3 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">

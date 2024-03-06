@@ -328,11 +328,13 @@
                 </button>
                 
                 @if($user)
-                    <div class="@php if(!$user->isAdmin()){echo('d-none');}@endphp vr modal-submit-element"></div>
+                    @if($user->isAdmin())
+                        <div class="vr modal-submit-element"></div>
 
-                    <button type="submit" id="modalSubmitButton" class="modal-submit-element @php if(!$user->isAdmin()){echo('d-none');}@endphp btn p-0">
-                        <span><i class="fa-solid fa-small fa-check"></i> Save Changes</span>
-                    </button>
+                        <button type="submit" id="modalSubmitButton" class="modal-submit-element btn p-0">
+                            <span><i class="fa-solid fa-small fa-check"></i> Save Changes</span>
+                        </button>
+                    @endif
                 @endif
 
             </div>
