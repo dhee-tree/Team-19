@@ -22,8 +22,8 @@ jobs:
       mysql:
         image: mysql:latest
         env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: laravel_testing
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_DATABASE: team_project_testing
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -42,20 +42,6 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-req=ext-imagick
         working-directory: WoodLess
-
-      - name: Create .env.testing file
-        run: cp .env.example .env.testing
-        working-directory: WoodLess
-      
-      - name: Configure MySQL settings in .env
-        run: |
-          echo DB_CONNECTION=mysql >> .env.testing
-          echo DB_HOST=127.0.0.1 >> .env.testing
-          echo DB_PORT=3306 >> .env.testing
-          echo DB_DATABASE=laravel_testing >> .env.testing
-          echo DB_USERNAME=root >> .env.testing
-          echo DB_PASSWORD=root >> .env.testing
-        working-directory: WoodLess
       
       - name: Generate key for testing
         run: php artisan key:generate --env=testing
@@ -66,5 +52,5 @@ jobs:
         working-directory: WoodLess
 
       - name: Run Laravel Tests
-        run: php artisan test --env=testing
+        run: php artisan test
         working-directory: WoodLess
