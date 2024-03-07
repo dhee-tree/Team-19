@@ -60,4 +60,13 @@ class AddressController extends Controller
 
         return redirect()->route('user-details')->with('success', 'Address deleted successfully.');
     }
+
+        public function setDefault(Address $address)
+    {
+        // Your logic to set the address as default.
+        // This may involve setting a flag in the database and unsetting it for other addresses.
+
+        return back()->with('success', 'Default address set successfully.');
+    }
+
 }
