@@ -105,12 +105,12 @@ class OrderController extends Controller
 
         if ($order_status != 'Complete') {
             return back()->with([
-                'status' => 'error',
+                'status' => 'danger',
                 'message' => 'Cannot return item, order still processing.'
             ]);
         } else {
             $order = Order::find($id);
-            $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Processing Return')->first()->id]);
+            $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Requested Return')->first()->id]);
             $order->save();
             $order->touch();
             return back()->with([
@@ -124,7 +124,7 @@ class OrderController extends Controller
     function cancelReturnOrderItem($id, $product_id)
     {
         $order = Order::find($id);
-        if ($order->products->find($product_id)->orderProductStatus->first()->status == 'Processing Return') {
+        if ($order->products->find($product_id)->orderProductStatus->first()->status == 'Requested Return') {
             $order->products()->updateExistingPivot($product_id, ['status_id' => OrderStatus::where('status', 'Complete')->first()->id]);
             $order->save();
             $order->touch();
