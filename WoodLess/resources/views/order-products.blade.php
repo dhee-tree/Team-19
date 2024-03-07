@@ -29,15 +29,6 @@
                                 <p class="card-text">Delivery Address: {{ $address->house_number }} {{ $address->street_name }}, {{ $address->city }}. {{ $address->postcode }}</p>
                                 <hr>
                                 <p class="card-text">Items:</p>
-                                @if(session('status') == 'success')
-                                    <div class="alert alert-success">
-                                        <i class="fa-regular fa-circle-check"></i> <span>{{ session('message') }}</span>
-                                    </div>
-                                @elseif (session('status') == 'error')
-                                    <div class="alert alert-danger">
-                                    <i class="fa-regular fa-circle-xmark"></i> <span>{{ session('message') }}</span>
-                                    </div>
-                                @endif
                                 @foreach ($order->products as $product)
                                     <div class="row order-card">
                                         <div class="col-sm-6 mb-4">
