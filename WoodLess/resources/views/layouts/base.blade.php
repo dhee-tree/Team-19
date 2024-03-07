@@ -215,91 +215,7 @@
         </div>
     </div>
 
-    <div id="userhelp">
-        @if(mt_rand(0,5) == 0 && is_null(session('status')))
-        <div class="card-body-s">
-            <div>
-                <span class="close">&times;</span>
-                <p class="chat-message">We are here to help do not hesitate to get in touch</p>
-            </div>
-        </div>
-        @endif
-
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-sticky sticky-bottom z-1 end-0" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop">
-            <i class="fa-solid fa-message"></i>
-        </button>
-        <!-- Modal -->
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a support ticket</h1>
-
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-    <div class="message" id="messageContainer">
-        <div>
-            <p class="chatmessage">How can we help today? <br>
-                <span class="issue" onclick="showResponse('order')">Issue with an order?</span><br>
-                <span class="issue" onclick="showResponse('return')">Issue with a return?</span><br>
-                <span class="issue" onclick="showResponse('product')">Issue with a product?</span>
-            </p>
-        </div>
-    </div>
-    <!-- Separate card for displaying user's selected option -->
-    <div class="card mt-3" id="selectedOptionCard" style="display: none;">
-        <div class="card-body">
-            <h5 class="card-title">Your Selection</h5>
-            <p class="card-text" id="selectedOption"></p>
-        </div>
-    </div>
-    <!-- Separate card for displaying response -->
-    <div class="card mt-3" id="responseCard" style="display: none;">
-        <div class="card-body">
-            <h5 class="card-title">Response</h5>
-            <p class="card-text" id="response"></p>
-        </div>
-    </div>
-</div>
-
-            </div>
-        </div>
-                
-
-    
-
-                            <!-- /.card-footer-->
-                        </div>
-                        <!--/.direct-chat -->
-                        <!-- form for creating a ticket -->
-                        <!-- <form action="{{ route('user.tickets.store') }}" method="POST">
-                        @csrf
-                        <div class="modal-body">
-
-                            <label for="title">Title</label>
-                            <input type="text" name="title" id="title" class="form-control" required>
-
-                            <label for="information">Information</label>
-                            <textarea name="information" id="information" class="form-control" required style="resize: none;"></textarea>
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Create Ticket</button>
-                        </div>
-                    </form> -->
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  @include('components.livechat')
 
     <main>
         <!-- include('layouts.alert') !-->
@@ -393,51 +309,10 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/livechat.js') }}"></script>
 
 
     @yield('js')
 
 </body>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var closeButton = document.querySelector('.card-body-s .close');
-        var cardBody = document.querySelector('.card-body-s');
-        closeButton.addEventListener('click', function() {
-            cardBody.style.display = 'none';
-
-
-        });
-  
-
-    });
-    function showResponse(option) {
-    // Update selected option card
-    document.getElementById('selectedOption').innerText = option;
-    document.getElementById('selectedOptionCard').style.display = 'block';
-
-    // Example: Update response based on selected option
-    let response;
-    switch(option) {
-        case 'order':
-            response = `Please provide more detail so we can assist you better.
-            Order 1
-            Order 2
-            Option 3`;
-            break;
-        case 'return':
-            response = 'Please provide details about the return request.';
-            break;
-        case 'product':
-            response = 'Please specify the issue with the product.';
-            break;
-        default:
-            response = '';
-    }
-    // Update response card
-    document.getElementById('response').innerText = response;
-    document.getElementById('responseCard').style.display = 'block';
-}
-</script>
-
-
 </html>
