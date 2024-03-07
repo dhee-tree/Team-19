@@ -26,10 +26,6 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Check Test Results
-        if: ${{ failure() }}
-        run: exit 1
-
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -39,7 +35,9 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           # will put all file under this path
-          local_path: ./# default is ./*
+          local_path: |
+            ./public_html/*
+            ./WoodLess/*
           # files will copy to under remote_path
           remote_path: ./
 
