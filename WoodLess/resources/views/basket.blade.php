@@ -12,12 +12,6 @@
                 <h1>{{ $basket->user->first_name }}'s Basket</h1>
                 <hr>
 
-                @if(session('message'))
-                    <div class="alert alert-success">
-                        {{ session('message') }}
-                    </div>
-                @endif
-
                 @if($basket->products->count() > 0)
 
                     <h2>You have {{ $basket->products->count() }} items in your basket</h2>
