@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Ticket;
+use App\Models\ImportanceLevel;
 use App\Models\Address;
 use App\Models\Category;
 use App\Models\OrderStatus;
@@ -19,6 +20,96 @@ class AdminController extends Controller
 {
 
     protected $reviews;
+
+    #region Dashboard
+
+    public function Dashboard()
+    {
+
+        $users = User::latest()->select('id', 'created_at')->get();
+        $users = $users->sortBy('id');
+
+        $orders = Order::latest()->get();
+        $orderCount = $orders->count();
+        $totalCost = 0;
+        $productsData = [];
+
+        $products = Product::latest()->get();
+        $products = $products->sortBy('id');
+
+        foreach ($products as $product) {
+            $productId = $product->id;
+            $createdAt = $product->created_at;
+
+
+            // Initialize counters
+            $totalQuantitySold = 0;
+            $totalOrders = 0;
+
+            // Loop through each order
+            foreach ($orders as $order) {
+                // Check if the order contains the current product
+                if ($order->products->contains($product)) {
+                    // Increment total orders
+                    $totalOrders++;
+                    // Add the quantity of this product in the current order to total quantity sold
+                    $totalQuantitySold += $order->products->find($product->id)->pivot->amount;
+                    $cost = $product->price * $totalQuantitySold;
+                    $totalCost += $cost;
+                }
+            }
+
+
+            // Get the discount for this product
+            $discount = $product->discount;
+
+            // Assemble the data for this product
+            $productData = [
+                'created_at' => $createdAt,
+                'total_quantity_sold' => $totalQuantitySold,
+                'total_orders' => $totalOrders,
+                'discount' => $discount
+            ];
+
+            // Add the product data to the productsData array using the product ID as key
+            $productsData[$productId] = $productData;
+        }
+
+        $products = $productsData;
+
+        $ticketsData = [];
+
+        $tickets = Ticket::latest()->get();
+
+        foreach ($tickets as $ticket) {
+            $ticketId = $ticket->id;
+            $createdAt = $ticket->created_at;
+            $adminId = $ticket->admin_id;
+            $userId = $ticket->user_id;
+
+            // Assemble the data for this ticket
+            $ticketData = [
+                'created_at' => $createdAt,
+                'admin_id' => $adminId,
+                'user_id' => $userId
+            ];
+
+            // Add the ticket data to the ticketsData array using the ticket ID as key
+            $ticketsData[$ticketId] = $ticketData;
+        }
+
+        $tickets = $ticketsData;
+        // In your controller
+        return view('admin-panel')->with([
+            'users' => $users,
+            'products' => $products,
+            'tickets' => $tickets,
+            'totalCost' => $totalCost,
+            'orderCount' => $orderCount,
+        ]);
+    }
+
+    #endregion
 
     #region User
 
@@ -39,13 +130,6 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
 
         return view('components.admin-panel.user-info', compact('user'));
-    }
-
-    public function UserEdit($id)
-    {
-        $user = User::findOrFail($id);
-
-        return view('components.admin-panel.user-edit', compact('user'));
     }
 
     public function UserAdd()
@@ -355,25 +439,18 @@ class AdminController extends Controller
 
     public function tickets(Request $request)
     {
-
         $selectedLength = $request->input('length', 100); // Default to 50 if not provided
-
-
         $queryFilter = $request->input('filter', 'all');
 
+        // Retrieve tickets with pagination
+        $tickets = Ticket::latest()->filter($queryFilter)->orderBy('id', 'desc')->paginate($selectedLength)->withQueryString();
 
-        // Retrieve tickets
-        $tickets = Ticket::latest()->filter($queryFilter)->orderBy('id', 'desc')->get();
-
-        // Manually sort the tickets
-        $tickets = $tickets->sortBy('id');
-
-        // Paginate the sorted tickets
-        $tickets = $tickets->paginate($selectedLength)->withQueryString();
+        // Count total number of tickets
         $countTickets = Ticket::latest()->get();
 
         return view('tickets-admin', compact('tickets', 'countTickets'));
     }
+
 
     public function TicketClaim(Request $request, $ticketId)
     {
@@ -395,7 +472,10 @@ class AdminController extends Controller
     {
         $ticket = Ticket::findOrFail($id);
 
-        return  view('components.admin-panel.ticket-info', compact('ticket'));
+        // Retrieve importance levels
+        $importance_levels = ImportanceLevel::latest()->get();
+
+        return  view('components.admin-panel.ticket-info', compact('ticket', 'importance_levels'));
     }
 
     public function TicketDelete($id)
@@ -424,10 +504,28 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'ticket with ' . $id . ' not found.');
         }
 
+        $ticket->status++;
+        $ticket->save();
+
         return redirect()->route('admin-panel.tickets')->with('success', 'ticket with ID:' . $id . ' resolved! JK WORKING ON IT LOLLOLAOFDLAWOFKJAWOFJAWOIFJAWOIFA');
     }
+    public function TicketImportance($id, $importance)
+    {
+        // Retrieve the ticket by ID
+        $ticket = Ticket::find($id);
 
+        // Check if the ticket exists
+        if (!$ticket) {
+            return response()->json(['error' => 'Ticket with ID ' . $id . ' not found.'], 404);
+        }
 
+        // Update the importance level
+        $ticket->importance_level_id = $importance;
+        $ticket->save();
+
+        // Return the updated ticket with the new importance level
+        return response()->json(['level' => $ticket->importanceLevel->level]);
+    }
     #endregion
 
     #region Orders
@@ -474,5 +572,122 @@ class AdminController extends Controller
 
 
     #endregion
+
+
+    #region Warehouses/Categories
+
+    public function misc()
+    {
+        $warehouses = Warehouse::latest()->get()->sortBy('id');
+        $categories = Category::latest()->get()->sortBy('id');
+
+
+        return view('warehouse-admin', compact('categories', 'warehouses'));
+    }
+
+    public function CategoryInfo($id)
+    {
+        $category = Category::findOrFail($id);
+
+        return view('components.admin-panel.category-info', compact('category'));
+    }
+
+    public function WarehouseInfo($id)
+    {
+        $warehouse = Warehouse::findOrFail($id);
+
+        return view('components.admin-panel.warehouse-info', compact('warehouse'));
+    }
+
+    public function CategoryCreate(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'category' => 'required|string|max:60',
+            'images' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the maximum file size as needed
+        ]);
+
+        // Handle file upload
+        if ($request->hasFile('images')) {
+            $image = $request->file('images');
+            $imageName = time() . '.' . $image->extension(); // Generate a unique image name
+            $image->move(public_path('images/categories'), $imageName); // Move the uploaded image to the public/images directory
+        } else {
+            // Handle file upload error
+            return redirect()->back()->with('error', 'Failed to upload image.');
+        }
+
+        // Create a new category instance
+        $category = new Category();
+
+        // Fill in the category details
+        $category->category = $validatedData['category'];
+        $category->images = $imageName; // Save the image file name
+
+        // Save the category to the database
+        $category->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Created Category with id: ' . $category->id . ' succesfully.');
+    }
+
+    public function WarehouseCreate(Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'address' => 'required|string|max:255',
+            'address_2' => 'nullable|string|max:255',
+            'postcode' => 'required|string|max:255',
+            'city' => 'required|string|max:60',
+        ]);
+
+        // Create a new warehouse instance
+        $warehouse = new Warehouse();
+
+        // Fill in the warehouse details
+        $warehouse->address = $validatedData['address'];
+        $warehouse->address_2 = $validatedData['address_2'];
+        $warehouse->postcode = $validatedData['postcode'];
+        $warehouse->city = $validatedData['city'];
+
+        // Save the warehouse to the database
+        $warehouse->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Created Warehouse with id: ' . $warehouse->id . ' succesfully.');
+    }
+
+    public function CategoryDelete($id)
+    {
+        $category = Category::findOrFail($id);
+
+        // Check if the product exists
+        if (!$category) {
+            return redirect()->back()->with('error', 'Category not found.');
+        }
+
+        // Delete the product
+        $category->delete();
+
+        return redirect()->back()->with('success', 'Deleted Category ' . $id . ' succesfully.');
+    }
+
+    public function WarehouseDelete($id)
+    {
+        $warehouse = Warehouse::findOrFail($id);
+
+        // Check if the product exists
+        if (!$warehouse) {
+            return redirect()->back()->with('error', 'Warehouse not found.');
+        }
+
+        // Delete the product
+        $warehouse->delete();
+
+
+        return redirect()->back()->with('success', 'Deleted Warehouse ' . $id . ' succesfully.');
+    }
+
+    #endregion User
 
 }

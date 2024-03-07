@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     var searchInput = document.getElementById('search');
-    var ticketsRow = document.querySelectorAll('.tickets-row');
+    var ticketsRow = document.querySelectorAll('.ticket-row');
 
     // Event listener for changes in the search input
     searchInput.addEventListener('input', function () {
@@ -94,7 +94,7 @@ function DeleteItemId(Id) {
 
 //JavaScript to handle edit modal opening
 
-function openResolveModal(userId) {
+function openImportanceLevel(userId) {
 
     $.get('/admin-panel/tickets/admin-resolve/' + userId, function (data) {
         $('body').append(data);
@@ -138,6 +138,30 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+function updateImportance(ticketId, importanceLevel) {
+    var url = "/admin-panel/tickets/importance/" + ticketId + "/" + importanceLevel;
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'), // Get the CSRF token from the meta tag
+        },
+        success: function (response) {
+            // Update the content of the <h5> element with the new importance level
+            $('#importanceText').html('<strong>Importance: ' + response.level + '</strong>');
+            console.log(response);
+        },
+        error: function (xhr, status, error) {
+            // Handle error response
+            console.error(xhr.responseText);
+        }
+    });
+}
+
+
+
+
 $(document).ready(function () {
     $('.ticket-row').click(function () {
         var ticketId = $(this).find('td:first-child').text(); // Get the ticket ID from the first column
@@ -145,14 +169,61 @@ $(document).ready(function () {
         $.get('/admin-panel/tickets/info/' + ticketId, function (data) {
             $('body').append(data);
             var modal = $('#infoModal');
+            var container = $('#infoModals');
             modal.modal('show'); // Show the modal after content is appended
 
-            // Remove the modal from the DOM when it's closed
-            modal.on('hidden.bs.modal', function () {
+            // Flag to determine if the ExtraModal was explicitly closed by the user
+            var extraModalClosed = false;
 
-                modal.remove();
+
+            // Set the flag when any close button inside the modal is clicked
+            var closeButtons = modal.find('[id="btn-close"]');
+            closeButtons.each(function () {
+                $(this).on('click', function () {
+
+                    container.remove();
+
+                    // Get the modal backdrop element
+                    var backdrop = document.querySelector('.modal-backdrop');
+
+                    // Check if the backdrop element exists
+                    if (backdrop) {
+                        // Remove the backdrop element from the DOM
+                        backdrop.parentNode.removeChild(backdrop);
+                    }
+                });
+            });
+
+            // Event listener for clicking outside the modal
+            container.on('click', function (e) {
+                // Check if the click is outside the modal and not on any elements within the modal
+
+                if ($(e.target).hasClass('modal')) {
+                    container.remove();
+                    // Get the modal backdrop element
+                    var backdrop = document.querySelector('.modal-backdrop');
+
+                    // Check if the backdrop element exists
+                    if (backdrop) {
+                        // Remove the backdrop element from the DOM
+                        backdrop.parentNode.removeChild(backdrop);
+                    }
+                }
+            });
+
+            // Event listener for modal close event
+            $('.modal').on('hidden.bs.modal', function (e) {
+                var closedModalId = $(this).attr('id'); // Get the ID of the closed modal
+                var parentContainer = $('#' + closedModalId).parent(); // Get the parent of the closed modal
+                console.log(parentContainer.attr('id'));
+                // Check if the parent of the closed modal is the container modal
+                if (!parentContainer.is('#extraModals')) {
+                    // The modal was closed outside of the container, handle it here
+                    // For example, remove the container or perform other actions
+                }
             });
         });
+
 
     });
 });

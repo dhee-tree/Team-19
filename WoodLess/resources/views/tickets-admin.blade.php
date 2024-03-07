@@ -39,7 +39,7 @@
             <form action="#">
                 <div class="form-input">
                     <!--<input type="search" placeholder="Search...">
-                                        <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
+                                                                                        <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
                 </div>
             </form>
             <a href="#" class="notif">
@@ -102,6 +102,39 @@
                     </span>
                 </li>
             </ul>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="dataTables_length" id="length_dropdown">
+                        <label>
+                            Show
+                            <select name="length" id="length" aria-controls="example"
+                                class="form-select form-select-sm">
+                                <option value="1000">Select Value</option>
+                                <option value="5" {{ request()->input('length') == 5 ? 'selected' : '' }}>5
+                                </option>
+                                <option value="10" {{ request()->input('length') == 10 ? 'selected' : '' }}>10
+                                </option>
+                                <option value="25" {{ request()->input('length') == 25 ? 'selected' : '' }}>25
+                                </option>
+                                <option value="50" {{ request()->input('length') == 50 ? 'selected' : '' }}>50
+                                </option>
+                                <option value="100" {{ request()->input('length') == 100 ? 'selected' : '' }}>100
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="dataTables_filter" id="filter">
+                        <label>
+                            Search:
+                            <input type="search" id="search" class="form-control form-control-sm" placeholder
+                                aria-controls="search">
+                        </label>
+                    </div>
+                </div>
+
+            </div>
             <div class="bottom-data">
                 <div class="orders">
                     <div class="header">
@@ -129,12 +162,11 @@
                         <tbody>
                             @foreach ($tickets as $ticket)
                                 <tr class="ticket-row" scope="row">
-                                    <td>{{ $ticket->id }}</td>
-                                    <td>{{ $ticket->title }}</td>
-                                    <td>{{ $ticket->truncateInformation(5) }}...</td>
-                                    <td>{{ $ticket->created_at }}</td>
-
-                                    <td>
+                                    <td class="id">{{ $ticket->id }}</td>
+                                    <td class="title">{{ $ticket->title }}</td>
+                                    <td class="information">{{ $ticket->truncateInformation(5) }}...</td>
+                                    <td class="created">{{ $ticket->created_at }}</td>
+                                    <td class="status">
                                         @if ($ticket->status == 1)
                                             Open
                                         @elseif ($ticket->status == 2)
@@ -143,7 +175,8 @@
                                             Resolved
                                         @endif
                                     </td>
-
+                                    <td class="admin" style="display:none">{{ $ticket->admin_id }}</td>
+                                    <td class="user" style="display:none">{{ $ticket->user_id }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -163,8 +196,8 @@
     </div>
 
     <!-- Delete Product Modal -->
-    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog"
+        aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

@@ -72,13 +72,25 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.fil
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::view('/admin-panel', 'admin-panel')->middleware('admin');;
+Route::get('/admin-panel', [AdminController::class, 'Dashboard'])->name('admin.panel-dashboard')->middleware('admin');;
 //admin panel pages
 
 #region admin panel warehouses / categories
 
-Route::view('/admin-panel/warehouse', 'warehouse-admin')->middleware('admin');
+Route::get('/admin-panel/warehouse', [AdminController::class, 'Misc'])->name('admin.panel-warehouses-categories')->middleware('admin');
 
+Route::get('/admin-panel/warehouse/info/{id}', [AdminController::class, 'WarehouseInfo'])->name('admin.warehouse-info')->middleware('admin');
+
+Route::get('/admin-panel/category/info/{id}', [AdminController::class, 'CategoryInfo'])->name('admin.category-info')->middleware('admin');
+
+Route::post('/admin-panel/category/create', [AdminController::class, 'CategoryCreate'])->name('admin.category-create')->middleware('admin');
+
+Route::post('/admin-panel/warehouse/create', [AdminController::class, 'WarehouseCreate'])->name('admin.warehouse-create')->middleware('admin');
+
+
+Route::post('/admin-panel/category/delete/{id}', [AdminController::class, 'CategoryDelete'])->name('admin.category-delete')->middleware('admin');
+
+Route::post('/admin-panel/warehouse/delete/{id}', [AdminController::class, 'WarehouseDelete'])->name('admin.product-delete')->middleware('admin');
 
 
 #endregion
@@ -115,7 +127,11 @@ Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'User
 //used to claim a ticket
 Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin');
 //used to resolve a ticket
-Route::get('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('ticket-resolve')->middleware('admin');
+Route::post('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('admin.ticket-resolve')->middleware('admin');
+
+Route::post('/admin-panel/tickets/importance/{id}/{importance}', [AdminController::class, 'TicketImportance'])->name('admin.ticket-importance')->middleware('web', 'admin');
+
+
 //used to delete a ticket
 Route::post('/admin-panel/tickets/delete/{id}', [AdminController::class, 'TicketDelete'])->name('ticket-delete')->middleware('admin');
 
@@ -146,8 +162,6 @@ Route::get('/admin-panel/users', [AdminController::class, 'users'])->name('admin
 
 //The additional information modal to expand fields in user admin panel
 Route::get('/admin-panel/users/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin');
-//Used to edit the user
-Route::get('/admin-panel/users/user-edit/{id}', [AdminController::class, 'UserEdit'])->name('components.user-edit')->middleware('admin');
 //create a user
 Route::get('/admin-panel/users/user-add', [AdminController::class, 'UserAdd'])->name('components.user-add')->middleware('admin');
 //stores products, either edits or creates a new ones
