@@ -26,6 +26,10 @@ jobs:
         with:
           fetch-depth: 2
 
+      - name: Check Test Results
+        if: ${{ failure() }}
+        run: exit 1
+
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -36,8 +40,9 @@ jobs:
 
           # will put all file under this path
           local_path: |
-            ./public_html/*
-            ./WoodLess/*
+            ./public_html
+            ./WoodLess
+
           # files will copy to under remote_path
           remote_path: ./
 
