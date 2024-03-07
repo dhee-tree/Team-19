@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\User;
+use App\Models\EmailVerificationCode;
 
 class VerificationEmail
 {
@@ -14,28 +14,28 @@ class VerificationEmail
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return mixed
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        // Check if the user is authenticated and their email is not verified
-        if ($request->user() && !$request->user()->hasVerifiedEmail()) {
-            // Redirect the user to the email verification screen
-            return redirect()->route('verification.notice');
+        // Check if the user is authenticated
+        if ($request->user()) {
+            // Check if the user has an associated EmailVerificationCode record
+            $verificationCode = EmailVerificationCode::where('user_id', $request->user()->id)->first();
+
+            // If the verification code record is found and is verified
+            if (!$verificationCode) {
+                // Check if the request is for basket or order-related routes
+                if ($request->is('basket') || $request->is('checkout')) {
+                    // Prevent unverified users from accessing basket and order-related routes
+                    return redirect()->route('verification.notice')->with('danger', 'Please verify your email to access baskets and orders.');
+                }
+                // Proceed with the request
+                return $next($request);
+            } else {
+                // If the verification code record is not found or not verified, redirect to the email verification screen
+                return redirect()->route('verification.notice')->with('danger', 'Please verify your email to continue.');
+            }
         }
-
-        // Check if the user ID exists in the database
-        $userId = $request->user()->id;
-        $userExists = User::where('id', $userId)->exists();
-
-        if (!$userExists) {
-            // If user ID doesn't exist in the database, handle accordingly
-            // For example, log the incident and return a response
-            \Log::warning('User ID not found in the database: ' . $userId);
-            abort(404, 'User not found');
-        }
-
-        // Proceed with the request if the email is verified and user ID exists in the database
-        return $next($request);
     }
 }
