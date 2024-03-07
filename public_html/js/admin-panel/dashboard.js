@@ -238,13 +238,13 @@ function usersChart(year) {
     }
 
     document.getElementById('yearButtonNegative').onclick = function () {
-        changeYearUser(-1);
+        changeYearUsers(-1);
     };
     document.getElementById('yearButtonPositive').onclick = function () {
-        changeYearUser(1);
+        changeYearUsers(1);
     };
     document.getElementById('refreshButton').onclick = function () {
-        changeYearUser("refresh");
+        changeYearUsers("refresh");
     };
 
 
@@ -352,7 +352,7 @@ function changeYearUsers(change) {
         selectedYear = new Date().getFullYear();
     }
     // Create new chart with the selected year
-    UsersChart(selectedYear);
+    usersChart(selectedYear);
 }
 
 
