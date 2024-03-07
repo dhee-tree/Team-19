@@ -11,7 +11,7 @@ class UserTest extends TestCase
 {  
     use RefreshDatabase;
     /**
-     * A basic feature test example.
+     * Create a user and set it's is_admin column to true.
      */
     public function test_make_user_and_check_admin(): void
     {   
