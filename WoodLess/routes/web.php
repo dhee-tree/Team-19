@@ -117,4 +117,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/addresses/{address}/edit', [AddressController::class, 'edit'])->name('address.edit');
     Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('address.update');
     Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('address.destroy');
+    Route::post('/addresses/{address}/set-default', [AddressController::class, 'setDefault'])->name('address.set_default');
 });
