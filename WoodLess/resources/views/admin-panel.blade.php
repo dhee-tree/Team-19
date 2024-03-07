@@ -44,7 +44,7 @@
                 <form action="#">
                     <div class="form-input">
                         <!--<input type="search" placeholder="Search...">
-                                                                                                                                                        <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
+                                                                                                                                                                                                                                                                                                                                            <button class="search-btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
                     </div>
                 </form>
                 <a href="#" class="notif">
@@ -73,7 +73,7 @@
                         <i class="fa-solid fa-clipboard-check"></i>
                         <span class="info">
                             <h3>
-                                1,074
+                                {{ $orderCount }}
                             </h3>
                             <p>Paid Orders</p>
                         </span>
@@ -81,7 +81,7 @@
                     <li><i class="fa-solid fa-user"></i>
                         <span class="info">
                             <h3>
-                                3,944
+                                {{ $users->count() }}
                             </h3>
                             <p>Users</p>
                         </span>
@@ -89,7 +89,7 @@
                     <li><i class="fa-solid fa-comments"></i>
                         <span class="info">
                             <h3>
-                                14,721
+                                {{ count($tickets) }}
                             </h3>
                             <p>Tickets</p>
                         </span>
@@ -97,20 +97,12 @@
                     <li><i class="fa-solid fa-money-bill-wave"></i>
                         <span class="info">
                             <h3>
-                                £6,742
+                                {{ $totalCost }}
                             </h3>
                             <p>Total Sales</p>
                         </span>
                     </li>
                 </ul>
-
-                <button id="toggleViewButton" onclick="toggleView()">View by Year</button>
-
-                <button onclick="changeYear(-1)">Previous Year</button>
-                <button onclick="changeYear(1)">Next Year</button>
-                <canvas id="myChart" width="300" height="300"></canvas>
-
-
 
 
                 <!-- End of Insights -->
@@ -120,43 +112,39 @@
                 <div class="bottom-data">
                     <div class="orders">
                         <div class="header">
-                            <i class='bx bx-receipt'></i>
-                            <h3>Recent Orders</h3>
-                            <i class='fa-solid fa-filter'></i>
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <h3>Dashboard</h3>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Choose Graph
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" onclick="productsChart()">Products</a>
+                                    <a class="dropdown-item" onclick="usersChart()">Users</a>
+                                    <a class="dropdown-item" onclick="ticketsChart()">Tickets</a>
+                                </div>
+                            </div>
                         </div>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>User</th>
-                                    <th>Order Date</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <p>John Doe</p>
-                                    </td>
-                                    <td>14-08-2023</td>
-                                    <td><span class="status completed">Completed</span></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>John Doe</p>
-                                    </td>
-                                    <td>14-08-2023</td>
-                                    <td><span class="status pending">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p>John Doe</p>
-                                    </td>
-                                    <td>14-08-2023</td>
-                                    <td><span class="status process">Processing</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-3 d-flex flex-column align-items-center justify-content-center">
+
+                                    <div class="btn-group-vertical">
+                                        <button id="yearButtonNegative" class="btn btn-primary"
+                                            onclick="changeYearTickets(-1)">Previous Year</button>
+                                        <button id="refreshButton" class="btn btn-secondary"
+                                            onclick="changeYearTickets('refresh')">Current Year</button>
+                                        <button id="yearButtonPositive" class="btn btn-primary"
+                                            onclick="changeYearTickets(1)">Next Year</button>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <canvas id="myChart" width="1000" height="800"></canvas>
+                                </div>
+
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>

@@ -30,6 +30,8 @@ class AdminController extends Controller
         $users = $users->sortBy('id');
 
         $orders = Order::latest()->get();
+        $orderCount = $orders->count();
+        $totalCost = 0;
         $productsData = [];
 
         $products = Product::latest()->get();
@@ -45,13 +47,15 @@ class AdminController extends Controller
             $totalOrders = 0;
 
             // Loop through each order
-            foreach (Order::all() as $order) {
+            foreach ($orders as $order) {
                 // Check if the order contains the current product
                 if ($order->products->contains($product)) {
                     // Increment total orders
                     $totalOrders++;
                     // Add the quantity of this product in the current order to total quantity sold
                     $totalQuantitySold += $order->products->find($product->id)->pivot->amount;
+                    $cost = $product->price * $totalQuantitySold;
+                    $totalCost += $cost;
                 }
             }
 
@@ -100,6 +104,8 @@ class AdminController extends Controller
             'users' => $users,
             'products' => $products,
             'tickets' => $tickets,
+            'totalCost' => $totalCost,
+            'orderCount' => $orderCount,
         ]);
     }
 

@@ -20,7 +20,7 @@ function createChart(type, data, options) {
         // Configure chart options
         op = {
             responsive: false,
-            maintainAspectRatio: true, // Set to true to maintain aspect ratio
+            maintainAspectRatio: false, // Set to true to maintain aspect ratio
             scales: {
                 y: {
                     beginAtZero: true,
@@ -42,6 +42,21 @@ function createChart(type, data, options) {
 }
 
 function productsChart(year) {
+
+    if (year == null) {
+        year = selectedYear
+    }
+
+    document.getElementById('yearButtonNegative').onclick = function () {
+        changeYearProducts(-1);
+    };
+    document.getElementById('yearButtonPositive').onclick = function () {
+        changeYearProducts(1);
+    };
+    document.getElementById('refreshButton').onclick = function () {
+        changeYearProducts("refresh");
+    };
+
     const productsData = products;
 
     // Assuming you have monthNames containing the names of the months
@@ -133,6 +148,21 @@ function productsChart(year) {
 
 // Function to create the chart based on the selected year
 function ticketsChart(year) {
+    if (year == null) {
+        year = selectedYear
+    }
+
+    document.getElementById('yearButtonNegative').onclick = function () {
+        changeYearTickets(-1);
+    };
+    document.getElementById('yearButtonPositive').onclick = function () {
+        changeYearTickets(1);
+    };
+    document.getElementById('refreshButton').onclick = function () {
+        changeYearTickets("refresh");
+    };
+
+
     const ticketsData = tickets;
 
     // Initialize an object to hold the count of tickets for each month
@@ -201,14 +231,128 @@ function ticketsChart(year) {
     createChart('bar', data, options);
 }
 
+// Function to create the chart based on the selected year
+function usersChart(year) {
+    if (year == null) {
+        year = selectedYear
+    }
+
+    document.getElementById('yearButtonNegative').onclick = function () {
+        changeYearUser(-1);
+    };
+    document.getElementById('yearButtonPositive').onclick = function () {
+        changeYearUser(1);
+    };
+    document.getElementById('refreshButton').onclick = function () {
+        changeYearUser("refresh");
+    };
+
+
+    const usersData = users;
+
+    // Initialize an object to hold the count of tickets for each month
+    const usersByMonth = {
+        '01': 0, // January
+        '02': 0, // February
+        '03': 0, // March
+        '04': 0, // April
+        '05': 0, // May
+        '06': 0, // June
+        '07': 0, // July
+        '08': 0, // August
+        '09': 0, // September
+        '10': 0, // October
+        '11': 0, // November
+        '12': 0  // December
+    };
+
+
+    // Iterate over each ticket object and group them by month within the selected year
+    for (const key in usersData) {
+        if (usersData.hasOwnProperty(key)) {
+            const user = usersData[key];
+            const createdAt = new Date(user.created_at);
+            const userYear = createdAt.getFullYear();
+            if (userYear === year) {
+                const month = String(createdAt.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based index
+                usersByMonth[month]++;
+            }
+        }
+    }
+
+    // Convert the grouped data into an array of objects for charting
+    const chartData = Object.keys(usersByMonth).map(month => {
+        return {
+            month: monthNames[Number(month) - 1], // Get month name from an array of month names
+            count: usersByMonth[month]
+        };
+    });
+
+    const data = {
+        labels: chartData.map(data => data.month),
+        datasets: [{
+            label: 'Users',
+            data: chartData.map(data => data.count),
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    }
+
+    // Configure chart options
+    const options = {
+        responsive: false,
+        maintainAspectRatio: true, // Set to true to maintain aspect ratio
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    stepSize: 5 // Adjust the step size to make the scale smaller
+                }
+            }
+        }
+    };
+
+    createChart('bar', data, options);
+}
+
+
 var selectedYear = new Date().getFullYear();
 
 // Function to handle year change
-function changeYear(change) {
+function changeYearTickets(change) {
+
     selectedYear += change;
+
+    if (change == "refresh") {
+        selectedYear = new Date().getFullYear();
+    }
     // Create new chart with the selected year
-    console.log(selectedYear);
     ticketsChart(selectedYear);
+}
+
+// Function to handle year change
+function changeYearProducts(change) {
+
+    selectedYear += change;
+
+    if (change == "refresh") {
+        selectedYear = new Date().getFullYear();
+    }
+    // Create new chart with the selected year
+    productsChart(selectedYear);
+}
+
+// Function to handle year change
+function changeYearUsers(change) {
+
+    selectedYear += change;
+
+    if (change == "refresh") {
+        selectedYear = new Date().getFullYear();
+    }
+    // Create new chart with the selected year
+    UsersChart(selectedYear);
 }
 
 
