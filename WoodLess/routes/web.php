@@ -72,7 +72,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.fil
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::view('/admin-panel', 'admin-panel')->middleware('admin');;
+Route::get('/admin-panel', [AdminController::class, 'Dashboard'])->name('admin.panel-dashboard')->middleware('admin');;
 //admin panel pages
 
 #region admin panel warehouses / categories

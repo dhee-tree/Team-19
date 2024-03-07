@@ -21,6 +21,90 @@ class AdminController extends Controller
 
     protected $reviews;
 
+    #region Dashboard
+
+    public function Dashboard()
+    {
+
+        $users = User::latest()->select('id', 'created_at')->get();
+        $users = $users->sortBy('id');
+
+        $orders = Order::latest()->get();
+        $productsData = [];
+
+        $products = Product::latest()->get();
+        $products = $products->sortBy('id');
+
+        foreach ($products as $product) {
+            $productId = $product->id;
+            $createdAt = $product->created_at;
+
+
+            // Initialize counters
+            $totalQuantitySold = 0;
+            $totalOrders = 0;
+
+            // Loop through each order
+            foreach (Order::all() as $order) {
+                // Check if the order contains the current product
+                if ($order->products->contains($product)) {
+                    // Increment total orders
+                    $totalOrders++;
+                    // Add the quantity of this product in the current order to total quantity sold
+                    $totalQuantitySold += $order->products->find($product->id)->pivot->amount;
+                }
+            }
+
+
+            // Get the discount for this product
+            $discount = $product->discount;
+
+            // Assemble the data for this product
+            $productData = [
+                'created_at' => $createdAt,
+                'total_quantity_sold' => $totalQuantitySold,
+                'total_orders' => $totalOrders,
+                'discount' => $discount
+            ];
+
+            // Add the product data to the productsData array using the product ID as key
+            $productsData[$productId] = $productData;
+        }
+
+        $products = $productsData;
+
+        $ticketsData = [];
+
+        $tickets = Ticket::latest()->get();
+
+        foreach ($tickets as $ticket) {
+            $ticketId = $ticket->id;
+            $createdAt = $ticket->created_at;
+            $adminId = $ticket->admin_id;
+            $userId = $ticket->user_id;
+
+            // Assemble the data for this ticket
+            $ticketData = [
+                'created_at' => $createdAt,
+                'admin_id' => $adminId,
+                'user_id' => $userId
+            ];
+
+            // Add the ticket data to the ticketsData array using the ticket ID as key
+            $ticketsData[$ticketId] = $ticketData;
+        }
+
+        $tickets = $ticketsData;
+        // In your controller
+        return view('admin-panel')->with([
+            'users' => $users,
+            'products' => $products,
+            'tickets' => $tickets,
+        ]);
+    }
+
+    #endregion
+
     #region User
 
     public function users(Request $request)
