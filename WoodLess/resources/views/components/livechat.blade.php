@@ -114,7 +114,72 @@
                         </span>
                     </div>
                 </div> 
-                
+                <!-- Second product responses -->
+                <!-- second order responses -->
+<!-- id product shows span message -->
+<div class="aichat" id="product-response-1">
+    <span>Sorry to here this our order typically take 7-14 days to arrive but this can be delayed due to unforeseen circumstances 
+    Did this help resolve your issue ?
+    </span>
+</div>
+<div class="aichat" id="product-response-2">
+    <!-- id return shows span message -->
+    <span>Sorry to here this our order currently we only accept debit cards and PayPal and no other payment type
+    Did this help resolve your issue ?
+    </span>
+</div>
+<div class="aichat" id="product-response-3">
+    <!-- id return shows span message -->
+    <span> Unfortunately at the moment we do not offer International shipping as we cannot do so in an environmentally friendly manner
+    Did this help resolve your issue ?</span>
+</div>
+<div class="aichat" id="product-response-4">
+    <!-- id return shows span message -->
+    <span>  Sorry I am only able to answer the most common questions please fill out this form and we will get back to you
+        <form action="{{ route('user.tickets.store') }}" method="POST">
+            @csrf
+            <div class="modal-body">
+            <label for="title">Title</label>
+                            <input type="text" name="title" id="title" class="form-control" required>
+
+                            <label for="information">Information</label>
+                            <textarea name="information" id="information" class="form-control" required style="resize: none;"></textarea>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Create Ticket</button>
+                        </div>
+                    </form>
+                        </span>
+                    </div>
+                    <!-- third product response -->
+                    <!-- third order response -->
+<div class="aichat" id="product-response-5">
+    <!-- id return shows span message -->
+    <span> Thank you I am glad we could help</span>
+</div>
+<div class="aichat" id="product-response-6">
+    <!-- id return shows span message -->
+    <span> Sorry we could not help please fill out this form and a member of our team will be in touch
+        <form action="{{ route('user.tickets.store') }}" method="POST">
+            @csrf
+            <div class="modal-body">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" class="form-control" required>
+
+                <label for="information">Information</label>
+                <textarea name="information" id="information" class="form-control" required style="resize: none;"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create Ticket</button>
+            </div>
+        </form>
+    </span>
+</div>
+
                 <div class="col-md-6">
                     <!-- First chat -->
                     <!-- class user chat for styling of any user chat 
@@ -130,7 +195,7 @@
                         <span><i class="fa-regular fa-user"></i> Issue with a return?</span>
                     </div>
 
-                    <!-- Second order chat 1 -->
+                    <!-- Second order chat (issues) -->
                     <div class="userchat" onclick="showSecondOrderChat('order-chat-1')" id="order-chat-1">
                         <span><i class="fa-regular fa-user"></i> My order has not arrived yet</span>
                     </div>
@@ -143,14 +208,35 @@
                     <div class="userchat" onclick="showSecondOrderChat('order-chat-4')" id="order-chat-4">
                         <span><i class="fa-regular fa-user"></i> A different order related problem</span>
                     </div>
-                    <!-- third order chat 1 -->
+                    <!-- third order chat (yes or no) -->
                     <div class="userchat" onclick="showSecondOrderChat2('order-chat-5')" id="order-chat-5">
                         <span><i class="fa-regular fa-user"></i> Yes</span>
                     </div>
                     <div class="userchat" onclick="showSecondOrderChat2('order-chat-6')" id="order-chat-6">
                         <span><i class="fa-regular fa-user"></i> No</span>
                     </div>
-                   
+               <!-- Second product chat (issues) -->
+<div class="userchat" onclick="showSecondProductChat('product-chat-1')" id="product-chat-1">
+    <span><i class="fa-regular fa-user"></i> My order has not arrived yet</span>
+</div>
+<div class="userchat" onclick="showSecondProductChat('product-chat-2')" id="product-chat-2">
+    <span><i class="fa-regular fa-user"></i> I cannot pay for my order at checkout ? </span>
+</div>
+<div class="userchat" onclick="showSecondProductChat('product-chat-3')" id="product-chat-3">
+    <span><i class="fa-regular fa-user"></i> I am not able to get my order shipped internationally</span>
+</div>
+<div class="userchat" onclick="showSecondProductChat('product-chat-4')" id="product-chat-4">
+    <span><i class="fa-regular fa-user"></i> A different order related problem</span>
+</div>
+
+<!-- Third product user chat (yes or no) -->
+<div class="userchat" onclick="showSecondProductChat2('product-chat-5')" id="product-chat-5">
+    <span><i class="fa-regular fa-user"></i> Yes</span>
+</div>
+<div class="userchat" onclick="showSecondProductChat2('product-chat-6')" id="product-chat-6">
+    <span><i class="fa-regular fa-user"></i> No</span>
+</div>
+
 
 
                     
