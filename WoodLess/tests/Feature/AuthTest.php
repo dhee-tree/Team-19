@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AuthTest extends TestCase
 {   
+    use RefreshDatabase;
     protected $user;
 
     /**

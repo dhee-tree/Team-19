@@ -4,13 +4,15 @@ namespace Tests\Feature;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use Illuminate\Support\Facades\Artisan;
 use Tests\TestCase;
 use Tests\CreatesApplication;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ServiceTest extends TestCase
+class ApplicationTest extends TestCase
 {   
+    use RefreshDatabase;
     /**
      * Test the application returns a successful response
      */
