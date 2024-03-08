@@ -116,12 +116,12 @@
                                     <h6 class="card-title">{{$user->first_name}} {{$user->last_name}}</h6>
                                     <h6 class="card-subtitle d-flex flex-row">
                                         <i class="fa-solid fa-star" style="color: #000000;"></i> 
-                                        <select class=" ms-1 form-select form-select-sm" name="rating" aria-label="Default select example">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option selected value="5">5</option>
+                                        <select class="ms-1 form-select form-select-sm" name="rating" aria-label="Review score selection">
+                                            <option value="1" {{ old('rating') == '1' ? 'selected' : '' }}>1</option>
+                                            <option value="2" {{ old('rating') == '2' ? 'selected' : '' }}>2</option>
+                                            <option value="3" {{ old('rating') == '3' ? 'selected' : '' }}>3</option>
+                                            <option value="4" {{ old('rating') == '4' ? 'selected' : '' }}>4</option>
+                                            <option value="5" {{ old('rating') == '5' ? 'selected' : '' }}>5</option>
                                         </select>
                                     </h6>
                                 </div>
@@ -129,7 +129,7 @@
                             
                             <hr>
         
-                            <textarea class="form-control" name="description" rows="3"></textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="3" >{{old('description')}}</textarea>
                         </div>
                         <div class="card-footer">
                             <div class="d-flex flex-row justify-content-end">
