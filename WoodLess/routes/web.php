@@ -22,6 +22,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use App\Http\Controllers\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,8 +57,11 @@ Route::delete('/basket/{basket}', [BasketController::class, 'destroy'])->name('b
 Route::put('/update-basket/{basket}', [BasketController::class, 'update'])->name('basket.update');
 
 // Checkout URLS
-Route::get('/checkout', [CheckoutController::class, 'show'])->middleware('auth');
-Route::post('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('auth');
+Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout')->middleware('auth');
+Route::get('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('auth');
+
+// Stripe payment
+Route::post('/charge', [App\Http\Controllers\StripeController::class, 'charge'])->name('charge');
 
 //Store single review
 Route::post('/review/{product_id}', [ReviewController::class, 'store'])->middleware('auth');
