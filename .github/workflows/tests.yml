@@ -8,12 +8,6 @@ on:
   push:
     branches: [development]
 
-  # Additional trigger for increased verbosity
-  workflow_run:
-    workflows: ["CI-Tests"]
-    types:
-      - requested
-
 # Define the jobs to run
 jobs:
   run-tests:
