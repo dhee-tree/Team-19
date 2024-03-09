@@ -56,6 +56,13 @@ jobs:
           echo MAIL_FROM_ADDRESS="hello@example.com" >> .env.testing
           echo MAIL_FROM_NAME="${APP_NAME}" >> .env.testing
         working-directory: WoodLess
+
+      - name: Configure Stripe settings in .env
+        # We'll need to add stripe config to secrets later if we are to test email methods.
+        run: |
+          echo STRIPE_PRIVATE_KEY=null >> .env.testing
+          echo STRIPE_PUBLIC_KEY=null >> .env.testing 
+        working-directory: WoodLess
       
       - name: Generate key for testing
         run: php artisan key:generate --env=testing
