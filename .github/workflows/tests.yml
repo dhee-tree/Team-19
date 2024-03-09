@@ -1,12 +1,14 @@
 # Controls when the action will run. 
-name: tests
+name: Run Tests
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
   # Triggers the workflow on push request events but only for the main branch
   push:
-    branches: [development, main]
+    branches:
+      - main
+      - development
 
 # Define the jobs to run
 jobs:
@@ -18,7 +20,7 @@ jobs:
         image: mysql:latest
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_DATABASE: team_project_testing
+          MYSQL_DATABASE: woodless_testing
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
