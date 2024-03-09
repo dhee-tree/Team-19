@@ -71,7 +71,7 @@ The file .env declares the app environment, so it is important to set this up fi
 2. In `.env`, modify `APP_URL` (Line 5) to your server's domain name. This can usually be left as `http://localhost` if you are running locally.
 3. Modify lines 12-17 to match the information of your target database. This will be the database that the project will use and connect to.
 4. Modify lines 31-38 to match the information of an email account to be used by WoodLess for sending emails.
-5. Modify lines 61-62 to match the information of a Stripe public and private key. You will need to setup a [Stripe developer account]('https://docs.stripe.com/keys?locale=en-GB') to generate these.
+5. Modify lines 61-62 to match the information of a Stripe public and private key. You will need to setup a [Stripe developer account](https://docs.stripe.com/keys) to generate these. This is used by WoodLess to handle transactions.
 6. Go to the WoodLess directory in a terminal. Run `composer install` to ensure the project is set up correctly. You may also wish to run `composer update`.
 7. Run the command `php artisan key:generate`. This will generate an app key unique to your project installation.
 
