@@ -4,13 +4,16 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class AuthTest extends TestCase
+class LoginTest extends TestCase
 {   
     use RefreshDatabase;
     protected $user;
+    protected $password;
 
     /**
      * Set up the user before each test.
@@ -18,8 +21,11 @@ class AuthTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-
-        $this->user = User::factory()->create();
+        
+        $this->password = 'test';
+        $this->user = User::factory()->create([
+            'password' => Hash::make($this->password)
+        ]);
     }
 
     /**
@@ -59,5 +65,21 @@ class AuthTest extends TestCase
         $this->assertTrue(session()->hasOldInput('email'));
         $this->assertFalse(session()->hasOldInput('password'));
         $this->assertGuest();
+    }
+
+    /**
+     * Test to see if user cannot login if credentials are correct
+     */
+    public function test_user_can_login_if_correct_credentials()
+    {   
+        $this->withExceptionHandling();
+        $response = $this->from('/login')->post('/login', [
+            'email' => $this->user->email,
+            'password' => $this->password,
+            'remember' => 'on'
+        ]);
+        
+        $response->assertRedirect('/');
+        $this->assertAuthenticatedAs($this->user);
     }
 }
