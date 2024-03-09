@@ -39,6 +39,23 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-req=ext-imagick
         working-directory: WoodLess
+        
+      - name: Create .env.testing file
+        run: cp .env.testing.example .env.testing
+        working-directory: WoodLess
+
+      - name: Configure Email settings in .env
+        # We'll need to add email config to secrets later if we are to test email methods.
+        run: |
+          echo MAIL_MAILER=smtp >> .env.testing
+          echo MAIL_HOST=mailpit >> .env.testing
+          echo MAIL_PORT=1025 >> .env.testing
+          echo MAIL_USERNAME=null >> .env.testing
+          echo MAIL_PASSWORD=null >> .env.testing
+          echo MAIL_ENCRYPTION=null >> .env.testing
+          echo MAIL_FROM_ADDRESS="hello@example.com" >> .env.testing
+          echo MAIL_FROM_NAME="${APP_NAME}" >> .env.testing
+        working-directory: WoodLess
       
       - name: Generate key for testing
         run: php artisan key:generate --env=testing
