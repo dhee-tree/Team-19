@@ -92,7 +92,7 @@
     margin-top: 40px;
 }
 
-#order, #product-chat, #return, #order-chat-1, #order-chat-2, #order-chat-3,#order-chat-4,#order-chat-5,#order-chat-6,#order-response-1,#order-response-2,#order-response-3,#order-response-4,#order-response-5,#order-response-6,#product-chat-1,#product-chat-2,#product-chat-3,#product-chat-4,#product-chat-5,#product-chat-6,#product-response-1,#product-response-2,#product-response-3,#product-response-4,#product-response-5,#product-response-6 {
+#order, #product-chat, #return, #order-chat-1, #order-chat-2, #order-chat-3,#order-chat-4,#order-chat-5,#order-chat-6,#order-response-1,#order-response-2,#order-response-3,#order-response-4,#order-response-5,#order-response-6,#product-chat-1,#product-chat-2,#product-chat-3,#product-chat-4,#product-chat-5,#product-chat-6,#product-response-1,#product-response-2,#product-response-3,#product-response-4,#product-response-5,#product-response-6,#return-chat-1, #return-chat-2, #return-chat-3,#return-chat-4,#return-chat-5,#return-chat-6,#return-response-1,#return-response-2,#return-response-3,#return-response-4,#return-response-5,#return-response-6 {
     display: none;
 }
 
