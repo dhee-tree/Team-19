@@ -68,29 +68,6 @@
     cursor: pointer;
 }
 
-/* Live chat */
-.userchat {
-    border: solid 1px #19ff05;
-    border-radius: 12px;
-    background-color: #19ff05;
-    padding: 5px;
-    max-width: 250px;
-    cursor: pointer;
-}
-
-.aichat {
-    border: solid 1px #cef71a;
-    border-radius: 12px;
-    background-color: #cef71a;
-    padding: 5px;
-    max-width: 250px;
-    margin-top: 10px;
-}
-
-#order, #product, #return, #order-chat-1, #order-chat-2, #order-chat-3,#order-chat-4,#order-chat-5,#order-chat-6,#order-response-1,#order-response-2,#order-response-3,#order-response-4,#order-response-5,#order-response-6,#product-chat-1,#product-chat-2,#product-chat-3,#product-chat-4,#product-chat-5,#product-chat-6,#product-response-1,#product-response-2,#product-response-3,#product-response-4,#product-response-5,#product-response-6 {
-    display: none;
-}
-
 .close {
     color: #aaa;
     float: right;
