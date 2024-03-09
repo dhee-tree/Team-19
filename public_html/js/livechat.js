@@ -483,8 +483,8 @@ function showSecondReturnChat2(chat) {
     disablePreviousChat(chat_button);
     user_chat_height = document.getElementById(chat).clientHeight;
 
-    if (chat === "order-chat-5") { // yes
-        var order = document.getElementById("order-response-5");
+    if (chat === "return-chat-5") { // yes
+        var order = document.getElementById("return-response-5");
         // use the chat variable to get the chat element
         setTimeout(function() {
             order.style.marginTop = user_chat_height + 30 + 'px';
@@ -492,18 +492,18 @@ function showSecondReturnChat2(chat) {
         }, 2000); // 2000 milliseconds = 2 seconds
         
         // Turn off other buttons of same category
-        var product = document.getElementById("order-chat-6");
+        var product = document.getElementById("return-chat-6");
         product.style.display = 'none';
     } else {  // no
         // Add margin-top to no button.
-        var no_button = document.getElementById("order-chat-6");
+        var no_button = document.getElementById("return-chat-6");
         no_button.style.marginTop = '180px';
 
         // Turn off other buttons of same category
-        var yes_button = document.getElementById("order-chat-5");
+        var yes_button = document.getElementById("return-chat-5");
         yes_button.style.display = 'none';
 
-        var order = document.getElementById("order-response-6");
+        var order = document.getElementById("return-response-6");
         var form_response = document.getElementById("form-response");
 
         // Show the AI response with a delay
