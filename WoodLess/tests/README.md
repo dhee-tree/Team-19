@@ -53,3 +53,6 @@ class UserTest extends TestCase
     // Additional code...
 }
 ```
+
+### Testing Stripe Payment
+Please see (https://docs.stripe.com/testing)
