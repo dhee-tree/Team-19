@@ -75,7 +75,7 @@
                                     data-review-id="{{$review->id}}" 
                                     class="btn-view btn p-0"
                                     >
-                                        <small><i class="fa-solid fa-eye"></i> View</small>
+                                    <small>@if($user->accessLevel() >= 2)<i class="fa-solid fa-pencil"></i> Edit @else <i class="fa-solid fa-eye"></i> View @endif</small>
                                     </button>
                                 </div>
                                 
@@ -232,7 +232,7 @@
                                     data-review-id="{{$review->id}}" 
                                     class="btn-view btn p-0"
                                 >
-                                    <small><i class="fa-solid fa-eye"></i> View</small>
+                                <small>@if($user->accessLevel() >= 2)<i class="fa-solid fa-pencil"></i> Edit @else <i class="fa-solid fa-eye"></i> View @endif</small>
                                 </button>
                             </div>
 
