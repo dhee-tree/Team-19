@@ -7,7 +7,8 @@ This guide goes over test files, and how to set up the testing environment.
 1. First, copy or rename `.env.testing.example` to `.env.testing`.
 2. Generate an app key using `php artisan key:generate --env=testing`.
 3. Inside of `.env.testing`, modify lines 12-17 to match the information of a target database different to that of the one in `.env`. We don't want to use the same database as testing is very volatile.
-4. Modify lines 31-48 to match those of an email account that the website will use.
+4. Modify lines 31-48 to match those of an email acco
+unt that the website will use.
 
 ## Database Setup
 1. Ensure your target MySQL server is running, and you have created a database that matches the one specifed in `.env.testing`.
