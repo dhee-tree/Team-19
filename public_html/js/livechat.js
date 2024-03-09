@@ -32,7 +32,10 @@ function showChat(chat) {
 
         // Show AI response with a delay
         var order = document.getElementById("order");
+        var loader = document.getElementById("chat-loader");
+        loader.style.display = 'block';
         setTimeout(function() {
+            loader.style.display = 'none';
             order.style.marginTop = user_chat_height + 10 + 'px';
             order.style.display = 'block';
         }, 2000); // 2000 milliseconds = 2 seconds
@@ -213,14 +216,18 @@ function showSecondOrderChat(chat) {
         var shush = document.getElementById("order-response-4");
         setTimeout(function() {
             shush.style.display = 'block';
-        }, 2500);
+        }, 2000);
         var product = document.getElementById("order-chat-2");
         product.style.display = 'none';
 
         var return1 = document.getElementById("order-chat-3");
         return1.style.display = 'none';
         var order = document.getElementById("order-chat-1");
-        return1.style.display = 'none';
+        order.style.display = 'none';
+        var form_response = document.getElementById("form-response");
+        setTimeout(function() {
+            form_response.style.display = 'block';
+        }, 2100); // 2000 milliseconds = 2 seconds
     }
 }
       

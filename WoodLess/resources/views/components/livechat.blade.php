@@ -34,6 +34,7 @@
         </div>
         <!-- class ai chat is bubble for ai (styling) -->
         <!-- id order shows span message -->
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="order">
             <span>Sorry to here you had an issue with your order, could you provide more details so I can help?</span>
         </div>
