@@ -20,6 +20,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">Create a support ticket</h1>
+                    <button type="button" class="btn btn-danger" id="clearButton">Clear</button>
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

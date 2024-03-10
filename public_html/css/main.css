@@ -67,7 +67,9 @@
     box-shadow: 0 3px 10px 3px #9c9999;
     cursor: pointer;
 }
-
+#clearButton {
+    margin-left: 350px;
+}
 /* Live chat */
 .loader {
     width: 60px;
