@@ -25,7 +25,7 @@
                                     <span class="order-status order-status-completed order-small-width">{{ $order->status->status }}</span>
                                 @endif
                                 <p class="card-text">Order Date: {{ $order->created_at }}</p>                                   
-                                <p class="card-text">Total: £ {{ $order->products->sum('cost') }}</p>
+                                <p class="card-text">Total: £ {{ $order->order_cost }}</p>
                                 <p class="card-text">Delivery Address: {{ $address->house_number }} {{ $address->street_name }}, {{ $address->city }}. {{ $address->postcode }}</p>
                                 <hr>
                                 <p class="card-text">Items:</p>
@@ -46,7 +46,7 @@
 
                                         </div>
                                         <div class="col-sm-3">
-                                            <p>£{{ $product->cost }}</p>
+                                            <p>£ {{ $product->pivot->product_cost }}</p>
                                         </div>
                                         <div class="col-sm-3">
                                             @if ($product->orderProductStatus->first()->status == 'Complete') 
