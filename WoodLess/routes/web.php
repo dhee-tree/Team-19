@@ -17,6 +17,7 @@ use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
