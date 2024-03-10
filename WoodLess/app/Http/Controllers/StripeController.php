@@ -17,7 +17,7 @@ class StripeController extends Controller
                     'price_data' => [
                         'currency' => 'gbp',
                         'product_data' => [
-                            'name' => 'Woodless Test',
+                            'name' => 'Woodless Order Payment',
                         ],
                         'unit_amount' => $request->amount * 100,
                     ],
