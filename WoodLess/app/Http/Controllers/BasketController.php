@@ -103,7 +103,10 @@ class BasketController extends Controller
         $basket->loadMissing('products');
         $basket->products()->wherePivot('id', $request->input('id'))->first()->pivot->delete();
 
-        return back()->with('message', 'Item removed from basket.');
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Product removed from basket.',
+        ]);
     }
 
     // Update a product in the basket.
@@ -112,7 +115,10 @@ class BasketController extends Controller
         $product = $basket->products()->wherePivot('id', $request->input('id'))->first();
         $product->pivot->update(['amount' => $request->input('amount')]);
 
-        return back()->with('message', 'Basket updated.');
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Basket updated.',
+        ]);
     }
      
 }
