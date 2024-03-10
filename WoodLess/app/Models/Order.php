@@ -15,6 +15,8 @@ class Order extends Model
         'address_id',
         'status_id',
         'details',
+        'product_cost',
+        'order_cost',
     ];
 
     /**
@@ -24,11 +26,22 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'address_id');
+    }
+    
+
     /**
      * Returns the products associated with the order and relevant order information.
      */
     public function products(){
-        return $this->belongsToMany(Product::class, 'order_product_warehouse')->withPivot('amount','warehouse_id','attributes')->withTimestamps();
+        return $this->belongsToMany(Product::class, 'order_product_warehouse')->withPivot('id','amount','warehouse_id','attributes')->withTimestamps();
+    }
+
+    public function totalOrderedQuantity()
+    {
+        return $this->products()->sum('amount');
     }
 
     /**

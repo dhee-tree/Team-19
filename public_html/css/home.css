@@ -1,40 +1,245 @@
-.logo {
-  text-align: center;
-  min-width: 50%;
+/* #region Title */
+
+
+
+/* #region Title Desktop */
+#title-desktop {
+  position: relative;
+  min-width: 100vw;
+  height: 0;
+  padding-top: 56.25%;
+  /* 16:9 aspect ratio (9 divided by 16 = 0.5625) */
 }
 
-.logo img {
-  display: block;
-  margin: 0 auto;
+#title-desktop .img-1,
+#title-desktop .img-2 {
+  top: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+  opacity: 0;
+  /* Maintain final state of the animation */
 }
 
-.carousel {
-  width: auto;
-  max-height: auto;
-  overflow: hidden;
-  background-color: #98c1d9;
+#title-desktop .img-1 {
+  background-image: url('/images/styling/title-1.gif');
+
+  content: url('/images/styling/title-1.gif') url('/images/styling/title-1.jpg') url('/images/styling/placeholder.jpg');
+  animation-name: fadeInImg1;
+  /* Start with opacity set to 0 */
+  animation-duration: 2.35s;
+  /* Animation duration */
+  animation-fill-mode: forwards;
+  transition: opacity 0.1s;
+  /* Detect changes to the opacity property */
+  /* Apply fadeInImg1 animation */
+
 }
 
-.carousel-item img {
-  margin-left: auto;
-  margin-right: auto;
-  width: 450px;
-  height: 450px;
+#title-desktop .img-2 {
+  right: 0;
+  /* Clip the element to show the left side */
+  background-image: url('/images/styling/title-2.gif');
+  content: url('/images/styling/title-2.gif') url('/images/styling/title-2.jpg');
+  animation-name: fadeInImg2;
+  /* Apply fadeInImg2 animation */
+  animation-delay: 2.25s;
+  /* Delay the animation for 5 seconds */
+  /* Start with opacity set to 0 */
+  animation-duration: 2.50s;
+  /* Animation duration */
+  animation-fill-mode: forwards;
+  transition: opacity 0.1s;
+
 }
 
-/* Add this CSS to your stylesheet */
-#carouselHotSellers a {
-  text-decoration: none; /* Remove underline */
-  color: inherit; /* Use the default text color */
-}
+@keyframes fadeInImg1 {
+  from {
+    opacity: 1;
 
-/* 
-Media to change the carosel height for smaller screen sizes
-*/
-@media screen and (max-width: 990px) {
-  .carousel-item img {
-    min-width: 100%;
-    height: 200px;
+    background-image: url('/images/styling/placeholder.jpg');
+
+
+
+    /* Start with opacity 0 */
+  }
+
+  1% {
+    background-image: url('/images/styling/title-1.gif');
+
+  }
+
+  95% {
+    background-image: url('/images/styling/title-1.gif');
+    opacity: 1;
+
+  }
+
+  to {
+    /* End with opacity 1 */
+    background-image: url('/images/styling/title-1.jpg');
+    opacity: 1;
+
   }
 }
 
+@keyframes fadeInImg2 {
+  from {
+    left: 0;
+    opacity: 0;
+    /* Start with opacity 0 */
+    clip-path: polygon(100% 0, 0 0, -10% 100%, 100% 100%);
+
+  }
+
+  35% {
+    opacity: 1;
+    clip-path: polygon(100% 0, 0 0, -10% 100%, 100% 100%);
+  }
+
+  95% {
+    opacity: 1;
+    clip-path: polygon(100% 0, 55% 0, 45% 100%, 100% 100%);
+    background-image: url('/images/styling/title-2.gif');
+  }
+
+  to {
+    opacity: 1;
+    /* End with opacity 1 */
+    clip-path: polygon(100% 0, 55% 0, 45% 100%, 100% 100%);
+    background-image: url('/images/styling/title-2.jpg');
+  }
+}
+
+#title-desktop #bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 70%, rgba(0, 0, 0, 0.553) 100%);
+  z-index: 1;
+  backdrop-filter: blur(4px);
+  animation-name: backgroundAnimation;
+  animation-delay: 4s;
+  animation-duration: 4.0s;
+  animation-fill-mode: forwards;
+}
+
+#title-desktop .text {
+  position: absolute;
+  z-index: 1;
+  /* Ensure "title-greener" appears in front of other content */
+  font-size: 5vw;
+  color: #fff;
+  font-weight: bold;
+  opacity: 0;
+  /* Start with zero opacity */
+  animation: fadeInText 1s ease forwards;
+  /* Apply fade-in animation */
+  animation-delay: 3.5s;
+  /* Delay the animation start */
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    /* Start with zero opacity */
+  }
+
+  to {
+    opacity: 1;
+    /* Fade in to full opacity */
+  }
+}
+
+/* Only works on screens above a phone */
+
+@media only screen and (min-width: 724px) {
+
+  /* CSS styles for screens with a minimum width of 700 pixels */
+  #title-desktop .d3text {
+
+    text-shadow: 0 1px 0 #ccc,
+      0 2px 0 #c9c9c9,
+      0 3px 0 #bbb,
+      0 4px 0 #b9b9b9,
+      0 5px 0 #aaa,
+      0 6px 1px rgba(0, 0, 0, .1),
+      0 0 5px rgba(0, 0, 0, .1),
+      0 1px 3px rgba(0, 0, 0, .3),
+      0 3px 5px rgba(0, 0, 0, .2),
+      0 5px 10px rgba(0, 0, 0, .25),
+      0 10px 10px rgba(0, 0, 0, .2),
+      0 20px 20px rgba(0, 0, 0, .15);
+  }
+}
+
+/* Reset shadow for screens smaller than 700px */
+@media only screen and (max-width: 700px) {
+  #title-desktop .d3text {
+    text-shadow: none;
+  }
+}
+
+
+
+#title-desktop #title-making {
+  font-size: 2vw;
+  color: #f8f8f8;
+  font-weight: normal;
+  top: 19%;
+  left: 15%;
+  transform: translate(0%, -50%);
+}
+
+#title-desktop #title-greener {
+  top: 25%;
+  left: 15%;
+  transform: translate(0%, -50%);
+}
+
+#title-desktop #title-and {
+  font-size: 3.5vw;
+  color: #f8f8f8;
+  font-weight: normal;
+  top: 25%;
+  left: 50%;
+  transform: translate(-35%, -50%);
+
+}
+
+#title-desktop #title-bluer {
+  top: 25%;
+  right: 5%;
+  transform: translate(-100%, -50%);
+}
+
+#title-desktop #title-earth {
+  font-size: 10vw;
+  bottom: 15%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+#title-desktop #learn-button {
+  padding: 0.5%;
+  background-color: #429dd2c4;
+  font-size: 1.5vw;
+  bottom: 25%;
+  left: 50%;
+  border: none;
+  transform: translate(-50%, -100%);
+  transition: background-color 0.3s ease;
+  border-radius: 15px;
+
+}
+
+#title-desktop #learn-button:hover {
+  background-color: #5bb0e1;
+  /* Slightly darker background color on hover */
+}
+
+
+/* #endregion */

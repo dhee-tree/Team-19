@@ -1,0 +1,217 @@
+/* #region Text */
+
+#product .name {
+    font-weight: normal;
+    /* Make the text bold */
+    font-size: 1.3rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
+}
+
+#product .showcase-price {
+    font-weight: bold;
+    /* Make the text bold */
+    font-size: 1.5rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
+}
+
+#product .discount-price {
+    font-weight: normal;
+    /* Make the text bold */
+    font-size: 1rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
+}
+
+#product .discount-number {
+    font-weight: bold;
+    /* Make the text bold */
+    font-size: 1.3rem !important;
+    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+
+}
+
+@media (max-width: 1024px) {
+
+
+    #product .name {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
+    #product .showcase-price {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1.2rem !important;
+    }
+
+    #product .discount-price {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 0.8rem !important;
+    }
+
+    #product .discount-number {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 767px) {
+
+
+    #product .name {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1.3rem !important;
+    }
+
+    #product .showcase-price {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1.5rem !important;
+    }
+
+    #product .discount-price {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
+    #product .discount-number {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 0.8rem !important;
+    }
+}
+
+/* Media queries for even smaller screens */
+@media (max-width: 300px) {
+
+    #product .name {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
+    #product .showcase-price {
+        font-weight: bold;
+        /* Make the text bold */
+        font-size: 1rem !important;
+    }
+
+    #product .discount-price {
+        font-weight: normal;
+        /* Make the text bold */
+        font-size: 0.9rem !important;
+    }
+
+    #product .discount-number {
+        display: none;
+    }
+}
+
+/* #endregion */
+
+
+#product .card-details {
+    position: relative;
+    display: flex;
+    /* Use flexbox layout */
+    justify-content: space-between;
+    /* Align children to start and end */
+    padding: 5px;
+
+}
+
+/* #region Start Styling */
+
+#product .start {
+    transform-origin: top left;
+    white-space: nowrap;
+
+    /* background-color: rgba(0, 255, 76, 0.5); /* Example red background with 50% opacity */
+    width: 60%;
+    /* Adjust width as needed */
+    height: 100%;
+    /* Adjust height as needed */
+}
+
+/* #endregion */
+
+/* #region End Styling */
+
+#product .end {
+    transform-origin: top right;
+    /* background-color: rgba(255, 0, 0, 0.5); /*  Example red background with 50% opacity */
+    min-width: 40%;
+    /* Adjust width as needed */
+    min-height: 100%;
+    /* Adjust height as needed */
+
+}
+
+#product .discount-number {
+    /* Adjust as needed */
+    transform-origin: top left;
+    color: #cc0c39;
+    /* Adjust text color as needed */
+    font-weight: normal;
+
+}
+
+#product .end .fire {
+    top: 35%;
+    right: 5%;
+    display: block; /* Change to 'block' or 'inline-block' */
+
+}
+
+/* Media queries for smaller screens */
+@media (max-width: 768px) {
+
+    #product .start {
+
+        width: 100%;
+        /* Adjust width as needed */
+        height: 100%;
+        /* Adjust height as needed */
+    }
+
+    #product .end {
+
+        display: none;
+
+    }
+}
+
+/* #endregion */
+
+/* #region Image */
+
+#product .card-img-top {
+    border-bottom: 1px solid #ccc !important;
+    /* Adjust the color and thickness as needed */
+}
+
+/* #endregion */
+
+
+
+
+/* #region Hover */
+
+#product.expand-hover {
+    transition: 0.3s ease-in-out;
+}
+
+#product.expand-hover:hover {
+    transform: scale(1.03);
+}
+
+/* #endregion */

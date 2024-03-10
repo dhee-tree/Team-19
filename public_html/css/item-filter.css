@@ -1,9 +1,108 @@
-.filter{
-    background: #655D52;
-    color:white;
+.filter {
+    position: sticky;
+    top: 90px;
+    /* Height of the Bootstrap navbar */
+    max-height: calc(100vh - 90px);
+    /* Subtract the height of the Bootstrap navbar from 100vh */
+    overflow-y: auto;
+    /* Enable vertical scrolling if content exceeds the max height */
 }
 
-.accordion-body{
-    background: #655D52;
-    color:white;
+
+
+/* Custom styles to remove default accordion styles */
+#FilterAccordian .accordion-card {
+    border: none;
+    box-shadow: none;
+}
+
+#FilterAccordian .accordion-item {
+    border: none;
+    min-width: 100%;
+}
+
+#FilterAccordian .accordion-button {
+    color: inherit;
+    text-align: left !important;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+#FilterAccordian .accordion-button:focus {
+    box-shadow: none;
+
+    .filter {
+        position: sticky;
+        top: 50vh;
+        /* Stick to the middle of the viewport height */
+        transform: translateY(-50%);
+        max-height: 90vh;
+        /* Limit the maximum height to 90% of the viewport height */
+        overflow-y: auto;
+        /* Enable vertical scrolling if content exceeds the max height */
+    }
+
+}
+
+#FilterAccordian .accordion-button:hover {
+    text-decoration: underline;
+}
+
+/* Optional: Add styles for active accordion button */
+.accordion-button.active {
+    font-weight: bold;
+}
+
+/* Style the slider container */
+#priceRangeSlider {
+    position: relative;
+    height: 1rem;
+    /* Set the height of the slider */
+}
+
+/* Style the slider track */
+#priceRangeSlider .noUi-connect {
+    background: #000;
+    /* Black filler */
+}
+
+/* Style the slider handles */
+#priceRangeSlider .noUi-handle {
+    background: #fff;
+    /* White handle */
+    border: 1px solid #000;
+    /* Black border */
+    width: 1rem;
+    /* Set the width of the handle */
+    height: 1rem;
+    /* Set the height of the handle */
+    box-shadow: none;
+    /* Remove default box shadow */
+}
+
+/* Style the slider handles on hover */
+#priceRangeSlider .noUi-handle:hover {
+    background: #ccc;
+    /* Light gray handle on hover */
+}
+
+/* Hide the slider handle tabs */
+#priceRangeSlider .noUi-handle:before,
+#priceRangeSlider .noUi-handle:after {
+    display: none !important;
+}
+
+/* Center the handles vertically and position them at the ends */
+#priceRangeSlider .noUi-handle-upper {
+    position: relative;
+    left: 50%;
+    top: 50%;
+}
+
+#priceRangeSlider .noUi-handle-lower {
+    position: relative;
+    left: 50%;
+    top: 50%;
 }

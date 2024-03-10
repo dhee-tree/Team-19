@@ -22,8 +22,8 @@
 @endphp
 
 @section('content')
-    <div class="container">
-        <div class="row m-0 mt-3 px-1" id="product-main">
+    <div id="maincontent" class="container">
+        <div class="row m-0 pt-4 px-1" id="product-main">
             <div class="col-md-6 mb-3" id="gallery">
                 <div id="productGallery" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -279,7 +279,7 @@
                         <h4 class="p-0 m-0 mb-0">Similar Products</h4>
                     </div>
 
-                    <div id="productCarousel" class="mb-3 carousel carousel-dark slide .carousel-fade" data-bs-interval="false">
+                    <div id="productCarousel" class="mb-3 carousel carousel-dark carousel-fade" data-bs-interval="false">
                         <div class="carousel-inner">                  
                             @php
                             $pageLimit = 4;
@@ -329,8 +329,10 @@
                                                                 <!-- Original product price-->
                                                                 <span class="fs-6">
                                                                     @if(($similarProduct->discount))
-                                                                        <strike>£{{$similarProduct->cost}}</strike>                                                                
-                                                                    @endif  
+                                                                        <strike>£{{$similarProduct->cost}}</strike>
+                                                                    @else
+                                                                        ⠀                                                           
+                                                                    @endif
                                                                 </span>
                                                             </div>
                                                         </div>

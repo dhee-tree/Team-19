@@ -21,9 +21,13 @@ class CheckoutController extends Controller
         
         $basket->loadMissing('products');
         
-        return view('checkout', [
-            'basket' => $basket,
-            // 'address' => auth()->user()->address,
-        ]);
+        if($basket->products->isEmpty()){
+            return redirect()->route('basket')->with([
+                'status' => 'danger',
+                'message' => 'Your basket is empty!'
+            ]);
+        } else {
+            return view('checkout', ['basket' => $basket]);
+        }
     }
 }

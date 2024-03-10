@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order_product_warehouse', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('warehouse_id');
@@ -19,7 +20,6 @@ return new class extends Migration
             $table->integer('amount')->default(1);
             $table->timestamps();
             
-            $table->primary(['order_id','product_id','warehouse_id']);
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->foreign('warehouse_id')->references('id')->on('warehouses')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

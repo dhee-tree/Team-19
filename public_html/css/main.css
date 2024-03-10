@@ -1,55 +1,258 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 :root {
-    --main-background-color: #FFEED9;
+    /*
+    Naming:
+    First the class or id it belongs to. ex body
+    next what area it targets. ex background (can be as many as needed. ex active-text)
+    then lastly the attributes name. ex color
+    */
+    --main-background-color: #ffff;
     --main-text-color: #183838;
 
-    --nav-background-color: #39A7FF;
-    --nav-text-color: #FFEED9;
+    --nav-background-color: #00709ce1;
+    --nav-text-color: #FFFFFF;
+    --nav-active-text-color: #ffffff;
 
-    --footer-background-color: #e4c9a9;
+    --footer-background-color: #c2b395;
 
-    --spotlight-color-1: #87C4FF;
+    --links-text-color: #ffffff;
+
+    --spotlight-color-1: #ebebeb;
+
+    --normal-background-color: #fff;
+    --discount-background-color: #c5ffd172;
+    --hot-background-color: #ff800031;
+
 }
+
+.offcanvas-header{
+    background: linear-gradient(-90deg, var(--nav-background-color) 75%, rgba(0, 212, 255, 0) 100%), url('/images/styling/oceanbackground.jpg');
+}
+
+.modal .header{
+    background: linear-gradient(90deg, var(--nav-background-color) 75%, rgba(0, 212, 255, 0) 100%), url('/images/styling/oceanbackground.jpg');
+}
+
+.badge-notification{
+    background-color: #655d52;
+}
+
+/* #region Interactive Chat */
+
 .btn-sticky {
     position: fixed;
     bottom: 6%;
     right: 0;
     transform: translateY(50%);
-    z-index: 1000; /* Ensure it's above other content */
+    z-index: 50 !important;
+    /* Ensure it's above other content */
+}
+
+.card-body-s {
+    margin: auto;
+    position: fixed;
+    bottom: 6%;
+    right: 1%;
+    z-index: 2;
+    border: solid 1px #fff;
+    max-width: 250px;
+    width: max-content;
+    background-color: #fff;
+    height: inherit;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-flow: column;
+    box-shadow: 0 3px 10px 3px #9c9999;
+    cursor: pointer;
+}
+#clearButton {
+    margin-left: 350px;
+}
+/* Live chat */
+.loader {
+    width: 60px;
+    aspect-ratio: 4;
+    --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+    background: 
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 100%;
+    animation: l7 1s infinite linear;
   }
+  @keyframes l7 {
+      33%{background-size:calc(100%/3) 0%  ,calc(100%/3) 100%,calc(100%/3) 100%}
+      50%{background-size:calc(100%/3) 100%,calc(100%/3) 0%  ,calc(100%/3) 100%}
+      66%{background-size:calc(100%/3) 100%,calc(100%/3) 100%,calc(100%/3) 0%  }
+  }
+.userchat {
+    border: solid 1px #248bf5;
+    border-radius: 12px;
+    background-color: #248bf5;
+    padding: 5px;
+    margin-bottom: 5px;
+    max-width: 250px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.aichat {
+    border: solid 1px #e5e5ea;
+    border-radius: 12px;
+    background-color: #e5e5ea;
+    padding: 5px;
+    max-width: 250px;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+#order-button {
+    margin-top: 40px;
+}
+
+#order, #product-chat, #return, #order-chat-1, #order-chat-2, #order-chat-3,#order-chat-4,#order-chat-5,#order-chat-6,#order-response-1,#order-response-2,#order-response-3,#order-response-4,#order-response-5,#order-response-6,#product-chat-1,#product-chat-2,#product-chat-3,#product-chat-4,#product-chat-5,#product-chat-6,#product-response-1,#product-response-2,#product-response-3,#product-response-4,#product-response-5,#product-response-6,#return-chat-1, #return-chat-2, #return-chat-3,#return-chat-4,#return-chat-5,#return-chat-6,#return-response-1,#return-response-2,#return-response-3,#return-response-4,#return-response-5,#return-response-6 {
+    display: none;
+}
+
+#form-response, #chat-loader {
+    display: none;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* #endregion */
+
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--main-background-color);
     color: var(--main-text-color);
+    overflow-x: hidden;
+
 }
 
-footer {
-    background-color: var(--footer-background-color);
+/* #region Navigation */
+
+#navbar {
+    background: linear-gradient(90deg, var(--nav-background-color) 45%, rgba(0, 212, 255, 0) 100%), url('/images/styling/oceanbackground.jpg');
+    border-bottom: 1.5px solid #FFFFFF;
 }
 
-nav {
-    background-color: var(--nav-background-color);
-}
-
-.nav-item .nav-link {
+#navbar .nav-item .nav-link {
     color: var(--nav-text-color);
 }
 
-main {
-    min-height: 100vh;
-    margin-left: 3vh;
-    margin-top: 3vh;
-    margin-right: 3vh;
+#navbar .search-input {
+    width: 60%; /* Initial width */
+    transform-origin: top right; /* Set the transform origin to the top right corner */
+    transition: width 0.5s ease; /* Add transition for smooth effect */
 }
 
-.card {
-    background-color: var(--spotlight-color-1);
-    border-radius: 25px; /* Adjust the value as needed */
+#navbar .search-input:focus {
+    width: 100%; /* Expanded width */
+}
+
+#navbar .nav-link.active {
+    color: var(--nav-active-text-color) !important;
+    text-decoration: underline;
+    font-weight: bold;
+    text-underline-offset: 0.3rem;
 }
 
 @media (min-width: 980px) {
     #iconsnavbar {
-        order: 2; /* Change the order of the iconsnavbar */
+        order: 2;
+        /* Change the order of the iconsnavbar */
     }
 }
+
+/* #endregion */
+
+/* #region Footer */
+
+
+footer {
+    background: linear-gradient(180deg, var(--footer-background-color) 57%, rgba(0, 212, 255, 0) 100%), url('https://live.staticflickr.com/31/44927594_e068e92c56_c.jpg');
+}
+
+#footericons a {
+    color: var(--links-text-color);
+}
+
+/* #endregion */
+
+/* #region Main */
+
+main {
+    min-height: 100vh;
+}
+
+main #maincontent section {
+    padding-bottom: 5vh;
+
+}
+
+@media screen and (min-width: 1368px) {
+    main {
+        background-color: #e3fafc56;
+    }
+
+    main #maincontent {
+        min-height: 100vh;
+        background-color: #fff;
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+}
+
+/* #endregion */
+
+/* #region custom styling */
+
+.card.expand-hover {
+    transition: 0.3s ease-in-out;
+}
+
+.card.expand-hover:hover {
+    transform: scale(1.03);
+}
+
+.normal.shadow {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.discount.shadow {
+    box-shadow: 0 0 10px 5px rgba(197, 253, 114, 0.2) !important;
+}
+
+.hot.shadow {
+    box-shadow: 0 0 10px 5px rgba(255, 128, 0, 0.1) !important;
+}
+
+.normal.bg {
+    background-color: var((var(--normal-background-color)));
+}
+
+.hot-bg {
+    background-color: var(--hot-background-color);
+}
+
+.discount-bg {
+    background-color: var((--discount-background-color));
+}
+
+.title-text {
+
+    padding-top: 4vh;
+    padding-bottom: 1vh;
+}
+
+/* #endregion */
