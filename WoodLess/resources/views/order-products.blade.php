@@ -46,7 +46,15 @@
 
                                         </div>
                                         <div class="col-sm-3">
-                                            <p>£ {{ $product->pivot->product_cost }}</p>
+                                            @if ($product->discount > 0)
+                                                <?php $discount = round($product->cost - ($product->cost * ($product->discount / 100)), 2); 
+                                                    $price = $discount * $product->pivot->amount;
+                                                ?>
+                                            @else
+                                                <?php $price = $product->cost * $product->pivot->amount; ?>
+                                            @endif
+
+                                            <p>£{{ $price}} <span class="badge bg-danger">-{{ $product->discount }}%</span></p> 
                                         </div>
                                         <div class="col-sm-3">
                                             @if ($product->orderProductStatus->first()->status == 'Complete') 

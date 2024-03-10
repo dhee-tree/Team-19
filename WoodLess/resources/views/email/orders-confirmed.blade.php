@@ -8,8 +8,15 @@
 <h3>Here are the items in your order:</h3>
 <ul>
     @foreach ($order->products as $product)
+        @if ($product->discount > 0)
+            <?php $discount = round($product->cost - ($product->cost * ($product->discount / 100)), 2); 
+                $price = $discount * $product->pivot->amount;
+            ?>
+        @else
+            <?php $price = $product->cost * $product->pivot->amount; ?>
+        @endif
         <li>
-            {{ $product->pivot->amount }}x <a href="{{ url('/product/' . $product->id) }}">{{ $product->title }}</a> <span> - £{{ $product->pivot->product_cost }}</span>
+            {{ $product->pivot->amount }}x <a href="{{ url('/product/' . $product->id) }}">{{ $product->title }}</a> <span> - £{{ $price }}</span>
         </li>
     @endforeach
 </ul>
