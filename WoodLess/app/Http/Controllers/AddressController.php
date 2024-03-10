@@ -13,7 +13,7 @@ class AddressController extends Controller
     {
         $user = Auth::user(); // Get the authenticated user
         $addresses = $user->addresses; // Get the addresses of the authenticated user
-        return view('user-details', compact('addresses', 'user')); // Pass both addresses and user to the view
+        return view('user-addresses', compact('addresses', 'user')); // Pass both addresses and user to the view
     }
 
     // Method to store a new address
@@ -28,7 +28,7 @@ class AddressController extends Controller
 
         Auth::user()->addresses()->create($validatedData);
 
-        return redirect()->route('user-details')->with('success', 'Address added successfully.');
+        return back()->with('success', 'Address added successfully.');
     }
 
     // Method to show the edit form for an address
@@ -50,7 +50,7 @@ class AddressController extends Controller
 
         $address->update($validatedData);
 
-        return redirect()->route('user-details')->with('success', 'Address updated successfully.');
+        return back()->with('success', 'Address updated successfully.');
     }
 
     // Method to delete an address
@@ -58,14 +58,11 @@ class AddressController extends Controller
     {
         $address->delete();
 
-        return redirect()->route('user-details')->with('success', 'Address deleted successfully.');
+        return back()->with('success', 'Address deleted successfully.');
     }
 
         public function setDefault(Address $address)
-    {
-        // Your logic to set the address as default.
-        // This may involve setting a flag in the database and unsetting it for other addresses.
-
+    {    
         return back()->with('success', 'Default address set successfully.');
     }
 
