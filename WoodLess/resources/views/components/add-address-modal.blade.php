@@ -1,9 +1,8 @@
-{{-- resources/views/components/add-address-modal.blade.php --}}
-
+<!-- Add Address Modal -->
 <div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="addAddressForm" action="{{ route('address.store') }}" method="POST">
+            <form id="addAddressForm" action="{{ route('addresses.store') }}" method="POST">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="addAddressModalLabel">Add New Address</h5>
