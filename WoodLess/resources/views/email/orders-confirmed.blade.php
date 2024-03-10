@@ -9,12 +9,12 @@
 <ul>
     @foreach ($order->products as $product)
         <li>
-            {{ $product->pivot->amount }}x <a href="{{ url('/product/' . $product->id) }}">{{ $product->title }}</a> <span> - £{{ $product->cost }}</span>
+            {{ $product->pivot->amount }}x <a href="{{ url('/product/' . $product->id) }}">{{ $product->title }}</a> <span> - £{{ $product->pivot->product_cost }}</span>
         </li>
     @endforeach
 </ul>
 
-<h4>Total cost: {{ $order->products->sum('cost') }}</h4>
+<h4>Total cost: {{ $order->order_cost }}</h4>
 
 <h3>Delivery Address:</h3>
 <?php 
