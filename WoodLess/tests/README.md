@@ -27,6 +27,17 @@ These are tests that test a single or small chain of methods (such as returning 
 Now that our testing environment is setup, you are able to run tests.
 - To run all tests, run `php artisan test` in your terminal in the WoodLess directory. Laravel automatically knows to use `.env.testing` and will run tests in that environment.
 
+## Code Coverage
+This is how much of WoodLess' code have tests, so you know that our product is a high quality one.
+By running `php artisan test --coverage` you will be able to view what has tests as well as the percentage of coverage.
+- Note that you will need to install [xDebug](https://xdebug.org/docs/install) to your php installation. Ensure that xDebug is in coverage mode by modifying `php.ini` with something like the following:
+```
+[XDebug]
+zend_extension = xdebug
+xdebug.start_with_request=yes
+xdebug.mode = coverage
+```
+
 ## Additonal Setup
 
 ### Refreshing the Database
