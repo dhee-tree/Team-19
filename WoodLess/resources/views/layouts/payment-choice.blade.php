@@ -9,7 +9,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="amount" value="{{ $basket->totalCost() }}">
 
-                    <button type="submit" class="btn payment-btn">Pay with Stripe <i class="fa-brands fa-cc-stripe"></i> </button>
+                    <button type="submit" class="btn payment-btn mb-3">Pay with Stripe <i class="fa-brands fa-cc-stripe"></i> </button>
                 </form>
                 
             </div>   
