@@ -109,13 +109,18 @@ Route::get('/', [ProductController::class, 'getThreeRandom']);
 Route::get('/password/change', [App\Http\Controllers\ChangePasswordController::class, 'showChangePasswordForm'])->name('password.change.form');
 Route::post('/password/change', [App\Http\Controllers\ChangePasswordController::class, 'changePassword'])->name('password.change');
 
-
+//User panel addresses
 Route::middleware('auth')->group(function () {
-    // Address routes
-    Route::get('/addresses', [AddressController::class, 'index'])->name('user-details');
-    Route::post('/addresses', [AddressController::class, 'store'])->name('address.store');
-    Route::get('/addresses/{address}/edit', [AddressController::class, 'edit'])->name('address.edit');
-    Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('address.update');
-    Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('address.destroy');
-    Route::post('/addresses/{address}/set-default', [AddressController::class, 'setDefault'])->name('address.set_default');
+    // Specific address-related routes within the user panel
+    Route::prefix('user-panel')->group(function () {
+        // The main index page for addresses within the user panel
+        Route::get('/addresses', [AddressController::class, 'index'])->name('user-addresses.index');
+    });
+
+    // Address CRUD operations
+    Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
+    Route::get('/addresses/{address}/edit', [AddressController::class, 'edit'])->name('addresses.edit');
+    Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
+    Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
+    Route::post('/addresses/{address}/set-default', [AddressController::class, 'setDefault'])->name('addresses.set_default');
 });
