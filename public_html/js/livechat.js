@@ -68,7 +68,11 @@ function showChat(chat) {
 
         // Show AI response with a delay
         var product = document.getElementById("product-chat");
+        var loader = document.getElementById("chat-loader");
+        loader.style.display = 'block';
+
         setTimeout(function() {
+            loader.style.display = 'none';
             product.style.marginTop = user_chat_height + 10 + 'px';
             product.style.display = 'block';
         }, 2000); // 2000 milliseconds = 2 seconds
@@ -102,7 +106,10 @@ function showChat(chat) {
 
         // Show AI response with a delay
         var return1 = document.getElementById("return");
+        var loader = document.getElementById("chat-loader");
+        loader.style.display = 'block';
         setTimeout(function() {
+            loader.style.display = 'none';
             return1.style.marginTop = user_chat_height + 10 + 'px';
             return1.style.display = 'block';
         }, 2000); // 2000 milliseconds = 2 seconds
@@ -140,9 +147,18 @@ function showSecondOrderChat(chat) {
 
         // Show AI response with a delay
         var order = document.getElementById("order-response-1");
+        var loader = document.getElementById("chat-loader");
+         // Calculate the height of the user chat
+         loader.style.display = 'block';
+         order.insertAdjacentElement('afterend', loader);
+         loader.style.marginTop = '10px';
+   
+    
         setTimeout(function() {
+            loader.style.display = 'none';
             order.style.marginBlockStart = user_chat_height + 30 + 'px';
             order.style.display = 'block';
+            
         }, 2000); // 2000 milliseconds = 2 seconds
 
 
@@ -176,7 +192,12 @@ function showSecondOrderChat(chat) {
 
         // Show AI response with a delay
         var product = document.getElementById("order-response-2");
+        var loader = document.getElementById("chat-loader");
+        product.insertAdjacentElement('afterend', loader);
+        loader.style.marginTop = '10px';
+        loader.style.display = 'block';
         setTimeout(function() {
+            loader.style.display = 'none';
             product.style.marginTop = user_chat_height + 30 + 'px';
             product.style.display = 'block';
         }, 2000); // 2000 milliseconds = 2 seconds
@@ -193,29 +214,46 @@ function showSecondOrderChat(chat) {
         }, 2500);
     } 
     else if (chat === "order-chat-3") {
+        // Get the element for the AI response
         var order = document.getElementById("order-response-3");
         var product = document.getElementById("order-response-3");
+        // Display the AI response
         product.style.display = 'block';
-        // Show next user option
+    
+        // Show next user options
         var order_chat_1 = document.getElementById("order-chat-5");
         var order_chat_2 = document.getElementById("order-chat-6");
+        var loader = document.getElementById("chat-loader");
+        product.insertAdjacentElement('afterend', loader);
+        loader.style.marginTop = '10px';
+        loader.style.display = 'block';
+        
+        // Set a timeout to hide the loader and display user options after a delay
         setTimeout(function() {
+            loader.style.display = 'none';
             order_chat_1.style.display = 'block';
             order_chat_2.style.display = 'block';
             order_chat_1.style.marginTop = '120px';
         }, 2500);
+    
+        // Hide other buttons of the same category
         var order = document.getElementById("order-chat-1");
         order.style.display = 'none';
-
         var return1 = document.getElementById("order-chat-2");
         return1.style.display = 'none';
         var shush = document.getElementById("order-chat-4");
         shush.style.display = 'none';
     }
+    
     else{
         var shush = document.getElementById("order-response-4");
+        var loader = document.getElementById("chat-loader");
+        shush.insertAdjacentElement('afterend', loader);
+        loader.style.marginTop = '10px';
+        loader.style.display = 'block';
         setTimeout(function() {
             shush.style.display = 'block';
+            loader.style.display = 'none';
         }, 2000);
         var product = document.getElementById("order-chat-2");
         product.style.display = 'none';
@@ -240,9 +278,14 @@ function showSecondOrderChat2(chat) {
     if (chat === "order-chat-5") { // yes
         var order = document.getElementById("order-response-5");
         // use the chat variable to get the chat element
+        var loader = document.getElementById("chat-loader");
+        order.insertAdjacentElement('afterend', loader);
+        loader.style.marginTop = '10px';
+        loader.style.display = 'block';
         setTimeout(function() {
             order.style.marginTop = user_chat_height + 30 + 'px';
             order.style.display = 'block';
+            loader.style.display = 'none';
         }, 2000); // 2000 milliseconds = 2 seconds
         
         // Turn off other buttons of same category
@@ -259,11 +302,15 @@ function showSecondOrderChat2(chat) {
 
         var order = document.getElementById("order-response-6");
         var form_response = document.getElementById("form-response");
-
+        var loader = document.getElementById("chat-loader");
+        order.insertAdjacentElement('afterend', loader);
+        loader.style.marginTop = '10px';
+        loader.style.display = 'block';
         // Show the AI response with a delay
         setTimeout(function() {
             order.style.marginTop = user_chat_height + 30 + 'px';
             order.style.display = 'block';
+            loader.style.display = 'none';
         }, 2000); // 2000 milliseconds = 2 seconds
 
 

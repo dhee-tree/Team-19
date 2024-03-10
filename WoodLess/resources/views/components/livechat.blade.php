@@ -39,35 +39,43 @@
             <span>Sorry to here you had an issue with your order, could you provide more details so I can help?</span>
         </div>
         <!-- id product shows span message -->
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="product-chat">
             <span>Sorry to here you had an issue with your product, could you provide more details so I can help?</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="return">
             <!-- id return shows span message -->
             <span>Sorry to here you had an issue with your return, could you provide more details so I can help?</span>
         </div>
         <!-- second order responses -->
         <!-- id product shows span message -->
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="order-response-1">
             <span>Sorry to hear this, our orders typically take 7-14 days to arrive but this can be delayed due to unforeseen circumstances. Did this help resolve your issue?</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="order-response-2">
             <!-- id return shows span message -->
             <span>Sorry to hear this, our orders currently we only accept debit cards and PayPal and no other payment type. Did this help resolve your issue?</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="order-response-3">
             <!-- id return shows span message -->
             <span> Unfortunately, at the moment we do not offer international shipping as we cannot do so in an environmentally friendly manner. Did this help resolve your issue?</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="order-response-4">
             <!-- id return shows span message -->
             <span>  Sorry, I am only able to answer the most common questions. Please fill out this form and we will get back to you.</span>
         </div>
         <!-- third order response -->
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="order-response-5">
             <!-- id return shows span message -->
             <span> Thank you, I am glad we could help.</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="order-response-6">
             <!-- id return shows span message -->
             <span> Sorry, we could not help. Please fill out this form and a member of our team will be in touch.</span>
@@ -75,27 +83,33 @@
     </section>
 
     <section id="ai-product-chat">
+    <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="product-response-1">
             <span>Sorry to hear this, our orders typically take 7-14 days to arrive but this can be delayed due to unforeseen circumstances. Did this help resolve your issue?</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="product-response-2">
             <!-- id return shows span message -->
             <span>Sorry to hear this, our orders currently we only accept debit cards and PayPal and no other payment type. Did this help resolve your issue?</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="product-response-3">
             <!-- id return shows span message -->
             <span> Unfortunately, at the moment we do not offer international shipping as we cannot do so in an environmentally friendly manner. Did this help resolve your issue?</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="product-response-4">
             <!-- id return shows span message -->
             <span>  Sorry, I am only able to answer the most common questions. Please fill out this form and we will get back to you.</span>
         </div>
         <!-- third product response -->
         <!-- third order response -->
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="product-response-5">
             <!-- id return shows span message -->
             <span> Thank you, I am glad we could help.</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="product-response-6">
             <!-- id return shows span message -->
             <span> Sorry, we could not help. Please fill out this form and a member of our team will be in touch</span>
@@ -103,28 +117,34 @@
     </section>
 
     <section id="ai-return-chat">
+    <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="return-response-1">
             <span>Sorry to hear this, our returns typically take 7-14 days to process. Did this help resolve your issue?</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="return-response-2">
             <!-- id return shows span message -->
             <span>Sorry to hear this, we only accept returns for items within 30 days of purchase. Did this help resolve your issue?</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="return-response-3">
             <!-- id return shows span message -->
             <span> Unfortunately, we cannot accept returns for items that have been used or damaged. Did this help resolve your issue?</span>
         </div>
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="return-response-4">
             <!-- id return shows span message -->
             <span>  Sorry, I am only able to answer the most common questions. Please fill out this form and we will get back to you.</span>
         </div>
         <!-- third product response -->
         <!-- third order response -->
+        <div class="loader" id = "chat-loader"></div>
         <div class="aichat" id="return-response-5">
             <!-- id return shows span message -->
             <span> Thank you, I am glad we could help.</span>
         </div>
         <div class="aichat" id="return-response-6">
+        <div class="loader" id = "chat-loader"></div>
             <!-- id return shows span message -->
             <span> Sorry, we could not help. Please fill out this form and a member of our team will be in touch</span>
         </div>
