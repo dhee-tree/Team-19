@@ -67,6 +67,58 @@
     box-shadow: 0 3px 10px 3px #9c9999;
     cursor: pointer;
 }
+#clearButton {
+    margin-left: 350px;
+}
+/* Live chat */
+.loader {
+    width: 60px;
+    aspect-ratio: 4;
+    --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+    background: 
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 100%;
+    animation: l7 1s infinite linear;
+  }
+  @keyframes l7 {
+      33%{background-size:calc(100%/3) 0%  ,calc(100%/3) 100%,calc(100%/3) 100%}
+      50%{background-size:calc(100%/3) 100%,calc(100%/3) 0%  ,calc(100%/3) 100%}
+      66%{background-size:calc(100%/3) 100%,calc(100%/3) 100%,calc(100%/3) 0%  }
+  }
+.userchat {
+    border: solid 1px #248bf5;
+    border-radius: 12px;
+    background-color: #248bf5;
+    padding: 5px;
+    margin-bottom: 5px;
+    max-width: 250px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.aichat {
+    border: solid 1px #e5e5ea;
+    border-radius: 12px;
+    background-color: #e5e5ea;
+    padding: 5px;
+    max-width: 250px;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+#order-button {
+    margin-top: 40px;
+}
+
+#order, #product-chat, #return, #order-chat-1, #order-chat-2, #order-chat-3,#order-chat-4,#order-chat-5,#order-chat-6,#order-response-1,#order-response-2,#order-response-3,#order-response-4,#order-response-5,#order-response-6,#product-chat-1,#product-chat-2,#product-chat-3,#product-chat-4,#product-chat-5,#product-chat-6,#product-response-1,#product-response-2,#product-response-3,#product-response-4,#product-response-5,#product-response-6,#return-chat-1, #return-chat-2, #return-chat-3,#return-chat-4,#return-chat-5,#return-chat-6,#return-response-1,#return-response-2,#return-response-3,#return-response-4,#return-response-5,#return-response-6 {
+    display: none;
+}
+
+#form-response, #chat-loader {
+    display: none;
+}
 
 .close {
     color: #aaa;
