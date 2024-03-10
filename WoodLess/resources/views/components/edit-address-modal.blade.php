@@ -34,24 +34,3 @@
     </div>
 </div>
 
-<script>
-function populateEditAddressModal(address) {
-    // Make sure to correctly parse the address if it's a JSON object, 
-    // and replace '&quot;' with '"' to handle HTML entity encoding.
-    address = JSON.parse(address.replace(/&quot;/g, '"'));
-
-    // Populate form fields
-    document.getElementById('edit_house_number').value = address.house_number;
-    document.getElementById('edit_street_name').value = address.street_name;
-    document.getElementById('edit_postcode').value = address.postcode;
-    document.getElementById('edit_city').value = address.city;
-
-    // Set the action for the form to the update route
-    var editForm = document.getElementById('editAddressForm');
-    editForm.action = `/addresses/${address.id}`; // Update this URL to your application's route
-
-    // Show the modal
-    var editModal = new bootstrap.Modal(document.getElementById('editAddressModal'));
-    editModal.show();
-}
-</script>
