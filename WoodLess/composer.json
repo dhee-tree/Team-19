@@ -11,6 +11,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
+        "stripe/stripe-php": "^13.13",
         "symfony/filesystem": "^7.0"
     },
     "require-dev": {

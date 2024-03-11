@@ -17,11 +17,7 @@ use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TicketController;
-use Illuminate\Support\Facades\Password;
-use App\Models\User;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,8 +52,11 @@ Route::delete('/basket/{basket}', [BasketController::class, 'destroy'])->name('b
 Route::put('/update-basket/{basket}', [BasketController::class, 'update'])->name('basket.update');
 
 // Checkout URLS
-Route::get('/checkout', [CheckoutController::class, 'show'])->middleware('auth');
-Route::post('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('auth');
+Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout')->middleware('auth');
+Route::get('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('auth');
+
+// Stripe payment
+Route::post('/charge', [App\Http\Controllers\StripeController::class, 'charge'])->name('charge');
 
 //Store single review
 Route::post('/review/{product_id}', [ReviewController::class, 'store'])->middleware('auth');
@@ -192,6 +191,22 @@ Route::get('/', [ProductController::class, 'getThreeRandom']);
 
 Route::get('/password/change', [App\Http\Controllers\ChangePasswordController::class, 'showChangePasswordForm'])->name('password.change.form');
 Route::post('/password/change', [App\Http\Controllers\ChangePasswordController::class, 'changePassword'])->name('password.change');
+
+//User panel addresses
+Route::middleware('auth')->group(function () {
+    // Specific address-related routes within the user panel
+    Route::prefix('user-panel')->group(function () {
+        // The main index page for addresses within the user panel
+        Route::get('/addresses', [AddressController::class, 'index'])->name('user-addresses.index');
+    });
+
+    // Address CRUD operations
+    Route::post('/addresses', [AddressController::class, 'store'])->name('addresses.store');
+    Route::get('/addresses/{address}/edit', [AddressController::class, 'edit'])->name('addresses.edit');
+    Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
+    Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
+    Route::post('/addresses/{address}/set-default', [AddressController::class, 'setDefault'])->name('addresses.set_default');
+});
 //Forgot password
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');

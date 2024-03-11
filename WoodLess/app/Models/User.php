@@ -52,11 +52,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'is_admin',
+        'access_level',
     ];
 
     protected $guarded = [
-        'is_admin'
+        'access_level'
     ];
 
     /**
@@ -110,8 +110,11 @@ class User extends Authenticatable
         return $this->belongsToMany(EmailVerificationCode::class, 'email_verification_codes', 'user_id','code')->withTimeStamps();
     }
     
-    public function isAdmin(){
-        return $this->makeVisible('is_admin')->is_admin;
+    public function accessLevel(){
+        return $this->makeVisible('access_level')->access_level;
     }
     
+    public function isAdmin(){
+        return (bool)($this->accessLevel() >= 3);
+    }
 }

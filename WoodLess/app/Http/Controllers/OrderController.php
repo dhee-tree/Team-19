@@ -38,15 +38,22 @@ class OrderController extends Controller
                 'address_id' => 1, // Needs to be changed to the address id associated with the user and the order.
                 'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
                 'details' => 'Order placed by user',
-                // 'status_id' => 1,
+                'order_cost' => $basket->totalCost(),
             ]);
     
             foreach ($basket->products as $product) {
+                if ($product->discount > 0){
+                    $product_cost = round($product->cost - ($product->cost * ($product->discount / 100)), 2);
+                } else {
+                    $product_cost = $product->cost;
+                }
+
                 $order->products()->attach($product->id, [
                     'amount' => $product->pivot->amount,
                     'attributes' => $product->pivot->attributes,
                     'warehouse_id' => $product->warehouses->first()->id,
                     'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
+                    'product_cost' => $product_cost,
                 ]);
             }
     

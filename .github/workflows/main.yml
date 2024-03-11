@@ -4,31 +4,44 @@ name: Deploy to Server
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-    
-  # Triggers the workflow on push request events but only for the main branch
+
   push:
-    branches: [development]
+    branches:
+      - development
 
   # Additional trigger for increased verbosity
   workflow_run:
-    workflows: ["CI-SFTP"]
+    workflows: [Run Tests]
+    branches:
+      - main
+      - development
     types:
-      - requested
+      - completed
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "SFTP"
+  check-test-results:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Test Failure
+        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        run: |
+          echo 'Tests have failed.'
+          exit 1
+
+      - name: Check Test Success
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        run: |
+          echo 'Tests were successful.'
+
   deploy-via-sftp:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
-
-      - name: Check Test Results
-        if: ${{ failure() }}
-        run: exit 1
 
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4

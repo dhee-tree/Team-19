@@ -48,10 +48,10 @@ class ReviewController extends Controller
             ]);
             
             if($validator->fails()) {
-                return back()->with([
+                return back()->withErrors($validator)->with([
                     'status' => 'warning',
                     'message' => $validator->errors()->first()
-                ]);
+                ])->withInput()->withFragment('go-reviews');
             }
             
             $product->loadMissing('reviews');
@@ -96,12 +96,13 @@ class ReviewController extends Controller
                 'description.min' => 'Description must be longer than 25 characters.',
                 'description.required' => 'Please provide a description.'
             ]);
+            
     
             if($validator->fails()) {
-                return back()->with([
+                return back()->withErrors($validator)->with([
                     'status' => 'warning',
                     'message' => $validator->errors()->first()
-                ]);
+                ])->withInput()->withFragment('go-reviews');
             }
     
             $review->update([

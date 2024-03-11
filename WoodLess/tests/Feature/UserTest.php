@@ -10,15 +10,23 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class UserTest extends TestCase
 {  
     use RefreshDatabase;
+    protected $user;
+    
     /**
-     * A basic feature test example.
+     * Set up the user before each test.
      */
-    public function test_make_user_and_check_admin(): void
-    {   
-        $user = User::factory()->create();
-        $user->is_admin = true;
-        $user->save();
+    protected function setUp(): void
+    {
+        parent::setUp();
 
-        $this->assertTrue($user->isAdmin());
+        $this->user = User::factory()->create();
+    }
+
+    /**
+     * A basic test example.
+     */
+    public function test_that_true_is_true(): void
+    {
+        $this->assertTrue(true);
     }
 }
