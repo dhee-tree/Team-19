@@ -14,39 +14,23 @@ class ProductController extends Controller
 {
 
     protected $reviews;
+    
     /**
      * Retrieve a single product.
      * @param int $product_id The id of the product in the database.
      */
     public function show(int $product_id)
     {
-        /**
-         * The currently authenticated user, if there is one.
-         */
         $user = Auth()->user() ?? null;
-
-        /**
-         * A cached instance of the product.
-         */
         $product = Product::getCached($product_id);
-        
-        /**
-         * A cached instance of the categories associated with the product.
-         */
         $categories = $product->getCachedRelation('categories');
 
-        /**
-         * An array of 8 cached random products similar to the called product.
-         */
         $similarProducts = $categories->flatMap(function ($category) {
             return $category->getCachedRelation('products');
         })->unique('id')->reject(function ($p) use ($product) {
             return $p->id == $product->id;
         })->shuffle()->take(8);
 
-        /**
-         * A Collection of Review instances associated with the product, ordered by request parameters.
-         */
         $reviews = $product->getCachedRelation('reviews')->sortBy(
             [
                 request('sort') ?? 'created_at', 
@@ -54,9 +38,6 @@ class ProductController extends Controller
             ]
         )->paginate(8)->withQueryString()->fragment('go-reviews');
 
-        /**
-         * An array of filepaths for the product images.
-         */
         $productImages = [];
 
         foreach (explode(',', $product->images) as $imagePath) {
