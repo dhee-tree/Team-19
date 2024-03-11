@@ -105,9 +105,35 @@ document.addEventListener('DOMContentLoaded', function () {
         checkboxes.forEach(function(checkbox) {
             checkbox.checked = false;
         });
+        // Reset the 'Sort By' dropdown
+        var sortByDropdown = document.querySelector('select[name="sort_by"]');
+        sortByDropdown.selectedIndex = 0; 
         window.history.pushState(null, null, '/products');
 
         // Submit the form to apply the cleared filter
         document.getElementById('filter').submit();
     });
+});
+document.addEventListener('DOMContentLoaded', function () {
+    // Get URL parameter for 'sort_by'
+    var sortByParam = getUrlParameter('sort_by');
+
+    // Select the 'Sort By' dropdown element
+    var sortByDropdown = document.querySelector('select[name="sort_by"]');
+
+    // If 'sort_by' parameter exists in the URL, set the selected option
+    if (sortByParam) {
+        var option = sortByDropdown.querySelector('option[value="' + sortByParam + '"]');
+        if (option) {
+            option.selected = true;
+        }
+    }
+
+    // Function to get URL parameter
+    function getUrlParameter(name) {
+        name = name.replace(/[[]/, '\\[').replace(/[\]]/, '\\]');
+        var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        var results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
 });
