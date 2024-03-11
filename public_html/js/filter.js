@@ -79,13 +79,17 @@ function removeSearch() {
     // You may also want to submit the form after removing the search text
 }
 
-document.addEventListener('DOMContentLoaded', function () {
 
-    setTimeout(function () {
-        var alert = document.getElementById('resultsAlert');
-        alert.classList.remove('show');
-        setTimeout(function () {
-            alert.style.display = 'none';
-        }, 1000); // 1 second transition time before hiding
-    }, 3000); // 3 seconds delay before starting to hide
+
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the alert box element
+        var alertBox = document.getElementById('resultsAlert');
+    
+        // Remove the 'show' class to ensure the alert box is visible
+        alertBox.classList.remove('show');
+    
+        // Optionally, you can remove the 'fade' class if you don't want the fade effect
+        alertBox.classList.remove('fade');
+       
 });
