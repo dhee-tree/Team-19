@@ -1,16 +1,12 @@
 @extends('layouts.user-panel-base')
 @section('title', 'User Details')
 
-@section('main')
-    @section('banner')
-        <!-- Code for banner -->
-        <div class="banner">
-            <h2>{{ $user->first_name }}'s Details</h2> 
-        </div> 
-    @endsection
+@section('page-content')
+    <div class="banner">
+        <h2>{{ $user->first_name }}'s Details</h2> 
+    </div>
 
-    @section('page-content')
-    <section id="" class="py-5 py-xl-8">
+    <section class="py-5 py-xl-8">
         <div class="container-fluid justify-content-center">
             <div class="row">
                 <div class="col-12">
@@ -22,18 +18,17 @@
                             <p><strong>Last Name:</strong> {{ $user->last_name }}</p>
                             <p><strong>Email:</strong> {{ $user->email }}</p>
                             <p><strong>Phone:</strong> {{ $user->phone_number }}</p>
-
                         </div>
-                        
                         <div class="card-footer">
-                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateUserModal"><i class="fa-solid fa-file-pen"></i> Edit Details</button>
+                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateUserModal">
+                                <i class="fa-solid fa-file-pen"></i> Edit Details
+                            </button>
                         </div>
-
-                        <!-- This include user panel modal -->
-                        @include('components.user-edit-modal')
                     </div>
+                    @include('components.user-edit-modal')
                 </div>
             </div>
         </div>
     </section>
+
 @endsection
