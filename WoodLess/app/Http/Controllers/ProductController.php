@@ -20,12 +20,23 @@ class ProductController extends Controller
      */
     public function show(int $product_id)
     {
+        /**
+         * The currently authenticated user, if there is one.
+         */
         $user = Auth()->user() ?? null;
+
+        /**
+         * A cached instance of the product.
+         */
         $product = Product::getCached($product_id);
+        
+        /**
+         * A cached instance of the categories associated with the product.
+         */
         $categories = $product->getCachedRelation('categories');
 
         /**
-         * An array of 8 random Product instances similar to the called product.
+         * An array of 8 cached random products similar to the called product.
          */
         $similarProducts = $categories->flatMap(function ($category) {
             return $category->getCachedRelation('products');
@@ -33,6 +44,9 @@ class ProductController extends Controller
             return $p->id == $product->id;
         })->shuffle()->take(8);
 
+        /**
+         * A Collection of Review instances associated with the product, ordered by request parameters.
+         */
         $reviews = $product->getCachedRelation('reviews')->sortBy(
             [
                 request('sort') ?? 'created_at', 
@@ -48,7 +62,7 @@ class ProductController extends Controller
         foreach (explode(',', $product->images) as $imagePath) {
             $productImages[] = Storage::url($imagePath);
         };
-
+        
         return view('products.show', [
             'user' => $user,
             'product' => $product,
@@ -74,11 +88,12 @@ class ProductController extends Controller
 
 
     // }
-    //Queries the products, and returns if we searched for something or not.
+
+    /**
+     * Queries the products, and returns if we searched for something or not.
+     */
     public function index()
     {
-
-
         //Get search paramaters
         $filters = collect(request()->query());
         $search_text = $filters['search'] ?? null;
@@ -115,7 +130,9 @@ class ProductController extends Controller
         return view('product-list', ['products' => $products, 'search_text' => $search_text]);
     }
 
-    //gets three random categories and products  for home page
+    /**
+     * Gets three random categories and products  for home page
+     */
     public function getThreeRandom()
     {
         $products = Product::all();
