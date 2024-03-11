@@ -83,8 +83,8 @@
     /* prevents padding from adding to the width */
     box-sizing: border-box;
     padding: 0 1.5rem;
-    color: #fff;
-    background-color: var(--primary);
+    
+    
     display: inline-block;
     position: relative;
     z-index: 1;
