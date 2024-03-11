@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 
 class DatabaseSeeder extends Seeder
@@ -124,11 +125,28 @@ class DatabaseSeeder extends Seeder
             \App\Models\Card::factory()->create(['user_id' => $user->id]);
         }
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::factory()->create([
+            'first_name' => 'John',
+            'last_name' => 'Moderator',
+            'email' => 'mod@woodless.com',
+            'password' => Hash::make('moderator'),
+            'access_level' => 2,
+        ]);
 
+        \App\Models\User::factory()->create([
+            'first_name' => 'John',
+            'last_name' => 'Admin',
+            'email' => 'admin@woodless.com',
+            'password' => Hash::make('admin'),
+            'access_level' => 3
+        ]);
 
+        \App\Models\User::factory()->create([
+            'first_name' => 'John',
+            'last_name' => 'Admin',
+            'email' => 'super@woodless.com',
+            'password' => Hash::make('admin'),
+            'access_level' => 4
+        ]);
     }
 }

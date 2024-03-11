@@ -33,6 +33,7 @@ use App\Http\Controllers\AddressController;
 
 Route::view('/about', 'about')->name("about-us");
 Route::get('/verify/{code}', [EmailVerificationController::class, 'verifyUserEmail'])->name('user.verify');
+Route::get('/verify', [EmailVerificationController::class, 'resendVerificationEmail'])->name('verification.resend');
 
 Route::view('/categories', 'categories');
 
@@ -43,17 +44,17 @@ Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.
 Route::get('/product/{product_id}', [ProductController::class, 'show']);
 
 // Basket URLS
-Route::get('/basket', [BasketController::class, 'show'])->name('basket')->middleware('auth');
+Route::get('/basket', [BasketController::class, 'show'])->name('basket')->middleware('verify');
 //Store product in basket
-Route::post('/basket/{product_id}', [BasketController::class, 'store'])->middleware('auth');
+Route::post('/basket/{product_id}', [BasketController::class, 'store'])->middleware('verify');
 // Delete product from basket
-Route::delete('/basket/{basket}', [BasketController::class, 'destroy'])->name('basket.destroy');
+Route::delete('/basket/{basket}', [BasketController::class, 'destroy'])->name('basket.destroy')->middleware('verify');
 // Update product in basket
-Route::put('/update-basket/{basket}', [BasketController::class, 'update'])->name('basket.update');
+Route::put('/update-basket/{basket}', [BasketController::class, 'update'])->name('basket.update')->middleware('verify');
 
 // Checkout URLS
-Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout')->middleware('auth');
-Route::get('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('auth');
+Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout')->middleware('verify');
+Route::get('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('verify');
 
 // Stripe payment
 Route::post('/charge', [App\Http\Controllers\StripeController::class, 'charge'])->name('charge');
@@ -184,7 +185,7 @@ Route::get('/user-panel/purchases/cancel-return/{order}/{product}', [App\Http\Co
 
 // Display categories
 
-Route::get('/categories', [CategoryController::class, 'getCategories']);
+Route::get('/categories', [CategoryController::class, 'index']);
 //Display three random categories and products on home page
 Auth::routes();
 Route::get('/', [ProductController::class, 'getThreeRandom']);
