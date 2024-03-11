@@ -4,7 +4,8 @@
     font-weight: normal;
     /* Make the text bold */
     font-size: 1.3rem !important;
-    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+    text-size-adjust: auto;
+    /* Allow the text to resize while maintaining aspect ratio */
 
 }
 
@@ -12,7 +13,8 @@
     font-weight: bold;
     /* Make the text bold */
     font-size: 1.5rem !important;
-    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+    text-size-adjust: auto;
+    /* Allow the text to resize while maintaining aspect ratio */
 
 }
 
@@ -20,16 +22,17 @@
     font-weight: normal;
     /* Make the text bold */
     font-size: 1rem !important;
-    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
+    text-size-adjust: auto;
+    /* Allow the text to resize while maintaining aspect ratio */
 
 }
 
 #product .discount-number {
     font-weight: bold;
-    /* Make the text bold */
     font-size: 1.3rem !important;
-    text-size-adjust: auto; /* Allow the text to resize while maintaining aspect ratio */
-
+    text-size-adjust: auto;
+    color: #cc0c39;
+    transform: translateY(55%);
 }
 
 @media (max-width: 1024px) {
@@ -154,22 +157,13 @@
     /* Adjust width as needed */
     min-height: 100%;
     /* Adjust height as needed */
-
-}
-
-#product .discount-number {
-    /* Adjust as needed */
-    transform-origin: top left;
-    color: #cc0c39;
-    /* Adjust text color as needed */
-    font-weight: normal;
-
 }
 
 #product .end .fire {
     top: 35%;
     right: 5%;
-    display: block; /* Change to 'block' or 'inline-block' */
+    display: block;
+    /* Change to 'block' or 'inline-block' */
 
 }
 
