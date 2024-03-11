@@ -33,6 +33,7 @@ use App\Http\Controllers\AddressController;
 
 Route::view('/about', 'about')->name("about-us");
 Route::get('/verify/{code}', [EmailVerificationController::class, 'verifyUserEmail'])->name('user.verify');
+Route::get('/verify', [EmailVerificationController::class, 'resendVerificationEmail'])->name('verification.resend');
 
 Route::view('/categories', 'categories');
 
