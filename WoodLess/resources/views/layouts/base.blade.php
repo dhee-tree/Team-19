@@ -68,9 +68,16 @@
                         <i class="fa-solid fa-unlock"></i>
                     </a>
                 @else
-                    <a type="button" href="{{ url('user-panel') }}" class="ms-2 btn btn-outline-light rounded-pill"
+                    <a type="button" href="{{ url('user-panel') }}" class="nav-link position-relative"
                         type="submit" data-mdb-ripple-init>
-                        <i class="fa-solid fa-user"></i>
+                        <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1" type="submit" data-mdb-ripple-init>
+                            <i class="fa-solid fa-user"></i>
+                        </button>
+                        <?php if (Auth()->check() && !Auth()->user()->isVerified()) : ?>
+                        <small class="badge position-absolute translate-middle badge-notification bg-warning rounded-pill">
+                        <i class="fa-solid fa-exclamation"></i>
+                        </small>
+                        <?php endif; ?>
                     </a>
                 @endguest
 
