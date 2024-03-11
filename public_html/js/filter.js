@@ -79,17 +79,35 @@ function removeSearch() {
     // You may also want to submit the form after removing the search text
 }
 
-
-
-    
     document.addEventListener('DOMContentLoaded', function () {
         // Get the alert box element
         var alertBox = document.getElementById('resultsAlert');
-    
-        // Remove the 'show' class to ensure the alert box is visible
         alertBox.classList.remove('show');
-    
-        // Optionally, you can remove the 'fade' class if you don't want the fade effect
         alertBox.classList.remove('fade');
        
+});
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the clear filter button element
+    var clearFilterBtn = document.getElementById('clearFilterBtn');
+
+    // Add click event listener to the clear filter button
+    clearFilterBtn.addEventListener('click', function() {
+        // Clear input fields
+        document.getElementById('minCost').value = '';
+        document.getElementById('maxCost').value = '';
+
+        // Reset price range slider
+        var priceRangeSlider = document.getElementById('priceRangeSlider').noUiSlider;
+        priceRangeSlider.set([0, 10000]);
+
+        // Uncheck all checkboxes
+        var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.checked = false;
+        });
+        window.history.pushState(null, null, '/products');
+
+        // Submit the form to apply the cleared filter
+        document.getElementById('filter').submit();
+    });
 });

@@ -242,6 +242,7 @@
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                <button id="clearFilterBtn" class="btn btn-secondary mt-2">Clear Filter</button>
 
             </div>
         </form>
