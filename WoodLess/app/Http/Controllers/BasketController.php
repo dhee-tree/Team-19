@@ -15,6 +15,8 @@ class BasketController extends Controller
 {
     /**
      * Store a product in a basket.
+     * @param Request $request The HTTP request data.
+     * @param int $product_id The id of the product to store.
      */
     function store(Request $request, int $product_id){
         try{
@@ -87,7 +89,9 @@ class BasketController extends Controller
         }
     }
 
-    // Show the basket of the authenticated user.
+    /**
+     * Show the basket of the authenticated user.
+     */
     function show()
     {
         $basket = auth()->user()->basket;
@@ -98,7 +102,11 @@ class BasketController extends Controller
         ]);
     }
 
-    // Delete a product from the basket.
+    /**
+     * Delete a product from the basket.
+     * @param Request $request The HTTP request data.
+     * @param Basket $basket The basket to delete the product from.
+     */
     function destroy(Request $request, Basket $basket){
         $basket->loadMissing('products');
         $basket->products()->wherePivot('id', $request->input('id'))->first()->pivot->delete();
@@ -109,7 +117,11 @@ class BasketController extends Controller
         ]);
     }
 
-    // Update a product in the basket.
+    /**
+     * Update a product in the basket.
+     * @param Request $request The HTTP request data.
+     * @param Basket $basket The basket to update.
+     */
     function update(Request $request, Basket $basket){
         $basket->loadMissing('products');
         $product = $basket->products()->wherePivot('id', $request->input('id'))->first();

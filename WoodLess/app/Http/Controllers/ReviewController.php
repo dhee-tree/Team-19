@@ -14,6 +14,8 @@ class ReviewController extends Controller
 
     /**
      * Store a single review.
+     * @param Request $request The HTTP request data.
+     * @param int $product_id The id of a product.
      */
     public function store(Request $request, int $product_id){
         try {
@@ -77,6 +79,8 @@ class ReviewController extends Controller
 
     /**
      * Update an existing review's description.
+     * @param Request $request The HTTP request data.
+     * @param Review $review The review to be updated.
      */
     public function update(Request $request, Review $review){
         
@@ -126,6 +130,7 @@ class ReviewController extends Controller
 
     /**
      * Delete a single review.
+     * @param Review $review The review to be deleted.
      */
     public function destroy(Review $review){
         try {

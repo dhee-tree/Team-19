@@ -185,7 +185,7 @@ Route::get('/user-panel/purchases/cancel-return/{order}/{product}', [App\Http\Co
 
 // Display categories
 
-Route::get('/categories', [CategoryController::class, 'getCategories']);
+Route::get('/categories', [CategoryController::class, 'index']);
 //Display three random categories and products on home page
 Auth::routes();
 Route::get('/', [ProductController::class, 'getThreeRandom']);
