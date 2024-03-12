@@ -16,7 +16,7 @@
 .contact-card {
     height: 100%;
     border-radius: 20px;
-    background: #655D52;
+    background: #1180c1;
     color: #ffffff;
     padding: 34px;
 }
@@ -45,4 +45,9 @@
     padding: 5px;
     border-radius: 20px;
     margin-bottom: 10px;
+}
+
+.adress , .email, .phone {
+    font-size: 20px;
+
 }
