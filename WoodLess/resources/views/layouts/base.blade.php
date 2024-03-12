@@ -67,33 +67,36 @@
                         type="submit" data-mdb-ripple-init>
                         <i class="fa-solid fa-unlock"></i>
                     </a>
-                    @else
-    @if(Auth()->user()->isAdmin())
-        <a type="button" href="{{ url('admin-panel') }}" class="nav-link position-relative"
-           type="submit" data-mdb-ripple-init>
-            <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1" type="submit"
-                    data-mdb-ripple-init>
-                <i class="fa-solid fa-user"></i>
-            </button>
-            <?php if (Auth()->check() && !Auth()->user()->isVerified()) : ?>
-            <small class="badge position-absolute translate-middle badge-notification bg-warning rounded-pill">
-                <i class="fa-solid fa-exclamation"></i>
-            </small>
-            <?php endif; ?>
-        </a>
                 @else
-                    <a type="button" href="{{ url('user-panel') }}" class="nav-link position-relative"
-                        type="submit" data-mdb-ripple-init>
-                        <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1" type="submit" data-mdb-ripple-init>
-                            <i class="fa-solid fa-user"></i>
-                        </button>
-                        <?php if (Auth()->check() && !Auth()->user()->isVerified()) : ?>
-                        <small class="badge position-absolute translate-middle badge-notification bg-warning rounded-pill">
-                        <i class="fa-solid fa-exclamation"></i>
-                        </small>
-                        <?php endif; ?>
-                    </a>
-                @endguest
+                    @if (Auth()->user()->isAdmin())
+                        <a type="button" href="{{ url('admin-panel') }}" class="nav-link position-relative" type="submit"
+                            data-mdb-ripple-init>
+                            <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1"
+                                type="submit" data-mdb-ripple-init>
+                                <i class="fa-solid fa-user"></i>
+                            </button>
+                            <?php if (Auth()->check() && !Auth()->user()->isVerified()) : ?>
+                            <small
+                                class="badge position-absolute translate-middle badge-notification bg-warning rounded-pill">
+                                <i class="fa-solid fa-exclamation"></i>
+                            </small>
+                            <?php endif; ?>
+                        </a>
+                    @else
+                        <a type="button" href="{{ url('user-panel') }}" class="nav-link position-relative" type="submit"
+                            data-mdb-ripple-init>
+                            <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1"
+                                type="submit" data-mdb-ripple-init>
+                                <i class="fa-solid fa-user"></i>
+                            </button>
+                            <?php if (Auth()->check() && !Auth()->user()->isVerified()) : ?>
+                            <small
+                                class="badge position-absolute translate-middle badge-notification bg-warning rounded-pill">
+                                <i class="fa-solid fa-exclamation"></i>
+                            </small>
+                            <?php endif; ?>
+                        </a>
+                    @endguest
                 @endif
 
                 <button id="navbartoggler" class="d-lg-none btn btn-outline-light rounded-pill ms-2" type="button"
@@ -237,7 +240,7 @@
         </div>
     </div>
 
-  @include('components.livechat')
+    @include('components.livechat')
 
     <main>
         <!-- include('layouts.alert') !-->
@@ -313,15 +316,7 @@
     </footer>
 
 
-    @if (session('success'))
-        <div id="successAlert"
-            class="alert fade show alert-success shadow-sm text-center position-fixed translate-middle bottom-0 start-50 mb-2 py-2"
-            role="alert" style="display: none;">
 
-            {{ session('success') }}
-            <button type="button" class="btn-close" aria-label="Close"></button>
-        </div>
-    @endif
 
     @include('layouts.alert')
     <!-- bootstrap 5.3 -->
@@ -337,4 +332,5 @@
     @yield('js')
 
 </body>
+
 </html>

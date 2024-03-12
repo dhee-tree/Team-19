@@ -240,8 +240,9 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#infoModal" data-bs-toggle="modal"
-                            data-bs-dismiss="modal">Back to details</button>
+                        <button type="button" class="btn btn-primary" data-bs-target="#infoModal"
+                            data-bs-toggle="modal" data-bs-dismiss="modal">Back to details</button>
+
                         <button type="submit" class="btn btn-primary" form="editUserForm">Save</button>
                     </div>
                 </form>

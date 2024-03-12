@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\QueryException;
+
 
 class AdminController extends Controller
 {
@@ -153,59 +155,66 @@ class AdminController extends Controller
 
         return redirect()->route('admin-panel.users')->with('success', 'user ' . $id . ' deleted succesfully.');
     }
-
     public function UserStore(Request $request, $id)
     {
-        // Checks if we need to make a new user or get an existing one
-        if ($id >= 0) {
-            $user = User::find($id);
-
-            // Check if the user exists
-            if (!$user) {
-                return redirect()->back()->with('success', 'User not found.');
+        try {
+            // Checks if we need to make a new user or get an existing one
+            if ($id >= 0) {
+                $user = User::findOrFail($id);
+            } else {
+                // Create a new user instance
+                $user = new User();
+                $user->password = $request->input('password');
             }
-        } else {
-            // Create a new user instance
-            $user = new User();
 
-            $user->password = $request->input('password');
-        }
-
-        // Update user information
-        $user->first_name = $request->input('first_name');
-        $user->last_name = $request->input('last_name');
-        $user->email = $request->input('email');
-        $user->phone_number = $request->input('phone_number');
-        if ($request->has('is_admin')) {
-            // If checked, set the access level to 3
-            $user->access_level = 3;
-        } else {
-            $user->access_level = 1;
-        }
-
-        // Save or update the user
-        $user->save();
-
-        // Delete existing addresses and save new ones
-        $user->addresses()->delete();
-        if ($request->has('addresses')) {
-            foreach ($request->input('addresses') as $addressData) {
-
-                $address = new Address();
-                $address->house_number = $addressData['house_number'];
-                $address->street_name = $addressData['street_name'];
-                $address->postcode = $addressData['postcode'];
-                $address->city = $addressData['city'];
-                $user->addresses()->save($address); // Save address for the user
+            // Update user information
+            $user->first_name = $request->input('first_name');
+            $user->last_name = $request->input('last_name');
+            $user->email = $request->input('email');
+            $user->phone_number = $request->input('phone_number');
+            if ($request->has('is_admin')) {
+                // If checked, set the access level to 3
+                $user->access_level = 3;
+            } else {
+                $user->access_level = 1;
             }
-        }
 
-        if ($id >= 0) {
-            return redirect()->route('admin-panel.users')->with('success', 'User ' . $id . ' was edited successfully');
-        } else {
-            return redirect()->route('admin-panel.users')->with('success', 'User ' . $id . ' was created successfully');
+            // Save or update the user
+            $user->save();
+
+            // Delete existing addresses and save new ones
+            $user->addresses()->delete();
+            if ($request->has('addresses')) {
+                foreach ($request->input('addresses') as $addressData) {
+                    $address = new Address();
+                    $address->house_number = $addressData['house_number'];
+                    $address->street_name = $addressData['street_name'];
+                    $address->postcode = $addressData['postcode'];
+                    $address->city = $addressData['city'];
+                    $user->addresses()->save($address); // Save address for the user
+                }
+            }
+
+            if ($id >= 0) {
+                return back()->with([
+                    'status' => 'success',
+                    'message' => 'User created and added to database.'
+                ]);
+            } else {
+                return back()->with([
+                    'status' => 'success',
+                    'message' => 'User edited'
+                ]);
+            }
+        } catch (QueryException $e) {
+            return back()->with([
+                'status' => 'danger',
+                'message' => 'Failed to create user.' . $e->getMessage(),
+                'error' => $e->getMessage() // Get the error message
+            ]);
         }
     }
+
 
     #endregion
 
