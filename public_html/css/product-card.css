@@ -3,7 +3,7 @@
 #product .name {
     font-weight: normal;
     /* Make the text bold */
-    font-size: 1.3rem !important;
+    font-size: 1.1rem !important;
     text-size-adjust: auto;
     /* Allow the text to resize while maintaining aspect ratio */
 
@@ -29,19 +29,23 @@
 
 #product .discount-number {
     font-weight: bold;
-    font-size: 1.3rem !important;
+    font-size: 1.2rem !important;
     text-size-adjust: auto;
     color: #cc0c39;
-    transform: translateY(55%);
+    transform: translate(25%, 58%);
+}
+
+#product .discount-badge {
+    background-color: rgb(175, 255, 168);
+    color: rgb(6, 73, 0);
 }
 
 @media (max-width: 1024px) {
 
-
     #product .name {
         font-weight: normal;
         /* Make the text bold */
-        font-size: 1rem !important;
+        font-size: 0.9rem !important;
     }
 
     #product .showcase-price {
@@ -128,9 +132,8 @@
     /* Use flexbox layout */
     justify-content: space-between;
     /* Align children to start and end */
-    padding: 5px;
-    padding-left: 5%;
-
+    padding: 2%;
+    padding-left: 4%;
 }
 
 /* #region Start Styling */
@@ -140,7 +143,7 @@
     white-space: nowrap;
 
     /* background-color: rgba(0, 255, 76, 0.5); /* Example red background with 50% opacity */
-    width: 60%;
+    width: 70%;
     /* Adjust width as needed */
     height: 100%;
     /* Adjust height as needed */

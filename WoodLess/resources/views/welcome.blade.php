@@ -57,11 +57,11 @@
                             @foreach ($products->shuffle()->take(2) as $key => $product)
                                 <div class="col pt-4">
                                     <!-- Product card -->
-                                    <div id="product" class="card hot shadow expand-hover">
+                                    <div id="product" class="card hot expand-hover">
                                         <!-- Sale badge -->
                                         @if ($product->discount)
-                                            <div class="badge bg-dark text-white position-absolute"
-                                                style="top: 0.5rem; right: 0.5rem">-{{ $product->discount }}%
+                                            <div class="badge shadow discount-badge position-absolute"
+                                                style="top: 0.8rem; right: 0.8rem">-{{ $product->discount }}%
                                             </div>
                                         @endif
                                         <!-- Product content -->
@@ -101,8 +101,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="end">
-                                                    <!-- Text -->
-                                                    <div class="discount-number">-{{ $product->discount }}%</div>
                                                     <!-- Fire animation -->
                                                     <div class="fire">
                                                         <div class="fire-left">
@@ -142,11 +140,11 @@
                         @endphp
                         <div class="col pt-4">
                             <!-- Product card -->
-                            <div id="product" class="card discount shadow expand-hover">
+                            <div id="product" class="card discount shadow discount-shadow expand-hover">
                                 <!-- Sale badge -->
                                 @if ($discProduct->discount)
-                                    <div class="badge bg-dark text-white position-absolute"
-                                        style="top: 0.5rem; right: 0.5rem">-{{ $discProduct->discount }}%
+                                    <div class="badge discount-badge position-absolute"
+                                        style="top: 0.8rem; right: 0.8rem">-{{ $discProduct->discount }}%
                                     </div>
                                 @endif
                                 <!-- Product content -->
@@ -185,8 +183,6 @@
                                             </div>
                                         </div>
                                         <div class="end">
-                                            <!-- Text -->
-                                            <div class="discount-number">-{{ $discProduct->discount }}%</div>
                                             <!-- Fire animation -->
                                             <div class="fire">
                                                 <div class="fire-left">

@@ -224,7 +224,7 @@
 }
 
 #title-desktop #learn-button {
-  padding: 0.5%;
+  padding: 0.7%;
   background-color: #429dd2c4;
   font-size: 1.5vw;
   bottom: 25%;
@@ -233,12 +233,10 @@
   transform: translate(-50%, -100%);
   transition: background-color 0.3s ease;
   border-radius: 15px;
-
 }
 
 #title-desktop #learn-button:hover {
-  background-color: #5bb0e1;
-  /* Slightly darker background color on hover */
+  background-color: #65b4e1;
 }
 
 
