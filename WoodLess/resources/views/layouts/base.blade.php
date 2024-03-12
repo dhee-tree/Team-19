@@ -67,6 +67,20 @@
                         type="submit" data-mdb-ripple-init>
                         <i class="fa-solid fa-unlock"></i>
                     </a>
+                    @else
+    @if(Auth()->user()->isAdmin())
+        <a type="button" href="{{ url('admin-panel') }}" class="nav-link position-relative"
+           type="submit" data-mdb-ripple-init>
+            <button class="ms-1 btn btn-outline-light rounded-pill position-relative z-index-1" type="submit"
+                    data-mdb-ripple-init>
+                <i class="fa-solid fa-user"></i>
+            </button>
+            <?php if (Auth()->check() && !Auth()->user()->isVerified()) : ?>
+            <small class="badge position-absolute translate-middle badge-notification bg-warning rounded-pill">
+                <i class="fa-solid fa-exclamation"></i>
+            </small>
+            <?php endif; ?>
+        </a>
                 @else
                     <a type="button" href="{{ url('user-panel') }}" class="nav-link position-relative"
                         type="submit" data-mdb-ripple-init>
@@ -80,6 +94,7 @@
                         <?php endif; ?>
                     </a>
                 @endguest
+                @endif
 
                 <button id="navbartoggler" class="d-lg-none btn btn-outline-light rounded-pill ms-2" type="button"
                     data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler"
