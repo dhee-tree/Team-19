@@ -18,17 +18,21 @@ class admin
      */
     public function handle(Request $request, Closure $next)
     {
+
         // Check if the user is logged in
         if (!Auth::check()) {
             return redirect()->route('login')->with(['status' => 'danger', 'message' => 'You need to be logged in to access this page.', 'error' => 401]);
         }
-        
-        // Check if the user is an admin
-        if (!Auth::user()->isAdmin()) {
-            return redirect()->route('home')->with(['status' => 'danger', 'message' => 'You do not have permission to access this page.', 'error' => 403]);
+        if (Auth::user()->access_level >= 3) {
+            // Allow the request to proceed for admin users
+            return $next($request);
+         }
+         else {
+            return redirect()->route('home')->with([
+                'status' => 'danger', 
+                'message' => 'You do not have permission to access this page.', 
+                'error' => 403
+            ]);
         }
-
-        // Allow the request to proceed
-        return $next($request);
     }
 }
