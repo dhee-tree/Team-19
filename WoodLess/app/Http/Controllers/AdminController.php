@@ -174,7 +174,12 @@ class AdminController extends Controller
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
         $user->phone_number = $request->input('phone_number');
-        $user->is_admin = $request->has('is_admin'); // Convert checkbox value to boolean
+        if ($request->has('is_admin')) {
+            // If checked, set the access level to 3
+            $user->access_level = 3;
+        } else {
+            $user->access_level = 1;
+        }
 
         // Save or update the user
         $user->save();
