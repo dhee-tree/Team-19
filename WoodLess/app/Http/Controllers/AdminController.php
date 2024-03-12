@@ -174,13 +174,19 @@ class AdminController extends Controller
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
         $user->phone_number = $request->input('phone_number');
-        if ($request->has('is_admin')) {
-            // If checked, set the access level to 3
-            $user->access_level = 3;
+        if ($request->input('access_level') == 'super_user') {
+            // If "super user" is selected, set the access level to 4 (Super Admin)
+            $user->access_level = 4;
         } else {
-            $user->access_level = 1;
+            // If not "super user", determine the access level based on other options
+            if ($request->input('access_level') == 'moderator') {
+                $user->access_level = 2; // Moderator
+            } elseif ($request->input('access_level') == 'admin') {
+                $user->access_level = 3; // Admin
+            } else {
+                $user->access_level = 1; // User
+            }
         }
-
         // Save or update the user
         $user->save();
 

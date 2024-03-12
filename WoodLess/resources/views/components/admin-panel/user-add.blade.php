@@ -36,9 +36,16 @@
                         maxlength="255" required>
 
                     <div class="form-check pt-3">
-                        <input type="checkbox" name="is_admin" id="is_admin" class="form-check-input">
-                        <label for="is_admin" class="form-check-label">Set as Admin</label>
-                    </div>
+                    
+                         <label for="access_level">Select Role:</label>
+                        <select class="form-control" id="access_level" name="access_level">
+                        <option value="1">User</option>
+                        <option value="2">Moderator</option>
+                        <option value="3">Admin</option>
+                        <option value="4">Super Admin</option>
+                        </select>
+                     </div>
+
 
                     <label for="addresses" class="pt-3">Addresses:</label>
                     <select name="address_selector" id="addresses" class="form-control">
