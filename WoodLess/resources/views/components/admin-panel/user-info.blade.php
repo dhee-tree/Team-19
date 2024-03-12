@@ -21,7 +21,17 @@
                         <!-- Display the user ID underneath the image with margin -->
                         <p class="mt-3 mb-0">User ID: {{ $user->id }}</p>
                         <!-- Display the role underneath the image without a title -->
-                        <h5><strong>{{ $user->is_admin ? 'Admin' : 'Customer' }}</strong></h5>
+                        <h5><strong>
+                                {{ $user->access_level == 1
+                                    ? 'Customer'
+                                    : ($user->access_level == 2
+                                        ? 'Moderator'
+                                        : ($user->access_level == 3
+                                            ? 'Admin'
+                                            : ($user->access_level == 4
+                                                ? 'Super Admin'
+                                                : 'Unknown'))) }}
+                            </strong></h5>
                         <!-- Thin line -->
                         <hr>
                     </div>
@@ -196,12 +206,16 @@
 
                         <div class="form-check pt-3">
                         
+                       
                         <label for="access_level">Select Role:</label>
                         <select class="form-control" id="access_level" name="access_level">
-                            <option value="1">User</option>
-                            <option value="2">Moderator</option>
-                            <option value="3">Admin</option>
-                            <option value="4">Super Admin</option>
+                            <option value="1" {{ $user->access_level == 1 ? 'selected' : '' }}>User</option>
+                            <option value="2" {{ $user->access_level == 2 ? 'selected' : '' }}>Moderator</option>
+                            @if (Auth::user()->access_level == 4)
+                            <option value="3" {{ $user->access_level == 3 ? 'selected' : '' }}>Admin</option>
+                            <option value="4" {{ $user->access_level == 4 ? 'selected' : '' }}>Super Admin</option>
+                            @endif
+                        </select>
                         </select>
                      </div>
 
