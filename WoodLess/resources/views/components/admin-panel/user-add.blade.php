@@ -36,9 +36,18 @@
                         maxlength="255" required>
 
                     <div class="form-check pt-3">
-                        <input type="checkbox" name="is_admin" id="is_admin" class="form-check-input">
-                        <label for="is_admin" class="form-check-label">Set as Admin</label>
-                    </div>
+                    
+                    <label for="access_level">Select Role:</label>
+                        <select class="form-control" id="access_level" name="access_level">
+                            <option value="1" {{ $user->access_level == 1 ? 'selected' : '' }}>User</option>
+                            <option value="2" {{ $user->access_level == 2 ? 'selected' : '' }}>Moderator</option>
+                            @if (Auth::user()->access_level == 4)
+                            <option value="3" {{ $user->access_level == 3 ? 'selected' : '' }}>Admin</option>
+                            <option value="4" {{ $user->access_level == 4 ? 'selected' : '' }}>Super Admin</option>
+                            @endif
+                        </select>
+                        </select>
+                     </div>
 
                     <label for="addresses" class="pt-3">Addresses:</label>
                     <select name="address_selector" id="addresses" class="form-control">

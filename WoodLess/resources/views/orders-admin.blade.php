@@ -11,11 +11,13 @@
     <!-- sidebar -->
     <div class="sidebar">
         <a href="#" class="logo">
+            <!-- Still looking for a logo which links to WoodLess, picked the L because of the favicon -->
+            <i class="fa-solid fa-l"></i>
             <div class="logo-name"><span>Wood</span>Less</div>
         </a>
         <ul class="side-menu">
             <li><a href="{{ url('/admin-panel') }}"><i class="fa-solid fa-house"></i>Dashboard</a></li>
-            <li><a href="{{ url('/admin-panel/inventory') }}"><i class="fa-solid fa-warehouse"></i>Inventory</a></li>
+            <li><a href="{{ url('/admin-panel/inventory') }}"><i class="fa-solid fa-store"></i>Inventory</a></li>
             <li class="active"><a href="{{ url('/admin-panel/orders') }}"><i class="fa-solid fa-truck-moving"></i>Orders</a>
             </li>
             <li><a href="{{ url('/admin-panel/tickets') }}"><i class="fa-solid fa-message"></i>Tickets</a></li>
@@ -65,6 +67,7 @@
                 </div>
             </div>
             <div class="row">
+                <!--
                 <div class="col-md-6">
                     <div class="dataTables_length" id="length_dropdown">
                         <label>
@@ -95,6 +98,7 @@
                         </label>
                     </div>
                 </div>
+                -->
             </div>
 
             <div class="bottom-data">
@@ -102,8 +106,34 @@
                     <div class="header">
                         <i class="fa-solid fa-user"></i>
                         <h3>Orders</h3>
-                        <i class="fa-solid fa-filter"></i>
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div class="table_filters">
+                        <div class="dataTables_length" id="length_dropdown">
+                            <label>
+                                Show:
+                                <select name="length" id="length" aria-controls="example"
+                                    class="form-select form-select-sm">
+                                    <option value="0">Select Value</option>
+                                    <option value="5" {{ request()->input('length') == 5 ? 'selected' : '' }}>5
+                                    </option>
+                                    <option value="10" {{ request()->input('length') == 10 ? 'selected' : '' }}>10
+                                    </option>
+                                    <option value="25" {{ request()->input('length') == 25 ? 'selected' : '' }}>25
+                                    </option>
+                                    <option value="50" {{ request()->input('length') == 50 ? 'selected' : '' }}>50
+                                    </option>
+                                    <option value="100" {{ request()->input('length') == 100 ? 'selected' : '' }}>100
+                                    </option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="dataTables_filter" id="filter">
+                            <label>
+                                Search:
+                                <input type="search" id="search" class="form-control form-control-sm" placeholder
+                                    aria-controls="search">
+                            </label>
+                        </div>
                     </div>
                     <table>
                         <thead>

@@ -5,7 +5,9 @@
         <!-- Code for banner -->
         <div class="banner">
             <h1>Banner Heading</h1>
-            <p>Description or tagline</p>
+            <?php if (Auth()->check() && !Auth()->user()->isVerified()) : ?>
+                <p>Verify your email to access basket and checkout. Did not receive the email? <a href="{{ route('verification.resend') }}">Resend</a></p>
+            <?php endif; ?>
         </div> 
     @endsection
 

@@ -17,6 +17,8 @@
     <!-- sidebar -->
     <div class="sidebar">
         <a href="#" class="logo">
+            <!-- Still looking for a logo which links to WoodLess, picked the L because of the favicon -->
+            <i class="fa-solid fa-l"></i>
             <div class="logo-name"><span>Wood</span>Less</div>
         </a>
         <ul class="side-menu">
@@ -69,6 +71,7 @@
                     <h1>Inventory</h1>
                 </div>
             </div>
+            <!--
             <div class="row">
                 <div class="col-sm-12 col-md-5">
                     <div class="dataTables_length" id="length_dropdown">
@@ -105,13 +108,42 @@
                         id="openModalButton">Create Product <i class="fa-solid fa-plus"></i></button>
                 </div>
             </div>
+            -->
             <div class="bottom-data">
                 <div class="orders">
                     <div class="header">
                         <i class="fa-solid fa-user"></i>
                         <h3>Products</h3>
-                        <i class="fa-solid fa-filter"></i>
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <button type="button" class="btn btn-primary openModalButton" onclick="openAddModal()"
+                        id="openModalButton">Create Product <i class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="table_filters">
+                        <div class="dataTables_length" id="length_dropdown">
+                            <label>
+                                Show:
+                                <select name="length" id="length" aria-controls="example"
+                                    class="form-select form-select-sm">
+                                    <option value="0">Select Value</option>
+                                    <option value="5" {{ request()->input('length') == 5 ? 'selected' : '' }}>5
+                                    </option>
+                                    <option value="10" {{ request()->input('length') == 10 ? 'selected' : '' }}>10
+                                    </option>
+                                    <option value="25" {{ request()->input('length') == 25 ? 'selected' : '' }}>25
+                                    </option>
+                                    <option value="50" {{ request()->input('length') == 50 ? 'selected' : '' }}>50
+                                    </option>
+                                    <option value="100" {{ request()->input('length') == 100 ? 'selected' : '' }}>100
+                                    </option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="dataTables_filter" id="filter">
+                            <label>
+                                Search:
+                                <input type="search" id="search" class="form-control form-control-sm" placeholder
+                                    aria-controls="search">
+                            </label>
+                        </div>
                     </div>
                     <table>
                         <thead>
