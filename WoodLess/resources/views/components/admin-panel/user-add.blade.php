@@ -36,18 +36,19 @@
                         maxlength="255" required>
 
                     <div class="form-check pt-3">
-                    
-                    <label for="access_level">Select Role:</label>
+
+                        <label for="access_level">Select Role:</label>
                         <select class="form-control" id="access_level" name="access_level">
-                            <option value="1" {{ $user->access_level == 1 ? 'selected' : '' }}>User</option>
-                            <option value="2" {{ $user->access_level == 2 ? 'selected' : '' }}>Moderator</option>
+                            <option value="1" selected>User</option>
+                            <option value="2">Moderator</option>
                             @if (Auth::user()->access_level == 4)
-                            <option value="3" {{ $user->access_level == 3 ? 'selected' : '' }}>Admin</option>
-                            <option value="4" {{ $user->access_level == 4 ? 'selected' : '' }}>Super Admin</option>
+                                <option value="3">Admin</option>
+                                <option value="4">Super Admin
+                                </option>
                             @endif
                         </select>
                         </select>
-                     </div>
+                    </div>
 
                     <label for="addresses" class="pt-3">Addresses:</label>
                     <select name="address_selector" id="addresses" class="form-control">
