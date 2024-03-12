@@ -24,6 +24,7 @@
                 </div>
                 <div class="contact-icons">
                     <i class="fa-solid fa-location-dot"></i> <span>Birmingham, England. B4 7ET</span>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5030.018166849232!2d-1.8964055861414886!3d52.48606534618825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bc9ae45f3209%3A0x3c1b51db7d2bbf2d!2sBirmingham%20B4%207ET!5e0!3m2!1sen!2suk!4v1710248811495!5m2!1sen!2suk" width="450" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
