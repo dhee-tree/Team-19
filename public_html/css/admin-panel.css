@@ -120,7 +120,7 @@ body {
     position: relative;
 }
 
-.sidebar .side-menu li.active::before {
+.sidebar .side-menu li.active::before{
     content: "";
     position: absolute;
     width: 40px;
@@ -128,11 +128,11 @@ body {
     border-radius: 50%;
     top: -40px;
     right: 0;
-    box-shadow: 20px 20px 0 var(--main-background-color);
+    box-shadow: 20px 20px 0 var(--grey);
     z-index: -1;
 }
 
-.sidebar .side-menu li.active::after {
+.sidebar .side-menu li.active::after{
     content: "";
     position: absolute;
     width: 40px;
@@ -140,7 +140,7 @@ body {
     border-radius: 50%;
     bottom: -40px;
     right: 0;
-    box-shadow: 20px -20px 0 var(--main-background-color);
+    box-shadow: 20px -20px 0 var(--grey);
     z-index: -1;
 }
 
@@ -392,7 +392,7 @@ body {
     display: flex;
     align-items: center;
     grid-gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
 }
 
 .content main .bottom-data .header h3 {
@@ -403,6 +403,13 @@ body {
 
 .content main .bottom-data .header .fa-solid {
     cursor: pointer;
+}
+
+.content main .bottom-data .table_filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
 }
 
 .content main .bottom-data .orders {
