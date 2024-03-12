@@ -167,6 +167,8 @@ class AdminController extends Controller
         } else {
             // Create a new user instance
             $user = new User();
+
+            $user->password = $request->input('password');
         }
 
         // Update user information
