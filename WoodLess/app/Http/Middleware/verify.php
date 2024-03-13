@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EmailVerificationCode;
 
-class verify
+class Verify
 {
     /**
      * Handle an incoming request.
