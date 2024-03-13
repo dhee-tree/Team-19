@@ -1,12 +1,12 @@
 <div id="userhelp">
-    @if(mt_rand(0,5) == 0 && is_null(session('status')))
+   
     <div class="card-body-s">
         <div>
             <span class="close">&times;</span>
             <p class="chat-message">We are here to help do not hesitate to get in touch</p>
         </div>
     </div>
-    @endif
+  
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary btn-sticky sticky-bottom z-1 end-0" data-bs-toggle="modal"

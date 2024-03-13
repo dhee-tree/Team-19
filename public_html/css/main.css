@@ -49,6 +49,11 @@
     /* Ensure it's above other content */
 }
 
+@media only screen and (max-width: 768px) {
+    #card-body-s {
+        display: none;
+    }
+}
 .card-body-s {
     margin: auto;
     position: fixed;
