@@ -35,11 +35,14 @@ class OrderController extends Controller
             // create order item for each product in the basket
             $order = Order::create([
                 'user_id' => $user->id,
-                'address_id' => 1, // Needs to be changed to the address id associated with the user and the order.
+                $address_id = $request->session()->get('address_id'),
+                'address_id' => $address_id,
                 'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
                 'details' => 'Order placed by user',
                 'order_cost' => $basket->totalCost(),
             ]);
+            // Remove the address_id from the session
+            $request->session()->forget('address_id');
     
             foreach ($basket->products as $product) {
                 if ($product->discount > 0){
