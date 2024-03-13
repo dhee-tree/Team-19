@@ -261,7 +261,7 @@
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                           What is your estiated shipping time?
+                           What is your estimated shipping time?
                         </span>
                     </button>
                     <p class="cs-item-p">
