@@ -2,15 +2,17 @@
 @section('title', 'WoodLess - Checkout')
 
 @section('style')
-    <link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
+<link rel="stylesheet" href="{{ asset('css/checkout.css') }}">
 @endsection 
 
 @section('content')
-    <div class="container">
+<div class="container">
+    <h2>Checkout</h2>
+
+    <form action="{{ route('charge') }}" method="post">
         <div class="row">
-            <h2>Checkout</h2>
             <div class="col-md-4">
-                <h3>Items in this order: </h3>
+                <h3>Summary: </h3>
                 @foreach($basket->products as $product)
                     <div class="checkout-card">
                         <div class="checkout-item">
@@ -42,11 +44,25 @@
                     </div>
                 @endforeach
             </div>
+
+            <div class="col-md-4">
+                <h3>Delivery Address: </h3>
+                <p>Select an address</p>
+                    @foreach($addresses as $address)
+                        <input type="radio" id="{{ $address->id }}" name="delivery_address" value="{{ $address->id }}" checked onclick="getSelectedValue()">
+                        <label for="{{ $address->id }}" onclick="getSelectedValue()">{{ $address->house_number }}, {{ $address->street_name }}, {{ $address->city }}, {{ $address->postcode }}</label><br>
+                    @endforeach
+                <hr>
+                <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addAddressModal" onclick="preventFormSubmission(event)">Add New Address</button>
+            </div>
         </div>
         
         @include('layouts.payment-choice')
+        @include('components.add-address-modal')
 
-    </div>
+    </form>
+
+</div>
 
 @endsection
 
