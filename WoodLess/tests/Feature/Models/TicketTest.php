@@ -2,11 +2,12 @@
 
 namespace Tests\Feature\Models;
 
-use App\Models\ImportanceLevel;
-use App\Models\Ticket;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
+use App\Models\Ticket;
+use App\Models\ImportanceLevel;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TicketTest extends TestCase
 {
@@ -17,17 +18,29 @@ class TicketTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        ImportanceLevel::created([
-            'level' => 'test'
+
+        $this->ticket = Ticket::factory()->create([
+            'user_id' => User::factory()->create()->id,
+            'importance_level_id' => ImportanceLevel::create(['level' => 'test'])->id,
+            'information' => 'Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test'
         ]);
     }
 
     /**
-     * A basic test example.
+     * Test that the ticket model can get it's importance level.
      */
-    public function test_that_true_is_true(): void
+    public function test_ticket_model_can_get_importance_level(): void
     {
-        $this->assertTrue(true);
+        $this->assertInstanceOf(ImportanceLevel::class, $this->ticket->importanceLevel()->first());
+    }
+
+    /**
+     * Test that the ticket model can get a truncated version of its description.
+     */
+    public function test_ticket_model_can_get_truncated_description(): void
+    {
+        $this->assertTrue(str_word_count($this->ticket->information) == 25);
+        $this->assertTrue(str_word_count($this->ticket->truncateInformation()) == 20);
     }
 
 }
