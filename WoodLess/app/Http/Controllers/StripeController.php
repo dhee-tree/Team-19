@@ -29,6 +29,11 @@ class StripeController extends Controller
             'cancel_url'       => route('checkout'),
         ]);
 
+        // Get the address id from the request
+        $address_id = $request->delivery_address;
+        // Store the address id in session
+        $request->session()->put('address_id', $address_id);
+
         return redirect()->away($session->url);
     }
 
