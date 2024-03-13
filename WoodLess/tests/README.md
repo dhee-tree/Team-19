@@ -54,7 +54,8 @@ public function test_user_has_basket(): void
 ```
 
 ### Refreshing the Database
-If you are running tests involving database interactions, add `use Illuminate\Foundation\Testing\RefreshDatabase` to the start of the test class. This will clear the database after so that it is ready for the next tests (see below).
+If you are running tests involving database interactions, add `use RefreshDatabase` to the start of the test class and import `Illuminate\Foundation\Testing\RefreshDatabase`. This will clear the database after so that it is ready for the next tests.
+- See (https://laravel.com/docs/10.x/database-testing#resetting-the-database-after-each-test) for more information.
 
 ### Initialization
 Adding the method `protected setUp(){}` Will allow you to initalize any neccessary data before running your tests:
