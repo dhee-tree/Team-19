@@ -113,7 +113,7 @@ class User extends Authenticatable
     
     public function isVerified(){
         $emailVerificationCode = EmailVerificationCode::where('user_id', $this->id)->first();
-        return $emailVerificationCode->is_verified;
+        return $emailVerificationCode->is_verified ?? false;
     }
 
     public function accessLevel(){

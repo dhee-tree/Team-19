@@ -37,12 +37,6 @@ class ProductController extends Controller
                 request('order') ?? 'desc'
             ]
         )->paginate(8)->withQueryString()->fragment('go-reviews');
-
-        $productImages = [];
-
-        foreach (explode(',', $product->images) as $imagePath) {
-            $productImages[] = Storage::url($imagePath);
-        };
         
         return view('products.show', [
             'user' => $user,
@@ -50,7 +44,7 @@ class ProductController extends Controller
             'amount' => $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
             'categories' => $categories,
-            'productImages' => $productImages,
+            'productImages' => $product->getImages(),
             'reviews' => $reviews,
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),

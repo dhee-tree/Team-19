@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Review;
 use App\Models\Traits\Cacheable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
@@ -27,14 +28,12 @@ class Product extends Model
      */
     public function getImages()
     {
-        $imageDir = public_path('images/products/' . $this->id);
         $images = [];
 
-        foreach (scandir($imageDir) as $path) {
-            if (!is_dir($imageDir . '/' . $path)) {
-                $images[] = 'images/products/' . $this->id . '/' . $path;
-            }
+        foreach (Storage::files('public/images/products/' . $this->id) as $path) {
+            $images[] = Storage::url($path);
         }
+        
         return $images;
     }
 
