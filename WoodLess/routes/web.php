@@ -44,27 +44,27 @@ Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.
 Route::get('/product/{product_id}', [ProductController::class, 'show']);
 
 // Basket URLS
-Route::get('/basket', [BasketController::class, 'show'])->name('basket')->middleware('verify');
+Route::get('/basket', [BasketController::class, 'show'])->name('basket')->middleware('auth');
 //Store product in basket
-Route::post('/basket/{product_id}', [BasketController::class, 'store'])->middleware('verify');
+Route::post('/basket/{product_id}', [BasketController::class, 'store'])->middleware('auth');
 // Delete product from basket
-Route::delete('/basket/{basket}', [BasketController::class, 'destroy'])->name('basket.destroy')->middleware('verify');
+Route::delete('/basket/{basket}', [BasketController::class, 'destroy'])->name('basket.destroy')->middleware('auth');
 // Update product in basket
-Route::put('/update-basket/{basket}', [BasketController::class, 'update'])->name('basket.update')->middleware('verify');
+Route::put('/update-basket/{basket}', [BasketController::class, 'update'])->name('basket.update')->middleware('auth');
 
 // Checkout URLS
-Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout')->middleware('verify');
-Route::get('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('verify');
+Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout')->middleware(['auth', 'verify']);
+Route::get('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware(['auth', 'verify']);
 
 // Stripe payment
 Route::post('/charge', [App\Http\Controllers\StripeController::class, 'charge'])->name('charge');
 
 //Store single review
-Route::post('/review/{product_id}', [ReviewController::class, 'store'])->middleware('auth');
+Route::post('/review/{product_id}', [ReviewController::class, 'store'])->middleware(['auth', 'verify']);
 //Delete single review
-Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->middleware('auth');
+Route::delete('/review/{review}', [ReviewController::class, 'destroy'])->middleware(['auth', 'verify']);
 //Update single review
-Route::put('/review/{review}', [ReviewController::class, 'update'])->middleware('auth');
+Route::put('/review/{review}', [ReviewController::class, 'update'])->middleware(['auth', 'verify', 'admin:2']);
 // search
 Route::get('/products/search', [ProductController::class, 'search']);
 //showcases products
