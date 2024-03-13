@@ -19,9 +19,9 @@ These are tests that test a chain of methods (Such as the process of a user logg
 - To create a new feature test file, run `php artisan make:test TestName`
 
 ## Unit Tests 
-These are tests that test a single or small chain of methods (such as returning the user's basket).
+These are tests that test a single or small chain of methods.
 - To create a new unit test file, run `php artisan make:test TestName --unit`
-- In the new file, eplace `use PHPUnit\Framework\TestCase` with `use Tests\TestCase` for additonal testing methods.
+- Note that most if not all the tests you create will likely be feature tests.
 
 ## Running Tests
 Now that our testing environment is setup, you are able to run tests.
