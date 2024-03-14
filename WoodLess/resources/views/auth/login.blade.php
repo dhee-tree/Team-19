@@ -65,7 +65,7 @@
         <div class="toggle">
             <div class="toggle-panel toggle-right">
                 <h1>Welcome Back!</h1>
-                <p>Enter your personal details to use all of site features</p>
+                <p>Enter your details to resume your shopping experience!</p>
             </div>
         </div>
     </div>
