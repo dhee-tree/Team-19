@@ -11,11 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function disablePreviousChat(chat) {
-    chat.setAttribute("disabled", "disabled");
-    chat.style.cursor = 'not-allowed';
-    chat.style.backgroundColor = 'grey';
-    chat.style.color = 'white';
-    chat.style.border = 'none';
+    if (chat) {
+      
+        // Prevents pointer events like clicks
+        chat.style.pointerEvents = 'none'; 
+        chat.style.color = 'white';
+          // Change text color to grey to indicate disabled state
+        chat.style.backgroundColor = 'grey';
+        chat.style.border = 'none';  
+    } else {
+        console.error("Invalid chat element provided.");
+    }
 }
 
 function showChat(chat) {
