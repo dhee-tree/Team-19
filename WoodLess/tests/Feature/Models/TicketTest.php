@@ -10,7 +10,8 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TicketTest extends TestCase
-{
+{   
+    use RefreshDatabase;
     protected $ticket;
     /**
      * Set up the ticket before each test.
