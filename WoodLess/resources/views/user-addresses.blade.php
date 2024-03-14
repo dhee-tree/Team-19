@@ -49,5 +49,14 @@
         var editModal = new bootstrap.Modal(document.getElementById('editAddressModal'));
         editModal.show();
     }
+    
+    document.querySelectorAll('[data-bs-dismiss="modal"]').forEach(function (closeButton) {
+    closeButton.addEventListener('click', function () {
+        document.querySelectorAll('.modal-backdrop').forEach(function (backdrop) {
+            backdrop.remove();
+        });
+    });
+});
+
     </script>
 @endsection
