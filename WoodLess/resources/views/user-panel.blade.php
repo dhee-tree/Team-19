@@ -39,7 +39,7 @@
                 <div id="productCarousel" class="mb-3 carousel carousel-dark carousel-fade" data-bs-interval="false">
                     <div class="carousel-inner">
                         @php
-                        $pageLimit = 4;
+                        $pageLimit = 2;
                         @endphp
 
                         @for ($i = 0; $i < count($similarProducts); $i +=$pageLimit) <div
