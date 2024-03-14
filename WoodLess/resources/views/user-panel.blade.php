@@ -5,6 +5,10 @@
         <!-- Code for banner -->
         <div class="banner">
             <h1>{{ $user->first_name }}'s Dashboard</h1>
+            <?php if (Auth()->check() && !Auth()->user()->isVerified()) : ?>
+                <p>Verify your email to access basket and checkout. Did not receive the email? <a href="{{ route('verification.resend') }}">Resend</a></p>
+            <?php endif; ?>
+            
         </div> 
     @endsection
 
@@ -31,30 +35,72 @@
                                 aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner">
+                    <div id="productCarousel" class="mb-3 carousel carousel-dark carousel-fade" data-bs-interval="false">
+                        <div class="carousel-inner">                  
+                            @php
+                            $pageLimit = 4;
+                            @endphp
 
-                        <div class="carousel-item active">
-                            <img src="/images/PictureToBeAdded.png" class="d-block w-100" alt="IMAGE">
+                            @for ($i = 0; $i < count($similarProducts); $i += $pageLimit)
+                            <div class="carousel-item @if ($i == 0) active @endif">
+                                <div class="row">
+                                    @for ($ii = $i; $ii < $i + $pageLimit && $ii < count($similarProducts); $ii++)
+                                        @php 
+                                            $similarProduct = $similarProducts[$ii];
+                                            $similarProductImages = explode(',', $similarProduct->images);
+                                        @endphp
+                                        <div class="col-6">
+                                            <a href="/product/{{ $similarProduct->id }}">
+                                                <div class="expand-hover shadow-sm card mt-3">
+                                                    <!-- Sale badge-->
+                                                    @if(($similarProduct->discount))
+                                                    <div class="badge bg-dark text-white position-absolute"
+                                                        style="top: 0.5rem; right: 0.5rem">Sale
+                                                    </div>
+                                                    @endif
+                                                    <!-- Product image-->
+                                                    <img width="10" class="card-img-top p-3" src="{{ Storage::url($similarProductImages[0]); }}"alt="{{ $similarProduct->title }}" />
+                                                    <!-- Product details-->
+                                                    <div class="card-body p-0 mb-3">
+                                                        <div class="d-flex flex-row justify-content-center">
+                                                            <div class="text-center d-none d-xl-block">
+                                                                <!-- Product name-->
+                                                                <span class="fs-5 fw-bolder">{{ $similarProduct->title }}</h5>
+                                                            </div>
+                                                            <div class="vr mx-2 d-none d-xl-block"></div>
+                                                            <div class="text-center">
+                                                                <!-- Product price-->
+                                                                <span class="fs-5">
+                                                                    @if(($similarProduct->discount))
+                                                                        £{{sprintf("%0.2f", round(($similarProduct->cost) - (($similarProduct->cost) * ($similarProduct->discount / 100)), 2))}}
+                                                                    @else
+                                                                        £{{$similarProduct->cost}}
+                                                                    @endif  
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="d-flex flex-row justify-content-center m-0 p-0">
+                                                            <div class="text-center text-secondary">
+                                                                <!-- Original product price-->
+                                                                <span class="fs-6">
+                                                                    @if(($similarProduct->discount))
+                                                                        <strike>£{{$similarProduct->cost}}</strike>
+                                                                    @else
+                                                                        ⠀                                                           
+                                                                    @endif
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    @endfor
+                                </div>
+                            </div>
+                            @endfor
                         </div>
-                        <div class=" carousel-item">
-                            <img src="/images/PictureToBeAdded.png" class="d-block w-100" alt="IMAGE">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="/images/PictureToBeAdded.png" class="d-block w-100" alt="IMAGE">
-                        </div>
-                    </div>
-                
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselCustomersAlsoBought"
-                            data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselCustomersAlsoBought"
-                            data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </div>
         </section>
 
         <!-- Recent purchase -->
@@ -80,4 +126,3 @@
         </section>
         </div>
     @endsection
-@endsection

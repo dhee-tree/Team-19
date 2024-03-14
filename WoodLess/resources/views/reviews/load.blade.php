@@ -75,7 +75,15 @@
                                     data-review-id="{{$review->id}}" 
                                     class="btn-view btn p-0"
                                     >
-                                        <small><i class="fa-solid fa-eye"></i> View</small>
+                                    <small>
+                                        @if($user) 
+                                            @if($user->accessLevel() >= 2)
+                                                <i class="fa-solid fa-pencil"></i> Edit 
+                                            @else 
+                                                <i class="fa-solid fa-eye"></i> View
+                                            @endif 
+                                        @endif
+                                    </small>
                                     </button>
                                 </div>
                                 
@@ -232,7 +240,15 @@
                                     data-review-id="{{$review->id}}" 
                                     class="btn-view btn p-0"
                                 >
-                                    <small><i class="fa-solid fa-eye"></i> View</small>
+                                <small>
+                                    @if($user) 
+                                        @if($user->accessLevel() >= 2)
+                                            <i class="fa-solid fa-pencil"></i> Edit 
+                                        @else 
+                                            <i class="fa-solid fa-eye"></i> View
+                                        @endif 
+                                    @endif
+                                </small>
                                 </button>
                             </div>
 
@@ -315,7 +331,7 @@
             </div>
             <div class="modal-body mb-0">
                 <textarea 
-                    @if($user)@if(!$user->isAdmin()) disabled @endif @else disabled @endif
+                    @if($user)@if($user->accessLevel() < 2) disabled @endif @else disabled @endif
                     style="height: 200px"
                     class="form-control" 
                     name="description" 
@@ -328,7 +344,7 @@
                 </button>
                 
                 @if($user)
-                    @if($user->isAdmin())
+                    @if($user->accessLevel() >= 2)
                         <div class="vr modal-submit-element"></div>
 
                         <button type="submit" id="modalSubmitButton" class="modal-submit-element btn p-0">

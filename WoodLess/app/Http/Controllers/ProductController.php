@@ -14,6 +14,7 @@ class ProductController extends Controller
 {
 
     protected $reviews;
+    
     /**
      * Retrieve a single product.
      * @param int $product_id The id of the product in the database.
@@ -24,9 +25,6 @@ class ProductController extends Controller
         $product = Product::getCached($product_id);
         $categories = $product->getCachedRelation('categories');
 
-        /**
-         * An array of 8 random Product instances similar to the called product.
-         */
         $similarProducts = $categories->flatMap(function ($category) {
             return $category->getCachedRelation('products');
         })->unique('id')->reject(function ($p) use ($product) {
@@ -39,23 +37,14 @@ class ProductController extends Controller
                 request('order') ?? 'desc'
             ]
         )->paginate(8)->withQueryString()->fragment('go-reviews');
-
-        /**
-         * An array of filepaths for the product images.
-         */
-        $productImages = [];
-
-        foreach (explode(',', $product->images) as $imagePath) {
-            $productImages[] = Storage::url($imagePath);
-        };
-
+        
         return view('products.show', [
             'user' => $user,
             'product' => $product,
             'amount' => $product->stockAmount(),
             'attributes' => json_decode($product->attributes, true),
             'categories' => $categories,
-            'productImages' => $productImages,
+            'productImages' => $product->getImages(),
             'reviews' => $reviews,
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
@@ -74,11 +63,12 @@ class ProductController extends Controller
 
 
     // }
-    //Queries the products, and returns if we searched for something or not.
+
+    /**
+     * Queries the products, and returns if we searched for something or not.
+     */
     public function index()
     {
-
-
         //Get search paramaters
         $filters = collect(request()->query());
         $search_text = $filters['search'] ?? null;
@@ -115,7 +105,9 @@ class ProductController extends Controller
         return view('product-list', ['products' => $products, 'search_text' => $search_text]);
     }
 
-    //gets three random categories and products  for home page
+    /**
+     * Gets three random categories and products  for home page
+     */
     public function getThreeRandom()
     {
         $products = Product::all();

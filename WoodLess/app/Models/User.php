@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use App\Models\EmailVerificationCode;
 
 class User extends Authenticatable
 {
@@ -110,6 +111,11 @@ class User extends Authenticatable
         return $this->belongsToMany(EmailVerificationCode::class, 'email_verification_codes', 'user_id','code')->withTimeStamps();
     }
     
+    public function isVerified(){
+        $emailVerificationCode = EmailVerificationCode::where('user_id', $this->id)->first();
+        return $emailVerificationCode->is_verified ?? false;
+    }
+
     public function accessLevel(){
         return $this->makeVisible('access_level')->access_level;
     }

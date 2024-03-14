@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\BasketProduct;
 use App\Models\Basket;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Address;
 
 
 class CheckoutController extends Controller
@@ -27,7 +28,12 @@ class CheckoutController extends Controller
                 'message' => 'Your basket is empty!'
             ]);
         } else {
-            return view('checkout', ['basket' => $basket]);
+            // Get the user's addresses
+            $addresses = auth()->user()->addresses;
+            return view('checkout', [
+                'basket' => $basket,
+                'addresses' => $addresses
+            ]);
         }
     }
 }

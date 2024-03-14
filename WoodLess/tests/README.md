@@ -7,8 +7,8 @@ This guide goes over test files, and how to set up the testing environment.
 1. First, copy or rename `.env.testing.example` to `.env.testing`.
 2. Generate an app key using `php artisan key:generate --env=testing`.
 3. Inside of `.env.testing`, modify lines 12-17 to match the information of a target database different to that of the one in `.env`. We don't want to use the same database as testing is very volatile.
-4. Modify lines 31-38 to match the information of an email account to be used by WoodLess for sending emails.
-5. Modify lines 61-62 to match the information of a Stripe public and private key. You will need to setup a [Stripe developer account]('https://docs.stripe.com/keys?locale=en-GB') to generate these.
+4. Modify lines 31-38 to match the information of an email account to be used by WoodLess for sending emails. 
+5. Modify lines 61-62 to match the information of a Stripe public and private key. You will need to setup a [Stripe developer account](https://docs.stripe.com/keys?locale=en-GB) to generate these if you have not been provided any (if you are a developer this it's on our discord).
 
 ## Database Setup
 1. Ensure your target MySQL server is running, and you have created a database that matches the one specifed in `.env.testing`.
@@ -27,10 +27,34 @@ These are tests that test a single or small chain of methods (such as returning 
 Now that our testing environment is setup, you are able to run tests.
 - To run all tests, run `php artisan test` in your terminal in the WoodLess directory. Laravel automatically knows to use `.env.testing` and will run tests in that environment.
 
-## Additonal Setup
+## Additonal Information
+
+### Test Format
+When creating test methods, name them as so:
+```
+test_thing_does_thing
+```
+Here are a couple of example snippets from tests used in this project:
+```
+/**
+* Test if the user is not an admin.
+*/
+public function test_user_is_not_admin(): void
+{   
+    $this->assertFalse((bool)($this->user->isAdmin()));
+}
+
+/**
+* Test if the user has a basket.
+*/
+public function test_user_has_basket(): void
+{   
+    $this->assertNotNull($this->user->basket());
+}
+```
 
 ### Refreshing the Database
-If you are running tests involving database interactions, add `use Illuminate\Foundation\Testing\RefreshDatabase` to the start of the test class. This will clear the database after so that it is ready for the next tests.
+If you are running tests involving database interactions, add `use Illuminate\Foundation\Testing\RefreshDatabase` to the start of the test class. This will clear the database after so that it is ready for the next tests (see below).
 
 ### Initialization
 Adding the method `protected setUp(){}` Will allow you to initalize any neccessary data before running your tests:
@@ -55,4 +79,15 @@ class UserTest extends TestCase
 ```
 
 ### Testing Stripe Payment
-Please see (https://docs.stripe.com/testing)
+Please see (https://docs.stripe.com/testing).
+
+## Code Coverage
+This is how much of WoodLess' code have tests, so you know that our product is a high quality one.
+By running `php artisan test --coverage` you will be able to view what has tests as well as the percentage of coverage.
+- Note that you will need to install [xDebug](https://xdebug.org/docs/install) to your php installation. Ensure that xDebug is in coverage mode by modifying `php.ini` with something like the following:
+```
+[XDebug]
+zend_extension = xdebug  ; You will likely have this already
+xdebug.start_with_request=yes
+xdebug.mode = coverage
+```

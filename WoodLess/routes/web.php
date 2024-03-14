@@ -33,6 +33,7 @@ use App\Http\Controllers\AddressController;
 
 Route::view('/about', 'about')->name("about-us");
 Route::get('/verify/{code}', [EmailVerificationController::class, 'verifyUserEmail'])->name('user.verify');
+Route::get('/verify', [EmailVerificationController::class, 'resendVerificationEmail'])->name('verification.resend');
 
 Route::view('/categories', 'categories');
 
@@ -43,17 +44,17 @@ Route::post('/contact', [ContactController::class, 'sendEmail'])->name('contact.
 Route::get('/product/{product_id}', [ProductController::class, 'show']);
 
 // Basket URLS
-Route::get('/basket', [BasketController::class, 'show'])->name('basket')->middleware('auth');
+Route::get('/basket', [BasketController::class, 'show'])->name('basket')->middleware('verify');
 //Store product in basket
-Route::post('/basket/{product_id}', [BasketController::class, 'store'])->middleware('auth');
+Route::post('/basket/{product_id}', [BasketController::class, 'store'])->middleware('verify');
 // Delete product from basket
-Route::delete('/basket/{basket}', [BasketController::class, 'destroy'])->name('basket.destroy');
+Route::delete('/basket/{basket}', [BasketController::class, 'destroy'])->name('basket.destroy')->middleware('verify');
 // Update product in basket
-Route::put('/update-basket/{basket}', [BasketController::class, 'update'])->name('basket.update');
+Route::put('/update-basket/{basket}', [BasketController::class, 'update'])->name('basket.update')->middleware('verify');
 
 // Checkout URLS
-Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout')->middleware('auth');
-Route::get('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('auth');
+Route::get('/checkout', [CheckoutController::class, 'show'])->name('checkout')->middleware('verify');
+Route::get('/checkout/success', [OrderController::class, 'store'])->name('checkout.store')->middleware('verify');
 
 // Stripe payment
 Route::post('/charge', [App\Http\Controllers\StripeController::class, 'charge'])->name('charge');
@@ -71,42 +72,42 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.fil
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/admin-panel', [AdminController::class, 'Dashboard'])->name('admin.panel-dashboard')->middleware('admin');;
+Route::get('/admin-panel', [AdminController::class, 'Dashboard'])->name('admin.panel-dashboard')->middleware('admin:3');
 //admin panel pages
 
 #region admin panel warehouses / categories
 
-Route::get('/admin-panel/warehouse', [AdminController::class, 'Misc'])->name('admin.panel-warehouses-categories')->middleware('admin');
+Route::get('/admin-panel/warehouse', [AdminController::class, 'Misc'])->name('admin.panel-warehouses-categories')->middleware('admin:3');
 
-Route::get('/admin-panel/warehouse/info/{id}', [AdminController::class, 'WarehouseInfo'])->name('admin.warehouse-info')->middleware('admin');
+Route::get('/admin-panel/warehouse/info/{id}', [AdminController::class, 'WarehouseInfo'])->name('admin.warehouse-info')->middleware('admin:3');
 
-Route::get('/admin-panel/category/info/{id}', [AdminController::class, 'CategoryInfo'])->name('admin.category-info')->middleware('admin');
+Route::get('/admin-panel/category/info/{id}', [AdminController::class, 'CategoryInfo'])->name('admin.category-info')->middleware('admin:3');
 
-Route::post('/admin-panel/category/create', [AdminController::class, 'CategoryCreate'])->name('admin.category-create')->middleware('admin');
+Route::post('/admin-panel/category/create', [AdminController::class, 'CategoryCreate'])->name('admin.category-create')->middleware('admin:3');
 
-Route::post('/admin-panel/warehouse/create', [AdminController::class, 'WarehouseCreate'])->name('admin.warehouse-create')->middleware('admin');
+Route::post('/admin-panel/warehouse/create', [AdminController::class, 'WarehouseCreate'])->name('admin.warehouse-create')->middleware('admin:3');
 
 
-Route::post('/admin-panel/category/delete/{id}', [AdminController::class, 'CategoryDelete'])->name('admin.category-delete')->middleware('admin');
+Route::post('/admin-panel/category/delete/{id}', [AdminController::class, 'CategoryDelete'])->name('admin.category-delete')->middleware('admin:3');
 
-Route::post('/admin-panel/warehouse/delete/{id}', [AdminController::class, 'WarehouseDelete'])->name('admin.product-delete')->middleware('admin');
+Route::post('/admin-panel/warehouse/delete/{id}', [AdminController::class, 'WarehouseDelete'])->name('admin.product-delete')->middleware('admin:3');
 
 
 #endregion
 
 #region admin panel orders
 
-Route::get('/admin-panel/orders', [AdminController::class, 'orders'])->name('admin-panel-orders')->middleware('admin');
+Route::get('/admin-panel/orders', [AdminController::class, 'orders'])->name('admin-panel-orders')->middleware('admin:3');
 
-Route::get('/admin-panel/orders/info/{id}', [AdminController::class, 'OrderInfo'])->name('order-info')->middleware('admin');
+Route::get('/admin-panel/orders/info/{id}', [AdminController::class, 'OrderInfo'])->name('order-info')->middleware('admin:3');
 
-Route::post('/admin-panel/orders/accept/{id}', [OrderController::class, 'OrderAccept'])->name('order-accept')->middleware('admin');
+Route::post('/admin-panel/orders/accept/{id}', [OrderController::class, 'OrderAccept'])->name('order-accept')->middleware('admin:3');
 
-Route::post('/admin-panel/return/process-return/{id}/{productids}', [OrderController::class, 'ProcessReturn'])->name('admin.order.process-return')->middleware('admin');
-Route::post('/admin-panel/return/cancel/{id}/{productids}', [OrderController::class, 'CancelReturn'])->name('admin.order.cancel-return')->middleware('admin');
+Route::post('/admin-panel/return/process-return/{id}/{productids}', [OrderController::class, 'ProcessReturn'])->name('admin.order.process-return')->middleware('admin:3');
+Route::post('/admin-panel/return/cancel/{id}/{productids}', [OrderController::class, 'CancelReturn'])->name('admin.order.cancel-return')->middleware('admin:3');
 
 
-Route::post('/admin-panel/orders/details/{id}', [AdminController::class, 'OrderDetails'])->name('order-details')->middleware('admin');
+Route::post('/admin-panel/orders/details/{id}', [AdminController::class, 'OrderDetails'])->name('order-details')->middleware('admin:3');
 
 
 #endregion
@@ -114,59 +115,59 @@ Route::post('/admin-panel/orders/details/{id}', [AdminController::class, 'OrderD
 
 #region admin panel tickets
 
-Route::get('/admin-panel/tickets', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin');
+Route::get('/admin-panel/tickets', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin:3');
 
-Route::get('', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin');
+Route::get('', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin:3');
 
-Route::get('/admin-panel/tickets/info/{id}', [AdminController::class, 'TicketInfo'])->name('ticket-info')->middleware('admin');
+Route::get('/admin-panel/tickets/info/{id}', [AdminController::class, 'TicketInfo'])->name('ticket-info')->middleware('admin:3');
 
 //The additional information modal to expand fields in tickets for user or admin that claimed a ticket admin panel
-Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin');
+Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin:3');
 
 //used to claim a ticket
-Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin');
+Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin:3');
 //used to resolve a ticket
-Route::post('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('admin.ticket-resolve')->middleware('admin');
+Route::post('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('admin.ticket-resolve')->middleware('admin:3');
 
-Route::post('/admin-panel/tickets/importance/{id}/{importance}', [AdminController::class, 'TicketImportance'])->name('admin.ticket-importance')->middleware('web', 'admin');
+Route::post('/admin-panel/tickets/importance/{id}/{importance}', [AdminController::class, 'TicketImportance'])->name('admin.ticket-importance')->middleware('web', 'admin:3');
 
 
 //used to delete a ticket
-Route::post('/admin-panel/tickets/delete/{id}', [AdminController::class, 'TicketDelete'])->name('ticket-delete')->middleware('admin');
+Route::post('/admin-panel/tickets/delete/{id}', [AdminController::class, 'TicketDelete'])->name('ticket-delete')->middleware('admin:3');
 
 
 #endregion
 
 #region admin panel inventory
 
-Route::get('/admin-panel/inventory', [AdminController::class, 'inventory'])->name('admin-panel.inventory')->middleware('admin');
+Route::get('/admin-panel/inventory', [AdminController::class, 'inventory'])->name('admin-panel.inventory')->middleware('admin:3');
 
 //The additional information modal to expand fields in inventory managment
-Route::get('/admin-panel/inventory/product-info/{id}', [AdminController::class, 'ProductInfo'])->name('components.products-info')->middleware('admin');
+Route::get('/admin-panel/inventory/product-info/{id}', [AdminController::class, 'ProductInfo'])->name('components.products-info')->middleware('admin:3');
 //editing the products modal
-Route::get('/admin-panel/inventory/product-edit/{id}', [AdminController::class, 'ProductEdit'])->name('components.products-edit')->middleware('admin');
+Route::get('/admin-panel/inventory/product-edit/{id}', [AdminController::class, 'ProductEdit'])->name('components.products-edit')->middleware('admin:3');
 //The modal to open the add modal for products
-Route::get('/admin-panel/inventory/product-add', [AdminController::class, 'ProductAdd'])->name('components.products-add')->middleware('admin');
+Route::get('/admin-panel/inventory/product-add', [AdminController::class, 'ProductAdd'])->name('components.products-add')->middleware('admin:3');
 //stores products, either edits or creates a new ones
-Route::post('/admin-panel/inventory/store/{id}', [AdminController::class, 'ProductStore'])->name('product-store')->middleware('admin');
+Route::post('/admin-panel/inventory/store/{id}', [AdminController::class, 'ProductStore'])->name('product-store')->middleware('admin:3');
 //stores products, either edits or creates a new ones
-Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class, 'ProductDelete'])->name('product-delete')->middleware('admin');
+Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class, 'ProductDelete'])->name('product-delete')->middleware('admin:3');
 
 #endregion
 
 
 #region admin panel users
 
-Route::get('/admin-panel/users', [AdminController::class, 'users'])->name('admin-panel.users')->middleware('admin');
+Route::get('/admin-panel/users', [AdminController::class, 'users'])->name('admin-panel.users')->middleware('admin:3');
 
 //The additional information modal to expand fields in user admin panel
-Route::get('/admin-panel/users/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin');
+Route::get('/admin-panel/users/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin:3');
 //create a user
-Route::get('/admin-panel/users/user-add', [AdminController::class, 'UserAdd'])->name('components.user-add')->middleware('admin');
+Route::get('/admin-panel/users/user-add', [AdminController::class, 'UserAdd'])->name('components.user-add')->middleware('admin:3');
 //stores products, either edits or creates a new ones
-Route::post('/admin-panel/users/user-store/{id}', [AdminController::class, 'UserStore'])->name('user-store')->middleware('admin'); //saving to database, either edited or a new product
+Route::post('/admin-panel/users/user-store/{id}', [AdminController::class, 'UserStore'])->name('user-store')->middleware('admin:3'); //saving to database, either edited or a new product
 //deletes the user
-Route::post('/admin-panel/users/delete/{id}', [AdminController::class, 'UserDelete'])->name('user-delete')->middleware('admin');
+Route::post('/admin-panel/users/delete/{id}', [AdminController::class, 'UserDelete'])->name('user-delete')->middleware('admin:3');
 
 #endregion
 
@@ -184,7 +185,7 @@ Route::get('/user-panel/purchases/cancel-return/{order}/{product}', [App\Http\Co
 
 // Display categories
 
-Route::get('/categories', [CategoryController::class, 'getCategories']);
+Route::get('/categories', [CategoryController::class, 'index']);
 //Display three random categories and products on home page
 Auth::routes();
 Route::get('/', [ProductController::class, 'getThreeRandom']);

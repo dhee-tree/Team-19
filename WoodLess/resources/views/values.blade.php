@@ -252,10 +252,11 @@
     /* creates the parallax effect */
     background-attachment: fixed;
   }
-  #hero-1619 .cs-background img {
+}
+  /* #hero-1619 .cs-background img {
     display: none;
   }
-}
+} */
                                 
                         
     </style>
