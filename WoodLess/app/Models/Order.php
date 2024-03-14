@@ -26,6 +26,9 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Returns the addresses associated with the order and relevant order information.
+     */
     public function address()
     {
         return $this->belongsTo(Address::class, 'address_id');

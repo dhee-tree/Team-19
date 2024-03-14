@@ -25,6 +25,13 @@ WoodLess strives to offer a user-friendly experience, enabling users to make saf
 ### Official Deployment
 As of 26/02/2024, A public deployment of the website is available at: [20216407.cs2410-web01pvm.aston.ac.uk](http://220216407.cs2410-web01pvm.aston.ac.uk/). 
 
+## Guide
+This project contains guides to speed up development and deployment.
+- [Getting Started](#getting-started) - Instructions for deploying WoodLess on your web server.
+- [Database](./WoodLess/database) - Instructions and information on WoodLess' database.
+- [Testing](./WoodLess/tests) - Instructions and information on testing WoodLess.
+- For Laravel or other built-in features, please refer to the [relevant documentation](https://laravel.com/docs/10.x).
+
 ## Features
 ### User Experience
 WoodLess has a complete and in-depth user experience, from login to checkout:
@@ -53,12 +60,6 @@ WoodLess uses the powerful Eloquent ORM to ensure safe and streamlined database 
 ### Documentation
 To make our work as accessible as possible, all models and methods written by the team have proper documenting with PHPDoc and/or commenting. 
 
-## Guide
-This project contains guides to speed up development and deployment.
-- [Getting Started](#getting-started) - Instructions for deploying WoodLess on your web server.
-- [Database](./WoodLess/database) - Instructions and information on WoodLess' database.
-- [Testing](./WoodLess/tests) - Instructions and information on testing WoodLess.
-- For Laravel or other built-in features, please refer to the [relevant documentation](https://laravel.com/docs/10.x).
 
 ## Getting Started
 This guide assumes you are familiar with PHP web development environments (such as XAMMP) and have cloned/copied the repository to one. You will also need access to a MySQL server and [Composer](https://getcomposer.org/download/). 

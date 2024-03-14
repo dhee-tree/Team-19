@@ -19,6 +19,7 @@ class AddressFactory extends Factory
     {
         
         return [
+            'user_id' => User::first()->id,
             'house_number' => $this->faker->numberBetween(1,100),
             'street_name' => $this->faker->streetName(),
             'postcode' => $this->faker->postcode(),
