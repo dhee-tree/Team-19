@@ -9,32 +9,40 @@ class StripeController extends Controller
 
     public function charge(Request $request)
     {
-       \Stripe\Stripe::setApiKey(config('stripe.sk'));
+        // Check if address is empty
+        if (empty($request->delivery_address)) {
+            return back()->with([
+                'status' => 'danger',
+                'message' => 'Please select a address.'
+            ]);
+        } else {
+            \Stripe\Stripe::setApiKey(config('stripe.sk'));
 
-       $session = \Stripe\Checkout\Session::create([
-            'line_items' => [
-                [
-                    'price_data' => [
-                        'currency' => 'gbp',
-                        'product_data' => [
-                            'name' => 'Woodless Order Payment',
+            $session = \Stripe\Checkout\Session::create([
+                'line_items' => [
+                    [
+                        'price_data' => [
+                            'currency' => 'gbp',
+                            'product_data' => [
+                                'name' => 'Woodless Order Payment',
+                            ],
+                            'unit_amount' => $request->amount * 100,
                         ],
-                        'unit_amount' => $request->amount * 100,
+                        'quantity' => 1,
                     ],
-                    'quantity' => 1,
-                ],
-            ],
-            'mode' => 'payment',
-            'success_url'      => route('checkout.store'),
-            'cancel_url'       => route('checkout'),
-        ]);
-
-        // Get the address id from the request
-        $address_id = $request->delivery_address;
-        // Store the address id in session
-        $request->session()->put('address_id', $address_id);
-
-        return redirect()->away($session->url);
+                 ],
+                'mode' => 'payment',
+                'success_url'      => route('checkout.store'),
+                'cancel_url'       => route('checkout'),
+             ]);
+     
+             // Get the address id from the request
+             $address_id = $request->delivery_address;
+             // Store the address id in session
+             $request->session()->put('address_id', $address_id);
+     
+             return redirect()->away($session->url);
+        }
     }
 
 }

@@ -47,7 +47,7 @@
 
             <div class="col-md-4">
                 <h3>Delivery Address: </h3>
-                <p>Select an address</p>
+                <p>Select one of your addresses.</p>
                     @foreach($addresses as $address)
                         <input type="radio" id="{{ $address->id }}" name="delivery_address" value="{{ $address->id }}" checked onclick="getSelectedValue()">
                         <label for="{{ $address->id }}" onclick="getSelectedValue()">{{ $address->house_number }}, {{ $address->street_name }}, {{ $address->city }}, {{ $address->postcode }}</label><br>
