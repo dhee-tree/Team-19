@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Models\EmailVerificationCode;
 
-class verify
+class Verify
 {
     /**
      * Handle an incoming request.
@@ -23,11 +23,16 @@ class verify
 
         //check if user is verified
         if (Auth::user()) {
+            $user = Auth::user();
+            
+            if($user->accessLevel() >= 2){
+                return $next($request);
+            }
             //get the user's email verification code
-            $emailVerificationCode = EmailVerificationCode::where('user_id', Auth::user()->id)->first();
+            $isVerified = EmailVerificationCode::where('user_id', $user->id)->first()->is_verified ?? false;
             //check if their is_verified is false
-            if ($emailVerificationCode->is_verified==false) {
-                return redirect()->route('home')->with(['status'=>'danger','message'=>'You need to be verified to access basket and checkout.','error'=>403]);
+            if ($isVerified == false) {
+                return redirect()->back()->with(['status'=>'danger','message'=>'Please verify your email to access this feature.','error'=>403]);
             }
 
         }
