@@ -31,10 +31,11 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Set up PHP
+      - name: Set up PHP with Xdebug
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+          coverage: xdebug
 
       - name: Install Composer dependencies
         run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --ignore-platform-req=ext-imagick
@@ -73,5 +74,5 @@ jobs:
         working-directory: WoodLess
 
       - name: Run Laravel Tests
-        run: php artisan test
+        run: php artisan test --coverage
         working-directory: WoodLess
