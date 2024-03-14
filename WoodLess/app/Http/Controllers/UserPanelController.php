@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class UserPanelController extends Controller
@@ -10,6 +10,7 @@ class UserPanelController extends Controller
         $user = auth()->user();
         return view('user-panel', [
             'user' => $user,
+            'similarProducts'=> Product::all(),
         ]);
     }
 

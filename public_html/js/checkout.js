@@ -1,3 +1,7 @@
+function preventFormSubmission(event) {
+    event.preventDefault();
+}
+
 function paymentChoice( method ) {
     document.getElementById("payment-card").style.display = "block";  // Show the payment section
     if (method == "paypal") { // If the user choose paypal

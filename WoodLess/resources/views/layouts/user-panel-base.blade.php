@@ -17,31 +17,31 @@
                 <ul class="sidebar">
                     <li class="sidebar-item">
                         <a href="{{ route('user-panel') }}" class="sidebar-link">
-                            <i class="fa-regular fa-clipboard-list pe-2"></i>
+                            <i class="fa-solid fa-table-columns"></i>
                             Dashboard
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="{{ route('user.purchases') }}" class="sidebar-link">
-                            <i class="fa-regular fa-clipboard-list pe-2"></i>
+                            <i class="fa-solid fa-bag-shopping"></i>
                             My Purchases
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="{{url('/user-panel/tickets')}}" class="sidebar-link">
-                            <i class="fa-regular fa-clipboard-list pe-2"></i>
+                            <i class="fa-solid fa-ticket"></i>
                             Tickets
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="{{ route('user-details')}}" class="sidebar-link">
-                            <i class="fa-regular fa-clipboard-list pe-2"></i>
+                            <i class="fa-regular fa-id-badge"></i>
                             My Details
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a href="{{ route('user-addresses.index')}}" class="sidebar-link">
-                            <i class="fa-regular fa-clipboard-list pe-2"></i>
+                            <i class="fa-solid fa-map-location"></i>
                             My Addresses
                         </a>
                     </li>

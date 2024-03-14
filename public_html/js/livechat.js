@@ -11,11 +11,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function disablePreviousChat(chat) {
-    chat.setAttribute("disabled", "disabled");
-    chat.style.cursor = 'not-allowed';
-    chat.style.backgroundColor = 'grey';
-    chat.style.color = 'white';
-    chat.style.border = 'none';
+    if (chat) {
+      
+        // Prevents pointer events like clicks
+        chat.style.pointerEvents = 'none'; 
+        chat.style.color = 'white';
+          // Change text color to grey to indicate disabled state
+        chat.style.backgroundColor = 'grey';
+        chat.style.border = 'none';  
+    } else {
+        console.error("Invalid chat element provided.");
+    }
 }
 
 function showChat(chat) {
@@ -715,3 +721,21 @@ function showSecondReturnChat2(chat) {
         }, 2100); // 2100 milliseconds = 2.1 seconds
     }
 }   
+// Add an event listener to the clear button
+document.getElementById('clearButton').addEventListener('click', function() {
+    // Set a flag in local storage to indicate that the modal should be opened after page refresh
+    sessionStorage.setItem('openModal', 'true');
+    // Refresh the page
+    location.reload();
+});
+// Check if the flag indicating the modal should be opened is set in session storage
+var openModalFlag = sessionStorage.getItem('openModal');
+if (openModalFlag === 'true') {
+    // Use setTimeout to delay opening the modal after the page reloads
+    setTimeout(function() {
+        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+        myModal.show();
+        // Remove the flag from session storage
+        sessionStorage.removeItem('openModal');
+    }, 100); // Adjust the delay as needed
+}
