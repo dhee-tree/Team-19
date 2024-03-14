@@ -4,8 +4,7 @@
     @section('banner')
         <!-- Code for banner -->
         <div class="banner">
-            <h1>Banner Heading</h1>
-            <p>Description or tagline</p>
+            <h1>{{ $user->first_name }}'s Dashboard</h1>
         </div> 
     @endsection
 
