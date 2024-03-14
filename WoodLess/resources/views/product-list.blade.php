@@ -1,12 +1,12 @@
 @extends('layouts.base')
 @section('title', 'WoodLess - Products')
+
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/item-filter.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product-list-page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/interactive/flame-animation.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product-card.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css" rel="stylesheet">
-
 @endsection
 
 @php
@@ -16,7 +16,6 @@
 @section('js')
     <script src="{{ asset('js/filter.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
-
 @endsection
 
 @section('content')
@@ -32,13 +31,13 @@
                         @if (!($minCost == 0 && $maxCost == 10000 && count($queryParameters) == 2))
                             <div class="alert alert-info fade show" id="resultsAlert" role="alert">
                                 Showing results for:
-                                <ul>
+                                <div> {{-- Changed ul to div --}}
                                     @foreach ($queryParameters as $key => $value)
                                         @if ($key != 'sort_by' || ($key == 'sort_by' && $value != 'Select...'))
                                             @if (!($key == 'minCost' && $value == 0) && !($key == 'maxCost' && $value == 10000))
-                                                <li>
+                                                <li> {{-- Wrap in conditional --}}
                                                     @if ($key == 'sort_by')
-                                                        Sort By:
+                                                    
                                                     @elseif ($key == 'minCost')
                                                         Minimum Cost:
                                                     @elseif ($key == 'maxCost')
@@ -56,11 +55,11 @@
                                                     @elseif (!is_array($value))
                                                         {{ $value }}
                                                     @endif
-                                                </li>
+                                                </li> {{-- Wrap in conditional --}}
                                             @endif
                                         @endif
                                     @endforeach
-                                </ul>
+                                </div> {{-- Changed /ul to /div --}}
                             </div>
                         @endif
                     @endif
@@ -73,12 +72,12 @@
                     <div class="alert alert-info fade show text-center" role="alert" style="min-height: 100vh;">
                         @if (count($queryParameters) > 0)
                             <p>No products found in:</p>
-                            <ul>
+                            <div> {{-- Changed ul to div --}}
                                 @foreach ($queryParameters as $key => $value)
                                     @if ($key != 'sort_by' || ($key == 'sort_by' && $value != 'Select...'))
-                                        <li>
+                                        <li> {{-- Wrap in conditional --}}
                                             @if ($key == 'sort_by')
-                                                Sort By:
+                                            
                                             @elseif ($key == 'minCost')
                                                 Minimum Cost:
                                             @elseif ($key == 'maxCost')
@@ -96,10 +95,10 @@
                                             @elseif (!is_array($value))
                                                 {{ $value }}
                                             @endif
-                                        </li>
+                                        </li> {{-- Wrap in conditional --}}
                                     @endif
                                 @endforeach
-                            </ul>
+                            </div> {{-- Changed /ul to /div --}}
                         @else
                             <p>No products found</p>
                         @endif

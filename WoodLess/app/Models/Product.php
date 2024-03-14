@@ -141,17 +141,17 @@ class Product extends Model
         // Sorting
         if (isset($filters['sort_by'])) {
             $sortBy = $filters['sort_by'];
-            if ($sortBy === 'price_high_low') {
+            if ($sortBy === 'Price High to Low') {
                 $query->orderByDesc('cost');
-            } elseif ($sortBy === 'price_low_high') {
+            } elseif ($sortBy === 'Price Low To High') {
                 $query->orderBy('cost');
-            } elseif ($sortBy === 'rating_high_low') {
+            } elseif ($sortBy === 'Rating High to Low') {
                 $query->orderByDesc('rating');
-            } elseif ($sortBy === 'rating_low_high') {
+            } elseif ($sortBy === 'Rating Low to High') {
                 $query->orderBy('rating');
-            } elseif ($sortBy === 'discount_high_low') {
+            } elseif ($sortBy === 'Discount High to Low') {
                 $query->orderByDesc('discount');
-            } elseif ($sortBy === 'discount_low_high') {
+            } elseif ($sortBy === 'Discount Low to High') {
                 $query->orderBy('discount');
             }
         }
