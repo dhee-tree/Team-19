@@ -116,10 +116,16 @@ class User extends Authenticatable
         return $emailVerificationCode->is_verified ?? false;
     }
 
+    /**
+     * Check the user's access level.
+     */
     public function accessLevel(){
         return $this->makeVisible('access_level')->access_level;
     }
     
+    /**
+     * Check that the user's access level is over 3 (admin).
+     */
     public function isAdmin(){
         return (bool)($this->accessLevel() >= 3);
     }

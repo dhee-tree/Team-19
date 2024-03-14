@@ -19,7 +19,7 @@
     
             <div class="col-md-6 contact-text-container">
                 <div class="contact-icons">
-                    <i class="fas fa-envelope" style="color: blue;"></i> <span class = "email">Woodless@Woodless.com</span>
+                    <i class="fas fa-envelope" style="color: blue;"></i> <span class = "email">Hello.Woodless@gmail.com</span>
                 </div>
                 <div class="contact-icons">
                 <i class="fas fa-phone-alt" style="color: blue;"></i> <a class = "phone "href="tel:+440000000000">+44 7987 654321</a>

@@ -19,6 +19,9 @@ class Ticket extends Model
         'status',
     ];
 
+    /**
+     * Return the ticket's importance level.
+     */
     public function importanceLevel()
     {
         return $this->belongsTo(ImportanceLevel::class);
