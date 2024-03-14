@@ -144,7 +144,7 @@
         </div>
 
         @else
-        <h2 class="recent-purchase-heading">Browse all of our products</h2>
+        
         @endif
 
     </div>
