@@ -59,7 +59,7 @@
                                                     </div>
                                                     @endif
                                                     <!-- Product image-->
-                                                    <img width="10" class="card-img-top p-3" src="{{ Storage::url($similarProductImages[0]); }}"alt="{{ $similarProduct->title }}" />
+                                                    <img width="10" class="card-img-top p-3" src="{{ Storage::url($similarProductImages[0]) }}"alt="{{ $similarProduct->title }}" />
                                                     <!-- Product details-->
                                                     <div class="card-body p-0 mb-3">
                                                         <div class="d-flex flex-row justify-content-center">
