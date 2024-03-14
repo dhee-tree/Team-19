@@ -262,10 +262,10 @@ Route::get('/faq', function () {
 Route::get('/values', function () {
     return view('values');
 });
-Route::get('/testemonial', function () {
+Route::get('/testimonial', function () {
     return view('checkouttestemonial');
 });
-Route::post('/testemonial', [TestimonialController::class, 'store'])->name('submit.testimonial');
+Route::post('/testimonial', [TestimonialController::class, 'store'])->name('submit.testimonial');
 Route::get('/thankyou', function () {
     return view('thankyou');
 });
