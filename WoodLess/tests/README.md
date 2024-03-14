@@ -19,9 +19,9 @@ These are tests that test a chain of methods (Such as the process of a user logg
 - To create a new feature test file, run `php artisan make:test TestName`
 
 ## Unit Tests 
-These are tests that test a single or small chain of methods (such as returning the user's basket).
+These are tests that test a single or small chain of methods.
 - To create a new unit test file, run `php artisan make:test TestName --unit`
-- In the new file, eplace `use PHPUnit\Framework\TestCase` with `use Tests\TestCase` for additonal testing methods.
+- Note that most if not all the tests you create will likely be feature tests.
 
 ## Running Tests
 Now that our testing environment is setup, you are able to run tests.
@@ -54,7 +54,8 @@ public function test_user_has_basket(): void
 ```
 
 ### Refreshing the Database
-If you are running tests involving database interactions, add `use Illuminate\Foundation\Testing\RefreshDatabase` to the start of the test class. This will clear the database after so that it is ready for the next tests (see below).
+If you are running tests involving database interactions, add `use RefreshDatabase` to the start of the test class and import `Illuminate\Foundation\Testing\RefreshDatabase`. This will clear the database after so that it is ready for the next tests.
+- See (https://laravel.com/docs/10.x/database-testing#resetting-the-database-after-each-test) for more information.
 
 ### Initialization
 Adding the method `protected setUp(){}` Will allow you to initalize any neccessary data before running your tests:

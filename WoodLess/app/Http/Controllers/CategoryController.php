@@ -11,7 +11,7 @@ class CategoryController extends Controller
      * Returns the categories page.
      */
     public function index(){
-        $categories = Category::all();
+        $categories = Category::getAllCached();
         return view('categories', ['categories' => $categories]);
     }   
    
