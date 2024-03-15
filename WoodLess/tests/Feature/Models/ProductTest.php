@@ -21,7 +21,7 @@ class ProductTest extends TestCase
     protected $product;
 
     /**
-     * Set up the review before each test.
+     * Set up the model before each test.
      */
     protected function setUp(): void
     {
