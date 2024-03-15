@@ -18,7 +18,7 @@ class OrderStatusTest extends TestCase
     protected $orderStatus;
 
     /**
-     * Set up the review before each test.
+     * Set up the order status before each test.
      */
     protected function setUp(): void
     {
@@ -32,7 +32,6 @@ class OrderStatusTest extends TestCase
      */
     public function test_order_status_model_can_get_orders(): void
     {
-        $this->withExceptionHandling();
         Order::create([
             'user_id' => User::factory()->create()->id,
             'address_id' => Address::factory()->create()->id,
