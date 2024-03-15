@@ -2,20 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\User;
 use App\Models\Order;
-use App\Models\OrderStatus;
 use App\Models\Address;
 use App\Models\Warehouse;
+use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 use App\Mail\OrderConfirmation;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Crypt;
 
 class OrderController extends Controller
 {
     // Store an order in the database.
     function store(Request $request)
-    {
+    {   
+        // If decryption is successful it'll continue...
+        // Decryption key is only known by laravel (using APP_KEY).
+        try {
+            // Compares to see if they are the same, erases key from session
+            if(!(Hash::check(Crypt::decryptString(session()->pull('checkout_key')), $request->input('checkout')))){
+                abort(403);
+            }
+        } catch (Exception $e) {
+            abort(403);
+        }
+
         $user = auth()->user();
         $basket = $user->basket;
         $basket->loadMissing('products');
