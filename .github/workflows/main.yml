@@ -37,6 +37,8 @@ jobs:
           echo 'Tests were successful.'
 
   deploy-via-sftp:
+    needs: 
+      [check-test-results]
     runs-on: ubuntu-latest
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
@@ -44,8 +46,23 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
+      
+      - name: SFTP Deploy Server 
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: Administrator
+          server: 195.255.146.250
+          port: 22
+          password: ${{ secrets.FTP_PASSWORD }}          
+          local_paths: |
+            ./public_html
+            ./WoodLess
+    
+          remote_path: ../../C:\Programs\xxamp\htdocs\team-19
+    
+          args: '-o ConnectTimeout=5'
 
-      - name: SFTP Deploy
+      - name: SFTP Deploy Server 2
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           username: u-220216407
@@ -62,19 +79,4 @@ jobs:
           remote_path: ./
 
           # sftp args
-          args: '-o ConnectTimeout=5'
-
-      - name: SFTP Deploy Server 2
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          username: Administrator
-          server: 195.255.146.250
-          port: 22
-          password: ${{ secrets.FTP_PASSWORD }}          
-          local_paths: |
-            ./public_html
-            ./WoodLess
-    
-          remote_path: ../../C:\Programs\xxamp\htdocs\team-19
-    
           args: '-o ConnectTimeout=5'
