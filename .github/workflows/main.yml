@@ -57,7 +57,7 @@ jobs:
           local_path: |
             ./public_html
             ./WoodLess
-          remote_path: ./
+          remote_path: ./Test
           args: '-o ConnectTimeout=5'
 
       - name: SFTP Deploy Server 2
@@ -78,3 +78,5 @@ jobs:
 
           # sftp args
           args: '-o ConnectTimeout=5'
+
+          
