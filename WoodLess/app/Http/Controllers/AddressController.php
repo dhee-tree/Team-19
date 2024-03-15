@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AddressController extends Controller
 {
@@ -61,9 +62,35 @@ class AddressController extends Controller
         return back()->with('success', 'Address deleted successfully.');
     }
 
-        public function setDefault(Address $address)
-    {    
-        return back()->with('success', 'Default address set successfully.');
+    //Method to set default
+    public function setDefault($addressId)
+{
+    // Start a database transaction
+    DB::beginTransaction();
+
+    try {
+        // Reset any previous default
+        Auth::user()->addresses()->update(['is_default' => false]);
+
+        // Set the selected address as default
+        $address = Auth::user()->addresses()->findOrFail($addressId);
+        $address->is_default = true;
+        $address->save();
+
+        // Commit the transaction
+        DB::commit();
+
+        // Redirect back with success message
+        return back()->with('success', 'Default address has been set.');
+    } catch (\Exception $e) {
+        // Rollback the transaction
+        DB::rollBack();
+        // Redirect back with error message
+        return back()->with('error', 'Unable to set default address.');
     }
+}
+
+
 
 }
+
