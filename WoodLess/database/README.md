@@ -10,7 +10,7 @@ Any schema changes for the database can be modified here. This is also Laravel's
 - See (https://laravel.com/docs/10.x/migrations) for more information.
 
 ### Running Migrations
-This will query the database, building the tables specifed in migrations.
+This will query the database, building the tables specified in migrations.
 1. Ensure [.env](../.env) is modified to connect to your target database.
 2. Open the [WoodLess](../../WoodLess/) folder in terminal, run `php artisan migrate`. This will create the tables in your database.
 

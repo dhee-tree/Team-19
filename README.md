@@ -12,7 +12,7 @@
     <img alt="GitHub License" src="https://img.shields.io/github/license/dhee-tree/Team-19">
 </p>
 
-<strong><p align="center">Disclaimer: WoodLess is a fictional service. Orders will not be fufilled. Do not enter personal or sensitive information on Official Deployment.</p></strong> 
+<strong><p align="center">Disclaimer: WoodLess is a fictional service. Orders will not be fulfilled. Do not enter personal or sensitive information on Official Deployment.</p></strong> 
 
 #
 
@@ -64,7 +64,7 @@ To make our work as accessible as possible, all models and methods written by th
 ## Getting Started
 This guide assumes you are familiar with PHP web development environments (such as XAMMP) and have cloned/copied the repository to one. You will also need access to a MySQL server and [Composer](https://getcomposer.org/download/). 
 
-- The [.github](./.github) folder is not neccessary for WoodLess to be functional.
+- The [.github](./.github) folder is not necessary for WoodLess to be functional.
 
 ### Environment Setup
 The file .env declares the app environment, so it is important to set this up first. 
@@ -78,7 +78,7 @@ The file .env declares the app environment, so it is important to set this up fi
 
 ### Database Setup
 Before you can run the website, the database needs to be setup.
-1. Ensure your target MySQL server is running, and you have created a database that matches the one specifed in `.env`.
+1. Ensure your target MySQL server is running, and you have created a database that matches the one specified in `.env`.
 2. Go to the WoodLess directory in a terminal. Run `php artisan migrate`. This will build the tables required by the website in your database.
 - For additonal database information and commands, including test data, see the guide on [Database](./WoodLess/database).
 
@@ -98,4 +98,4 @@ WoodLess was developed by eight students at Aston University, who possess a stro
 ### Matteo Crozat
 
 ## License
-WoodLess is open-sourced software licensed under the [MIT Licence](./LICENSE).
+WoodLess is open-sourced software licensed under the [MIT License](./LICENSE).

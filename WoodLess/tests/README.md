@@ -2,7 +2,7 @@
 This guide goes over test files, and how to set up the testing environment.
 
 ## Environment Setup
-[`.env.testing`](../.env.testing.example) Is the app enviroment that is used for testing. We will need to set this up so that we can run tests locally. When you add the `--env=testing` modifer to artisan commands, it will use this file instead.
+[`.env.testing`](../.env.testing.example) Is the app environment that is used for testing. We will need to set this up so that we can run tests locally. When you add the `--env=testing` modifier to artisan commands, it will use this file instead.
 
 1. First, copy or rename `.env.testing.example` to `.env.testing`.
 2. Generate an app key using `php artisan key:generate --env=testing`.
@@ -11,7 +11,7 @@ This guide goes over test files, and how to set up the testing environment.
 5. Modify lines 61-62 to match the information of a Stripe public and private key. You will need to setup a [Stripe developer account](https://docs.stripe.com/keys?locale=en-GB) to generate these if you have not been provided any (if you are a developer this it's on our discord).
 
 ## Database Setup
-1. Ensure your target MySQL server is running, and you have created a database that matches the one specifed in `.env.testing`.
+1. Ensure your target MySQL server is running, and you have created a database that matches the one specified in `.env.testing`.
 2. Go to the WoodLess directory in a terminal. Run `php artisan migrate --env=testing`. This will build tables in the database specified in `.env.testing`.
 
 ## Feature Tests
@@ -27,7 +27,7 @@ These are tests that test a single or small chain of methods.
 Now that our testing environment is setup, you are able to run tests.
 - To run all tests, run `php artisan test` in your terminal in the WoodLess directory. Laravel automatically knows to use `.env.testing` and will run tests in that environment.
 
-## Additonal Information
+## Additional Information
 
 ### Test Format
 When creating test methods, name them as so:
@@ -58,7 +58,7 @@ If you are running tests involving database interactions, add `use RefreshDataba
 - See (https://laravel.com/docs/10.x/database-testing#resetting-the-database-after-each-test) for more information.
 
 ### Initialization
-Adding the method `protected setUp(){}` Will allow you to initalize any neccessary data before running your tests:
+Adding the method `protected setUp(){}` Will allow you to initialize any necessary data before running your tests:
 ```
 use Illuminate\Foundation\Testing\RefreshDatabase;
 class UserTest extends TestCase
