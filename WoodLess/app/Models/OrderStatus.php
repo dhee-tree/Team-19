@@ -19,6 +19,6 @@ class OrderStatus extends Model
      * Returns the orders associated with the status.
      */
     public function orders(){
-        $this->hasMany(Order::class);
+        return $this->hasMany(Order::class, 'status_id');
     }
 }
