@@ -4,11 +4,11 @@
                 <h5 class="card-title">Sort By</h5>
                 <select class="form-select" aria-label="Sort By" name="sort_by">
                     <option selected>Select...</option>
-                    <option value="price_high_low">Price High to Low</option>
-                    <option value="price_low_high">Price Low to High</option>
-                    <option value="rating_high_low">Rating High to Low</option>
+                    <option value="Price High to Low">Price High to Low</option>
+                    <option value="Price Low To High">Price Low to High</option>
+                    <option value="Rating High to Low">Rating High to Low</option>
                     <option value="rating_low_high">Rating Low to High</option>
-                    <option value="discount_high_low">Discount High to Low</option>
+                    <option value="Discount: High to Low">Discount High to Low</option>
                     <option value="discount_low_high">Discount Low to High</option>
                 </select>
                 <hr class="w-100 mx-auto mb-2 border-dark">

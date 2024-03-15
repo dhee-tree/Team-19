@@ -250,24 +250,23 @@ Route::middleware('prevent.resubmission')->group(function () {
             }
         );
 
-        return $status === Password::PASSWORD_RESET
-            ? redirect()->route('login')->with('status', __($status))
-            : back()->withErrors(['email' => [__($status)]]);
-    })->middleware('guest')->name('password.update');
-    Route::get('/meet-the-team', function () {
-        return view('meettheteam');
-    });
-    Route::get('/faq', function () {
-        return view('faq');
-    });
-    Route::get('/values', function () {
-        return view('values');
-    });
-    Route::get('/testemonial', function () {
-        return view('checkouttestemonial');
-    });
-    Route::post('/testemonial', [TestimonialController::class, 'store'])->name('submit.testimonial');
-    Route::get('/thankyou', function () {
-        return view('thankyou');
-    });
+    return $status === Password::PASSWORD_RESET
+        ? redirect()->route('login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');
+Route::get('/meet-the-team', function () {
+    return view('meettheteam');
+});
+Route::get('/faq', function () {
+    return view('faq');
+});
+Route::get('/values', function () {
+    return view('values');
+});
+Route::get('/testimonial', function () {
+    return view('checkouttestemonial');
+});
+Route::post('/testimonial', [TestimonialController::class, 'store'])->name('submit.testimonial');
+Route::get('/thankyou', function () {
+    return view('thankyou');
 });
