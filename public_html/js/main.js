@@ -22,3 +22,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Get all forms on the page
+    const forms = document.querySelectorAll('form');
+
+    // Add a click event listener to each form
+    forms.forEach(form => {
+        form.addEventListener('submit', function (event) {
+            // Disable all submit buttons within the form
+            const submitButtons = form.querySelectorAll('button[type="submit"]');
+            submitButtons.forEach(button => {
+                button.disabled = true;
+            });
+        });
+    });
+});
+
