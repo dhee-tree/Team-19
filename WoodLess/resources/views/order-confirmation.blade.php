@@ -17,7 +17,7 @@
                     <div> <a href="{{ route('home') }}" class="gradient-button">Return Home</a> </div>
                     <div class="pt-5">
                         <p>We would greatly appreciate some feedback.</p>
-                        <a href="/testemonial" class="gradient-button">Leave Feedback</a>
+                        <a href="/testimonial" class="gradient-button">Leave Feedback</a>
                     </div>
                 </div>
             </div>
