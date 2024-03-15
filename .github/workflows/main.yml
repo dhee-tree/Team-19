@@ -54,7 +54,6 @@ jobs:
           server: 159.255.146.250
           port: 22
           password: ${{ secrets.FTP_PASSWORD }} 
-          local_path: ./public_html:./WoodLess
           remote_path: ./Test
           args: '-o ConnectTimeout=5'
 
@@ -67,7 +66,6 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           # will put all file under this path
-          local_path: ./public_html:./WoodLess
 
           # files will copy to under remote_path
           remote_path: ./
