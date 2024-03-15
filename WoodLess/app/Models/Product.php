@@ -138,7 +138,6 @@ class Product extends Model
             $query->where('cost', '<=', $filters['maxCost']);
         }
 
-        // Sorting
         if (isset($filters['sort_by'])) {
             $sortBy = $filters['sort_by'];
             if ($sortBy === 'Price High to Low') {
@@ -146,19 +145,27 @@ class Product extends Model
             } elseif ($sortBy === 'Price Low To High') {
                 $query->orderBy('cost');
             } elseif ($sortBy === 'Rating High to Low') {
-                $query->orderByDesc('rating');
+                $products = $query->get(); // Fetch products
+                // Sort products by average rating high to low
+                $products = $products->sortByDesc(function ($product) {
+                    return $product->getCachedRelation('reviews')->avg('rating');
+                });
+                return $products; // Return sorted products
             } elseif ($sortBy === 'Rating Low to High') {
-                $query->orderBy('rating');
+                $products = $query->get(); // Fetch products
+                // Sort products by average rating low to high
+                $products = $products->sortBy(function ($product) {
+                    return $product->getCachedRelation('reviews')->avg('rating');
+                });
+                return $products; // Return sorted products
             } elseif ($sortBy === 'Discount High to Low') {
                 $query->orderByDesc('discount');
             } elseif ($sortBy === 'Discount Low to High') {
                 $query->orderBy('discount');
             }
         }
-
         return $query;
     }
-
     /**
      * Returns the order status associated with the product.
      * Rename to orderStatus to match model if possible
