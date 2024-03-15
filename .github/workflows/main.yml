@@ -53,16 +53,12 @@ jobs:
           username: Administrator
           server: 159.255.146.250
           port: 22
-
-
-          local_path: ./*
-    
+          password: ${{ secrets.FTP_PASSWORD }} 
+          local_path: |
+            ./public_html
+            ./WoodLess
           remote_path: ./
-    
           args: '-o ConnectTimeout=5'
-
-          password: ${{ secrets.FTP_PASSWORD }}          
-
 
       - name: SFTP Deploy Server 2
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
