@@ -51,7 +51,7 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           username: Administrator
-          server: 195.255.146.250
+          server: 159.255.146.250
           port: 22
 
 
