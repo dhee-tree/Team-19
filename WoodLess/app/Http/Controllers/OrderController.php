@@ -20,58 +20,56 @@ class OrderController extends Controller
         $basket = $user->basket;
         $basket->loadMissing('products');
 
-        // We need to create an address for the user if they fill in the form.
-        // Possibly a callable function to create an address if certian parameters are passed from the view/form.
-
-        // $address = Address::create([
-        //     'user_id' => $user->id,
-        //     'address' => $request->input('address'),
-        //     'city' => $request->input('city'),
-        //     'postcode' => $request->input('postcode'),
-        // ]);
-
-        // check if there is at least one product in the basket
-        if ($basket->products->count() > 0) {
-            // create order item for each product in the basket
-            $order = Order::create([
-                'user_id' => $user->id,
-                $address_id = $request->session()->get('address_id'),
-                'address_id' => $address_id,
-                'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
-                'details' => 'Order placed by user',
-                'order_cost' => $basket->totalCost(),
-            ]);
-            // Remove the address_id from the session
-            $request->session()->forget('address_id');
-    
-            foreach ($basket->products as $product) {
-                if ($product->discount > 0){
-                    $product_cost = round($product->cost - ($product->cost * ($product->discount / 100)), 2);
-                } else {
-                    $product_cost = $product->cost;
-                }
-
-                $order->products()->attach($product->id, [
-                    'amount' => $product->pivot->amount,
-                    'attributes' => $product->pivot->attributes,
-                    'warehouse_id' => $product->warehouses->first()->id,
-                    'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
-                    'product_cost' => $product_cost,
-                ]);
-            }
-    
-            $basket->products()->detach();
-    
-            // Send an email to the user with the order confirmation.
-            Mail::to($user->email)->send(new OrderConfirmation($order));
-            return view('order-confirmation', [
-                'order' => $order,
+        // Check if $request->session()->get('address_id') is empty
+        if (empty($request->session()->get('address_id'))) {
+            return redirect()->route('checkout')->with([
+                'status' => 'danger',
+                'message' => 'Please select a address.'
             ]);
         } else {
-            return redirect()->route('basket')->with([
-                'status' => 'danger',
-                'message' => 'Cannot place an order with an empty basket.',
-            ]);
+            // Check if there is at least one product in the basket
+            if ($basket->products->count() > 0) {
+                // Create order item and attach products to it
+                $order = Order::create([
+                    'user_id' => $user->id,
+                    $address_id = $request->session()->get('address_id'),
+                    'address_id' => $address_id,
+                    'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
+                    'details' => 'Order placed by user',
+                    'order_cost' => $basket->totalCost(),
+                ]);
+                // Remove the address_id from the session
+                $request->session()->forget('address_id');
+        
+                foreach ($basket->products as $product) {
+                    if ($product->discount > 0){
+                        $product_cost = round($product->cost - ($product->cost * ($product->discount / 100)), 2);
+                    } else {
+                        $product_cost = $product->cost;
+                    }
+    
+                    $order->products()->attach($product->id, [
+                        'amount' => $product->pivot->amount,
+                        'attributes' => $product->pivot->attributes,
+                        'warehouse_id' => $product->warehouses->first()->id,
+                        'status_id' => OrderStatus::where('status', 'Processing')->first()->id,
+                        'product_cost' => $product_cost,
+                    ]);
+                }
+        
+                $basket->products()->detach();
+        
+                // Send an email to the user with the order confirmation.
+                Mail::to($user->email)->send(new OrderConfirmation($order));
+                return view('order-confirmation', [
+                    'order' => $order,
+                ]);
+            } else {
+                return redirect()->route('basket')->with([
+                    'status' => 'danger',
+                    'message' => 'Cannot place an order with an empty basket.',
+                ]);
+            }
         }
     }
 
