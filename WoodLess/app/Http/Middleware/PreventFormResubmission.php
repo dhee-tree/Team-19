@@ -11,7 +11,6 @@ class PreventFormResubmission
     {
         if ($request->session()->has('form_submission_in_progress')) {
             // Submission is already in progress, cancel this request
-            dd("343");
             return redirect()->back()->withErrors(['error' => 'Submission in progress. Please wait.']);
         }
 
