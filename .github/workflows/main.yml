@@ -54,7 +54,7 @@ jobs:
           server: 159.255.146.250
           port: 22
           password: ${{ secrets.FTP_PASSWORD }} 
-          local_path: ./public_html:./WoodLess
+          local_path: ./*
           remote_path: ./Test
           args: '-o ConnectTimeout=5'
 
