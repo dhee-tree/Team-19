@@ -20,19 +20,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check Test Failure
-        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+        # if: ${{ github.event.workflow_run.conclusion == 'failure' }}
         run: |
           echo 'Tests have failed.'
           exit 1
 
       - name: Check Test Success
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        # if: ${{ github.event.workflow_run.conclusion == 'success' }}
         run: |
           echo 'Tests were successful.'
 
       deploy-via-sftp:
           runs-on: ubuntu-latest
-          if: ${{ github.event.workflow_run.conclusion == 'success' }}
+          # if: ${{ github.event.workflow_run.conclusion == 'success' }}
           steps:
             # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
             - uses: actions/checkout@v2
