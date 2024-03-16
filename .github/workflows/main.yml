@@ -47,20 +47,14 @@ jobs:
           fetch-depth: 2
 
       - name: SFTP Deploy Server
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        uses: SamKirkland/web-deploy@v1
         with:
-          username: u-220216407
-          server: cs2410-web01pvm.aston.ac.uk
-          port: 22 # default is 22
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          target-server: cs2410-web01pvm.aston.ac.uk
+          remote-user: u-220216407
+          private-ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-port: 22
 
           # will put all file under this path
-          local_path: ./public_html:./WoodLess
-
-          # files will copy to under remote_path
-          remote_path: ./
-
-          # sftp args
-          args: '-o ConnectTimeout=5'
+          source-path: ./
 
           
