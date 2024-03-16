@@ -44,18 +44,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: SFTP Deploy Server
-        uses: wangyucode/sftp-upload-action@v2.0.2
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          host: cs2410-web01pvm.aston.ac.uk
           username: u-220216407
-          privateKey: ${{ secrets.SSH_PRIVATE_KEY }} 
+          server: cs2410-web01pvm.aston.ac.uk
+          port: 22 # default is 22
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-          localDir: ./
-          remoteDir: ./
+          local_paths: |
+            ./public_html
+            ./WoodLess
 
-          exclude: '.git*,.DS_Store,.github'
+          # files will copy to under remote_path
+          remote_path: ./
+
+          # sftp args
+          args: '-o ConnectTimeout=5'
 
           
