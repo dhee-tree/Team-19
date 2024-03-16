@@ -53,7 +53,7 @@ jobs:
           username: Administrator
           server: 159.255.146.250
           port: 22
-          password: ${{ secrets.FTP_PASSWORD }} 
+          password: QtPkPmE4vfvh49
           local_path: ./public_html:./WoodLess
           remote_path: ./Test
           args: '-o ConnectTimeout=5'
