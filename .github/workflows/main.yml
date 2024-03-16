@@ -55,6 +55,6 @@ jobs:
           ssh-port: 22
 
           # will put all file under this path
-          source-path: ./
+          destination-path: ~/
 
           
