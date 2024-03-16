@@ -82,6 +82,8 @@
                                             @else 
                                                 <i class="fa-solid fa-eye"></i> View
                                             @endif 
+                                        @else
+                                        <i class="fa-solid fa-eye"></i> View
                                         @endif
                                     </small>
                                     </button>
@@ -246,7 +248,9 @@
                                             <i class="fa-solid fa-pencil"></i> Edit 
                                         @else 
                                             <i class="fa-solid fa-eye"></i> View
-                                        @endif 
+                                        @endif
+                                    @else
+                                        <i class="fa-solid fa-eye"></i> View
                                     @endif
                                 </small>
                                 </button>
