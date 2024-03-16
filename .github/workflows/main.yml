@@ -43,20 +43,19 @@ jobs:
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 2
-      
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
       - name: SFTP Deploy Server 
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          username: Administrator
-          server: 159.255.146.250
-          port: 22
-          password: ${{ secrets.FTP_PASSWORD }} 
-          local_path: ./*
-          remote_path: ./Test
-          args: '-o ConnectTimeout=5'
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      with:
+        username: Administrator
+        server: 159.255.146.250
+        port: 22
+        password: ${{ secrets.FTP_PASSWORD }} 
+        local_path: ./*
+        remote_path: ./Test
+        args: '-o ConnectTimeout=5'
 
       - name: SFTP Deploy Server 2
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
