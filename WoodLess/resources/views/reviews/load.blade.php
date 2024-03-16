@@ -257,7 +257,7 @@
                             </div>
 
                             @if($user)
-                                @if ($reviewUser == $user || $user->isAdmin())
+                                @if ($reviewUser == $user || $user->accessLevel() >= 2)
                                 <div class="ms-2">
                                     <form id="updateForm{{$review->id}}" method="POST" action="/review/{{$review->id}}">
                                         @csrf
