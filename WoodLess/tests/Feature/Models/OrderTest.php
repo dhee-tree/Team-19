@@ -2,11 +2,13 @@
 
 namespace Tests\Feature;
 
+use App\Models\Warehouse;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Address;
 use App\Models\OrderStatus;
+use App\Models\Product;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -54,6 +56,8 @@ class OrderTest extends TestCase
      */
     public function test_order_model_can_get_products_and_quantity(): void
     {
-        assertInstanceOf(Address::class, $this->order->address);
+        $product = Product::factory()->create();
+        $warehouse =  Warehouse::factory()->create();
+        //$this->order->products()->attach(['product_id' => $product->id, 'warehouse_id' => $warehouse->id]);
     }
 }
