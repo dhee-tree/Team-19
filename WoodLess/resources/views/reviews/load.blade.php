@@ -82,6 +82,8 @@
                                             @else 
                                                 <i class="fa-solid fa-eye"></i> View
                                             @endif 
+                                        @else
+                                        <i class="fa-solid fa-eye"></i> View
                                         @endif
                                     </small>
                                     </button>
@@ -246,14 +248,16 @@
                                             <i class="fa-solid fa-pencil"></i> Edit 
                                         @else 
                                             <i class="fa-solid fa-eye"></i> View
-                                        @endif 
+                                        @endif
+                                    @else
+                                        <i class="fa-solid fa-eye"></i> View
                                     @endif
                                 </small>
                                 </button>
                             </div>
 
                             @if($user)
-                                @if ($reviewUser == $user || $user->isAdmin())
+                                @if ($reviewUser == $user || $user->accessLevel() >= 2)
                                 <div class="ms-2">
                                     <form id="updateForm{{$review->id}}" method="POST" action="/review/{{$review->id}}">
                                         @csrf
