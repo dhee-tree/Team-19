@@ -22,43 +22,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  check-test-results:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check Test Failure
-        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-        run: |
-          echo 'Tests have failed.'
-          exit 1
-
-      - name: Check Test Success
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        run: |
-          echo 'Tests were successful.'
-
+  # This workflow contains a single job called "SFTP"
   deploy-via-sftp:
-    needs: 
-      [check-test-results]
     runs-on: ubuntu-latest
-    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
-      
-      - name: SFTP Deploy Server 
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          username: Administrator
-          server: 159.255.146.250
-          port: 22
-          password: ${{ secrets.FTP_PASSWORD }} 
-          local_path: ./public_html:./WoodLess
-          remote_path: ./
-          args: '-o ConnectTimeout=5'
 
-      - name: SFTP Deploy Server 2
+      - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           username: u-220216407
@@ -67,12 +40,12 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           # will put all file under this path
-          local_path: ./public_html:./WoodLess
-
+          local_path: ./# default is ./*
           # files will copy to under remote_path
           remote_path: ./
 
           # sftp args
           args: '-o ConnectTimeout=5'
+
 
           
