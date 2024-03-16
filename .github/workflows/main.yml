@@ -5,6 +5,11 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+  # Triggers the workflow on push request events but only for the main branch
+  push:
+    branches:
+      - development
+      
   # Additional trigger for increased verbosity
   workflow_run:
     workflows: [Run Tests]
@@ -31,15 +36,17 @@ jobs:
           echo 'Tests were successful.'
 
   deploy-via-sftp:
+    needs: 
+      [check-test-results]
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' || github.event_name == 'push' }}
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
 
-      - name: SFTP Deploy
+      - name: SFTP Deploy Server
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           username: u-220216407
@@ -48,12 +55,12 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
           # will put all file under this path
-          local_paths: |
-            ./public_html
-            ./WoodLess
+          local_path: ./public_html:./WoodLess
 
           # files will copy to under remote_path
           remote_path: ./
 
           # sftp args
           args: '-o ConnectTimeout=5'
+
+          
