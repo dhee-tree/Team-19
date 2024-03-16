@@ -45,14 +45,22 @@
                 @endforeach
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <h3>Delivery Address: </h3>
                 <p>Select one of your addresses.</p>
+                    <hr>
                     @foreach($addresses as $address)
-                        <input type="radio" id="{{ $address->id }}" name="delivery_address" value="{{ $address->id }}" checked onclick="getSelectedValue()">
-                        <label for="{{ $address->id }}" onclick="getSelectedValue()">{{ $address->house_number }}, {{ $address->street_name }}, {{ $address->city }}, {{ $address->postcode }}</label><br>
+                        <!-- Select default address -->
+                        @if($address->is_default)
+                            <input type="radio" id="{{ $address->id }}" name="delivery_address" value="{{ $address->id }}" checked onclick="getSelectedValue()">
+                            <label for="{{ $address->id }}" onclick="getSelectedValue()">{{ $address->house_number }}, {{ $address->street_name }}, {{ $address->city }}, {{ $address->postcode }} <span class="badge bg-success">Default Address</span></label>
+                            <hr>
+                        @else
+                            <input type="radio" id="{{ $address->id }}" name="delivery_address" value="{{ $address->id }}" onclick="getSelectedValue()">
+                            <label for="{{ $address->id }}" onclick="getSelectedValue()">{{ $address->house_number }}, {{ $address->street_name }}, {{ $address->city }}, {{ $address->postcode }}</label>
+                            <hr>
+                        @endif
                     @endforeach
-                <hr>
                 <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addAddressModal" onclick="preventFormSubmission(event)">Add New Address</button>
             </div>
         </div>
