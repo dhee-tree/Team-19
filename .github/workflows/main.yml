@@ -53,9 +53,9 @@ jobs:
           username: Administrator
           server: 159.255.146.250
           port: 22
-          password: QtPkPmE4vfvh49
+          password: ${{ secrets.FTP_PASSWORD }} 
           local_path: ./public_html:./WoodLess
-          remote_path: ./Test
+          remote_path: ./
           args: '-o ConnectTimeout=5'
 
       - name: SFTP Deploy Server 2
