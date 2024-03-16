@@ -42,37 +42,37 @@ jobs:
     runs-on: ubuntu-latest
     # if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 2
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      
       - name: SFTP Deploy Server 
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-      with:
-        username: Administrator
-        server: 159.255.146.250
-        port: 22
-        password: ${{ secrets.FTP_PASSWORD }} 
-        local_path: ./*
-        remote_path: ./Test
-        args: '-o ConnectTimeout=5'
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: Administrator
+          server: 159.255.146.250
+          port: 22
+          password: ${{ secrets.FTP_PASSWORD }} 
+          local_path: ./public_html:./WoodLess
+          remote_path: ./Test
+          args: '-o ConnectTimeout=5'
 
       - name: SFTP Deploy Server 2
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-      with:
-        username: u-220216407
-        server: cs2410-web01pvm.aston.ac.uk
-        port: 22 # default is 22
-        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          username: u-220216407
+          server: cs2410-web01pvm.aston.ac.uk
+          port: 22 # default is 22
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-        # will put all file under this path
-        local_path: ./public_html:./WoodLess
+          # will put all file under this path
+          local_path: ./public_html:./WoodLess
 
-        # files will copy to under remote_path
-        remote_path: ./
+          # files will copy to under remote_path
+          remote_path: ./
 
-        # sftp args
-        args: '-o ConnectTimeout=5'
+          # sftp args
+          args: '-o ConnectTimeout=5'
 
           
