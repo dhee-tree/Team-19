@@ -34,6 +34,8 @@
                     <button type="submit" class="btn btn-primary">
                         {{ __(' Reset Password ') }}
                     </button>
+                    <p>Reset your password?</p>
+                    <p><a href="{{ route('login') }}">Log in here</a></p>
                 </div>
             </div>
         </form>
@@ -43,7 +45,7 @@
         <div class="toggle">
             <div class="toggle-panel toggle-right">
                 <h1>Forgot password?</h1>
-                <p>Get back into you account in no time !</p>
+                <p>Get back into you account in no time!</p>
             </div>
         </div>
     </div>
