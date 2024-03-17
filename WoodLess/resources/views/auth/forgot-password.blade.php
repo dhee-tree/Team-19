@@ -2,12 +2,6 @@
 
 @section('style')
     <link rel="stylesheet" href="{{ asset('css/forgot.css') }}">
-    <style>
-        .login-container .form-container .form-group .col-md-6 input[type="email"] {
-            width: 150%; /* Adjust the width as needed */
-            max-width: 500px /* Maximum width */
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -38,7 +32,7 @@
             <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
                     <button type="submit" class="btn btn-primary">
-                        {{ __('Send Password Reset Link') }}
+                        {{ __(' Reset Password ') }}
                     </button>
                 </div>
             </div>
@@ -48,8 +42,8 @@
     <div class="toggle-container">
         <div class="toggle">
             <div class="toggle-panel toggle-right">
-                <h1>Welcome Back!</h1>
-                <p>Enter your details to resume your shopping experience!</p>
+                <h1>Forgot password?</h1>
+                <p>Get back into you account in no time !</p>
             </div>
         </div>
     </div>
