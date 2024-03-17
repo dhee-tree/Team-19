@@ -52,19 +52,53 @@ test_thing_does_thing
 Here are a couple of example snippets from tests used in [Feature/Models/UserTest](./Feature/Models/UserTest.php):
 ```
 /**
-* Test if the user model is not an admin.
+* Test if the user can get cards.
 */
-public function test_user_model_is_not_admin(): void
+public function test_user_model_can_get_cards(): void
 {   
-    $this->assertFalse((bool)($this->user->isAdmin()));
+    // Create a Card instance
+    Card::factory()->create([
+        'user_id' => $this->user->id //Same id as the User instance in this test
+    ]);
+
+    //Checking we can retrieve the same Card from the database
+    $card = $this->user->cards->first();
+
+    //Checking that cards() returns a Card instance
+    $this->assertInstanceOf(Card::class, $card);
+
+    //Checking that it is the same Product
+    $this->assertEquals($this->user->id, $card->user_id);
 }
 
 /**
-* Test if the user model has a basket.
+* Test if the user is not an admin.
 */
-public function test_user_model_has_basket(): void
+public function test_user_model_without_admin_privileges(): void
 {   
-    $this->assertNotNull($this->user->basket());
+    //Checking the default access_level value has been set correctly
+    $this->assertFalse((bool)($this->user->isAdmin()));
+}
+```
+
+Test involving a pivot table from [Feature/Models/CategoryTest](./Feature/Models/CategoryTest.php):
+```
+/**
+* Test to see if the model can its products.
+*/
+public function test_category_model_can_get_products(): void
+{
+    //Creating a product and attaching it to the category using it's id
+    $this->category->products()->attach(Product::factory()->create(['title' => 'test'])->id);
+
+    //Checking we can retrieve the same Product from the database
+    $product = $this->category->products()->first();
+
+    //Checking that products() returns a Product instance
+    $this->assertInstanceOf(Product::class, $product);
+    
+    //Checking that it is the same Product using the title
+    $this->assertEquals('test', $product->title);
 }
 ```
 
@@ -85,7 +119,10 @@ Adding the method `protected setUp(){}` before your tests Will allow you to init
 use Illuminate\Foundation\Testing\RefreshDatabase;
 class UserTest extends TestCase
 {
+    //Will refresh the database after each test
     use RefreshDatabase;
+
+    //The model instance to be used for each test
     protected $user;
 
     /**
@@ -94,6 +131,8 @@ class UserTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        //Creating the User instance
         $this->user = User::factory()->create();
     }
 
