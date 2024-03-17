@@ -7,7 +7,7 @@
                     <option value="Price High to Low">Price High to Low</option>
                     <option value="Price Low To High">Price Low to High</option>
                     <option value="Rating High to Low">Rating High to Low</option>
-                    <option value="rating_low_high">Rating Low to High</option>
+                    <option value="Rating Low to High">Rating Low to High</option>
                     <option value="Discount High to Low">Discount High to Low</option>
                     <option value="Discount Low to High">Discount Low to High</option>
                 </select>
