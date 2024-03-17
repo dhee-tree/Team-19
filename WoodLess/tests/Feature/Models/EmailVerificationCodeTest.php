@@ -8,7 +8,7 @@ use App\Models\EmailVerificationCode;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class EmailVerificationTest extends TestCase
+class EmailVerificationCodeTest extends TestCase
 {
     use RefreshDatabase;
     protected EmailVerificationCode $code;
@@ -21,13 +21,14 @@ class EmailVerificationTest extends TestCase
         parent::setUp();
         $this->code = EmailVerificationCode::create([
             'user_id' => User::factory()->create(['first_name' => 'test'])->id,
+            'code' => 'test',
         ]);
     }
 
     /**
      * Test to see if the model can its user.
      */
-    public function test_review_model_can_get_user(): void
+    public function test_email_verification_code_model_can_get_user(): void
     {   
         $user = $this->code->user()->first();
         $this->assertInstanceOf(User::class, $user);

@@ -27,7 +27,7 @@ class CardTest extends TestCase
     /**
      * Test to see if the model can its user.
      */
-    public function test_review_model_can_get_user(): void
+    public function test_address_model_can_get_user(): void
     {   
         $user = $this->card->user()->first();
         $this->assertInstanceOf(User::class, $user);
