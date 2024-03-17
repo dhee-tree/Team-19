@@ -8,12 +8,10 @@ use App\Models\Warehouse;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use function PHPUnit\Framework\assertInstanceOf;
-
 class WarehouseTest extends TestCase
 {
     use RefreshDatabase;
-    protected $warehouse;
+    protected Warehouse $warehouse;
 
     /**
      * Set up the warehouse before each test.
@@ -29,7 +27,11 @@ class WarehouseTest extends TestCase
      */
     public function test_warehouse_model_can_get_products(): void
     {
-        $this->warehouse->products()->attach(Product::factory()->create());
-        assertInstanceOf(Product::class, $this->warehouse->products()->first());
+        $this->warehouse->products()->attach(Product::factory(['title' => 'test'])->create());
+
+        $product = $this->warehouse->products()->first();
+
+        $this->assertInstanceOf(Product::class, $product);
+        $this->assertEquals('test', $product->title);
     }
 }

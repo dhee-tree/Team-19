@@ -20,6 +20,9 @@ class Card extends Model
         'city',
     ];
 
+    /**
+     * Returns the user associated with the card.
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

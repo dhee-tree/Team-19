@@ -36,7 +36,7 @@ class ProductController extends Controller
                 request('sort') ?? 'created_at', 
                 request('order') ?? 'desc'
             ]
-        )->paginate(8)->withQueryString()->fragment('go-reviews');
+        )->paginate(9)->withQueryString()->fragment('go-reviews');
         
         return view('products.show', [
             'user' => $user,
