@@ -13,8 +13,8 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'created_at', 'order'=>'desc'])}}#reviews">Most Recent</a></li>
-                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (High to Low)</a></li>
-                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (Low to High)</a></li>
+                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (High to Low)</a></li>
+                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (Low to High)</a></li>
                 </ul>
             </div>
         </div>

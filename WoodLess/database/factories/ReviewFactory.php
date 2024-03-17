@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Review;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -10,21 +11,45 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Review>
  */
 class ReviewFactory extends Factory
-{
+{   
+    protected int $reviewScore;
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {   
+    public function definition() : array
+    {
         $sizes = ['S', 'M', 'L'];
+        $product = Product::find(fake()->numberBetween(1, Product::count())) ?? Product::first();
 
-        $product = Product::find(fake()->numberBetween(1, Product::count()));
+        return [
+            'description' => '',
+            'rating' => 0,
+            'attributes' => json_encode(["colour" => $this->faker->colorName(), "size" => $sizes[rand(0, count($sizes) - 1)]]),
+            'user_id' => fake()->numberBetween(1, User::count()),
+            'product_id' => $product->id,
+        ];
+    }
 
+    public function configure()
+    {
+        return $this->afterCreating(function (Review $review) {
+            $review->timestamps = false;
+            if($review->description == ''){
+                $review->update([
+                    'description' => $this->generateDescription($review->product),
+                    'rating' => $this->reviewScore
+                ]);
+            }
+            $review->timestamps = true;
+        });
+    }
+
+    public function generateDescription(Product $product){
         $positivePhrases = [
             'start1' => ['After using', 'When it comes to', 'My family loves', 'I love'],
-            'start2' => ['I found', 'it was', 'this product is'],
+            'start2' => ['I found it', 'it was', 'this product is'],
             'advantage' => ['very effective', 'extremely useful', 'incredibly durable', 'amazingly versatile'],
             'feature' => ['the design', 'the quality', 'the performance', 'the functionality'],
             'end' => ['I highly recommend it.', 'I would definitely buy again.', 'It\'s a game-changer!', 'It\'s simply outstanding.'],
@@ -32,7 +57,7 @@ class ReviewFactory extends Factory
         
         $negativePhrases = [
             'start1' => ['I regret buying', 'Not satisfied with', 'Disappointed with', 'I wouldn\'t recommend'],
-            'start2' => ['it\'s not', 'it is anything but', 'it is not', 'i was expecting it to be'],
+            'start2' => ['it\'s not', 'it is anything but', 'it is not', 'I was expecting it to be'],
             'advantage' => ['effective', 'useful', 'durable', 'reliable'],
             'feature' => ['the design', 'the quality', 'the performance', 'the price'],
             'end' => ['I wouldn\'t recommend it.', 'I won\'t be purchasing again.', 'It\'s not worth the price.', 'I was disappointed.'],
@@ -55,22 +80,16 @@ class ReviewFactory extends Factory
         $end = fake()->randomElement($phrases['end']);
         
         if ($phrases === $negativePhrases) {
-            $reviewScore = fake()->numberBetween(1, 2);
+            $this->reviewScore = fake()->numberBetween(1, 2);
         } elseif ($phrases === $positivePhrases) {
-            $reviewScore = fake()->numberBetween(4, 5);
+            $this->reviewScore = fake()->numberBetween(4, 5);
         } else {
-            $reviewScore = 3;
+            $this->reviewScore = 3;
         }
         
         // Construct the review description
         $description = "{$reviewStart1} {$product->title}, {$reviewStart2} {$advantage} for {$feature}. {$end}";
-
-        return [
-            'rating' => $reviewScore,
-            'description' => $description,
-            'attributes' => json_encode(["colour" => fake()->colorName(), "size" => $sizes[rand(0, count($sizes) -1)]]),
-            'user_id' => fake()->numberBetween(1, User::count()),
-            'product_id' => $product->id,
-        ];
+        
+        return $description;
     }
 }
