@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class TicketTest extends TestCase
 {   
     use RefreshDatabase;
-    protected $ticket;
+    protected Ticket $ticket;
     /**
      * Set up the ticket before each test.
      */
@@ -31,8 +31,10 @@ class TicketTest extends TestCase
      * Test that the ticket model can get it's importance level.
      */
     public function test_ticket_model_can_get_importance_level(): void
-    {
-        $this->assertInstanceOf(ImportanceLevel::class, $this->ticket->importanceLevel()->first());
+    {   
+        $importanceLevel = $this->ticket->importanceLevel()->first();
+        $this->assertInstanceOf(ImportanceLevel::class, $importanceLevel);
+        $this->assertEquals('test', $importanceLevel->level);
     }
 
     /**

@@ -9,12 +9,10 @@ use App\Models\Product;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use function PHPUnit\Framework\assertInstanceOf;
-
 class ReviewTest extends TestCase
 {   
     use RefreshDatabase;
-    protected $review;
+    protected Review $review;
 
     /**
      * Set up the review before each test.
@@ -23,8 +21,8 @@ class ReviewTest extends TestCase
     {
         parent::setUp();
         $this->review = Review::factory()->create([
-            'user_id' => User::factory()->create()->id,
-            'product_id' => Product::factory()->create()->id,
+            'user_id' => User::factory()->create(['first_name' => 'test'])->id,
+            'product_id' => Product::factory(['title' => 'test'])->create()->id,
         ]);
     }
 
@@ -32,8 +30,10 @@ class ReviewTest extends TestCase
      * Test to see if the model can its product.
      */
     public function test_review_model_can_get_products(): void
-    {
-        assertInstanceOf(Product::class, $this->review->product()->first());
+    {   
+        $product = $this->review->product()->first();
+        $this->assertInstanceOf(Product::class, $product);
+        $this->assertEquals('test', $product->title);
     }
 
     /**
@@ -41,6 +41,8 @@ class ReviewTest extends TestCase
      */
     public function test_review_model_can_get_user(): void
     {
-        assertInstanceOf(User::class, $this->review->user()->first());
+        $user = $this->review->user()->first();
+        $this->assertInstanceOf(User::class, $user);
+        $this->assertEquals('test', $user->first_name);
     }
 }

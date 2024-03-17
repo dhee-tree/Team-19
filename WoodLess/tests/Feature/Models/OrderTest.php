@@ -12,12 +12,10 @@ use App\Models\Product;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use function PHPUnit\Framework\assertInstanceOf;
-
 class OrderTest extends TestCase
 {
     use RefreshDatabase;
-    protected $order;
+    protected Order $order;
 
     /**
      * Set up the model before each test.
@@ -27,8 +25,8 @@ class OrderTest extends TestCase
         parent::setUp();
 
         $this->order = Order::create([
-            'user_id' => User::factory()->create()->id,
-            'address_id' => Address::factory()->create()->id,
+            'user_id' => User::factory()->create(['last_name' => 'test'])->id,
+            'address_id' => Address::factory()->create(['city' => 'test'])->id,
             'status_id' => OrderStatus::create(['status' => 'test'])->id,
             'details' => 'Order placed by user',
             'order_cost' => 0,
@@ -40,7 +38,9 @@ class OrderTest extends TestCase
      */
     public function test_order_model_can_get_user(): void
     {
-        assertInstanceOf(User::class, $this->order->user);
+        $user = $this->order->user;
+        $this->assertInstanceOf(User::class, $user);
+        $this->assertEquals('test', $user->last_name);
     }
 
     /**
@@ -48,7 +48,9 @@ class OrderTest extends TestCase
      */
     public function test_order_model_can_get_address(): void
     {
-        assertInstanceOf(Address::class, $this->order->address);
+        $address = $this->order->address;
+        $this->assertInstanceOf(Address::class, $address);
+        $this->assertEquals('test', $address->city);
     }
 
     /**
@@ -56,8 +58,20 @@ class OrderTest extends TestCase
      */
     public function test_order_model_can_get_products_and_quantity(): void
     {
-        $product = Product::factory()->create();
-        $warehouse =  Warehouse::factory()->create();
-        //$this->order->products()->attach(['product_id' => $product->id, 'warehouse_id' => $warehouse->id]);
+        $this->order->products()->attach(Product::factory()->create()->id, ['warehouse_id' => Warehouse::factory()->create()->id, 'attributes' => '{"color":"red"}', 'amount' => 5]);
+        $this->order->products()->attach(Product::factory()->create()->id, ['warehouse_id' => Warehouse::factory()->create()->id, 'attributes' => '{"color":"green"}', 'amount' => 5]);
+        
+        $this->assertInstanceOf(Product::class, $this->order->products()->first());
+        $this->assertEquals(10, $this->order->totalOrderedQuantity());
+    }
+
+    /**
+     * Test to see if the model can its order status.
+     */
+    public function test_order_model_can_get_status(): void
+    {
+        $status = $this->order->status()->first();
+        $this->assertInstanceOf(OrderStatus::class, $status);
+        $this->assertEquals('test', $status->status);
     }
 }
