@@ -8,7 +8,6 @@ on:
   push:
     branches:
       - main
-      - development
 
 # Define the jobs to run
 jobs:
