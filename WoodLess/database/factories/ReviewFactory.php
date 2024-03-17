@@ -32,7 +32,7 @@ class ReviewFactory extends Factory
         
         $negativePhrases = [
             'start1' => ['I regret buying', 'Not satisfied with', 'Disappointed with', 'I wouldn\'t recommend'],
-            'start2' => ['it\'s not', 'it is anything but', 'it is not', 'i was expecting it to be'],
+            'start2' => ['it\'s not', 'it is anything but', 'it is not', 'I was expecting it to be'],
             'advantage' => ['effective', 'useful', 'durable', 'reliable'],
             'feature' => ['the design', 'the quality', 'the performance', 'the price'],
             'end' => ['I wouldn\'t recommend it.', 'I won\'t be purchasing again.', 'It\'s not worth the price.', 'I was disappointed.'],
