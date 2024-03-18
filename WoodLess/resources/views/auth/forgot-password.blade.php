@@ -34,7 +34,7 @@
                     <button type="submit" class="btn btn-primary">
                         {{ __(' Reset Password ') }}
                     </button>
-                    <p>Reset your password?</p>
+                  
                     <p><a href="{{ route('login') }}">Log in here</a></p>
                 </div>
             </div>
