@@ -149,8 +149,8 @@ class Product extends Model
                 
                 $query->orderByRaw('cost * (1 - discount / 100) ASC');
             } elseif ($sortBy === 'Rating High to Low') {
-                $products = $query->get(); // Fetch products
-                // Sort products by average rating high to low
+                $products = $query->get(); 
+                
                 $products = $products->sortByDesc(function ($product) {
                     return $product->getCachedRelation('reviews')->avg('rating');
                 });
