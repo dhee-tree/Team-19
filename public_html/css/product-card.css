@@ -134,7 +134,7 @@
 #product .start {
     transform-origin: top left;
     white-space: nowrap;
-
+    padding-left: 2%;
     /* background-color: rgba(0, 255, 76, 0.5); /* Example red background with 50% opacity */
     width: 60%;
     /* Adjust width as needed */
