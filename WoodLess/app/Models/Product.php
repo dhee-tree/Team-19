@@ -129,21 +129,25 @@ class Product extends Model
             $query->whereJsonContains('attributes->color', $color);
         }
 
-        // Price
-        if (isset($filters['minCost'])) {
-            $query->where('cost', '>=', $filters['minCost']);
-        }
+       // Price
+    if (isset($filters['minCost'])) {
+      
+        $query->whereRaw('cost * (1 - discount / 100) >= ?', [$filters['minCost']]);
+    }
 
-        if (isset($filters['maxCost'])) {
-            $query->where('cost', '<=', $filters['maxCost']);
-        }
+    if (isset($filters['maxCost'])) {
+        
+        $query->whereRaw('cost * (1 - discount / 100) <= ?', [$filters['maxCost']]);
+    }
 
         if (isset($filters['sort_by'])) {
             $sortBy = $filters['sort_by'];
             if ($sortBy === 'Price High to Low') {
-                $query->orderByDesc('cost');
+                
+                $query->orderByRaw('cost * (1 - discount / 100) DESC');
             } elseif ($sortBy === 'Price Low To High') {
-                $query->orderBy('cost');
+                
+                $query->orderByRaw('cost * (1 - discount / 100) ASC');
             } elseif ($sortBy === 'Rating High to Low') {
                 $products = $query->get(); // Fetch products
                 // Sort products by average rating high to low
