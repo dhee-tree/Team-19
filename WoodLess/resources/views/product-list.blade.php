@@ -37,7 +37,6 @@
                                             @if (!($key == 'minCost' && $value == 0) && !($key == 'maxCost' && $value == 10000))
                                                 <li> {{-- Wrap in conditional --}}
                                                     @if ($key == 'sort_by')
-                                                    
                                                     @elseif ($key == 'minCost')
                                                         Minimum Cost:
                                                     @elseif ($key == 'maxCost')
@@ -77,7 +76,6 @@
                                     @if ($key != 'sort_by' || ($key == 'sort_by' && $value != 'Select...'))
                                         <li> {{-- Wrap in conditional --}}
                                             @if ($key == 'sort_by')
-                                            
                                             @elseif ($key == 'minCost')
                                                 Minimum Cost:
                                             @elseif ($key == 'maxCost')
@@ -116,6 +114,11 @@
                                     <div class="badge bg-dark text-white position-absolute"
                                         style="top: 0.5rem; right: 0.5rem">-{{ $product->discount }}%
                                     </div>
+                                    @if ($product->stockAmount() < 10)
+                                        <div class="badge bg-dark text-white position-absolute"
+                                            style="top: 0.5rem; left: 0.5rem">{{ $product->stockAmount() }} left
+                                        </div>
+                                    @endif
                                 @endif
                                 <!-- Product content -->
                                 <div class="card-content h-100">
