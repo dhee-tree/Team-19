@@ -62,12 +62,24 @@ class ProductTest extends TestCase
     /**
      * Test to see if the model can get warehouses.
      */
-    public function test_product_model_can_get_warehouses_and_set_stock(): void
+    public function test_product_model_can_get_warehouses(): void
+    {   
+        $this->product->warehouses()->attach(Warehouse::factory(['city' => 'test'])->create()->id);
+
+        $warehouse = $this->product->warehouses()->first();
+        $this->assertInstanceOf(Warehouse::class, $warehouse);
+
+        $this->assertEquals('test', $warehouse->city);
+    }
+
+    /**
+     * Test to see if the model can get stock amount.
+     */
+    public function test_product_model_can_get_stock_amount(): void
     {   
         $this->product->warehouses()->attach(Warehouse::factory()->create()->id);
 
         $warehouse = $this->product->warehouses()->first();
-        $this->assertInstanceOf(Warehouse::class, $warehouse);
 
         $this->product->setStockAmount($warehouse->id, 20);
         $this->assertEquals(20, $this->product->stockAmount($warehouse->id));
