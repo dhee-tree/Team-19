@@ -3,8 +3,8 @@
     </a>
 </p>
 <p align="center">
-    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/dhee-tree/Team-19/tests.yml?logo=github&label=tests&branch=development">
-    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/dhee-tree/Team-19/main.yml?logo=github&branch=development">
+    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/dhee-tree/Team-19/tests.yml?logo=github&label=tests&branch=main">
+    <img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/dhee-tree/Team-19/main.yml?logo=github&branch=main">
     <img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/dhee-tree/Team-19/total">
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/dhee-tree/Team-19">
     <img alt="GitHub commit activity (branch)" src="https://img.shields.io/github/commit-activity/t/dhee-tree/Team-19/development">
