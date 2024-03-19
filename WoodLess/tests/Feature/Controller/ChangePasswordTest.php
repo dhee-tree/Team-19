@@ -4,6 +4,7 @@ namespace Tests\Feature\Controllers;
 
 use App\Http\Controllers\ChangePasswordController;
 use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,7 @@ class ChangePasswordTest extends TestCase
 {
     use RefreshDatabase;
     protected $user;
-    protected $userPassword;
+    protected $userWithPassword;
 
     protected function setUp(): void
     {
@@ -25,7 +26,6 @@ class ChangePasswordTest extends TestCase
         $this->userWithPassword = User::factory()->create([
             'password' => Hash::make('old_password'),
         ]);
-
     }
     
     public function test_show_change_password_form()
@@ -44,7 +44,7 @@ class ChangePasswordTest extends TestCase
         $this->actingAs($this->userWithPassword);
         $newPassword = Str::random(10);
 
-        $response = $this->post(route('password.change'), [
+        $this->post(route('password.change'), [
             'current_password' => 'old_password',
             'password' => $newPassword,
             'confirmed' => $newPassword,
@@ -53,6 +53,7 @@ class ChangePasswordTest extends TestCase
         // Check if the password has been updated
         $this->userWithPassword->refresh();
         $this->assertTrue(Hash::check($newPassword, $this->userWithPassword->password));
+        $this->artisan('migrate:fresh --env=testing');
     }
 
     public function test_user_cannot_change_password_with_invalid_current_password()
