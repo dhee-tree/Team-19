@@ -64,3 +64,6 @@ jobs:
           remote-user: u-220216407@cs2410-web01pvm.aston.ac.uk
           target-server: cs2410-web01pvm.aston.ac.uk
           private-ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source-path: ./
+          destination-path: ./
+          rsync-options: --exclude=.git* --exclude=.git/
