@@ -236,7 +236,7 @@
                 <li class="cs-faq-item active">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                        What makes your furniture sustainable
+                        What makes your furniture sustainable?
                         </span>
                     </button>
                     <p class="cs-item-p">
@@ -248,15 +248,33 @@
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                            What is your refund policy ?
+                            How do I need to verify my email?
+                        </span>
+                    </button>
+                    <p class="cs-item-p">To verify your email, you will need to click on the verification link we sent to your inbox after you signed up.</p>
+                </li>
+                <li class="cs-faq-item">
+                    <button class="cs-button">
+                        <span class="cs-button-text">
+                            Why do I need to verify my email?
+                        </span>
+                    </button>
+                    <p class="cs-item-p">Verifying your email helps us ensure that you are the rightful owner of the email address you provided during sign up. 
+                        This helps us keep your account secure and your information safe. It also ensures that you receive important notifications about your 
+                        account such as password reset link and order invoices.
+                    </p>
+                </li>
+                <li class="cs-faq-item">
+                    <button class="cs-button">
+                        <span class="cs-button-text">
+                            What is your refund policy?
                         </span>
                     </button>
                     <p class="cs-item-p">
-                    What is your return policy?
-
-                   We want you to be completely satisfied with your purchase. 
-                   If for any reason you're not happy with your furniture, you can return 
-                   it within 30 days  for a full refund or exchange. Please refer to our return policy for more details.
+                        We want you to be completely satisfied with your purchase. 
+                        If for any reason you're not happy with your furniture, you can return 
+                        it within 30 days  for a full refund or exchange. Please refer to our return policy for more details.
+                    </p>
                 </li>
                 <li class="cs-faq-item">
                     <button class="cs-button">

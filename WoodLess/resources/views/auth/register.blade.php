@@ -41,7 +41,7 @@
             @enderror
 
             <!-- Email Address -->
-            <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+            <input id="email" placeholder="** Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
             @error('email')
                 <span class="invalid-feedback" role="alert">
@@ -61,6 +61,7 @@
             <!-- Confirm Password -->
             <input id="password-confirm" placeholder="Confirm password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 
+            <p>** Email will have to be verified before you can access the checkout page.</p>
             <button type="submit" class="btn btn-primary">
                 {{ __('Register') }}
             </button>

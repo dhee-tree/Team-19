@@ -63,6 +63,11 @@
                                             <div class="badge bg-dark text-white position-absolute"
                                                 style="top: 0.5rem; right: 0.5rem">-{{ $product->discount }}%
                                             </div>
+                                            @if ($product->stockAmount() < 10)
+                                                <div class="badge bg-dark text-white position-absolute"
+                                                    style="top: 0.5rem; left: 0.5rem">{{ $product->stockAmount() }} left
+                                                </div>
+                                            @endif
                                         @endif
                                         <!-- Product content -->
                                         <div class="card-content h-100">
@@ -140,79 +145,84 @@
                         @php
                             $discProduct = $products->sortByDesc('discount')->first();
                         @endphp
-                        @if($discProduct)
-                        <div class="col pt-4">
-                            <!-- Product card -->
-                            <div id="product" class="card discount shadow expand-hover">
-                                <!-- Sale badge -->
-                                @if ($discProduct->discount)
-                                    <div class="badge bg-dark text-white position-absolute"
-                                        style="top: 0.5rem; right: 0.5rem">-{{ $discProduct->discount }}%
-                                    </div>
-                                @endif
-                                <!-- Product content -->
-                                <div class="card-content h-100">
-                                    <!-- Product image -->
-                                    <img width="10" class="card-img-top"
-                                        src="{{ Storage::url(explode(',', $discProduct->images)[0]) }}"
-                                        alt="{{ $discProduct->title }}" />
-                                    <!-- Product details -->
-                                    <div class="card-details">
-                                        <div class="start">
-                                            <!-- Product title -->
-                                            <div class="name">
-                                                {{ $discProduct->title }}
+                        @if ($discProduct)
+                            <div class="col pt-4">
+                                <!-- Product card -->
+                                <div id="product" class="card discount shadow expand-hover">
+                                    <!-- Sale badge -->
+                                    @if ($discProduct->discount)
+                                        <div class="badge bg-dark text-white position-absolute"
+                                            style="top: 0.5rem; right: 0.5rem">-{{ $discProduct->discount }}%
+                                        </div>
+                                        @if ($product->stockAmount() < 10)
+                                            <div class="badge bg-dark text-white position-absolute"
+                                                style="top: 0.5rem; left: 0.5rem">{{ $product->stockAmount() }} left
                                             </div>
-                                            <!-- Product price and discount -->
-                                            <div class="price-and-discount">
-                                                <div class="price-wrapper">
+                                        @endif
+                                    @endif
+                                    <!-- Product content -->
+                                    <div class="card-content h-100">
+                                        <!-- Product image -->
+                                        <img width="10" class="card-img-top"
+                                            src="{{ Storage::url(explode(',', $discProduct->images)[0]) }}"
+                                            alt="{{ $discProduct->title }}" />
+                                        <!-- Product details -->
+                                        <div class="card-details">
+                                            <div class="start">
+                                                <!-- Product title -->
+                                                <div class="name">
+                                                    {{ $discProduct->title }}
+                                                </div>
+                                                <!-- Product price and discount -->
+                                                <div class="price-and-discount">
+                                                    <div class="price-wrapper">
 
-                                                    <span class="showcase-price">
-                                                        <!-- Increased font size for regular price -->
-                                                        @if ($product->discount)
-                                                            £{{ sprintf('%0.2f', round($discProduct->cost - $discProduct->cost * ($discProduct->discount / 100), 2)) }}
-                                                        @else
-                                                            £{{ $discProduct->cost }}
-                                                        @endif
-                                                    </span>
-                                                    @if ($discProduct->discount)
-                                                        <span class="discount-price">
-                                                            <!-- Decreased font size for discount price -->
-                                                            <span
-                                                                class="text-secondary"><strike>£{{ $discProduct->cost }}</strike></span>
+                                                        <span class="showcase-price">
+                                                            <!-- Increased font size for regular price -->
+                                                            @if ($product->discount)
+                                                                £{{ sprintf('%0.2f', round($discProduct->cost - $discProduct->cost * ($discProduct->discount / 100), 2)) }}
+                                                            @else
+                                                                £{{ $discProduct->cost }}
+                                                            @endif
                                                         </span>
-                                                    @endif
+                                                        @if ($discProduct->discount)
+                                                            <span class="discount-price">
+                                                                <!-- Decreased font size for discount price -->
+                                                                <span
+                                                                    class="text-secondary"><strike>£{{ $discProduct->cost }}</strike></span>
+                                                            </span>
+                                                        @endif
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="end">
-                                            <!-- Text -->
-                                            <div class="discount-number">-{{ $discProduct->discount }}%</div>
-                                            <!-- Fire animation -->
-                                            <div class="fire">
-                                                <div class="fire-left">
-                                                    <div class="main-fire"></div>
-                                                    <div class="particle-fire"></div>
-                                                </div>
-                                                <div class="fire-center">
-                                                    <div class="main-fire"></div>
-                                                    <div class="particle-fire"></div>
-                                                </div>
-                                                <div class="fire-right">
-                                                    <div class="main-fire"></div>
-                                                    <div class="particle-fire"></div>
-                                                </div>
-                                                <div class="fire-bottom">
-                                                    <div class="main-fire"></div>
+                                            <div class="end">
+                                                <!-- Text -->
+                                                <div class="discount-number">-{{ $discProduct->discount }}%</div>
+                                                <!-- Fire animation -->
+                                                <div class="fire">
+                                                    <div class="fire-left">
+                                                        <div class="main-fire"></div>
+                                                        <div class="particle-fire"></div>
+                                                    </div>
+                                                    <div class="fire-center">
+                                                        <div class="main-fire"></div>
+                                                        <div class="particle-fire"></div>
+                                                    </div>
+                                                    <div class="fire-right">
+                                                        <div class="main-fire"></div>
+                                                        <div class="particle-fire"></div>
+                                                    </div>
+                                                    <div class="fire-bottom">
+                                                        <div class="main-fire"></div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <a href="/product/{{ $discProduct->id }}" class="stretched-link"></a>
+                                    <a href="/product/{{ $discProduct->id }}" class="stretched-link"></a>
 
+                                </div>
                             </div>
-                        </div>
                         @endif
                     </div>
                 </div>
