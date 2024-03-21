@@ -158,11 +158,10 @@
 
 #product .discount-number {
     /* Adjust as needed */
-    transform-origin: top left;
     color: #cc0c39;
     /* Adjust text color as needed */
     font-weight: normal;
-
+    transform: translate(25%, 55%);
 }
 
 #product .end .fire {
