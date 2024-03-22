@@ -92,7 +92,7 @@ margin-top: 20px;
                     <div class="container">
                        
                         <h1 class="page-section-heading text-center text-uppercase ">Meet the Team</h1>
-        
+                        <a id="back-button" href="/about">Back</a>
                       
                         <div class="row justify-content-center">
                             <!-- IGGY 1-->
