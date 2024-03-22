@@ -12,13 +12,10 @@ use App\Models\Warehouse;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use function PHPUnit\Framework\assertEquals;
-use function PHPUnit\Framework\assertInstanceOf;
-
 class ProductTest extends TestCase
 {   
     use RefreshDatabase;
-    protected $product;
+    protected Product $product;
 
     /**
      * Set up the model before each test.
@@ -37,7 +34,12 @@ class ProductTest extends TestCase
     public function test_product_model_can_get_baskets(): void
     {
         $this->product->baskets()->attach(User::factory()->create()->basket->id);
-        assertInstanceOf(Basket::class, $this->product->baskets()->first());
+        $basket = $this->product->baskets()->first();
+
+        $this->assertInstanceOf(Basket::class, $basket);
+
+        $basket->products()->attach($this->product->id);
+        $this->assertEquals($this->product->id, $basket->products->first()->id);
     }
 
     /**
@@ -47,22 +49,40 @@ class ProductTest extends TestCase
     {   
         Review::factory()->create([
             'user_id' => User::factory()->create()->id,
-            'product_id' => $this->product->id
+            'product_id' => $this->product->id,
+            'description' => 'test'
         ]);
-        assertInstanceOf(Review::class, $this->product->reviews()->first());
+
+        $review = $this->product->reviews()->first();
+
+        $this->assertInstanceOf(Review::class, $review);
+        $this->assertEquals('test', $review->description);
     }
 
     /**
      * Test to see if the model can get warehouses.
      */
-    public function test_product_model_can_get_warehouses_and_set_stock(): void
+    public function test_product_model_can_get_warehouses(): void
     {   
-        $warehouse = Warehouse::factory()->create();
-        $this->product->warehouses()->attach($warehouse->id);
-        assertInstanceOf(Warehouse::class, $this->product->warehouses()->first());
+        $this->product->warehouses()->attach(Warehouse::factory(['city' => 'test'])->create()->id);
+
+        $warehouse = $this->product->warehouses()->first();
+        $this->assertInstanceOf(Warehouse::class, $warehouse);
+
+        $this->assertEquals('test', $warehouse->city);
+    }
+
+    /**
+     * Test to see if the model can get stock amount.
+     */
+    public function test_product_model_can_get_stock_amount(): void
+    {   
+        $this->product->warehouses()->attach(Warehouse::factory()->create()->id);
+
+        $warehouse = $this->product->warehouses()->first();
 
         $this->product->setStockAmount($warehouse->id, 20);
-        assertEquals(20, $this->product->stockAmount($warehouse->id));
+        $this->assertEquals(20, $this->product->stockAmount($warehouse->id));
     }
 
     /**
@@ -70,9 +90,11 @@ class ProductTest extends TestCase
      */
     public function test_product_model_can_get_categories(): void
     {   
-        $category = Category::factory()->create(['images' => '']);
-        $this->product->categories()->attach($category->id);
-        assertInstanceOf(Category::class, $this->product->categories()->first());
+        $this->product->categories()->attach(Category::factory()->create(['images' => '', 'category' => 'test'])->id);
+
+        $category = $this->product->categories()->first();
+        $this->assertInstanceOf(Category::class, $category);
+        $this->assertEquals('test', $category->category);
     }
 
     /**

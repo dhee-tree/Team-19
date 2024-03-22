@@ -208,7 +208,6 @@ Route::middleware('prevent.resubmission')->group(function () {
         Route::put('/addresses/{address}', [AddressController::class, 'update'])->name('addresses.update');
         Route::delete('/addresses/{address}', [AddressController::class, 'destroy'])->name('addresses.destroy');
         Route::post('/addresses/{address}/set-default', [AddressController::class, 'setDefault'])->name('addresses.set_default');
-        
     });
     //Forgot password
     Route::get('/forgot-password', function () {

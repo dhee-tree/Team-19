@@ -14,12 +14,10 @@ use App\Models\Review;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use function PHPUnit\Framework\assertNull;
-
 class UserTest extends TestCase
 {  
     use RefreshDatabase;
-    protected $user;
+    protected User $user;
 
     /**
      * Set up the user before each test.
@@ -35,7 +33,9 @@ class UserTest extends TestCase
      */
     public function test_user_model_creation_creates_basket(): void
     {   
-        $this->assertInstanceOf(Basket::class, $this->user->basket);
+        $basket = $this->user->basket;
+        $this->assertInstanceOf(Basket::class, $basket);
+        $this->assertEquals($this->user->id, $basket->user_id);
     }
 
     /**
@@ -47,11 +47,14 @@ class UserTest extends TestCase
             'user_id' => $this->user->id,
             'address_id' => Address::factory()->create()->id,
             'status_id' => OrderStatus::create(['status' => 'test'])->id,
-            'details' => 'Order placed by user',
+            'details' => 'test of details',
             'order_cost' => 0,
         ]);
+        
+        $orders = $this->user->orders->first();
 
-        $this->assertInstanceOf(Order::class, $this->user->orders->first());
+        $this->assertInstanceOf(Order::class, $orders);
+        $this->assertEquals('test of details', $orders->details);
     }
 
     /**
@@ -61,11 +64,14 @@ class UserTest extends TestCase
     {   
         $this->user->reviews()->create([
             'product_id' => Product::factory()->create()->id,
-            'rating' => 5,
-            'description' => 'Test'  
+            'rating' => 3,
+            'description' => 'test of description'  
         ]);
 
-        $this->assertInstanceOf(Review::class, $this->user->reviews->first());
+        $reviews = $this->user->reviews->first();
+
+        $this->assertInstanceOf(Review::class, $reviews);
+        $this->assertEquals('test of description', $reviews->description);
     }
 
     /**
@@ -76,7 +82,11 @@ class UserTest extends TestCase
         Address::factory()->create([
             'user_id' => $this->user->id
         ]);
-        $this->assertInstanceOf(Address::class, $this->user->addresses->first());
+
+        $address = $this->user->addresses->first();
+
+        $this->assertInstanceOf(Address::class, $address);
+        $this->assertEquals($this->user->id, $address->user_id);
     }
 
     /**
@@ -88,7 +98,10 @@ class UserTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $this->assertInstanceOf(Card::class, $this->user->cards->first());
+        $card = $this->user->cards->first();
+
+        $this->assertInstanceOf(Card::class, $card);
+        $this->assertEquals($this->user->id, $card->user_id);
     }
 
     /**
@@ -100,7 +113,7 @@ class UserTest extends TestCase
     }
 
     /**
-     * Test if the user has an elavated access level.
+     * Test if the user has an elevated access level.
      */
     public function test_user_model_can_get_access_level(): void
     {   
@@ -116,6 +129,6 @@ class UserTest extends TestCase
     {   
         $id = $this->user->id;
         $this->user->delete();
-        assertNull(Basket::where('user_id', '=', (string)($id))->first());
+        $this->assertNull(Basket::where('user_id', '=', (string)($id))->first());
     }
 }

@@ -42,6 +42,9 @@ class Order extends Model
         return $this->belongsToMany(Product::class, 'order_product_warehouse')->withPivot('id','amount','warehouse_id','attributes')->withTimestamps();
     }
 
+    /**
+     * Returns the total amount of all order items.
+     */
     public function totalOrderedQuantity()
     {
         return $this->products()->sum('amount');

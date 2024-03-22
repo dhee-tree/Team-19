@@ -15,6 +15,9 @@ class EmailVerificationCode extends Model
         'code',
     ];
 
+    /**
+     * Get the user associated with the model.
+     */
     public function user(){
         return $this->belongsTo(User::class);
     }

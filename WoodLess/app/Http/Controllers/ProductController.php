@@ -12,9 +12,6 @@ use App\Http\Controllers\CategoryController;
 
 class ProductController extends Controller
 {
-
-    protected $reviews;
-    
     /**
      * Retrieve a single product.
      * @param int $product_id The id of the product in the database.
@@ -32,11 +29,8 @@ class ProductController extends Controller
         })->shuffle()->take(8);
 
         $reviews = $product->getCachedRelation('reviews')->sortBy(
-            [
-                request('sort') ?? 'created_at', 
-                request('order') ?? 'desc'
-            ]
-        )->paginate(8)->withQueryString()->fragment('go-reviews');
+            request('sort') ?? 'rating', SORT_REGULAR, request('order') === 'asc'
+        )->paginate(9)->withQueryString()->fragment('go-reviews');
         
         return view('products.show', [
             'user' => $user,

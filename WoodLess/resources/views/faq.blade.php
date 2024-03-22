@@ -236,7 +236,7 @@
                 <li class="cs-faq-item active">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                        What makes your furniture sustainable
+                        What makes your furniture sustainable?
                         </span>
                     </button>
                     <p class="cs-item-p">
@@ -248,24 +248,45 @@
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                            What is your refund policy ?
+                            How and why do I need to verify my email?
                         </span>
                     </button>
-                    <p class="cs-item-p">
-                    What is your return policy?
-
-                   We want you to be completely satisfied with your purchase. 
-                   If for any reason you're not happy with your furniture, you can return 
-                   it within 30 days  for a full refund or exchange. Please refer to our return policy for more details.
+                    <p class="cs-item-p">To verify your email, you will need to click on the verification link we sent to your inbox after you signed up.
+                    Verifying your email helps us ensure that you are the rightful owner of the email address you provided during sign up. 
+                        This helps us keep your account secure and your information safe. It also ensures that you receive important notifications about your 
+                        account such as password reset link and order invoices.
+                    </p>
                 </li>
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                           What is your estimated shipping time?
+                            How do you collect materials and make products?
+                        </span>
+                    </button>
+                    <p class="cs-item-p">We collect materials for our furniture from ocean waste and landfill sites, 
+                        sourcing 100% recycled materials. After careful cleaning and processing, 
+                        we transform these materials into high-quality furniture products, contributing to reducing ocean pollution
+                         and landfill waste while providing eco-friendly solutions for our customers.
+                    </p>
+                </li>
+                <li class="cs-faq-item">
+                    <button class="cs-button">
+                        <span class="cs-button-text">
+                            What is your refund policy?
                         </span>
                     </button>
                     <p class="cs-item-p">
+                        We want you to be completely satisfied with your purchase. 
+                        If for any reason you're not happy with your furniture, you can return 
+                        it within 30 days  for a full refund or exchange. Please refer to our return policy for more details.
+                    </p>
+                </li>
+                <li class="cs-faq-item">
+                    <button class="cs-button">
                     Do you offer shipping options for large furniture items?
+                    </button>
+                    <p class="cs-item-p">
+                 
 
  We offer shipping options for all our furniture items, including larger pieces such as sofas and dining tables.
   Our shipping partners handle deliveries carefully and efficiently, ensuring that your furniture arrives safely 
@@ -275,26 +296,27 @@
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                        What steps do you take to minimize environmental impact?
+                                What are your future sustainability goals?  
                         </span>
                     </button>
                     <p class="cs-item-p">
-                    We take several measures to minimize our environmental impact, 
-                    including using eco-friendly materials, reducing waste in production processes,
-                     and offsetting carbon emissions from shipping. We're committed to sustainability
-                      every step of the way.
+                    Our future sustainability goals include achieving carbon neutrality and
+                     implementing zero-waste practices across all operations by 2030, 
+                     promoting biodiversity conservation in our supply chain. 
+                     We aim to foster a culture of environmental stewardship within our organisation
+                      and collaborate with stakeholders to drive positive change in our communities and beyond.
                     </p>
                 </li>
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                        Do you have a showroom where I can see the furniture in person?
+                        How can I help save our enviroment?
                         </span>
                     </button>
                     <p class="cs-item-p">
-                    As of present we  primarily operate online, However we are opening showroom locations in
-                     select cities where you can view our furniture collections in person. 
-                     So keep your eyes out for upddates on these.
+                    Join us in keeping our oceans clean and protecting marine life! Support The Ocean Cleanup's
+                     efforts to remove plastic waste from our waters by visiting their website <a href='https://theoceancleanup.com/' style='color: #007bff; text-decoration: none; font-weight: bold;'>here</a>. 
+                        Together, we can make a difference!
                     </p>
                 </li>
             </ul>

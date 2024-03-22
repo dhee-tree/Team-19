@@ -201,9 +201,13 @@ margin-top: 20px;
                                                 <div class="divider-custom-line"></div>
                                             </div>
                                             <!--  - Image-->
-                                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cabin.png" alt="..." />
+                                          
                                             <!--  - Text-->
-                                            <p class="mb-4">Iggy is one of the founders at Woodless and is currently working as a Front end developer</p>
+                                            <p class="mb-4">Iggy, a founder at Woodless, merges frontend development expertise with a deep commitment to sustainability. 
+                                                Specializing in HTML, CSS, and JavaScript, he crafts engaging web interfaces while championing eco-friendly practices. 
+                                                Iggy's mission is to integrate sustainability into Woodless' digital presence, optimizing performance and reducing
+                                                 environmental impact. When not coding, he explores nature trails and sketches design ideas, reflecting his passion 
+                                                 for technology and the environment.</p>
                                             <button class="btn btn-primary" data-bs-dismiss="modal">
                                                 <i class="fas fa-xmark fa-fw"></i>
                                                 Close Window
@@ -232,10 +236,15 @@ margin-top: 20px;
                                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                                 <div class="divider-custom-line"></div>
                                             </div>
-                                            <!-- - Image-->
-                                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/cake.png" alt="..." />
+                                            
                                             <!--  - Text-->
-                                            <p class="mb-4">Hamid is a founder at Woodless and is currently working as a fullstack developer</p>
+                                            <p class="mb-4">Hamid, a founder at Woodless, adeptly combines his role as a fullstack developer 
+                                                with a profound commitment to sustainability. With expertise spanning various coding languages
+                                                 such as JavaScript, Python, and Ruby, he designs captivating and environmentally-conscious web
+                                                  interfaces. Hamid's primary objective is to embed sustainability into Woodless' digital ecosystem,
+                                                   optimizing performance and minimizing ecological impact. Outside of coding, he finds solace in
+                                                    exploring nature trails and nurturing his creativity through design, embodying his passion 
+                                                    for both technology and environmental stewardship.</p>
                                             <button class="btn btn-primary" data-bs-dismiss="modal">
                                                 <i class="fas fa-xmark fa-fw"></i>
                                                 Close Window
@@ -264,10 +273,15 @@ margin-top: 20px;
                                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                                 <div class="divider-custom-line"></div>
                                             </div>
-                                            <!--  - Image-->
-                                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/circus.png" alt="..." />
                                             <!--  - Text-->
-                                            <p class="mb-4">Ismaeel is another founder at Woodless and is currently working as a backend developer</p>
+                                            <p class="mb-4">Ismaeel, another founder at Woodless, excels as a backend developer, 
+                                                blending his technical prowess with a strong commitment to the company's mission.
+                                                 Specializing in languages such as Python, Java, and PHP, he architects robust 
+                                                 and efficient backend systems. Ismaeel's primary focus is on optimizing performance 
+                                                 and ensuring data security for Woodless' digital infrastructure. Beyond coding, 
+                                                 he enjoys delving into nature's wonders and finding inspiration for innovative
+                                                  backend solutions, reflecting his dedication to merging technology with environmental 
+                                                  responsibility.</p>
                                             <button class="btn btn-primary" data-bs-dismiss="modal">
                                                 <i class="fas fa-xmark fa-fw"></i>
                                                 Close Window
@@ -296,10 +310,15 @@ margin-top: 20px;
                                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                                 <div class="divider-custom-line"></div>
                                             </div>
-                                            <!--  - Image-->
-                                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="..." />
                                             <!--  - Text-->
-                                            <p class="mb-4">Lewis is another founder at WoodLess and is currently working as a fullstack developer</p>
+                                            <p class="mb-4">Lewis, another founder at WoodLess, brings his expertise as a 
+                                                fullstack developer to the forefront, seamlessly integrating technology with sustainability.
+                                                 Proficient in a diverse array of coding languages including JavaScript, Python, and Ruby,
+                                                  he crafts dynamic and user-friendly web interfaces. Lewis is dedicated to imbuing WoodLess'
+                                                   digital platforms with sustainability, prioritizing performance optimization and eco-friendly
+                                                    practices. When he's not immersed in coding, Lewis can be found exploring nature's beauty and 
+                                                    drawing inspiration for innovative fullstack solutions, embodying his commitment to marrying 
+                                                    technology with environmental consciousness.</p>
                                             <button class="btn btn-primary" data-bs-dismiss="modal">
                                                 <i class="fas fa-xmark fa-fw"></i>
                                                 Close Window
@@ -328,10 +347,15 @@ margin-top: 20px;
                                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                                 <div class="divider-custom-line"></div>
                                             </div>
-                                            <!--  - Image-->
-                                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
                                             <!--  - Text-->
-                                            <p class="mb-4">Umer is another founder at Woodless and is currently working as a back end developer</p>
+                                            <p class="mb-4">Umer, another founder at Woodless, is instrumental as a backend developer, 
+                                                channeling his technical expertise into advancing the company's objectives. 
+                                                Proficient in languages like Python, Java, and SQL, he engineers resilient and streamlined 
+                                                backend systems. Umer is deeply committed to enhancing performance and fortifying data security
+                                                 across Woodless' digital framework. Outside his coding realm, he finds solace in exploring nature's
+                                                  marvels, drawing creative insights that fuel his innovative backend solutions. This dedication 
+                                                  underscores Umer's commitment to harmonizing technology with environmental consciousness 
+                                                  at Woodless.</p>
                                             <button class="btn btn-primary" data-bs-dismiss="modal">
                                                 <i class="fas fa-xmark fa-fw"></i>
                                                 Close Window
@@ -360,10 +384,16 @@ margin-top: 20px;
                                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                                 <div class="divider-custom-line"></div>
                                             </div>
-                                            <!--  - Image-->
-                                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
+                                           
                                             <!--  - Text-->
-                                            <p class="mb-4">Zaakir is a founder at woodless and is currently working as a front end developer</p>
+                                            <p class="mb-4">Zaakir, a founder at Woodless, plays a pivotal role as a front end developer,
+                                                 melding his creative flair with technical expertise. Proficient in languages like HTML, 
+                                                 CSS, and JavaScript, he crafts visually appealing and user-centric web interfaces. Zaakir 
+                                                 is deeply committed to integrating sustainability into Woodless' digital presence, ensuring
+                                                  each design aligns with the company's eco-friendly ethos. Beyond coding, he finds inspiration 
+                                                  in nature's beauty, channeling this passion into innovative frontend solutions that resonate
+                                                   with users. Zaakir's dedication to blending technology with environmental consciousness 
+                                                   underscores Woodless' commitment to sustainability.</p>
                                             <button class="btn btn-primary" data-bs-dismiss="modal">
                                                 <i class="fas fa-xmark fa-fw"></i>
                                                 Close Window
@@ -392,10 +422,15 @@ margin-top: 20px;
                                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                                 <div class="divider-custom-line"></div>
                                             </div>
-                                            <!--  - Image-->
-                                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
                                             <!--  - Text-->
-                                            <p class="mb-4">Matteo is a founder at woodless and is currently working as a fullstack developer</p>
+                                            <p class="mb-4">Matteo, a founder at Woodless, brings his visionary leadership to the role of a fullstack developer, 
+                                                combining technical prowess with innovative thinking. Proficient in a diverse range of coding languages such as
+                                                 JavaScript, Python, and PHP, he crafts dynamic and versatile web solutions. Matteo is deeply committed to embedding
+                                                  sustainability into Woodless' digital footprint, ensuring every aspect of the platform reflects the company's
+                                                   eco-conscious values. When he's not immersed in coding, Matteo draws inspiration from nature's beauty, 
+                                                   infusing his work with creative solutions that bridge technology and environmental responsibility.
+                                                    His dedication underscores Woodless' 
+                                                commitment to sustainable innovation in every aspect of its operations.</p>
                                             <button class="btn btn-primary" data-bs-dismiss="modal">
                                                 <i class="fas fa-xmark fa-fw"></i>
                                                 Close Window
@@ -424,10 +459,16 @@ margin-top: 20px;
                                                 <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                                                 <div class="divider-custom-line"></div>
                                             </div>
-                                            <!--  - Image-->
-                                            <img class="img-fluid rounded mb-5" src="assets/img/portfolio/submarine.png" alt="..." />
                                             <!--  - Text-->
-                                            <p class="mb-4">Ndumiso is another founder at woodless and is currently working as a front end developer</p>
+                                            <p class="mb-4">Ndumiso, another visionary founder at Woodless, contributes his expertise as a front end 
+                                                developer, blending creativity with technical proficiency. 
+                                                Proficient in languages like HTML, CSS, and JavaScript, he crafts captivating
+                                                 and user-friendly web interfaces. Ndumiso is deeply committed to infusing Woodless' 
+                                                 digital presence with sustainability, ensuring that every design choice reflects the company's 
+                                                 eco-conscious values. Beyond coding, he finds inspiration in nature's beauty, drawing from its 
+                                                 tranquility to create innovative frontend solutions that resonate with users. Ndumiso's dedication
+                                                  to merging technology with environmental consciousness underscores Woodless' commitment to sustainable
+                                                   innovation in every aspect of its operations.</p>
                                             <button class="btn btn-primary" data-bs-dismiss="modal">
                                                 <i class="fas fa-xmark fa-fw"></i>
                                                 Close Window

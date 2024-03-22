@@ -10,12 +10,10 @@ use App\Models\OrderStatus;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-use function PHPUnit\Framework\assertInstanceOf;
-
 class OrderStatusTest extends TestCase
 {
     use RefreshDatabase;
-    protected $orderStatus;
+    protected OrderStatus $orderStatus;
 
     /**
      * Set up the order status before each test.
@@ -36,10 +34,13 @@ class OrderStatusTest extends TestCase
             'user_id' => User::factory()->create()->id,
             'address_id' => Address::factory()->create()->id,
             'status_id' => $this->orderStatus->id,
-            'details' => 'Order placed by user',
+            'details' => 'test',
             'order_cost' => 0,
         ]);
 
-        assertInstanceOf(Order::class, $this->orderStatus->orders->first());
+        $order = $this->orderStatus->orders->first();
+
+        $this->assertInstanceOf(Order::class, $order);
+        $this->assertEquals('test', $order->details);
     }
 }

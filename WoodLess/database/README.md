@@ -10,7 +10,7 @@ Any schema changes for the database can be modified here. This is also Laravel's
 - See (https://laravel.com/docs/10.x/migrations) for more information.
 
 ### Running Migrations
-This will query the database, building the tables specifed in migrations.
+This will query the database, building the tables specified in migrations.
 1. Ensure [.env](../.env) is modified to connect to your target database.
 2. Open the [WoodLess](../../WoodLess/) folder in terminal, run `php artisan migrate`. This will create the tables in your database.
 
@@ -34,6 +34,7 @@ The file [DatabaseSeeder](./seeders/DatabaseSeeder.php) contains methods to popu
 ### Running the Seeder
 1. Open the [WoodLess](../../WoodLess/) folder in terminal. 
 2. Next, `php artisan db:seed` to run data to the database, or `php artisan migrate:fresh --seed` to both drop all table rows and add fresh new data.
+ - You can also optionally specify a seeder by adding the seeder name to the end of your commands.
 
 ## Schema (Last Updated: 29/02/24)
 See below information on the database.

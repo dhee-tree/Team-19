@@ -13,8 +13,8 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'created_at', 'order'=>'desc'])}}#reviews">Most Recent</a></li>
-                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (High to Low)</a></li>
-                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (Low to High)</a></li>
+                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'asc'])}}#reviews">Rating (High to Low)</a></li>
+                    <li><a class="dropdown-item" href="{{request()->fullUrlWithQuery(['page' => '1', 'sort'=>'rating', 'order'=>'desc'])}}#reviews">Rating (Low to High)</a></li>
                 </ul>
             </div>
         </div>
@@ -82,6 +82,8 @@
                                             @else 
                                                 <i class="fa-solid fa-eye"></i> View
                                             @endif 
+                                        @else
+                                        <i class="fa-solid fa-eye"></i> View
                                         @endif
                                     </small>
                                     </button>
@@ -246,14 +248,16 @@
                                             <i class="fa-solid fa-pencil"></i> Edit 
                                         @else 
                                             <i class="fa-solid fa-eye"></i> View
-                                        @endif 
+                                        @endif
+                                    @else
+                                        <i class="fa-solid fa-eye"></i> View
                                     @endif
                                 </small>
                                 </button>
                             </div>
 
                             @if($user)
-                                @if ($reviewUser == $user || $user->isAdmin())
+                                @if ($reviewUser == $user || $user->accessLevel() >= 2)
                                 <div class="ms-2">
                                     <form id="updateForm{{$review->id}}" method="POST" action="/review/{{$review->id}}">
                                         @csrf
