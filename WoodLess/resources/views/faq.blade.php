@@ -283,12 +283,10 @@
                 </li>
                 <li class="cs-faq-item">
                     <button class="cs-button">
-                        <span class="cs-button-text">
-                           What is your estimated shipping time?
-                        </span>
+                    Do you offer shipping options for large furniture items?
                     </button>
                     <p class="cs-item-p">
-                    Do you offer shipping options for large furniture items?
+                 
 
  We offer shipping options for all our furniture items, including larger pieces such as sofas and dining tables.
   Our shipping partners handle deliveries carefully and efficiently, ensuring that your furniture arrives safely 
@@ -298,7 +296,7 @@
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                                  
+                                What are your future sustainability goals?  
                         </span>
                     </button>
                     <p class="cs-item-p">
