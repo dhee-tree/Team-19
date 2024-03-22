@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Admin::class,
         'verify' => \App\Http\Middleware\Verify::class,
         'prevent.resubmission' => \App\Http\Middleware\PreventFormResubmission::class,
+        'force.https' => \App\Http\Middleware\ForceHttps::class,
     ];
 }
