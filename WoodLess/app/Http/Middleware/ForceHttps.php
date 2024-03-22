@@ -8,7 +8,7 @@ class ForceHttps
 {
     public function handle($request, Closure $next)
     {
-        if (!$request->secure()) {
+        if (!$request->secure() && strpos($request->getRequestUri(), '/admin-panel/inventory/product-edit/') !== false) {
             return redirect()->secure($request->getRequestUri());
         }
 
