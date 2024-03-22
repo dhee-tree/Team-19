@@ -248,20 +248,25 @@
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                            How do I need to verify my email?
+                            How and why do I need to verify my email?
                         </span>
                     </button>
-                    <p class="cs-item-p">To verify your email, you will need to click on the verification link we sent to your inbox after you signed up.</p>
+                    <p class="cs-item-p">To verify your email, you will need to click on the verification link we sent to your inbox after you signed up.
+                    Verifying your email helps us ensure that you are the rightful owner of the email address you provided during sign up. 
+                        This helps us keep your account secure and your information safe. It also ensures that you receive important notifications about your 
+                        account such as password reset link and order invoices.
+                    </p>
                 </li>
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                            Why do I need to verify my email?
+                            How do you collect materials and make products?
                         </span>
                     </button>
-                    <p class="cs-item-p">Verifying your email helps us ensure that you are the rightful owner of the email address you provided during sign up. 
-                        This helps us keep your account secure and your information safe. It also ensures that you receive important notifications about your 
-                        account such as password reset link and order invoices.
+                    <p class="cs-item-p">We collect materials for our furniture from ocean waste and landfill sites, 
+                        sourcing 100% recycled materials. After careful cleaning and processing, 
+                        we transform these materials into high-quality furniture products, contributing to reducing ocean pollution
+                         and landfill waste while providing eco-friendly solutions for our customers.
                     </p>
                 </li>
                 <li class="cs-faq-item">
@@ -293,26 +298,27 @@
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                        What steps do you take to minimize environmental impact?
+                                  
                         </span>
                     </button>
                     <p class="cs-item-p">
-                    We take several measures to minimize our environmental impact, 
-                    including using eco-friendly materials, reducing waste in production processes,
-                     and offsetting carbon emissions from shipping. We're committed to sustainability
-                      every step of the way.
+                    Our future sustainability goals include achieving carbon neutrality and
+                     implementing zero-waste practices across all operations by 2030, 
+                     promoting biodiversity conservation in our supply chain. 
+                     We aim to foster a culture of environmental stewardship within our organisation
+                      and collaborate with stakeholders to drive positive change in our communities and beyond.
                     </p>
                 </li>
                 <li class="cs-faq-item">
                     <button class="cs-button">
                         <span class="cs-button-text">
-                        Do you have a showroom where I can see the furniture in person?
+                        How can I help save our enviroment?
                         </span>
                     </button>
                     <p class="cs-item-p">
-                    As of present we  primarily operate online, However we are opening showroom locations in
-                     select cities where you can view our furniture collections in person. 
-                     So keep your eyes out for upddates on these.
+                    Join us in keeping our oceans clean and protecting marine life! Support The Ocean Cleanup's
+                     efforts to remove plastic waste from our waters by visiting their website <a href='https://theoceancleanup.com/' style='color: #007bff; text-decoration: none; font-weight: bold;'>here</a>. 
+                        Together, we can make a difference!
                     </p>
                 </li>
             </ul>
