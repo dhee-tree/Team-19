@@ -221,10 +221,10 @@
         <div class="cs-image-group">
             <picture class="cs-picture cs-picture1">
                 <!--Mobile Image-->
-                <source media="(max-width: 600px)" srcset="{{ asset('images\bedroom-8512933_1280.jpg') }}"
+                <source media="(max-width: 600px)" srcset="{{ secure_asset('images\bedroom-8512933_1280.jpg') }}"
                 <!--Tablet and above Image-->
-                <source media="(min-width: 601px)" srcset="{{ asset('images\bedroom-8512933_1280.jpg') }}">
-                <img loading="lazy" decoding="async" src="{{ asset('images\bedroom-8512933_1280.jpg') }}"> 
+                <source media="(min-width: 601px)" srcset="{{secure_asset('images\bedroom-8512933_1280.jpg') }}">
+                <img loading="lazy" decoding="async" src="{{ secure_asset('images\bedroom-8512933_1280.jpg') }}"> 
     
             </picture>
         </div>
