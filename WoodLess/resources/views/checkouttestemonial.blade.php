@@ -24,6 +24,11 @@
 					<button type="submit" class="btn btn-submit">Submit</button>
 					<button class="btn btn-cancel">Cancel</button>
 				</div>
+				@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
 			</form>
 		</div>
 	</div>
