@@ -7,7 +7,9 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Routing\RouteCollection;
 use Tests\TestCase;
 
 class AddressControllerTest extends TestCase
@@ -47,6 +49,13 @@ class AddressControllerTest extends TestCase
 
         // Mock Auth facade
         Auth::shouldReceive('user')->andReturn($user);
+
+        // Mock the existence of verification.notice route
+        Route::shouldReceive('has')->with('verification.notice')->andReturn(true);
+
+        // Mock the behavior of the getRoutes() method
+        $routes = new RouteCollection();
+        Route::shouldReceive('getRoutes')->andReturn($routes);
 
         // Create AddressController instance
         $controller = new AddressController();
