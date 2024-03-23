@@ -45,11 +45,13 @@
                 align-items: center;
                 /* 40px - 48px */
                 gap: clamp(2.5rem, 5vw, 3rem);
+                margin-top: 20px !important;
             }
 
             #faq-1193 .cs-content {
                 text-align: left;
                 max-width: 39.375rem;
+    
             }
 
             #faq-1193 .cs-title {
@@ -189,12 +191,15 @@
                 height: 42.375em;
                 display: block;
                 position: relative;
+                margin-top: 20px !important;
+      
             }
 
             #faq-1193 .cs-picture {
                 display: block;
                 position: absolute;
                 z-index: 1;
+                margin-top: 20px !important;
             }
 
             #faq-1193 .cs-picture1 {
@@ -202,6 +207,7 @@
                 height: 38.0625em;
                 top: 0;
                 left: 0;
+                margin-top: 20px !important;
             }
 
             #faq-1193 .cs-picture1 img {
@@ -211,6 +217,7 @@
                 height: 95%;
                 width: 100%;
                 object-fit: cover;
+                margin-top: 20px !important;
             }
 
         }
@@ -222,22 +229,28 @@
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: stretch;
+                margin-top: 20px !important;
             }
 
             #faq-1193 .cs-content {
                 width: 55%;
+                margin-top: 20px !important;
             }
 
             #faq-1193 .cs-image-group {
                 font-size: min(1.4vw, 1em);
                 height: auto;
                 min-height: 42.375rem;
+                margin-top: 20px !important;
             }
 
             #faq-1193 .cs-picture1 {
                 height: 90%;
+                margin-top: 20px !important;
             }
-        }
+
+}
+        
     </style>
     <section id="faq-1193">
         <div class="cs-container">
