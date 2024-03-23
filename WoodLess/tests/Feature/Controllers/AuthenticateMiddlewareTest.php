@@ -34,5 +34,4 @@ class AuthenticateMiddlewareTest extends TestCase
         $middleware->handle($request, function () {});
     }
 
-    // Add more test cases as needed
 }
