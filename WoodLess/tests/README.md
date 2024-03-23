@@ -20,7 +20,7 @@ These are tests that test a chain of methods (Such as the process of a user logg
 - To create a new feature test file, run `php artisan make:test TestName`
 
 ## Unit Tests 
-These are tests that test a single or small chain of methods.
+These are tests intended to test a single method (Such as retrieving a model relationship).
 - To create a new unit test file, run `php artisan make:test TestName --unit`
 - Note that most if not all the tests you create will likely be feature tests.
 
