@@ -42,7 +42,7 @@ class ProductController extends Controller
             'reviews' => $reviews,
             'similarProducts' => $similarProducts,
             'finalCost' => sprintf("%0.2f", round(($product->cost) - (($product->cost) * ($product->discount / 100)), 2)),
-        ])->render();
+        ]);
     }
     // public function search(){
     //     $search_text =$_GET['search'];
