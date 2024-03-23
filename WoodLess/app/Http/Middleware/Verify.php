@@ -32,7 +32,7 @@ class Verify
             $isVerified = EmailVerificationCode::where('user_id', $user->id)->first()->is_verified ?? false;
             //check if their is_verified is false
             if ($isVerified == false) {
-                return redirect()->back()->with(['status'=>'danger','message'=>'Please verify your email to access this feature.','error'=>403]);
+                return redirect()->back()->with(['status'=>'danger','message'=>'Please verify your email to access checkout.','error'=>403]);
             }
 
         }
