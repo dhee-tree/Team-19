@@ -22,7 +22,7 @@ class HomeControllerTest extends TestCase
         $products = Product::factory()->count(5)->create();
 
         // When a user visits the home page
-        $response = $this->get('/');
+        $response = $this->get('/home');
 
         // Then they should see the welcome view with categories and products
         $response->assertStatus(200)
