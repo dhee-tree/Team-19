@@ -57,28 +57,21 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Attributes (Note: attributes are to be put in array format, so
-                            "data1","data2"...etc)</label>
-                        <div id="attributeFields">
-                            @foreach (json_decode($product->attributes, true) as $key => $value)
-                                <div class="row mb-3">
-                                    <div class="col-auto">
-                                        <input type="text" class="form-control" name="attributes_keys[]"
-                                            placeholder="Attribute Name" value="{{ $key }}">
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" class="form-control" name="attributes_values[]"
-                                            placeholder="Attribute Value" value="{{ $value }}">
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-danger remove-attribute">&times;</button>
-                                    </div>
+                        <label class="form-label">Tags (Note: tags are separated by commas)</label>
+                        <div id="tagFields">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="tags[]" placeholder="Tag"
+                                        value="">
                                 </div>
-                            @endforeach
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-danger remove-tag">&times;</button>
+                                </div>
+                            </div>
                         </div>
-                        <button type="button" class="btn btn-primary mt-2" id="addAttributeField">Add
-                            Attribute</button>
+                        <button type="button" class="btn btn-primary mt-2" id="addTagField">Add Tag</button>
                     </div>
+
                     <div class="mb-3">
                         <label for="cost" class="form-label">Cost</label>
                         <input type="number" class="form-control" id="cost" name="cost"
