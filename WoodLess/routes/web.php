@@ -73,7 +73,7 @@ Route::middleware('prevent.resubmission')->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-    Route::get('/admin-panel', [AdminController::class, 'Dashboard'])->name('admin.panel-dashboard')->middleware('admin:3');
+    Route::get('/admin-panel', [AdminController::class, 'Dashboard'])->name('admin.panel-dashboard')->middleware('admin:2');
     //admin panel pages
 
     Route::middleware('force.https')->group(function () {

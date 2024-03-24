@@ -12,13 +12,21 @@
                 <div class="logo-name"><span>Wood</span>Less</div>
             </a>
             <ul class="side-menu">
-                <li class="{{ request()->is('admin-panel') ? 'active' : '' }}"><a href="{{ url('/admin-panel') }}"><i class="fa-solid fa-house"></i>Dashboard</a></li>
-                <li class="{{ request()->is('admin-panel/inventory') ? 'active' : '' }}"><a href="{{ url('/admin-panel/inventory') }}"><i class="fa-solid fa-store"></i>Inventory</a></li>
-                <li class="{{ request()->is('admin-panel/orders') ? 'active' : '' }}"><a href="{{ url('/admin-panel/orders') }}"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
-                <li class="{{ request()->is('admin-panel/tickets') ? 'active' : '' }}"><a href="{{ url('/admin-panel/tickets') }}"><i class="fa-solid fa-message"></i>Tickets</a></li>
-                <li class="{{ request()->is('admin-panel/users') ? 'active' : '' }}"><a href="{{ url('/admin-panel/users') }}"><i class="fa-solid fa-users"></i>Users</a></li>
-                <li><a href="{{ url('/user-panel') }}"><i class="fa-solid fa-user"></i>User Panel</a></li>
-                <li class="{{ request()->is('admin-panel/warehouse') ? 'active' : '' }}"><a href="{{ url('/admin-panel/warehouse') }}"><i class="fa-solid fa-warehouse"></i>Warehouse</a></li>
+                <!-- Always show these links -->
+                @if(auth()->user()->access_level >= 3)
+                    <!-- Show these links for access level 3 and above -->
+                    <li class="{{ request()->is('admin-panel') ? 'active' : '' }}"><a href="{{ url('/admin-panel') }}"><i class="fa-solid fa-house"></i>Dashboard</a></li>
+                    <li class="{{ request()->is('admin-panel/inventory') ? 'active' : '' }}"><a href="{{ url('/admin-panel/inventory') }}"><i class="fa-solid fa-store"></i>Inventory</a></li>
+                    <li class="{{ request()->is('admin-panel/orders') ? 'active' : '' }}"><a href="{{ url('/admin-panel/orders') }}"><i class="fa-solid fa-truck-moving"></i>Orders</a></li>
+                    <li class="{{ request()->is('admin-panel/tickets') ? 'active' : '' }}"><a href="{{ url('/admin-panel/tickets') }}"><i class="fa-solid fa-message"></i>Tickets</a></li>
+                    <li class="{{ request()->is('admin-panel/users') ? 'active' : '' }}"><a href="{{ url('/admin-panel/users') }}"><i class="fa-solid fa-users"></i>Users</a></li>
+                    <li><a href="{{ url('/user-panel') }}"><i class="fa-solid fa-user"></i>User Panel</a></li>
+                    <li class="{{ request()->is('admin-panel/warehouse') ? 'active' : '' }}"><a href="{{ url('/admin-panel/warehouse') }}"><i class="fa-solid fa-warehouse"></i>Warehouse</a></li>
+                @elseif(auth()->user()->access_level == 2)
+                    <!-- Show only these links for access level 2 -->
+                    <li class="{{ request()->is('admin-panel/tickets') ? 'active' : '' }}"><a href="{{ url('/admin-panel/tickets') }}"><i class="fa-solid fa-message"></i>Tickets</a></li>
+                    <li><a href="{{ url('/user-panel') }}"><i class="fa-solid fa-user"></i>User Panel</a></li>
+                @endif
             </ul>
             <ul class="side-menu">
                 <li>
