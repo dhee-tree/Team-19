@@ -17,4 +17,6 @@ menuBar.addEventListener('click', () => {
     sideBar.classList.toggle('close');
 });
 
+// Get the current protocol and domain
+var baseUrl = window.location.origin;
 

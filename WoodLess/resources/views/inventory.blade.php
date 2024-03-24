@@ -11,21 +11,20 @@
             <h1>Inventory</h1>
         </div>
     </div>
-    
+
     <div class="bottom-data">
         <div class="orders">
             <div class="header">
                 <i class="fa-solid fa-user"></i>
                 <h3>Products</h3>
                 <button type="button" class="btn btn-primary openModalButton" onclick="openAddModal()"
-                id="openModalButton">Create Product <i class="fa-solid fa-plus"></i></button>
+                    id="openModalButton">Create Product <i class="fa-solid fa-plus"></i></button>
             </div>
             <div class="table_filters">
                 <div class="dataTables_length" id="length_dropdown">
                     <label>
                         Show:
-                        <select name="length" id="length" aria-controls="example"
-                            class="form-select form-select-sm">
+                        <select name="length" id="length" aria-controls="example" class="form-select form-select-sm">
                             <option value="0">Select Value</option>
                             <option value="5" {{ request()->input('length') == 5 ? 'selected' : '' }}>5
                             </option>
@@ -101,8 +100,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <form id="deleteForm" action="{{ route('product-delete', ['id' => ':product_id']) }}"
-                        method="POST">
+                    <form id="deleteForm" action="{{ route('product-delete', ['id' => ':product_id']) }}" method="POST">
                         @csrf
                         <input type="hidden" name="id_input" id="id_input" value="">
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -114,7 +112,7 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/admin-panel/inventory.js') }}"></script>
     <script src="{{ asset('js/admin-panel.js') }}"></script>
+    <script src="{{ asset('js/admin-panel/inventory.js') }}"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTable.js"></script>
 @endsection
