@@ -64,7 +64,7 @@
                                 @if ($ticket->admin_id == auth()->user()->id && $ticket->status == 1)
                                     <div class="d-inline-block">
                                         <form method="POST"
-                                            action="{{ route('admin.ticket-resolve', ['id' => $ticket->id]) }}">
+                                            action="{{ secure_url(route('admin.ticket-resolve', ['id' => $ticket->id])) }}">
                                             @csrf
                                             <button type="submit" class="btn btn-primary me-2">Set In Progress</button>
                                         </form>
@@ -72,7 +72,7 @@
                                 @elseif ($ticket->admin_id == auth()->user()->id && $ticket->status == 2)
                                     <div class="d-inline-block">
                                         <form method="POST"
-                                            action="{{ route('admin.ticket-resolve', ['id' => $ticket->id]) }}">
+                                            action="{{ secure_url(route('admin.ticket-resolve', ['id' => $ticket->id])) }}">
                                             @csrf
                                             <button type="submit" class="btn btn-primary me-2">End Ticket</button>
                                         </form>
@@ -82,7 +82,8 @@
                                 @else
                                     <div class="d-inline-block">
                                         <form id="claimTicket"
-                                            action="{{ route('ticket-claim', ['id' => $ticket->id]) }}" method="POST">
+                                            action="{{ secure_url(route('ticket-claim', ['id' => $ticket->id])) }}"
+                                            method="POST">
                                             @csrf
                                             <button type="submit" class="btn btn-primary me-2">Claim</button>
                                         </form>

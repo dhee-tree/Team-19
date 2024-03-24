@@ -78,8 +78,8 @@
                                 <button class="btn btn-warning" data-bs-target="#DetailsModal" data-bs-toggle="modal"
                                     data-bs-dismiss="modal">Set Note</button>
                                 @if ($order->status->id == 1)
-                                    <form action="{{ route('order-accept', ['id' => $order->id]) }}" method="POST"
-                                        style="display: inline;">
+                                    <form action="{{ secure_url(route('order-accept', ['id' => $order->id])) }}"
+                                        method="POST" style="display: inline;">
                                         @csrf
                                         <button class="btn btn-primary" type="submit">Approve</button>
                                     </form>
@@ -136,7 +136,7 @@
                                     <div class="row">
                                         <div class="mb-3 d-flex flex-column justify-content-between">
                                             <form
-                                                action="{{ route('admin.order.process-return', ['id' => $order->id, 'productids' => $product->id]) }}"
+                                                action="{{ secure_url(route('admin.order.process-return', ['id' => $order->id, 'productids' => $product->id])) }}"
                                                 method="POST">
                                                 @csrf
                                                 <button type="submit" name="action" value="accept"
@@ -176,7 +176,7 @@
                         Details
                     </h5>
                 </div>
-                <form action="{{ route('order-details', ['id' => $order->id]) }}" method="POST">
+                <form action="{{ secure_url(route('order-details', ['id' => $order->id])) }}" method="POST">
                     @csrf
 
                     <div class="modal-body">

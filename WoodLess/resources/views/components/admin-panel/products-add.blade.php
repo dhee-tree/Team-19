@@ -10,8 +10,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editProductForm" method="POST" action="{{ route('product-store', ['id' => -1]) }}"
-                    enctype="multipart/form-data">
+                <form id="editProductForm" method="POST"
+                    action="{{ secure_url(route('product-store', ['id' => -1])) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>

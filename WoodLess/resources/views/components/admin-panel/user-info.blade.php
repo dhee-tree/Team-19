@@ -180,7 +180,8 @@
                     <h1 class="modal-title fs-5" id="editModalLabel">Edit User: {{ $user->id }} Details </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="editUserForm" action="{{ route('user-store', ['id' => $user->id]) }}" method="POST">
+                <form id="editUserForm" action="{{ secure_url(route('user-store', ['id' => $user->id])) }}"
+                    method="POST">
                     @csrf
                     <div class="modal-body">
                         <label for="first_name">First Name (up to 60 characters):</label>
@@ -205,19 +206,22 @@
                             oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
 
                         <div class="form-check pt-3">
-                        
-                       
-                        <label for="access_level">Select Role:</label>
-                        <select class="form-control" id="access_level" name="access_level">
-                            <option value="1" {{ $user->access_level == 1 ? 'selected' : '' }}>User</option>
-                            <option value="2" {{ $user->access_level == 2 ? 'selected' : '' }}>Moderator</option>
-                            @if (Auth::user()->access_level == 4)
-                            <option value="3" {{ $user->access_level == 3 ? 'selected' : '' }}>Admin</option>
-                            <option value="4" {{ $user->access_level == 4 ? 'selected' : '' }}>Super Admin</option>
-                            @endif
-                        </select>
-                        </select>
-                     </div>
+
+
+                            <label for="access_level">Select Role:</label>
+                            <select class="form-control" id="access_level" name="access_level">
+                                <option value="1" {{ $user->access_level == 1 ? 'selected' : '' }}>User</option>
+                                <option value="2" {{ $user->access_level == 2 ? 'selected' : '' }}>Moderator
+                                </option>
+                                @if (Auth::user()->access_level == 4)
+                                    <option value="3" {{ $user->access_level == 3 ? 'selected' : '' }}>Admin
+                                    </option>
+                                    <option value="4" {{ $user->access_level == 4 ? 'selected' : '' }}>Super
+                                        Admin</option>
+                                @endif
+                            </select>
+                            </select>
+                        </div>
 
 
                         <label for="addresses" class="pt-3">Addresses:</label>

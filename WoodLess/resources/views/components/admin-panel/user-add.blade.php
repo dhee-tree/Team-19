@@ -7,7 +7,7 @@
                 <h1 class="modal-title fs-5" id="extraModalLabel">Create User</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="addUserForm" action="{{ route('user-store', ['id' => -1]) }}" method="POST">
+            <form id="addUserForm" action="{{ secure_url(route('user-store', ['id' => -1])) }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <label for="first_name">First Name (up to 60 characters):</label>

@@ -9,7 +9,9 @@
                 <h5 class="modal-title" id="extraModalLabel">Edit Product</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form id="editProductForm" method="POST" action="{{ route('product-store', ['id' => $product->id]) }}"
+            <form id="editProductForm" method="POST"
+                action="{{ secure_url(route('product-store', ['id' => $product->id])) }}">
+
                 enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
