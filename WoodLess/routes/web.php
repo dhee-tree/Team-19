@@ -73,7 +73,7 @@ Route::middleware('prevent.resubmission')->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-    Route::get('/admin-panel', [AdminController::class, 'Dashboard'])->name('admin.panel-dashboard')->middleware('admin:2');
+    Route::get('/admin-panel', [AdminController::class, 'Dashboard'])->name('admin.panel-dashboard')->middleware('admin:3');
     //admin panel pages
     // Define your routes here...
 
@@ -118,25 +118,25 @@ Route::middleware('prevent.resubmission')->group(function () {
 
     #region admin panel tickets
 
-    Route::get('/admin-panel/tickets', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin:3');
+    Route::get('/admin-panel/tickets', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin:2');
 
-    Route::get('', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin:3');
+    Route::get('', [AdminController::class, 'tickets'])->name('admin-panel.tickets')->middleware('admin:2');
 
-    Route::get('/admin-panel/tickets/info/{id}', [AdminController::class, 'TicketInfo'])->name('ticket-info')->middleware('admin:3');
+    Route::get('/admin-panel/tickets/info/{id}', [AdminController::class, 'TicketInfo'])->name('ticket-info')->middleware('admin:2');
 
     //The additional information modal to expand fields in tickets for user or admin that claimed a ticket admin panel
-    Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin:3');
+    Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin:2');
 
     //used to claim a ticket
-    Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin:3');
+    Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin:2');
     //used to resolve a ticket
-    Route::post('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('admin.ticket-resolve')->middleware('admin:3');
+    Route::post('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('admin.ticket-resolve')->middleware('admin:2');
 
-    Route::post('/admin-panel/tickets/importance/{id}/{importance}', [AdminController::class, 'TicketImportance'])->name('admin.ticket-importance')->middleware('web', 'admin:3');
+    Route::post('/admin-panel/tickets/importance/{id}/{importance}', [AdminController::class, 'TicketImportance'])->name('admin.ticket-importance')->middleware('web', 'admin:2');
 
 
     //used to delete a ticket
-    Route::post('/admin-panel/tickets/delete/{id}', [AdminController::class, 'TicketDelete'])->name('ticket-delete')->middleware('admin:3');
+    Route::post('/admin-panel/tickets/delete/{id}', [AdminController::class, 'TicketDelete'])->name('ticket-delete')->middleware('admin:2');
 
 
     #endregion
