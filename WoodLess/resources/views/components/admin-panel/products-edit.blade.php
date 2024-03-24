@@ -59,17 +59,15 @@
                     <div class="mb-3">
                         <label class="form-label">Tags (Note: tags are separated by commas)</label>
                         <div id="tagFields">
-                            @foreach (explode(',', $product->tags) as $tag)
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <input type="text" class="form-control" name="tags[]" placeholder="Tag"
-                                            value="{{ $tag }}">
-                                    </div>
-                                    <div class="col-auto">
-                                        <button type="button" class="btn btn-danger remove-tag">&times;</button>
-                                    </div>
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="tags[]" placeholder="Tag"
+                                        value="">
                                 </div>
-                            @endforeach
+                                <div class="col-auto">
+                                    <button type="button" class="btn btn-danger remove-tag">&times;</button>
+                                </div>
+                            </div>
                         </div>
                         <button type="button" class="btn btn-primary mt-2" id="addTagField">Add Tag</button>
                     </div>
