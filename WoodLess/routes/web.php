@@ -86,14 +86,14 @@ Route::middleware('prevent.resubmission')->group(function () {
 
     Route::get('/admin-panel/category/info/{id}', [AdminController::class, 'CategoryInfo'])->name('admin.category-info')->middleware('admin:3');
 
-    Route::post('/admin-panel/category/create', [AdminController::class, 'CategoryCreate'])->name('admin.category-create')->middleware('admin:3');
+    Route::post('/admin-panel/category/create', [AdminController::class, 'CategoryCreate'])->name('admin.category-create')->middleware('admin:3')->httpsOnly();
 
-    Route::post('/admin-panel/warehouse/create', [AdminController::class, 'WarehouseCreate'])->name('admin.warehouse-create')->middleware('admin:3');
+    Route::post('/admin-panel/warehouse/create', [AdminController::class, 'WarehouseCreate'])->name('admin.warehouse-create')->middleware('admin:3')->httpsOnly();
 
 
-    Route::post('/admin-panel/category/delete/{id}', [AdminController::class, 'CategoryDelete'])->name('admin.category-delete')->middleware('admin:3');
+    Route::post('/admin-panel/category/delete/{id}', [AdminController::class, 'CategoryDelete'])->name('admin.category-delete')->middleware('admin:3')->httpsOnly();
 
-    Route::post('/admin-panel/warehouse/delete/{id}', [AdminController::class, 'WarehouseDelete'])->name('admin.product-delete')->middleware('admin:3');
+    Route::post('/admin-panel/warehouse/delete/{id}', [AdminController::class, 'WarehouseDelete'])->name('admin.product-delete')->middleware('admin:3')->httpsOnly();
 
 
     #endregion
@@ -104,13 +104,13 @@ Route::middleware('prevent.resubmission')->group(function () {
 
     Route::get('/admin-panel/orders/info/{id}', [AdminController::class, 'OrderInfo'])->name('order-info')->middleware('admin:3');
 
-    Route::post('/admin-panel/orders/accept/{id}', [OrderController::class, 'OrderAccept'])->name('order-accept')->middleware('admin:3');
+    Route::post('/admin-panel/orders/accept/{id}', [OrderController::class, 'OrderAccept'])->name('order-accept')->middleware('admin:3')->httpsOnly();
 
-    Route::post('/admin-panel/return/process-return/{id}/{productids}', [OrderController::class, 'ProcessReturn'])->name('admin.order.process-return')->middleware('admin:3');
-    Route::post('/admin-panel/return/cancel/{id}/{productids}', [OrderController::class, 'CancelReturn'])->name('admin.order.cancel-return')->middleware('admin:3');
+    Route::post('/admin-panel/return/process-return/{id}/{productids}', [OrderController::class, 'ProcessReturn'])->name('admin.order.process-return')->middleware('admin:3')->httpsOnly();
+    Route::post('/admin-panel/return/cancel/{id}/{productids}', [OrderController::class, 'CancelReturn'])->name('admin.order.cancel-return')->middleware('admin:3')->httpsOnly();
 
 
-    Route::post('/admin-panel/orders/details/{id}', [AdminController::class, 'OrderDetails'])->name('order-details')->middleware('admin:3');
+    Route::post('/admin-panel/orders/details/{id}', [AdminController::class, 'OrderDetails'])->name('order-details')->middleware('admin:3')->httpsOnly();
 
 
     #endregion
@@ -128,15 +128,15 @@ Route::middleware('prevent.resubmission')->group(function () {
     Route::get('/admin-panel/tickets/user-info/{id}', [AdminController::class, 'UserInfo'])->name('components.user-info')->middleware('admin:3');
 
     //used to claim a ticket
-    Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin:3');
+    Route::post('/admin-panel/tickets/claim/{id}', [AdminController::class, 'TicketClaim'])->name('ticket-claim')->middleware('admin:3')->httpsOnly();
     //used to resolve a ticket
-    Route::post('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('admin.ticket-resolve')->middleware('admin:3');
+    Route::post('/admin-panel/tickets/admin-resolve/{id}', [AdminController::class, 'TicketResolve'])->name('admin.ticket-resolve')->middleware('admin:3')->httpsOnly();
 
-    Route::post('/admin-panel/tickets/importance/{id}/{importance}', [AdminController::class, 'TicketImportance'])->name('admin.ticket-importance')->middleware('web', 'admin:3');
+    Route::post('/admin-panel/tickets/importance/{id}/{importance}', [AdminController::class, 'TicketImportance'])->name('admin.ticket-importance')->middleware('web', 'admin:3')->httpsOnly();
 
 
     //used to delete a ticket
-    Route::post('/admin-panel/tickets/delete/{id}', [AdminController::class, 'TicketDelete'])->name('ticket-delete')->middleware('admin:3');
+    Route::post('/admin-panel/tickets/delete/{id}', [AdminController::class, 'TicketDelete'])->name('ticket-delete')->middleware('admin:3')->httpsOnly();
 
 
     #endregion
@@ -152,9 +152,9 @@ Route::middleware('prevent.resubmission')->group(function () {
     //The modal to open the add modal for products
     Route::get('/admin-panel/inventory/product-add', [AdminController::class, 'ProductAdd'])->name('components.products-add')->middleware('admin:3');
     //stores products, either edits or creates a new ones
-    Route::post('/admin-panel/inventory/store/{id}', [AdminController::class, 'ProductStore'])->name('product-store')->middleware('admin:3');
+    Route::post('/admin-panel/inventory/store/{id}', [AdminController::class, 'ProductStore'])->name('product-store')->middleware('admin:3')->httpsOnly();
     //stores products, either edits or creates a new ones
-    Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class, 'ProductDelete'])->name('product-delete')->middleware('admin:3');
+    Route::post('/admin-panel/inventory/delete/{id}', [AdminController::class, 'ProductDelete'])->name('product-delete')->middleware('admin:3')->httpsOnly();
 
     #endregion
 
@@ -168,9 +168,9 @@ Route::middleware('prevent.resubmission')->group(function () {
     //create a user
     Route::get('/admin-panel/users/user-add', [AdminController::class, 'UserAdd'])->name('components.user-add')->middleware('admin:3');
     //stores products, either edits or creates a new ones
-    Route::post('/admin-panel/users/user-store/{id}', [AdminController::class, 'UserStore'])->name('user-store')->middleware('admin:3')->https(); //saving to database, either edited or a new product
+    Route::post('/admin-panel/users/user-store/{id}', [AdminController::class, 'UserStore'])->name('user-store')->middleware('admin:3')->httpsOnly(); //saving to database, either edited or a new product
     //deletes the user
-    Route::post('/admin-panel/users/delete/{id}', [AdminController::class, 'UserDelete'])->name('user-delete')->middleware('admin:3');
+    Route::post('/admin-panel/users/delete/{id}', [AdminController::class, 'UserDelete'])->name('user-delete')->middleware('admin:3')->httpsOnly();
 
     #endregion
 
