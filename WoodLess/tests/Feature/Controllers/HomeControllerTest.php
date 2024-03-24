@@ -1,5 +1,4 @@
 <?php
-
 namespace Tests\Feature\Controllers;
 
 use App\Models\Category;
@@ -31,4 +30,5 @@ class HomeControllerTest extends TestCase
                  ->assertViewHas('categories', $categories) // Assert that categories are passed to the view
                  ->assertViewHas('products', $products); // Assert that products are passed to the view
     }
+
 }
