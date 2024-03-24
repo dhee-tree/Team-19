@@ -57,17 +57,42 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label class="form-label">Attributes (Note: attributes are to be put in array format, so
+                            "data1","data2"...etc)</label>
+                        <div id="attributeFields">
+                            @foreach (json_decode($product->attributes, true) as $key => $value)
+                                <div class="row mb-3">
+                                    <div class="col-auto">
+                                        <input type="text" class="form-control" name="attributes_keys[]"
+                                            placeholder="Attribute Name" value="{{ $key }}">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="attributes_values[]"
+                                            placeholder="Attribute Value" value="{{ $value }}">
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="button" class="btn btn-danger remove-attribute">&times;</button>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        <button type="button" class="btn btn-primary mt-2" id="addAttributeField">Add
+                            Attribute</button>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Tags (Note: tags are separated by commas)</label>
                         <div id="tagFields">
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <input type="text" class="form-control" name="tags[]" placeholder="Tag"
-                                        value="">
+                            @foreach (explode(',', $product->tags) as $tag)
+                                <div class="row mb-3">
+                                    <div class="col">
+                                        <input type="text" class="form-control" name="tags[]" placeholder="Tag"
+                                            value="{{ $tag }}">
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="button" class="btn btn-danger remove-tag">&times;</button>
+                                    </div>
                                 </div>
-                                <div class="col-auto">
-                                    <button type="button" class="btn btn-danger remove-tag">&times;</button>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                         <button type="button" class="btn btn-primary mt-2" id="addTagField">Add Tag</button>
                     </div>
@@ -284,6 +309,44 @@
             }
         });
     </script>
+
+    <script>
+        document.getElementById('addTagField').addEventListener('click', function() {
+            var tagFields = document.getElementById('tagFields');
+
+            var row = document.createElement('div');
+            row.className = 'row mb-3';
+
+            var tagCol = document.createElement('div');
+            tagCol.className = 'col';
+            var tagInput = document.createElement('input');
+            tagInput.type = 'text';
+            tagInput.className = 'form-control';
+            tagInput.placeholder = 'Tag';
+            tagInput.name = 'tags[]';
+            tagCol.appendChild(tagInput);
+
+            var deleteCol = document.createElement('div');
+            deleteCol.className = 'col-auto';
+            var deleteButton = document.createElement('button');
+            deleteButton.type = 'button';
+            deleteButton.className = 'btn btn-danger remove-tag';
+            deleteButton.innerHTML = '&times;';
+            deleteCol.appendChild(deleteButton);
+
+            row.appendChild(tagCol);
+            row.appendChild(deleteCol);
+
+            tagFields.appendChild(row);
+        });
+
+        document.getElementById('tagFields').addEventListener('click', function(event) {
+            if (event.target.classList.contains('remove-tag')) {
+                event.target.parentElement.parentElement.remove();
+            }
+        });
+    </script>
+
 
     <script>
         document.getElementById('warehouseSelect').addEventListener('change', function() {

@@ -319,9 +319,21 @@ class AdminController extends Controller
                 $attributes[$key] = $attributeValues[$index] ?? null;
             }
         }
-
         //store attributes
         $product->attributes = json_encode($attributes);
+
+        // Update the tags
+        $tags = [];
+        $tagValues = $request->input('tags', []);
+        foreach ($tagValues as $tag) {
+            if (!empty($tag)) {
+                $tags[] = $tag;
+            }
+        }
+        // Store tags as a string
+        $product->tags = implode(',', $tags);
+
+
 
         // Associate categories with the product
         $categories = $request->input('categories', []);
