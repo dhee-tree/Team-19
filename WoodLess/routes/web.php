@@ -168,7 +168,7 @@ Route::middleware('prevent.resubmission')->group(function () {
     //create a user
     Route::get('/admin-panel/users/user-add', [AdminController::class, 'UserAdd'])->name('components.user-add')->middleware('admin:3');
     //stores products, either edits or creates a new ones
-    Route::post('/admin-panel/users/user-store/{id}', [AdminController::class, 'UserStore'])->name('user-store')->middleware('admin:3'); //saving to database, either edited or a new product
+    Route::post('/admin-panel/users/user-store/{id}', [AdminController::class, 'UserStore'])->name('user-store')->middleware('admin:3')->https(); //saving to database, either edited or a new product
     //deletes the user
     Route::post('/admin-panel/users/delete/{id}', [AdminController::class, 'UserDelete'])->name('user-delete')->middleware('admin:3');
 
