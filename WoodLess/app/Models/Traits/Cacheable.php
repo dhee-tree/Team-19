@@ -102,7 +102,7 @@ trait Cacheable{
 
         if(is_null($model)){
             $model = Cache::remember(static::generateCacheKey($id), $time, function() use ($id) {
-                return static::findOrFail($id);
+                return static::find($id);
             });
         }
 
