@@ -123,15 +123,17 @@
                                 <span class="text-secondary">-{{$product->discount}}%</span>
                                 <span class="">£{{$finalCost}}</span>
                             </div>
-                            
-                            <div class="col m-0 p-0 opacity-50">
-                                <small>
-                                    <h6>Was: <strike>£{{$product->cost}}</strike></h6>
-                                </small>
-                            </div>
                             @else  
                                 £{{$product->cost}}
-                            @endif   
+                            @endif
+                            <div class="col m-0 p-0">
+                                <small>
+                                    <h6>
+                                        <span class="opacity-50">@if($product->discount > 0)Was: <strike>£{{$product->cost}}</strike></span>@endif
+                                        <p class="text-danger fw-bold m-0 mt-1">@if($product->stockAmount() <= 10)<i class="fa-solid fa-triangle-exclamation fa-fade"></i> Only {{$product->stockAmount()}} Left!</p>@endif
+                                    </h6>
+                                </small>
+                            </div>   
                         </h3>        
                     </div>
                 </div>

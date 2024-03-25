@@ -71,7 +71,7 @@ class ProductController extends Controller
 
         //get categories    
 
-        //break them apart from filters array or auto sets to null if no cateogry was passed
+        //break them apart from filters array or auto sets to null if no category was passed
         $finish = $filters['finish'] ?? null;
         // Get an array of values for the 'category' key
         // Extract values for the 'category' key and put them into an array
@@ -100,7 +100,7 @@ class ProductController extends Controller
     }
 
     /**
-     * Gets three random categories and products  for home page
+     * Gets three random categories and products for home page
      */
     public function getThreeRandom()
     {
