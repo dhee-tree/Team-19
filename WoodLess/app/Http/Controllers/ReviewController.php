@@ -19,12 +19,13 @@ class ReviewController extends Controller
      */
     public function store(Request $request, int $product_id){
         try {
-            $product = Product::findCached($product_id);
+            $product = Product::getCached($product_id);
 
             if (is_null($product)){
                 return redirect('/')->with([
                     'status' => 'danger',
-                    'message' => 'Product no longer exists.'
+                    'message' => 'Product no longer exists.',
+                    'error' => 404
                 ]);
             }
             
@@ -44,7 +45,7 @@ class ReviewController extends Controller
             ],
 
             [
-                'rating.required' => 'Please provide a rating.',
+                'rating.required' => 'Please provide a valid rating.',
                 'description.min' => 'Description must be longer than 25 characters.',
                 'description.required' => 'Please provide a description.'
             ]);
