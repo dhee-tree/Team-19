@@ -17,7 +17,7 @@ class User extends Authenticatable
     public static function boot(){
         parent::boot();
 
-        self::saved(function ($user) {
+        self::created(function ($user) {
             $user->basket()->create();
         });
 
