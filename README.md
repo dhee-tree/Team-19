@@ -24,6 +24,7 @@ WoodLess strives to offer a user-friendly experience, enabling users to make saf
 
 ### Official Deployment
 As of 26/02/2024, A public deployment of the website is available at: [20216407.cs2410-web01pvm.aston.ac.uk](http://220216407.cs2410-web01pvm.aston.ac.uk/). 
+However as of 01/01/2025 the project will not be publicly deployed as wel will lose ownership of the server.
 
 ## Guide
 This project contains guides to speed up development and deployment.
